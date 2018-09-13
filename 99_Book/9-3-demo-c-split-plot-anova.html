@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Research Methods</title>
+  <meta name="description" content="Begleitmaterial zum Modul ‘Research Methods’">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Research Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Research Methods" />
+  
+  <meta name="twitter:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+
+
+<meta name="date" content="2017-12-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html">
+<link rel="next" href="9-4-ubung-2.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="00_Admin/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modul ResearchMethods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a></li>
+<li class="chapter" data-level="2" data-path="2-prepro1-16-10-2017.html"><a href="2-prepro1-16-10-2017.html"><i class="fa fa-check"></i><b>2</b> PrePro1 (16.10.2017)</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html"><i class="fa fa-check"></i><b>2.1</b> Demo: Datentypen, Tabellen</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#datentypen"><i class="fa fa-check"></i><b>2.1.1</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#data-frames-und-conveniance-variabeln"><i class="fa fa-check"></i><b>2.1.2</b> Data Frames und Conveniance Variabeln</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#quellen"><i class="fa fa-check"></i><b>2.1.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html"><i class="fa fa-check"></i><b>2.2</b> Übung A</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgbenstellung"><i class="fa fa-check"></i><b>2.2.1</b> Aufgbenstellung</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#losung-r-code"><i class="fa fa-check"></i><b>2.2.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#quellen-1"><i class="fa fa-check"></i><b>2.2.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html"><i class="fa fa-check"></i><b>2.3</b> Übung B</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html#aufgbenstellung-1"><i class="fa fa-check"></i><b>2.3.1</b> Aufgbenstellung</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html#losung-r-code-1"><i class="fa fa-check"></i><b>2.3.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html#quellen-2"><i class="fa fa-check"></i><b>2.3.3</b> Quellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-prepro2-17-10-2017.html"><a href="3-prepro2-17-10-2017.html"><i class="fa fa-check"></i><b>3</b> PrePro2 (17.10.2017)</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html"><i class="fa fa-check"></i><b>3.1</b> Demo: <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#split-apply-combine"><i class="fa fa-check"></i><b>3.1.1</b> Split-Apply-Combine</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#reshaping-data"><i class="fa fa-check"></i><b>3.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#quellen-3"><i class="fa fa-check"></i><b>3.1.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html"><i class="fa fa-check"></i><b>3.2</b> Übung A</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html#aufgabenstellung"><i class="fa fa-check"></i><b>3.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html#losung-r-code-2"><i class="fa fa-check"></i><b>3.2.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html#quellen-4"><i class="fa fa-check"></i><b>3.2.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html"><i class="fa fa-check"></i><b>3.3</b> Übung B</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html#aufgabenstellung-1"><i class="fa fa-check"></i><b>3.3.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html#losung-r-code-3"><i class="fa fa-check"></i><b>3.3.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html#quellen-5"><i class="fa fa-check"></i><b>3.3.3</b> Quellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-infovis1-23-10-2017.html"><a href="4-infovis1-23-10-2017.html"><i class="fa fa-check"></i><b>4</b> InfoVis1 (23.10.2017)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-eda-beispiel-vorlesung.html"><a href="4-1-eda-beispiel-vorlesung.html"><i class="fa fa-check"></i><b>4.1</b> EDA Beispiel Vorlesung</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-eda-beispiel-vorlesung.html"><a href="4-1-eda-beispiel-vorlesung.html#quellen-6"><i class="fa fa-check"></i><b>4.1.1</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-demo-ggplot2.html"><a href="4-2-demo-ggplot2.html"><i class="fa fa-check"></i><b>4.2</b> Demo: <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-demo-ggplot2.html"><a href="4-2-demo-ggplot2.html#quellen-7"><i class="fa fa-check"></i><b>4.2.1</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-ubung.html"><a href="4-3-ubung.html"><i class="fa fa-check"></i><b>4.3</b> Übung</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-ubung.html"><a href="4-3-ubung.html#aufgabenstellung-2"><i class="fa fa-check"></i><b>4.3.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-ubung.html"><a href="4-3-ubung.html#losung-r-code-4"><i class="fa fa-check"></i><b>4.3.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-ubung.html"><a href="4-3-ubung.html#quellen-8"><i class="fa fa-check"></i><b>4.3.3</b> Quellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-infovis2-24-10-2017.html"><a href="5-infovis2-24-10-2017.html"><i class="fa fa-check"></i><b>5</b> InfoVis2 (24.10.2017)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html"><i class="fa fa-check"></i><b>5.1</b> Übung A</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html#aufgabenstellung-3"><i class="fa fa-check"></i><b>5.1.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html#losung-r-code-5"><i class="fa fa-check"></i><b>5.1.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html#libraries"><i class="fa fa-check"></i><b>5.1.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html"><i class="fa fa-check"></i><b>5.2</b> Übung B</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html#aufgabenstellung-4"><i class="fa fa-check"></i><b>5.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="5.2.2" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html#losung-r-code-6"><i class="fa fa-check"></i><b>5.2.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html#libraries-1"><i class="fa fa-check"></i><b>5.2.3</b> Libraries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-statistik-1-30-10-17.html"><a href="6-statistik-1-30-10-17.html"><i class="fa fa-check"></i><b>6</b> Statistik 1 (30.10.17)</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html"><i class="fa fa-check"></i><b>6.1</b> Demo: Stastische Tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#assoziationstests"><i class="fa fa-check"></i><b>6.1.1</b> Assoziationstests</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#t-test"><i class="fa fa-check"></i><b>6.1.2</b> t-Test</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#randomisierung"><i class="fa fa-check"></i><b>6.1.3</b> Randomisierung</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#voraussetzungen-parametrischer-verfahren"><i class="fa fa-check"></i><b>6.1.4</b> Voraussetzungen parametrischer Verfahren</a></li>
+<li class="chapter" data-level="6.1.5" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#einstieg-anova"><i class="fa fa-check"></i><b>6.1.5</b> Einstieg ANOVA</a></li>
+<li class="chapter" data-level="6.1.6" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#libraries-2"><i class="fa fa-check"></i><b>6.1.6</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-ubungen.html"><a href="6-2-ubungen.html"><i class="fa fa-check"></i><b>6.2</b> Übungen</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-ubungen.html"><a href="6-2-ubungen.html#aufgabenstellung-5"><i class="fa fa-check"></i><b>6.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-ubungen.html"><a href="6-2-ubungen.html#losung"><i class="fa fa-check"></i><b>6.2.2</b> Lösung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-statistik-2-31-10-17.html"><a href="7-statistik-2-31-10-17.html"><i class="fa fa-check"></i><b>7</b> Statistik 2 (31.10.17)</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-demo.html"><a href="7-1-demo.html"><i class="fa fa-check"></i><b>7.1</b> Demo</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-demo.html"><a href="7-1-demo.html#korrelationen-und-regressionen"><i class="fa fa-check"></i><b>7.1.1</b> Korrelationen und Regressionen</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-demo.html"><a href="7-1-demo.html#polynomische-regressionen"><i class="fa fa-check"></i><b>7.1.2</b> Polynomische Regressionen</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-demo.html"><a href="7-1-demo.html#einfaktorielle-anova-einfache"><i class="fa fa-check"></i><b>7.1.3</b> Einfaktorielle ANOVA (einfache)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-1-demo.html"><a href="7-1-demo.html#mehrfaktorielle-anova"><i class="fa fa-check"></i><b>7.1.4</b> Mehrfaktorielle ANOVA</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7-1-demo.html"><a href="7-1-demo.html#ancova"><i class="fa fa-check"></i><b>7.1.5</b> ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-ubungen-1.html"><a href="7-2-ubungen-1.html"><i class="fa fa-check"></i><b>7.2</b> Übungen</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-ubungen-1.html"><a href="7-2-ubungen-1.html#aufgabenstellung-6"><i class="fa fa-check"></i><b>7.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-ubungen-1.html"><a href="7-2-ubungen-1.html#losung-1"><i class="fa fa-check"></i><b>7.2.2</b> Lösung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-statistik-3-6-11-17.html"><a href="8-statistik-3-6-11-17.html"><i class="fa fa-check"></i><b>8</b> Statistik 3 (6.11.17)</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html"><i class="fa fa-check"></i><b>8.1</b> Demo A: Multiple Regression</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#teil-1-multiple-regressionen"><i class="fa fa-check"></i><b>8.1.1</b> Teil 1: Multiple Regressionen</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#teil-2-selecting-the-best-regression-model"><i class="fa fa-check"></i><b>8.1.2</b> Teil 2: Selecting the “best” regression model</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#teil-3-hierarchical-partitioning"><i class="fa fa-check"></i><b>8.1.3</b> Teil 3: Hierarchical partitioning</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#libraries-3"><i class="fa fa-check"></i><b>8.1.4</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-2-demo-b-nicht-lineare-regression.html"><a href="8-2-demo-b-nicht-lineare-regression.html"><i class="fa fa-check"></i><b>8.2</b> Demo B: Nicht-lineare Regression</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-2-demo-b-nicht-lineare-regression.html"><a href="8-2-demo-b-nicht-lineare-regression.html#libraries-4"><i class="fa fa-check"></i><b>8.2.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-3-ubung-1.html"><a href="8-3-ubung-1.html"><i class="fa fa-check"></i><b>8.3</b> Übung</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="8-3-ubung-1.html"><a href="8-3-ubung-1.html#aufgabenstellung-7"><i class="fa fa-check"></i><b>8.3.1</b> Aufgabenstellung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-statistik-4-7-11-17.html"><a href="9-statistik-4-7-11-17.html"><i class="fa fa-check"></i><b>9</b> Statistik 4 (7.11.17)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-demo-a-logistic-regression.html"><a href="9-1-demo-a-logistic-regression.html"><i class="fa fa-check"></i><b>9.1</b> Demo A: Logistic regression</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="9-1-demo-a-logistic-regression.html"><a href="9-1-demo-a-logistic-regression.html#libraries-5"><i class="fa fa-check"></i><b>9.1.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html"><a href="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html"><i class="fa fa-check"></i><b>9.2</b> Demo B: ANOVA mit Pseudoreplizierung/Nestung</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html"><a href="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html#libraries-6"><i class="fa fa-check"></i><b>9.2.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-3-demo-c-split-plot-anova.html"><a href="9-3-demo-c-split-plot-anova.html"><i class="fa fa-check"></i><b>9.3</b> Demo C: Split-plot ANOVA</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-demo-c-split-plot-anova.html"><a href="9-3-demo-c-split-plot-anova.html#libraries-7"><i class="fa fa-check"></i><b>9.3.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-ubung-2.html"><a href="9-4-ubung-2.html"><i class="fa fa-check"></i><b>9.4</b> Übung</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="9-4-ubung-2.html"><a href="9-4-ubung-2.html#aufgabenstellung-8"><i class="fa fa-check"></i><b>9.4.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="9.4.2" data-path="9-4-ubung-2.html"><a href="9-4-ubung-2.html#losung-2"><i class="fa fa-check"></i><b>9.4.2</b> Lösung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Research Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="demo-c-split-plot-anova" class="section level2">
+<h2><span class="header-section-number">9.3</span> Demo C: Split-plot ANOVA</h2>
+<p><a href="16_Statistik4/RFiles/Demo_C_SplitPlotANOVA.R">Demoscript als Download</a></p>
+<p><span class="citation">Logan (<a href="#ref-logan2010">2010</a> S. 419 ff)</span>, basierend auf Beispiel 14A <span class="citation">(Logan <a href="#ref-logan2010">2010</a> S. 413 ff)</span></p>
+<p>Datensatz <a href="16_Statistik4/data/spf.csv">spf.csv</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(nlme) <span class="co"># für lme()</span>
+<span class="kw">library</span>(lme4) <span class="co"># für lmer()</span>
+<span class="kw">library</span>(languageR) <span class="co">#für aovlmer.fnc()</span>
+<span class="kw">library</span>(lmerTest) <span class="co"># für lmerTest::anova</span>
+
+spf &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;16_Statistik4/data/spf.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># model with random intercept and slope</span>
+spf.lme<span class="fl">.1</span>&lt;-<span class="kw">lme</span>(Y~A*C, <span class="dt">random=</span>~C|B, spf)
+
+<span class="co"># model without random slope</span>
+spf.lme<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">update</span>(spf.lme<span class="fl">.1</span>, <span class="dt">random=</span>~<span class="dv">1</span>|B)
+
+<span class="co">#Compare fitted models</span>
+<span class="co">#technically,only models fitted with ML (not REML)</span>
+<span class="co">#should be compared via anova</span>
+spf.lmeML<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">update</span>(spf.lme<span class="fl">.1</span>, <span class="dt">method=</span><span class="st">&quot;ML&quot;</span>)
+spf.lmeML<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">update</span>(spf.lme<span class="fl">.2</span>, <span class="dt">method=</span><span class="st">&quot;ML&quot;</span>)
+<span class="kw">anova</span>(spf.lmeML<span class="fl">.1</span>,spf.lmeML<span class="fl">.2</span>)
+##             Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+## spf.lmeML.1     1 19 93.52602 121.3750 -27.76301                        
+## spf.lmeML.2     2 10 88.87204 103.5294 -34.43602 1 vs 2 13.34602  0.1476</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spf.lme<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">update</span>(spf.lme<span class="fl">.2</span>, <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> ~<span class="dv">1</span> |<span class="st"> </span>B))
+
+<span class="kw">anova</span>(spf.lme<span class="fl">.2</span>, spf.lme<span class="fl">.3</span>)
+##           Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+## spf.lme.2     1 10 89.64876 101.4293 -34.82438                        
+## spf.lme.3     2 11 88.44767 101.4063 -33.22384 1 vs 2 3.201085  0.0736
+
+
+spf.lme<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw">update</span>(spf.lme<span class="fl">.2</span>, <span class="dt">correlation =</span> <span class="kw">corCompSymm</span>(<span class="dt">form =</span> ~<span class="dv">1</span> |<span class="st"> </span>B))
+<span class="kw">anova</span>(spf.lme<span class="fl">.2</span>, spf.lme<span class="fl">.4</span>)
+##           Model df      AIC      BIC    logLik   Test      L.Ratio p-value
+## spf.lme.2     1 10 89.64876 101.4293 -34.82438                            
+## spf.lme.4     2 11 91.64876 104.6073 -34.82438 1 vs 2 1.421086e-14       1
+
+spf.lme<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw">update</span>(spf.lme<span class="fl">.2</span>, <span class="dt">correlation =</span> <span class="kw">corSymm</span>(<span class="dt">form =</span> ~<span class="dv">1</span> |<span class="st"> </span>B))
+<span class="kw">anova</span>(spf.lme<span class="fl">.2</span>, spf.lme<span class="fl">.5</span>)
+##           Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+## spf.lme.2     1 10 89.64876 101.4293 -34.82438                        
+## spf.lme.5     2 16 94.52970 113.3786 -31.26485 1 vs 2 7.119057    0.31</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 3: pg 419
+###################################################
+<span class="co"># examine the fixed effects</span>
+<span class="kw">anova</span>(spf.lme<span class="fl">.2</span>)
+##             numDF denDF  F-value p-value
+## (Intercept)     1    18 591.6800  &lt;.0001
+## A               1     6   2.0000  0.2070
+## C               3    18 127.8904  &lt;.0001
+## A:C             3    18  12.7397  0.0001</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 4: pg 420
+###################################################
+<span class="kw">library</span>(biology) <span class="co"># wird nicht mehr weitergeführt</span>
+<span class="kw">anova</span>(<span class="kw">mainEffects</span>(spf.lme<span class="fl">.2</span>, <span class="dt">at=</span>A==<span class="st">&quot;A1&quot;</span>))
+
+           numDF denDF   F-value p-value
+(Intercept)    <span class="dv">1</span>   <span class="dv">17</span>     <span class="fl">591.6800</span> &lt;.<span class="dv">0001</span>
+M1             <span class="dv">4</span>   <span class="dv">17</span>      <span class="fl">79.0034</span> &lt;.<span class="dv">0001</span>
+M3             <span class="dv">3</span>   <span class="dv">17</span>      <span class="fl">35.9589</span> &lt;.<span class="dv">0001</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 5: pg 420
+###################################################
+<span class="kw">anova</span>(<span class="kw">mainEffects</span>(spf.lme<span class="fl">.2</span>,<span class="dt">at=</span>A==<span class="st">&quot;A2&quot;</span>))
+        numDF denDF F-value p-value
+(Intercept) <span class="dv">1</span> <span class="dv">17</span>   <span class="fl">591.6800</span> &lt;.<span class="dv">0001</span>
+M1          <span class="dv">4</span> <span class="dv">17</span>    <span class="fl">27.4692</span> &lt;.<span class="dv">0001</span>
+M3          <span class="dv">3</span> <span class="dv">17</span>   <span class="fl">104.6712</span> &lt;.<span class="dv">0001</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 6: pg 420
+###################################################
+<span class="kw">anova</span>(<span class="kw">mainEffects</span>(spf.lme<span class="fl">.2</span>,<span class="dt">at=</span>C==<span class="st">&quot;C1&quot;</span>))
+
+           numDF denDF F-value p-value
+(Intercept)    <span class="dv">1</span> <span class="dv">18</span>  <span class="fl">591.6800</span> &lt;.<span class="dv">0001</span>
+M1             <span class="dv">6</span> <span class="dv">18</span>   <span class="fl">68.9187</span> &lt;.<span class="dv">0001</span>
+M2             <span class="dv">1</span>  <span class="dv">6</span>   <span class="fl">10.3784</span> <span class="fl">0.0181</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 7: pg 420
+###################################################
+<span class="kw">anova</span>(<span class="kw">mainEffects</span>(spf.lme<span class="fl">.2</span>,<span class="dt">at=</span>C==<span class="st">&quot;C2&quot;</span>))
+
+          numDF denDF F-value p-value
+(Intercept)   <span class="dv">1</span> <span class="dv">18</span>   <span class="fl">591.6800</span> &lt;.<span class="dv">0001</span>
+M1            <span class="dv">6</span> <span class="dv">18</span>    <span class="fl">70.2160</span> &lt;.<span class="dv">0001</span>
+M2            <span class="dv">1</span> <span class="dv">6</span>      <span class="fl">2.5946</span> <span class="fl">0.1584</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 8: pg 420
+###################################################
+
+spf.lmer &lt;-<span class="st"> </span><span class="kw">lmer</span>(Y~A*C+(<span class="dv">1</span>|B),spf)
+
+
+<span class="co"># aovlmer.fnc(spf.lmer, noMCMC=T) # gilt nicht mehr</span>
+
+lmerTest::<span class="kw">anova</span>(spf.lmer)
+## Analysis of Variance Table of type III  with  Satterthwaite 
+## approximation for degrees of freedom
+##      Sum Sq Mean Sq NumDF DenDF F.value    Pr(&gt;F)    
+## A     1.014   1.014     1     6    2.00 0.2070313    
+## C   194.500  64.833     3    18  127.89 2.516e-12 ***
+## A:C  19.375   6.458     3    18   12.74 0.0001051 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre></div>
+<div id="libraries-7" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Libraries</h3>
+<p>Dieses Kapitel verwendet folgende Libraries: <span class="citation">Kuznetsova, Bruun Brockhoff, and Haubo Bojesen Christensen (<a href="#ref-R-lmerTest">2016</a>)</span>, <span class="citation">Baayen (<a href="#ref-R-languageR">2013</a>)</span>, <span class="citation">Bates et al. (<a href="#ref-R-lme4">2017</a>)</span>, <span class="citation">Bates and Maechler (<a href="#ref-R-Matrix">2017</a>)</span>, <span class="citation">Pinheiro, Bates, and R-core (<a href="#ref-R-nlme">2017</a>)</span>, <span class="citation">Wickham et al. (<a href="#ref-R-dplyr">2017</a>)</span>, <span class="citation">Henry and Wickham (<a href="#ref-R-purrr">2017</a>)</span>, <span class="citation">Wickham, Hester, and Francois (<a href="#ref-R-readr">2017</a>)</span>, <span class="citation">Wickham and Henry (<a href="#ref-R-tidyr">2017</a>)</span>, <span class="citation">Müller and Wickham (<a href="#ref-R-tibble">2017</a>)</span>, <span class="citation">Wickham and Chang (<a href="#ref-R-ggplot2">2016</a>)</span>, <span class="citation">Wickham (<a href="#ref-R-tidyverse">2017</a><a href="#ref-R-tidyverse">c</a>)</span></p>
+
+</div>
+</div>
+<h3>Literatur</h3>
+<div id="refs" class="references">
+<div id="ref-logan2010">
+<p>Logan, Murray. 2010. <em>Biostatistical Design and Analysis Using R : A Practical Guide</em>. Wiley-Blackwell. <a href="http://onlinelibrary.wiley.com/book/10.1002/9781444319620" class="uri">http://onlinelibrary.wiley.com/book/10.1002/9781444319620</a>.</p>
+</div>
+<div id="ref-R-lmerTest">
+<p>Kuznetsova, Alexandra, Per Bruun Brockhoff, and Rune Haubo Bojesen Christensen. 2016. <em>LmerTest: Tests in Linear Mixed Effects Models</em>. <a href="https://CRAN.R-project.org/package=lmerTest" class="uri">https://CRAN.R-project.org/package=lmerTest</a>.</p>
+</div>
+<div id="ref-R-languageR">
+<p>Baayen, R. H. 2013. <em>LanguageR: Data Sets and Functions with “Analyzing Linguistic Data: A Practical Introduction to Statistics”.</em> <a href="https://CRAN.R-project.org/package=languageR" class="uri">https://CRAN.R-project.org/package=languageR</a>.</p>
+</div>
+<div id="ref-R-lme4">
+<p>Bates, Douglas, Martin Maechler, Ben Bolker, and Steven Walker. 2017. <em>Lme4: Linear Mixed-Effects Models Using ’Eigen’ and S4</em>. <a href="https://CRAN.R-project.org/package=lme4" class="uri">https://CRAN.R-project.org/package=lme4</a>.</p>
+</div>
+<div id="ref-R-Matrix">
+<p>Bates, Douglas, and Martin Maechler. 2017. <em>Matrix: Sparse and Dense Matrix Classes and Methods</em>. <a href="https://CRAN.R-project.org/package=Matrix" class="uri">https://CRAN.R-project.org/package=Matrix</a>.</p>
+</div>
+<div id="ref-R-nlme">
+<p>Pinheiro, José, Douglas Bates, and R-core. 2017. <em>Nlme: Linear and Nonlinear Mixed Effects Models</em>. <a href="https://CRAN.R-project.org/package=nlme" class="uri">https://CRAN.R-project.org/package=nlme</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-R-purrr">
+<p>Henry, Lionel, and Hadley Wickham. 2017. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-R-readr">
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2017. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2017. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-R-tibble">
+<p>Müller, Kirill, and Hadley Wickham. 2017. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017c. <em>Tidyverse: Easily Install and Load ’Tidyverse’ Packages</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="9-4-ubung-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["ResearchMethods.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

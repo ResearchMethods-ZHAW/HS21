@@ -1,0 +1,158 @@
+# Statistik 4 (7.11.17)
+
+```{r, echo = F, purl = F}
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+library(knitr)
+
+```
+
+In Statistik 4 lernen die Studierenden Lösungen kennen, welche die diverse Limitierungen von linearen Modellen überwinden, namentlich linear mixed models (LMMs), generalized linear models (GLMs) und generalized linear mixed models (GLMMs). Dabei bezeichnet generalized die explizite Modellierung anderer Fehler- und Varianzstrukturen und mixed die Berücksichtigung von Abhängigkeiten unter den Beobachtungen. Bei generalized linear regressions muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die logistische Regression für ja/nein-Daten anschauen. Abschliessend gibt es eine kurze Einführung in (G)LMMs, die eine Verallgemeinerung von ANOVAs für komplexere experimentelle Setups darstellen. 
+
+
+## Demo A: Logistic regression
+
+[Demoscript als Download](16_Statistik4/RFiles/Demo_A_LogisticReg.R)
+
+@logan2010 [S. 498 ff] anhand des "Key for GLM" [@logan2010, S. 495 ff]
+
+Datensatz [polis.csv](16_Statistik4/data/polis.csv)
+
+
+```{r, message=F}
+
+library(tidyverse)
+library(car)
+library(rms) # library(Design) not available on CRAN anymore. Replaced by rms
+
+```
+
+
+```{r}
+###################################################
+### chunk number 1: pg 498
+###################################################
+polis <- read_csv("16_Statistik4/data/polis.csv")
+```
+
+```{r}
+###################################################
+### chunk number 2: pg 498
+###################################################
+polis.glm <- glm(PA~RATIO, family=binomial, data=polis)
+```
+
+
+```{r}
+###################################################
+### chunk number 4: pg 498
+###################################################
+polis.lrm<-lrm(PA~RATIO,data=polis,y=T, x=T)
+resid(polis.lrm,type='gof')
+
+```
+
+
+
+
+```{r}
+###################################################
+### chunk number 5: pg 499
+###################################################
+pp<-sum(resid(polis.lrm,type='pearson')^2)
+1-pchisq(pp,polis.glm$df.resid)
+```
+
+
+
+```{r}
+###################################################
+### chunk number 6: pg 499
+###################################################
+1-pchisq(polis.glm$deviance, polis.glm$df.resid)
+```
+
+
+```{r}
+###################################################
+### chunk number 7: pg 499
+###################################################
+pp/polis.glm$df.resid
+
+```
+
+
+```{r}
+###################################################
+### chunk number 8: pg 499
+###################################################
+cr.plots(polis.glm, ask=F)
+
+```
+
+
+```{r}
+###################################################
+### chunk number 9: pg 499
+###################################################
+influence.measures(polis.glm)
+```
+
+```{r}
+###################################################
+### chunk number 10: pg 500
+###################################################
+summary(polis.glm)
+```
+
+```{r}
+###################################################
+### chunk number 11: pg 501
+###################################################
+anova(polis.glm, test="Chisq")
+
+```
+
+```{r, eval = F}
+
+###################################################
+### chunk number 12: pg 501
+###################################################
+library(biology) # library biology wird nicht mehr weitergeführt
+odds.ratio(polis.glm)
+
+    Odds ratio Lower 95
+RATIO 0.8028734 0.659303 0.9777077
+```
+
+```{r}
+###################################################
+### chunk number 13: pg 501
+###################################################
+1-(polis.glm$dev/polis.glm$null)
+```
+
+
+
+```{r}
+###################################################
+### chunk number 14: pg 501
+###################################################
+-polis.glm$coef[1]/polis.glm$coef[2]
+```
+
+
+```{r}
+ggplot(polis, aes(RATIO, PA))+
+  geom_point() +
+  geom_smooth(method = "glm",method.args = list(family = "binomial"),se = 0.95) +
+  labs(y = expression(paste(italic(Uta), "presence/absence")), x = "Permenter to area ratio")
+
+```
+
+
+
+### Libraries
+
+```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
+```
+

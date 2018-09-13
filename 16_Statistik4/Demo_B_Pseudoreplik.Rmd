@@ -1,0 +1,62 @@
+## Demo B: ANOVA mit Pseudoreplizierung/Nestung
+
+@crawley2015[S. 179 ff]
+
+Datensatz: [rats.csv](16_Statistik4/data/rats.csv)
+[Demoscript als Download](16_Statistik4/RFiles/Demo_B_Pseudoreplik.R)
+
+
+```{r, message = F}
+library(tidyverse)
+
+
+rats <- read_csv("16_Statistik4/data/rats.csv")
+
+names(rats)
+```
+
+```{r}
+rats <- rats %>%
+  mutate(
+    Treatment = factor(Treatment),
+    Rat = factor(Rat),
+    Liver = factor(Liver)
+  )
+```
+
+
+```{r}
+# this is the wrong way to do the analysis
+
+model <- aov(Glycogen~Treatment,rats)
+summary(model)
+```
+
+
+```{r}
+# this is the right way to do the analysis
+rats_smry <- rats %>%
+  group_by(Treatment,Rat) %>%
+  summarise(Glyco_mean = mean(Glycogen))
+
+
+model <- aov(Glyco_mean~Treatment,rats_smry)
+summary(model)
+
+```
+
+```{r}
+# variance components analysis
+
+model2 <- aov(Glycogen~Treatment+Error(Treatment/Rat/Liver),data = rats)
+summary(model2)
+```
+
+```{r}
+qf(0.95,2,3)
+```
+### Libraries
+
+```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
+```
+

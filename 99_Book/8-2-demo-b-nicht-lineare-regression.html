@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Research Methods</title>
+  <meta name="description" content="Begleitmaterial zum Modul ‘Research Methods’">
+  <meta name="generator" content="bookdown 0.5.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Research Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Research Methods" />
+  
+  <meta name="twitter:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+
+
+<meta name="date" content="2017-12-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="8-1-demo-a-multiple-regression.html">
+<link rel="next" href="8-3-ubung-1.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="00_Admin/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modul ResearchMethods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a></li>
+<li class="chapter" data-level="2" data-path="2-prepro1-16-10-2017.html"><a href="2-prepro1-16-10-2017.html"><i class="fa fa-check"></i><b>2</b> PrePro1 (16.10.2017)</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html"><i class="fa fa-check"></i><b>2.1</b> Demo: Datentypen, Tabellen</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#datentypen"><i class="fa fa-check"></i><b>2.1.1</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#data-frames-und-conveniance-variabeln"><i class="fa fa-check"></i><b>2.1.2</b> Data Frames und Conveniance Variabeln</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#quellen"><i class="fa fa-check"></i><b>2.1.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html"><i class="fa fa-check"></i><b>2.2</b> Übung A</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgbenstellung"><i class="fa fa-check"></i><b>2.2.1</b> Aufgbenstellung</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#losung-r-code"><i class="fa fa-check"></i><b>2.2.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#quellen-1"><i class="fa fa-check"></i><b>2.2.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html"><i class="fa fa-check"></i><b>2.3</b> Übung B</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html#aufgbenstellung-1"><i class="fa fa-check"></i><b>2.3.1</b> Aufgbenstellung</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html#losung-r-code-1"><i class="fa fa-check"></i><b>2.3.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-ubung-b.html"><a href="2-3-ubung-b.html#quellen-2"><i class="fa fa-check"></i><b>2.3.3</b> Quellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-prepro2-17-10-2017.html"><a href="3-prepro2-17-10-2017.html"><i class="fa fa-check"></i><b>3</b> PrePro2 (17.10.2017)</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html"><i class="fa fa-check"></i><b>3.1</b> Demo: <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#split-apply-combine"><i class="fa fa-check"></i><b>3.1.1</b> Split-Apply-Combine</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#reshaping-data"><i class="fa fa-check"></i><b>3.1.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#quellen-3"><i class="fa fa-check"></i><b>3.1.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html"><i class="fa fa-check"></i><b>3.2</b> Übung A</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html#aufgabenstellung"><i class="fa fa-check"></i><b>3.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html#losung-r-code-2"><i class="fa fa-check"></i><b>3.2.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-ubung-a-1.html"><a href="3-2-ubung-a-1.html#quellen-4"><i class="fa fa-check"></i><b>3.2.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html"><i class="fa fa-check"></i><b>3.3</b> Übung B</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html#aufgabenstellung-1"><i class="fa fa-check"></i><b>3.3.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html#losung-r-code-3"><i class="fa fa-check"></i><b>3.3.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-ubung-b-1.html"><a href="3-3-ubung-b-1.html#quellen-5"><i class="fa fa-check"></i><b>3.3.3</b> Quellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-infovis1-23-10-2017.html"><a href="4-infovis1-23-10-2017.html"><i class="fa fa-check"></i><b>4</b> InfoVis1 (23.10.2017)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-eda-beispiel-vorlesung.html"><a href="4-1-eda-beispiel-vorlesung.html"><i class="fa fa-check"></i><b>4.1</b> EDA Beispiel Vorlesung</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-eda-beispiel-vorlesung.html"><a href="4-1-eda-beispiel-vorlesung.html#quellen-6"><i class="fa fa-check"></i><b>4.1.1</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-demo-ggplot2.html"><a href="4-2-demo-ggplot2.html"><i class="fa fa-check"></i><b>4.2</b> Demo: <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-demo-ggplot2.html"><a href="4-2-demo-ggplot2.html#quellen-7"><i class="fa fa-check"></i><b>4.2.1</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-ubung.html"><a href="4-3-ubung.html"><i class="fa fa-check"></i><b>4.3</b> Übung</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-ubung.html"><a href="4-3-ubung.html#aufgabenstellung-2"><i class="fa fa-check"></i><b>4.3.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-ubung.html"><a href="4-3-ubung.html#losung-r-code-4"><i class="fa fa-check"></i><b>4.3.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-ubung.html"><a href="4-3-ubung.html#quellen-8"><i class="fa fa-check"></i><b>4.3.3</b> Quellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-infovis2-24-10-2017.html"><a href="5-infovis2-24-10-2017.html"><i class="fa fa-check"></i><b>5</b> InfoVis2 (24.10.2017)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html"><i class="fa fa-check"></i><b>5.1</b> Übung A</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html#aufgabenstellung-3"><i class="fa fa-check"></i><b>5.1.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html#losung-r-code-5"><i class="fa fa-check"></i><b>5.1.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="5-1-ubung-a-2.html"><a href="5-1-ubung-a-2.html#libraries"><i class="fa fa-check"></i><b>5.1.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html"><i class="fa fa-check"></i><b>5.2</b> Übung B</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html#aufgabenstellung-4"><i class="fa fa-check"></i><b>5.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="5.2.2" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html#losung-r-code-6"><i class="fa fa-check"></i><b>5.2.2</b> Lösung (R-Code)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="5-2-ubung-b-2.html"><a href="5-2-ubung-b-2.html#libraries-1"><i class="fa fa-check"></i><b>5.2.3</b> Libraries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-statistik-1-30-10-17.html"><a href="6-statistik-1-30-10-17.html"><i class="fa fa-check"></i><b>6</b> Statistik 1 (30.10.17)</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html"><i class="fa fa-check"></i><b>6.1</b> Demo: Stastische Tests</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#assoziationstests"><i class="fa fa-check"></i><b>6.1.1</b> Assoziationstests</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#t-test"><i class="fa fa-check"></i><b>6.1.2</b> t-Test</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#randomisierung"><i class="fa fa-check"></i><b>6.1.3</b> Randomisierung</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#voraussetzungen-parametrischer-verfahren"><i class="fa fa-check"></i><b>6.1.4</b> Voraussetzungen parametrischer Verfahren</a></li>
+<li class="chapter" data-level="6.1.5" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#einstieg-anova"><i class="fa fa-check"></i><b>6.1.5</b> Einstieg ANOVA</a></li>
+<li class="chapter" data-level="6.1.6" data-path="6-1-demo-stastische-tests.html"><a href="6-1-demo-stastische-tests.html#libraries-2"><i class="fa fa-check"></i><b>6.1.6</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-ubungen.html"><a href="6-2-ubungen.html"><i class="fa fa-check"></i><b>6.2</b> Übungen</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-ubungen.html"><a href="6-2-ubungen.html#aufgabenstellung-5"><i class="fa fa-check"></i><b>6.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-ubungen.html"><a href="6-2-ubungen.html#losung"><i class="fa fa-check"></i><b>6.2.2</b> Lösung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-statistik-2-31-10-17.html"><a href="7-statistik-2-31-10-17.html"><i class="fa fa-check"></i><b>7</b> Statistik 2 (31.10.17)</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-demo.html"><a href="7-1-demo.html"><i class="fa fa-check"></i><b>7.1</b> Demo</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-demo.html"><a href="7-1-demo.html#korrelationen-und-regressionen"><i class="fa fa-check"></i><b>7.1.1</b> Korrelationen und Regressionen</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-demo.html"><a href="7-1-demo.html#polynomische-regressionen"><i class="fa fa-check"></i><b>7.1.2</b> Polynomische Regressionen</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-demo.html"><a href="7-1-demo.html#einfaktorielle-anova-einfache"><i class="fa fa-check"></i><b>7.1.3</b> Einfaktorielle ANOVA (einfache)</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-1-demo.html"><a href="7-1-demo.html#mehrfaktorielle-anova"><i class="fa fa-check"></i><b>7.1.4</b> Mehrfaktorielle ANOVA</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7-1-demo.html"><a href="7-1-demo.html#ancova"><i class="fa fa-check"></i><b>7.1.5</b> ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-ubungen-1.html"><a href="7-2-ubungen-1.html"><i class="fa fa-check"></i><b>7.2</b> Übungen</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-ubungen-1.html"><a href="7-2-ubungen-1.html#aufgabenstellung-6"><i class="fa fa-check"></i><b>7.2.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-ubungen-1.html"><a href="7-2-ubungen-1.html#losung-1"><i class="fa fa-check"></i><b>7.2.2</b> Lösung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-statistik-3-6-11-17.html"><a href="8-statistik-3-6-11-17.html"><i class="fa fa-check"></i><b>8</b> Statistik 3 (6.11.17)</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html"><i class="fa fa-check"></i><b>8.1</b> Demo A: Multiple Regression</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#teil-1-multiple-regressionen"><i class="fa fa-check"></i><b>8.1.1</b> Teil 1: Multiple Regressionen</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#teil-2-selecting-the-best-regression-model"><i class="fa fa-check"></i><b>8.1.2</b> Teil 2: Selecting the “best” regression model</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#teil-3-hierarchical-partitioning"><i class="fa fa-check"></i><b>8.1.3</b> Teil 3: Hierarchical partitioning</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8-1-demo-a-multiple-regression.html"><a href="8-1-demo-a-multiple-regression.html#libraries-3"><i class="fa fa-check"></i><b>8.1.4</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-2-demo-b-nicht-lineare-regression.html"><a href="8-2-demo-b-nicht-lineare-regression.html"><i class="fa fa-check"></i><b>8.2</b> Demo B: Nicht-lineare Regression</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-2-demo-b-nicht-lineare-regression.html"><a href="8-2-demo-b-nicht-lineare-regression.html#libraries-4"><i class="fa fa-check"></i><b>8.2.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-3-ubung-1.html"><a href="8-3-ubung-1.html"><i class="fa fa-check"></i><b>8.3</b> Übung</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="8-3-ubung-1.html"><a href="8-3-ubung-1.html#aufgabenstellung-7"><i class="fa fa-check"></i><b>8.3.1</b> Aufgabenstellung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-statistik-4-7-11-17.html"><a href="9-statistik-4-7-11-17.html"><i class="fa fa-check"></i><b>9</b> Statistik 4 (7.11.17)</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-demo-a-logistic-regression.html"><a href="9-1-demo-a-logistic-regression.html"><i class="fa fa-check"></i><b>9.1</b> Demo A: Logistic regression</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="9-1-demo-a-logistic-regression.html"><a href="9-1-demo-a-logistic-regression.html#libraries-5"><i class="fa fa-check"></i><b>9.1.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html"><a href="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html"><i class="fa fa-check"></i><b>9.2</b> Demo B: ANOVA mit Pseudoreplizierung/Nestung</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html"><a href="9-2-demo-b-anova-mit-pseudoreplizierungnestung.html#libraries-6"><i class="fa fa-check"></i><b>9.2.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-3-demo-c-split-plot-anova.html"><a href="9-3-demo-c-split-plot-anova.html"><i class="fa fa-check"></i><b>9.3</b> Demo C: Split-plot ANOVA</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-demo-c-split-plot-anova.html"><a href="9-3-demo-c-split-plot-anova.html#libraries-7"><i class="fa fa-check"></i><b>9.3.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9-4-ubung-2.html"><a href="9-4-ubung-2.html"><i class="fa fa-check"></i><b>9.4</b> Übung</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="9-4-ubung-2.html"><a href="9-4-ubung-2.html#aufgabenstellung-8"><i class="fa fa-check"></i><b>9.4.1</b> Aufgabenstellung</a></li>
+<li class="chapter" data-level="9.4.2" data-path="9-4-ubung-2.html"><a href="9-4-ubung-2.html#losung-2"><i class="fa fa-check"></i><b>9.4.2</b> Lösung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Research Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="demo-b-nicht-lineare-regression" class="section level2">
+<h2><span class="header-section-number">8.2</span> Demo B: Nicht-lineare Regression</h2>
+<p><a href="15_Statistik3/RFiles/Demo_B_nichtLin.R">Demoscript als Download</a></p>
+<p><span class="citation">Logan (<a href="#ref-logan2010">2010</a> S. 248 ff)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(car)
+<span class="kw">library</span>(ggExtra)
+<span class="kw">library</span>(ggfortify)</code></pre></div>
+<p>Datensatz <a href="15_Statistik3/data/peake.csv">peake.csv</a> einlesen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 1: pg 248
+###################################################
+
+peake &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;15_Statistik3/data/peake.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 2: pg 248
+###################################################
+<span class="kw">library</span>(car)
+<span class="kw">scatterplot</span>(SPECIES~AREA, <span class="dt">data=</span>peake)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(peake, <span class="kw">aes</span>(AREA,SPECIES)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>) +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>)
+
+
+<span class="kw">ggMarginal</span>(p,<span class="dt">type =</span> <span class="st">&quot;boxplot&quot;</span>, <span class="dt">size =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="ResearchMethods_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 3: pg 248
+###################################################
+
+<span class="kw">autoplot</span>(<span class="kw">lm</span>(SPECIES~AREA, <span class="dt">data=</span>peake),<span class="dt">which =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="ResearchMethods_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 4: pg 249
+###################################################
+peake.nls &lt;-<span class="st"> </span><span class="kw">nls</span>(SPECIES~alpha*AREA^beta, <span class="dt">start=</span><span class="kw">list</span>(<span class="dt">alpha=</span><span class="fl">0.1</span>, <span class="dt">beta=</span><span class="dv">1</span>), peake)
+
+<span class="kw">ggplot</span>(peake, <span class="kw">aes</span>(AREA, SPECIES)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>,
+              <span class="dt">se=</span><span class="ot">FALSE</span>,
+              <span class="dt">formula =</span> y~alpha*x^beta,
+              <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">start=</span><span class="kw">list</span>(<span class="dt">alpha=</span><span class="fl">0.1</span>, <span class="dt">beta=</span><span class="dv">1</span>))
+              )</code></pre></div>
+<p><img src="ResearchMethods_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 5: pg 249
+###################################################
+<span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="kw">fitted</span>(peake.nls),<span class="kw">resid</span>(peake.nls))) +
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="ResearchMethods_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 6: pg 249
+###################################################
+<span class="kw">plot</span>(peake.nls)</code></pre></div>
+<p><img src="ResearchMethods_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(peake.nls)
+## 
+## Formula: SPECIES ~ alpha * AREA^beta
+## 
+## Parameters:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## alpha   0.8584     0.2769   3.100  0.00505 ** 
+## beta    0.3336     0.0350   9.532 1.87e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.733 on 23 degrees of freedom
+## 
+## Number of iterations to convergence: 17 
+## Achieved convergence tolerance: 1.041e-06</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 7: pg 249
+###################################################
+<span class="kw">AIC</span>(peake.nls) <span class="co">#AIC</span>
+## [1] 125.1312
+
+peake.lm&lt;-<span class="kw">lm</span>(SPECIES~AREA, <span class="dt">data=</span>peake) <span class="co">#linear fit</span>
+
+<span class="kw">AIC</span>(peake.lm) <span class="co">#lm AIC</span>
+## [1] 141.0756</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 8: pg 250
+###################################################
+peake.nls1 &lt;-<span class="st"> </span><span class="kw">nls</span>(SPECIES~<span class="kw">SSasymp</span>(AREA,a,b,c),peake)
+<span class="kw">summary</span>(peake.nls1)
+## 
+## Formula: SPECIES ~ SSasymp(AREA, a, b, c)
+## 
+## Parameters:
+##   Estimate Std. Error t value Pr(&gt;|t|)    
+## a  24.4114     1.6644  14.667 7.71e-13 ***
+## b   4.9563     1.4244   3.479  0.00213 ** 
+## c  -8.8138     0.2482 -35.512  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.719 on 22 degrees of freedom
+## 
+## Number of iterations to convergence: 0 
+## Achieved convergence tolerance: 7.128e-07
+<span class="kw">AIC</span>(peake.nls1) <span class="co">#AIC</span>
+## [1] 125.7644
+<span class="kw">deviance</span>(peake.nls1)/<span class="kw">df.residual</span>(peake.nls1) <span class="co">#MSresid</span>
+## [1] 7.393005
+<span class="kw">anova</span>(peake.nls,peake.nls1)
+## Analysis of Variance Table
+## 
+## Model 1: SPECIES ~ alpha * AREA^beta
+## Model 2: SPECIES ~ SSasymp(AREA, a, b, c)
+##   Res.Df Res.Sum Sq Df Sum Sq F value Pr(&gt;F)
+## 1     23     171.78                         
+## 2     22     162.65  1 9.1394  1.2362 0.2782</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###################################################
+### chunk number 9: 251
+###################################################
+
+<span class="kw">ggplot</span>(peake, <span class="kw">aes</span>(AREA, SPECIES)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>,
+              <span class="dt">se=</span><span class="ot">FALSE</span>,
+              <span class="dt">formula =</span> y~alpha*x^beta,
+              <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">start=</span><span class="kw">list</span>(<span class="dt">alpha=</span><span class="fl">0.1</span>, <span class="dt">beta=</span><span class="dv">1</span>)),
+              <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>
+              ) +
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;nls&quot;</span>,
+              <span class="dt">se=</span><span class="ot">FALSE</span>,
+              <span class="dt">formula =</span> y~<span class="kw">SSasymp</span>(x,Asym, R0, lrc) <span class="co"># replace a, b, c with Asym, R0 and lrc</span>
+              )</code></pre></div>
+<p><img src="ResearchMethods_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<div id="libraries-4" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Libraries</h3>
+<p>Dieses Kapitel verwendet folgende Libraries: <span class="citation">Horikoshi and Tang (<a href="#ref-R-ggfortify">2017</a>)</span>, <span class="citation">Attali (<a href="#ref-R-ggExtra">2017</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-R-car">2017</a>)</span>, <span class="citation">Wickham et al. (<a href="#ref-R-dplyr">2017</a>)</span>, <span class="citation">Henry and Wickham (<a href="#ref-R-purrr">2017</a>)</span>, <span class="citation">Wickham, Hester, and Francois (<a href="#ref-R-readr">2017</a>)</span>, <span class="citation">Wickham and Henry (<a href="#ref-R-tidyr">2017</a>)</span>, <span class="citation">Müller and Wickham (<a href="#ref-R-tibble">2017</a>)</span>, <span class="citation">Wickham and Chang (<a href="#ref-R-ggplot2">2016</a>)</span>, <span class="citation">Wickham (<a href="#ref-R-tidyverse">2017</a><a href="#ref-R-tidyverse">c</a>)</span></p>
+
+</div>
+</div>
+<h3>Literatur</h3>
+<div id="refs" class="references">
+<div id="ref-logan2010">
+<p>Logan, Murray. 2010. <em>Biostatistical Design and Analysis Using R : A Practical Guide</em>. Wiley-Blackwell. <a href="http://onlinelibrary.wiley.com/book/10.1002/9781444319620" class="uri">http://onlinelibrary.wiley.com/book/10.1002/9781444319620</a>.</p>
+</div>
+<div id="ref-R-ggfortify">
+<p>Horikoshi, Masaaki, and Yuan Tang. 2017. <em>Ggfortify: Data Visualization Tools for Statistical Analysis Results</em>. <a href="https://CRAN.R-project.org/package=ggfortify" class="uri">https://CRAN.R-project.org/package=ggfortify</a>.</p>
+</div>
+<div id="ref-R-ggExtra">
+<p>Attali, Dean. 2017. <em>GgExtra: Add Marginal Histograms to ’Ggplot2’, and More ’Ggplot2’ Enhancements</em>. <a href="https://CRAN.R-project.org/package=ggExtra" class="uri">https://CRAN.R-project.org/package=ggExtra</a>.</p>
+</div>
+<div id="ref-R-car">
+<p>Fox, John, and Sanford Weisberg. 2017. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-R-purrr">
+<p>Henry, Lionel, and Hadley Wickham. 2017. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-R-readr">
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2017. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2017. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-R-tibble">
+<p>Müller, Kirill, and Hadley Wickham. 2017. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017c. <em>Tidyverse: Easily Install and Load ’Tidyverse’ Packages</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="8-1-demo-a-multiple-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="8-3-ubung-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["ResearchMethods.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

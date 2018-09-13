@@ -1,0 +1,237 @@
+# Statistik 1
+
+## Hypothesen (mit Blumen)
+
+
+
+```{r}
+sorteA = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14) 
+sorteB = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+
+sorteA = c(15, 19, 12, 10, 8, 5, 9, 18, 8, 14) 
+sorteB = c(12, 13, 15, 6, 8, 10, 12, 5, 13, 10) 
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+
+sorteA = c(15, 19, 12, 9, 8, 10, 13, 15, 5, 16) 
+sorteB = c(16, 15, 16, 9, 8, 10, 12, 13, 13, 10)
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+
+
+sorteA = c(15, 19, 12, 9, 8, 5, 13, 15, 5, 7) 
+sorteB = c(16, 15, 16, 9, 12, 10, 12, 13, 13, 15)
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+```
+
+
+
+
+
+## Assoziation zwei kategorialer Variabeln (Haarfarbe vs. Augenfarbe)
+
+### Chi-Quadrat-Test 
+
+
+```{r}
+haar_augen <- data.frame( 
+  row.names = c("Helle Haare", "Dunkle Haare"),
+  Blaue_Augen = c(38,11),
+  Braune_Augen = c(14,51)
+  )
+
+haar_augen
+
+qchisq(0.95,1)
+
+count <- as.matrix(haar_augen)
+
+chisq.test(count)
+```
+
+### Fisher's exact test
+
+```{r}
+count <- matrix(c(3,5,9,1),nrow=2)
+count
+fisher.test(count)
+```
+
+
+
+## t-Test (mit Blumen)
+
+```{r}
+blumen_sorte <- data.frame(
+  a = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14),
+  b = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+)
+```
+
+
+### Student's t-Test für zwei unabhängige Proben
+
+```{r}
+t.test(blumen_sorte$a,blumen_sorte$b,var.equal = T)
+```
+
+
+
+### Welch's t-test für zwei unabhängige Proben
+
+```{r}
+t.test(blumen_sorte$a,blumen_sorte$b,var.equal = F)
+
+t.test(blumen_sorte$a,blumen_sorte$b)
+
+```
+
+### Einseitig vs. zweiseitiger t-Test
+
+```{r}
+t.test(blumen_sorte$a,blumen_sorte$b) # Zweiseitig
+
+
+t.test(blumen_sorte$a,blumen_sorte$b,alternative = "greater") # Zweiseitig
+
+t.test(blumen_sorte$a,blumen_sorte$b, alternative = "less") # Zweiseitig
+
+```
+
+### Gepaarter t-Test
+
+
+```{r}
+blumen_jahr <- data.frame(
+  jahr1 = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14),
+  jahr2 = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+)
+
+testRes <- t.test(blumen_jahr$jahr1,blumen_jahr$jahr2, paired=T) #gepaarter t-Test
+
+testRes
+
+knitr::kable(broom::tidy(testRes))
+```
+
+
+## Parametrische vs. nicht-parametrische Verfahren
+
+
+### Klassische Tests für Normalität
+
+```{r}
+shapiro.test(blumen_sorte$a)
+```
+
+
+### Klassische Tests für Varianzhomogenität
+
+```{r}
+var.test(blumen_sorte$a,blumen_sorte$b)
+library(car)
+leveneTest(blumen_sorte$a,blumen_sorte$b,center=mean)
+
+```
+
+### Visuelle Inspektion der Daten
+
+
+```{r}
+boxplot(blumen_sorte$a,blumen_sorte$b)
+
+hist(blumen_sorte$a)
+
+hist(blumen_sorte$b)
+
+
+```
+
+### "Nicht-parametrische" Verfahren (äquivalent zu t-Test)
+
+```{r}
+wilcox.test(blumen_sorte$a,blumen_sorte$b)
+```
+
+
+### Randomisierungs-t-Test
+
+```{r}
+#siehe R-code im praktischen Teil
+```
+> Rcode noch einfügen
+
+### Transformationen
+
+> R Code noch einfügen
+
+
+## Anova
+
+
+```{r}
+library(tidyverse)
+
+blumen_long <- blumen_sorte %>%
+  gather(cultivar,size)
+
+blumen_long %>%
+  group_by(cultivar) %>%
+  mutate(index = row_number()) %>%
+  mutate(group_mean = mean(size)) %>%
+  ungroup() %>%
+  mutate(overall_mean = mean(size)) %>%
+  ggplot(aes(colour = cultivar)) +
+  geom_point(aes(index,size))  +
+  geom_hline(aes(colour = cultivar,yintercept = group_mean)) +
+  geom_hline(aes(colour = "Overall mean",yintercept = overall_mean)) +
+  facet_grid(~cultivar) +
+  labs(colour = "Legend") +
+  geom_segment(aes(x = index,y = size,xend = index, yend = group_mean))
+```
+
+
+### normaler t-Test
+
+```{r}
+t.test(size~cultivar, blumen_long, var.equal=T)
+```
+
+### als ANOVA
+
+```{r}
+summary(aov(size~cultivar,blumen_long))
+```
+ 
+
+### Zum Abschluss eine "echte" ANOVA mit drei Sorten
+
+
+```{r}
+set.seed(1)
+
+sorteC <- data.frame(cultivar = rep("c",10),size = as.integer(rnorm(10,17,5)),stringsAsFactors = F)
+
+blumen_long <- bind_rows(blumen_long,sorteC)
+
+
+summary(aov(size~cultivar,blumen_long))
+
+```
+
+

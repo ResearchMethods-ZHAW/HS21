@@ -1,0 +1,178 @@
+```{r, include=FALSE, purl = F}
+knitr::opts_chunk$set(collapse=TRUE)
+# knitr::opts_knit$set(root.dir = "10_PrePro2")
+
+```
+
+## Übung B
+
+### Aufgabenstellung
+
+
+
+
+```{r,message=F}
+library(tidyverse)
+library(lubridate)
+library(stringr)
+```
+
+
+
+#### Aufgabe 1
+
+Gegeben sind die Daten von drei Sensoren ([sensor1.csv](10_PrePro2/data/sensor1.csv), [sensor2.csv](10_PrePro2/data/sensor2.csv), [sensor3.csv](10_PrePro2/data/sensor3.csv)). Lade die Datensätze runter und lese sie ein.
+
+
+
+```{r, message=F}
+# Lösung Aufgabe 1
+
+sensor1 <- read_delim("10_PrePro2/data/sensor1.csv",";")
+sensor2 <- read_delim("10_PrePro2/data/sensor2.csv",";")
+sensor3 <- read_delim("10_PrePro2/data/sensor3.csv",";")
+
+```
+
+#### Aufgabe 2
+
+
+
+Füge die drei Tabellen zu **einer** zusammen. Dazu kannst du entweder die  Spalten (Variablen) mittels `join()` oder die Zeilen (Beobachtungen) mittels `rbind()` zusammen "kleben".  Überführe zudem die Spalte `Datetime` in ein `POSIXct`-Format. Das ursprüngliche Format lautet:`DDMMYYYY_HHMM`
+
+
+```{r}
+
+# Lösung Aufgabe 2 (Var 1: Spalten [Variabeln] zusammen 'kleben')
+sensor_all <- sensor1 %>%
+  rename(sensor1 = Temp) %>%              # Spalte "Temp" in "sensor1" umbenennen
+  full_join(sensor2,by = "Datetime") %>%    
+  rename(sensor2 = Temp) %>%
+  full_join(sensor3, by = "Datetime") %>%
+  rename(sensor3 = Temp) %>%
+  mutate(Datetime = as.POSIXct(Datetime,format = "%d%m%Y_%H%M"))
+```
+
+
+
+
+```{r}
+
+# Lösung Aufgabe 2 (Var 2: Zeilen [Beobachtungen] zusammen 'kleben)
+
+sensor1$sensor <- "sensor1"
+sensor2$sensor <- "sensor2"
+sensor3$sensor <- "sensor3"
+
+sensor_all <- rbind(sensor1,sensor2,sensor3)
+
+sensor_all <- sensor_all %>%
+  mutate(
+    Datetime = as.POSIXct(Datetime,format = "%d%m%Y_%H%M")
+  ) %>%
+  spread(sensor, Temp)
+
+```
+
+
+```{r,  echo = F, eval = T, purl=F}
+# Die neue Tabelle sollte folgendermassen aussehen:
+knitr::kable(sensor_all)
+```
+
+
+
+#### Aufgabe 3
+
+Importiere die Datei [sensor_1_fail.csv](10_PrePro2/data/sensor_fail.csv) in `R`.
+
+
+```{r, message = F}
+
+# Lösung Aufgabe 3
+
+sensor_fail <- read_delim("10_PrePro2/data/sensor_fail.csv", delim = ";")
+
+```
+
+
+```{r,  echo = F, eval = T, purl=F}
+knitr::kable(sensor_fail)
+```
+
+
+`sensor_fail.csv` hat eine Variabel `SensorStatus`: `1` bedeutet der Sensor misst, `0` bedeutet der Sensor miss nicht. Fälschlicherweise wurde auch dann der Messwert `Temp = 0` erfasst, wenn `Sensorstatus = 0`. Richtig wäre hier `NA` (not available). Korrigiere den Datensatz entsprechend.
+
+
+```{r}
+
+# Lösungsweg 1
+sensor_fail$Datetime <- as.POSIXct(sensor_fail$Datetime,format = "%d%m%Y_%H%M")
+
+sensor_fail$`Hum_%`[sensor_fail$SensorStatus == 0] <- NA
+sensor_fail$Temp[sensor_fail$SensorStatus == 0] <- NA
+```
+
+
+```{r, message = F}
+
+# Lösungsweg 2
+
+sensor_fail <- read_delim("10_PrePro2/data/sensor_fail.csv", delim = ";")
+
+
+sensor_fail_corr <- sensor_fail %>%
+  mutate(
+    Datetime = as.POSIXct(Datetime,format = "%d%m%Y_%H%M")
+  ) %>%
+  rename(Humidity = `Hum_%`) %>%         # Weil R "%" in Headers nicht mag
+  gather(key,val, c(Temp, Humidity)) %>%
+  mutate(
+    val = ifelse(SensorStatus == 0,NA,val)
+  ) %>%
+  spread(key,val)
+  
+```
+
+
+#### Aufgabe 4
+
+
+Warum spielt das es eine Rolle, ob `0` oder `NA` erfasst wird? Vergleiche dazu die Mittlere Temperatur / Feuchtigkeit vor und nach der Korrektur. 
+
+```{r}
+
+# Lösung Aufgabe 4
+
+# Mittelwerte der unkorrigierten Sensordaten (`NA` als `0`)
+mean(sensor_fail$Temp)
+mean(sensor_fail$`Hum_%`)
+
+```
+
+
+
+```{r}
+# Mittelwerte der korrigierten Sensordaten (`NA` als `NA`). Hier müssen wir die Option 
+# `na.rm = T` (Remove NA = T) wählen, denn `mean()` (und ähnliche Funktionen) retourieren 
+# immer `NA`, sobald ein **einzelner** Wert in der Reihe `NA`ist.
+mean(sensor_fail_corr$Temp, na.rm = T)
+mean(sensor_fail_corr$Humidity, na.rm = T)
+
+```
+
+
+### Lösung (R-Code)
+
+[R-Code als Download](10_PrePro2/RFiles/Uebung_B.R)
+
+
+```{r code=readLines('10_PrePro2/RFiles/Uebung_B.R'), echo=T, eval=F, include = T}
+```
+
+
+### Quellen
+
+```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
+```
+

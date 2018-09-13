@@ -1,0 +1,19 @@
+bookdown::gitbook:
+  split_by: section+number
+  split_bib: TRUE
+  css: 00_Admin/style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Modul ResearchMethods</a></li>
+#      after: |
+#        <li><a href="zhaw.ch/iunr/master" target="blank">Master of Science in Umwelt und Natürliche Ressourcen</a></li>
+    download: ["pdf"]
+#    keep_tex: yes
+bookdown::pdf_book:
+  includes:
+    in_header: 00_Admin/preamble.tex
+    before_body: 00_Admin/titlepage.tex
+    latex_engine: xelatex
+    citation_package: natbib

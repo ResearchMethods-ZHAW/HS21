@@ -1,0 +1,53 @@
+```{r, include=F, purl = F}
+# knitr::opts_knit$set(root.dir = "14_Statistik2")
+```
+
+
+
+##	Übungen
+
+### Aufgabenstellung
+
+#### Aufgabe 1: Regression
+Der Datensatz [decay.csv](14_Statistik2/data/decay.csv) beschreibt in einem physikalischen Experiment die Zahl der radioaktiven Zerfälle pro Minute in Abhängigkeit vom Zeitpunkt (min nach Start des Experimentes).
+Laden Sie den Datensatz in R, machen Sie eine explorative Datenanalyse und wählen dann unter den schon gelernten Methoden der Regressionsanalyse ein adäquates Vorgehen zur Analyse dieser Daten, führen Sie diese durch, prüfen Sie anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren, und stellen Sie die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle). Kennen Sie ggf. noch eine andere geeignete Herangehensweise?
+
+
+<!-- Studenten bekommen den Datensatz decay.csv aus Crawley (S. 136). Es gibt unter den schon bekannten Methoden zwei alternative Optionen der Analyse, die beide auch im Crawley dargestellt sind: (a) log- oder sqrt-Transformation der y-Werte und danach einfache lineare Regression bzw. (b) polynomiale Regression. Die Musterlösung sollte beide beinhalten (incl. Check der Modellvoraussetzungen, Ergebnisgrafik, Zusammenfassung des Ergebnisses in einem Satz). Nicht benötigt wird aus Crawley S. 142 oben die Beurteilung der Modellgüte mittels AIC (da wir das erst in Statistik 3 machen). -->
+
+
+#### Aufgabe 2: ANOVA
+Der Datensatz [kormoran.csv](14_Statistik2/data/kormoran.csv) enthält 40 Beobachtungen zu Tauchzeiten zweier Kormoranunterarten (C = *Phalocrocorax carbo carbo* und S = *Phalacrocorax carbo sinensis*) aus vier Jahreszeiten (F = Frühling, S = Sommer, H = Herbst, W = Winter). Lesen Sie den Datensatz nach R ein und führen Sie eine adäquate Analyse durch, um beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen. Stellen Sie Ihre Ergebnisse dann angemessen dar (Text, Abbildung und/oder Tabelle).
+
+Datensatz anbei. Analyse geht wie Beispiel unter 1.5
+
+
+### Lösung
+
+
+
+#### Musterlösung Aufgabe 1: Regression
+
+Aus @crawley2015[S. 136, modifiziert]
+```{r child = '14_Statistik2/Uebung_Aufgabe1.Rmd', purl=F}
+```
+
+
+#### Musterlösung Aufgabe 1: Regression (nur R-Code)
+Aus @crawley2015[S. 136, modifiziert]
+
+```{r code=readLines('14_Statistik2/RFiles/Uebung_Aufgabe1.R'), echo=T, eval=F}
+```
+
+
+
+
+#### Musterlösung Aufgabe 2: ANOVA
+```{r child = '14_Statistik2/Uebung_Aufgabe2.Rmd', purl=F}
+```
+
+#### Musterlösung Aufgabe 2: ANOVA (nur R-Code)
+
+```{r code=readLines('14_Statistik2/RFiles/Uebung_Aufgabe2.R'), echo=T, eval=F}
+```
+

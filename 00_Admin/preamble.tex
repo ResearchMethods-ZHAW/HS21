@@ -1,0 +1,18 @@
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\AtBeginDocument{\let\maketitle\relax} % supress header
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% \fancyhead[CO,CE]{ZHAW LSFM}
+\fancyfoot[CO,CE]{\textsc{zhaw lsfm}}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[RE,LO]{Modul \textit{ResearchMethods}}
