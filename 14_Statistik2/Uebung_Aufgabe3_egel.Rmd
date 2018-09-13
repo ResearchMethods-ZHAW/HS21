@@ -1,0 +1,95 @@
+---
+title: "Übungen Statistik"
+author: "Gian-Andrea Egeler"
+date: "13 9 2018"
+output: html_document
+---
+
+### Erläuterungen zum Datensatz
+
+Folgende Variablen sind im Datensatz beinhaltet:
+
+
+|   Name der Variable	|   Beschreibung der Variable	|   
+|---	|---	|
+|   "transaction_id" |  Durch das Kassensystem generierte Identifikationsnummer	| 
+|   "date"	|   Datum	|
+|  "week" | Kalenderwoche |
+|  "year" | Kalenderjahr  |
+|  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
+|  "article_description" | Beschreibung der Men?-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
+|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
+|  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
+|  "card_num" | anonymisierte Kartennummer  |
+|  "gender" | Geschlecht (F,M)  |
+|  "member" | Hochschulzugehörigkeit (Studierdne, Mitarbeitende, "Lernende", "Spezialkarten")  |
+|  "age" |  Alter in Jahren |
+|  "price_acticle" |  Preis des gekauften Artikels |
+|  "total_amount_pay" | Total bezahlter Betrag  |
+|  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
+|  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
+|  "tot_ubp" | Umweltbelastungspunkte pro Menü  |
+|  "buffet_anmial" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
+
+--------
+
+**Bemerkungen:**
+
+1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Menüs
+2. hier werden Menüs mit Fisch, Geflügel als Fleisch zusammengefasst
+3. Vegan sind ausschliesslich pflanzliche Menüs. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch eigenständige Menüs unterschieden
+4. Vegetarisch sind ovo-lakto-vegetarische Menüs
+
+
+<br><br>
+
+### Aufgabe 3: ANOVA
+
+Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+
+
+muss noch ausführlicher geschrieben werden!
+
+### Musterlösung Aufgabe 3
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(readr)
+library(dplyr)
+library(car)
+library(gmodels)
+library(ggfortify)
+
+nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/novanimal.csv", delim = ";")
+
+```
+
+
+```{r}
+# bearbeite Daten zuerst
+df <- nova %>%
+    group_by(condit, label_content, gender) %>%
+    summarise(tot_sold = n())
+
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+
+# modell 1
+model <- aov(tot_sold ~ label_content, data = df)
+autoplot(model)
+summary.lm(model)
+
+# visuallisierung
+ggplot(df, aes(x = label_content, y= na.omit(tot_sold))) + geom_boxplot(fill="lightgrey") + labs(x = "Men?-Inhalt", y = "verkaufte Men?s")
+
+# modell 2: scheint besser zu den Daten zu passen
+model1 <- aov(tot_sold ~ condit:label_content, data = df)
+autoplot(model1)
+summary.lm(model1)
+
+# visuallisierung
+ggplot(df, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot()
+
+```
+
+
+
