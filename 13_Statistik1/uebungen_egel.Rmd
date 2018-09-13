@@ -1,0 +1,144 @@
+---
+title: "Übungen Statistik"
+author: "Gian-Andrea Egeler"
+date: "12 September 2018"
+output: html_document
+---
+
+
+### Erläuterungen zum Datensatz
+
+Folgende Variablen sind im Datensatz beinhaltet:
+
+
+|   Name der Variable	|   Beschreibung der Variable	|   
+|---	|---	|
+|   "transaction_id" |  Durch das Kassensystem generierte Identifikationsnummer	| 
+|   "date"	|   Datum	|
+|  "week" | Kalenderwoche |
+|  "year" | Kalenderjahr  |
+|  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
+|  "article_description" | Beschreibung der Menü-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
+|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
+|  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
+|  "card_num" | anonymisierte Kartennummer  |
+|  "gender" | Geschlecht (F,M)  |
+|  "member" | Hochschulzugehörigkeit (Studierdne, Mitarbeitende, "Lernende", "Spezialkarten")  |
+|  "age" |  Alter in Jahren |
+|  "price_acticle" |  Preis des gekauften Artikels |
+|  "total_amount_pay" | Total bezahlter Betrag  |
+|  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
+|  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
+|  "tot_ubp" | Umweltbelastungspunkte pro Menü  |
+|  "buffet_anmial" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
+
+--------
+
+**Bemerkungen:**
+
+1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Menüs
+2. hier werden Menüs mit Fisch, Geflügel als Fleisch zusammengefasst
+3. Vegan sind ausschliesslich pflanzliche Menüs. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch eigenständige Menüs unterschieden
+4. Vegetarisch sind ovo-lakto-vegetarische Menüs
+
+
+<br><br>
+
+### Aufgabe 1: Assoziationstest
+
+Führen Sie den X²-Test mit dem Datensatz novanimal.csv durch und interpretieren Sie die Ergebnisse. z.B. Unterscheiden sich die Geschlechter bezüglich ihrer Menü-Wahl? Gibt es Unterschiede in der Hochschulzugehörigkeit und den Geschlechtern?
+
+### Musterlösung Aufgabe 1
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(readr)
+library(dplyr)
+library(car)
+library(gmodels)
+library(ggfortify)
+
+nova <- read_delim("C:/Users/egel/switchdrive/ZHAW/03_Lehre/research methods MSc/übungen_reme_180911_egel/novanimal.csv", delim = ";")
+
+```
+
+```{r}
+chisq.test(nova$gender, nova$label_content)
+CrossTable(nova$gender, nova$label_content, chisq = T) # Alternative zu chisq.test
+
+chisq.test(nova$member, nova$gender)
+CrossTable(nova$member, nova$gender, chisq = T)
+
+```
+
+
+
+### Aufgabe 2: t-Test
+
+* Werden in den Fleischwoche (Basiswochen) mehr Menüs verkauft als in den vegetarischen Wochen (Interventionswochen)?
+* Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
+* Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
+* Visualisieren mit einem Boxplot
+
+
+### Musterlösung Aufgabe 2
+```{r}
+# Daten müssen zuerst nach Kalenderwochen und Kondition zusammengefasst werden
+df <- nova %>%
+    group_by(condit, week) %>% # 
+    summarise(tot_sold = n())
+
+leveneTest(df$tot_sold, df$condit)
+
+```
+
+Der t-Test für unabhängige Gruppen setzt Varianzhomogenität voraus. Liegt Varianzheterogenität vor (also unterschiedliche Varianzen), so müssen unter anderem die Freiheitsgerade des t-Wertes angepasst werden. Ob die Varianzen nun homogen ("gleich") sind, lässt sich mit dem Levene-Test auf Varianzhomogenität prüfen. Dieser Test ist eine Variante des F-Tests.
+
+Der Levene-Test verwendet die Nullhypothese, dass sich die beiden Varianzen nicht unterscheiden. Daher bedeutet ein nicht signifikantes Ergebnis, dass sich die Varianzen nicht unterscheiden und also Varianzhomogenität vorliegt. Ist der Test signifikant, so wird von Varianzheterogenität ausgegangen.
+
+```{r}
+
+t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F)
+
+# boxplot
+
+ggplot(df, aes(x = condit, y= tot_sold)) + 
+    geom_boxplot(fill = "lightgrey") + 
+    labs(x="Bedingungen", y="Anzahl verkaufte Menüs")
+```
+
+
+
+
+### Aufgabe 3: ANOVA
+
+Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+
+
+### Musterlösung Aufgabe 3
+
+```{r}
+
+df <- nova %>%
+    group_by(condit, label_content, gender) %>%
+    summarise(tot_sold = n())
+
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+
+model <- aov(tot_sold ~ label_content, data = df)
+autoplot(model)
+summary.lm(model)
+
+ggplot(df, aes(x = label_content, y= na.omit(tot_sold))) + geom_boxplot(fill="lightgrey") + labs(x = "Menü-Inhalt", y = "verkaufte Menüs")
+
+
+model1 <- aov(tot_sold ~ condit:label_content, data = df)
+autoplot(model1)
+summary.lm(model1)
+
+ggplot(df, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot()
+
+```
+
+### Aufgabe 4: Regression
+
