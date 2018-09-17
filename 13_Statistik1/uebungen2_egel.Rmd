@@ -57,6 +57,8 @@ library(dplyr)
 library(car)
 library(gmodels)
 library(ggfortify)
+library(pander)
+library(stargazer)
 
 nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/novanimal.csv", delim = ";")
 
@@ -69,6 +71,7 @@ CrossTable(nova$gender, nova$label_content, chisq = T) # Alternative zu chisq.te
 chisq.test(nova$member, nova$gender)
 CrossTable(nova$member, nova$gender, chisq = T)
 
+
 ```
 
 
@@ -76,8 +79,8 @@ CrossTable(nova$member, nova$gender, chisq = T)
 ### Aufgabe 2: t-Test
 
 * Werden in den Fleischwoche (Basiswochen) mehr Men?s verkauft als in den vegetarischen Wochen (Interventionswochen)?
-* Welche Form von t-Test m?ssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
-* F?hren Sie den t-Test durch und interpretieren Sie die Ergebnisse
+* Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
+* Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
 * Visualisieren mit einem Boxplot
 
 

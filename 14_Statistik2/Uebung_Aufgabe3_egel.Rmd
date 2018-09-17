@@ -45,10 +45,17 @@ Folgende Variablen sind im Datensatz beinhaltet:
 
 ### Aufgabe 3: ANOVA
 
-Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+Führt mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+Gibt es Unterschiede zwischen den verkauften Menü-Inahlten (Fleisch oder Fisch, Hot and Cold Buffet und Vegetarisch)? Wie können die Unterschiede erklärt werden?
 
+Ihre Gesamtaufgabe ist es, aus den Daten ein adäquates Modell zu ermitteln. 
 
-muss noch ausführlicher geschrieben werden!
+**Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+
+Hinweise für die Analysen: 
+* Menü-Inhalt wird zu drei Inhalten redimensioniert (Pflanzliche = Vegetarische Menüs)
+* Der Datensatz soll zuerst Gruppiert werden (Wochen, Menü-Inhalt und Beschreibung der Experimentalwochen)
+
 
 ### Musterlösung Aufgabe 3
 
@@ -65,29 +72,47 @@ nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/nov
 ```
 
 
-```{r}
-# bearbeite Daten zuerst
-df <- nova %>%
-    group_by(condit, label_content, gender) %>%
-    summarise(tot_sold = n())
+```{r, fig.width=20, fig.height=12 }
+# gruppiere Daten zuerst
 
-df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+df <- nova # mache eine Kopie vom original Datensatz
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # Fasse die Menü-Inhalte zusammen
 
-# modell 1
-model <- aov(tot_sold ~ label_content, data = df)
-autoplot(model)
+# df_ <- df %>%
+#     group_by(condit, label_content, week) %>%
+#     summarise(tot_sold = n()) %>%
+#     na.omit() # lasse die unbekannten Verkäufe weg
+
+# neue Gruppierung, scheint besser zu sein, erzeugt mehr varianz
+df_ <- df %>%
+    group_by(condit, label_content, week, gender, member) %>%
+    summarise(tot_sold = n()) %>%
+    na.omit() # lasse die unbekannten Verkäufe weg
+    
+
+# Unterscheiden sich die Verkaufszahlen pro Menü-Inhalt? 
+model <- aov(tot_sold ~ label_content, data = df_)
+ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() # schaue die Verkaufszahlen in einem Histogramm an
+autoplot(model) # Inspektion der Modellvoraussetzung: Daten sollten für eine ANOVA passen
 summary.lm(model)
 
-# visuallisierung
-ggplot(df, aes(x = label_content, y= na.omit(tot_sold))) + geom_boxplot(fill="lightgrey") + labs(x = "Men?-Inhalt", y = "verkaufte Men?s")
+# Visualisierung und Dasrtellung der Ergebnisse 
+ggplot(df_, aes(x = label_content, y= na.omit(tot_sold))) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "verkaufte Menus")
 
-# modell 2: scheint besser zu den Daten zu passen
-model1 <- aov(tot_sold ~ condit:label_content, data = df)
-autoplot(model1)
-summary.lm(model1)
 
-# visuallisierung
-ggplot(df, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot()
+# Soziodemografische Unterschiede in der Menü-Wahl? Alter kann als alternative hinzugenommen werden (nur als altersgruppen).
+model1 <- aov(tot_sold ~ label_content + gender + member, data = df_)
+autoplot(model1)  # Inspektion der Modellvoraussetzung
+summary.lm(model1) # Was ist das spannendste Ergebnis?
+
+# Experimentalwochen als Erklärung für die Verkaufszahlen?
+model2 <- aov(tot_sold ~ label_content + condit + gender + member, data = df_) # Achtung Interaktionseffekte, Haupteffekte können nicht mehr interpretiert werden
+autoplot(model2)  # Inspektion der Modellvoraussetzung
+summary.lm(model2) # Was ist das spannendste Ergebnis?
+
+
+# Nehme passendes Modell und visualisiere dieses
+ggplot(df, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "verkaufte Menus")
 
 ```
 
