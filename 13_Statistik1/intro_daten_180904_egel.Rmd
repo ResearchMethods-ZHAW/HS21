@@ -2,32 +2,31 @@
 title: "Beschreibung Forschungsprojekt NOVANIMAL (NFP69)"
 author: "Gian-Andrea Egeler"
 date: "4. September 2018"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 bibliography: biblio_180912.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-### Innovationen f?r zukunftsorientierte Ern?hrung und Lebensmittelproduktion
+### Innovationen für zukunftsorientierte Ernährung und Lebensmittelproduktion
 
-Die Menschen essen weltweit immer mehr Fleisch- und Milchprodukte [@food_and_agriculture_organization_of_the_united_nations_statistics_faostat_commodity_2017]. Aus ?kologischen und gesundheitlichen Gr?nden ist diese Entwicklung problematisch, denn f?r die Produktion von tierischen Nahrungsmitteln braucht es mehr Boden, Wasser und Energie als bei der Produktion pflanzlicher Nahrungsmittel und auch die Umweltbelastungen sind h?her als bei der pflanzlichen Produktion [@westhoek_food_2014]. Zudem sind tierische Nahrungsmittel energiedicht und k?nnen zu ?bergewicht und zu entsprechenden Folgeerkrankungen beitragen. Des Weiteren stehen manche Fleischsorten stehen im Verdacht, das Risiko f?r Krebs- und Herzkreislaufkrankheiten zu erh?hen [@tilman_global_2014]. 
+Die Menschen essen weltweit immer mehr Fleisch- und Milchprodukte [@food_and_agriculture_organization_of_the_united_nations_statistics_faostat_commodity_2017]. Aus ökologischen und gesundheitlichen Gründen ist diese Entwicklung problematisch, denn für die Produktion von tierischen Nahrungsmitteln braucht es mehr Boden, Wasser und Energie als bei der Produktion pflanzlicher Nahrungsmittel und auch die Umweltbelastungen sind höher als bei der pflanzlichen Produktion [@westhoek_food_2014]. Zudem sind tierische Nahrungsmittel energiedicht und können zu Übergewicht und zu entsprechenden Folgeerkrankungen beitragen. Des Weiteren stehen manche Fleischsorten im Verdacht, das Risiko für Krebs- und Herzkreislaufkrankheiten zu erhöhen [@tilman_global_2014]. 
 
-Der Pro-Kopf-Konsum an Fleisch und Milch ist in der Schweiz deutlich h?her als im globalen Durchschnitt. Aus ?kologischen und gesundheitlichen Gr?nden ist auch in der Schweiz ein moderater Konsum w?nschenswert [@johnston_understanding_2014; @macdiarmid_is_2013; @marlow_diet_2009; @tukker_environmental_2011]. Was aber heisst das f?r eine liberale Gesellschaft [@kamm_ernahrung_2015]? Was braucht es, damit Menschen freiwillig weniger tierische Produkte konsumieren? 
+Der Pro-Kopf-Konsum an Fleisch und Milch ist in der Schweiz deutlich höher als im globalen Durchschnitt. Aus ökologischen und gesundheitlichen Gründen ist auch in der Schweiz ein moderater Konsum wünschenswert [@johnston_understanding_2014; @macdiarmid_is_2013; @marlow_diet_2009; @tukker_environmental_2011]. Was aber heisst das für eine liberale Gesellschaft [@kamm_ernahrung_2015]? Was braucht es, damit Menschen freiwillig weniger tierische Produkte konsumieren? 
 
-Ein interessanter Ansatzpunkt ist die Ausser-Haus-Verpflegung. Gem?ss der ersten, in den Jahren 2014/2015 durchgef?hrten nationalen Ern?hrungserhebung menuCH essen 70% der Bev?lkerung zwischen 18 und 75 Jahren am Mittag ausw?rts [@bochud_anthropometric_2017]. Daher r?ckt die Gastronomie als zentraler Akteur einer innovativen und nachhaltigen Ern?hrungswirtschaft ins Blickfeld. Welche Innovationen in der Gastronomie k?nnten dazu beitragen, den Pro-Kopf-Verbrauch an tierischen Nahrungsmitteln zu senken? 
+Ein interessanter Ansatzpunkt ist die Ausser-Haus-Verpflegung. Gemäss der ersten, in den Jahren 2014/2015 durchgeführten nationalen Ernährungserhebung menuCH, essen 70% der Bevölkerung zwischen 18 und 75 Jahren am Mittag auswärts [@bochud_anthropometric_2017]. Daher rückt die Gastronomie als zentraler Akteur einer innovativen und nachhaltigen Ernährungswirtschaft ins Blickfeld. Welche Innovationen in der Gastronomie könnten dazu beitragen, den Pro-Kopf-Verbrauch an tierischen Nahrungsmitteln zu senken? 
 
-Der Fokus liegt in diesem Teilprojekt auf der Schweizer Gemeinschaftsgastronomie [@forschungsgruppe_good_pracitice__gemeinschaftsgastronomie_schweizer_2015]. Forschungsleitend ist die Frage, wie die G?ste dazu bewogen werden k?nnen, h?ufiger ressourcenschonende vegetarische oder rein pflanzliche Men?s zu w?hlen.
+Der Fokus liegt in diesem Teilprojekt auf der Schweizer Gemeinschaftsgastronomie [@forschungsgruppe_good_pracitice__gemeinschaftsgastronomie_schweizer_2015]. Forschungsleitend ist die Frage, wie die Gäste dazu bewogen werden können, häufiger ressourcenschonende vegetarische oder ausschliesslich pflanzliche Gerichte zu wählen.
 
-Zusammen mit den Praxispartnern, einem Catering Unternehmen und dem Facility Management einer Hochschule, wurde ein Experiment vorbereitet, das als Pilotversuch in zwei Hochschulmensen durchgef?hrt wird. Konkret wird untersucht, wie die G?ste auf ein ver?ndertes Men?-Angebot mit einem h?heren Anteil an ressourcenschonenden vegetarischen oder rein pflanzlichen Men?s reagieren. Eine besondere Herausforderung ist, dieses erh?hte Angebot in vergleichbarer Qualit?t wie die der fleischhaltigen Men?s anzubieten. Das K?chenteam, das die Men?s zubereitet, muss dazu selber innovativ und kreativ sein bzw. bereit sein, Neues auszuprobieren[@edwards_foodservice_2013]. 
+Zusammen mit den Praxispartnern, einem Catering-Unternehmen und dem Facility Management einer Hochschule, wurde ein Experiment vorbereitet, das als Pilotversuch in zwei Hochschulmensen durchgeführt wird. Konkret wird untersucht, wie die Gäste auf ein verändertes Menü-Angebot mit einem höheren Anteil an ressourcenschonenden vegetarischen oder rein pflanzlichen Gerichte reagieren. Eine besondere Herausforderung ist, dieses erhöhte Angebot in vergleichbarer Qualität wie die der fleischhaltigen Gerichte anzubieten. Das Küchenteam, das die Gerichte zubereitet, muss dazu selber innovativ und kreativ sein bzw. bereit sein, Neues auszuprobieren[@edwards_foodservice_2013]. 
 
-Das Experiment findet im Herbstsemester 2017 w?hrend 12 Wochen statt und besteht aus zwei Mensazyklen ? 6 Wochen. ?ber den gesamten Untersuchungszeitraum werden insgesamt 90 verschiedene Men?s angeboten. Das Referenzangebot besteht aus zwei fleisch- oder fischhaltigen Men?s und einem vegetarischen Angebot. Das ver?nderte Men?-(Interventions)-Angebot kehrt das Verh?ltnis um und beinhaltet ein rein pflanzliches, ein vegetarisches und ein fleisch- oder fischhaltiges Men?. Referenz- und Interventionsangebot wechseln w?chentlich ab. In der Referenz- und in der Basisperiode k?nnen die G?ste jeweils auf ein Buffetangebot ausweichen, indem sie ihre Mahlzeit aus warmen und kalten Komponenten selber zusammenstellen k?nnen. Die Men?s werden ?ber drei vorgegebene Men?linien (Favorite, Kitchen, World) randomisiert angeboten.
+Das Experiment findet im Herbstsemester 2017 während 12 Wochen statt und besteht aus zwei Mensazyklen à 6 Wochen. Über den gesamten Untersuchungszeitraum werden insgesamt 90 verschiedene Gerichte angeboten. Das Referenzangebot besteht aus zwei fleisch- oder fischhaltigen Menüs und einem vegetarischen Angebot. Das veränderte Menü-(Interventions)-Angebot kehrt das Verhältnis um und beinhaltet ein ausschliesslich pflanzliches, ein vegetarisches und ein fleisch- oder fischhaltiges Gericht. Referenz- und Interventionsangebot wechseln wöchentlich ab. In der Referenz- und in der Basisperiode können die Gäste jeweils auf ein Buffetangebot ausweichen, indem sie ihre Mahlzeit aus warmen und kalten Komponenten selber zusammenstellen können. Die Gerichte werden über drei vorgegebene Menülinien (Favorite, Kitchen, World) randomisiert angeboten.
 
-Die Abbildung zeigt das Versuchsdesign f?r die ersten 6 Experimentalwochen.
+Die Abbildung zeigt das Versuchsdesign der ersten 6 Experimentalwochen (Kalenderwoche 40 bis 45).
 ![](design_experiment_ohne datum_180426_03egel.png)
 
-Mehr Informationen ?ber das Forschungsprojekt NOVANIMAL findet ihr auf dieser [Webpage](https://www.novanimal.ch)
+Mehr Informationen über das Forschungsprojekt NOVANIMAL findet ihr auf dieser [Webpage](https://www.novanimal.ch)
 
 <br><br>
 

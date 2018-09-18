@@ -7,38 +7,40 @@ output: html_document
 
 ### Erläuterungen zum Datensatz
 
-Folgende Variablen sind im Datensatz beinhaltet:
+Der Datensatz beinhaltet knapp 1100 Einträge mit 18 Variablen. Die Daten stammen aus dem Kassensystem des Catering-Unternehmen und stellen eine repräsentative Stichprobe des originalen Datensatzes dar.
+
+Folgende Variablen sind im Datensatz:
 
 
 |   Name der Variable	|   Beschreibung der Variable	|   
-|---	|---	|
+|---	|---:	|
 |   "transaction_id" |  Durch das Kassensystem generierte Identifikationsnummer	| 
 |   "date"	|   Datum	|
 |  "week" | Kalenderwoche |
 |  "year" | Kalenderjahr  |
 |  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
-|  "article_description" | Beschreibung der Men?-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
+|  "article_description" | Beschreibung der Menü-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
 |  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
 |  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
 |  "card_num" | anonymisierte Kartennummer  |
 |  "gender" | Geschlecht (F,M)  |
-|  "member" | Hochschulzugehörigkeit (Studierdne, Mitarbeitende, "Lernende", "Spezialkarten")  |
+|  "member" | Hochschulzugehörigkeit (Studierdene, Mitarbeitende, "Lernende", "Spezialkarten")  |
 |  "age" |  Alter in Jahren |
-|  "price_acticle" |  Preis des gekauften Artikels |
+|  "price_article" |  Preis des gekauften Artikels |
 |  "total_amount_pay" | Total bezahlter Betrag  |
 |  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
 |  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
-|  "tot_ubp" | Umweltbelastungspunkte pro Menü  |
-|  "buffet_anmial" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
+|  "tot_ubp" | Umweltbelastungspunkte pro Gericht  |
+|  "buffet_animal" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
 
 --------
 
 **Bemerkungen:**
 
-1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Menüs
-2. hier werden Menüs mit Fisch, Geflügel als Fleisch zusammengefasst
-3. Vegan sind ausschliesslich pflanzliche Menüs. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch eigenständige Menüs unterschieden
-4. Vegetarisch sind ovo-lakto-vegetarische Menüs
+1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
+2. hier werden Gerichte mit Fisch, Geflügel als Fleisch zusammengefasst
+3. Vegane Menüs sind ausschliesslich pflanzliche Gerichte. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch, eigenständige Gerichte unterschieden
+4. Vegetarische Menüs sind ovo-lakto-vegetarische Gerichte.
 
 
 <br><br>
@@ -46,15 +48,20 @@ Folgende Variablen sind im Datensatz beinhaltet:
 ### Aufgabe 3: ANOVA
 
 Führt mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
-Gibt es Unterschiede zwischen den verkauften Menü-Inahlten (Fleisch oder Fisch, Hot and Cold Buffet und Vegetarisch)? Wie können die Unterschiede erklärt werden?
+Gibt es Unterschiede zwischen den verkauften Menü-Inahlten (Fleisch oder Fisch, Hot and Cold Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die Experimentalbedingungen erklärt werden?
 
-Ihre Gesamtaufgabe ist es, aus den Daten ein adäquates Modell zu ermitteln. 
+Ihre Gesamtaufgabe ist es, aus den Daten ein zwei adäquates Modelle zu ermitteln. 
 
-**Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+**Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil**
 
 Hinweise für die Analysen: 
-* Menü-Inhalt wird zu drei Inhalten redimensioniert (Pflanzliche = Vegetarische Menüs)
-* Der Datensatz soll zuerst Gruppiert werden (Wochen, Menü-Inhalt und Beschreibung der Experimentalwochen)
+* Menü-Inhalt wird zu drei Gruppen zusammengefasst (pflanzliche Menüs = vegetarische Menüs)
+* Der Datensatz muss zuerst Gruppiert werden (Wochen, Menü-Inhalt, Beschreibung der Experimentalwochen, Geschlecht, Hochschulzugehörigkeit)
+* Posthoc Vergleiche mit dunnTest (FSA Package)
+
+<!-- Zusätzliche Analysen: -->
+<!-- - Alternativ kann das Alter in den Analysen berücksichtigt werden. Hierfür müssen Altersgruppen gebiltet werden. -->
+<!-- - Hinweis: bildet Altersgruppen ... mittels der "cut" Funktion -->
 
 
 ### Musterlösung Aufgabe 3
@@ -66,53 +73,73 @@ library(dplyr)
 library(car)
 library(gmodels)
 library(ggfortify)
+library(FSA)
 
 nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/novanimal.csv", delim = ";")
 
 ```
 
+#### 1. Frage: Unterscheiden sich die Verkaufszahlen pro Menü-Inhalt und Woche? 
 
 ```{r, fig.width=20, fig.height=12 }
-# gruppiere Daten zuerst
 
-df <- nova # mache eine Kopie vom original Datensatz
+df <- nova # kopiere originaler Datensatz
 df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # Fasse die Menü-Inhalte zusammen
 
-# df_ <- df %>%
-#     group_by(condit, label_content, week) %>%
-#     summarise(tot_sold = n()) %>%
-#     na.omit() # lasse die unbekannten Verkäufe weg
+# lasse evtl weg, da gruppen zu klein für ANOVA
+df$age_groups <- cut(x = df$age, breaks = c(-Inf, 34, 49, 64, Inf), labels = c("18- bis 34-Jährigen", "35- bis 49-Jährigen", "50- bis 64-Jährigen", "65 Jahre und älter")) # 
 
-# neue Gruppierung, scheint besser zu sein, erzeugt mehr varianz
+df_ <- df %>%
+    group_by(label_content, condit, week) %>%
+    summarise(tot_sold = n()) %>%
+    na.omit() # lasse die unbekannten Verkäufe weg
+
+
+# erstes Modell
+model <- aov(tot_sold ~ label_content, data = df_)
+
+ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "Verkaufte Gerichte", y = "Häufigkeit") # schaue die Verkaufszahlen in einem Histogramm an
+# Sieht nach keiner Normalverteilung aus, aber ab > 25 Beobachtungen pro Gruppe sind Verletzungen in der Regel unproblematisch (Quelle: uzh).  
+autoplot(model) # Inspektion der Modellvoraussetzung: Daten passen für eine ANOVA (?)
+leveneTest(df_$tot_sold, df_$label_content) # keine Varianzhomogenität gegeben
+summary.lm(model) # Ergebnisse sollten mit Vorsicht interpretiert werden
+
+# Alternative Testung: Kruskal-Wallis Rank Sum Test
+df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Hot and Cold")) # unabhängige Variable muss zuest als Faktor definiert werden
+kruskal.test(tot_sold ~ label_content, data = df_) # sieht aus als ob sich die Verkaufszahlen zwischen den Menü-Inhalten unterscheiden würden
+dunnTest(tot_sold ~ label_content, data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
+              method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
+
+# Visualisierung und Dasrtellung der Ergebnisse 
+ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "Anzahl verkaufte Gerichte")+theme_bw()+theme() # vergrössere schrift
+
+
+```
+
+#### 2. Frage: Können die Unterschiede zwischen den Menü-Inhalten durch die Experimentalbedingungen erklärt werden?
+
+```{r}
+#Gruppiere Daten und fasse sie nach Vorkommen/Häufigkeit zusammen
 df_ <- df %>%
     group_by(condit, label_content, week, gender, member) %>%
     summarise(tot_sold = n()) %>%
     na.omit() # lasse die unbekannten Verkäufe weg
-    
 
-# Unterscheiden sich die Verkaufszahlen pro Menü-Inhalt? 
-model <- aov(tot_sold ~ label_content, data = df_)
-ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() # schaue die Verkaufszahlen in einem Histogramm an
-autoplot(model) # Inspektion der Modellvoraussetzung: Daten sollten für eine ANOVA passen
-summary.lm(model)
+# Soziodemografische Unterschiede in der Menü-Wahl?
+model1 <- aov(tot_sold ~ label_content * condit, data = df_)
+autoplot(model1)  # Inspektion der Modellvoraussetzung, 
+leveneTest(df_$tot_sold ~ df_$label_content*df_$condit) # keine Varianzhomogenität gegeben
+summary.lm(model1) # Ergebnisse müssen mit vorsicht interpretiert werden
 
-# Visualisierung und Dasrtellung der Ergebnisse 
-ggplot(df_, aes(x = label_content, y= na.omit(tot_sold))) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "verkaufte Menus")
-
-
-# Soziodemografische Unterschiede in der Menü-Wahl? Alter kann als alternative hinzugenommen werden (nur als altersgruppen).
-model1 <- aov(tot_sold ~ label_content + gender + member, data = df_)
-autoplot(model1)  # Inspektion der Modellvoraussetzung
-summary.lm(model1) # Was ist das spannendste Ergebnis?
-
-# Experimentalwochen als Erklärung für die Verkaufszahlen?
-model2 <- aov(tot_sold ~ label_content + condit + gender + member, data = df_) # Achtung Interaktionseffekte, Haupteffekte können nicht mehr interpretiert werden
-autoplot(model2)  # Inspektion der Modellvoraussetzung
-summary.lm(model2) # Was ist das spannendste Ergebnis?
+# Alternative Testung: Kruskal-Wallis Rank Sum Test
+df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Hot and Cold")) # unabhängige Variable muss zuest als Faktor definiert werden
+kruskal.test(tot_sold ~ interaction(label_content, condit), data = df_) # sieht aus als ob sich die Verkaufszahlen zwischen den Menü-Inhalten unterscheiden würden
+dunnTest(tot_sold ~ interaction(label_content, condit), data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
+              method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
 
 
-# Nehme passendes Modell und visualisiere dieses
-ggplot(df, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "verkaufte Menus")
+# visualisiere das Modell
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "verkaufte Menus")
 
 ```
 
