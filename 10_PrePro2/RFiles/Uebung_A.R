@@ -59,7 +59,4 @@ wetter_sry <- wetter %>%
 
 ggplot(wetter_sry, aes(temp_mean,Meereshoehe)) +
   geom_point()
-## df$Groesse[df$Einwohner > 300000] <- "gross"
-## df$Groesse[df$Einwohner <= 300000 & df$Einwohner > 150000] <- "mittel"
-## df$Groesse[df$Einwohner <= 150000] <- "klein"
-## 
+## NA

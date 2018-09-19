@@ -8,7 +8,7 @@
 
 ### Aufgabenstellung
 
-#### Aufgabe 1: Regression
+#### Aufgabe 1: Regression (deng)
 Der Datensatz [decay.csv](14_Statistik2/data/decay.csv) beschreibt in einem physikalischen Experiment die Zahl der radioaktiven Zerfälle pro Minute in Abhängigkeit vom Zeitpunkt (min nach Start des Experimentes).
 Laden Sie den Datensatz in R, machen Sie eine explorative Datenanalyse und wählen dann unter den schon gelernten Methoden der Regressionsanalyse ein adäquates Vorgehen zur Analyse dieser Daten, führen Sie diese durch, prüfen Sie anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren, und stellen Sie die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle). Kennen Sie ggf. noch eine andere geeignete Herangehensweise?
 
@@ -16,38 +16,94 @@ Laden Sie den Datensatz in R, machen Sie eine explorative Datenanalyse und wähl
 <!-- Studenten bekommen den Datensatz decay.csv aus Crawley (S. 136). Es gibt unter den schon bekannten Methoden zwei alternative Optionen der Analyse, die beide auch im Crawley dargestellt sind: (a) log- oder sqrt-Transformation der y-Werte und danach einfache lineare Regression bzw. (b) polynomiale Regression. Die Musterlösung sollte beide beinhalten (incl. Check der Modellvoraussetzungen, Ergebnisgrafik, Zusammenfassung des Ergebnisses in einem Satz). Nicht benötigt wird aus Crawley S. 142 oben die Beurteilung der Modellgüte mittels AIC (da wir das erst in Statistik 3 machen). -->
 
 
-#### Aufgabe 2: ANOVA
+#### Aufgabe 2: ANOVA (deng)
 Der Datensatz [kormoran.csv](14_Statistik2/data/kormoran.csv) enthält 40 Beobachtungen zu Tauchzeiten zweier Kormoranunterarten (C = *Phalocrocorax carbo carbo* und S = *Phalacrocorax carbo sinensis*) aus vier Jahreszeiten (F = Frühling, S = Sommer, H = Herbst, W = Winter). Lesen Sie den Datensatz nach R ein und führen Sie eine adäquate Analyse durch, um beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen. Stellen Sie Ihre Ergebnisse dann angemessen dar (Text, Abbildung und/oder Tabelle).
 
 Datensatz anbei. Analyse geht wie Beispiel unter 1.5
+
+
+
+#### Aufgabe 3: ANOVA (egel)
+
+##### Erläuterungen zum Datensatz
+
+Der Datensatz beinhaltet knapp 1100 Einträge mit 18 Variablen. Die Daten stammen aus dem Kassensystem des Catering-Unternehmen und stellen eine repräsentative Stichprobe des originalen Datensatzes dar.
+
+Folgende Variablen sind im Datensatz:
+
+
+|   Name der Variable	|   Beschreibung der Variable	|   
+|---	|---:	|
+|   "transaction_id" |  Durch das Kassensystem generierte Identifikationsnummer	| 
+|   "date"	|   Datum	|
+|  "week" | Kalenderwoche |
+|  "year" | Kalenderjahr  |
+|  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
+|  "article_description" | Beschreibung der Menü-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
+|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
+|  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
+|  "card_num" | anonymisierte Kartennummer  |
+|  "gender" | Geschlecht (F,M)  |
+|  "member" | Hochschulzugehörigkeit (Studierdene, Mitarbeitende, "Lernende", "Spezialkarten")  |
+|  "age" |  Alter in Jahren |
+|  "price_article" |  Preis des gekauften Artikels |
+|  "total_amount_pay" | Total bezahlter Betrag  |
+|  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
+|  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
+|  "tot_ubp" | Umweltbelastungspunkte pro Gericht  |
+|  "buffet_animal" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
+
+--------
+
+**Bemerkungen:**
+
+1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
+2. hier werden Gerichte mit Fisch, Geflügel als Fleisch zusammengefasst
+3. Vegane Menüs sind ausschliesslich pflanzliche Gerichte. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch, eigenständige Gerichte unterschieden
+4. Vegetarische Menüs sind ovo-lakto-vegetarische Gerichte.
+
+
+##### Aufgabenstellung
+
+Führt mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+Gibt es Unterschiede zwischen den verkauften Menü-Inahlten (Fleisch oder Fisch, Hot and Cold Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die Experimentalbedingungen erklärt werden?
+
+Ihre Gesamtaufgabe ist es, aus den Daten ein zwei adäquates Modelle zu ermitteln. 
+
+**Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil**
+
+Hinweise für die Analysen: 
+* Menü-Inhalt wird zu drei Gruppen zusammengefasst (pflanzliche Menüs = vegetarische Menüs)
+* Der Datensatz muss zuerst Gruppiert werden (Wochen, Menü-Inhalt, Beschreibung der Experimentalwochen, Geschlecht, Hochschulzugehörigkeit)
+* Posthoc Vergleiche mit dunnTest (FSA Package)
+
+<!-- Zusätzliche Analysen: -->
+<!-- - Alternativ kann das Alter in den Analysen berücksichtigt werden. Hierfür müssen Altersgruppen gebiltet werden. -->
+<!-- - Hinweis: bildet Altersgruppen ... mittels der "cut" Funktion -->
+
 
 
 ### Lösung
 
 
 
-#### Musterlösung Aufgabe 1: Regression
+#### Musterlösung Aufgabe 1: Regression (deng)
 
 Aus @crawley2015[S. 136, modifiziert]
 ```{r child = '14_Statistik2/Uebung_Aufgabe1.Rmd', purl=F}
 ```
 
 
-#### Musterlösung Aufgabe 1: Regression (nur R-Code)
-Aus @crawley2015[S. 136, modifiziert]
 
-```{r code=readLines('14_Statistik2/RFiles/Uebung_Aufgabe1.R'), echo=T, eval=F}
-```
-
-
-
-
-#### Musterlösung Aufgabe 2: ANOVA
+ 
+#### Musterlösung Aufgabe 2: ANOVA (deng)
 ```{r child = '14_Statistik2/Uebung_Aufgabe2.Rmd', purl=F}
 ```
 
-#### Musterlösung Aufgabe 2: ANOVA (nur R-Code)
 
-```{r code=readLines('14_Statistik2/RFiles/Uebung_Aufgabe2.R'), echo=T, eval=F}
+#### Musterlösung Aufgabe 3: ANOVA (egel)
+```{r child = '14_Statistik2/Uebung_Aufgabe3_egel.Rmd', purl=F}
 ```
+
+
 

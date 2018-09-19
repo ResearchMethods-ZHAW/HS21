@@ -93,9 +93,4 @@ wetter$temp_kat[wetter$tre200h0<=0] <- "kalt"
 # Lösung Aufgabe 8 (Variante 2, wenn der Code auf einer Zeile daherkommen muss)
 
 wetter$temp_kat <- ifelse(wetter$tre200h0>0,"warm","kalt")
-## 
-## # Lösung Aufgabe 7 (Variante 1: mit lubridate)
-## 
-## wetter$wochentag <- wday(wetter$datetime,label = T)
-## wetter$kw <- week(wetter$datetime)
-## 
+## NA

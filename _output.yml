@@ -11,9 +11,9 @@ bookdown::gitbook:
 #        <li><a href="zhaw.ch/iunr/master" target="blank">Master of Science in Umwelt und Natürliche Ressourcen</a></li>
     download: ["pdf"]
 #    keep_tex: yes
-bookdown::pdf_book:
-  includes:
-    in_header: 00_Admin/preamble.tex
-    before_body: 00_Admin/titlepage.tex
-    latex_engine: xelatex
-    citation_package: natbib
+#bookdown::pdf_book:
+#  includes:
+#    in_header: 00_Admin/preamble.tex
+#    before_body: 00_Admin/titlepage.tex
+#    latex_engine: xelatex
+#    citation_package: natbib

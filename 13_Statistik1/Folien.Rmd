@@ -1,6 +1,13 @@
-# Statistik 1
+# Statistik 1 (30.10.17)
 
-## Hypothesen (mit Blumen)
+In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der frequentist-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Abschliessend gibt es einen ersten Einstieg in die Varianzanalyse (ANOVA).
+
+## Folien
+
+
+<!-- In diesem Teil stimmt die Header Hierarchie überhaupt nicht -->
+
+#### Hypothesen (mit Blumen)
 
 
 
@@ -43,9 +50,9 @@ mean(sorteA) - mean(sorteB)
 
 
 
-## Assoziation zwei kategorialer Variabeln (Haarfarbe vs. Augenfarbe)
+### Assoziation zwei kategorialer Variabeln (Haarfarbe vs. Augenfarbe)
 
-### Chi-Quadrat-Test 
+#### Chi-Quadrat-Test 
 
 
 ```{r}
@@ -64,7 +71,7 @@ count <- as.matrix(haar_augen)
 chisq.test(count)
 ```
 
-### Fisher's exact test
+#### Fisher's exact test
 
 ```{r}
 count <- matrix(c(3,5,9,1),nrow=2)
@@ -84,7 +91,7 @@ blumen_sorte <- data.frame(
 ```
 
 
-### Student's t-Test für zwei unabhängige Proben
+#### Student's t-Test für zwei unabhängige Proben
 
 ```{r}
 t.test(blumen_sorte$a,blumen_sorte$b,var.equal = T)
@@ -92,7 +99,7 @@ t.test(blumen_sorte$a,blumen_sorte$b,var.equal = T)
 
 
 
-### Welch's t-test für zwei unabhängige Proben
+#### Welch's t-test für zwei unabhängige Proben
 
 ```{r}
 t.test(blumen_sorte$a,blumen_sorte$b,var.equal = F)
@@ -130,7 +137,7 @@ knitr::kable(broom::tidy(testRes))
 ```
 
 
-## Parametrische vs. nicht-parametrische Verfahren
+#### Parametrische vs. nicht-parametrische Verfahren
 
 
 ### Klassische Tests für Normalität
@@ -181,7 +188,7 @@ wilcox.test(blumen_sorte$a,blumen_sorte$b)
 > R Code noch einfügen
 
 
-## Anova
+#### Anova
 
 
 ```{r}

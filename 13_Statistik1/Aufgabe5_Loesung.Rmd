@@ -1,0 +1,24 @@
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+# Daten müssen zuerst nach Kalenderwochen und Kondition zusammengefasst werden
+df <- nova %>%
+    group_by(condit, week) %>% # 
+    summarise(tot_sold = n())
+
+leveneTest(df$tot_sold, df$condit)
+
+```
+
+Der t-Test für unabhängige Gruppen setzt Varianzhomogenität voraus. Liegt Varianzheterogenität vor (also unterschiedliche Varianzen), so müssen unter anderem die Freiheitsgerade des t-Wertes angepasst werden. Ob die Varianzen nun homogen ("gleich") sind, lässt sich mit dem Levene-Test auf Varianzhomogenität prüfen. Dieser Test ist eine Variante des F-Tests.
+
+Der Levene-Test verwendet die Nullhypothese, dass sich die beiden Varianzen nicht unterscheiden. Daher bedeutet ein nicht signifikantes Ergebnis, dass sich die Varianzen nicht unterscheiden und also Varianzhomogenität vorliegt. Ist der Test signifikant, so wird von Varianzheterogenität ausgegangen (Quelle: www.uzh.ch).
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F, alternative = "less") # siehe gerichtete Hypothese
+
+# boxplot
+
+ggplot(df, aes(x = condit, y= tot_sold)) + 
+    geom_boxplot(fill = "lightgrey") + 
+    labs(x="Bedingungen", y="Anzahl verkaufte Gerichte")
+```

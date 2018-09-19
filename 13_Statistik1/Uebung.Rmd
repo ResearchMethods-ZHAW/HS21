@@ -1,31 +1,16 @@
-
-<!-- ```{r, include=F, purl = F} -->
-<!-- knitr::opts_knit$set(root.dir = "13_Statistik")  -->
-<!-- ``` -->
-
-
-
 ##	Übungen
-
 
 
 ### Aufgabenstellung
 
-####	Aufgabe 1: Assoziationstest
-- Überlegen Sie sich zwei Parameter mit je zwei Kategorien, in die Sie Menschen einteilen können: z. B. Raucher/Nichtraucher vs. Geschlecht, Wer kann Zunge rollen/nicht vs. Geschlecht etc., Smartphonebesitzer vs. Brillenträger,
-- Befragen Sie Ihre Kommilitonen im Raum
-- Erstellen Sie die 2x2 Kontingenztabelle und lesen Sie diese ein
-- Führen Sie den X²-Test durch und interpretieren Sie die Ergebnisse (was ist mit was ppositiv oder negativ assoziiert?)
-- Führen Sie zusätzlich Fisher’s exact Test durch. Unterschiede?
+####	Aufgabe 1
+
+Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test
 
 
-####	Aufgabe 2: t-Test
-- Überlegen Sie sich eine Hypothese, die Sie mit einem t-Test prüfen können und erheben Sie für jeden der beiden Parameter jeweils 10-20 Werte (z. B. Körpergrösse nach Geschlecht, Blattlänge von zwei Pflanzenarten, Länge Daumen vs. kleiner Finger)
-- Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
-- Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
-- Visualisieren mit einem Boxplot
-- Gibt es Anzeichen, dass Annahmen des t-Test verletzt sind?
-- Führen Sie die non-parametrische Alternativen des t-Tests durch
+####	Aufgabe 2
+
+Überlegen Sie eine Hypothese, die mit einem t-Test geprüft werden kann, erheben Sie dazu die Daten, geben Sie diese ein, visualisieren Sie diese, testen auf evtl. Verletzungen der Modellannahmen, führen dann den geeigneten t-Test sowie eine nicht-parametrische Alternative durch und fassen die Ergebnisse in einem Satz zusammen
 
 
 ####	Aufgabe 3: ANOVA
@@ -33,19 +18,38 @@
 Führt mit dem Datensatz [competition.csv](13_Statistik1/data/competition.csv) einen einfaktoriellen ANOVA selbst durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse)
 
 
+####	Aufgabe 4: (egel)
+
+Führen Sie einen beliebigen $\chi^2$-Test mit dem Datensatz novanimal.csv durch und interpretieren Sie die Ergebnisse. Z. B. Unterscheiden sich die Geschlechter bezüglich ihrer Menü-Wahl? Gibt es Unterschiede in der Hochschulzugehörigkeit und den Geschlechtern?
+
+
+### Aufgabe 5: t-Test (egel)
+
+Führen sie einen t-Test durch. Werden in den Fleischwoche (Basiswochen) mehr Gerichte verkauft als in den vegetarischen Wochen (Interventionswochen)?
+* Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
+* Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
+* Visualisieren mit einem Boxplot
+
+
 
 
 ### Lösung
 
 ####  Musterlösung Aufgabe 3
+[Demoscript als Download](13_Statistik1/RFiles/Aufgabe3_Loesung.R)
+
 ```{r child = '13_Statistik1/Aufgabe3_Loesung.Rmd', purl=F}
 ```
 
-####  Musterlösung Aufgabe 3 (nur R-Code)
+####  Musterlösung Aufgabe 4
+[Demoscript als Download](13_Statistik1/RFiles/Aufgabe4_Loesung.R)
 
+ ```{r child = '13_Statistik1/Aufgabe4_Loesung.Rmd', purl=F}
+ ```
 
-```{r code=readLines('13_Statistik1/RFiles/Aufgabe3_Loesung.R'), echo=T, eval=F}
+####  Musterlösung Aufgabe 5
+[Demoscript als Download](13_Statistik1/RFiles/Aufgabe5_Loesung.R)
+
+```{r child = '13_Statistik1/Aufgabe5_Loesung.Rmd', purl=F}
 ```
-
-
 

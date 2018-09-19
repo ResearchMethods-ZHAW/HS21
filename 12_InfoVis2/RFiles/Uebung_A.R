@@ -105,4 +105,4 @@ h +
   lims(x = c(-30,30)) +
   theme(legend.direction = "horizontal",legend.position = "top")
 
-## df$Ankunft_stunde <- hour(df$Ankunft)
+## NA
