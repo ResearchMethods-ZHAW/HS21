@@ -5,13 +5,18 @@ date: "19 9 2018"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
+#knitr::opts_chunk$get("root.dir")
+```
+
 ### Aufgabe 4: multiple Regression
 
 
-Führt mit dem Datensatz novanimal.csv eine Regression durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+Führe mit dem Datensatz novanimal.csv eine Regression durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). Haben die sozioökonomischen Variablen nebst dem Menü-Inhalt einen Einfluss auf die Verkaufszahlen.
 
-**Ermitteln Sie ein minimal adäquates Modell, haben die sozioökonomischen Variablen einen Einfluss auf die Verkaufszahlen.**
 
+**Ermittle ein minimal passendes Modell ** 
 
 
 ### Musterlösung Aufgabe 4
@@ -23,8 +28,12 @@ library(dplyr)
 library(car)
 library(gmodels)
 library(ggfortify)
+library(jtools)
+library(wesanderson)
+library(splines)
+library(caret)
 
-nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/15_Statistik3/data/novanimal_time.csv", delim = ";")
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ```
 
@@ -32,29 +41,81 @@ nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/15_Statistik3/data/nov
 ```{r}
 #Explorative Datenanalyse der abhängigen Variablen
 
-df <- nova_tot # kopiere originaler Datensatz
+df <- nova # kopiere originaler Datensatz
 df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # Fasse die Menü-Inhalte zusammen
-
 
 df_ <- df %>%
   #filter(!is.na(.$tot_ubp)) %>%
-  group_by(label_content, gender, member, age, condit) %>%
-  summarise(tot_sold = n())
+  group_by(label_content, gender, member, age) %>%
+  summarise(tot_sold = n()) %>%
+  na.omit()
 
 #Explorative Datenanalyse der abhängigen Variablen
 ggplot(df_, aes(y = tot_sold)) + geom_boxplot() + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20)) # keine Normalverteilung gegeben
 
+#Welchsle die UV in Faktorvariable
+df_$gender <- as.factor(df_$gender)
+df_$member <- as.factor(df_$member)
+df_$label_content <- as.factor(df_$label_content)
+
 #Regression
-lm1 <- lm(tot_sold ~ tot_ubp + gender + member + label_content, data = df_)
+lm1 <- lm(tot_sold ~ gender + member + label_content + age, data = df_)
 autoplot(lm1)  # Modelgütekriterien sind klar verletzt
 summary(lm1)
 
-# alternative Lösungen für nicht parametrische Regression P-splines, k nearest neighbors, loess/loewess, kriging
+# Visualisiere Ergebniss mit barplot
+df_p <- df %>%
+  group_by(label_content, gender, member) %>%
+  summarise(tot_sold = n()) %>%
+  na.omit() %>% # Vernachlässige Missings
+  ungroup() %>%
+  group_by(label_content) %>%
+  mutate(pct = tot_sold / sum(tot_sold)) # Berechne Prozentwerte
+  
+ggplot(df_p, aes(x = label_content, y = pct, fill = interaction(member, gender), label = paste(round(df_p$pct*100, digits = 0), "%"))) + 
+  geom_bar(stat = "identity", position = "stack") + 
+  scale_y_continuous(labels = scales::percent) + 
+  scale_fill_manual(values = wes_palette("GrandBudapest2", type = "discrete"),
+                    breaks = c("Mitarbeitende.F", "Studierende.F", "Mitarbeitende.M", "Studierende.M"),
+                    label = c("Mitarbeiterin", "Studentin", "Mitarbeiter", "Student"))+
+  geom_text(position = position_stack(vjust = .5)) +
+  theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
 
 
-# Visualisiere Regression mit Regressionslinie
-ggplot(df_, aes(x = tot_ubp, y = tot_sold)) + geom_point() + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
-#geom_smooth(method = "lm", formula = y~x) 
+# alternative Lösungen für nicht parametrische Regression: Splines (?)
+
+# Split the data into training and test set
+set.seed(17)
+training.sample <- df_$tot_sold %>% createDataPartition(p = .80, list = F) # nehme deine UV und definiere 2 Partitionen
+train.data  <- df_[training.sample, ] # train Data
+test.data <- df_[-training.sample, ] # test Data
+
+# Build the model with crs
+library(crs)
+# dont know how to define the knots with categorical variable
+knots <- quantile(train.data$age, c(.25,.5,.75))
+model <- lm (tot_sold ~ bs(age, knots = knots) , data = train.data)
+
+# build model with GAM
+model <- gam(tot_sold ~ s(age), data = train.data)
+
+# Make predictions
+predictions <- model %>% predict(test.data)
+# Model performance
+data.frame(
+  RMSE = RMSE(predictions, test.data$tot_sold),
+  R2 = R2(predictions, test.data$tot_sold)
+)
+
+# visualize splines
+ggplot(train.data, aes(age, tot_sold) ) +
+  geom_point() +
+  stat_smooth(method = lm, formula = y ~ splines::bs(x, df = 3))
+
+#visualize gam
+ggplot(train.data, aes(age, tot_sold) ) +
+  geom_point() +
+  stat_smooth(method = gam, formula = y ~ s(x))
 
 ```
 
@@ -76,21 +137,32 @@ Führt mit dem Datensatz novanimal.csv eine logistsiche Regression durch (Aufber
 df <- nova
 df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
 
-CrossTable(df$meat, df$gender, chisq = T)
+CrossTable(df$meat, df$gender, chisq = T) # exploriere Daten
 CrossTable(df$meat, df$member, chisq = T)
 
-mod0 <- glm(meat ~ gender + member + shop_description + age + price_article , data = df, binomial)
+mod0 <- glm(meat ~ gender + member + shop_description + age + price_article , data = df, binomial("logit"))
 summary(mod0)
 crPlots(mod0)
 1 - (mod0$dev / mod0$null)
 
 # sage Fleischessverhalten vorher
 
-model.predict<-predict(mod0,type="response",se=T,newdata=df)
-plot(meat~gender,data=df,xlab="Fläche (km²)",ylab="Vorkommenswahrscheinlichkeit",pch=16, col="red")
-points(model.predict$fit ~ xs,type="l")
-lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
-lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
+
+
+# Split the data into training and test set
+set.seed(17)
+train.data <- df %>%  dplyr::sample_frac(.75)
+test.data <- anti_join(df, train.data)
+#createDataPartition(p = .80) # nehme deine UV und definiere 2 Partitionen, nicht möglich mit binomiale categorie
+
+# Modelvorhersage
+predictions <- mod0 %>% predict(test.data)
+# Model performance
+data.frame(
+  RMSE = RMSE(predictions, test.data$meat),
+  R2 = R2(predictions, test.data$meat)
+)
+
 
 ```
 

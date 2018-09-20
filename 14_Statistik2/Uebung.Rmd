@@ -25,8 +25,6 @@ Datensatz anbei. Analyse geht wie Beispiel unter 1.5
 
 
 #### Aufgabe 3: ANOVA (egel)
-
-
 Führe mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
 Gibt es Unterschiede zwischen den verkauften Menü-Inhalten (Fleisch, Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Experimentwochen (Basis- oder Interventionwochen) erklärt werden?
 
@@ -39,11 +37,6 @@ Hinweise für die Analysen:
 * Der Datensatz muss zuerst gruppiert werden (Gruppierungsvariablen sind Wochen, Menü-Inhalt, Beschreibung der Experimentalwochen, Geschlecht, Hochschulzugehörigkeit)
 * Posthoc Vergleiche mit dunnTest (FSA Package)
 * Zweite Teilaufgabe soll eine Interaction getestet werden
-
-<!-- Zusätzliche Analysen: -->
-<!-- - Alternativ kann das Alter in den Analysen berücksichtigt werden. Hierfür müssen Altersgruppen gebiltet werden. -->
-<!-- - Hinweis: bildet Altersgruppen ... mittels der "cut" Funktion -->
-
 
 
 ### Lösung
