@@ -1,67 +1,14 @@
 ---
 title: "Übungen Statistik"
 author: "Gian-Andrea Egeler"
-date: "13 9 2018"
+date: "20 9 2018"
 output: html_document
 ---
 
-### Erläuterungen zum Datensatz
-
-Der Datensatz beinhaltet knapp 1100 Einträge mit 18 Variablen. Die Daten stammen aus dem Kassensystem des Catering-Unternehmen und stellen eine repräsentative Stichprobe des originalen Datensatzes dar.
-
-Folgende Variablen sind im Datensatz:
-
-
-|   Name der Variable	|   Beschreibung der Variable	|   
-|---	|---:	|
-|   "transaction_id" |  Durch das Kassensystem generierte Identifikationsnummer	| 
-|   "date"	|   Datum	|
-|  "week" | Kalenderwoche |
-|  "year" | Kalenderjahr  |
-|  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
-|  "article_description" | Beschreibung der Menü-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
-|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
-|  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
-|  "card_num" | anonymisierte Kartennummer  |
-|  "gender" | Geschlecht (F,M)  |
-|  "member" | Hochschulzugehörigkeit (Studierdene, Mitarbeitende, "Lernende", "Spezialkarten")  |
-|  "age" |  Alter in Jahren |
-|  "price_article" |  Preis des gekauften Artikels |
-|  "total_amount_pay" | Total bezahlter Betrag  |
-|  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
-|  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
-|  "tot_ubp" | Umweltbelastungspunkte pro Gericht  |
-|  "buffet_animal" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
-
---------
-
-**Bemerkungen:**
-
-1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
-2. hier werden Gerichte mit Fisch, Geflügel als Fleisch zusammengefasst
-3. Vegane Menüs sind ausschliesslich pflanzliche Gerichte. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch, eigenständige Gerichte unterschieden
-4. Vegetarische Menüs sind ovo-lakto-vegetarische Gerichte.
-
-
-<br><br>
-
-### Aufgabe 3: ANOVA
-
-Führt mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
-Gibt es Unterschiede zwischen den verkauften Menü-Inahlten (Fleisch oder Fisch, Hot and Cold Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die Experimentalbedingungen erklärt werden?
-
-Ihre Gesamtaufgabe ist es, aus den Daten ein zwei adäquates Modelle zu ermitteln. 
-
-**Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil**
-
-Hinweise für die Analysen: 
-* Menü-Inhalt wird zu drei Gruppen zusammengefasst (pflanzliche Menüs = vegetarische Menüs)
-* Der Datensatz muss zuerst Gruppiert werden (Wochen, Menü-Inhalt, Beschreibung der Experimentalwochen, Geschlecht, Hochschulzugehörigkeit)
-* Posthoc Vergleiche mit dunnTest (FSA Package)
-
-<!-- Zusätzliche Analysen: -->
-<!-- - Alternativ kann das Alter in den Analysen berücksichtigt werden. Hierfür müssen Altersgruppen gebiltet werden. -->
-<!-- - Hinweis: bildet Altersgruppen ... mittels der "cut" Funktion -->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
+knitr::opts_chunk$get("root.dir")
+```
 
 
 ### Musterlösung Aufgabe 3
@@ -73,75 +20,85 @@ library(dplyr)
 library(car)
 library(gmodels)
 library(ggfortify)
-library(FSA)
+library(FSA) # post hoc test after kruskal-test
+library(jtools) # apa theme for ggplot
 
-nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/novanimal.csv", delim = ";")
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ```
 
-#### 1. Frage: Unterscheiden sich die Verkaufszahlen pro Menü-Inhalt und Woche? 
+#### Unterscheiden sich die Verkaufszahlen pro Menü-Inhalt und Woche? 
 
-```{r, fig.width=20, fig.height=12 }
+```{r}
 
 df <- nova # kopiere originaler Datensatz
 df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # Fasse die Menü-Inhalte zusammen
 
-# lasse evtl weg, da gruppen zu klein für ANOVA
-df$age_groups <- cut(x = df$age, breaks = c(-Inf, 34, 49, 64, Inf), labels = c("18- bis 34-Jährigen", "35- bis 49-Jährigen", "50- bis 64-Jährigen", "65 Jahre und älter")) # 
+# # lasse evtl weg, da gruppen zu klein für ANOVA
+# df$age_groups <- cut(x = df$age, breaks = c(-Inf, 34, 49, 64, Inf), labels = c("18- bis 34-Jährigen", "35- bis 49-Jährigen", "50- bis 64-Jährigen", "65 Jahre und älter")) # 
 
 df_ <- df %>%
-    group_by(label_content, condit, week) %>%
+    group_by(label_content, week) %>%
     summarise(tot_sold = n()) %>%
     na.omit() # lasse die unbekannten Verkäufe weg
 
 
-# erstes Modell
+# erstes Modell: werden die Verkaufszahlen durch den Menü-Inhalt erklärt?
 model <- aov(tot_sold ~ label_content, data = df_)
 
-ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "Verkaufte Gerichte", y = "Häufigkeit") # schaue die Verkaufszahlen in einem Histogramm an
-# Sieht nach keiner Normalverteilung aus, aber ab > 25 Beobachtungen pro Gruppe sind Verletzungen in der Regel unproblematisch (Quelle: uzh).  
-autoplot(model) # Inspektion der Modellvoraussetzung: Daten passen für eine ANOVA (?)
-leveneTest(df_$tot_sold, df_$label_content) # keine Varianzhomogenität gegeben
-summary.lm(model) # Ergebnisse sollten mit Vorsicht interpretiert werden
+ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "Anzahl verkaufte Gerichte", y = "Häufigkeit") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))  # schaue die Verkaufszahlen in einem Histogramm an
+# Sieht nach keiner Normalverteilung aus, aber ab > 25 Beobachtungen pro Gruppe sind Verletzungen in der Regel unproblematisch (Quelle: www.uzh.ch).  
+autoplot(model) # Aber Inspektion der Modellvoraussetzung zeigt klare Verletzungen der Nicht-Linearität und Homoskedastizität 
+leveneTest(df_$tot_sold, df_$label_content) # Zudem ist keine Varianzhomogenität gegeben
+summary.lm(model) # Ergebnisse dürfen nicht interpretiert werden
 
 # Alternative Testung: Kruskal-Wallis Rank Sum Test
-df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Hot and Cold")) # unabhängige Variable muss zuest als Faktor definiert werden
+df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Buffet")) # unabhängige Variable muss zuest als Faktor definiert werden -> erster Faktor (hier Fleisch) wird die Refernzkategorie bilden
 kruskal.test(tot_sold ~ label_content, data = df_) # sieht aus als ob sich die Verkaufszahlen zwischen den Menü-Inhalten unterscheiden würden
 dunnTest(tot_sold ~ label_content, data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
               method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
 
 # Visualisierung und Dasrtellung der Ergebnisse 
-ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "Anzahl verkaufte Gerichte")+theme_bw()+theme() # vergrössere schrift
+ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="lightgrey", width = .6) + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte\n") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
 
 
 ```
+Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den Verkaufszahlen signifikant ($\chi^2$ = 14.58, *p* < 0.001). Anschliessend durchgeführte Post-hoc-Tests (Dunn-Tests) zeigen, dass sich lediglich die Gruppen "Fleisch" und "Buffet" signifikant unterscheiden (z = -3.816, p = .0004)
 
-#### 2. Frage: Können die Unterschiede zwischen den Menü-Inhalten durch die Experimentalbedingungen erklärt werden?
+
+#### Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Bedingungen erklärt werden?
 
 ```{r}
 #Gruppiere Daten und fasse sie nach Vorkommen/Häufigkeit zusammen
 df_ <- df %>%
-    group_by(condit, label_content, week, gender, member) %>%
+    group_by(condit, label_content, week) %>%
     summarise(tot_sold = n()) %>%
     na.omit() # lasse die unbekannten Verkäufe weg
 
 # Soziodemografische Unterschiede in der Menü-Wahl?
 model1 <- aov(tot_sold ~ label_content * condit, data = df_)
-autoplot(model1)  # Inspektion der Modellvoraussetzung, 
-leveneTest(df_$tot_sold ~ df_$label_content*df_$condit) # keine Varianzhomogenität gegeben
-summary.lm(model1) # Ergebnisse müssen mit vorsicht interpretiert werden
+autoplot(model1)  # Inspektion der Modellvoraussetzung: sollte ok sein (?)
+leveneTest(df_$tot_sold ~ df_$label_content*df_$condit) # Varianzhomogenität gegeben
+summary.lm(model1) # Bei Interaktionen dürfen die Haupteffekte nicht mehr interpretiert werden
+TukeyHSD(model1) # Tukey post hoc Tests
 
-# Alternative Testung: Kruskal-Wallis Rank Sum Test
-df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Hot and Cold")) # unabhängige Variable muss zuest als Faktor definiert werden
-kruskal.test(tot_sold ~ interaction(label_content, condit), data = df_) # sieht aus als ob sich die Verkaufszahlen zwischen den Menü-Inhalten unterscheiden würden
-dunnTest(tot_sold ~ interaction(label_content, condit), data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
-              method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
-
+# # Alternative Testung: Kruskal-Wallis Rank Sum Test
+# df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Buffet")) # unabhängige Variable muss zuest als Faktor definiert werden
+# kruskal.test(tot_sold ~ interaction(label_content, condit), data = df_) # sieht aus als ob sich die Verkaufszahlen zwischen den Menü-Inhalten unterscheiden würden
+# dunnTest(tot_sold ~ interaction(label_content, condit), data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
+#               method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
+# 
 
 # visualisiere das Modell
-ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "Menu-Inhalt", y = "verkaufte Menus")
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Menus\n") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
 
 ```
 
+Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant *F*(5, 12) = 133.4, *p* < .0001). Anschliessend durchgeführte Post-hoc-Tests (Tukey-Tests) zeigen vor allem zwei interessante Ergbenisse: in den Interventionswochen wurde signifikant weniger Fleischgerichte gekauft als in den Basiswochen.  Zudem sind in den Interventionswochen signifikant mehr vegetarische Gerichte verkauft worden. 
+
+
+#### Referenzen
+
+Zar, J. H. (2010). *Biostatistical Analysis*. Prentice Hall.
 
 

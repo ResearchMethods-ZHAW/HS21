@@ -64,24 +64,32 @@ abline(lm(b~a,blumen_sorte))
 ```
 
 
-*Ein* lineares Modell kann mit ggplot ebenfalls leicht hinzugefügt werden (`geom_smooth(method = "lm")`). 
+<!-- *Ein* lineares Modell kann mit ggplot ebenfalls leicht hinzugefügt werden (`geom_smooth(method = "lm")`).  -->
+<!-- ```{r} -->
+<!-- ggplot(blumen_sorte, aes(a,b)) +  -->
+<!--   geom_point() -->
+<!-- ``` -->
+
+
+<!-- Etwas umständlicher ist es hingegen, das *eigene*, mit `lm()` generierte Lineare Modell hinzu zu fügen. Mit `tidy()` bringt man den Modelloutput zuerst in eine tabellarische Form und fügt "slope" und "intercept" als `geom_abline()` hinzu. -->
+
+<!-- ```{r} -->
+
+<!-- anova_tidy <- tidy(lm(b~a,blumen_sorte)) #  -->
+
+
+<!-- ggplot(blumen_sorte, aes(a,b)) +  -->
+<!--   geom_point() + -->
+<!--   geom_smooth(method = "lm",se = F,lty = "dotted") + -->
+<!--   geom_abline(slope = anova_tidy$estimate[2],intercept = anova_tidy$estimate[1],alpha = 0.4) -->
+<!-- ``` -->
+
+## Lineare Modelle
+
 ```{r}
-ggplot(blumen_sorte, aes(a,b)) + 
-  geom_point()
+
+par(mfrow = c(2,2)) 
+plot(lm(b~a,blumen_sorte))
+
 ```
-
-
-Etwas umständlicher ist es hingegen, das *eigene*, mit `lm()` generierte Lineare Modell hinzu zu fügen. Mit `tidy()` bringt man den Modelloutput zuerst in eine tabellarische Form und fügt "slope" und "intercept" als `geom_abline()` hinzu.
-
-```{r}
-
-anova_tidy <- tidy(lm(b~a,blumen_sorte)) # 
-
-
-ggplot(blumen_sorte, aes(a,b)) + 
-  geom_point() +
-  geom_smooth(method = "lm",se = F,lty = "dotted") +
-  geom_abline(slope = anova_tidy$estimate[2],intercept = anova_tidy$estimate[1],alpha = 0.4)
-```
-
 

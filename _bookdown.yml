@@ -1,4 +1,4 @@
-book_filename: "ResearchMethods"
+#book_filename: "ResearchMethods"
 rmd_files: [
   "index.Rmd",
 #  "09_PrePro1/Demo_Datentypen.Rmd",
@@ -12,22 +12,24 @@ rmd_files: [
 #  "11_InfoVis1/Uebung.Rmd",
 #  "12_InfoVis2/Uebung_A.Rmd",
 #  "12_InfoVis2/Uebung_B.Rmd",
+  "13_Statistik1/Folien.Rmd",
   "13_Statistik1/Demo_Tests.Rmd",
   "13_Statistik1/Uebung.Rmd",
-  "14_Statistik2/Demo.Rmd",
-  "14_Statistik2/Uebung.Rmd",
-  "15_Statistik3/Demo_A_MultReg.Rmd",
-  "15_Statistik3/Demo_B_nichtLin.Rmd",
-  "15_Statistik3/Uebung.Rmd",
-  "16_Statistik4/Demo_A_LogisticReg.Rmd", 
-  "16_Statistik4/Demo_B_Pseudoreplik.Rmd",
-  "16_Statistik4/Demo_C_SplitPlotANOVA.Rmd",
-  "16_Statistik4/Uebung.Rmd",
-  "00_Admin/references.Rmd"
+#  "14_Statistik2/Demo.Rmd",
+#  "14_Statistik2/Uebung.Rmd",
+#  "15_Statistik3/Demo_A_MultReg.Rmd",
+#  "15_Statistik3/Demo_B_nichtLin.Rmd",
+#  "15_Statistik3/Uebung.Rmd",
+#  "16_Statistik4/Demo_A_LogisticReg.Rmd", 
+#  "16_Statistik4/Demo_B_Pseudoreplik.Rmd",
+#  "16_Statistik4/Demo_C_SplitPlotANOVA.Rmd",
+#  "16_Statistik4/Uebung.Rmd",
+#  "00_Admin/references.Rmd"
   ]
 delete_merged_file: TRUE
-output_dir: "99_Book"
-after_chapter_script: 00_Admin/Clear_vars_and_pkgs.R
+output_dir: "Test"
+#after_chapter_script: 00_Admin/Clear_vars_and_pkgs.R
 language:
   ui:
     chapter_name: "Kapitel "
+    

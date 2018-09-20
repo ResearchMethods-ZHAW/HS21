@@ -72,7 +72,4 @@ mean(sensor_fail$`Hum_%`)
 mean(sensor_fail_corr$Temp, na.rm = T)
 mean(sensor_fail_corr$Humidity, na.rm = T)
 
-## df$Groesse[df$Einwohner > 300000] <- "gross"
-## df$Groesse[df$Einwohner <= 300000 & df$Einwohner > 150000] <- "mittel"
-## df$Groesse[df$Einwohner <= 150000] <- "klein"
-## 
+## NA

@@ -83,16 +83,4 @@ korr_tab <- gemeinde %>%
   ) %>%
   select(-Signifikanz_val)
 
-## 
-## 
-## library(tidyverse)
-## 
-## # Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs-
-## # und Schlusszeichen gesetzt.
-## 
-## 
-## library(lubridate)
-## 
-## 
-## # Im Unterschied zu install.packages("tidyverse") wird bei library(tidyverse)
-## # das package lubridate nicht berücksichtigt
+## NA

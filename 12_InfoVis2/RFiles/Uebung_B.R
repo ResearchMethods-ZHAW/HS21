@@ -94,7 +94,4 @@ p <- AirPassengers3 %>%
 
 p <- trees %>%
   plot_ly(x = ~Girth, y = ~Height, z = ~Volume)
-## 
-## # Lösung Aufgabe 4
-## 
-## wetter <- readr::read_table("09_PrePro1/data/order_52252_data.txt")
+## NA

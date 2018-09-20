@@ -1,0 +1,22 @@
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(readr)
+library(dplyr)
+library(car)
+library(gmodels)
+
+
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+
+
+```
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+chisq.test(nova$gender, nova$label_content)
+CrossTable(nova$gender, nova$label_content, chisq = T) # Alternative zu chisq.test
+
+chisq.test(nova$member, nova$gender)
+CrossTable(nova$member, nova$gender, chisq = T)
+
+```

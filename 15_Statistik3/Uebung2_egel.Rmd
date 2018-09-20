@@ -5,53 +5,12 @@ date: "19 9 2018"
 output: html_document
 ---
 
-### Erläuterungen zum Datensatz
-
-Der Datensatz beinhaltet knapp 1100 Einträge mit 18 Variablen. Die Daten stammen aus dem Kassensystem des Catering-Unternehmen und stellen eine repräsentative Stichprobe des originalen Datensatzes dar.
-
-Folgende Variablen sind im Datensatz:
-
-
-|   Name der Variable	|   Beschreibung der Variable	|   
-|---	|---:	|
-|   "transaction_id" |  Durch das Kassensystem generierte Identifikationsnummer	| 
-|   "date"	|   Datum	|
-|  "week" | Kalenderwoche |
-|  "year" | Kalenderjahr  |
-|  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
-|  "article_description" | Beschreibung der Menü-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
-|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
-|  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
-|  "card_num" | anonymisierte Kartennummer  |
-|  "gender" | Geschlecht (F,M)  |
-|  "member" | Hochschulzugehörigkeit (Studierdene, Mitarbeitende, "Lernende", "Spezialkarten")  |
-|  "age" |  Alter in Jahren |
-|  "price_article" |  Preis des gekauften Artikels |
-|  "total_amount_pay" | Total bezahlter Betrag  |
-|  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
-|  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
-|  "tot_ubp" | Umweltbelastungspunkte pro Gericht  |
-|  "buffet_animal" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
-
---------
-
-**Bemerkungen:**
-
-1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
-2. hier werden Gerichte mit Fisch, Geflügel als Fleisch zusammengefasst
-3. Vegane Menüs sind ausschliesslich pflanzliche Gerichte. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch, eigenständige Gerichte unterschieden
-4. Vegetarische Menüs sind ovo-lakto-vegetarische Gerichte.
-
-
-<br><br>
-
-
 ### Aufgabe 4: multiple Regression
 
 
 Führt mit dem Datensatz novanimal.csv eine Regression durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
 
-**Ermitteln Sie ein minimal adäquates Modell, erklärt die Umweltbelastung die Verkaufszahlen im Experiment.**
+**Ermitteln Sie ein minimal adäquates Modell, haben die sozioökonomischen Variablen einen Einfluss auf die Verkaufszahlen.**
 
 
 
@@ -65,9 +24,8 @@ library(car)
 library(gmodels)
 library(ggfortify)
 
-nova_time <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/15_Statistik3/data/novanimal_time.csv", delim = ";")
-nova_tot <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/novanimal_data_180911_egel.csv", delim = ";") %>% rename(gender = Geschlecht)
-  
+nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/15_Statistik3/data/novanimal_time.csv", delim = ";")
+
 ```
 
 
@@ -79,28 +37,24 @@ df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # Fasse 
 
 
 df_ <- df %>%
-  filter(!is.na(.$tot_ubp)) %>%
-  group_by(label_content, tot_ubp, gender, member) %>%
-  #select(tot_ubp, label_content, gender, member) %>%
+  #filter(!is.na(.$tot_ubp)) %>%
+  group_by(label_content, gender, member, age, condit) %>%
   summarise(tot_sold = n())
 
 #Explorative Datenanalyse der abhängigen Variablen
-ggplot(df_, aes(y = tot_sold)) + geom_boxplot()
-
-# Berechne Korrelation
-cor.test(df_$tot_sold, df_$tot_ubp, method = "spearman")
+ggplot(df_, aes(y = tot_sold)) + geom_boxplot() + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20)) # keine Normalverteilung gegeben
 
 #Regression
 lm1 <- lm(tot_sold ~ tot_ubp + gender + member + label_content, data = df_)
+autoplot(lm1)  # Modelgütekriterien sind klar verletzt
 summary(lm1)
 
-lm0 <- lm(tot_sold ~ tot_ubp, data = df_)
-summary(lm0)
+# alternative Lösungen für nicht parametrische Regression P-splines, k nearest neighbors, loess/loewess, kriging
 
-AIC(lm0, lm1)
 
 # Visualisiere Regression mit Regressionslinie
-ggplot(df_, aes(x = tot_ubp, y = tot_sold)) + geom_point()  + #geom_smooth(method = "lm", formula = y~x)
+ggplot(df_, aes(x = tot_ubp, y = tot_sold)) + geom_point() + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
+#geom_smooth(method = "lm", formula = y~x) 
 
 ```
 
@@ -119,17 +73,19 @@ Führt mit dem Datensatz novanimal.csv eine logistsiche Regression durch (Aufber
 ```{r}
 # Genereiere Dummyvariable Fleisch 1, kein Fleisch 0
 
-df <- nova_time
-df$meat <- ifelse(nova_time$label_content == "Fleisch", 1, 0)
+df <- nova
+df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
 
 CrossTable(df$meat, df$gender, chisq = T)
+CrossTable(df$meat, df$member, chisq = T)
 
-mod0 <- glm(meat ~ gender + member + shop_description + age, data = df, binomial)
+mod0 <- glm(meat ~ gender + member + shop_description + age + price_article , data = df, binomial)
 summary(mod0)
 crPlots(mod0)
 1 - (mod0$dev / mod0$null)
 
-# Visualieiere 
+# sage Fleischessverhalten vorher
+
 model.predict<-predict(mod0,type="response",se=T,newdata=df)
 plot(meat~gender,data=df,xlab="Fläche (km²)",ylab="Vorkommenswahrscheinlichkeit",pch=16, col="red")
 points(model.predict$fit ~ xs,type="l")

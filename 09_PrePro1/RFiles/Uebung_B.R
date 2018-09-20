@@ -22,6 +22,4 @@ limits <- as.POSIXct(c("2002-01-01 00:00:00","2002-02-01 00:00:00"),tz = "UTC")
 
 p +
   lims(x = limits)
-## s <- as.character(3.14)
-## s
-## typeof(s)
+## NA
