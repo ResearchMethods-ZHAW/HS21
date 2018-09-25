@@ -10,7 +10,7 @@ leveneTest(df$tot_sold, df$condit)
 
 ```
 
-Der t-Test für unabhängige Gruppen setzt Varianzhomogenität voraus. Liegt Varianzheterogenität vor (also unterschiedliche Varianzen), so müssen unter anderem die Freiheitsgerade des t-Wertes angepasst werden. Ob die Varianzen nun homogen ("gleich") sind, lässt sich mit dem Levene-Test auf Varianzhomogenität prüfen. Dieser Test ist eine Variante des F-Tests.
+Der t-Test für un❤abhängige Gruppen setzt Varianzhomogenität voraus. Liegt Varianzheterogenität vor (also unterschiedliche Varianzen), so müssen unter anderem die Freiheitsgerade des t-Wertes angepasst werden. Ob die Varianzen nun homogen ("gleich") sind, lässt sich mit dem Levene-Test auf Varianzhomogenität prüfen. Dieser Test ist eine Variante des F-Tests.
 
 Der Levene-Test verwendet die Nullhypothese, dass sich die beiden Varianzen nicht unterscheiden. Daher bedeutet ein nicht signifikantes Ergebnis, dass sich die Varianzen nicht unterscheiden und also Varianzhomogenität vorliegt. Ist der Test signifikant, so wird von Varianzheterogenität ausgegangen (Quelle: www.uzh.ch).
 
