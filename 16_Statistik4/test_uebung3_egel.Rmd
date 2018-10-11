@@ -13,14 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(readr)
 library(dplyr)
-library(car)
-library(gmodels)
 library(ggfortify)
 library(jtools)
-library(wesanderson)
-library(splines)
-library(caret)
-library(Amelia)
+
 
 nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 

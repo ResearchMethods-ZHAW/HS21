@@ -1,27 +1,64 @@
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=25}
 
 # Daten müssen zuerst nach "week" und "condition" zusammengefasst werden
 df <- nova %>%
-    group_by(week, condit) %>%  
-    summarise(tot_sold = n()) # zählt alle Beobachtungen gemäss dem group_by zusammen
+    group_by(date, condit) %>%  
+    summarise(tot_sold = n()) %>% # zählt alle Beobachtungen gemäss dem group_by zusammen
+    mutate(day = format(date, format = "%d.%m")) # erstelle neue Variable, damit beim Historgamm die X-Achse besser leserlich wird
 
-# Sind die Varianzen homogen?
-leveneTest(df$tot_sold, df$condit)
+# Testen der Voraussetzungen
+library(jtools) # apa theme for ggplot
+ggplot(df, aes(x = condit, y= tot_sold)) + 
+    geom_boxplot(fill = "lightgrey") + 
+    scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
+    labs(x="Bedingungen", y="Anzahl verkaufte Gerichte pro Tag") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
+
+# Histogramme für die Bedingungen Basis
+df %>% filter(condit == "Basis") %>%
+ggplot(aes(x = as.factor(day), y= tot_sold)) + 
+    geom_bar(stat = "identity", fill = "lightgrey", width = .6) + 
+    scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
+    labs(x="Tage", y="Anzahl verkaufte Gerichte") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
+
+# Histogramme für die Bedingungen Intervention
+df %>% filter(condit == "Intervention") %>%
+ggplot(aes(x = as.factor(day), y= tot_sold)) + 
+    geom_bar(stat = "identity", fill = "lightgrey", width = .6) + 
+    scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) + 
+    labs(x="Tage", y="Anzahl verkaufte Gerichte") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
+
 
 ```
 
-Der t-Test für un❤abhängige Gruppen setzt Varianzhomogenität voraus. Liegt Varianzheterogenität vor (also unterschiedliche Varianzen), so müssen unter anderem die Freiheitsgerade des t-Wertes angepasst werden. Ob die Varianzen nun homogen ("gleich") sind, lässt sich mit dem Levene-Test auf Varianzhomogenität prüfen. Dieser Test ist eine Variante des F-Tests.
-
-Der Levene-Test verwendet die Nullhypothese, dass sich die beiden Varianzen nicht unterscheiden. Daher bedeutet ein nicht signifikantes Ergebnis, dass sich die Varianzen nicht unterscheiden und also Varianzhomogenität vorliegt. Ist der Test signifikant, so wird von Varianzheterogenität ausgegangen (Quelle: www.uzh.ch).
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
-t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F) # siehe ungerichtete Hypothese
+# Durchführung eines t-Tests
+t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F) # siehe ungerichtete Hypothese
 
-# Visualisiere die Ergebnisse
-ggplot(df, aes(x = condit, y= tot_sold)) + 
-    geom_boxplot(fill = "lightgrey") + 
-    labs(x="Bedingungen", y="Anzahl verkaufte Gerichte") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
+# Randomisierter t-Test
+# Als erster Schritt gibt es eine Permutation
+reps <- 10000 
+results <- numeric(rep(reps)) # kreiere ein Verktor mit 10000 Nullen
+i <- df[df$condit == "Intervention", ]$tot_sold # alle Verkäufe von der Bedingung Intervention
+b <- df[df$condit == "Basis", ]$tot_sold # alle Verkäufe von der Bedingung Basiswoche
+x <- c(i, b) # führe die Beiden Vektoren zusammen
+
+# Permutation und Transformation der Daten => frage nochmals Jürgen
+for(i in 1:reps){ # durchlaufe 10000 Mal den Loop
+  temp <- sample(x) # nehme zufällig 30 Werte aus x
+  results[i] <- mean(temp[1:15])-mean(temp[16:30]) # Transformation der Daten. Berechne mir ein neuer Mittelwerte und füge es an iter Stelle im results ein: Mittelwert aus Intervention minus Mittelwert aus Basis
+}
+
+results <- as_tibble(results) # wandle Vektor in Dataframe um, damit ggplot damit umgehen kann
+ggplot(results, aes(x = value)) + geom_histogram(bins = 50) + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20)) # schaue dir die Verteilung nochmals an
+
+kritischer_wert <- abs(qt(0.05/2, 28)) # Kritischer T-Wert bei 95% Konfidenzintervall, 2 seitig, mit 27.747 Freiheitsgrade
+
+p.value <- sum(results >= kritischer_wert)/reps ## verstehe ich nicht? wie hole ich nun p-wert, wahrscheinlich aus leite aus Hyothese ab: H0 Basis und Interventionswochen unterscheiden sich nicht, H1 Basis und Interventionswochen unterscheiden sich
+
+#hist(results) # schaue dir die Verteilung nochmals an (hier hist benützen, da es mit Vektoren umgehen kann)
+
 ```
 
-In den Basiswochen werden mehr Gerichte als in den Interventionsowchen verkauft. Die Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich nicht signifikant (*t*(2.99) = 2.06, *p* = 0.13).
+In den Basiswochen werden mehr Gerichte als in den Interventionsowchen verkauft. Die Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 2`) = `r round(t_test$statistic, digits = 4)` , *p* = `r round(t_test$p.value, digits=3)`.

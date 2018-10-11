@@ -15,14 +15,10 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
 
 library(readr)
 library(dplyr)
-library(car)
-library(gmodels)
 library(ggfortify)
 library(jtools)
 library(wesanderson)
-library(splines)
-library(caret)
-library(Amelia)
+
 
 nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 nova_ <- read_delim("13_Statistik1/data/novanimal_data_180911_egel.csv", delim = ";")
@@ -90,7 +86,7 @@ pR2(mod0) # McFadden als Gütekriterium: zwischen 0.2 und 0.4 guter fit
 # Genauigkeit des Models
 fitted.results <- ifelse(predicted > 0.5,1,0) # wenn vorgergesagte Werte grösser als Zufall ist (.5) bekommen sie eine 1 sonst 0 
 misClasificError <- mean(fitted.results != test.data$meat) # berechnet die Fehlklassifizierung
-print(paste('Genauigkeit des Models ist',round(1-misClasificError, digits = 2))) # nahe bei 50%: Model ist passt zwar zu den Daten, aber das Geschlecht noch das Alter kann der Kauf von einem Fleisch-Menü vorhersagen 
+print(paste('Genauigkeit des Models ist',round(1-misClasificError, digits = 2))) # nahe bei 50%: Model ist passt zwar zu den Daten, aber weder das Geschlecht noch das Alter kann der Kauf von einem Fleisch-Menü vorhersagen 
 
 # Konfusionmatrix
 table(test.data$meat, predicted > 0.5)

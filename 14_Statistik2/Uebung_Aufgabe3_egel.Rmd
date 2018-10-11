@@ -17,8 +17,6 @@ knitr::opts_chunk$get("root.dir")
 
 library(readr)
 library(dplyr)
-library(car)
-library(gmodels)
 library(ggfortify)
 library(FSA) # post hoc test after kruskal-test
 library(jtools) # apa theme for ggplot
@@ -94,7 +92,7 @@ ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_bo
 
 ```
 
-Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant *F*(5, 12) = 133.4, *p* < .0001). Anschliessend durchgeführte Post-hoc-Tests (Tukey-Tests) zeigen vor allem zwei interessante Ergbenisse: in den Interventionswochen wurde signifikant weniger Fleischgerichte gekauft als in den Basiswochen.  Zudem sind in den Interventionswochen signifikant mehr vegetarische Gerichte verkauft worden. 
+Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant *F*(5, 12) = 133.4, *p* < .0001). Anschliessend durchgeführte Post-hoc-Tests (Tukey-Tests) zeigen vor allem zwei interessante Ergbenisse: in den Interventionswochen wurde signifikant weniger Fleischgerichte gekauft als in den Basiswochen. Zudem sind in den Interventionswochen signifikant mehr vegetarische Gerichte verkauft worden. 
 
 
 #### Referenzen

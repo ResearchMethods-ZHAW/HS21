@@ -3,7 +3,6 @@
 
 library(readr)
 library(dplyr)
-library(car)
 library(gmodels)
 
 
@@ -14,9 +13,29 @@ nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 chisq.test(nova$gender, nova$label_content)
+library(gmodels)
 CrossTable(nova$gender, nova$label_content, chisq = T) # Alternative zu chisq.test
 
 chisq.test(nova$member, nova$gender)
 CrossTable(nova$member, nova$gender, chisq = T)
 
+# weitere mögliche Aufgabe: Unterscheiden sich die Stichprobe signifikant von der Population?
+
+pop_canteen <- group_by(nova, gender, member) %>% summarise(tot = n()) # fasse die Variablen Geschlecht und Hochschulzugehörigkeit zusammen
+pop_canteen$pct <- pop_canteen$tot/sum(pop_canteen$tot) # Berechne Prozentsatz für anschliessende
+
+
+# überprüfe die Reihenfolge (ansonsten kein interpretierbares Resultat)
+pop_zhaw <- c(678, 791,          333,
+              336
+
+)
+pop_zhaw <- c(0.15, 0.32, 0.16,0.37) #  Mitarbeiterinnen, Studentinnen, Mitarbeiter, Studenten
+
+chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw)
+
+fisher.test(pop_canteen$tot, pop_zhaw)
 ```
+
+Sieht aus, als ob die Stichprobe von der Population abweichen würde ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_qs$p.value, digits = 4)`).
+
