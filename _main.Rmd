@@ -753,17 +753,19 @@ Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Datenei
 Führt mit dem Datensatz [competition.csv](13_Statistik1/data/competition.csv) einen einfaktoriellen ANOVA selbst durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse)
 
 
+<!-- @nils ich denke aufgabe 4 und 5 könnten als weitere Teilaufgaben von aufgabe 1 und 2 gesehen werden -->
+
 ####	Aufgabe 4: (egel)
 
-Führen Sie einen beliebigen $\chi^2$-Test mit dem Datensatz novanimal.csv durch und interpretieren Sie die Ergebnisse. Z. B. Unterscheiden sich die Geschlechter bezüglich ihrer Menü-Wahl? Gibt es Unterschiede in der Hochschulzugehörigkeit und den Geschlechtern?
+Führe einen beliebigen $\chi^2$-Test mit dem Datensatz novanimal.csv durch und interpretierst die Ergebnisse. Z. B. Unterscheiden sich die Geschlechter bezüglich ihrer Menü-Wahl? Gibt es Unterschiede in der Hochschulzugehörigkeit und den Geschlechtern?
 
 
 ### Aufgabe 5: t-Test (egel)
 
-Führen sie einen t-Test durch. Werden in den Fleischwoche (Basiswochen) mehr Gerichte verkauft als in den vegetarischen Wochen (Interventionswochen)?
+Führe einen t-Test durch. Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?
 * Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
 * Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
-* Visualisieren mit einem Boxplot
+* Visualisiere die Ergenisse mit einem Boxplot
 
 
 

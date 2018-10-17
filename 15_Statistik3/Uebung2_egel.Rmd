@@ -88,7 +88,7 @@ fitted.results <- ifelse(predicted > 0.5,1,0) # wenn vorgergesagte Werte grösse
 misClasificError <- mean(fitted.results != test.data$meat) # berechnet die Fehlklassifizierung
 print(paste('Genauigkeit des Models ist',round(1-misClasificError, digits = 2))) # nahe bei 50%: Model ist passt zwar zu den Daten, aber weder das Geschlecht noch das Alter kann der Kauf von einem Fleisch-Menü vorhersagen 
 
-# Konfusionmatrix
+# Konfusionmatrix vom test Datensatz
 table(test.data$meat, predicted > 0.5)
 
 #-----------------
@@ -106,4 +106,4 @@ data.frame(
 ```
 #### Fazit:
 Mit einer logistsichen Regression kann der Fleischkonsum nur bedingt durch das Geschlecht, die Hochschulzugehörigkeit und das Alter vorhergesagt werden. Die Konfusionsmatrix und die Genauigkeit des Modells unterstützt diesen Befund. 
-Bei näher Betrachtung der Daten erkennt man, dass es Personen sind die wiederholt auftau  
+Bei näher Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen. Eine weitere Analyse-Möglichkeit wäre, ein Random-Intercept-Modell zu rechnen, welches jedes Individuum berücksichtigt (siehe Lösungsteil).     

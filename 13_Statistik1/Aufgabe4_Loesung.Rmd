@@ -12,30 +12,37 @@ nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 ```
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
-chisq.test(nova$gender, nova$label_content)
+
 library(gmodels)
-CrossTable(nova$gender, nova$label_content, chisq = T) # Alternative zu chisq.test
+CrossTable(nova$member, nova$gender, fisher=T, expected=T)
 
-chisq.test(nova$member, nova$gender)
-CrossTable(nova$member, nova$gender, chisq = T)
+# Unterscheiden sich unsere Stichprobe signifikant von der gesamten Population (N = 2138)? 
 
-# weitere mögliche Aufgabe: Unterscheiden sich die Stichprobe signifikant von der Population?
+pop_canteen <- group_by(nova, gender, member) %>% 
+  summarise(tot = n()) %>% # fasse die Variablen Geschlecht und Hochschulzugehörigkeit zusammen
+  ungroup() %>%
+  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
 
-pop_canteen <- group_by(nova, gender, member) %>% summarise(tot = n()) # fasse die Variablen Geschlecht und Hochschulzugehörigkeit zusammen
-pop_canteen$pct <- pop_canteen$tot/sum(pop_canteen$tot) # Berechne Prozentsatz für anschliessende
+# Definiere einen Vektor mit erwarteten Häufigkeiten, beachte dabei die Reihenfolge 
+pop_zhaw_exp <- c(.15,.32,.16,.37) # erwartete Verteilung der Population
+  
+#berechne den Chi-Quadrat-Test
+chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw$exp_pct)
+chi_sq$expected # schaue dir die erwarteten Häufigkeiten an
+chi_sq
 
+#Führe einen exacten Fisher Test durch?
 
-# überprüfe die Reihenfolge (ansonsten kein interpretierbares Resultat)
-pop_zhaw <- c(678, 791,          333,
-              336
+fisher_t <- tibble(member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+  population = pop_zhaw_exp * 2138, # absolute Zahlen der Population Mitarbeiterinnen, Studentinnen, Mitarbeiter, Studenten
+  stichprobe = pop_canteen$tot)
 
-)
-pop_zhaw <- c(0.15, 0.32, 0.16,0.37) #  Mitarbeiterinnen, Studentinnen, Mitarbeiter, Studenten
+# pop_zhaw_2 <- matrix(c(333, 678, 336, 791, 159, 290, 181, 466),4,2) # erstelle Matrix mit 4 Zeilen und 2 Spalten
+# dimnames(pop_zhaw_2) <- list(c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), c("Population","Stichprobe"))
 
-chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw)
+fisher.test(fisher_t[ ,2:3])
 
-fisher.test(pop_canteen$tot, pop_zhaw)
 ```
 
-Sieht aus, als ob die Stichprobe von der Population abweichen würde ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_qs$p.value, digits = 4)`).
+Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_qs$p.value, digits = 4)`).
 
