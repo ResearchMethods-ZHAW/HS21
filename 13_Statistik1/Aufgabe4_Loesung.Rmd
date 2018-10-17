@@ -24,7 +24,7 @@ pop_canteen <- group_by(nova, gender, member) %>%
   mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
 
 # Definiere einen Vektor mit erwarteten Häufigkeiten, beachte dabei die Reihenfolge 
-pop_zhaw_exp <- c(.15,.32,.16,.37) # erwartete Verteilung der Population
+pop_zhaw_exp <- c(.15,.32,.16,.37) # erwartete Verteilung der Population (summe muss 1 ergeben)
   
 #berechne den Chi-Quadrat-Test
 chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw$exp_pct)

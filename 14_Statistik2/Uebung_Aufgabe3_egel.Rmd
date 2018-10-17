@@ -41,13 +41,17 @@ df_ <- df %>%
     na.omit() # lasse die unbekannten Verkäufe weg
 
 
-# erstes Modell: werden die Verkaufszahlen durch den Menü-Inhalt erklärt?
+# überprüfe Voraussetzungen für ANOVA
+
+ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "Anzahl verkaufte Gerichte pro Woche", y = "Häufigkeit") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))  # schaue die Verkaufszahlen in einem Histogramm an
+
+ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="lightgrey", width = .6) + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20)) # schaue die die Boxplots an
+
+# definiere Modell: Verkaufszahlen werden durch die Menü-Inhalte beeinflusst
 model <- aov(tot_sold ~ label_content, data = df_)
 
-ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "Anzahl verkaufte Gerichte", y = "Häufigkeit") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))  # schaue die Verkaufszahlen in einem Histogramm an
-# Sieht nach keiner Normalverteilung aus, aber ab > 25 Beobachtungen pro Gruppe sind Verletzungen in der Regel unproblematisch (Quelle: www.uzh.ch).  
 autoplot(model) # Aber Inspektion der Modellvoraussetzung zeigt klare Verletzungen der Nicht-Linearität und Homoskedastizität 
-leveneTest(df_$tot_sold, df_$label_content) # Zudem ist keine Varianzhomogenität gegeben
+
 summary.lm(model) # Ergebnisse dürfen nicht interpretiert werden
 
 # Alternative Testung: Kruskal-Wallis Rank Sum Test
@@ -56,28 +60,34 @@ kruskal.test(tot_sold ~ label_content, data = df_) # sieht aus als ob sich die V
 dunnTest(tot_sold ~ label_content, data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
               method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
 
-# Visualisierung und Dasrtellung der Ergebnisse 
-ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="lightgrey", width = .6) + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte\n") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
+
 
 
 ```
 Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den Verkaufszahlen signifikant ($\chi^2$ = 14.58, *p* < 0.001). Anschliessend durchgeführte Post-hoc-Tests (Dunn-Tests) zeigen, dass sich lediglich die Gruppen "Fleisch" und "Buffet" signifikant unterscheiden (z = -3.816, p = .0004)
 
 
-#### Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Bedingungen erklärt werden?
+#### Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Bedingungen (Basis und Intervention) erklärt werden?
 
 ```{r}
-#Gruppiere Daten und fasse sie nach Vorkommen/Häufigkeit zusammen
+# Gruppiere Daten und fasse es zusammen
 df_ <- df %>%
-    group_by(condit, label_content, week) %>%
+    group_by(condit, label_content, week) %>% # gruppiere nach Bedingung, Menü-Inhalt und Woche
     summarise(tot_sold = n()) %>%
     na.omit() # lasse die unbekannten Verkäufe weg
 
-# Soziodemografische Unterschiede in der Menü-Wahl?
+# überprüfe Voraussetzungen für ANOVA
+
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20)) # schaue Boxplots an
+
+
+# definiere Modell mit Interaktion
 model1 <- aov(tot_sold ~ label_content * condit, data = df_)
+
 autoplot(model1)  # Inspektion der Modellvoraussetzung: sollte ok sein (?)
-leveneTest(df_$tot_sold ~ df_$label_content*df_$condit) # Varianzhomogenität gegeben
-summary.lm(model1) # Bei Interaktionen dürfen die Haupteffekte nicht mehr interpretiert werden
+
+summary(model1) # Bei Interaktionen dürfen die Haupteffekte nicht mehr interpretiert werden
+
 TukeyHSD(model1) # Tukey post hoc Tests
 
 # # Alternative Testung: Kruskal-Wallis Rank Sum Test
@@ -87,12 +97,10 @@ TukeyHSD(model1) # Tukey post hoc Tests
 #               method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
 # 
 
-# visualisiere das Modell
-ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Menus\n") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
 
 ```
 
-Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant *F*(5, 12) = 133.4, *p* < .0001). Anschliessend durchgeführte Post-hoc-Tests (Tukey-Tests) zeigen vor allem zwei interessante Ergbenisse: in den Interventionswochen wurde signifikant weniger Fleischgerichte gekauft als in den Basiswochen. Zudem sind in den Interventionswochen signifikant mehr vegetarische Gerichte verkauft worden. 
+Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant *F*(5, 12) = `r round(summary(model1)[[1]][["F value"]][[1]], digit = 2)`, *p* < .0001). Anschliessend durchgeführte Post-hoc-Tests (Tukey-Tests) zeigen vor allem zwei interessante Ergbenisse: 1) in den Interventionswochen wurde signifikant weniger Fleischgerichte gekauft als in den Basiswochen 2) in den Interventionswochen wurden signifikant mehr vegetarische Gerichte verkauft. 
 
 
 #### Referenzen
