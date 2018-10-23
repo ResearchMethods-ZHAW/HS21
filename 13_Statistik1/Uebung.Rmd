@@ -25,7 +25,8 @@ Führt mit dem Datensatz [competition.csv](13_Statistik1/data/competition.csv) e
 Unterscheiden sich die novanimal-Stichprobe signifikant von der gesamten Population? 
 * Es wird angenommen, dass 15 Prozent aller Mitarbeitenden mit CampusCard weiblich sind. 16 Prozent der Population (N = 2138) sind Mitarbeiter und 37 Prozent Studenten. 
 *Führt einen $\chi^2$-Test und anschliessend einen exakten Fishers-Test mit dem Datensatz novanimal.csv durch.
-*Fasst die Ergebnisse in einem Satz zusammen. 
+*Fasst die Ergebnisse in einem Satz zusammen.
+*Interpretiert das odds ratio in einem weiteren Satz.
 
 
 ### Aufgabe 5: t-Test (egel)

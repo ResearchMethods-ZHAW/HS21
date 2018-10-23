@@ -17,7 +17,6 @@ library(gmodels)
 CrossTable(nova$member, nova$gender, fisher=T, expected=T)
 
 # Unterscheiden sich unsere Stichprobe signifikant von der gesamten Population (N = 2138)? 
-
 pop_canteen <- group_by(nova, gender, member) %>% 
   summarise(tot = n()) %>% # fasse die Variablen Geschlecht und Hochschulzugehörigkeit zusammen
   ungroup() %>%
@@ -27,12 +26,11 @@ pop_canteen <- group_by(nova, gender, member) %>%
 pop_zhaw_exp <- c(.15,.32,.16,.37) # erwartete Verteilung der Population (summe muss 1 ergeben)
   
 #berechne den Chi-Quadrat-Test
-chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw$exp_pct)
-chi_sq$expected # schaue dir die erwarteten Häufigkeiten an
+chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw_exp)
+chi_sq$expected # schaue dir die erwarteten Häufigkeiten an.
 chi_sq
 
-#Führe einen exacten Fisher Test durch?
-
+#Führe einen exakten Fisher Test durch? (tibble, ist eine ähnliche Funktion wie data.frame)
 fisher_t <- tibble(member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
   population = pop_zhaw_exp * 2138, # absolute Zahlen der Population Mitarbeiterinnen, Studentinnen, Mitarbeiter, Studenten
   stichprobe = pop_canteen$tot)
@@ -44,5 +42,5 @@ fisher.test(fisher_t[ ,2:3])
 
 ```
 
-Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_qs$p.value, digits = 4)`).
+Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_qs$p.value, digits = 3)`).
 
