@@ -1,0 +1,24 @@
+## Übung B (SozOek)
+
+
+###	Aufgabe 1:
+
+Unterscheiden sich die novanimal-Stichprobe signifikant von der gesamten Population? 
+* Es wird angenommen, dass 15 Prozent aller Mitarbeitenden mit CampusCard weiblich sind. 16 Prozent der Population (N = 2138) sind Mitarbeiter und 37 Prozent Studenten. 
+*Führt einen $\chi^2$-Test und anschliessend einen exakten Fishers-Test mit dem Datensatz novanimal.csv durch.
+*Fasst die Ergebnisse in einem Satz zusammen.
+*Interpretiert das odds ratio in einem weiteren Satz.
+
+
+###	Aufgabe 2: t-Test
+
+Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?
+* Führt einen t-Test mit dem Datensatz novanimal.csv durch.
+* Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
+* Visualisiere die Ergenisse mit einem Boxplot
+* Fasst die Ergebnisse in einem Satz zusammen
+
+
+
+
+

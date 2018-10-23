@@ -92,5 +92,5 @@ p <- AirPassengers3 %>%
 
 # Lösung Aufgabe 4
 
-p <- trees %>%
+  p <- trees %>%
   plot_ly(x = ~Girth, y = ~Height, z = ~Volume)
