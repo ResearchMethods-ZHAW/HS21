@@ -1,0 +1,36 @@
+## Lösung
+
+### Musterlösung Aufgabe 1: Logistic Regression
+
+Aus @crawley2015[S. 275-276, leicht angepasst]
+
+```{r child = '16_Statistik4/Uebung_Aufgabe1.Rmd', purl=F}
+```
+
+
+### Musterlösung Aufgabe 1: Logistic Regression (nur R-Code)
+
+Aus @crawley2015[S. 275-276, leicht angepasst]
+
+
+```{r code=readLines('14_Statistik2/RFiles/Uebung_Aufgabe1.R'), echo=T, eval=F}
+```
+
+
+### Musterlösung Aufgabe 2: Logistic Regression
+
+Aus @crawley2015[S. 174 - 176, leicht angepasst]
+
+
+```{r child = '16_Statistik4/Uebung_Aufgabe2.Rmd', purl=F}
+```
+
+
+### Musterlösung Aufgabe 2: Logistic Regression (nur R-Code)
+
+Aus @crawley2015[S. 174 - 176, leicht angepasst]
+
+
+```{r code=readLines('14_Statistik2/RFiles/Uebung_Aufgabe2.R'), echo=T, eval=F}
+```
+

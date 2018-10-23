@@ -16,13 +16,18 @@ library(lubridate)
 
 [Demoscript als Download](11_InfoVis1/RFiles/Demo_ggplot.R)
 
-Als erstes laden wir [wetter.rda](09_PrePro1/data/wetter.rda) von der Übung [PrePro1 (16.10.2017)].
+Als erstes laden wir den Wetterdatensatz von der Übung Prepro1 ein.
 
 ```{r}
-load("09_PrePro1/data/wetter.rda")
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                  col_types = list(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
 ```
 
-Ihr könnt Euren eigenen Datensatz benutzen oder den Datensatz von Moodle runterladen. Hauptsache der Datentsatz sieht etwa so aus:
 
 ```{r, echo = F, eval = T, purl=F}
 
@@ -35,8 +40,8 @@ Der Datensatz hat `r nrow(wetter)` Zeilen. Bevor wir mit plotten beginnen, müss
 ```{r}
 wetter_fil <- wetter %>%
   mutate(
-    year = year(datetime),
-    month = month(datetime)
+    year = year(time),
+    month = month(time)
     ) %>%
   filter(year == 2000 & month == 1)
 ```
@@ -49,8 +54,8 @@ Weiter braucht es *mindestens* ein "Layer" der beschreibt, wie die Daten dargest
 Anders als bei "Piping" (`%>%`) wird ein Layer mit `+` hinzugefügt.
 
 ```{r}
-# Datensatz: "wetter_fil" | Beeinflussende Variabeln: "datetime" und "tre200h0"
-ggplot(data = wetter_fil, mapping = aes(datetime,tre200h0)) +
+# Datensatz: "wetter_fil" | Beeinflussende Variabeln: "time" und "tre200h0"
+ggplot(data = wetter_fil, mapping = aes(time,tre200h0)) +
   # Layer: "geom_point" entspricht Punkten in einem Scatterplot 
   geom_point()                                                 
 
@@ -61,7 +66,7 @@ Da ggplot die Eingaben in der Reihenfolge `data = ` und dann `mapping = `erwarte
 
 ```{r, eval=F}
 
-ggplot(wetter_fil, aes(datetime,tre200h0)) +
+ggplot(wetter_fil, aes(time,tre200h0)) +
   geom_point()
 
 ```
@@ -69,14 +74,14 @@ ggplot(wetter_fil, aes(datetime,tre200h0)) +
 Nun wollen wir die unterschiedlichen Stationen unterschiedlich einfärben. Da wir Variablen definieren wollen, welche Einfluss auf die Grafik haben sollen, gehört diese Information in `aes()`.
 
 ```{r}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_point()
 ```
 
 Wir können noch einen Layer mit Linien hinzufügen:
 
 ```{r}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_point() +
   geom_line()
 
@@ -85,7 +90,7 @@ ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
 Weiter können wir die Achsen beschriften und einen Titel hinzufügen. Zudem lasse ich die Punkte (`geom_point()`) nun weg, da mir diese nicht gefallen.
 
 ```{r}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 
@@ -101,7 +106,7 @@ Man kann auch Einfluss auf die x-/y-Achsen nehmen. Dabei muss man zuerst festleg
 Bei unserer y-Achse handelt es sich um numerische Daten, `ggplot` nennt diese: `scale_y_continuous()`. Unter [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/reference/#section-scales) findet man noch andere x/y-Achsentypen (`scale_x_irgenwas` bzw. `scale_y_irgendwas`).
 
 ```{r}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 
@@ -114,7 +119,7 @@ ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
 
 Das gleiche Spiel kann man für die y-Achse betreiben. Bei unserer y-Achse handelt es sich ja um unsere `POSIXct` Daten. `ggplot` nennt diese: `scale_x_datetime()`. 
 ```{r}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 
@@ -132,7 +137,7 @@ Mit `theme` verändert man das allgmeine Layout der Plots. Beispielsweise kann m
 
 Individuell pro Plot:
 ```{r}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 
@@ -155,7 +160,7 @@ theme_set(theme_classic())
 Sehr praktisch sind auch die Funktionen für "Small multiples". Dies erreicht man mit `facet_wrap()` (oder `facet_grid()`, mehr dazu später). Man muss mit einem Tilde-Symbol "`~`" nur festlegen, welche *Variable* für das Aufteilen des Plots in kleinere Subplots verantwortlich sein soll. 
 
 ```{r, fig.width=8,fig.height=10}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 
@@ -175,7 +180,7 @@ Auch `facet_wrap` kann man auf seine Bedürfnisse anpassen. Da wir 24 Stationen 
 Zudem brauchen wir die Legende nicht mehr, da der Stationsnamen über jedem Facet steht. Ich setze deshalb `theme(legend.position="none")` 
 
 ```{r, fig.width=8,fig.height=10}
-ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 
@@ -191,7 +196,7 @@ ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
 Genau wie `data.frames` und andere Objekte, kann man einen ganzen Plot auch in einer Variabel speichern. Dies kann nützlich sein um einen Plot zu exportieren (als png, jpg usw.) oder sukzessive erweitern wie in diesem Beispiel.
 
 ```{r, message = F}
-p <- ggplot(wetter_fil, aes(datetime,tre200h0, colour = stn)) +
+p <- ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
   labs(x = "Woche",
        y = "Temperatur in Grad C°", 

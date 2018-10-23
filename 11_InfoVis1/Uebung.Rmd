@@ -11,11 +11,7 @@ knitr::opts_chunk$set(echo = F,include = T,message = F, collapse=TRUE) #
 
 In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic ([blog.tagesanzeiger.ch](https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich)) zu rekonstruieren. Freundlicherweise hat Herr Kovic meist die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. 
 
-Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind meine eigenen Rekonstruktionen.
-
-Importiere als erstes den Datensatz [initiative_masseneinwanderung_kanton.csv](11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv) (auf der Blog-Seite erhältlich).
-
-### Aufgabenstellung
+Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind meine eigenen Rekonstruktionen. Importiere als erstes den Datensatz [initiative_masseneinwanderung_kanton.csv](11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv) (auf der Blog-Seite erhältlich).
 
 
 ```{r, message=F}
@@ -43,9 +39,7 @@ kanton <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv"
 
 
 
-#### Kantonsebene
-
-##### Aufgabe 1
+### Aufgabe 1
 
 Rekonstruiere [Grafik 1](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-2.png) von Kovic. Erstelle dazu einen Scatterplot wo der Ausländeranteil der Kantone dem Ja-Anteil gegenüber gestellt wird. Speichere den Plot einer Variabel `plot1`.
 
@@ -79,7 +73,7 @@ plot1
 ```
 
 
-##### Aufgabe 2
+### Aufgabe 2
 
 Rekonstruiere [Grafik 2](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-LOESS-986x923.png). Erweitere dazu `plot1` mit einer Trendlinie.
 
@@ -91,7 +85,9 @@ plot1 +
 ```
 
 
-#### Gemeindeebene
+
+### Aufgabe 3
+
 
 Importiere die Gemeindedaten [initiative_masseneinwanderung_gemeinde.csv](11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv):
 
@@ -99,8 +95,6 @@ Importiere die Gemeindedaten [initiative_masseneinwanderung_gemeinde.csv](11_Inf
 gemeinde <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv",",",locale = locale(encoding = "UTF-8"))
 ```
 
-
-##### Aufgabe 3
 
 Rekonstruiere [Grafik 3](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-2-986x939.png). Stelle dazu den Ausländeranteil aller Gemeinden dem Ja-Stimmen-Anteil gegenüber. Speichere den Plot als `plot2`
 
@@ -117,7 +111,7 @@ plot2
 ```
 
 
-##### Aufgabe 4
+### Aufgabe 4
 
 Rekonstruiere [Grafik 4](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-GAM-2-986x939.png) indem `plot2` mit einer Trendlinie erweitert wird.
 
@@ -129,10 +123,7 @@ plot2 +
 ```
 
 
-#### Gemeindeebene, nach Kantonen
-
-
-##### Aufgabe 5
+### Aufgabe 5
 
 Rekonstruiere [Grafik 5](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Kantone-2-986x857.png) indem `plot2` mit `facetting` erweitert wird. Die Facets sollen die einzelnen Kantone sein. Speichere den Plot als `plot3`.
 
@@ -146,7 +137,7 @@ plot3
 ```
 
 
-##### Aufgabe 6
+### Aufgabe 6
 
 Rekonstruiere [Grafik 6](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Kantone-LOESS-2-986x857.png) indem `plot3` mit einer Trendlinie erweitert wird.
 
@@ -161,10 +152,7 @@ plot3 +
 ```
 
 
-#### Gemeindeebene, nach Gemeindegrösse
-
-
-##### Aufgabe 7
+### Aufgabe 7
 
 Rekonstruiere [Grafik 7](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Quantile-2-986x637.png) indem `plot2`mit `facetting` erweitert wird. Die Facets sollen nun den Grössen-Quantilen entsprechen. Speichere den Plot unter `plot4`.
 
@@ -180,7 +168,7 @@ plot4
 ```
 
 
-##### Aufgabe 8
+### Aufgabe 8
 
 Rekonstruiere [Grafik 8](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Quantile-LOESS-2-986x637.png) indem `plot4` mit einer Trendlinie ausgestattet wird.
 
@@ -193,10 +181,7 @@ plot4 +
 ```
 
 
-#### Korrelationen
-
-
-##### Aufgabe 9 (Fortgeschritten)
+### Aufgabe 9 (Fortgeschritten)
 
 Rekonstruiere die [Korrelationstabelle](https://tagi_dwpro.s3.amazonaws.com/UMvkt/2/fs.html).
 
@@ -228,17 +213,4 @@ korr_tab <- gemeinde %>%
 knitr::kable(korr_tab)
 ```
 
-### Lösung (R-Code)
-
-[RCode als Download](11_InfoVis1/RFiles/Uebung.R)
-
-
-```{r code=readLines('11_InfoVis1/RFiles/Uebung.R'), echo=T, eval=F}
-```
-
-
-### Quellen
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
-```
 

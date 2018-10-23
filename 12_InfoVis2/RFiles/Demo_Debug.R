@@ -1,0 +1,59 @@
+library(tidyverse)
+library(lubridate)
+
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                     col_types = list(
+                       col_character(),    
+                       col_datetime(format = "%Y%m%d%H"),
+                       col_double()
+                       )
+                     )
+
+
+wetter_fil <- wetter %>%
+  mutate(
+    year = year(time),
+    month = month(time)
+  ) %>%
+  filter(year == 2000 & month == 1)
+# Datensatz: "wetter_fil" | Beeinflussende Variabeln: "time" und "tre200h0"
+
+
+# 1. Nur erste zwei Zeilen ausführen mit Selektieren und run
+# 2. Einzelne Zeilen ein/auskommentieren: 2.1 von Hand, 2.2 mit Code>Comment/Uncomment line
+# 3. Auf Automatische Formatierung achten: Doppeltes "" macht den Rest grün...
+# 4. (x) auf Zeilen-Nummer genau lesen
+# 5. Synthax von ?scale_y_continuous() prüfen, was ist die Funktion, was ist das Argument, Bsp. anschauen
+# 6. Synthax auch im Netz noch prüfen, dann sogar über die Bildsuche, und zurück zur entsprechenden Webseite...
+
+
+ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
+  geom_point() +
+  geom_line() +
+  labs(x = "Woche",
+       y = "Temperatur in Grad C°", 
+       title = "Temperaturdaten Schweiz",
+       subtitle = "Januar 2000") +  
+  scale_y_continuous(limit = ("-30","30"")) +
+  scale_x_datetime(date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "KW%W") +
+  facet_wrap(~stn,ncol = 3) +
+  theme(legend.position="none")
+
+
+
+# ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
+#   geom_point() +
+#   geom_line() +
+#   labs(x = "Woche",
+#        y = "Temperatur in Grad C°",
+#        title = "Temperaturdaten Schweiz",
+#        subtitle = "Januar 2000") +
+#   scale_y_continuous(limits = c(-30,30)) +
+#   scale_x_datetime(date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "KW%W") +
+#   facet_wrap(~stn,ncol = 3) +
+#   theme(legend.position="none")
+
+
+
+
+

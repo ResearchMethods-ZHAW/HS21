@@ -26,11 +26,8 @@ Dazu verwenden wir vor allem das Package `plotly` welches im Gegensatz zu `ggplo
 - Falls ihr lokal mit RStudio arbeitet: Mit der Option `options(viewer=NULL)` werden Plots mit dem Standart Browser. 
 
 
-### Aufgabenstellung
 
-
-
-```{r, echo = F}
+```{r, echo = F,message=F}
 
 library(tidyverse)
 library(plotly)
@@ -47,7 +44,7 @@ Sys.setenv("plotly_api_key" = "ae8Fn1ltcjUGvWYX957J")
 
 
 
-#### Aufgabe 1: Parallel coordinate plots
+### Aufgabe 1: Parallel coordinate plots
 
 Erstelle einen [parallel coordinate plot](https://en.wikipedia.org/wiki/Parallel_coordinates). Dafür eignet sich der integrierte Datensatz [`mtcars`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html):
 
@@ -106,7 +103,7 @@ if(output == "latex"){
 
 ```
 
-#### Aufgabe 2: Polar Plot mit Biber Daten
+### Aufgabe 2: Polar Plot mit Biber Daten
 
 Polar Plots (welche man ebenfalls mit Plotly erstellen kann) eignen sich unter anderem für Daten, die zyklischer Natur sind, wie zum Beispiel zeitlich geprägte Daten (Tages-, Wochen-, oder Jahresrhythmen). Aus den Beispiels-Datensätzen  habe ich zwei Datensätze gefunden, die zeitlich geprägt sind:
 
@@ -177,7 +174,7 @@ if(output == "latex"){
 
 
 
-#### Aufgabe 3: Polar Plot mit Biber Daten
+### Aufgabe 3: Polar Plot mit Biber Daten
 
 
 Analog Aufgabe 2, dieses Mal mit dem Datensatz [`AirPassanger`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/AirPassengers.html)
@@ -248,7 +245,7 @@ if(output == "latex"){
 } else(p)
 ```
 
-#### Aufgabe 4
+### Aufgabe 4
 
 Erstelle einen 3D Scatterplot, ebenfalls mit `plotly`. Nutze dazu den Datensatz `trees`. Ein Beispiel für einen 3D Scatterplot findet ihr [hier](https://plot.ly/r/3d-scatter-plots/).
 
@@ -257,7 +254,7 @@ Erstelle einen 3D Scatterplot, ebenfalls mit `plotly`. Nutze dazu den Datensatz 
 
 # Lösung Aufgabe 4
 
-p <- trees %>%
+  p <- trees %>%
   plot_ly(x = ~Girth, y = ~Height, z = ~Volume)
 ```
 
@@ -271,20 +268,6 @@ if(output == "latex"){
   if(run_plotly_image){plotly_IMAGE(p, format = "png", out_file = filename)} 
   if(show_static_image){pander::pandoc.image(filename)} else{pandoc.strong(default_error)}
 } else(p)
-```
-
-
-### Lösung (R-Code)
-
-[RCode als Download](12_InfoVis2/RFiles/Uebung_B.R)
-
-```{r code=readLines('12_InfoVis2/RFiles/Uebung_B.R'), echo=T, eval=F}
-```
-
-
-### Libraries
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
 ```
 
 

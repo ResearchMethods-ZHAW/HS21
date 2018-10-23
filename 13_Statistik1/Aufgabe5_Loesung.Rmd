@@ -1,4 +1,4 @@
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r}
 # Daten müssen zuerst nach Kalenderwochen und Kondition zusammengefasst werden
 df <- nova %>%
     group_by(condit, week) %>% # 
@@ -12,8 +12,7 @@ Der t-Test für unabhängige Gruppen setzt Varianzhomogenität voraus. Liegt Var
 
 Der Levene-Test verwendet die Nullhypothese, dass sich die beiden Varianzen nicht unterscheiden. Daher bedeutet ein nicht signifikantes Ergebnis, dass sich die Varianzen nicht unterscheiden und also Varianzhomogenität vorliegt. Ist der Test signifikant, so wird von Varianzheterogenität ausgegangen (Quelle: www.uzh.ch).
 
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
-
+```{r}
 t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F, alternative = "less") # siehe gerichtete Hypothese
 
 # boxplot

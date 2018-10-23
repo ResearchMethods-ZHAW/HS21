@@ -18,7 +18,7 @@ library(gmodels)
 library(ggfortify)
 library(FSA)
 
-nova <- read_delim("/home/egel/Unterrichtsunterlagen_HS18/13_Statistik1/data/novanimal.csv", delim = ";")
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ```
 

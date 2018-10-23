@@ -23,13 +23,7 @@ summary(lm(b~a,blumen_sorte))
 
 plot(blumen_sorte$b~blumen_sorte$a) 
 abline(lm(b~a,blumen_sorte))
-ggplot(blumen_sorte, aes(a,b)) + 
-  geom_point()
 
-anova_tidy <- tidy(lm(b~a,blumen_sorte)) # 
+par(mfrow = c(2,2)) 
+plot(lm(b~a,blumen_sorte))
 
-
-ggplot(blumen_sorte, aes(a,b)) + 
-  geom_point() +
-  geom_smooth(method = "lm",se = F,lty = "dotted") +
-  geom_abline(slope = anova_tidy$estimate[2],intercept = anova_tidy$estimate[1],alpha = 0.4)

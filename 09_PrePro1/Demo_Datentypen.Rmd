@@ -2,16 +2,11 @@
 ```{r, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
-# knitr::opts_knit$set(root.dir = "09_PrePro1") 
 ```
-
-# PrePro1 (16.10.2017)
-
-Die Datenkunde 2.0 gibt den Studierenden das Wissen und die Fertigkeiten an die Hand, selbst erhobene und bezogene Daten für Ihre eigenen Analysen vorzubereiten und anzureichern (preprocessing). Die Einheit vermittelt zentrale Datenverarbeitungskompetenzen und thematisiert bekannte Problemzonen der umweltwissenschaftlichen Datenverarbeitung – immer mit einer „hands-on“ Perspektive auf die begleitenden R-Übungen. Die Studierenden lernen die Eigenschaften ihrer Datensätze in der Fachsprache korrekt zu beschreiben. Sie lernen ausserdem Metadaten zu verstehen und die Implikationen derselben für ihre eigenen Analyseprojekte kritisch zu beurteilen. Zentrale Konzepte der Lerneinheit sind Skalenniveaus, Datentypen, Zeitdaten und Typumwandlungen.
 
 ## Demo: Datentypen, Tabellen
 
-[R-Demoscript als Download](09_PrePro1/RFiles/Demo_Datentypen.R)
+[R-Code als Download](09_PrePro1/RFiles/Demo_Datentypen.R)
 
 ### Datentypen 
 

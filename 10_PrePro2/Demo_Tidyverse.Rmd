@@ -2,12 +2,9 @@
 ```{r, include=F, purl=F}
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
-# knitr::opts_knit$set(root.dir = "10_PrePro2") 
 ```
 
-# PrePro2 (17.10.2017)
 
-Die Lerneinheit vermittelt zentralste Fertigkeiten zur Vorverarbeitung von strukturierten Daten in der umweltwissenschaftlichen Forschung: Datensätze verbinden (Joins) und umformen („reshape“, „split-apply-combine“). Im Anwendungskontext haben Daten selten von Anfang an diejenige Struktur, welche für die statistische Auswertung oder für die Informationsvisualisierung erforderlich wäre. In dieser Lerneinheit lernen die Studierenden die für diese oft zeitraubenden Preprocessing-Schritte notwendigen Konzepte und R-Werkzeuge kennen und kompetent anzuwenden.
 
 ## Demo: `tidyverse`
 
@@ -23,13 +20,7 @@ Wir können euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokus
 
 ### Split-Apply-Combine
 
-#### Tidyverse installieren und laden
-
-Falls tidyverse noch nicht installiert ist:
-```{r, eval = F}
-install.packages("tidyverse")
-```
-
+#### Packete laden
 
 ```{r,message=F}
 library(tidyverse)
@@ -43,13 +34,19 @@ library(lubridate)
 
 
 
-
 #### Daten Laden
 
-Wir Laden [wetter.rda](09_PrePro1/data/wetter.rda) von der letzten Übung.
+Wir Laden die Wetterdaten von der letzten Übung.
 
 ```{r}
-load("09_PrePro1/data/wetter.rda")
+
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                  col_types = list(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
 
 ```
 
@@ -73,14 +70,14 @@ Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *
 Um diese Aufgabe zu lösen, muss zuerst das "Jahr" berechnen können (das Jahr ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `year()` (von `lubridate`). 
 
 Nun kann kann die **convenience Variable** "Jahr" erstellt werden. Ohne `dpylr` wird eine neue Spalte wird folgendermassen hinzugefügt. 
-```{r include=T}
-wetter$year <- year(wetter$datetime)
+```{r}
+wetter$year <- year(wetter$time)
 ```
 
 
 Mit `dplyr` (siehe ^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html]) sieht der gleiche Befehl folgendermassen aus:
 ```{r}
-wetter <- mutate(wetter,year = year(datetime))
+wetter <- mutate(wetter,year = year(time))
 ```
 
 Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dieser wird aber später klar.
@@ -89,14 +86,14 @@ Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dies
 #### Kennwerte nach Gruppen berechnen
 
 Jetzt kann man die `data.frame` mithilfe der Spalte "Jahr" filtern. 
-```{r include = T}
+```{r}
 mean(wetter$tre200h0[wetter$year == 2000], na.rm = T)
 ```
 
 Dies müssen wir pro Jahr wiederholen, was natürlich sehr umständlich ist, v.a. wenn man eine Vielzahl an Gruppen hat (z.B. Kalenderwochen statt Jahre). Deshalb nutzen wir das package `dplyr`. Damit geht die Aufgabe (Temperaturmittel pro Jahr berechnen) folgendermassen:
 
 
-```{r, include = T}
+```{r}
 summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = T))
 ```
 
@@ -110,7 +107,7 @@ Auf Deutsch übersetzt heisst die obige Operation folgendermassen:
 3) Berechne das Temperaturmittel (`mean(tre200h0)`)
 
 Diese Übersetzung `R`-> Deutsch unterscheidet sich vor allem darin, dass die Operation auf Deutsch *verkettet* ausgesprochen wird (Operation 1->2->3) während der Computer *verschachtelt* liest 3(2(1)). Um `R` näher an die gesprochene Sprache zu bringen, kann man den `%>%`-Operator verwenden  (siehe ^[@wickham2017, Kapitel 14 / http://r4ds.had.co.nz/pipes.html]). 
-```{r, echo = F}
+```{r, eval = F}
 
 summarise(group_by(wetter,year),temp_mittel = mean(tre200h0))
 
@@ -134,7 +131,7 @@ Zu `dplyr` und `magrittr`gibt es etliche Tutorials online (siehe^[@wickham2017, 
 # Maximal und minimal Temperatur pro Kalenderwoche
 wetter %>%                              #1) nimm den Datensatz "wetter"
   filter(stn == "ABO") %>%              #2) filter auf Station namnes "ABO"
-  mutate(kw = week(datetime)) %>%       #3) erstelle eine neue Spalte "kw"
+  mutate(kw = week(time)) %>%       #3) erstelle eine neue Spalte "kw"
   group_by(kw) %>%                      #4) Nutze die neue Spalte um Guppen zu bilden
   summarise(
     temp_max = max(tre200h0, na.rm = T),#5) Berechne das Maximum 
@@ -151,7 +148,7 @@ Mit diesen Tools können wir nun auch eine neue Grafik plotten, ähnlich wie in 
 
 wetter_sry <- wetter %>%                              
   mutate(
-    kw = week(datetime)
+    kw = week(time)
     ) %>%
   filter(stn == "ABO") %>%
   group_by(kw) %>%                      
@@ -182,7 +179,7 @@ Ok das sieht schon mal gut aus. Nur, wir mussten pro Linie einen eigene Zeile sc
 
 #### Breit -> lang
 
-Da kommt das ``tidyverse`wieder ins Spiel. Die Umformung von Tabellen *breit*->*lang* erfolgt mittels `tidyr`(siehe ^[http://r4ds.had.co.nz/tidy-data.html#gathering]). Auch dieses package funktioniert wunderbar mit piping (`%>%`). 
+Da kommt `tidyverse` wieder ins Spiel. Die Umformung von Tabellen *breit*->*lang* erfolgt mittels `tidyr`(siehe ^[http://r4ds.had.co.nz/tidy-data.html#gathering]). Auch dieses package funktioniert wunderbar mit piping (`%>%`). 
 
 ```{r}
 wetter_sry_long <- wetter_sry %>%

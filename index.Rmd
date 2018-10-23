@@ -22,11 +22,20 @@ Auf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungst
 
 ```{r, include=F, message=F}
 # Set Root Directory / Working directory to Project folder for all Files (if M-K)
-knitr::opts_knit$set(root.dir = "/home/rata/ResearchMethods")
+knitr::opts_knit$set(root.dir = getwd())
 ```
 
 
 ```{r, include=F, message=F}
+
+
+grepl_loop <- function(vector,remove){
+  for(remove_i in remove){
+    vector <- vector[!grepl(remove_i,vector)]
+  }
+  return(vector)
+}
+
 
 
 
@@ -38,8 +47,13 @@ options(knitr.duplicate.label = 'allow')
 # Document cannot be knitted if the folder "RFiles" does not exist!
 library(stringr)
 
+keywords <- c("ResearchMethods","_Rcode","99_","index","Archive","Admin","main","Abstract")
+
+
 rmds <- list.files(pattern = ".Rmd",recursive = T)
-rmds <- rmds[!(grepl("ResearchMethods",rmds) | grepl("_Rcode",rmds) | grepl("99_",rmds)| grepl("index",rmds)| grepl("Archive",rmds)| grepl("Admin",rmds))]
+
+rmds <- grepl_loop(rmds,keywords)
+
 
 for (file in rmds){
   file_r <- gsub("Rmd","R",file)                          # change fileextension from .rmd to r

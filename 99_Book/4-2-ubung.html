@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Research Methods</title>
+  <meta name="description" content="Begleitmaterial zum Modul ‘Research Methods’">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Research Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Research Methods" />
+  
+  <meta name="twitter:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+
+
+<meta name="date" content="2018-10-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="4-1-demo-ggplot2.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="00_Admin/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modul ResearchMethods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a></li>
+<li class="chapter" data-level="2" data-path="2-prepro1-15-10-2018.html"><a href="2-prepro1-15-10-2018.html"><i class="fa fa-check"></i><b>2</b> PrePro1 (15.10.2018)</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html"><i class="fa fa-check"></i><b>2.1</b> Demo: Datentypen, Tabellen</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#datentypen"><i class="fa fa-check"></i><b>2.1.1</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#data-frames-und-conveniance-variabeln"><i class="fa fa-check"></i><b>2.1.2</b> Data Frames und Conveniance Variabeln</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#quellen"><i class="fa fa-check"></i><b>2.1.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html"><i class="fa fa-check"></i><b>2.2</b> Übung A</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-1"><i class="fa fa-check"></i><b>2.2.1</b> Aufgabe 1</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-2"><i class="fa fa-check"></i><b>2.2.2</b> Aufgabe 2</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-3"><i class="fa fa-check"></i><b>2.2.3</b> Aufgabe 3</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-4"><i class="fa fa-check"></i><b>2.2.4</b> Aufgabe 4</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-5"><i class="fa fa-check"></i><b>2.2.5</b> Aufgabe 5</a></li>
+<li class="chapter" data-level="2.2.6" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-6"><i class="fa fa-check"></i><b>2.2.6</b> Aufgabe 6</a></li>
+<li class="chapter" data-level="2.2.7" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-7"><i class="fa fa-check"></i><b>2.2.7</b> Aufgabe 7</a></li>
+<li class="chapter" data-level="2.2.8" data-path="2-2-ubung-a.html"><a href="2-2-ubung-a.html#aufgabe-8"><i class="fa fa-check"></i><b>2.2.8</b> Aufgabe 8</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-ubung-a-losung.html"><a href="2-3-ubung-a-losung.html"><i class="fa fa-check"></i><b>2.3</b> Übung A Lösung</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-ubung-b.html"><a href="2-4-ubung-b.html"><i class="fa fa-check"></i><b>2.4</b> Übung B</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-ubung-b.html"><a href="2-4-ubung-b.html#aufgabe-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Aufgabe 1</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-ubung-b.html"><a href="2-4-ubung-b.html#aufgabe-2-1"><i class="fa fa-check"></i><b>2.4.2</b> Aufgabe 2</a></li>
+<li class="chapter" data-level="2.4.3" data-path="2-4-ubung-b.html"><a href="2-4-ubung-b.html#aufgabe-3-1"><i class="fa fa-check"></i><b>2.4.3</b> Aufgabe 3</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-5-ubung-b-losung.html"><a href="2-5-ubung-b-losung.html"><i class="fa fa-check"></i><b>2.5</b> Übung B Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-prepro2-16-10-2018.html"><a href="3-prepro2-16-10-2018.html"><i class="fa fa-check"></i><b>3</b> PrePro2 (16.10.2018)</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-erganzungen-zu-prepro-1.html"><a href="3-1-erganzungen-zu-prepro-1.html"><i class="fa fa-check"></i><b>3.1</b> Ergänzungen zu PrePro 1</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-1-erganzungen-zu-prepro-1.html"><a href="3-1-erganzungen-zu-prepro-1.html#integer-mit-l"><i class="fa fa-check"></i><b>3.1.1</b> Integer mit “L”</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-1-erganzungen-zu-prepro-1.html"><a href="3-1-erganzungen-zu-prepro-1.html#arbeiten-mit-rstudio-project"><i class="fa fa-check"></i><b>3.1.2</b> Arbeiten mit RStudio “Project”</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3-1-erganzungen-zu-prepro-1.html"><a href="3-1-erganzungen-zu-prepro-1.html#arbeiten-mit-factors"><i class="fa fa-check"></i><b>3.1.3</b> Arbeiten mit <code>factors</code></a></li>
+<li class="chapter" data-level="3.1.4" data-path="3-1-erganzungen-zu-prepro-1.html"><a href="3-1-erganzungen-zu-prepro-1.html#heikle-annahmen---bessere-alternativen"><i class="fa fa-check"></i><b>3.1.4</b> Heikle Annahmen - bessere Alternativen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-demo-tidyverse.html"><a href="3-2-demo-tidyverse.html"><i class="fa fa-check"></i><b>3.2</b> Demo: <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-demo-tidyverse.html"><a href="3-2-demo-tidyverse.html#split-apply-combine"><i class="fa fa-check"></i><b>3.2.1</b> Split-Apply-Combine</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-demo-tidyverse.html"><a href="3-2-demo-tidyverse.html#reshaping-data"><i class="fa fa-check"></i><b>3.2.2</b> Reshaping data</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-demo-tidyverse.html"><a href="3-2-demo-tidyverse.html#quellen-1"><i class="fa fa-check"></i><b>3.2.3</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html"><i class="fa fa-check"></i><b>3.3</b> Übung A</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-1-2"><i class="fa fa-check"></i><b>3.3.1</b> Aufgabe 1</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-2-2"><i class="fa fa-check"></i><b>3.3.2</b> Aufgabe 2</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-3-2"><i class="fa fa-check"></i><b>3.3.3</b> Aufgabe 3</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-4-1"><i class="fa fa-check"></i><b>3.3.4</b> Aufgabe 4</a></li>
+<li class="chapter" data-level="3.3.5" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-5-1"><i class="fa fa-check"></i><b>3.3.5</b> Aufgabe 5</a></li>
+<li class="chapter" data-level="3.3.6" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-6-1"><i class="fa fa-check"></i><b>3.3.6</b> Aufgabe 6</a></li>
+<li class="chapter" data-level="3.3.7" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-7-1"><i class="fa fa-check"></i><b>3.3.7</b> Aufgabe 7</a></li>
+<li class="chapter" data-level="3.3.8" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-8-1"><i class="fa fa-check"></i><b>3.3.8</b> Aufgabe 8</a></li>
+<li class="chapter" data-level="3.3.9" data-path="3-3-ubung-a-1.html"><a href="3-3-ubung-a-1.html#aufgabe-9"><i class="fa fa-check"></i><b>3.3.9</b> Aufgabe 9</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-ubung-a-losung-1.html"><a href="3-4-ubung-a-losung-1.html"><i class="fa fa-check"></i><b>3.4</b> Übung A: Lösung</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-ubung-b-1.html"><a href="3-5-ubung-b-1.html"><i class="fa fa-check"></i><b>3.5</b> Übung B</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="3-5-ubung-b-1.html"><a href="3-5-ubung-b-1.html#aufgabe-1-3"><i class="fa fa-check"></i><b>3.5.1</b> Aufgabe 1</a></li>
+<li class="chapter" data-level="3.5.2" data-path="3-5-ubung-b-1.html"><a href="3-5-ubung-b-1.html#aufgabe-2-3"><i class="fa fa-check"></i><b>3.5.2</b> Aufgabe 2</a></li>
+<li class="chapter" data-level="3.5.3" data-path="3-5-ubung-b-1.html"><a href="3-5-ubung-b-1.html#aufgabe-3-3"><i class="fa fa-check"></i><b>3.5.3</b> Aufgabe 3</a></li>
+<li class="chapter" data-level="3.5.4" data-path="3-5-ubung-b-1.html"><a href="3-5-ubung-b-1.html#aufgabe-4-2"><i class="fa fa-check"></i><b>3.5.4</b> Aufgabe 4</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-6-ubung-b-losung-1.html"><a href="3-6-ubung-b-losung-1.html"><i class="fa fa-check"></i><b>3.6</b> Übung B: Lösung</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-infovis1-22-10-2018.html"><a href="4-infovis1-22-10-2018.html"><i class="fa fa-check"></i><b>4</b> InfoVis1 (22.10.2018)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-demo-ggplot2.html"><a href="4-1-demo-ggplot2.html"><i class="fa fa-check"></i><b>4.1</b> Demo: <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-demo-ggplot2.html"><a href="4-1-demo-ggplot2.html#quellen-2"><i class="fa fa-check"></i><b>4.1.1</b> Quellen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-ubung.html"><a href="4-2-ubung.html"><i class="fa fa-check"></i><b>4.2</b> Übung</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-1-4"><i class="fa fa-check"></i><b>4.2.1</b> Aufgabe 1</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-2-4"><i class="fa fa-check"></i><b>4.2.2</b> Aufgabe 2</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-3-4"><i class="fa fa-check"></i><b>4.2.3</b> Aufgabe 3</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-4-3"><i class="fa fa-check"></i><b>4.2.4</b> Aufgabe 4</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-5-2"><i class="fa fa-check"></i><b>4.2.5</b> Aufgabe 5</a></li>
+<li class="chapter" data-level="4.2.6" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-6-2"><i class="fa fa-check"></i><b>4.2.6</b> Aufgabe 6</a></li>
+<li class="chapter" data-level="4.2.7" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-7-2"><i class="fa fa-check"></i><b>4.2.7</b> Aufgabe 7</a></li>
+<li class="chapter" data-level="4.2.8" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-8-2"><i class="fa fa-check"></i><b>4.2.8</b> Aufgabe 8</a></li>
+<li class="chapter" data-level="4.2.9" data-path="4-2-ubung.html"><a href="4-2-ubung.html#aufgabe-9-fortgeschritten"><i class="fa fa-check"></i><b>4.2.9</b> Aufgabe 9 (Fortgeschritten)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Research Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ubung" class="section level2">
+<h2><span class="header-section-number">4.2</span> Übung</h2>
+<p>In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic (<a href="https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich">blog.tagesanzeiger.ch</a>) zu rekonstruieren. Freundlicherweise hat Herr Kovic meist die <code>ggplot2</code> Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht.</p>
+<p>Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind meine eigenen Rekonstruktionen. Importiere als erstes den Datensatz <a href="11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv">initiative_masseneinwanderung_kanton.csv</a> (auf der Blog-Seite erhältlich).</p>
+<div id="aufgabe-1-4" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Aufgabe 1</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-2.png">Grafik 1</a> von Kovic. Erstelle dazu einen Scatterplot wo der Ausländeranteil der Kantone dem Ja-Anteil gegenüber gestellt wird. Speichere den Plot einer Variabel <code>plot1</code>.</p>
+<ul>
+<li>nutze <code>coord_fixed()</code> um die beiden Achsen in ein fixes Verhältnis zu setzen (1:1).</li>
+<li>setze die Achsen Start- und Endwerte mittels <code>lims()</code> oder <code>scale_y_continuous</code>bzw. <code>scale_x_continuous</code>.</li>
+<li>Optional: Setze analog Kovic die <code>breaks</code> (<code>0.0</code>, <code>0.1</code>…<code>0.7</code>) manuell</li>
+</ul>
+<p>Rekonstruktion:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-2-4" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Aufgabe 2</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-LOESS-986x923.png">Grafik 2</a>. Erweitere dazu <code>plot1</code> mit einer Trendlinie.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>Importiere die Gemeindedaten <a href="11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv">initiative_masseneinwanderung_gemeinde.csv</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gemeinde &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv&quot;</span>,<span class="st">&quot;,&quot;</span>,<span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>))</code></pre></div>
+</div>
+<div id="aufgabe-3-4" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Aufgabe 3</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-2-986x939.png">Grafik 3</a>. Stelle dazu den Ausländeranteil aller Gemeinden dem Ja-Stimmen-Anteil gegenüber. Speichere den Plot als <code>plot2</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-4-3" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Aufgabe 4</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-GAM-2-986x939.png">Grafik 4</a> indem <code>plot2</code> mit einer Trendlinie erweitert wird.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-5-2" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Aufgabe 5</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Kantone-2-986x857.png">Grafik 5</a> indem <code>plot2</code> mit <code>facetting</code> erweitert wird. Die Facets sollen die einzelnen Kantone sein. Speichere den Plot als <code>plot3</code>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-6-2" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> Aufgabe 6</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Kantone-LOESS-2-986x857.png">Grafik 6</a> indem <code>plot3</code> mit einer Trendlinie erweitert wird.</p>
+<p>Rekonstruktion:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-7-2" class="section level3">
+<h3><span class="header-section-number">4.2.7</span> Aufgabe 7</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Quantile-2-986x637.png">Grafik 7</a> indem <code>plot2</code>mit <code>facetting</code> erweitert wird. Die Facets sollen nun den Grössen-Quantilen entsprechen. Speichere den Plot unter <code>plot4</code>.</p>
+<p>Rekonstruktion:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-8-2" class="section level3">
+<h3><span class="header-section-number">4.2.8</span> Aufgabe 8</h3>
+<p>Rekonstruiere <a href="https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Quantile-LOESS-2-986x637.png">Grafik 8</a> indem <code>plot4</code> mit einer Trendlinie ausgestattet wird.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+</div>
+<div id="aufgabe-9-fortgeschritten" class="section level3">
+<h3><span class="header-section-number">4.2.9</span> Aufgabe 9 (Fortgeschritten)</h3>
+<p>Rekonstruiere die <a href="https://tagi_dwpro.s3.amazonaws.com/UMvkt/2/fs.html">Korrelationstabelle</a>.</p>
+<p>Tipp: - Nutze <code>group_by()</code> und <code>summarise()</code> - Nutze <code>cor.test()</code> um den Korrelationskoeffizienten sowie den p-Wert zu erhalten. - Mit <code>$estimate</code> und <code>$p.value</code> können die entsprechenden Werte direkt angesprochen werden</p>
+<p>Hinweis: aus bisher unerklärlichen Gründen weiche gewisse meiner Werte leicht von den Berechnungen des Herrn Kovics ab.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Kanton</th>
+<th align="right">Korr.Koeffizient</th>
+<th align="left">Signifikanz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">AG</td>
+<td align="right">-0.2362552</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">AI</td>
+<td align="right">-0.7828022</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">AR</td>
+<td align="right">-0.0892817</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">BE</td>
+<td align="right">-0.4422003</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">BL</td>
+<td align="right">-0.2919712</td>
+<td align="left">**</td>
+</tr>
+<tr class="even">
+<td align="left">BS</td>
+<td align="right">-0.9935385</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">FR</td>
+<td align="right">-0.4217634</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">GE</td>
+<td align="right">0.3753004</td>
+<td align="left">*</td>
+</tr>
+<tr class="odd">
+<td align="left">GL</td>
+<td align="right">-0.4070120</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">GR</td>
+<td align="right">-0.0426607</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">JU</td>
+<td align="right">-0.2252540</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">LU</td>
+<td align="right">-0.3048455</td>
+<td align="left">**</td>
+</tr>
+<tr class="odd">
+<td align="left">NE</td>
+<td align="right">-0.5214180</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">NW</td>
+<td align="right">-0.2018174</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">OW</td>
+<td align="right">-0.4813090</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">SG</td>
+<td align="right">-0.2449093</td>
+<td align="left">*</td>
+</tr>
+<tr class="odd">
+<td align="left">SH</td>
+<td align="right">-0.2995527</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">SO</td>
+<td align="right">-0.0533442</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">SZ</td>
+<td align="right">-0.7259276</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">TG</td>
+<td align="right">-0.5522862</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">TI</td>
+<td align="right">0.1512509</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">UR</td>
+<td align="right">-0.3848167</td>
+<td align="left">-</td>
+</tr>
+<tr class="odd">
+<td align="left">VD</td>
+<td align="right">-0.2685301</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">VS</td>
+<td align="right">-0.1736954</td>
+<td align="left">*</td>
+</tr>
+<tr class="odd">
+<td align="left">ZG</td>
+<td align="right">0.0407166</td>
+<td align="left">-</td>
+</tr>
+<tr class="even">
+<td align="left">ZH</td>
+<td align="right">-0.2744683</td>
+<td align="left">***</td>
+</tr>
+</tbody>
+</table>
+
+<div id="refs" class="references">
+<div>
+<p>Henry, Lionel, and Hadley Wickham. 2018. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div>
+<p>Müller, Kirill, and Hadley Wickham. 2018. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</p>
+</div>
+<div>
+<p>Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2018. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate" class="uri">https://CRAN.R-project.org/package=lubridate</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div>
+<p>———. 2018a. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://CRAN.R-project.org/package=forcats" class="uri">https://CRAN.R-project.org/package=forcats</a>.</p>
+</div>
+<div>
+<p>———. 2018b. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science</em>. O’Reilly. <a href="https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093" class="uri">https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2018. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2017. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-1-demo-ggplot2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

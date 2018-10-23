@@ -1,0 +1,67 @@
+```{r, include=F, purl = F}
+knitr::opts_knit$set(collapse=TRUE)
+```
+
+## Demo
+
+```{r, message = F, purl=F}
+library(tidyverse)
+theme_set(theme_classic())
+```
+
+
+### Korrelationen und Regressionen
+
+
+```{r child = '14_Statistik2/Demo_01_Korr_Reg_Beispiel1.Rmd', purl=F}
+```
+
+
+```{r child = '14_Statistik2/Demo_01_Korr_Reg_Beispiel2.Rmd', purl=F}
+```
+
+
+```{r child = '14_Statistik2/Demo_01_Korr_Reg_Beispiel3.Rmd', purl=F}
+```
+
+
+```{r child = '14_Statistik2/Demo_01_Korr_Reg_Beispiel4.Rmd', purl=F}
+```
+
+### Polynomische Regressionen
+
+[Script als Download](14_Statistik2/RFiles/Demo_02_Polynom_Reg.R)
+
+
+```{r child = '14_Statistik2/Demo_02_Polynom_Reg.Rmd', purl=F}
+```
+
+### Einfaktorielle ANOVA (einfache)
+
+[Script als Download](14_Statistik2/RFiles/Demo_03_Einfaktorielle_ANOVA_einfach.R)
+
+
+<!-- TODO: warum läuft dieser code nicht (eval = F) -->
+```{r child = '14_Statistik2/Demo_03_Einfaktorielle_ANOVA_einfach.Rmd', purl=F, eval = F}
+```
+
+
+### Mehrfaktorielle ANOVA
+
+[Script als Download](14_Statistik2/RFiles/Demo_05_Mehrfaktorielle_ANOVA.R)
+
+
+```{r child = '14_Statistik2/Demo_05_Mehrfaktorielle_ANOVA.Rmd', purl=F}
+```
+
+
+### ANCOVA
+
+[Script als Download](14_Statistik2/RFiles/Demo_06_ANCOVA.R)
+
+
+```{r child = '14_Statistik2/Demo_06_ANCOVA.Rmd', purl=F}
+```
+
+
+

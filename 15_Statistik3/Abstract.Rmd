@@ -1,0 +1,4 @@
+# Statistik 3 (05.11.2018)
+
+
+Statistik 3 beschäftigt sich schwerpunktmässig mit multiplen Regressionen, bei denen eine abhängige Variable durch zwei oder mehr Prädiktorvariablen erklärt werden soll. Wir thematisieren verschiedene dabei auftretende Probleme und ihre Lösung, insbesondere den Umgang mit korrelierten Prädiktoren und das Aufspüren des besten unter mehreren möglichen statistischen Modellen. Hieran wir auch der informatian theoretician-Ansatz der Statstitik und multimodel inference eingeführt. Dann folgt ein Einstieg in nicht-lineare Regressionen, die es erlauben, etwa Potenzgesetze direkt zu modellieren. Am Ende steht ein kurzer Ausblick auf Glättungsverfahren (LOESS), general additive models (GAMs) und evtl. boosted regression trees (BRTs).

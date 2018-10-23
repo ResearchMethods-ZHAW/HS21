@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE)
 ## Übung B 
 
 
-### Aufgbenstellung
 
 
 ```{r, message = F}
@@ -19,16 +18,20 @@ library(tidyverse)
 ```
 
 
-#### Daten Laden
 
-Lade [wetter.rda](09_PrePro1/data/wetter.rda) von der Übung A
-```{r}
-load("09_PrePro1/data/wetter.rda")
-
+Fahre mit dem Datensatz `wetter` aus Übung A fort. 
+```{r, purl=F}
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                  col_types = list(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
 ```
 
 
-#### Aufgabe 1
+### Aufgabe 1
 
 Nutze `plot()` um die Temparaturkurve zu visualisieren. Verwende aber vorher `filter()` um dich auf eine Station (z.B. "`ABO`") zu beschränken (es handelt sich sonst um zuviele Datenpunkte).
 
@@ -38,11 +41,8 @@ Nutze `plot()` um die Temparaturkurve zu visualisieren. Verwende aber vorher `fi
 # Lösung Aufgabe 1
 
 wetter_fil <- dplyr::filter(wetter, stn == "ABO")
-```
 
-
-```{r}
-plot(wetter_fil$datetime,wetter_fil$tre200h0, type = "l")
+plot(wetter_fil$time,wetter_fil$tre200h0, type = "l")
 
 ```
 
@@ -55,7 +55,7 @@ und reproduziere den obigen Plot mit `ggplot2`
 
 ```{r}
 
-p <- ggplot(wetter_fil, aes(datetime,tre200h0)) +
+p <- ggplot(wetter_fil, aes(time,tre200h0)) +
   geom_line()
 
 p
@@ -63,7 +63,7 @@ p
 
 
 
-#### Aufgabe 2
+### Aufgabe 2
 
 Spiele mit Hilfe der erwähnten Tutorials mit dem Plot etwas rum. Versuche die x-/y-Achsen zu beschriften sowie einen Titel hinzu zu fügen.
 
@@ -76,12 +76,9 @@ p
 ```
 
 
-#### Aufgabe 3
+### Aufgabe 3
 
-Reduziere den x-Achsenausschnitt auf einen kleineren Zeitraum, beispielsweise einn beliebigen Monat. Tipp:
-
-- verwende dazu `lims()`
-- verwende dazu `as.POSIXct()`
+Reduziere den x-Achsenausschnitt auf einen kleineren Zeitraum, beispielsweise einn beliebigen Monat. Verwende dazu `lims()` zusammen mit `as.POSIXct()` oder mache ein Subset von deinem Datensatz mit einer convenience-Variabel und `filter()`.
 
 ```{r}
 # Lösung Aufgabe 3
@@ -92,18 +89,5 @@ p +
   lims(x = limits)
 ```
 
-
-
-### Lösung (R-Code)
-
-[R-Code als Download](09_PrePro1/Uebung_B.R)
-
-```{r code=readLines('09_PrePro1/RFiles/Uebung_B.R'), echo=T, eval=F}
-```
-
-### Quellen
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
-```
 
 

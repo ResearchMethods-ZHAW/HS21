@@ -1,0 +1,7 @@
+## Übung B: Lösung
+
+[RCode als Download](12_InfoVis2/RFiles/Uebung_B.R)
+
+```{r code=readLines('12_InfoVis2/RFiles/Uebung_B.R'), echo=T, eval=F}
+```
+

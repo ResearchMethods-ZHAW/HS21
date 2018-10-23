@@ -149,7 +149,7 @@ spf.lmer <- lmer(Y~A*C+(1|B),spf)
 
 # aovlmer.fnc(spf.lmer, noMCMC=T) # gilt nicht mehr
 
-lmerTest::anova(spf.lmer)
+anova(spf.lmer)
 
 ```
 ### Libraries

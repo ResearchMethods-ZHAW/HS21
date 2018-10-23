@@ -9,9 +9,6 @@ select <- dplyr::select
 
 ## Übung A
 
-### Aufgabenstellung
-
-
 
 ```{r,message=F}
 library(tidyverse)
@@ -20,21 +17,26 @@ library(stringr)
 ```
 
 
-#### Aufgabe 1
+### Aufgabe 1
 
-Lade [wetter.rda](09_PrePro1/data/wetter.rda) aus der letzten Übung.
+Lade die Wetterdaten aus der letzten Übung.
 
 ```{r}
 # Lösung Aufgabe 1
 
-load("09_PrePro1/data/wetter.rda")
-
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                  col_types = list(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
 ```
 
 
-#### Aufgabe 2
+### Aufgabe 2
 
-Bereinige den Datensatz. Lösche z.B. alle Zeilen, bei dem der Stationsnahme oder Temperaturwerte fehlen 
+Bereinige den Datensatz. Entferne z.B. alle Zeilen, bei dem der Stationsnahme oder Temperaturwerte fehlen 
 
 ```{r}
 # Lösung Aufgabe 2
@@ -47,9 +49,9 @@ wetter <- wetter %>%
 
 
 
-#### Aufgabe 3
+### Aufgabe 3
 
-Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station einer Spalte entsprechen. Speichere diese Tabelle in einer neuen Variabel.
+Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`key`), gefüllt mit den Temperaturwerten (`value`).  Speichere diese Tabelle in einer neuen Variabel.
 
 ```{r}
 
@@ -62,13 +64,13 @@ wetter_spread <- spread(wetter, stn,tre200h0)
 
 
 
-#### Aufgabe 4
+### Aufgabe 4
 
 
 
 Importiere die Datei [order_52252_legend.csv](09_PrePro1/data/order_52252_legend.csv) (z.B. mit `read_delim`).
 
-Wenn das File nicht korrekt eingelesen werden kann, hat das vermutlich mit der [Zeichencodierung](https://de.wikipedia.org/wiki/Zeichenkodierung) zu tun. Bei dem File handelt es sich um eine 'ANSI' Codierung, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows 'Editor' oder 'Notepad++', Mac: 'TextEdit') und mit einer neuen Codierung (z.B 'UTF-8') abspeichern. Danach kann die Codierung spezifitiert werden (bei `read_delim(): mit `locale = locale(encoding = "UTF-8")`)
+Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. in Gen*è*ve), hat das vermutlich mit der [Zeichencodierung](https://de.wikipedia.org/wiki/Zeichenkodierung) zu tun. Das File ist aktuell in 'ANSI' Codiert, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows 'Editor' oder 'Notepad++', Mac: 'TextEdit') und mit einer neuen Codierung (z.B 'UTF-8') abspeichern. Danach kann die Codierung spezifitiert werden (bei `read_delim(): mit `locale = locale(encoding = "UTF-8")`)
 
 ```{r}
 
@@ -80,7 +82,7 @@ wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";
 
 
 
-#### Aufgabe 5
+### Aufgabe 5
 
 
 Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die x und y Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze Excel oder `str_split_fixed()` aus `stringr`).
@@ -97,7 +99,7 @@ wetter_legende <- cbind(wetter_legende,koordinaten)
 ```
 
 
-#### Aufgabe 6
+### Aufgabe 6
 
 Nun wollen wir den Datensatz `wetter`mit den Informationen aus `wetter_legende`anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).
 
@@ -111,7 +113,7 @@ wetter_legende <- dplyr::select(wetter_legende, stn, Name, x,y,Meereshoehe)
 ```
 
 
-#### Aufgabe 7
+### Aufgabe 7
 
 Nun ist der Datensatz `wetter_legende`genügend vorbereitet. Jetzt kann er mit dem Datensatz `wetter` verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir "joinen" können.
 
@@ -127,7 +129,7 @@ wetter <- left_join(wetter,wetter_legende,by = "stn")
 # Attribut: "stn"
 ```
 
-#### Aufgabe 8
+### Aufgabe 8
 
 Berechne die Durchschnittstemperatur pro Station. Nutze dabei `dplyr::summarise()` und wenn möglich `%>%`. Speichere das Resultat in einer neuen Variabel.
 
@@ -141,7 +143,7 @@ wetter_sry <- wetter %>%
   summarise(temp_mean = mean(tre200h0))
 ```
 
-#### Aufgabe 9
+### Aufgabe 9
 
 Nun wollen wir das Resultat aus Aufgabe 7 nutzen, um die Durchschnittstemperatur der Meereshöhe gegenüber zu stellen. Dummerweise ging das Attribut `Meereshoehe` bei der `summarise()` Operation verloren (da bei `summarise()` alle Spalten weg fallen, die **nicht** in `group_by()` definiert wurden). Um die Spalte `Meereshoehe` beizubehalten, muss sie also unter `group_by()` aufgelistet werden. 
 
@@ -166,17 +168,4 @@ ggplot(wetter_sry, aes(temp_mean,Meereshoehe)) +
   geom_point()
 ```
 
-
-### Lösung (R-Code)
-
-[R-Code als Download](10_PrePro2/RFiles/Uebung_A.R)
-
-
-```{r code=readLines('10_PrePro2/RFiles/Uebung_A.R'), echo=T, eval=F, include = T}
-```
-
-### Quellen
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
-```
 

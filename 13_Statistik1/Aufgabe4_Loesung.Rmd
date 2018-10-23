@@ -1,5 +1,5 @@
 
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r}
 
 library(readr)
 library(dplyr)
@@ -13,7 +13,7 @@ nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ```
 
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r}
 chisq.test(nova$gender, nova$label_content)
 CrossTable(nova$gender, nova$label_content, chisq = T) # Alternative zu chisq.test
 

@@ -1,4 +1,4 @@
-# Statistik 4 (7.11.17)
+
 
 ```{r, echo = F, purl = F}
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
@@ -6,7 +6,6 @@ library(knitr)
 
 ```
 
-In Statistik 4 lernen die Studierenden Lösungen kennen, welche die diverse Limitierungen von linearen Modellen überwinden, namentlich linear mixed models (LMMs), generalized linear models (GLMs) und generalized linear mixed models (GLMMs). Dabei bezeichnet generalized die explizite Modellierung anderer Fehler- und Varianzstrukturen und mixed die Berücksichtigung von Abhängigkeiten unter den Beobachtungen. Bei generalized linear regressions muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die logistische Regression für ja/nein-Daten anschauen. Abschliessend gibt es eine kurze Einführung in (G)LMMs, die eine Verallgemeinerung von ANOVAs für komplexere experimentelle Setups darstellen. 
 
 
 ## Demo A: Logistic regression
@@ -85,7 +84,7 @@ pp/polis.glm$df.resid
 ###################################################
 ### chunk number 8: pg 499
 ###################################################
-cr.plots(polis.glm, ask=F)
+crPlots(polis.glm, ask=F)
 
 ```
 

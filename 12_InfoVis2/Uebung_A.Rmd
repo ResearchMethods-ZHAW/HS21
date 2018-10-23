@@ -6,13 +6,9 @@ knitr::opts_chunk$set(echo = F,include = T,message = F, warning = F, collapse=TR
 
 ```
 
-# InfoVis2 (24.10.2017)
 
-Die Informationsvisualisierung ist eine vielseitige, effektive und effiziente Methode für die explorative Datenanalyse. Während Scatterplots und Histogramme weitherum bekannt sind, bieten weniger bekannte Informationsvisualisierungs-Typen wie etwa Parallelkoordinatenplots, TreeMaps oder Chorddiagramme originelle alternative Darstellungsformen zur visuellen Analyse von Datensätze, welche stets grösser und komplexer werden. Die Studierenden lernen in dieser Lerneinheit eine Reihe von Informationsvisualisierungstypen kennen, lernen diese zielführend zu gestalten und selber zu erstellen.
 
 ## Übung A
-
-### Aufgabenstellung
 
 ```{r, message = F, echo = T}
 library(tidyverse)
@@ -20,17 +16,23 @@ library(lubridate)
 ```
 
 
-Laden den Datensatz [wetter.rda](09_PrePro1/data/wetter.rda), bereinige wenn nötig die fehlerhaften Daten und speichere den Datensatz ab. Importiere auch den Datensatz `order_52252_legend.csv` und verbinde die Datensätze mit einem join.
+Laden den `wetter`-Datensatz, bereinige ihn wenn nötig (`NA`-Werte entfernen) und importiere auch den Datensatz `order_52252_legend.csv` und verbinde die Datensätze mit einem join via dem Stationskürzel.
 
 
 
 ```{r, echo = T, message = F}
 
-load("09_PrePro1/data/wetter.rda")
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                     col_types = list(
+                       col_character(),    
+                       col_datetime(format = "%Y%m%d%H"),
+                       col_double()
+                       )
+                     )
 
 wetter <- wetter %>%
   filter(!is.na(stn)) %>%
-  filter(!is.na(datetime))
+  filter(!is.na(time))
 
 station_meta <- read_delim("09_PrePro1/data/order_52252_legend.csv",";")
 
@@ -41,7 +43,7 @@ wetter <- left_join(wetter,station_meta,by = "stn")
 
 
 
-#### Aufgabe 1
+### Aufgabe 1
 
 Erstelle zwei Hilfsspalten (convenience variables) "Jahr" und "Monat". Filtere auf ein beliebiges Jahr und zwei beliebige Monate. Speichere den gefilterten Datensatz in einer neuen Variablen ab. Verwende diesen Datensatz für alle folgenden Übungen.
 
@@ -51,16 +53,16 @@ Erstelle zwei Hilfsspalten (convenience variables) "Jahr" und "Monat". Filtere a
 
 wetter_fil <- wetter %>%
   mutate(
-    year = year(datetime),
-    month = month(datetime)
+    year = year(time),
+    month = month(time)
   ) %>%
   filter(year == 2000 & month < 3)
 ```
 
 
-#### Aufgabe 2
+### Aufgabe 2
 
-Erstelle ein Scatterplot (`datetime` vs. `tre200h0`) wobei die Punkte aufgrund ihrer Meereshöhe eingefärbt werden sollen. Tiefe Werte sollen dabei blau eingefärbt werden und hohe Werte rot. Verkleinere die Punkte um übermässiges Überplotten der Punkten zu vermeiden. Weiter sollen im Abstand von zwei Wochen die Kalenderwochen auf der Achse erscheinen. 
+Erstelle ein Scatterplot (`time` vs. `tre200h0`) wobei die Punkte aufgrund ihrer Meereshöhe eingefärbt werden sollen. Tiefe Werte sollen dabei blau eingefärbt werden und hohe Werte rot. Verkleinere die Punkte um übermässiges Überplotten der Punkten zu vermeiden. Weiter sollen im Abstand von zwei Wochen die Kalenderwochen auf der Achse erscheinen. 
 
 Speichere den Plot in einer Variabel `p` ab.
 
@@ -68,7 +70,7 @@ Speichere den Plot in einer Variabel `p` ab.
 
 # Lösung Aufgabe 2
 
-p <- ggplot(wetter_fil, aes(datetime,tre200h0, colour = Meereshoehe)) +
+p <- ggplot(wetter_fil, aes(time,tre200h0, colour = Meereshoehe)) +
   geom_point(size = 0.5) +
   labs(x = "Kalenderwoche", y = "Temperatur in ° Celsius") +
   scale_color_continuous(low = "blue", high = "red") +
@@ -80,7 +82,7 @@ p
 
 
 
-#### Aufgabe 3
+### Aufgabe 3
 
 Füge am obigen Plot (gespeichert als Variabel `p`) eine schwarze, gestrichelte Trendlinie hinzu und aktualisiere `p` (`p <- p + ...`).
 
@@ -95,9 +97,9 @@ p
 ```
 
 
-#### Aufgabe 4
+### Aufgabe 4
 
-Positioniere die Legende oberhalb des Plots und lege sie quer (nutze dazu `theme()`). Aktualisiere `p`.
+Positioniere die Legende oberhalb des Plots und lege sie quer (nutze dazu `theme()` mit `legend.direction` und `legend.position`). Speichere diese Änderungen in `p`.
 
 ```{r, message=F}
 
@@ -113,7 +115,7 @@ p
 
 
 
-#### Aufgabe 5 (für Ambitionierte)
+### Aufgabe 5 (für ambitionierte)
 
 Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). Aktualisiere `p` an dieser Stelle noch nicht.
 
@@ -122,12 +124,14 @@ Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studi
 # Lösung Aufgabe 5
 
 p +
-  scale_y_continuous(labels = function(x)paste0(x,"°C"))
+  scale_y_continuous(labels = function(x)paste0(x,"°C")) +
+  labs(x = "Kalenderwoche", y = "Temperatur")
+
 
 ```
 
 
-#### Aufgabe 6 (ebenfalls für Ambitionierte)
+### Aufgabe 6 (für *noch* ambitioniertere)
 
 Füge dem Plot eine zweite, korrekt ausgerichtete Achse mit Kelvin oder Farenheit hinzu (siehe `sec_axis`). Wenn du es vorherigen Übung schon geschafft hast, setze auch hier die Einheit (`K` rep. `°F`) hinter die Werte auf der Achse. 
 
@@ -137,8 +141,9 @@ $$°F = °C × \frac{9}{5} + 32$$
 ```{r, message=F}
 # Lösung Aufgabe 6
 
-p <- p + 
-  scale_y_continuous(labels = function(x)paste0(x,"°C"),sec.axis = sec_axis(~.*(9/5)+32,name = "Temperatur in ° Farenheit",labels = function(x)paste0(x,"° F")))
+p <- p +
+  labs(x = "Kalenderwoche", y = "Temperatur") +
+  scale_y_continuous(labels = function(x)paste0(x,"°C"),sec.axis = sec_axis(~.*(9/5)+32,name = "Temperatur",labels = function(x)paste0(x,"° F")))
 
 
 p
@@ -147,7 +152,7 @@ p
 
 
 
-#### Aufgabe 7
+### Aufgabe 7
 
 Jetzt verlassen wir den scatterplot und machen einen Boxplot mit den Temperaturdaten. Färbe die Boxplots wieder in Abhängigkeit der Meereshöhe ein. 
 
@@ -161,7 +166,7 @@ Jetzt verlassen wir den scatterplot und machen einen Boxplot mit den Temperaturd
 
 # Lösung Aufgabe 7
 
-wetter_fil <- mutate(wetter_fil,monat = month(datetime,label = T,abbr = F))
+wetter_fil <- mutate(wetter_fil,monat = month(time,label = T,abbr = F))
 
 
 ggplot(wetter_fil, aes(stn,tre200h0, fill = Meereshoehe)) +
@@ -173,7 +178,7 @@ ggplot(wetter_fil, aes(stn,tre200h0, fill = Meereshoehe)) +
 ```
 
 
-#### Aufgabe 8
+### Aufgabe 8
 
 Teile die Stationen in verschiedene Höhenlagen ein (Tieflage [< 450 m], Mittellage [450 - 1000 m] und Hochlage [> 1'000 m]). Vergleiche die Verteilung der Temperaturwerte in den verschiedenen Lagen.  
 
@@ -200,7 +205,7 @@ ggplot(wetter_fil, aes(Name,tre200h0)) +
 
 
 
-#### Aufgabe 9
+### Aufgabe 9
 
 
 Als letzter wichtiger Plottyp noch zwei Übungen zum Histogramm. Erstelle ein Histogramm `geom_histogram()` mit den Temperaturwerten. Färbe Säulen aufgrund ihrer Höhenlage ein und die Begrenzungslinie weiss. Setze die Klassenbreite auf 1 Grad.
@@ -218,7 +223,7 @@ h
 ```
 
 
-#### Aufgabe 10
+### Aufgabe 10
 
 Erstelle `facets` aufgrund der Höhenlage. Setze noch eine Vertikale linie beim Nullpunkt und stelle den x-Achsenabschnit symmetrisch ein (z.B -30 bis + 30°C).
 
@@ -231,26 +236,9 @@ h +
   geom_vline(xintercept = 0, lty = 2, alpha = 0.5) +
   facet_wrap(~Lage) +
   lims(x = c(-30,30)) +
-  theme(legend.direction = "horizontal",legend.position = "top")
+  theme(legend.position = "none")
 
 ```
-
-
-### Lösung (R-Code)
-
-[RCode als Download](12_InfoVis2/RFiles/Uebung_A.R)
-
-```{r code=readLines('12_InfoVis2/RFiles/Uebung_A.R'), echo=T, eval=F}
-```
-
-
-
-### Libraries
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
-```
-
-
 
 
 

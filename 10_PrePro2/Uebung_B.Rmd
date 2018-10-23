@@ -6,10 +6,6 @@ knitr::opts_chunk$set(collapse=TRUE)
 
 ## Übung B
 
-### Aufgabenstellung
-
-
-
 
 ```{r,message=F}
 library(tidyverse)
@@ -19,7 +15,7 @@ library(stringr)
 
 
 
-#### Aufgabe 1
+### Aufgabe 1
 
 Gegeben sind die Daten von drei Sensoren ([sensor1.csv](10_PrePro2/data/sensor1.csv), [sensor2.csv](10_PrePro2/data/sensor2.csv), [sensor3.csv](10_PrePro2/data/sensor3.csv)). Lade die Datensätze runter und lese sie ein.
 
@@ -34,7 +30,7 @@ sensor3 <- read_delim("10_PrePro2/data/sensor3.csv",";")
 
 ```
 
-#### Aufgabe 2
+### Aufgabe 2
 
 
 
@@ -82,7 +78,7 @@ knitr::kable(sensor_all)
 
 
 
-#### Aufgabe 3
+### Aufgabe 3
 
 Importiere die Datei [sensor_1_fail.csv](10_PrePro2/data/sensor_fail.csv) in `R`.
 
@@ -135,7 +131,7 @@ sensor_fail_corr <- sensor_fail %>%
 ```
 
 
-#### Aufgabe 4
+### Aufgabe 4
 
 
 Warum spielt das es eine Rolle, ob `0` oder `NA` erfasst wird? Vergleiche dazu die Mittlere Temperatur / Feuchtigkeit vor und nach der Korrektur. 
@@ -162,17 +158,4 @@ mean(sensor_fail_corr$Humidity, na.rm = T)
 ```
 
 
-### Lösung (R-Code)
-
-[R-Code als Download](10_PrePro2/RFiles/Uebung_B.R)
-
-
-```{r code=readLines('10_PrePro2/RFiles/Uebung_B.R'), echo=T, eval=F, include = T}
-```
-
-
-### Quellen
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
-```
 
