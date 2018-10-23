@@ -15,18 +15,28 @@ Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Datenei
 Führt mit dem Datensatz [competition.csv](13_Statistik1/data/competition.csv) einen einfaktoriellen ANOVA selbst durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse)
 
 
+<<<<<<< HEAD
 ###	Aufgabe 4: (egel)
+=======
+<!-- @nils ich denke aufgabe 4 und 5 könnten als weitere Teilaufgaben von aufgabe 1 und 2 gesehen werden -->
 
-Führen Sie einen beliebigen $\chi^2$-Test mit dem Datensatz novanimal.csv durch und interpretieren Sie die Ergebnisse. Z. B. Unterscheiden sich die Geschlechter bezüglich ihrer Menü-Wahl? Gibt es Unterschiede in der Hochschulzugehörigkeit und den Geschlechtern?
+####	Aufgabe 4: (egel)
+>>>>>>> 2cb33fabb8bf1ef4b0d6c90d2291d53e1f344b05
+
+Unterscheiden sich die novanimal-Stichprobe signifikant von der gesamten Population? 
+* Es wird angenommen, dass 15 Prozent aller Mitarbeitenden mit CampusCard weiblich sind. 16 Prozent der Population (N = 2138) sind Mitarbeiter und 37 Prozent Studenten. 
+*Führt einen $\chi^2$-Test und anschliessend einen exakten Fishers-Test mit dem Datensatz novanimal.csv durch.
+*Fasst die Ergebnisse in einem Satz zusammen.
+*Interpretiert das odds ratio in einem weiteren Satz.
 
 
 ###	Aufgabe 5: t-Test (egel)
 
-Führen sie einen t-Test durch. Werden in den Fleischwoche (Basiswochen) mehr Gerichte verkauft als in den vegetarischen Wochen (Interventionswochen)?
+Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?
+* Führt einen t-Test mit dem Datensatz novanimal.csv durch.
 * Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
-* Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
-* Visualisieren mit einem Boxplot
-
+* Visualisiere die Ergenisse mit einem Boxplot
+* Fasst die Ergebnisse in einem Satz zusammen
 
 
 

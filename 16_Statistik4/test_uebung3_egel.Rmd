@@ -1,0 +1,38 @@
+---
+title: "Übungen Statistik"
+author: "Gian-Andrea Egeler"
+date: "25 9 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(readr)
+library(dplyr)
+library(ggfortify)
+library(jtools)
+
+
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+
+```
+
+
+### Aufgabe 5: genestete Modelle
+
+
+Führe mit dem Datensatz novanimal.csv eine  
+
+### Musterlösung Aufgabe 5
+
+
+```{r}
+
+
+
+```
+

@@ -1,20 +1,9 @@
 
 ## Beschreibung Forschungsprojekt NOVANIMAL (NFP69)
 
+Im Forschungsprojekt NOVANIMAL wird u.a. der Frage nachgegangen, was es braucht, damit Menschen freiwillig weniger tierische Produkte konsumieren? Ein interessanter Ansatzpunkt ist die Ausser-Haus-Verpflegung. Gemäss der ersten in den Jahren 2014/2015 durchgeführten nationalen Ernährungserhebung menuCH essen 70 % der Bevölkerung zwischen 18 und 75 Jahren am Mittag auswärts (Bochud et al. 2017). Daher rückt die Gastronomie als zentraler Akteur einer innovativen und nachhaltigen Ernährungswirtschaft ins Blickfeld. Welche Innovationen in der Gastronomie könnten dazu beitragen, den Pro-Kopf-Verbrauch an tierischen Nahrungsmitteln zu senken? 
 
-### Innovationen für zukunftsorientierte Ernährung und Lebensmittelproduktion
-
-Die Menschen essen weltweit immer mehr Fleisch- und Milchprodukte [@food_and_agriculture_organization_of_the_united_nations_statistics_faostat_commodity_2017]. Aus ökologischen und gesundheitlichen Gründen ist diese Entwicklung problematisch, denn für die Produktion von tierischen Nahrungsmitteln braucht es mehr Boden, Wasser und Energie als bei der Produktion pflanzlicher Nahrungsmittel und auch die Umweltbelastungen sind höher als bei der pflanzlichen Produktion [@westhoek_food_2014]. Zudem sind tierische Nahrungsmittel energiedicht und können zu Übergewicht und zu entsprechenden Folgeerkrankungen beitragen. Des Weiteren stehen manche Fleischsorten im Verdacht, das Risiko für Krebs- und Herzkreislaufkrankheiten zu erhöhen [@tilman_global_2014]. 
-
-Der Pro-Kopf-Konsum an Fleisch und Milch ist in der Schweiz deutlich höher als im globalen Durchschnitt. Aus ökologischen und gesundheitlichen Gründen ist auch in der Schweiz ein moderater Konsum wünschenswert [@johnston_understanding_2014; @macdiarmid_is_2013; @marlow_diet_2009; @tukker_environmental_2011]. Was aber heisst das für eine liberale Gesellschaft [@kamm_ernahrung_2015]? Was braucht es, damit Menschen freiwillig weniger tierische Produkte konsumieren? 
-
-Ein interessanter Ansatzpunkt ist die Ausser-Haus-Verpflegung. Gemäss der ersten, in den Jahren 2014/2015 durchgeführten nationalen Ernährungserhebung menuCH, essen 70% der Bevölkerung zwischen 18 und 75 Jahren am Mittag auswärts [@bochud_anthropometric_2017]. Daher rückt die Gastronomie als zentraler Akteur einer innovativen und nachhaltigen Ernährungswirtschaft ins Blickfeld. Welche Innovationen in der Gastronomie könnten dazu beitragen, den Pro-Kopf-Verbrauch an tierischen Nahrungsmitteln zu senken? 
-
-Der Fokus liegt in diesem Teilprojekt auf der Schweizer Gemeinschaftsgastronomie [@forschungsgruppe_good_pracitice__gemeinschaftsgastronomie_schweizer_2015]. Forschungsleitend ist die Frage, wie die Gäste dazu bewogen werden können, häufiger ressourcenschonende vegetarische oder ausschliesslich pflanzliche Gerichte zu wählen.
-
-Zusammen mit den Praxispartnern, einem Catering-Unternehmen und dem Facility Management einer Hochschule, wurde ein Experiment vorbereitet, das als Pilotversuch in zwei Hochschulmensen durchgeführt wird. Konkret wird untersucht, wie die Gäste auf ein verändertes Menü-Angebot mit einem höheren Anteil an ressourcenschonenden vegetarischen oder rein pflanzlichen Gerichten reagieren. Eine besondere Herausforderung ist, dieses erhöhte Angebot in vergleichbarer Qualität wie die der fleischhaltigen Gerichte anzubieten. Das Küchenteam, das die Gerichte zubereitet, muss dazu selber innovativ und kreativ sein bzw. bereit sein, Neues auszuprobieren [@edwards_foodservice_2013]. 
-
-Das Experiment fand im Herbstsemester 2017 während 12 Wochen statt und bestand aus zwei Mensazyklen à 6 Wochen. Über den gesamten Untersuchungszeitraum wurden insgesamt 90 verschiedene Gerichte angeboten. Das Referenzangebot bestand aus zwei fleisch- oder fischhaltigen Menüs und einem vegetarischen Angebot. Das veränderte Menü-(Interventions)-Angebot kehrte das Verhältnis um und beinhaltete ein ausschliesslich pflanzliches, ein vegetarisches und ein fleisch- oder fischhaltiges Gericht. Referenz- und Interventionsangebot wechselten wöchentlich ab. In der Referenz- und in der Basisperiode konnten die Gäste jeweils auf ein Buffetangebot ausweichen, indem sie ihre Mahlzeit aus warmen und kalten Komponenten selber zusammenstellen können. Die Gerichte wurden über drei vorgegebene Menülinien (Favorite, Kitchen, World) randomisiert angeboten.
+Dazu wurde u.a. ein Experiment in zwei Hochschulmensen durchgeführt. Forschungsleitend war die Frage, wie die Gäste dazu bewogen werden können, häufiger vegetarische oder vegane Gerichte zu wählen. Konkret wurde untersucht, wie die Gäste auf ein verändertes Menü-Angebot mit einem höheren Anteil an vegetarischen und veganen Gerichten reagieren. Das Experiment fand während 12 Wochen statt und bestand aus zwei Mensazyklen à 6 Wochen. Über den gesamten Untersuchungszeitraum werden insgesamt 90 verschiedene Gerichte angeboten. In den 6 Referenz- bzw. Basiswochen wurden zwei fleisch- oder fischhaltige Menüs und ein vegetarisches Menü angeboten. In den 6 Interventionswochen wurde das Verhältnis umgekehrt und es wurden ein veganes, ein vegetarisches und ein fleisch- oder fischhaltiges Gericht angeboten. Basis- und Interventionsangebote wechselten wöchentlich ab. Während der gesamten 12 Wochen konnten die Gäste jeweils auf ein Buffet ausweichen und ihre Mahlzeit aus warmen und kalten Komponenten selber zusammenstellen. Die Gerichte wurden über drei vorgegebene Menülinien  (F, K, W) randomisiert angeboten.
 
 ![Die Abbildung zeigt das Versuchsdesign der ersten 6 Experimentalwochen (Kalenderwoche 40 bis 45).](13_Statistik1/design_experiment.png)
 
@@ -38,31 +27,26 @@ Folgende Variablen sind im Datensatz:
 |  "week" | Kalenderwoche |
 |  "year" | Kalenderjahr  |
 |  "meal_name" | Beschreibung der angebotenen Mahlzeit  |
-|  "article_description" | Beschreibung der Menü-Linie (Favorite, Hot and Cold Buffet, Kitchen, Locals<sup>1</sup>, World)  |
-|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Hot and Cold, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
-|  "condit" | Beschreibung der Experimentalwochen (Basis- und Interventionswochen)  |
+|  "article_description" | Beschreibung der Menü-Linie (F, Buffet, K, Locals<sup>1</sup>, W)  |
+|  "label_content" | Beschreibung des Menü-Inhalts (Fleisch<sup>2</sup>, Buffet, Vegan<sup>3</sup>, Vegetarisch<sup>4</sup>)  |
+|  "condit" | Beschreibung der Experimentwochen (Basis- oder Interventionswoche)  |
 |  "card_num" | anonymisierte Kartennummer  |
-|  "gender" | Geschlecht (F,M)  |
-|  "member" | Hochschulzugehörigkeit (Studierdene, Mitarbeitende, "Lernende", "Spezialkarten")  |
+|  "gender" | Geschlecht (F, M)  |
+|  "member" | Hochschulzugehörigkeit (Studierende, Mitarbeitende)  |
 |  "age" |  Alter in Jahren |
 |  "price_article" |  Preis des gekauften Artikels |
 |  "total_amount_pay" | Total bezahlter Betrag  |
-|  "pay_description" | Bezahlungsart (Cash oder Badge (Debit))  |
-|  "shop_description" | Ort der Mensa (Grüental oder Vista)  |
+|  "pay_description" | Bezahlungsart (Badge (Debit-Karte))  |
+|  "shop_description" | Ort der Mensa (GR oder VS)  |
 |  "tot_ubp" | Umweltbelastungspunkte pro Gericht  |
-|  "buffet_animal" | Anzahl fleischhaltiger Produkte auf dem Hot and Cold Buffet |
+|  "buffet_animal" | Anzahl fleischhaltiger Produkte auf dem Buffet |
 
 
 
 ### Bemerkungen
 
-1. Locals (Local Favorite, Local Kitchen, Local World) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
+1. Locals (Local F, Local K, Local W) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
 2. hier werden Gerichte mit Fisch & Geflügel als Fleisch zusammengefasst.
-3. Vegane Menüs sind ausschliesslich pflanzliche Gerichte. Im Exeriment wurde zwischen pflanzlich substituierten und authentisch, eigenständige Gerichte unterschieden
-4. Vegetarische Menüs sind ovo-lakto-vegetarische Gerichte.
-
-
-
-
-
+3. Vegane Gerichte enthalten ausschliesslich pflanzliche Zutaten. Im Exeriment wurde zwischen Gerichte mit pflanzlichen Fleischsubstituten und authentischen, eigenständigen veganen Gerichten unterschieden
+4. Vegetarisch bedeutet ovo-lakto-vegetarisch, d.h. die Gerichte enthalten Eier und/oder Milchprodukte 
 

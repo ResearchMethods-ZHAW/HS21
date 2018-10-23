@@ -1,0 +1,795 @@
+--- 
+title: "Research Methods"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+#output: bookdown::gitbook
+documentclass: book
+bibliography: [00_Admin/book.bib, 00_Admin/packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Begleitmaterial zum Modul 'Research Methods' "
+---
+
+# Einleitung
+
+
+Das Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).
+
+Auf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.
+
+
+
+
+```{r, include=F, message=F}
+# Set Root Directory / Working directory to Project folder for all Files (if M-K)
+knitr::opts_knit$set(root.dir = "/home/rata/ResearchMethods")
+```
+
+
+```{r, include=F, message=F}
+
+
+
+# Allow duplicate Labels so that calling purl() does not create an error
+# https://stackoverflow.com/q/36868287/4139249
+options(knitr.duplicate.label = 'allow')
+
+# purl all Rmd Documents (with some exceptions) and store them in a Subfolder /RFiles
+# Document cannot be knitted if the folder "RFiles" does not exist!
+library(stringr)
+
+rmds <- list.files(pattern = ".Rmd",recursive = T)
+rmds <- rmds[!(grepl("ResearchMethods",rmds) | grepl("_Rcode",rmds) | grepl("99_",rmds)| grepl("index",rmds)| grepl("Archive",rmds)| grepl("Admin",rmds))]
+
+for (file in rmds){
+  file_r <- gsub("Rmd","R",file)                          # change fileextension from .rmd to r
+  file_r <- str_split_fixed(file_r,"/",Inf)               # split path at /
+  file_r <- append(file_r, "RFiles",length(file_r)-1)     # append Foldername "RFiles" in 2nd last pos
+  file_r <- paste(file_r,collapse = "/")                  # collapse vector to string
+  if(file.exists(file_r)){
+    file.remove(file_r)
+  }
+  knitr::purl(file,documentation = 0,output = file_r)
+}
+
+```
+
+
+
+
+```{r include=FALSE, message=F}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr','forcats','carData', 'rmarkdown','tidyverse','plotly','car','ggfortify','boot','pander','scales','multicomp','ggExtra','lubridate','dplyr','purrr','readr','tidyr','tibble','ggplot2','webshot','bindrcpp','GGally','hier.part','gtools','MuMIn','nlme','lme4','languageR','lmerTest','rms','SparseM','Hmisc','Formula','survival','lattice','Matrix'
+), '00_Admin/packages.bib')
+
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Statistik 1 (30.10.17)
+
+In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der frequentist-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Abschliessend gibt es einen ersten Einstieg in die Varianzanalyse (ANOVA).
+
+## Folien
+
+
+<!-- In diesem Teil stimmt die Header Hierarchie überhaupt nicht -->
+
+#### Hypothesen (mit Blumen)
+
+
+
+```{r}
+sorteA = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14) 
+sorteB = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+
+sorteA = c(15, 19, 12, 10, 8, 5, 9, 18, 8, 14) 
+sorteB = c(12, 13, 15, 6, 8, 10, 12, 5, 13, 10) 
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+
+sorteA = c(15, 19, 12, 9, 8, 10, 13, 15, 5, 16) 
+sorteB = c(16, 15, 16, 9, 8, 10, 12, 13, 13, 10)
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+
+
+sorteA = c(15, 19, 12, 9, 8, 5, 13, 15, 5, 7) 
+sorteB = c(16, 15, 16, 9, 12, 10, 12, 13, 13, 15)
+
+mean(sorteA)
+mean(sorteB)
+
+mean(sorteA) - mean(sorteB)
+```
+
+
+
+
+
+### Assoziation zwei kategorialer Variabeln (Haarfarbe vs. Augenfarbe)
+
+#### Chi-Quadrat-Test 
+
+
+```{r}
+haar_augen <- data.frame( 
+  row.names = c("Helle Haare", "Dunkle Haare"),
+  Blaue_Augen = c(38,11),
+  Braune_Augen = c(14,51)
+  )
+
+haar_augen
+
+qchisq(0.95,1)
+
+count <- as.matrix(haar_augen)
+
+chisq.test(count)
+```
+
+#### Fisher's exact test
+
+```{r}
+count <- matrix(c(3,5,9,1),nrow=2)
+count
+fisher.test(count)
+```
+
+
+
+## t-Test (mit Blumen)
+
+```{r}
+blumen_sorte <- data.frame(
+  a = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14),
+  b = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+)
+```
+
+
+#### Student's t-Test für zwei unabhängige Proben
+
+```{r}
+t.test(blumen_sorte$a,blumen_sorte$b,var.equal = T)
+```
+
+
+
+#### Welch's t-test für zwei unabhängige Proben
+
+```{r}
+t.test(blumen_sorte$a,blumen_sorte$b,var.equal = F)
+
+t.test(blumen_sorte$a,blumen_sorte$b)
+
+```
+
+### Einseitig vs. zweiseitiger t-Test
+
+```{r}
+t.test(blumen_sorte$a,blumen_sorte$b) # Zweiseitig
+
+
+t.test(blumen_sorte$a,blumen_sorte$b,alternative = "greater") # Zweiseitig
+
+t.test(blumen_sorte$a,blumen_sorte$b, alternative = "less") # Zweiseitig
+
+```
+
+### Gepaarter t-Test
+
+
+```{r}
+blumen_jahr <- data.frame(
+  jahr1 = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14),
+  jahr2 = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+)
+
+testRes <- t.test(blumen_jahr$jahr1,blumen_jahr$jahr2, paired=T) #gepaarter t-Test
+
+testRes
+
+knitr::kable(broom::tidy(testRes))
+```
+
+
+#### Parametrische vs. nicht-parametrische Verfahren
+
+
+### Klassische Tests für Normalität
+
+```{r}
+shapiro.test(blumen_sorte$a)
+```
+
+
+### Klassische Tests für Varianzhomogenität
+
+```{r}
+var.test(blumen_sorte$a,blumen_sorte$b)
+library(car)
+leveneTest(blumen_sorte$a,blumen_sorte$b,center=mean)
+
+```
+
+### Visuelle Inspektion der Daten
+
+
+```{r}
+boxplot(blumen_sorte$a,blumen_sorte$b)
+
+hist(blumen_sorte$a)
+
+hist(blumen_sorte$b)
+
+
+```
+
+### "Nicht-parametrische" Verfahren (äquivalent zu t-Test)
+
+```{r}
+wilcox.test(blumen_sorte$a,blumen_sorte$b)
+```
+
+
+### Randomisierungs-t-Test
+
+```{r}
+#siehe R-code im praktischen Teil
+```
+> Rcode noch einfügen
+
+### Transformationen
+
+> R Code noch einfügen
+
+
+#### Anova
+
+
+```{r}
+library(tidyverse)
+
+blumen_long <- blumen_sorte %>%
+  gather(cultivar,size)
+
+blumen_long %>%
+  group_by(cultivar) %>%
+  mutate(index = row_number()) %>%
+  mutate(group_mean = mean(size)) %>%
+  ungroup() %>%
+  mutate(overall_mean = mean(size)) %>%
+  ggplot(aes(colour = cultivar)) +
+  geom_point(aes(index,size))  +
+  geom_hline(aes(colour = cultivar,yintercept = group_mean)) +
+  geom_hline(aes(colour = "Overall mean",yintercept = overall_mean)) +
+  facet_grid(~cultivar) +
+  labs(colour = "Legend") +
+  geom_segment(aes(x = index,y = size,xend = index, yend = group_mean))
+```
+
+
+### normaler t-Test
+
+```{r}
+t.test(size~cultivar, blumen_long, var.equal=T)
+```
+
+### als ANOVA
+
+```{r}
+summary(aov(size~cultivar,blumen_long))
+```
+ 
+
+### Zum Abschluss eine "echte" ANOVA mit drei Sorten
+
+
+```{r}
+set.seed(1)
+
+sorteC <- data.frame(cultivar = rep("c",10),size = as.integer(rnorm(10,17,5)),stringsAsFactors = F)
+
+blumen_long <- bind_rows(blumen_long,sorteC)
+
+
+summary(aov(size~cultivar,blumen_long))
+
+```
+
+
+
+<!--chapter:end:13_Statistik1/Folien.Rmd-->
+
+```{r, echo = F, purl = F}
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+# knitr::opts_knit$set(root.dir = "13_Statistik1") 
+library(knitr)
+
+```
+
+
+
+
+
+## Demo: Stastische Tests
+
+[Demoscript als Download](13_Statistik1/RFiles/Demo_Tests.R)
+
+### Assoziationstests
+
+```{r, message = F}
+library(car)
+library(tidyverse)
+
+library(ggfortify)
+
+select <- dplyr::select
+
+```
+
+
+
+
+```{r}
+
+# Chi-Quadrat-Test
+
+# Ermitteln des kritischen Wertes für 95 perzentile und 1 FG
+qchisq(0.95,1)
+
+
+```
+
+```{r}
+
+# Datensatz von Folie 28: Test auf Assoziation zwischen zwei kategorialen Variablen
+# Frage: Wie hängen zwei Eigenschaften des gleichen Objektes zusammen?
+
+count <- matrix(c(38,14,11,51),nrow=2)
+
+count
+
+dimnames(count) <- list(c("helle_haare","hunkle_haare"),c("blaue_augen","braune_augen"))
+
+count
+
+chisq.test(count)
+
+chisq.test(count,correct = F)
+
+fisher.test(count)
+```
+
+
+
+
+###	t-Test
+
+
+```{r}
+
+# Datensatz "Blumen" erstellen für t-Test
+
+blume <-data.frame(
+  sorte_a = c(20,19,25,10,8,15,13,18,11,14),
+  sorte_b = c(12,15,16,7,8,10,12,11,13,10)
+  )
+
+blume
+summary(blume)
+
+```
+
+
+#### Tests mit einer *breiten* (wide) Tabelle
+```{r}
+
+
+
+boxplot(blume$sorte_a,blume$sorte_b)
+
+hist(blume$sorte_a)
+
+hist(blume$sorte_b)
+
+t.test(blume$sorte_a,blume$sorte_b) #zweiseitig
+t.test(blume$sorte_a,blume$sorte_b, alternative="greater") #einseitig
+t.test(blume$sorte_a,blume$sorte_b, alternative="less") #einseitig
+t.test(blume$sorte_a,blume$sorte_b, var.equal=T) #Varianzen gleich, klassischer t-Test
+t.test(blume$sorte_a,blume$sorte_b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default
+t.test(blume$sorte_a,blume$sorte_b, paired=T) #gepaarter t-Test 
+t.test(blume$sorte_a,blume$sorte_b, paired=T,alternative="greater") #gepaarter t-Test 
+
+shapiro.test(blume$sorte_b)
+
+wilcox.test(blume$sorte_a,blume$sorte_b)
+
+```
+
+
+#### Tests mit einer *langen* (long) Tabelle
+```{r}
+# T-Tests mit einer langen (long) Tabelle
+
+# breit zu long mit tidyr::gather
+
+blume_long <- gather(blume,sorte,groesse)
+
+# Für eine Long table können wir auch gut ggplot verwenden
+
+ggplot(blume_long, aes(sorte, groesse)) +
+  geom_boxplot()
+
+ggplot(blume_long, aes(groesse)) +
+  geom_histogram(binwidth = 1, colour = "white")
+
+ggplot(blume_long, aes(groesse)) +
+  geom_histogram(binwidth = 2, colour = "white")+
+  facet_grid(sorte~.)
+
+ggplot(blume_long, aes(groesse, fill = sorte)) +
+  geom_density(alpha = 0.5)
+
+
+
+
+t.test(groesse~sorte, blume_long)
+
+# Optionen "alternative" und "var.equal" werden angepasst analog der "wide" table
+
+```
+
+
+
+
+
+### Randomisierung
+
+Datensatz: [beetle.csv](13_Statistik1/data/beetle.csv)
+
+```{r}
+# Randomisierung
+
+beetles <- read_delim("13_Statistik1/data/beetle.csv", ",")
+
+
+ggplot(beetles, aes(SIZE, BEETLES)) +
+  geom_boxplot()
+
+
+ggplot(beetles, aes(SIZE, sqrt(BEETLES))) +
+  geom_boxplot()
+
+
+ggplot(beetles, aes(SIZE, BEETLES)) +
+  geom_boxplot() +
+  scale_y_sqrt()
+
+
+# extract specific inidies from t-test
+stat <- function(data, indices) {
+  t.test <- t.test(BEETLES~SIZE, data)$"stat"
+  t.test
+}
+
+
+# Random generator auf der Basis eines Datensatzes
+rand.gen <- function(data,mle) {
+  out <- data
+  out$SIZE <- sample(out$SIZE, replace=F)
+  out
+}
+
+
+library(boot)
+
+# boot(): bootstrap resampling
+
+beetles.boot <- boot(data = beetles,
+                     statistic = stat, 
+                     R=5000, 
+                     sim="parametric", 
+                     ran.gen=rand.gen)
+
+
+print(beetles.boot)
+
+
+
+plot(beetles.boot)
+
+
+
+tval <- length(beetles.boot[beetles.boot$t >= abs(beetles.boot$t0)])+1
+
+tval
+
+tval/(beetles.boot$R + 1)
+
+```
+
+
+###	Voraussetzungen parametrischer Verfahren
+
+
+#### F-Test
+```{r}
+
+# F-Test
+
+var.test(blume$sorte_a,blume$sorte_b)
+var.test(groesse~sorte, blume_long)
+
+```
+
+
+#### Levene Test
+```{r}
+
+# Levene Test 
+
+library(car)
+leveneTest(blume$sorte_a,blume$sorte_b,center=mean)
+leveneTest(groesse~sorte, blume_long)
+
+```
+
+#### Visuelle Inspektion / Transformation
+
+```{r}
+
+# Visuelle Inspektion
+
+sleep <- msleep %>%
+  filter(vore %in% c("carni","herbi")) %>%
+  dplyr::select(name,vore,bodywt)
+
+
+ggplot(sleep, aes(vore, bodywt, group = vore)) +
+  geom_boxplot()
+
+
+sleep <- sleep %>%
+  mutate(
+    bodywt_log10 = log10(bodywt),
+    bodywt_sqrt = sqrt(bodywt),
+    bodywt_4throot = bodywt^0.25
+  ) %>%
+  gather(key,val, -c(name,vore))
+
+sleep
+
+
+ggplot(sleep, aes(vore, val, group = vore)) +
+  geom_boxplot() +
+  facet_wrap(~key, scales = "free_y")
+
+
+
+
+```
+
+
+###	Einstieg ANOVA
+
+#### ANOVA mit "Blumen"-Daten
+
+```{r}
+
+# ANOVA mit "Blumen"-Daten
+
+ggplot(blume_long, aes(sorte, groesse)) +
+  geom_boxplot()
+
+t.test(groesse~sorte, blume_long, var.equal=T)
+
+#now as ANOVA
+
+aov(groesse~sorte,blume_long)
+summary(aov(groesse~sorte,blume_long)) #F-value = 4.325
+summary.lm(aov(groesse~sorte,blume_long))
+
+lm(groesse~sorte,blume_long)
+summary(lm(groesse~sorte,blume_long))
+
+# Compare the above results of t.test, aov and lm and how the relevant data are displayed
+
+# Now check with the F-distribution:
+# What would have been the critical value for a significant result at p < 0.05?
+
+qf(0.95,1,18)
+
+# which is the p-value associated with the obtained F-value?
+
+1-pf(4.325,1,18) #probability of obtaining F=4,325 or greater
+
+```
+
+
+```{r}
+## Optional für Demo
+
+#overall mean and residuals
+
+blume_long$index <- 1:20
+
+blume_long <- blume_long %>%
+  group_by(sorte) %>%
+  mutate(
+    mean = mean(groesse)
+  )
+
+ggplot(blume_long, aes(index,groesse)) +
+  geom_point() +
+  geom_hline(aes(yintercept =  mean(groesse))) +
+  geom_segment(aes(x = index,y = groesse,xend = index,yend = mean(groesse))) +
+  labs(x = "Order",y = expression(Size~(cm^2)))
+
+#group means and residuals
+
+ggplot(blume_long, aes(index,groesse, colour = sorte)) +
+  geom_point() +
+  geom_hline(aes(yintercept = mean)) +
+  geom_segment(aes(x = index,y = groesse,xend = index,yend = mean)) +
+  labs(x = "Order",y = expression(Size~(cm^2))) +
+  facet_grid(~sorte)
+
+
+
+library(ggfortify)
+
+autoplot(aov(groesse~sorte, blume_long))
+```
+
+
+
+#### ANOVA mit Gewässerdaten
+
+Aus @logan2010 [S. 265]: Script an Tools/Packages des Moduls Research Methods angepasst
+
+Medley and Clements (1998) investigated the impact of zinc contamination (and other heavy metals) on the diversity of diatom species in the USA Rocky Mountains (from Box 8.1 of Quinn and Keough (2002)). The diversity of diatoms (number of species) and degree of zinc contamination (categorized as either of high, medium, low or natural background level) were recorded from between four and six sampling stations within each of six streams known to be polluted. These data were used to test the null hypothesis that there were no differences the diversity of diatoms between different zinc levels ($$H_0 = \mu_M = \mu_L = \mu_V = \mu; \alpha_i = 0$$)
+
+The linear effects model would be:
+
+$$\gamma_{ij} = \mu + \alpha_i + \epsilon_{ij}$$
+$$\text{diatom species diversity} = \text{overal mean} + \text{effect of zinc level} + \text{error}$$
+
+##### Step 1
+
+Import the Medley and Clements (1998) data set [medley.csv](13_Statistik1/data/medley.csv)
+```{r}
+
+# impact of zinc contamination (and other heavy metals) on the diversity of diatom species in the USA Rocky Mountains
+
+medley <- read_delim("13_Statistik1/data/medley.csv", ",")
+
+```
+
+
+##### Step 2
+
+Reorganize the levels of the categorical factor into a more logical order
+
+```{r}
+
+# Reorganize the levels of the categorical factor into a more logical order
+
+medley$ZINC <- factor(medley$ZINC, levels=c("BACK", "LOW", "MED","HIGH"), ordered=T)
+
+```
+
+##### Step 3
+
+Assess normality/homogeneity of variance using boxplot of species diversity against zinc group
+
+```{r}
+
+# Assess normality/homogeneity of variance using boxplot of species diversity against zinc group
+
+ggplot(medley, aes(ZINC, DIVERSITY)) +
+  geom_boxplot()
+```
+
+##### Step 4
+
+Assess homogeneity of variance assumption with a table and/or plot of mean vs variance
+```{r}
+
+# Assess homogeneity of variance assumption with a table and/or plot of mean vs variance
+
+medley_sry <- medley %>%
+  group_by(ZINC) %>%
+  summarise(
+    mean = mean(DIVERSITY),
+    var = var(DIVERSITY),
+    sd = sd(DIVERSITY)
+  )
+
+ggplot(medley_sry, aes(mean,var)) +
+  geom_point()
+```
+
+
+
+### Libraries
+
+```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
+```
+
+
+<!--chapter:end:13_Statistik1/Demo_Tests.Rmd-->
+
+##	Übungen
+
+
+### Aufgabenstellung
+
+####	Aufgabe 1
+
+Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test
+
+
+####	Aufgabe 2
+
+Überlegen Sie eine Hypothese, die mit einem t-Test geprüft werden kann, erheben Sie dazu die Daten, geben Sie diese ein, visualisieren Sie diese, testen auf evtl. Verletzungen der Modellannahmen, führen dann den geeigneten t-Test sowie eine nicht-parametrische Alternative durch und fassen die Ergebnisse in einem Satz zusammen
+
+
+####	Aufgabe 3: ANOVA
+
+Führt mit dem Datensatz [competition.csv](13_Statistik1/data/competition.csv) einen einfaktoriellen ANOVA selbst durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse)
+
+
+<!-- @nils ich denke aufgabe 4 und 5 könnten als weitere Teilaufgaben von aufgabe 1 und 2 gesehen werden -->
+
+####	Aufgabe 4: (egel)
+
+Führe einen beliebigen $\chi^2$-Test mit dem Datensatz novanimal.csv durch und interpretierst die Ergebnisse. Z. B. Unterscheiden sich die Geschlechter bezüglich ihrer Menü-Wahl? Gibt es Unterschiede in der Hochschulzugehörigkeit und den Geschlechtern?
+
+
+### Aufgabe 5: t-Test (egel)
+
+Führe einen t-Test durch. Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?
+* Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?
+* Führen Sie den t-Test durch und interpretieren Sie die Ergebnisse
+* Visualisiere die Ergenisse mit einem Boxplot
+
+
+
+
+### Lösung
+
+####  Musterlösung Aufgabe 3
+[Demoscript als Download](13_Statistik1/RFiles/Aufgabe3_Loesung.R)
+
+```{r child = '13_Statistik1/Aufgabe3_Loesung.Rmd', purl=F}
+```
+
+####  Musterlösung Aufgabe 4
+[Demoscript als Download](13_Statistik1/RFiles/Aufgabe4_Loesung.R)
+
+ ```{r child = '13_Statistik1/Aufgabe4_Loesung.Rmd', purl=F}
+ ```
+
+####  Musterlösung Aufgabe 5
+[Demoscript als Download](13_Statistik1/RFiles/Aufgabe5_Loesung.R)
+
+```{r child = '13_Statistik1/Aufgabe5_Loesung.Rmd', purl=F}
+```
+
+
+<!--chapter:end:13_Statistik1/Uebung.Rmd-->
+
