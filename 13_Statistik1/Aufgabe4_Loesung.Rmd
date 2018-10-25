@@ -1,5 +1,5 @@
 
-```{r}
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(readr)
 library(dplyr)
@@ -12,7 +12,6 @@ nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 ```
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
-
 
 # Unterscheiden sich unsere Stichprobe signifikant von der gesamten Population (N = 2138)? 
 pop_canteen <- group_by(nova, gender, member) %>% 
