@@ -1,0 +1,18 @@
+## Übung A (NatWis)
+
+###	Aufgabe 1
+
+Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test
+
+
+###	Aufgabe 2
+
+Überlegen Sie eine Hypothese, die mit einem t-Test geprüft werden kann, erheben Sie dazu die Daten, geben Sie diese ein, visualisieren Sie diese, testen auf evtl. Verletzungen der Modellannahmen, führen dann den geeigneten t-Test sowie eine nicht-parametrische Alternative durch und fassen die Ergebnisse in einem Satz zusammen
+
+
+###	Aufgabe 3: ANOVA
+
+Führt mit dem Datensatz [competition.csv](13_Statistik1/data/competition.csv) einen einfaktoriellen ANOVA selbst durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse)
+
+
+

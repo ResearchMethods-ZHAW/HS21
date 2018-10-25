@@ -20,23 +20,13 @@ Datensatz anbei. Analyse geht wie Beispiel unter 1.5
 
 
 
-<<<<<<< HEAD
-### Aufgabe 3: ANOVA (egel)
 
-Führt mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
-Gibt es Unterschiede zwischen den verkauften Menü-Inahlten (Fleisch oder Fisch, Hot and Cold Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die Experimentalbedingungen erklärt werden?
-
-Ihre Gesamtaufgabe ist es, aus den Daten ein zwei adäquates Modelle zu ermitteln. 
-
-**Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil**
-=======
 #### Aufgabe 3: ANOVA (egel)
 Führe mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
 Gibt es Unterschiede zwischen den verkauften Menü-Inhalten (Fleisch, Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Experimentwochen (Basis- oder Interventionwochen) erklärt werden?
 
 Deine Gesamtaufgabe ist es, aus den Daten zwei Modelle zu ermitteln. 
 
->>>>>>> 2cb33fabb8bf1ef4b0d6c90d2291d53e1f344b05
 
 Hinweise für die Analysen: 
 * Menü-Inhalt wird zu drei Gruppen zusammengefasst. Das heisst konkret die pflanzliche Gerichte werden zu vegetarische Gerichte unbenannt 

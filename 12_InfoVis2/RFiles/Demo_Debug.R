@@ -16,15 +16,9 @@ wetter_fil <- wetter %>%
     month = month(time)
   ) %>%
   filter(year == 2000 & month == 1)
+
 # Datensatz: "wetter_fil" | Beeinflussende Variabeln: "time" und "tre200h0"
 
-
-# 1. Nur erste zwei Zeilen ausführen mit Selektieren und run
-# 2. Einzelne Zeilen ein/auskommentieren: 2.1 von Hand, 2.2 mit Code>Comment/Uncomment line
-# 3. Auf Automatische Formatierung achten: Doppeltes "" macht den Rest grün...
-# 4. (x) auf Zeilen-Nummer genau lesen
-# 5. Synthax von ?scale_y_continuous() prüfen, was ist die Funktion, was ist das Argument, Bsp. anschauen
-# 6. Synthax auch im Netz noch prüfen, dann sogar über die Bildsuche, und zurück zur entsprechenden Webseite...
 
 
 ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
