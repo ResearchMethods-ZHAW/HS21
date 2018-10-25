@@ -174,7 +174,7 @@ if(output == "latex"){
 
 
 
-### Aufgabe 3: Polar Plot mit Biber Daten
+### Aufgabe 3: Polar Plot mit Passagier-Daten
 
 
 Analog Aufgabe 2, dieses Mal mit dem Datensatz [`AirPassanger`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/AirPassengers.html)
@@ -245,7 +245,7 @@ if(output == "latex"){
 } else(p)
 ```
 
-### Aufgabe 4
+### Aufgabe 4: 3D Scatterplot
 
 Erstelle einen 3D Scatterplot, ebenfalls mit `plotly`. Nutze dazu den Datensatz `trees`. Ein Beispiel für einen 3D Scatterplot findet ihr [hier](https://plot.ly/r/3d-scatter-plots/).
 

@@ -1,11 +1,17 @@
 library(tidyverse)
 library(lubridate)
 
-load("09_PrePro1/data/wetter.rda")
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                     col_types = list(
+                       col_character(),    
+                       col_datetime(format = "%Y%m%d%H"),
+                       col_double()
+                       )
+                     )
 
 wetter <- wetter %>%
   filter(!is.na(stn)) %>%
-  filter(!is.na(datetime))
+  filter(!is.na(time))
 
 station_meta <- read_delim("09_PrePro1/data/order_52252_legend.csv",";")
 
@@ -16,14 +22,14 @@ wetter <- left_join(wetter,station_meta,by = "stn")
 
 wetter_fil <- wetter %>%
   mutate(
-    year = year(datetime),
-    month = month(datetime)
+    year = year(time),
+    month = month(time)
   ) %>%
   filter(year == 2000 & month < 3)
 
 # Lösung Aufgabe 2
 
-p <- ggplot(wetter_fil, aes(datetime,tre200h0, colour = Meereshoehe)) +
+p <- ggplot(wetter_fil, aes(time,tre200h0, colour = Meereshoehe)) +
   geom_point(size = 0.5) +
   labs(x = "Kalenderwoche", y = "Temperatur in ° Celsius") +
   scale_color_continuous(low = "blue", high = "red") +
@@ -51,19 +57,22 @@ p
 # Lösung Aufgabe 5
 
 p +
-  scale_y_continuous(labels = function(x)paste0(x,"°C"))
+  scale_y_continuous(labels = function(x)paste0(x,"°C")) +
+  labs(x = "Kalenderwoche", y = "Temperatur")
+
 
 # Lösung Aufgabe 6
 
-p <- p + 
-  scale_y_continuous(labels = function(x)paste0(x,"°C"),sec.axis = sec_axis(~.*(9/5)+32,name = "Temperatur in ° Farenheit",labels = function(x)paste0(x,"° F")))
+p <- p +
+  labs(x = "Kalenderwoche", y = "Temperatur") +
+  scale_y_continuous(labels = function(x)paste0(x,"°C"),sec.axis = sec_axis(~.*(9/5)+32,name = "Temperatur",labels = function(x)paste0(x,"° F")))
 
 
 p
 
 # Lösung Aufgabe 7
 
-wetter_fil <- mutate(wetter_fil,monat = month(datetime,label = T,abbr = F))
+wetter_fil <- mutate(wetter_fil,monat = month(time,label = T,abbr = F))
 
 
 ggplot(wetter_fil, aes(stn,tre200h0, fill = Meereshoehe)) +
@@ -103,5 +112,5 @@ h +
   geom_vline(xintercept = 0, lty = 2, alpha = 0.5) +
   facet_wrap(~Lage) +
   lims(x = c(-30,30)) +
-  theme(legend.direction = "horizontal",legend.position = "top")
+  theme(legend.position = "none")
 
