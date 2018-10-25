@@ -1,94 +1,71 @@
-## Aufgabe 1
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, error = F, include = T)
+#knitr::opts_chunk$get("root.dir")
+## Lade Datei
 
-library(gmodels)
 library(tidyverse)
-
-
 nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
+## definiere theme für die Plots
 
+mytheme <- theme_classic() + 
+    theme(axis.line = element_line(color = "black"), axis.text = element_text(size = 25, color = "black"), axis.title = element_text(size = 25, color = "black"), axis.ticks = element_line(size = 1, color = "black"), axis.ticks.length = unit(.5, "cm"))
 
-
-# Unterscheiden sich unsere Stichprobe signifikant von der gesamten Population (N = 2138)? 
-pop_canteen <- group_by(nova, gender, member) %>% 
-  summarise(tot = n()) %>% # fasse die Variablen Geschlecht und Hochschulzugehörigkeit zusammen
+# Gruppiere und fasse die Variablen nach Geschlecht und Hochschulzugehörigkeit zusammen 
+canteen <- group_by(nova, gender, member) %>% 
+  summarise(tot = n()) %>% 
   ungroup() %>%
-  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
+  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten")) # Fasse die ersten beiden Variablen zusammen
 
 # Definiere einen Vektor mit erwarteten Häufigkeiten, beachte dabei die Reihenfolge 
-pop_zhaw_exp <- c(.15,.32,.16,.37) # erwartete Verteilung der Population (summe muss 1 ergeben)
+
+population_exp <- c(.15,.32,.16,.37) # erwartete Verteilung der Population (Achtung die Summe muss 1 ergeben)
   
-#berechne den Chi-Quadrat-Test
-chi_sq <- chisq.test(pop_canteen$tot, p = pop_zhaw_exp)
-chi_sq$expected # schaue dir die erwarteten Häufigkeiten an.
+# Berechne den Chi-Quadrat-Test
+
+chi_sq <- chisq.test(canteen$tot, p = population_exp)
 chi_sq
 
-#Führe einen exakten Fisher Test durch? (tibble, ist eine ähnliche Funktion wie data.frame)
+# Führe einen exakten Fisher Test durch
+# erstelle dafür einen neuen Datensatz. tibble(), ist eine ähnliche Funktion wie data.frame() vom Hause tidyverse
+
 fisher_t <- tibble(member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
-  population = pop_zhaw_exp * 2138, # absolute Zahlen der Population Mitarbeiterinnen, Studentinnen, Mitarbeiter, Studenten
-  stichprobe = pop_canteen$tot)
+  population = population_exp * 2138, # absolute Zahlen der Population Mitarbeiterinnen, Studentinnen, Mitarbeiter, Studenten => Fisher exakt test kann nicht mit erwarteten Wahrscheinlichkeiten rechnen
+  stichprobe = canteen$tot,
+  population_pct = population_exp,
+  canteen_pct = canteen$tot / sum(canteen$tot)) 
 
-# pop_zhaw_2 <- matrix(c(333, 678, 336, 791, 159, 290, 181, 466),4,2) # erstelle Matrix mit 4 Zeilen und 2 Spalten
-# dimnames(pop_zhaw_2) <- list(c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), c("Population","Stichprobe"))
-
-fisher.test(fisher_t[ ,2:3])
-
-
-## Aufgabe 2
-
+fish <- fisher.test(fisher_t[ ,2:3]) # was sind die Unterschiede zwischen den beiden Tests (Chisquare und Fisher exakt Test)? Wieso gibt es keinen OR aus?
+fish
 # Daten müssen zuerst nach "week" und "condition" zusammengefasst werden
+
 df <- nova %>%
     group_by(date, condit) %>%  
     summarise(tot_sold = n()) %>% # zählt alle Beobachtungen gemäss dem group_by zusammen
     mutate(day = format(date, format = "%d.%m")) # erstelle neue Variable, damit beim Historgamm die X-Achse besser leserlich wird
 
 # Testen der Voraussetzungen
-library(jtools) # apa theme for ggplot
 ggplot(df, aes(x = condit, y= tot_sold)) + 
-    geom_boxplot(fill = "lightgrey") + 
+    geom_boxplot(fill = "white", color = "black") + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
-    labs(x="Bedingungen", y="Anzahl verkaufte Gerichte pro Tag") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
-
+    labs(x="\nBedingungen", y="Anzahl verkaufte Gerichte pro Tag\n") + 
+    mytheme
 # Histogramme für die Bedingungen Basis
 df %>% filter(condit == "Basis") %>%
 ggplot(aes(x = as.factor(day), y= tot_sold)) + 
     geom_bar(stat = "identity", fill = "lightgrey", width = .6) + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
-    labs(x="Tage", y="Anzahl verkaufte Gerichte") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
-
+    labs(x="Tage", y="Anzahl verkaufte Gerichte") +
+    mytheme
+  
 # Histogramme für die Bedingungen Intervention
 df %>% filter(condit == "Intervention") %>%
 ggplot(aes(x = as.factor(day), y= tot_sold)) + 
     geom_bar(stat = "identity", fill = "lightgrey", width = .6) + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) + 
-    labs(x="Tage", y="Anzahl verkaufte Gerichte") + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20))
-
+    labs(x="Tage", y="Anzahl verkaufte Gerichte") +
+    mytheme
 
 
 # Durchführung eines t-Tests
 t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F) # siehe ungerichtete Hypothese
 t_test
-
-# Randomisierter t-Test
-# Als erster Schritt gibt es eine Permutation
-# reps <- 10000 
-# results <- numeric(rep(reps)) # kreiere ein Verktor mit 10000 Nullen
-# i <- df[df$condit == "Intervention", ]$tot_sold # alle Verkäufe von der Bedingung Intervention
-# b <- df[df$condit == "Basis", ]$tot_sold # alle Verkäufe von der Bedingung Basiswoche
-# x <- c(i, b) # führe die Beiden Vektoren zusammen
-# 
-# # Permutation und Transformation der Daten => frage nochmals Jürgen
-# for(i in 1:reps){ # durchlaufe 10000 Mal den Loop
-#   temp <- sample(x) # nehme zufällig 30 Werte aus x
-#   results[i] <- mean(temp[1:15])-mean(temp[16:30]) # Transformation der Daten. Berechne mir ein neuer Mittelwerte und füge es an iter Stelle im results ein: Mittelwert aus Intervention minus Mittelwert aus Basis
-# }
-# 
-# results <- as_tibble(results) # wandle Vektor in Dataframe um, damit ggplot damit umgehen kann
-# ggplot(results, aes(x = value)) + geom_histogram(bins = 50) + theme_apa(x.font.size = 20, y.font.size = 20) +  theme(axis.text = element_text(size = 20)) # schaue dir die Verteilung nochmals an
-# 
-# kritischer_wert <- abs(qt(0.05/2, 28)) # Kritischer T-Wert bei 95% Konfidenzintervall, 2 seitig, mit 27.747 Freiheitsgrade
-# 
-# p.value <- sum(results >= kritischer_wert)/reps ## verstehe ich nicht? wie hole ich nun p-wert, wahrscheinlich aus leite aus Hyothese ab: H0 Basis und Interventionswochen unterscheiden sich nicht, H1 Basis und Interventionswochen unterscheiden sich
-# 
-# #hist(results) # schaue dir die Verteilung nochmals an (hier hist benützen, da es mit Vektoren umgehen kann)
-
