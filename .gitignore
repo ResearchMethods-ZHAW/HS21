@@ -9,3 +9,5 @@ _book
 _bookdown_files
 rsconnect
 .rds
+_main.pdf
+*.html

@@ -31,6 +31,7 @@ nova_ <- read_delim("13_Statistik1/data/novanimal_data_180911_egel.csv", delim =
 Führe mit dem Datensatz novanimal.csv eine logistsiche Regression durch. Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?
 
 Hinweise für die Analysen:
+
 1. Generiere eine neue Variable "Fleisch" (0 = kein Fleisch, 1 = Fleisch)
 2. entferne fehlende Werte aus der Variable "Fleisch"
 3. Führe ein train_test_split durch

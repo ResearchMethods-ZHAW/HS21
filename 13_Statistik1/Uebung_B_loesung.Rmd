@@ -111,5 +111,5 @@ t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervent
 t_test
 ```
 
-In den Basiswochen werden mehr Gerichte als in den Interventionsowchen verkauft. Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 2`) = `r round(t_test$statistic, digits = 4)` , *p* = `r round(t_test$p.value, digits=3)`.
+In den Basiswochen werden mehr Gerichte als in den Interventionsowchen verkauft. Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 2)`) = `r round(t_test$statistic, digits = 4)` , *p* = `r round(t_test$p.value, digits=3)`.
 
