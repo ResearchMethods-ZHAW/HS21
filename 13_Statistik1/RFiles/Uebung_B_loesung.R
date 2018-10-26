@@ -7,8 +7,15 @@ nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ## definiere theme für die Plots
 
-mytheme <- theme_classic() + 
-    theme(axis.line = element_line(color = "black"), axis.text = element_text(size = 25, color = "black"), axis.title = element_text(size = 25, color = "black"), axis.ticks = element_line(size = 1, color = "black"), axis.ticks.length = unit(.5, "cm"))
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 25, color = "black"), 
+    axis.title = element_text(size = 25, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
 
 # Gruppiere und fasse die Variablen nach Geschlecht und Hochschulzugehörigkeit zusammen 
 canteen <- group_by(nova, gender, member) %>% 

@@ -7,7 +7,7 @@
 Aus @crawley2015[S. 136, modifiziert]
 [R-script als Download](14_Statistik2/RFiles/Uebung_Aufgabe1.R)
 
-```{r child = '14_Statistik2/Uebung_Aufgabe1.Rmd', purl=F}
+```{r child = '14_Statistik2/Uebung_A_Aufgabe1.Rmd', purl=F}
 ```
 
 
@@ -15,13 +15,13 @@ Aus @crawley2015[S. 136, modifiziert]
 
 [R-script als Download](14_Statistik2/RFiles/Uebung_Aufgabe2.R)
 
-```{r child = '14_Statistik2/Uebung_Aufgabe2.Rmd', purl=F}
+```{r child = '14_Statistik2/Uebung_A_Aufgabe2.Rmd', purl=F}
 ```
 
 
 ### Musterlösung Aufgabe 3: ANOVA (egel)
 [R-script als Download](14_Statistik2/RFiles/Uebung_Aufgabe3_egel.R)
 
-```{r child = '14_Statistik2/Uebung_Aufgabe3_egel.Rmd', purl=F}
+```{r child = '14_Statistik2/Uebung_B_Aufgabe.Rmd', purl=F}
 ```
 

@@ -1,0 +1,20 @@
+```{r, include=F, purl = F}
+# knitr::opts_knit$set(root.dir = "14_Statistik2")
+```
+
+## Übung B (SozOek)
+
+
+###	Aufgabe 1: ANOVA
+
+Führe mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
+Gibt es Unterschiede zwischen den verkauften Menü-Inhalten (Fleisch, Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Experimentwochen (Basis- oder Interventionwochen) erklärt werden?
+
+Deine Gesamtaufgabe ist es, aus den Daten zwei Modelle zu ermitteln. 
+
+
+Hinweise für die Analysen: 
+* Menü-Inhalt wird zu drei Gruppen zusammengefasst. Das heisst konkret die pflanzliche Gerichte werden zu vegetarische Gerichte unbenannt 
+* Der Datensatz muss zuerst gruppiert werden (Gruppierungsvariablen sind Wochen, Menü-Inhalt, Beschreibung der Experimentalwochen, Geschlecht, Hochschulzugehörigkeit)
+* Posthoc Vergleiche mit dunnTest (FSA Package)
+* Zweite Teilaufgabe soll eine Interaction getestet werden
