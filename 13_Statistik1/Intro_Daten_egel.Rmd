@@ -20,7 +20,7 @@ Der Datensatz beinhaltet knapp 1100 Einträge mit 18 Variablen. Die Daten stamme
 Folgende Variablen sind im Datensatz:
 
 
-```{r, echo = F}
+```{r, echo = F, message=F}
 library(tidyverse)
 
 variablen <- read_delim("13_Statistik1/novanimal_variabeln.csv",";")

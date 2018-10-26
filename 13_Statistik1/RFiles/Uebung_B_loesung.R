@@ -48,7 +48,11 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
     geom_boxplot(fill = "white", color = "black") + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
     labs(x="\nBedingungen", y="Anzahl verkaufte Gerichte pro Tag\n") + 
+    # annotate("text", x = 1.5, y = 10, 
+    #          label = paste0("italic(p) == ", round(t_test$p.value, 3)), 
+    #          parse = TRUE, size = 8) +
     mytheme
+
 # Histogramme für die Bedingungen Basis
 df %>% filter(condit == "Basis") %>%
 ggplot(aes(x = as.factor(day), y= tot_sold)) + 
@@ -66,6 +70,6 @@ ggplot(aes(x = as.factor(day), y= tot_sold)) +
     mytheme
 
 
-# Durchführung eines t-Tests
-t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F) # siehe ungerichtete Hypothese
+# Durchführung eines t-Tests mit der Annahme, dass die Verkaufszahlen unabhängig sind
+t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F)
 t_test

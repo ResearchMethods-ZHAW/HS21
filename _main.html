@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Research Methods</title>
+  <meta name="description" content="Begleitmaterial zum Modul ‘Research Methods’">
+  <meta name="generator" content="bookdown <!--bookdown:version--> and GitBook 2.6.7">
+
+  <meta property="og:title" content="Research Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Research Methods" />
+  
+  <meta name="twitter:description" content="Begleitmaterial zum Modul ‘Research Methods’" />
+  
+
+
+
+<meta name="date" content="2018-10-26">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+
+
+
+<link rel="stylesheet" href="00_Admin/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+<!--bookdown:title:start-->
+<div id="header">
+<h1 class="title">Research Methods</h1>
+<h4 class="date"><em>2018-10-26</em></h4>
+</div>
+<!--bookdown:title:end-->
+
+<!--bookdown:toc:start-->
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+<!--bookdown:toc2:start-->
+<ul>
+<li><a href="#einleitung"><span class="toc-section-number">1</span> Einleitung</a></li>
+<li><a href="#statistik-1-29.1.2018"><span class="toc-section-number">2</span> Statistik 1 (29.1.2018)</a></li>
+<li><a href="#knitropts_knitsetroot.dir-13_statistik1"><span class="toc-section-number">3</span> knitr::opts_knit$set(root.dir = “13_Statistik1”)</a><ul>
+<li><a href="#demo-stastische-tests"><span class="toc-section-number">3.1</span> Demo: Stastische Tests</a><ul>
+<li><a href="#assoziationstests"><span class="toc-section-number">3.1.1</span> Assoziationstests</a></li>
+<li><a href="#randomisierung"><span class="toc-section-number">3.1.2</span> Randomisierung</a></li>
+</ul></li>
+<li><a href="#optional-fur-demo"><span class="toc-section-number">3.2</span> Optional für Demo</a><ul>
+<li><a href="#libraries"><span class="toc-section-number">3.2.1</span> Libraries</a></li>
+</ul></li>
+<li><a href="#beschreibung-forschungsprojekt-novanimal-nfp69"><span class="toc-section-number">3.3</span> Beschreibung Forschungsprojekt NOVANIMAL (NFP69)</a><ul>
+<li><a href="#weitere-erlauterungen-zum-datensatz"><span class="toc-section-number">3.3.1</span> Weitere Erläuterungen zum Datensatz</a></li>
+</ul></li>
+<li><a href="#ubung-a-natwis"><span class="toc-section-number">3.4</span> Übung A (NatWis)</a><ul>
+<li><a href="#aufgabe-1"><span class="toc-section-number">3.4.1</span> Aufgabe 1</a></li>
+<li><a href="#aufgabe-2"><span class="toc-section-number">3.4.2</span> Aufgabe 2</a></li>
+<li><a href="#aufgabe-3-anova"><span class="toc-section-number">3.4.3</span> Aufgabe 3: ANOVA</a></li>
+</ul></li>
+<li><a href="#ubung-a-losung"><span class="toc-section-number">3.5</span> Übung A: Lösung</a><ul>
+<li><a href="#musterlosung-aufgabe-3"><span class="toc-section-number">3.5.1</span> Musterlösung Aufgabe 3</a></li>
+</ul></li>
+<li><a href="#ubung-b-sozoek"><span class="toc-section-number">3.6</span> Übung B (SozOek)</a><ul>
+<li><a href="#aufgabe-1-1"><span class="toc-section-number">3.6.1</span> Aufgabe 1:</a></li>
+<li><a href="#aufgabe-2-t-test"><span class="toc-section-number">3.6.2</span> Aufgabe 2: t-Test</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#gruppiere-und-fasse-die-variablen-nach-geschlecht-und-hochschulzugehorigkeit-zusammen"><span class="toc-section-number">4</span> Gruppiere und fasse die Variablen nach Geschlecht und Hochschulzugehörigkeit zusammen</a><ul>
+<li><a href="#ubung-b-losung"><span class="toc-section-number">4.1</span> Übung B: Lösung</a><ul>
+<li><a href="#musterlosung-aufgabe-1"><span class="toc-section-number">4.1.1</span> Musterlösung Aufgabe 1</a></li>
+</ul></li>
+<li><a href="#lade-datei"><span class="toc-section-number">4.2</span> Lade Datei</a></li>
+<li><a href="#definiere-theme-fur-die-plots"><span class="toc-section-number">4.3</span> definiere theme für die Plots</a><ul>
+<li><a href="#musterlosung-aufgabe-2"><span class="toc-section-number">4.3.1</span> Musterlösung Aufgabe 2</a></li>
+<li><a href="#referenzen"><span class="toc-section-number">4.3.2</span> Referenzen</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<!--bookdown:toc2:end-->
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Research Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:toc:end-->
+<!--bookdown:body:start-->
+<div id="einleitung" class="section level1">
+<h1><span class="header-section-number">1</span> Einleitung</h1>
+<p>Das Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).</p>
+<p>Auf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.</p>
+<!--chapter:end:index.Rmd-->
+</div>
+<div id="statistik-1-29.1.2018" class="section level1">
+<h1><span class="header-section-number">2</span> Statistik 1 (29.1.2018)</h1>
+<p>In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der frequentist-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Abschliessend gibt es einen ersten Einstieg in die Varianzanalyse (ANOVA).</p>
+<!-- TODO: -->
+<!-- Referenzen passt noch nicht -->
+<!-- hierarchien noch kontrollieren und mit anderen blöcke abgleichen -->
+<!-- Beschreibung forschungsprojekte: tabelle besser als csv -->
+<!--chapter:end:13_Statistik1/Abstract.Rmd-->
+</div>
+<div id="knitropts_knitsetroot.dir-13_statistik1" class="section level1">
+<h1><span class="header-section-number">3</span> knitr::opts_knit$set(root.dir = “13_Statistik1”)</h1>
+<p>Placeholder</p>
+<div id="demo-stastische-tests" class="section level2">
+<h2><span class="header-section-number">3.1</span> Demo: Stastische Tests</h2>
+<div id="assoziationstests" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Assoziationstests</h3>
+<div id="tests-mit-einer-breiten-wide-tabelle" class="section level4">
+<h4><span class="header-section-number">3.1.1.1</span> Tests mit einer <em>breiten</em> (wide) Tabelle</h4>
+</div>
+<div id="tests-mit-einer-langen-long-tabelle" class="section level4">
+<h4><span class="header-section-number">3.1.1.2</span> Tests mit einer <em>langen</em> (long) Tabelle</h4>
+</div>
+</div>
+<div id="randomisierung" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Randomisierung</h3>
+<div id="f-test" class="section level4">
+<h4><span class="header-section-number">3.1.2.1</span> F-Test</h4>
+</div>
+<div id="levene-test" class="section level4">
+<h4><span class="header-section-number">3.1.2.2</span> Levene Test</h4>
+</div>
+<div id="visuelle-inspektion-transformation" class="section level4">
+<h4><span class="header-section-number">3.1.2.3</span> Visuelle Inspektion / Transformation</h4>
+</div>
+<div id="anova-mit-blumen-daten" class="section level4">
+<h4><span class="header-section-number">3.1.2.4</span> ANOVA mit “Blumen”-Daten</h4>
+</div>
+</div>
+</div>
+<div id="optional-fur-demo" class="section level2">
+<h2><span class="header-section-number">3.2</span> Optional für Demo</h2>
+<div id="anova-mit-gewasserdaten" class="section level4">
+<h4><span class="header-section-number">3.2.0.1</span> ANOVA mit Gewässerdaten</h4>
+<div id="step-1" class="section level5">
+<h5><span class="header-section-number">3.2.0.1.1</span> Step 1</h5>
+</div>
+<div id="step-2" class="section level5">
+<h5><span class="header-section-number">3.2.0.1.2</span> Step 2</h5>
+</div>
+<div id="step-3" class="section level5">
+<h5><span class="header-section-number">3.2.0.1.3</span> Step 3</h5>
+</div>
+<div id="step-4" class="section level5">
+<h5><span class="header-section-number">3.2.0.1.4</span> Step 4</h5>
+</div>
+</div>
+<div id="libraries" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Libraries</h3>
+<!--chapter:end:13_Statistik1/Demo_Tests.Rmd-->
+</div>
+</div>
+<div id="beschreibung-forschungsprojekt-novanimal-nfp69" class="section level2">
+<h2><span class="header-section-number">3.3</span> Beschreibung Forschungsprojekt NOVANIMAL (NFP69)</h2>
+<div id="weitere-erlauterungen-zum-datensatz" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Weitere Erläuterungen zum Datensatz</h3>
+<!--chapter:end:13_Statistik1/Intro_Daten_egel.Rmd-->
+</div>
+</div>
+<div id="ubung-a-natwis" class="section level2">
+<h2><span class="header-section-number">3.4</span> Übung A (NatWis)</h2>
+<div id="aufgabe-1" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Aufgabe 1</h3>
+<p>Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test</p>
+</div>
+<div id="aufgabe-2" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Aufgabe 2</h3>
+<p>Überlegen Sie eine Hypothese, die mit einem t-Test geprüft werden kann, erheben Sie dazu die Daten, geben Sie diese ein, visualisieren Sie diese, testen auf evtl. Verletzungen der Modellannahmen, führen dann den geeigneten t-Test sowie eine nicht-parametrische Alternative durch und fassen die Ergebnisse in einem Satz zusammen</p>
+</div>
+<div id="aufgabe-3-anova" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Aufgabe 3: ANOVA</h3>
+<p>Führt mit dem Datensatz <a href="13_Statistik1/data/competition.csv">competition.csv</a> einen einfaktoriellen ANOVA selbst durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse)</p>
+<!--chapter:end:13_Statistik1/Uebung_A.Rmd-->
+</div>
+</div>
+<div id="ubung-a-losung" class="section level2">
+<h2><span class="header-section-number">3.5</span> Übung A: Lösung</h2>
+<div id="musterlosung-aufgabe-3" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Musterlösung Aufgabe 3</h3>
+<!--chapter:end:13_Statistik1/Uebung_A_loesung.Rmd-->
+</div>
+</div>
+<div id="ubung-b-sozoek" class="section level2">
+<h2><span class="header-section-number">3.6</span> Übung B (SozOek)</h2>
+<div id="aufgabe-1-1" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Aufgabe 1:</h3>
+<p>Unterscheidet sich die novanimal-Stichprobe von der gesamten Population bezüglich Geschlecht und Hochschulzugehörigkeit?</p>
+<ul>
+<li>Es wird angenommen, dass 15 Prozent aller Mitarbeitenden mit CampusCard weiblich sind. 16 Prozent der Population (N = 2138) sind Mitarbeiter und 37 Prozent Studenten.</li>
+<li>Definiert die Null- (<span class="math inline">\(H_0\)</span>) und Alternativhypothese (<span class="math inline">\(H_1\)</span>)</li>
+<li>Führt einen <span class="math inline">\(\chi^2\)</span>-Test und anschliessend einen exakten Fishers-Test mit dem Datensatz novanimal.csv durch</li>
+<li>Fasst die Ergebnisse in einem Satz zusammen</li>
+</ul>
+</div>
+<div id="aufgabe-2-t-test" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Aufgabe 2: t-Test</h3>
+<p>Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?</p>
+<ul>
+<li>Definiert die Null- (<span class="math inline">\(H_0\)</span>) und Alternativhypothese (<span class="math inline">\(H_1\)</span>)</li>
+<li>Führt einen t-Test mit dem Datensatz novanimal.csv durch</li>
+<li>Welche Form von t-Test müssen Sie anwenden? einseitig/zweiseitig? gepaart/ungepaart?</li>
+<li>Überprüft die Voraussetzungen für einen t-Test (verwendet dafür das classic_theme())</li>
+<li>Fasst die Ergebnisse in einem Satz zusammen</li>
+</ul>
+<!--chapter:end:13_Statistik1/Uebung_B.Rmd-->
+</div>
+</div>
+</div>
+<div id="gruppiere-und-fasse-die-variablen-nach-geschlecht-und-hochschulzugehorigkeit-zusammen" class="section level1">
+<h1><span class="header-section-number">4</span> Gruppiere und fasse die Variablen nach Geschlecht und Hochschulzugehörigkeit zusammen</h1>
+<p>Placeholder</p>
+<div id="ubung-b-losung" class="section level2">
+<h2><span class="header-section-number">4.1</span> Übung B: Lösung</h2>
+<div id="musterlosung-aufgabe-1" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Musterlösung Aufgabe 1</h3>
+</div>
+</div>
+<div id="lade-datei" class="section level2">
+<h2><span class="header-section-number">4.2</span> Lade Datei</h2>
+</div>
+<div id="definiere-theme-fur-die-plots" class="section level2">
+<h2><span class="header-section-number">4.3</span> definiere theme für die Plots</h2>
+<div id="musterlosung-aufgabe-2" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Musterlösung Aufgabe 2</h3>
+</div>
+<div id="referenzen" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Referenzen</h3>
+<!--chapter:end:13_Statistik1/Uebung_B_loesung.Rmd-->
+</div>
+</div>
+</div>
+<!--bookdown:body:end-->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+    </div>
+  </div>
+<!--bookdown:config-->
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
