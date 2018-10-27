@@ -30,7 +30,7 @@ rmd_files: [
   "13_Statistik1/Uebung_A.Rmd",
 #  "13_Statistik1/Uebung_A_loesung.Rmd", # wird nicht gebraucht
   "13_Statistik1/Uebung_B.Rmd",
-# "13_Statistik1/Uebung_B_loesung.Rmd",
+  "13_Statistik1/Uebung_B_loesung.Rmd",
 #  "14_Statistik2/Abstract.Rmd",
 #  "14_Statistik2/Demo.Rmd",
 #  "14_Statistik2/Uebung_A.Rmd",

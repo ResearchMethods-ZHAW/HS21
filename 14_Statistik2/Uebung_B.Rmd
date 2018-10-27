@@ -5,16 +5,32 @@
 ## Übung B (SozOek)
 
 
-###	Aufgabe 1: ANOVA
+###	Aufgabe 1: einfaktorielle ANOVA
 
-Führe mit dem Datensatz novanimal.csv eine ANOVA durch (Aufbereitung der Daten, visuelle Inspektion der Modellvoraussetzung, Berechnung des Modells, Darstellung und Interpretation der Ergebnisse). 
-Gibt es Unterschiede zwischen den verkauften Menü-Inhalten (Fleisch, Buffet und Vegetarisch) pro Woche? Können die Unterschiede zwischen den Menü-Inhalten durch die beiden Experimentwochen (Basis- oder Interventionwochen) erklärt werden?
-
-Deine Gesamtaufgabe ist es, aus den Daten zwei Modelle zu ermitteln. 
-
+Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. 
+Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche? 
 
 Hinweise für die Analysen: 
-* Menü-Inhalt wird zu drei Gruppen zusammengefasst. Das heisst konkret die pflanzliche Gerichte werden zu vegetarische Gerichte unbenannt 
-* Der Datensatz muss zuerst gruppiert werden (Gruppierungsvariablen sind Wochen, Menü-Inhalt, Beschreibung der Experimentalwochen, Geschlecht, Hochschulzugehörigkeit)
-* Posthoc Vergleiche mit dunnTest (FSA Package)
-* Zweite Teilaufgabe soll eine Interaction getestet werden
+
+* Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit grep()). 
+* Danach muss der Datensatz gruppiert und zusammengefasst werden.
+* Unbekannte Menü-Inhalte können vernachlässigt werden. 
+* Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
+* Führt anschliessend Post-hoc-Vergleiche durch.
+* Fasst die Ergebnisse in einem Satz zusammen.
+
+
+###	Aufgabe 2: ANOVA mit Interaktion
+
+Führt mit dem Datensatz novanimal.csv eine ANOVA mit Interaktion durch.
+
+Können die Unterschiede in den verkauften Gerichten (Buffet, Fleisch oder Vegetarisch) durch die beiden Bedingungen (Basis- oder Interventionswochen) erklärt werden?
+
+Hinweise für die Analysen: 
+
+* Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit grep()). 
+* Danach muss der Datensatz gruppiert und zusammengefasst werden.
+* Unbekannte Menü-Inhalte können vernachlässigt werden.
+* Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
+* Führt anschliessend Post-hoc-Vergleiche durch.
+* Fasst die Ergebnisse in einem Satz zusammen.

@@ -7,8 +7,15 @@ nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ## definiere theme für die Plots
 
-mytheme <- theme_classic() + 
-    theme(axis.line = element_line(color = "black"), axis.text = element_text(size = 25, color = "black"), axis.title = element_text(size = 25, color = "black"), axis.ticks = element_line(size = 1, color = "black"), axis.ticks.length = unit(.5, "cm"))
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 20, color = "black"), 
+    axis.title = element_text(size = 20, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
 
 # Gruppiere und fasse die Variablen nach Geschlecht und Hochschulzugehörigkeit zusammen 
 canteen <- group_by(nova, gender, member) %>% 
@@ -45,7 +52,7 @@ df <- nova %>%
 
 # Testen der Voraussetzungen
 ggplot(df, aes(x = condit, y= tot_sold)) + 
-    geom_boxplot(fill = "white", color = "black") + 
+    geom_boxplot(fill = "white", color = "black", size = 1) + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
     labs(x="\nBedingungen", y="Anzahl verkaufte Gerichte pro Tag\n") + 
     # annotate("text", x = 1.5, y = 10, 
@@ -70,6 +77,6 @@ ggplot(aes(x = as.factor(day), y= tot_sold)) +
     mytheme
 
 
-# Durchführung eines t-Tests
-t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F) # siehe ungerichtete Hypothese
+# Durchführung eines t-Tests mit der Annahme, dass die Verkaufszahlen unabhängig sind
+t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F)
 t_test

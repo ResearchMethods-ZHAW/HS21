@@ -22,6 +22,6 @@ Aus @crawley2015[S. 136, modifiziert]
 ### Musterlösung Aufgabe 3: ANOVA (egel)
 [R-script als Download](14_Statistik2/RFiles/Uebung_Aufgabe3_egel.R)
 
-```{r child = '14_Statistik2/Uebung_B_Aufgabe.Rmd', purl=F}
+```{r child = '14_Statistik2/Uebung_B_Aufgabe1.Rmd', purl=F}
 ```
 
