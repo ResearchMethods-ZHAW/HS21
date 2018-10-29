@@ -11,8 +11,13 @@ mytheme <-
   theme_classic() + 
   theme(
     axis.line = element_line(color = "black"), 
+<<<<<<< Updated upstream
     axis.text = element_text(size = 20, color = "black"), 
     axis.title = element_text(size = 20, color = "black"), 
+=======
+    axis.text = element_text(size = 25, color = "black"), 
+    axis.title = element_text(size = 25, color = "black"), 
+>>>>>>> Stashed changes
     axis.ticks = element_line(size = 1, color = "black"), 
     axis.ticks.length = unit(.5, "cm")
     )
@@ -52,6 +57,7 @@ df <- nova %>%
 
 # Testen der Voraussetzungen
 ggplot(df, aes(x = condit, y= tot_sold)) + 
+<<<<<<< Updated upstream
     geom_boxplot(fill = "white", color = "black", size = 1) + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
     labs(x="\nBedingungen", y="Anzahl verkaufte Gerichte pro Tag\n") + 
@@ -60,6 +66,12 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
     #          parse = TRUE, size = 8) +
     mytheme
 
+=======
+    geom_boxplot(fill = "white", color = "black") + 
+    scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
+    labs(x="\nBedingungen", y="Anzahl verkaufte Gerichte pro Tag\n") + 
+    mytheme
+>>>>>>> Stashed changes
 # Histogramme für die Bedingungen Basis
 df %>% filter(condit == "Basis") %>%
 ggplot(aes(x = as.factor(day), y= tot_sold)) + 
@@ -77,6 +89,11 @@ ggplot(aes(x = as.factor(day), y= tot_sold)) +
     mytheme
 
 
+<<<<<<< Updated upstream
 # Durchführung eines t-Tests mit der Annahme, dass die Verkaufszahlen unabhängig sind
 t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F)
+=======
+# Durchführung eines t-Tests
+t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F) # siehe ungerichtete Hypothese
+>>>>>>> Stashed changes
 t_test
