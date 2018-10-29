@@ -27,10 +27,8 @@ rmd_files: [
   "13_Statistik1/Abstract.Rmd",
   "13_Statistik1/Demo_Tests.Rmd",
   "13_Statistik1/Intro_Daten_egel.Rmd",
-  "13_Statistik1/Uebung_A.Rmd",
-#  "13_Statistik1/Uebung_A_loesung.Rmd", # wird nicht gebraucht
-  "13_Statistik1/Uebung_B.Rmd",
-  "13_Statistik1/Uebung_B_loesung.Rmd",
+  "13_Statistik1/Uebungen.Rmd",
+#  "13_Statistik1/Loesungen.Rmd",
 #  "14_Statistik2/Abstract.Rmd",
 #  "14_Statistik2/Demo.Rmd",
 #  "14_Statistik2/Uebung_A.Rmd",

@@ -2,12 +2,14 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
 #knitr::opts_chunk$get("root.dir")
 
 library(tidyverse)
+library(ggfortify) # zur Testung der Voraussetzungen
 library(FSA) # post hoc test after kruskal-test
 
-# lade Datensatz
+## ladet die nötigen Packete und die novanimal.csv Datei in R
+
 nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
-## definiere theme für die Plots
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 
 mytheme <- 
   theme_classic() + 
@@ -21,47 +23,56 @@ mytheme <-
 
 
 
-df <- nova # kopiere originaler Datensatz
-df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # benenne die pflanzlichen Gerichte zu vegetarischen Gerichte um
+df <- nova # clone den originaler Datensatz
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
 
 df_ <- df %>%
-    group_by(label_content, week) %>% # fasse den Datensatz zusammen
+    group_by(label_content, week) %>% 
     summarise(tot_sold = n()) %>%
-    drop_na() # lasse die unbekannten Verkäufe weg
+    drop_na() # lasst die unbekannten Menü-Inhalte weg
 
-# überprüfe Voraussetzungen für ANOVA
+# überprüft die Voraussetzungen für eine ANOVA
+# Histogramm
+ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "\nAnzahl verkaufte Gerichte pro Woche", y = "Häufigkeit\n") + mytheme
 
-ggplot(df_, aes(x = tot_sold, y = ..count..)) + geom_histogram() + labs(x = "\nAnzahl verkaufte Gerichte pro Woche", y = "Häufigkeit\n") + mytheme# schaue die Verkaufszahlen in einem Histogramm an
+# Boxplot
+ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="white", color = "black", size = 1) + labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme 
 
-ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="lightgrey", width = .6) + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme # schaue die die Boxplots an
 
-# definiere Modell: Verkaufszahlen werden durch die Menü-Inhalte beeinflusst
+# definiert das Modell
 model <- aov(tot_sold ~ label_content, data = df_)
 
-autoplot(model) # Aber Inspektion der Modellvoraussetzung zeigt klare Verletzungen der Nicht-Linearität und Homoskedastizität 
+autoplot(model) # Inspektion der Modellvoraussetzung zeigt klare Verletzungen der Nicht-Linearität und Homoskedastizität 
 
-summary.lm(model) # Ergebnisse dürfen nicht interpretiert werden
+summary.lm(model) # Dürfen die Ergebnisse interpretiert werden?
 
-# Alternative Testung: Kruskal-Wallis Rank Sum Test
-df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Buffet")) # unabhängige Variable muss zuest als Faktor definiert werden -> erster Faktor (hier Fleisch) wird die Refernzkategorie bilden
-kk_test <- kruskal.test(tot_sold ~ label_content, data = df_) # sieht aus als ob sich die Verkaufszahlen zwischen den Menü-Inhalten unterscheiden würden
+# überprüft die Voraussetzungen des Kruskal-Wallis Rank Sum Test.
+# gibt es starke Abweichungen von der Normalverteilung und die Varianzen ähneln sich? In diesem Fall wäre ein Kruskal-Wallis Test passend.
+df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Buffet")) # unabhängige Variable muss zuest als Faktor definiert werden
+
+kk_test <- kruskal.test(tot_sold ~ label_content, data = df_)
+kk_test
+
 dunnTest(tot_sold ~ label_content, data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
               method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
 
 
-# Welch-Test
-oneway.test(data=df_, tot_sold ~ label_content, var.equal=F)
-# Gruppiere Daten und fasse es zusammen, nehme dabei den veränderten Datensatz von Aufgabe 1
+# überprüft die Voraussetzungen des Welch-Test.
+# gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? In diesem Fall wäre ein Welch-Test passend
+w_test <- oneway.test(data=df_, tot_sold ~ label_content, var.equal=F)
+w_test
 df_ <- df %>%
-    group_by(condit, label_content, week) %>% # gruppiere nach Bedingung, Menü-Inhalt und Woche
+    group_by(condit, label_content, week) %>%
     summarise(tot_sold = n()) %>%
-    drop_na() # lasse die unbekannten Verkäufe weg
+    drop_na() # # lasst die unbekannten Menü-Inhalte weg
 
-# überprüfe Voraussetzungen für ANOVA
+# überprüfe Voraussetzungen für eine ANOVA
 
-ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme # schaue Boxplots an
+# Boxplots
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme
 
-# definiere Modell mit Interaktion
+
+# definiert das Modell mit Interaktion
 model1 <- aov(tot_sold ~ label_content * condit, data = df_)
 
 autoplot(model1)  # Inspektion der Modellvoraussetzung: sollte ok sein (?)
