@@ -5,10 +5,10 @@ pack <- c("dplyr", "lubridate", "readr", "stringr", "readxl", "here")
 lapply(pack, function(x){do.call("library", list(x))})
 
 
-# load data: see script 041load data from till data
-df <- read_delim("13_Statistik1/data/novanimal_data_180911_egel.csv", delim = ";", col_types = cols(transaction_id = col_character())) %>% # attention some parsing failures in transaction_id because the zeros at the end
-    select(transaction_id, cycle, date, trans_date, week, year, meal_name, article_description, label_content, condit, card_num, Geschlecht, member, age, price_article, total_amount_pay, pay_description, shop_description, tot_ubp, buffet_animal_comp) %>%
-    rename(gender = Geschlecht, buffet_animal = buffet_animal_comp)
+# load data: see script 041load data from till data (see new dataset)
+df <- read_delim("13_Statistik1/data/novanimal_data_181029_egel.csv", delim = ";", col_types = cols(transaction_id = col_character(), ccrs = col_character())) %>% # attention some parsing failures in transaction_id because the zeros at the end
+    select(transaction_id, cycle, date, trans_date, week, year, meal_name, article_description, label_content, condit, card_num, gender, member, age, price_article, total_amount, pay_description, shop_description, tot_ubp, buffet_animal_comp) %>%
+    rename(buffet_animal = buffet_animal_comp)
 
 # take only data from the first cycle
 df_ <- filter(df, cycle == 1)
@@ -44,4 +44,6 @@ df_t <- df_ %>%
     select(-cycle) # exclude cycle
 
 #save dataset
-write_delim(df_t, "13_Statistik1/data/novanimal.csv", delim = ";")
+write_delim(df_t, "13_Statistik1/data/novanimal2.csv", delim = ";")
+
+
