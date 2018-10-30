@@ -1,0 +1,68 @@
+## Übungen
+
+### Übung 2.1: Regression (NatWis)
+
+**Regressionsanalyse mit [decay.csv](14_Statistik2/data/decay.csv)**
+
+Der Datensatz beschreibt in einem physikalischen Experiment die Zahl der radioaktiven Zerfälle pro Minute in Abhängigkeit vom Zeitpunkt (min nach Start des Experimentes).
+
+- Ladet den Datensatz in R und macht eine explorative Datenanalyse.
+- Wählt unter den schon gelernten Methoden der Regressionsanalyse einadäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.
+- Prüft anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren
+- Stellt die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
+- Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
+
+
+### Übung 2.2: Einfaktrielle ANOVA (SozOek)
+
+**ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
+
+Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
+
+Hinweise für die Analysen:
+
+- Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
+werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit grep()).
+- Danach muss der Datensatz gruppiert und zusammengefasst werden.
+- Unbekannte Menü-Inhalte können vernachlässigt werden.
+- Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls
+auch nicht-parametrische Analysen zulässig?
+- Führt anschliessend Post-hoc-Vergleiche durch.
+- Fasst die Ergebnisse in einem Satz zusammen.
+
+
+### Übung 2.3N: Mehrfaktorielle ANOVA (NatWis)
+
+**ANOVA mit [kormoran.csv](14_Statistik2/data/kormoran.csv)**
+
+Der Datensatz enthält 40 Beobachtungen zu Tauchzeiten zweier Kormoranunterarten (C = *Phalocrocorax carbo carbo* und S = *Phalacrocorax carbo sinensis*) aus vier Jahreszeiten (F = Frühling, S = Sommer, H = Herbst, W = Winter).
+
+- Lest den Datensatz nach R ein und führt eine adäquate Analyse durch, um
+beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit
+beeinflussen.
+- Stellt Ihre Ergebnisse dann angemessen dar (Text, Abbildung und/oder
+Tabelle).
+- Gibt es eine Interaktion?
+
+### Übung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozOek)
+
+**ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
+
+Können die Unterschiede in den verkauften Gerichten (Buffet, Fleisch oder
+Vegetarisch) durch die beiden Bedingungen (Basis- oder Interventionswochen) erklärt werden?
+
+Hinweise für die Analysen:
+
+- Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst,
+dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
+werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte
+durchführen (z. B. mit grep()).
+- Danach muss der Datensatz gruppiert und zusammengefasst werden.
+- Unbekannte Menü-Inhalte können vernachlässigt werden.
+- Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls
+auch nicht-parametrische Analysen zulässig?
+- Führt anschliessend Post-hoc-Vergleiche durch.
+- Fasst die Ergebnisse in einem Satz zusammen.
+
+
+### Quellen
