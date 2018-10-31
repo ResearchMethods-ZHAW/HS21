@@ -56,16 +56,17 @@ chi_sq
 # erstellt dafür einen neuen Datensatz; tibble() ist eine ähnliche Funktion wie data.frame()
 
 fisher_t <- tibble(member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
-  population = population_exp * 2138, # berechnet die beobachteten Zahlen der Population => Fishers exakter Test kann nicht mit erwarteten Häufigkeiten rechnen
+  population = round(population_exp * 2138,0), # berechnet die beobachteten Zahlen der Population => Fishers exakter Test kann nicht mit erwarteten Häufigkeiten rechnen
   stichprobe = canteen$tot,
   population_pct = population_exp, 
   canteen_pct = canteen$tot / sum(canteen$tot))
 
-fish <- fisher.test(fisher_t[ ,2:3]) # was sind die Unterschiede zwischen den beiden Tests (Chi-Quadrat-Test und Fishers exakter Test)? Wieso gibt der Fishers exakter Test keinen OR aus?
+fish <- fisher.test(fisher_t[ ,2:3], simulate.p.value=TRUE) # was sind die Unterschiede zwischen den beiden Tests (Chi-Quadrat-Test und Fishers exakter Test)? Wieso gibt der Fishers exakter Test keinen OR aus?
 fish
+
 ```
 
-Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Auch der Fishers exakte Test zeigt einen ähnlichen p-Wert (*p* = `r round(fish$p.value, digits = 3)`). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind.
+Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Auch der Fishers exakte Test zeigt einen ähnlichen p-Wert (*p* > .001). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind.
 
 
 ###  Übung 1.3
@@ -123,6 +124,6 @@ t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervent
 t_test
 ```
 
-In den Basiswochen werden mehr Gerichte als in den Interventionsowchen verkauft. Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 2)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`.
+In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowchen. Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 2)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`.
 
 ###  Referenzen

@@ -7,7 +7,7 @@ Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Datenei
 
 ###	Übung 1.2: $\chi^2$-Test
 
-Datensatz [novanimal.csv](13_Statistik1/data/novanimal2.csv) 
+Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) 
 
 Unterscheidet sich die novanimal-Stichprobe von der gesamten Population bezüglich Geschlecht und Hochschulzugehörigkeit? 
 

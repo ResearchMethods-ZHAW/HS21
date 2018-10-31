@@ -57,23 +57,26 @@ autoplot(model) # Inspektion der Modellvoraussetzung zeigt klare Verletzungen de
 
 summary.lm(model) # Dürfen die Ergebnisse interpretiert werden?
 
-# überprüft die Voraussetzungen des Kruskal-Wallis Rank Sum Test.
-# gibt es starke Abweichungen von der Normalverteilung und die Varianzen ähneln sich? In diesem Fall wäre ein Kruskal-Wallis Test passend.
-df_$label_content <- factor(df_$label_content, levels = c("Fleisch", "Vegetarisch", "Buffet")) # unabhängige Variable muss zuest als Faktor definiert werden
-
-kk_test <- kruskal.test(tot_sold ~ label_content, data = df_)
-kk_test
-
-dunnTest(tot_sold ~ label_content, data=df_, # wie unterscheiden sich die einzelnen Levels, hierfür kann der Dunn-Test zur Hand gezogen werden. Gemäss Zar (2010) kann der Dunn Test für ungleiche Gruppen angewendet werden
-              method="bh") # werden korrigierte p-Werte ausgerechnet (Benjamini-Hochberg method)
-
+TukeyHSD(model)
 
 # überprüft die Voraussetzungen des Welch-Test.
 # gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? In diesem Fall wäre ein Welch-Test passend
 w_test <- oneway.test(data=df_, tot_sold ~ label_content, var.equal=F)
 w_test
 ```
-Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den Verkaufszahlen signifikant ($\chi^2$ = `r round(kk_test$statistic[[1]],3)`, *p* < .001). Anschliessend durchgeführte Post-hoc-Tests (Dunn-Tests) zeigen, dass sich lediglich die Gruppen "Fleisch" und "Buffet" signifikant unterscheiden (z = -3.816, p < .001)
+Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den Verkaufszahlen signifikant ($\chi^2$ = `r round(kk_test$statistic[[1]],3)`, *p* < .001). Anschliessend durchgeführte Post-hoc-Tests (TukeyHSD) zeigen, dass sich alle Gruppen signifikant unterscheiden (*F*(2,15) = 43.56, *p* < .001).
+
+```{r}
+
+# zeigt die Ergebnisse anhand eines Plots
+library(multcomp)
+df_$label_content <- parse_factor(df_$label_content, levels = c("Buffet", "Fleisch", "Vegetarisch")) # damit man die Buchstaben generieren kann, müssen die Menü-Inhalte zu factoren definiert werden, beachte dabei die Reihenfolge
+model <- aov(tot_sold ~ label_content, data = df_)
+letters <-cld(glht(model, linfct=mcp(label_content="Tukey")))
+
+ggplot(df_, aes(x = label_content, y= tot_sold)) + geom_boxplot(fill="white", color = "black", size = 1) + labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + annotate("text", x = 1:3, y = 130, label = letters$mcletters$Letters, size = 6) + mytheme 
+
+```
 
 
 ### Musterlösung Aufgabe 2
@@ -88,7 +91,7 @@ df_ <- df %>%
 # überprüfe Voraussetzungen für eine ANOVA
 
 # Boxplots
-ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="white", size = 1) + labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme
 
 
 # definiert das Modell mit Interaktion
@@ -96,7 +99,7 @@ model1 <- aov(tot_sold ~ label_content * condit, data = df_)
 
 autoplot(model1)  # Inspektion der Modellvoraussetzung: sollte ok sein (?)
 
-summary(model1) # Bei Interaktionen dürfen die Haupteffekte nicht mehr interpretiert werden
+summary.lm(model1) # Bei Interaktionen dürfen die Haupteffekte nicht mehr interpretiert werden
 
 TukeyHSD(model1) # Tukey post hoc Tests
 
@@ -104,6 +107,37 @@ TukeyHSD(model1) # Tukey post hoc Tests
 ```
 
 Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant (*F*(5, 12) = `r round(summary(model1)[[1]][["F value"]][[1]], digit = 3)`, *p* < .0001). Anschliessend durchgeführte Post-hoc-Tests (Tukey-Tests) zeigen vor allem zwei interessante Ergbenisse: 1) in den Interventionswochen wurde signifikant weniger Fleischgerichte gekauft als in den Basiswochen 2) in den Interventionswochen wurden signifikant mehr vegetarische Gerichte verkauft. 
+
+
+```{r}
+
+# zeigt die Ergebnisse anhand eines Plots
+library(multcomp)
+df_$cond_label <- interaction(df_$condit, df_$label_content) # bei Interaktionen gibt es diesen Trick, um bei den multiplen Vergleiche, die richtigen Buchstaben zu bekommen
+model1 <- aov(tot_sold ~ cond_label, data = df_)
+letters <-cld(glht(model1, linfct=mcp(cond_label="Tukey")))
+
+ggplot(df_, aes(x = cond_label, y= tot_sold)) +
+  geom_boxplot(fill="white", color = "black", size = 1) + 
+  labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+  scale_y_continuous(breaks = seq(0, 130,25), limits = c(0, 130)) +
+  annotate("text", x = 1:6, y = 130, label = letters$mcletters$Letters, size = 6) +
+  mytheme 
+
+
+# eine weitere Möglichkeit die Ergebnisse darzustellen
+m_sell <- na.omit(df_) %>% group_by(condit,label_content) %>% summarise(val = mean(tot_sold)) # berechne die durchschnittlichen Verkaufszahlen pro Bedingung
+
+ggplot(df_, aes(x = condit, y = tot_sold, linetype = label_content, shape = label_content)) + 
+    geom_point(data = m_sell, aes(y = val), size = 4) +
+    geom_line(data = m_sell, aes(y = val, group = label_content), size = 2) + 
+    labs(y = "Durchschnittlich verkaufte Gerichte pro Woche", x = "Bedingungen") + 
+    guides(linetype = F, shape = guide_legend(title = "Menü-Inhalt"))+
+    scale_y_continuous(breaks = seq(0,120,20), limits = c(0,120))+
+    mytheme
+
+
+```
 
 
 #### Referenzen
