@@ -66,6 +66,12 @@ fish
 
 ```
 
+#### Methoden
+
+Um die novanimal Stichprobe in der Gesamtpopulation bezüglich Geschlecht und Hochschulzugehörigkeit besser einzuordnen, wurde einen $\chi^2$ und einen Fishers exakten Test gerechnet. Unsere Gesamtpopulation wird durch die aktiven CampusCards definiert.
+
+#### Ergebnisse
+
 Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Auch der Fishers exakte Test zeigt einen ähnlichen p-Wert (*p* > .001). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind.
 
 
@@ -123,6 +129,12 @@ ggplot(aes(x = as.factor(day), y= tot_sold)) +
 t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, df[df$condit == "Intervention", ]$tot_sold, var.equal = F)
 t_test
 ```
+
+#### Methoden
+
+Sind zwischen den Interventions- und Basiswochen unterschiedliche Anzahl Gerichte verkauft worden? Um diese Frage zu beantworten wurde mit einem t-Test für unabhängige Stichproben überprüft, ob sich die mittleren Verkaufszahlen pro Woche zwischen den beiden Bedingungen unterscheidet. Obwohl die visuelle Inspektion keine schwerwiegenden Verletzungen der Modelvoraussetzung zeigte, wurde einen Welch t-Test gerechnet. 
+
+#### Ergebnisse
 
 In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowchen. Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 2)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`.
 

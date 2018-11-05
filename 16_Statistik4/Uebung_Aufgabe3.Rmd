@@ -1,0 +1,117 @@
+---
+title: "Übungen Statistik"
+author: "Gian-Andrea Egeler"
+date: "19 9 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
+#knitr::opts_chunk$get("root.dir")
+```
+
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(tidyverse)
+library(ggfortify)
+
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+
+```
+
+
+### Aufgabe 4: logit Regression
+
+
+Führt mit dem Datensatz novanimal.csv eine logistsiche Regression durch. Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?
+
+Hinweise für die Analysen:
+
+* Generiert eine neue Variable "Fleisch" (0 = kein Fleisch, 1 = Fleisch)
+* Entfernt fehlende Werte aus der Variable "Fleisch"
+* Für die Analyse könnt ihr die Käufer des Buffets weglassen 
+* Führt ein train_test_split durch
+* Definiert das Modell und wendet es auf den Übungsdatensatz (train.data) an
+* Berechnet eine Vorhersage mit dem Test-Datensatz (test.data)
+* Eruiert den Modellfit und die Modellgenauigkeit
+* Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus
+
+### Musterlösung Aufgabe 4
+
+```{r}
+
+# Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
+df <- nova # kopiert originaler Datensatz
+df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
+df <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffet Teller gekauft haben 
+
+# #check for missings
+library(Amelia)
+missmap(df,col=c("blue", "red"), legend=FALSE)
+
+# all locals with NA need to be excluded
+df_ <- df[complete.cases(df[ ,7:17]),] # Ein Weg um die Missings in den ausgewählten Spalten zu löschen
+df_ <- df[!is.na(df$meat),] # Ein alternativer Weg um die Missings in der gwünschten Spalte zu löschen
+
+#  Siehe die Aufteilung zwischen Fleisch- und Nicht-Fleischkauf 
+table(df_$meat) # beinhahe gleichgrosse Gruppen, keine Aufteilung in zwei Datensätze nötig
+
+# Generiere Testdata und Trainingdata
+set.seed(17) # Für die Wiederholbarkeit
+train.data <- df_ %>%  dplyr::sample_frac(.75) # 75% vom "ganzen" Datensatz werden rausgenommen, auf diese Daten wenden wir unser Modell an
+test.data <- anti_join(df_, train.data) # der Rest, also 25% des ganzen Datensatzes ist unser Testdatensatz
+
+# definiere das logit Modell und wende es auf den Train.Datensatz an
+mod0 <- glm(meat ~ gender + member + age, data = train.data, binomial("logit"))
+summary.lm(mod0)
+
+# Model Vorhersage und Performance
+# Kann das Modell unser Test-Datensatz vorhersagen?
+predicted <- predict(mod0, test.data, type = "response")
+
+# Modelgüte
+#Modeldiagnostik (wenn nicht signifikant, dann OK)
+1 - pchisq(mod0$deviance,mod0$df.resid)
+
+#Modellgüte (pseudo-R²)
+1 - (mod0$dev / mod0$null)
+
+
+# Konfusionmatrix vom test Datensatz
+km <- table(test.data$meat, predicted > 0.5)
+dimnames(km) <- list(c("kein Fleisch", "Fleisch"), c("Model kein Fleisch", "Modell Fleisch"))
+km
+
+# Missklassifizierungsrate ist mit knapp 40% eher hoch
+1-sum(diag(km)/sum(km))
+
+
+
+#-----------------
+# Alternative Methode,da einige Personen mehrmals im Datensatz vorkommen
+library(lme4)
+train.data$card_num <- parse_character(train.data$card_num)
+mod1 <- glmer(meat ~ gender + member + age + (1|card_num), data = train.data, family = binomial(link=logit))
+summary(mod1)
+predicted2 <- predict(mod1, test.data, type = "response")
+
+# Konfusionmatrix vom test Datensatz
+km <- table(test.data$meat, predicted2 > 0.5)
+dimnames(km) <- list(c("kein Fleisch", "Fleisch"), c("Model kein Fleisch", "Modell Fleisch"))
+km
+
+# Missklassifizierungsrate ist mit knapp 20% eher klein
+1-sum(diag(km)/sum(km))
+
+
+```
+
+#### Methoden
+Mit einer logistischen Regression wurde versucht die Frage nach der vorhersage des Fleischkonsums durch Geschlecht und Hochschulzugehörigkeit.
+
+
+
+#### Ergebnisse
+Mit einer logistsichen Regression kann der Fleischkonsum nur bedingt durch das Geschlecht, die Hochschulzugehörigkeit und das Alter vorhergesagt werden. Die Konfusionsmatrix und die Genauigkeit des Modells unterstützt diesen Befund. 
+Bei näher Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen. Daher braucht es weitere Analysen, die einzelne Individuen ebenfalls berücksichtigen (z. B. genestete Modelle).     
