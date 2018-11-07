@@ -1,4 +1,4 @@
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, purl=F}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
 #knitr::opts_chunk$get("root.dir")
 ```

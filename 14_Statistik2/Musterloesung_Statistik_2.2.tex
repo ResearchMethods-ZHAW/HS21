@@ -136,10 +136,9 @@ ANOVA}\label{musterlosung-aufgabe-2.2-einfaktorielle-anova}
 \NormalTok{df <-}\StringTok{ }\NormalTok{nova }\CommentTok{# klone den originaler Datensatz}
 
 \CommentTok{# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.}
-
 \NormalTok{df}\OperatorTok{$}\NormalTok{label_content[}\KeywordTok{grep}\NormalTok{(}\StringTok{"Pflanzlich+"}\NormalTok{,df}\OperatorTok{$}\NormalTok{label_content)] <-}\StringTok{ "Vegetarisch"} 
 
-\CommentTok{# gruppiere Daten nach Menü-Inhalt und Woche}
+\CommentTok{# gruppiert Daten nach Menü-Inhalt und Woche}
 \NormalTok{df_ <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{group_by}\NormalTok{(label_content, week) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{    }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{tot_sold =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
@@ -208,7 +207,7 @@ ANOVA}\label{musterlosung-aufgabe-2.2-einfaktorielle-anova}
 \includegraphics{Musterloesung_Statistik_2.2_files/figure-latex/unnamed-chunk-2-3.pdf}
 
 Fazit: Inspektion der Modellvoraussetzung zeigt klare Verletzungen der
-Homoskedastizität. Nächster Schritt Welch-Test
+Homoskedastizität. Nächster Schritt Welch-Test.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -232,12 +231,12 @@ Homoskedastizität. Nächster Schritt Welch-Test
 
 \paragraph{Methoden}\label{methoden}
 
-Ziel war es die Unterschide in den Verkaufszahlen pro Menü-Inhalt
-aufzuzeigen. Da die Kriteriumvariable (Verkaufszahlen) metrisch und die
+Ziel war es, die Unterschide in den Verkaufszahlen pro Menü-Inhalt
+aufzuzeigen. Da die Kriteriumsvariable (Verkaufszahlen) metrisch und die
 Prädiktorvariable kategorial sind, wurde eine einfaktorielle ANOVA
 gerechnet. Die visuelle Inspektion der Voraussetzungen zeigte
 insbesondere schwere Verletzungen der Homoskedastizität. Der Boxplot
-bestätigt diesen Befund. Daher wurde un einem weiteren Schritt der
+bestätigt diesen Befund. Daher wurde in einem weiteren Schritt den
 Welch-Test für ungleiche Varianzen gerechnet.
 
 \paragraph{Ergebnisse}\label{ergebnisse}
@@ -249,7 +248,7 @@ den Verkaufszahlen signifikant (\emph{F}(2,7) = 65, \emph{p} \textless{}
 \begin{figure}
 \centering
 \includegraphics{Musterloesung_Statistik_2.2_files/figure-latex/unnamed-chunk-4-1.pdf}
-\caption{Die wöchentlichen Verkaufzahlen unterscheiden je nach
+\caption{Die wöchentlichen Verkaufzahlen unterscheiden sich je nach
 Menü-Inhalt stark.}
 \end{figure}
 

@@ -7,7 +7,7 @@ output: pdf_document
 ---
 
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, purl=F}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
 #knitr::opts_chunk$get("root.dir")
 # problems knitting the markdown file => always generates html files and not pdf's
@@ -19,14 +19,11 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 library(tidyverse)
 library(ggfortify) # zur Testung der Voraussetzungen
-library(FSA) # post hoc test after kruskal-test
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-
 nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
-
 mytheme <- 
   theme_classic() + 
   theme(
@@ -47,10 +44,9 @@ mytheme <-
 df <- nova # klone den originaler Datensatz
 
 # fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
-
 df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" 
 
-# gruppiere Daten nach Menü-Inhalt und Woche
+# gruppiert Daten nach Menü-Inhalt und Woche
 df_ <- df %>%
     group_by(label_content, week) %>% 
     summarise(tot_sold = n()) %>%
@@ -80,7 +76,7 @@ autoplot(model) + mytheme
 
 ```
 
-Fazit: Inspektion der Modellvoraussetzung zeigt klare Verletzungen der Homoskedastizität. Nächster Schritt Welch-Test
+Fazit: Inspektion der Modellvoraussetzung zeigt klare Verletzungen der Homoskedastizität. Nächster Schritt Welch-Test.
 
 ```{r}
 
@@ -93,14 +89,15 @@ w_test
 ```
 #### Methoden
 
-Ziel war es die Unterschide in den Verkaufszahlen pro Menü-Inhalt aufzuzeigen. Da die Kriteriumvariable (Verkaufszahlen) metrisch und die Prädiktorvariable kategorial sind, wurde eine einfaktorielle ANOVA gerechnet. Die visuelle Inspektion der Voraussetzungen zeigte insbesondere schwere Verletzungen der Homoskedastizität. Der Boxplot bestätigt diesen Befund. Daher wurde un einem weiteren Schritt der Welch-Test für ungleiche Varianzen gerechnet.  
+Ziel war es, die Unterschide in den Verkaufszahlen pro Menü-Inhalt aufzuzeigen. Da die Kriteriumsvariable (Verkaufszahlen) metrisch und die Prädiktorvariable kategorial sind, wurde eine einfaktorielle ANOVA gerechnet. Die visuelle Inspektion der Voraussetzungen zeigte insbesondere schwere Verletzungen der Homoskedastizität. Der Boxplot bestätigt diesen Befund. Daher wurde in einem weiteren Schritt den Welch-Test für ungleiche Varianzen gerechnet.  
 
 #### Ergebnisse
 
 Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den Verkaufszahlen signifikant (*F*(2,7) = `r round(w_test$statistic[[1]],2)`, *p* < .001). Die Figure 1 zeigt die Verkaufszahlen pro Menü-Inhalt.
 
-```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden je nach Menü-Inhalt stark.", tidy=T}
+```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark.", tidy=T}
 
+# plottet die Ergebnisse
 ggplot(df_, aes(x = label_content, y= tot_sold)) +
   geom_boxplot(fill="white", color = "black", size = 1) + 
   labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + 

@@ -2,7 +2,6 @@
 
 library(tidyverse)
 library(ggfortify) # zur Testung der Voraussetzungen
-library(FSA) # post hoc test after kruskal-test
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
 nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
@@ -16,18 +15,22 @@ mytheme <-
     axis.title = element_text(size = 20, color = "black"), 
     axis.ticks = element_line(size = 1, color = "black"), 
     axis.ticks.length = unit(.5, "cm")
-  )
+    )
 
+
+
+## ------------------------------------------------------------------------
 
 df <- nova # klone den originaler Datensatz
+
 # fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
 df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" 
 
-# gruppiere Daten nach Menü-Inhalt und Woche
+# gruppiert Daten nach Menü-Inhalt und Woche
 df_ <- df %>%
-  group_by(label_content, week) %>% 
-  summarise(tot_sold = n()) %>%
-  drop_na() # lasst die unbekannten Menü-Inhalte weg
+    group_by(label_content, week) %>% 
+    summarise(tot_sold = n()) %>%
+    drop_na() # lasst die unbekannten Menü-Inhalte weg
 
 # überprüft die Voraussetzungen für eine ANOVA
 # Histogramm, sagt aber nicht viel aus
@@ -52,6 +55,8 @@ summary.lm(model)
 autoplot(model) + mytheme 
 
 
+## ------------------------------------------------------------------------
+
 # überprüft die Voraussetzungen des Welch-Test.
 # Gibt es eine hohe Varianzheterogenität und 
 # ist die relative Verteilung der Residuen gegeben? 
@@ -59,12 +64,11 @@ autoplot(model) + mytheme
 w_test <- oneway.test(data=df_, tot_sold ~ label_content, var.equal=F)
 w_test
 
-
-#### Ergebnisse
+## ----
+# plottet die Ergebnisse
 ggplot(df_, aes(x = label_content, y= tot_sold)) +
   geom_boxplot(fill="white", color = "black", size = 1) + 
   labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + 
   mytheme 
-
 
 
