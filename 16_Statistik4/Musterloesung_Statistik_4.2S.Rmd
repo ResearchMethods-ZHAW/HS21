@@ -46,7 +46,7 @@ df_ <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffe
 # Löscht alle Missings bei der Variable "Fleisch"
 df_ <- df_[!is.na(df_$meat), ]
 
-#  sieht die Verteilung zwischen Fleisch und  kein Fleisch 
+#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch 
 table(df_$meat)
 
 # definiert das logistische Modell und wende es auf den Datensatz an
@@ -68,9 +68,12 @@ summary.lm(mod1)
 # Model Vorhersage
 predicted <- predict(mod1, df_, type = "response")
 
-# erzeugt eine Tabelle mit den beobachteten Fleischesser/Nichtleischesser und den Vorhersagen des Modells
+# erzeugt eine Tabelle mit den beobachteten
+# Fleischesser/Nichtleischesser und den Vorhersagen des Modells
 km <- table(df_$meat, predicted > 0.5)
-dimnames(km) <- list(c("kein Fleisch", "Fleisch"), c("Modell kein Fleisch", "Modell Fleisch"))
+dimnames(km) <- list(
+  c("Beobachtung kein Fleisch", "Beobachtung Fleisch"),
+  c("Modell kein Fleisch", "Modell Fleisch"))
 km
 
 # kalkuliert die Missklassifizierungsrate 

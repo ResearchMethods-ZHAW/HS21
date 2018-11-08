@@ -131,33 +131,6 @@
 \subsubsection{Übung 4.2S: multiple logistische
 Regression}\label{ubung-4.2s-multiple-logistische-regression}
 
-Führt mit dem Datensatz novanimal.csv eine logistsiche Regression durch.
-Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit
-und das Alter erklärt werden?
-
-Hinweise für die Analysen:
-
-\begin{itemize}
-\tightlist
-\item
-  Generiert eine neue Variable ``Fleisch'' (0 = kein Fleisch, 1 =
-  Fleisch)
-\item
-  Entfernt fehlende Werte aus der Variable ``Fleisch''
-\item
-  Lasst für die Analyse den Menü-Inhalt «Buffet» weg
-\item
-  Definiert das Modell und wendet es auf den Datensatz an
-\item
-  Berechnet eine Vorhersage mit des Modells mit predict()
-\item
-  Eruiert den Modellfit und die Modellgenauigkeit
-\item
-  Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus
-\end{itemize}
-
-\subsubsection{Musterlösung 4.2S}\label{musterlosung-4.2s}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0}
@@ -168,7 +141,7 @@ Hinweise für die Analysen:
 \CommentTok{# Löscht alle Missings bei der Variable "Fleisch"}
 \NormalTok{df_ <-}\StringTok{ }\NormalTok{df_[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(df_}\OperatorTok{$}\NormalTok{meat), ]}
 
-\CommentTok{#  sieht die Verteilung zwischen Fleisch und  kein Fleisch }
+\CommentTok{#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch }
 \KeywordTok{table}\NormalTok{(df_}\OperatorTok{$}\NormalTok{meat)}
 \end{Highlighting}
 \end{Shaded}
@@ -268,17 +241,20 @@ Hinweise für die Analysen:
 \CommentTok{# Model Vorhersage}
 \NormalTok{predicted <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(mod1, df_, }\DataTypeTok{type =} \StringTok{"response"}\NormalTok{)}
 
-\CommentTok{# erzeugt eine Tabelle mit den beobachteten Fleischesser/Nichtleischesser und den Vorhersagen des Modells}
+\CommentTok{# erzeugt eine Tabelle mit den beobachteten}
+\CommentTok{# Fleischesser/Nichtleischesser und den Vorhersagen des Modells}
 \NormalTok{km <-}\StringTok{ }\KeywordTok{table}\NormalTok{(df_}\OperatorTok{$}\NormalTok{meat, predicted }\OperatorTok{>}\StringTok{ }\FloatTok{0.5}\NormalTok{)}
-\KeywordTok{dimnames}\NormalTok{(km) <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"kein Fleisch"}\NormalTok{, }\StringTok{"Fleisch"}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"Modell kein Fleisch"}\NormalTok{, }\StringTok{"Modell Fleisch"}\NormalTok{))}
+\KeywordTok{dimnames}\NormalTok{(km) <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}
+  \KeywordTok{c}\NormalTok{(}\StringTok{"Beobachtung kein Fleisch"}\NormalTok{, }\StringTok{"Beobachtung Fleisch"}\NormalTok{),}
+  \KeywordTok{c}\NormalTok{(}\StringTok{"Modell kein Fleisch"}\NormalTok{, }\StringTok{"Modell Fleisch"}\NormalTok{))}
 \NormalTok{km}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##              Modell kein Fleisch Modell Fleisch
-## kein Fleisch                 166            221
-## Fleisch                      150            414
+##                          Modell kein Fleisch Modell Fleisch
+## Beobachtung kein Fleisch                 166            221
+## Beobachtung Fleisch                      150            414
 \end{verbatim}
 
 \begin{Shaded}

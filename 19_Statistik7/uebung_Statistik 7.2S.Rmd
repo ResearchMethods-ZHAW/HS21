@@ -1,0 +1,54 @@
+# lang: de-DE
+title: "MSc. Research Methods - Statistikteil Lösungen 2018"
+author: "Gian-Andrea Egeler"
+date: "`r format(Sys.Date(), '%B %Y')`"
+output: pdf_document
+---
+
+### Aufgabe 6.1: Faktoranalyse
+
+Führt mit dem Datensatz master.csv eine explorative Faktoranalyse durch. 
+
+Hinweise für die Analyse:
+
+* 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
+#knitr::opts_chunk$get("root.dir")
+# problems knitting the markdown file => always generates html files and not pdf's
+```
+
+### Musterlösung Aufgabe 6.1: Faktoranalyse
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(tidyverse)
+library(ggfortify) # zur Testung der Voraussetzungen
+library(FSA) # post hoc test after kruskal-test
+
+## ladet die nötigen Packete und die novanimal.csv Datei in R
+
+master <- read_delim("18_Statistik6/master_final.csv", delim = ",")
+
+str(master)
+
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 20, color = "black"), 
+    axis.title = element_text(size = 20, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
+
+
+```
+
+
+
+
+
