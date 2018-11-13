@@ -216,7 +216,7 @@ Regression}\label{ubung-4.2s-multiple-logistische-regression}
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Modeldiagnostik (wenn nicht signifikant, dann OK)}
-\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pchisq}\NormalTok{(mod1}\OperatorTok{$}\NormalTok{deviance,mod1}\OperatorTok{$}\NormalTok{df.resid) }\CommentTok{# hochsignifikant, d.h. kein guter Modellfit??}
+\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pchisq}\NormalTok{(mod1}\OperatorTok{$}\NormalTok{deviance,mod1}\OperatorTok{$}\NormalTok{df.resid) }\CommentTok{# hochsignifikant, d.h. kein gutes Modell}
 \end{Highlighting}
 \end{Shaded}
 
@@ -283,12 +283,12 @@ Mit der logistischen Regression kann der Fleischkonsum werder durch das
 Geschlecht, die Hochschulzugehörigkeit noch das Alter vorhergesagt
 werden. Die Tests für die Modelldiagnostik und das kleine pseudo-\(R^2\)
 unterstützen diesen Befund. Auch die hohe Missklassifizierungsrate
-(39\%) deutet auf ein Modell, welches nicht zu den Daten passt. Es
+(39\%) deutet auf ein Modell hin, welches nicht zu den Daten passt. Es
 sollte nach einem weiteren adäquateren Modell gesucht werden. Bei
 näherer Betrachtung der Daten erkennt man, dass einige Personen
 wiederholt im Datensatz auftauchen (siehe card\_num). Bei einer weiteren
 Analyse müssten die einzelne Individuen ebenfalls berücksichtigt werden
-z. B. mit genesteten Modellen (siehe Statistik 5).
+z. B. als festen Effekt (siehe Statistik 5).
 
 
 \end{document}

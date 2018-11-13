@@ -8,15 +8,13 @@ output: pdf_document
 
 ###  Übung 1.2: $\chi^2$-Test
 
-```{r setup, include=FALSE, purl = F}
+```{r setup, include=FALSE, purl = F, message=F}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, error = F, include = T, fig.pos = 'H')
-#knitr::opts_chunk$get("root.dir")
 
-## Übung 1.2
 ```
 
 
-```{r, message=F, purl = F, include=FALSE}
+```{r, message=T, purl = F, include=FALSE}
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
 
 library(tidyverse)
@@ -85,8 +83,10 @@ Ziel war es die novanimal Stichprobe in der Gesamtpopulation bezüglich Geschlec
 Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Auch der Fishers exakte Test zeigt einen ähnlichen p-Wert (*p* > .001). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind (siehe Table 1).
 
 ```{r, echo=F, fig.}
-table <- rename(fisher_t, Hochschulzugehörigkeit = member, `Anzahl Population` = population, `Anzahl Stichprobe` = stichprobe, `Anteil Population` = population_pct, `Anteil Stichprobe` = canteen_pct) %>%
-  select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population`, `Anzahl Stichprobe`, `Anteil Stichprobe`) %>% mutate(`Anteil Stichprobe` = round(`Anteil Stichprobe`,2)*100, `Anteil Population` = `Anteil Population`*100)
+table <- fisher_t %>% 
+  rename(Hochschulzugehörigkeit = member, `Anzahl Population` = population, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = population_pct, `Anteil Stichprobe (%)` = canteen_pct) %>%
+  dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>% 
+  mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
 knitr::kable(table, caption = "Anzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
 
 ```
@@ -104,13 +104,12 @@ $H_1$: Es gibt Unterschiede in den Verkaufszahlen zwischen Basis- und Interventi
 # Daten müssen zuerst nach "week" und "condition" zusammengefasst werden
 
 df <- nova %>%
-    group_by(date, condit) %>%  
+    group_by(week, condit) %>%  
     summarise(tot_sold = n()) 
 
 # überprüft die Voraussetzungen für einen t-Test
 ggplot(df, aes(x = condit, y= tot_sold)) + 
     geom_boxplot(fill = "white", color = "black", size = 1) + 
-    scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
     labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
     mytheme
 
@@ -123,7 +122,7 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
 # es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen unabhängig sind
 
 t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, 
-                 df[df$condit == "Intervention", ]$tot_sold, var.equal = T)
+                 df[df$condit == "Intervention", ]$tot_sold)
 t_test
 ```
 
@@ -133,15 +132,14 @@ Ziel war es die wöchentlichen Verkaufszahlen zwischen den Interventions- und Ba
 
 #### Ergebnisse
 
-In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowchen (siehe Figure 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`).
+In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowochen (siehe Figure 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`).
 
 
 ```{r, purl=F, message=F, echo = F,  fig.cap="Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant."}
 # zeigt die Ergebnisse mit einer Abbildung
 ggplot(df, aes(x = condit, y= tot_sold)) + 
     geom_boxplot(fill = "white", color = "black", size = 1) + 
-    scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
-    labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
+  labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
     mytheme
 
 ```

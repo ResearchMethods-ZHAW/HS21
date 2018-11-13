@@ -58,7 +58,7 @@ mod1 <- update(mod0, ~. -member - age)
 summary.lm(mod1)
 
 # Modeldiagnostik (wenn nicht signifikant, dann OK)
-1 - pchisq(mod1$deviance,mod1$df.resid) # hochsignifikant, d.h. kein guter Modellfit??
+1 - pchisq(mod1$deviance,mod1$df.resid) # hochsignifikant, d.h. kein gutes Modell
 
 #Modellgüte (pseudo-R²)
 1 - (mod1$dev / mod1$null) # sehr kleines pseudo-R²
@@ -88,5 +88,5 @@ Die Kriteriumsvariable "Fleischkonsum" ist eine binäre Variable. Demnach wird e
 
 
 #### Ergebnisse
-Mit der logistischen Regression kann der Fleischkonsum werder durch das Geschlecht, die Hochschulzugehörigkeit noch das Alter vorhergesagt werden. Die Tests für die Modelldiagnostik und das kleine pseudo-$R^2$ unterstützen diesen Befund. Auch die hohe Missklassifizierungsrate (`r round(mf*100,1)`%) deutet auf ein Modell, welches nicht zu den Daten passt. Es sollte nach einem weiteren adäquateren Modell gesucht werden. 
-Bei näherer Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen (siehe card_num). Bei einer weiteren Analyse müssten die einzelne Individuen ebenfalls berücksichtigt werden z. B. mit genesteten Modellen (siehe Statistik 5).
+Mit der logistischen Regression kann der Fleischkonsum werder durch das Geschlecht, die Hochschulzugehörigkeit noch das Alter vorhergesagt werden. Die Tests für die Modelldiagnostik und das kleine pseudo-$R^2$ unterstützen diesen Befund. Auch die hohe Missklassifizierungsrate (`r round(mf*100,1)`%) deutet auf ein Modell hin, welches nicht zu den Daten passt. Es sollte nach einem weiteren adäquateren Modell gesucht werden. 
+Bei näherer Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen (siehe card_num). Bei einer weiteren Analyse müssten die einzelne Individuen ebenfalls berücksichtigt werden z. B. als festen Effekt (siehe Statistik 5).
