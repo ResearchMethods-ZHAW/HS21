@@ -1,5 +1,4 @@
-#Musterlösung Aufgabe 2.3S
-
+## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE-----------
 
 library(tidyverse)
 library(ggfortify) # zur Testung der Voraussetzungen
@@ -45,7 +44,7 @@ ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) +
 # definiert das Modell mit Interaktion
 model1 <- aov(tot_sold ~ label_content * condit, data = df_)
 
-summary(model1)
+summary.lm(model1)
 
 autoplot(model1) + mytheme  # Inspektion der Modellvoraussetzung: ist ok
 

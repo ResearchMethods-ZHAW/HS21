@@ -58,3 +58,13 @@ plot(model1)
 summary.lm(model1)
 
 
+# Sprechstunde: 13.11  -  12.00 bis 13.00
+
+# Probleme mit PCA, v.a. was sagt uns die PC1 und PC2 => wie weiter für eine Regression
+# Unterschied ANCOVA und multiple Regression
+# gerichtete und ungerichtete Thesen => two.sided vs one.sided
+# Fitting vs. Overfitting
+# Probleme, wie weiter nach gefundenem optimalen Modell? Diagnostic, Summary und Plot 
+# versch. r Befehle (sub vs. grep) => regular expressions
+
+

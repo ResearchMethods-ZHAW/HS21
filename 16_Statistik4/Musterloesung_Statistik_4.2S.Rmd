@@ -58,7 +58,7 @@ mod1 <- update(mod0, ~. -member - age)
 summary.lm(mod1)
 
 # Modeldiagnostik (wenn nicht signifikant, dann OK)
-1 - pchisq(mod1$deviance,mod1$df.resid) # hochsignifikant, d.h. kein gutes Modell
+1 - pchisq(mod1$deviance, mod1$df.resid) # hochsignifikant, d.h. kein gutes Modell
 
 #Modellgüte (pseudo-R²)
 1 - (mod1$dev / mod1$null) # sehr kleines pseudo-R²
