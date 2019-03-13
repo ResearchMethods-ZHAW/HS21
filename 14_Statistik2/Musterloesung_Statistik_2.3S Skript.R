@@ -1,0 +1,84 @@
+#Musterlösung Aufgabe 2.3S
+
+
+library(tidyverse)
+library(ggfortify) # zur Testung der Voraussetzungen
+
+
+## ladet die nötigen Packete und die novanimal.csv Datei in R
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 20, color = "black"), 
+    axis.title = element_text(size = 20, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
+
+
+
+## ------------------------------------------------------------------------
+# klone den originaler Datensatz
+df <- nova 
+
+# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+ df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+ 
+# gruppiert Daten gemäss Bedingungen, Menü-Inhalt und Wochen
+df_ <- df %>%
+    group_by(condit, label_content, week) %>%
+    summarise(tot_sold = n()) %>%
+    drop_na() # lasst die unbekannten Menü-Inhalte weg
+
+
+# überprüft Voraussetzungen für eine ANOVA
+# Boxplots zeigt klare Varianzheterogenität
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) +
+  geom_boxplot(fill="white", size = 1) + 
+  labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+  mytheme
+
+# definiert das Modell mit Interaktion
+model1 <- aov(tot_sold ~ label_content * condit, data = df_)
+
+summary(model1)
+
+autoplot(model1) + mytheme  # Inspektion der Modellvoraussetzung: ist ok
+
+## ------------------------------------------------------------------------
+# post-hoc-Tests nach Tukey
+
+TukeyHSD(model1)
+
+
+## ---- echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."----
+
+# zeigt die Ergebnisse anhand eines Boxplots
+library(multcomp)
+df_$cond_label <- interaction(df_$condit, df_$label_content) # bei Interaktionen gibt es diesen Trick, um bei den multiplen Vergleiche, die richtigen Buchstaben zu bekommen
+model1 <- aov(tot_sold ~ cond_label, data = df_)
+letters <-cld(glht(model1, linfct=mcp(cond_label="Tukey")))
+
+ggplot(df_, aes(x = cond_label, y= tot_sold)) +
+  geom_boxplot(fill="white", color = "black", size = 1) + 
+  labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+  scale_y_continuous(breaks = seq(0, 130,25), limits = c(0, 130)) +
+  annotate("text", x = 1:6, y = 130, label = letters$mcletters$Letters, size = 8) +
+  mytheme 
+
+## ----echo=F, fig.cap="Wöchentliche Verkaufszahlen aggregiert für die drei Menü-Inhalte."----
+# eine weitere Möglichkeit die Ergebnisse darzustellen
+m_sell <- na.omit(df_) %>% group_by(condit,label_content) %>% summarise(val = mean(tot_sold)) # berechne die durchschnittlichen Verkaufszahlen pro Bedingung
+
+ggplot(df_, aes(x = condit, y = tot_sold, linetype = label_content, shape = label_content)) + 
+    geom_point(data = m_sell, aes(y = val), size = 4) +
+    geom_line(data = m_sell, aes(y = val, group = label_content), size = 2) + 
+    labs(y = "Durchschnittlich verkaufte Gerichte pro Woche", x = "Bedingungen") + 
+    guides(linetype = F, shape = guide_legend(title = "Menü-Inhalt"))+
+    scale_y_continuous(breaks = seq(0,120,20), limits = c(0,120))+
+    mytheme
+
