@@ -1,6 +1,9 @@
 
 
 ```{r}
+library(tidyverse)
+
+
 kormoran <- read_delim("14_Statistik2/data/kormoran.csv", ";")
 weight <- read_csv("14_Statistik2/data/growth.csv")
 
