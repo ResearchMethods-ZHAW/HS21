@@ -4,11 +4,17 @@ library(plotly)
 library(pander)
 library(webshot)
 
+
+
+
+
+
 ## 
 ## # Nur nötig, wenn ihr mit einer lokalen Installation von RStudio arbeitet
 ## # (also nicht auf dem Server).
 ## options(viewer=NULL)
 ## 
+
 # Lösung Aufgabe 1
 
 p <- mtcars %>%
@@ -30,6 +36,9 @@ p <- mtcars %>%
   )
 
 
+
+
+
 beaver1_new <- beaver1 %>%
   mutate(beaver = "nr1")
 
@@ -38,12 +47,16 @@ beaver2_new <- beaver2 %>%
 
 beaver_new <- rbind(beaver1_new,beaver2_new)
 
+
 beaver_new <- beaver_new %>%
   mutate(
     hour_dec = (time/100)%/%1,         # Ganze Stunden (mittels ganzzaliger Division)
     min_dec = (time/100)%%1/0.6,       # Dezimalminuten (15 min wird zu 0.25, via Modulo)
     hour_min_dec = hour_dec+min_dec    # Dezimal-Zeitangabe (03:30 wird zu 3.5)
     ) 
+
+
+
 
 # Lösung Aufgabe 2
 
@@ -55,10 +68,15 @@ p <- beaver_new %>%
     orientation = 270,
     showlegend = F
     )
+
+
+
 AirPassengers
 
 class(AirPassengers)
+
 AirPassengers2 <- tapply(AirPassengers, list(year = floor(time(AirPassengers)), month = month.abb[cycle(AirPassengers)]), c)
+
 
 
 AirPassengers3 <- AirPassengers2 %>%
@@ -78,6 +96,7 @@ AirPassengers3 <- AirPassengers2 %>%
 # as.integer(as.factor("500"))
 
 
+
 # Lösung Aufgabe 3
 
 p <- AirPassengers3 %>%
@@ -88,6 +107,9 @@ p <- AirPassengers3 %>%
     orientation = 270,
     legend = list(traceorder = "reversed")
 ) 
+
+
+
 
 
 # Lösung Aufgabe 4

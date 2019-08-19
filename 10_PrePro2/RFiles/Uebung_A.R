@@ -1,6 +1,7 @@
 library(tidyverse)
 library(lubridate)
 library(stringr)
+
 # Lösung Aufgabe 1
 
 wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
@@ -10,11 +11,13 @@ wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
                     col_double()
                     )
                   )
+
 # Lösung Aufgabe 2
 
 wetter <- wetter %>%
   filter(!is.na(stn)) %>%
   filter(!is.na(tre200h0))
+
 
 
 # Lösung Aufgabe 3
@@ -23,9 +26,11 @@ wetter_spread <- spread(wetter, stn,tre200h0)
 
 
 
+
 # Lösung Aufgabe 4
 
 wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";", locale = locale(encoding = "UTF-8"))
+
 
 
 # Lösung Aufgabe 5
@@ -36,9 +41,11 @@ colnames(koordinaten) <- c("x","y")
 
 wetter_legende <- cbind(wetter_legende,koordinaten)
 
+
 # Lösung Aufgabe 6
 
 wetter_legende <- dplyr::select(wetter_legende, stn, Name, x,y,Meereshoehe)
+
 
 # Lösung Aufgabe 7
 
@@ -47,11 +54,13 @@ wetter <- left_join(wetter,wetter_legende,by = "stn")
 # Jointyp: Left-Join auf 'wetter', da uns nur die Stationen im Datensatz 'wetter' interessieren.
 # Attribut: "stn"
 
+
 # Lösung Aufgabe 8
 
 wetter_sry <- wetter %>%
   group_by(stn) %>%
   summarise(temp_mean = mean(tre200h0))
+
 # Lösung Aufgabe 9
 
 wetter_sry <- wetter %>%
@@ -61,6 +70,7 @@ wetter_sry <- wetter %>%
 # Achtung: wenn mehrere Argumente in group_by() definiert werden führt das 
 # üblicherweise zu Untergruppen. In unserem Fall hat jede Station nur EINE 
 # Meereshöhe, deshalb wird die Zahl der Gruppen nicht erhöht.
+
 
 ggplot(wetter_sry, aes(temp_mean,Meereshoehe)) +
   geom_point()

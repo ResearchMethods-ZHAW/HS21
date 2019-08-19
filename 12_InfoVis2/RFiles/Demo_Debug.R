@@ -21,6 +21,7 @@ wetter_fil <- wetter %>%
 
 
 
+
 ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_point() +
   geom_line() +

@@ -15,6 +15,7 @@ mytheme <-
     axis.ticks.length = unit(.5, "cm")
     )
 
+
 # gruppiert die Varieblen und fasst sie nach Geschlecht und Hochschulzugehörigkeit zusammen 
 canteen <- group_by(nova, gender, member) %>% 
   summarise(tot = n()) %>% 
@@ -34,13 +35,17 @@ chi_sq
 # erstellt dafür einen neuen Datensatz; tibble() ist eine ähnliche Funktion wie data.frame()
 
 fisher_t <- tibble(member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
-  population = population_exp * 2138, # berechnet die beobachteten Zahlen der Population => Fishers exakter Test kann nicht mit erwarteten Häufigkeiten rechnen
+  population = round(population_exp * 2138,0), # berechnet die beobachteten Zahlen der Population => Fishers exakter Test kann nicht mit erwarteten Häufigkeiten rechnen
   stichprobe = canteen$tot,
   population_pct = population_exp, 
   canteen_pct = canteen$tot / sum(canteen$tot))
 
-fish <- fisher.test(fisher_t[ ,2:3]) # was sind die Unterschiede zwischen den beiden Tests (Chi-Quadrat-Test und Fishers exakter Test)? Wieso gibt der Fishers exakter Test keinen OR aus?
+fish <- fisher.test(fisher_t[ ,2:3], simulate.p.value=TRUE) # was sind die Unterschiede zwischen den beiden Tests (Chi-Quadrat-Test und Fishers exakter Test)? Wieso gibt der Fishers exakter Test keinen OR aus?
 fish
+
+
+
+
 # Daten müssen zuerst nach "week" und "condition" zusammengefasst werden
 
 df <- nova %>%
@@ -59,7 +64,7 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
 # Histogramm für die Bedingung Basiswoche
 df %>% filter(condit == "Basis") %>%
 ggplot(aes(x = as.factor(day), y= tot_sold)) + 
-    geom_bar(stat = "identity", fill = "lightgrey", width = .6) + 
+    geom_bar(stat = "identity", fill = "white", color = "black", width = .6) + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) +
     labs(x="Tage", y="Anzahl verkaufte Gerichte") +
     mytheme
@@ -67,10 +72,11 @@ ggplot(aes(x = as.factor(day), y= tot_sold)) +
 # Histogramm für die Bedingungen Interventionwoche
 df %>% filter(condit == "Intervention") %>%
 ggplot(aes(x = as.factor(day), y= tot_sold)) + 
-    geom_bar(stat = "identity", fill = "lightgrey", width = .6) + 
+    geom_bar(stat = "identity", fill = "white", color = "black", width = .6) + 
     scale_y_continuous(breaks = seq(0,60,10), limits = c(0,60)) + 
     labs(x="Tage", y="Anzahl verkaufte Gerichte") +
     mytheme
+
 
 
 # führt einen t-Tests durch; es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen unabhängig sind

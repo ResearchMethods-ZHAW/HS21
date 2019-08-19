@@ -1,6 +1,7 @@
 library(tidyverse)
 library(lubridate)
 
+
 wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
                      col_types = list(
                        col_character(),    
@@ -18,6 +19,7 @@ station_meta <- read_delim("09_PrePro1/data/order_52252_legend.csv",";")
 wetter <- left_join(wetter,station_meta,by = "stn")
 
 
+
 # Lösung Aufgabe 1
 
 wetter_fil <- wetter %>%
@@ -26,6 +28,7 @@ wetter_fil <- wetter %>%
     month = month(time)
   ) %>%
   filter(year == 2000 & month < 3)
+
 
 # Lösung Aufgabe 2
 
@@ -38,12 +41,14 @@ p <- ggplot(wetter_fil, aes(time,tre200h0, colour = Meereshoehe)) +
 p 
 
 
+
 # Lösung Aufgabe 3
 
 p <- p +
   stat_smooth(colour = "black",lty = 2)
 
 p
+
 
 # Lösung Aufgabe 4
 
@@ -54,11 +59,13 @@ p <- p +
 p
     
 
+
 # Lösung Aufgabe 5
 
 p +
   scale_y_continuous(labels = function(x)paste0(x,"°C")) +
   labs(x = "Kalenderwoche", y = "Temperatur")
+
 
 
 # Lösung Aufgabe 6
@@ -70,6 +77,7 @@ p <- p +
 
 p
 
+
 # Lösung Aufgabe 7
 
 wetter_fil <- mutate(wetter_fil,monat = month(time,label = T,abbr = F))
@@ -80,6 +88,7 @@ ggplot(wetter_fil, aes(stn,tre200h0, fill = Meereshoehe)) +
   facet_grid(monat~.) +
   labs(x = "Station", y = "Temperatur") +
   theme(legend.direction = "horizontal",legend.position = "top")
+
 
 
 # Lösung Aufgabe 8
@@ -96,6 +105,7 @@ ggplot(wetter_fil, aes(Name,tre200h0)) +
   theme(axis.text.x = element_text(angle = 45,hjust = 1))
 
 
+
 # Lösung Aufgabe 9
 
 
@@ -104,6 +114,7 @@ h <- ggplot(wetter_fil,aes(tre200h0, fill = Lage)) +
   labs(x = "Temperatur in °C", y = "Anzahl")
 
 h
+
 
 # Lösung Aufgabe 10
 

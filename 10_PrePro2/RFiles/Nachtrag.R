@@ -1,27 +1,36 @@
 typeof(42)
 typeof(42L)
+
 zahlen <- factor(c("null","eins","zwei","drei"))
 
 zahlen
+
 zahlen <- factor(zahlen,ordered = T)
 
 zahlen
+
 zahlen <- factor(zahlen,ordered = T,levels = c("null","eins","zwei","drei","vier"))
 
 zahlen
+
 typeof(zahlen)
 
 is.integer(zahlen)
+
 class(zahlen)
+
 zahlen
 as.integer(zahlen)
+
 zahlen2 <- factor(c("3","2","1","0"))
 
 as.integer(zahlen2)
 
+
 zahlen2 <- factor(c("3","2","1","0"))
 
 as.integer(as.character(zahlen2))
+
 
 library(tidyverse)
 

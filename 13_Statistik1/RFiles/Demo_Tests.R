@@ -6,6 +6,7 @@ chisq.test(count)
 
 fisher.test(count)
 
+
 a<-c(20,19,25,10,8,15,13,18,11,14)
 b<-c(12,15,16,7,8,10,12,11,13,10)
 blume<-data.frame(a,b)
@@ -32,6 +33,7 @@ leveneTest(blume$a,blume$b,center=mean)
 
 wilcox.test(blume$a,blume$b)
 
+
 cultivar<-c(rep("a",10),rep("b",10))
 size<-c(a,b)
 blume.long<-data.frame(cultivar,size)
@@ -50,6 +52,7 @@ boxplot(data=blume.long,size~cultivar)
 t.test(size~cultivar, blume.long, var.equal=T)
 t.test(size~cultivar, blume.long, var.equal=F)
 
+
 library(ggplot2)
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()+theme_classic()
@@ -61,6 +64,7 @@ theme(axis.text = element_text(size=14))
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
   theme(axis.line = element_line(size=1), axis.ticks = element_line(size=1), 
        axis.text = element_text(size = 20), axis.title = element_text(size = 20))
+
 mytheme <- theme_classic() + 
   theme(axis.line = element_line(color = "black", size=1), 
         axis.text = element_text(size = 20, color = "black"), 

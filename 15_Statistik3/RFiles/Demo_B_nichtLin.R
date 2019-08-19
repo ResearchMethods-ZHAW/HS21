@@ -3,11 +3,13 @@ library(tidyverse)
 library(car)
 library(ggExtra)
 library(ggfortify)
+
 ###################################################
 ### chunk number 1: pg 248
 ###################################################
 
 peake <- read_csv("15_Statistik3/data/peake.csv")
+
 
 ###################################################
 ### chunk number 2: pg 248
@@ -23,11 +25,13 @@ p <- ggplot(peake, aes(AREA,SPECIES)) +
 
 ggMarginal(p,type = "boxplot", size = 10)
 
+
 ###################################################
 ### chunk number 3: pg 248
 ###################################################
 
 autoplot(lm(SPECIES~AREA, data=peake),which = 1)
+
 ###################################################
 ### chunk number 4: pg 249
 ###################################################
@@ -41,6 +45,7 @@ ggplot(peake, aes(AREA, SPECIES)) +
               method.args = list(start=list(alpha=0.1, beta=1))
               )
 
+
 ###################################################
 ### chunk number 5: pg 249
 ###################################################
@@ -48,11 +53,13 @@ ggplot(NULL, aes(fitted(peake.nls),resid(peake.nls))) +
   geom_point()
 
 
+
 ###################################################
 ### chunk number 6: pg 249
 ###################################################
 plot(peake.nls)
 summary(peake.nls)
+
 ###################################################
 ### chunk number 7: pg 249
 ###################################################
@@ -61,6 +68,7 @@ AIC(peake.nls) #AIC
 peake.lm<-lm(SPECIES~AREA, data=peake) #linear fit
 
 AIC(peake.lm) #lm AIC
+
 ###################################################
 ### chunk number 8: pg 250
 ###################################################
@@ -69,6 +77,7 @@ summary(peake.nls1)
 AIC(peake.nls1) #AIC
 deviance(peake.nls1)/df.residual(peake.nls1) #MSresid
 anova(peake.nls,peake.nls1)
+
 ###################################################
 ### chunk number 9: 251
 ###################################################

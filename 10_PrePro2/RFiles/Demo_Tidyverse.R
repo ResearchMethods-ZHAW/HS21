@@ -1,5 +1,7 @@
 library(tidyverse)
+
 library(lubridate) 
+
 
 wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
                   col_types = list(
@@ -9,11 +11,17 @@ wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
                     )
                   )
 
+
 mean(wetter$tre200h0, na.rm = T) 
+
 wetter$year <- year(wetter$time)
+
 wetter <- mutate(wetter,year = year(time))
+
 mean(wetter$tre200h0[wetter$year == 2000], na.rm = T)
+
 summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = T))
+
 ## 
 ## summarise(group_by(wetter,year),temp_mittel = mean(tre200h0))
 ## 
@@ -23,6 +31,7 @@ summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = T))
 ##   group_by(year) %>%                      #2) Bilde Gruppen pro Jahr
 ##   summarise(temp_mittel = mean(tre200h0)) #3) berechne das Temperaturmittel
 ## 
+
 # Maximal und minimal Temperatur pro Kalenderwoche
 wetter %>%                              #1) nimm den Datensatz "wetter"
   filter(stn == "ABO") %>%              #2) filter auf Station namnes "ABO"
@@ -32,6 +41,7 @@ wetter %>%                              #1) nimm den Datensatz "wetter"
     temp_max = max(tre200h0, na.rm = T),#5) Berechne das Maximum 
     temp_min = min(tre200h0, na.rm = T) #6) Berechne das Minimum
     )   
+
 
 wetter_sry <- wetter %>%                              
   mutate(
@@ -45,20 +55,30 @@ wetter_sry <- wetter %>%
     temp_mean = mean(tre200h0)
     )  
 
+
 ggplot() +
   geom_line(data = wetter_sry, aes(kw,temp_max), colour = "yellow") +
   geom_line(data = wetter_sry, aes(kw,temp_mean), colour = "pink") +
   geom_line(data = wetter_sry, aes(kw,temp_min), colour = "black") +
   labs(y = "temp")
 
+
 wetter_sry_long <- wetter_sry %>%
   gather(Key, Value, c(temp_max,temp_min,temp_mean))
 
+
+
+
+
+
 nrow(wetter_sry)
 nrow(wetter_sry_long)
+
 wetter_sry_long <- wetter_sry %>%
   gather(Key, Value, -kw)
+
 ggplot(wetter_sry_long, aes(kw,Value, colour = Key)) +
   geom_line()
+
 wetter_sry_long %>%
   spread(Key,Value)
