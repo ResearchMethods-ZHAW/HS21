@@ -15,7 +15,7 @@ df_ <- df %>%
 # überprüfe Voraussetzungen für eine ANOVA
 
 # Boxplots
-ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme
+ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) + geom_boxplot(fill="lightgrey") + stat_boxplot(geom ='errorbar') + labs(x = "\nMenu-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + mytheme
 
 
 # definiert das Modell mit Interaktion
@@ -38,3 +38,5 @@ Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Bas
 Zar, J. H. (2010). *Biostatistical Analysis*. Prentice Hall.
 
 
+*******
+##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch

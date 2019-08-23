@@ -1,7 +1,5 @@
 ---
-title: "MSc. Research Methods - Statistikteil Lösungen 2018"
-author: "Gian-Andrea Egeler"
-date: "`r format(Sys.Date(), '%B %Y')`"
+title: "Modul Research Methods HS19"
 output:
   html_document:
     df_print: paged
@@ -28,7 +26,7 @@ Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das
 - Interpretiert die Ergebnisse
 
 
-### Musterlösung Übung 5.2S: GLMM
+## Musterlösung Übung 5.2S: GLMM
 
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
@@ -53,7 +51,7 @@ mytheme <-
 
 ```
 
-
+### kommentierter Lösungsweg
 ```{r}
 
 # Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
@@ -116,5 +114,6 @@ rownames(a) <- c("Intercept", "Geschlecht (Mann)", "Hochschulzugehörigkeit (Mit
 knitr::kable(a, caption = "Odds Ratios und das dazugehörige 95% Konfidenzintervall", digits = 2)
 ```
 
-
+*******
+##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
 
