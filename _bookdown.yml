@@ -27,6 +27,7 @@ rmd_files: [
 #  "12_InfoVis2/Uebung_A_loesung.Rmd",
 #  "12_InfoVis2/Uebung_B.Rmd",
 #  "12_InfoVis2/Uebung_B_loesung.Rmd",
+
 #  "13_Statistik1/Abstract.Rmd",
 #  "13_Statistik1/Demo_Tests.Rmd",
 #  "13_Statistik1/Intro_Daten_egel.Rmd",
@@ -45,10 +46,12 @@ rmd_files: [
   #"14_Statistik2/Uebung_loesung.Rmd",
   
 
-#  "15_Statistik3/Abstract.Rmd",
+   "15_Statistik3/Abstract.Rmd",
+   "15_Statistik3/Demoskript.Rmd",
+   "15_Statistik3/Musterloesung_Statistik_3.1.Rmd",
 #  "15_Statistik3/Demo_A_MultReg.Rmd",
 #  "15_Statistik3/Demo_B_nichtLin.Rmd",
-#  "15_Statistik3/Uebung.Rmd",
+   "15_Statistik3/Uebungen.Rmd",
 
 #  "16_Statistik4/Abstract.Rmd",
 #  "16_Statistik4/Demo_A_LogisticReg.Rmd", 
