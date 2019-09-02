@@ -1,12 +1,12 @@
 #book_filename: "ResearchMethods"
 rmd_files: [
   "index.Rmd",
-#  "09_PrePro1/Abstract.Rmd",
-#  "09_PrePro1/Demo_Datentypen.Rmd",
-#  "09_PrePro1/Uebung_A.Rmd",
-#  "09_PrePro1/Uebung_A_loesung.Rmd",
-#  "09_PrePro1/Uebung_B.Rmd",
-#  "09_PrePro1/Uebung_B_loesung.Rmd",
+  "09_PrePro1/Abstract.Rmd",
+  "09_PrePro1/Demo_Datentypen.Rmd",
+  "09_PrePro1/Uebung_A.Rmd",
+  "09_PrePro1/Uebung_A_loesung.Rmd",
+  "09_PrePro1/Uebung_B.Rmd",
+  "09_PrePro1/Uebung_B_loesung.Rmd",
   
 #  "10_PrePro2/Abstract.Rmd",
 #  "10_PrePro2/Nachtrag.Rmd",
@@ -33,11 +33,17 @@ rmd_files: [
 #  "13_Statistik1/Uebungen.Rmd",
 #  "13_Statistik1/Loesungen.Rmd",
 
-#  "14_Statistik2/Abstract.Rmd",
-#  "14_Statistik2/Demo.Rmd",
-#  "14_Statistik2/Uebungen.Rmd",
-#  "14_Statistik2/Uebung_B.Rmd",
-#  "14_Statistik2/Uebung_loesung.Rmd",
+  "14_Statistik2/Abstract.Rmd",
+  #"14_Statistik2/Demo.Rmd",
+  #"14_Statistik2/Demoskript.Rmd",
+  "14_Statistik2/Uebungen.Rmd",
+  "14_Statistik2/Musterloesung_Statistik_2.1.Rmd",
+  "14_Statistik2/Musterloesung_Statistik_2.2.Rmd",
+  "14_Statistik2/Musterloesung_Statistik_2.3N.Rmd",
+  "14_Statistik2/Musterloesung_Statistik_2.3S.Rmd",
+  #"14_Statistik2/Uebung_B.Rmd",
+  #"14_Statistik2/Uebung_loesung.Rmd",
+  
 
 #  "15_Statistik3/Abstract.Rmd",
 #  "15_Statistik3/Demo_A_MultReg.Rmd",

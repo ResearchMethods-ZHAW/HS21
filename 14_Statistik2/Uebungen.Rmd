@@ -7,7 +7,7 @@
 Der Datensatz beschreibt in einem physikalischen Experiment die Zahl der radioaktiven Zerfälle pro Minute in Abhängigkeit vom Zeitpunkt (min nach Start des Experimentes).
 
 - Ladet den Datensatz in R und macht eine explorative Datenanalyse.
-- Wählt unter den schon gelernten Methoden der Regressionsanalyse einadäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.
+- Wählt unter den schon gelernten Methoden der Regressionsanalyse ein adäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.
 - Prüft anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren
 - Stellt die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
 - Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
@@ -17,7 +17,7 @@ Der Datensatz beschreibt in einem physikalischen Experiment die Zahl der radioak
 
 **ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
 
-Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
+Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch.Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
 
 Hinweise für die Analysen:
 
