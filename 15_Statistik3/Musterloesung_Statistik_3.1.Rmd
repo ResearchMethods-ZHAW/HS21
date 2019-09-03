@@ -231,3 +231,11 @@ value von nahezu 100% war der Heat load-Index die wichtigste Einflussgrösse (ne
 weitere Umweltvariablen waren ebenfalls in mehr als 50% der statistisch relevanten
 Modelle enthalten (in dieser Reihenfolge):**
 
+**Tab. 1. Ergebnisse der Multimodel Inference. Die Variablen sind nach absteigenden
+Importance values sortiert. Die Parameterschätzung bezieht sich nur auf die Modelle, welche
+die entsprechende Variable beinhalten und ist nach Akaike weights gewichtet. Unter
+„Hochkorrelierte Variablen“ sind jene aufgeführt, die wegen ihres engen Zusammenhangs
+mit der genannten Variablen nicht ins globale Modell aufgenommen wurden.**
+
+![](15_Statistik3/data/tab1_uebungStatistik3.png)
+
