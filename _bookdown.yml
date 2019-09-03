@@ -55,6 +55,8 @@ rmd_files: [
 
    "16_Statistik4/Abstract.Rmd",
    "16_Statistik4/Demoskript.Rmd",
+   "16_Statistik4/Uebungen.Rmd",
+   "16_Statistik4/Musterloesung_Statistik_4.1.Rmd",
 #  "16_Statistik4/Demo_A_LogisticReg.Rmd", 
 #  "16_Statistik4/Demo_B_Pseudoreplik.Rmd",
 #  "16_Statistik4/Demo_C_SplitPlotANOVA.Rmd",
