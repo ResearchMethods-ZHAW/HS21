@@ -1,14 +1,18 @@
-```{r, include=FALSE, purl=F}
+---
+title: "MSc. Research Methods - Statistikteil Lösungen 2019"
+author: "Juergen Dengler"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
 
-knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
+
+```{r,include=FALSE}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")
 ```
 
-## Statistik 6 - Demoskript
-
-**(c) Juergen Dengler, 05.11.2018**
-
-```{r, message=FALSE}
-
+```{r}
 #Mit Beispieldaten aus Wildi (2013)
 
 library(dave)
@@ -55,7 +59,6 @@ E<-o.pca$sdev^2/o.pca$totdev*100
 E
 E[1:5]
 
-
 #CA
 
 library(vegan)
@@ -71,14 +74,13 @@ plot(x,y)
 #Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
 o.ca$CA$eig[1:2]/sum(o.ca$CA$eig)
 
-
 #DCA
 
-#o.dca <- decorana(sveg,mk=10)
-#plot(o.dca$rproj, asp=1)
+o.dca <- decorana(sveg,mk=10)
+plot(o.dca$rproj, asp=1)
 
-#o.dca2 <- decorana(sveg,mk=100)
-#plot(o.dca2$rproj, asp=1)
+o.dca2 <- decorana(sveg,mk=100)
+plot(o.dca2$rproj, asp=1)
 
 #NMDS
 
@@ -93,10 +95,12 @@ set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergeb
 o.imds<-isoMDS(mde,k=2)
 set.seed(1)
 o.mmds<-metaMDS(mde,k=2)
+
 plot(o.imds$points)
 plot(o.mmds$points)
 
-#Stress = S = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
+#Stress = S = Abweichung der zweidimensionalen NMDS-Lösng von der originalen Distanzmatrix
 stressplot(o.imds,mde)
 stressplot(o.mmds,mde)
+
 ```
