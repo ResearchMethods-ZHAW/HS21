@@ -74,7 +74,10 @@ rmd_files: [
    "18_Statistik6/Uebungen.Rmd",
    #"18_Statistik6/Musterloesung_Statistik_6.1.Rmd",
    
-#  "19_Statistik7/Abstract.Rmd",
+   "19_Statistik7/Abstract.Rmd",
+   #"19_Statistik7/Demoskript.Rmd",
+   "19_Statistik7/Uebungen.Rmd",
+   "19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
 #  "20_Statistik8/Abstract.Rmd",
 #  "00_Admin/references.Rmd"
   ]
