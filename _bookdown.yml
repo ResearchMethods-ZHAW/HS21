@@ -78,7 +78,10 @@ rmd_files: [
    #"19_Statistik7/Demoskript.Rmd",
    "19_Statistik7/Uebungen.Rmd",
    #"19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
-#  "20_Statistik8/Abstract.Rmd",
+   "20_Statistik8/Abstract.Rmd",
+#  "20_Statistik8/Demoskript.Rmd",
+   "20_Statistik8/Uebungen.Rmd",
+#  "20_Statistik8/Musterloesung_Statistik_8.1.Rmd",
 #  "00_Admin/references.Rmd"
   ]
 delete_merged_file: TRUE
