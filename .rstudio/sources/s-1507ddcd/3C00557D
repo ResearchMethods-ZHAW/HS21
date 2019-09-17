@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1558873740924.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "436|34|450|0|\n453|19|462|0|\n572|8|628|0|\n673|10|674|15|\n675|10|717|12|\n720|7|793|0|\n",
+    "hash" : "0",
+    "id" : "3C00557D",
+    "lastKnownWriteTime" : 1559037749,
+    "last_content_update" : 1559037749782,
+    "path" : "~/kira_masterarbeit_bericht_190522.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "645,31",
+        "docOutlineSize" : "134",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "636"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,15 @@
+L.minor                 Enzyme kinetics
+O2K                     Oxygen kinetics during 6-minute walk test data
+                        set
+confint2                Confidence intervals in nonlinear regression
+michaelismodels         Michaelis-Menten model and derived equations to
+                        model competitive and non-competitive
+                        inhibition
+nlsBoot                 Bootstrap resampling
+nlsConfRegions          Confidence regions
+nlsContourRSS           Surface contour of RSS
+nlsJack                 Jackknife resampling
+nlsResiduals            NLS residuals
+nlstools                Nonlinear least squares fit
+nlstools-defunct        Defunct Functions in Package 'nlstools'
+vmkm                    Michaelis Menten data sets

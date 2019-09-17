@@ -1,0 +1,178 @@
+Gerking                 Mark-Recapture Data for Sunfish in an Indiana
+                        Lake
+Hightower               Original data used in Hightower et al. (2001)
+Hoenig                  Tag Data from Hoenig et al. (1998)
+Jensen                  Age Frequency Data for Lake Whitefish By
+                        Individual Haul
+Jiang                   Tag Data from Jiang (2005)
+Kimura                  Length and Age Data For Male and Female Pacific
+                        Hake
+M.empirical             Estimation of Natural Mortality Rates from Life
+                        History Parameters
+P.donacina              Data from a growth study of New Zealand
+                        intertidal clams.
+Shepherd                Seasonal Length Frequencies for Raja clavata
+agesurv                 Age-based Survival Estimators
+agesurvcl               Age-Based Survival and Mortality Estimators for
+                        Cluster Sampling
+alk                     Create An Age-Length Key
+alkD                    Sample Size Determination for Age Subsampling
+                        Using the D statistic
+alkdata                 Age-Length Key for Gulf of Hauraki snapper,
+                        1992-1993
+alkprop                 Age-Length Key Proportions-At-Age
+alkss                   Sample Size Determination for Age Subsampling
+astrocalc4r             Solar zenith angles for biological research
+bheq                    Length-based Beverton-Holt Equilibrium Total
+                        Instantaneous Mortality Estimator
+bhnoneq                 Length-based Beverton-Holt Nonequilibrium Z
+                        Estimator
+bonito                  Data from an age and growth study of the
+                        pacific bonito.
+bt.log                  Back-transformation of log-transformed mean and
+                        variance
+buffalo                 Life Table Data for African Buffalo
+catch                   Number of cod captured in 10 standardized
+                        bottom trawl hauls from Massachusetts, 1985
+catch.select            Selectivity Ogive from a Catch Curve
+catchmsy                Estimating MSY from catch and resilience
+catchsurvey             Catch-Survey Analysis
+clus.lf                 Statistical Comparison of Length Frequencies
+                        from Simple Random Cluster Sampling
+clus.mean               Estimation of Population Attributes and
+                        Effective Sample Size for Fishes Collected Via
+                        Cluster Sampling
+clus.rho                Intracluster Correlation Coefficients for
+                        Clustered Data
+clus.rho.g              Calculate A Common Intracluster Correlation
+                        Coefficient Among Groups
+clus.str.lf             Statistical Comparison of Length Frequencies
+                        from Stratified Random Cluster Sampling
+clus.t.test             Correcting a Two-Sample Test for Clustering
+clus.vb.fit             Fit a Von Bertalanffy growth equation to
+                        clustered data via bootstrapping
+codcluslen              Lengths of Atlantic cod caught during
+                        Massachusetts Division of Marine Fisheries
+                        bottom trawl survey, spring 1985.
+codstrcluslen           Lengths of Atlantic cod caught during
+                        Massachusetts Division of Marine Fisheries
+                        stratified random bottom trawl survey, spring
+                        1985.
+combinevar              Combining Mean and Variances from Multiple
+                        Samples
+compare2                Comparisons of two age readers or two aging
+                        methods
+convmort                Conversion of Mortality Rates
+counts                  Run size data for alewife (_Alosa
+                        pseudoharengus_)
+cowcod                  Catch data (metric tons) for cowcod Sebastes
+                        levis 1900 to 2008
+cpuekapp                Trawl survey based abundance estimation using
+                        data sets with unusually large catches
+darter                  Catch Removal Data For Fantail Darter
+dbsra                   Depletion-Based Stock Reduction Analysis
+deltadist               Delta Distribution Mean and Variance Estimators
+deplet                  Catch-Effort Depletion Methods For a Closed
+                        Population
+dlproj                  This function performs projections for dbsra
+                        and catchmsy objects
+epr                     Eggs-Per-Recruit Analysis
+fm_checkdesign          Check parameter structure of Hightower et al.
+                        (2001) models
+fm_model_avg            Model Averaging for the Telemetry Method of
+                        Hightower et al. (2001)
+fm_telemetry            Estimation of Fishing and Natural Mortality
+                        from Telemetry Data
+fpc                     Fishing Power Correction Factor from
+                        Experimental Fishing
+gap                     Tukey's Gapping
+goosefish               Mean Length and Numbers of Lengths for Northern
+                        Goosefish, 1963-2002
+grotag                  Maximum likelihood estimation of growth and
+                        growth variability from tagging data - Francis
+                        (1988)
+grotagplus              Flexible maximum likelihood estimation of
+                        growth from multiple tagging datasets.
+growhamp                von Bertalanffy Growth Models for Tagging Data
+                        Incorporating Individual Variation
+growth                  Fitting Growth Curves to Length- or
+                        Weight-at-Age Data
+growthResid             Plot residuals of growth model fitted to tag
+                        data
+growthTraject           Plot growth trajectories obtained from tagging
+                        data
+growthlrt               Likelihood Ratio Tests for Comparing Multiple
+                        Growth Curves
+growthmultifit          Fit a Multi-Group Growth Model
+growtrans               Growth Transition Matrix for a Size-Structured
+                        Population Dynamics Model
+haddock                 Biological data for haddock (Melanogrammus
+                        aeglefinus)
+irm_cr                  Age-Independent Instantaneous Rates Model of
+                        Jiang et al. (2007) Incorporating Catch and
+                        Release Tag Returns
+irm_h                   Age-Independent Instantaneous Rates Tag Return
+                        Model of Hoenig et al. (1998)
+kappenman               Pacific cod catch per effort from Table 1 in
+                        Kappenman (1999)
+lifetable               Life Table Construction
+lingcod                 Catch data (metric tons) for lingcod 1889 to
+                        2001
+maki                    Data from Maki et al. 2001
+mature                  Estimation of proportion mature at age when
+                        immature fish are unavailable
+menhaden                Biological data for menhaden (Brevoortia
+                        tyrannus)
+mort.al                 Estimation of Mortality using Times-At-Large
+                        Data from Tagging
+mrN.single              Estimate of Population Size from a Single
+                        Mark-Recapture Experiment
+nshrimp                 Data for Gulf of Maine northern shrimp
+opt_slot                Optimum Slot and Trophy Size Limits for
+                        Recreational Fisheries
+opt_trophy              Optimum Trophy Size Limits for Recreational
+                        Fisheries
+pgen                    Probability of a Management Parameter Exceeding
+                        a Reference Point
+pinfish                 Length, age and sex data for pinfish (Lagodon
+                        rhomboides) from Tampa Bay, Florida
+plot.grotagplus         Plotting Tagging-Growth Objects
+powertrend              Power Analysis For Detecting Trends
+print.grotagplus        Printing Tagging-Growth Objects
+pwpop                   Estimate Net Reproductive Rates Over Multiple
+                        Periods Of An Abundance Time Series Using
+                        Piecewise Regression
+remp                    Random Number Generation from an Empirical
+                        Distribution
+rig                     Tagging data from a growth study of rig
+rockbass                Age Frequency Data for Rock Bass
+sblen                   Total length (inches) of striped bass collected
+                        by Massachusetts volunteer anglers in 2014
+sbotos                  Otolith ages of striped bass made by two age
+                        readers
+sbpr                    Spawning Stock Biomass-Per-Recruit Analysis
+schnabel                Population Size Estimates from Repeated
+                        Mark-Recapture Experiments
+slca                    A Weakly Parametric Method for the Analysis of
+                        Length Composition Data
+sole                    Flathead sole CPUEs
+sr                      Estimation and Model Comparison of
+                        Stock-Recruitment Relationships
+striper                 Recruitment Numbers and Female Spawning Stock
+                        Biomass for Striped Bass
+surveyfit               Estimating the Relative Abundance of Fish From
+                        a Trawl Survey
+surveyref               Quantitative reference points from stock
+                        abundance indices based on research surveys
+tag_model_avg           Model Averaging for Instantaneous Rates Tag
+                        Return Models
+tanaka                  Simulated alfonsino data for Tanaka (2006
+trout                   Mark-recapture data for Kenai River trout trout
+vbfr                    Francis' re-parameterization of the von
+                        Bertalanffy growth equation for length-age data
+wolffish                Spring untransformed mean catch per tow for
+                        wolffish (Anarhichas lupus)
+yellowtail              Fall average catch per tow for southern New
+                        England yellowtail flounder
+ypr                     Yield-Per-Recruit Analysis
+zt                      Z-transform or center a time series

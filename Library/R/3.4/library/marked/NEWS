@@ -1,0 +1,458 @@
+marked 1.2.1 29 March 2018
+-----------------
+CHANGES
+
+* minor adjustment to Description file and new init.c for routine registration for CRAN pass
+
+
+marked 1.2.0 26 March 2018
+-----------------
+CHANGES
+
+* changed use of rBind and cBind to rbind and cbind for change in MATRIX package; requires >=R3.2.0 so version incremented
+
+marked 1.1.14 24 July 2017
+-----------------
+BUG FIXES
+
+* bug fixed in js.hessian which prevented computation of vcv matrix because of earlier change restructuring model object. Thanks to Bjorn Kroger for reporting problem.
+
+NEW FEATURES
+
+* addition of priors for cjs with TMB - still in testing phase
+
+CHANGES
+
+* make.design.data will now return an error if field names not in data are specified in static list.
+
+* in mvmscjs model, p and Phi can now also be all fixed values. Also, all parameters are now checked for empty columns because of fixed parameter values. Previously only Psi was.
+
+* create.dm now checks and traps for NA in any variable used in the formula and stops if it is encountered and reports problem variable. Previously a very obtuse R error was given.
+
+
+marked 1.1.13 5 December 2016
+-----------------
+BUG FIXES
+
+* patched mvms.f for non-admb version of MVMSCJS. Code had an incorrect index that only worked if delta did not vary by individual.
+
+* patched mvmscjs.r so that it allows ~0 for delta (all fixed values) in the ADMB version. Also, now all Psi can be fixed as well.
+
+CHANGES
+
+* added returns to output when debug=T for MVMS so warning about last line incomplete should not appear.
+
+* added checks HMMLikelihood to outline errors when dmat, gamma or delta are not formed correctly. Typically this will be due to fix values being set incorrectly. Also, HMMLikelihood is now called prior to mvmscjs to check for those errors to avoid putting checks in ADMB code as well.
+
+marked 1.1.12 26 September 2016
+-----------------
+NEW FEATURES
+
+* parameter pi has been added to MVMSCJS model. Including pi allows the initial 
+state at release to be uncertain. See ?initiate_pi for more details. initiate_pi is called
+from make.design.data for MVMSCJS models so existing code can be run without modification.
+
+* modified mscjs and multistate.tpl file so fixed parameters can be included and design
+matrix can be simplified to speed up execution times.
+
+* added function setup_admb to simplify calling code like cjs and mscjs and standardize handling
+of compile, clean arguments and use of existing admb executables in the marked package directory.
+
+* created an ADMB version of the mvms model with simplified design matrix to speed up execution times. The sealion example runs in 1/10 of the time if use.admb=TRUE is set.
+
+* created a TMB version of cjs models that provides real predictions with std errors and is much faster fitting random effects.  It allows accumulation of capture histories for time random effects or if group effects included in data.
+
+CHANGES
+
+
+* pull request merged from Brett McClintock for probit.cjs. Changes Bayesian updating.
+
+* all values for a parameter can be fixed (e.g., S=1 or delta=1). This used to cause problems but now if
+all values are fixed, a message is given that the formula is being reset to ~0 which has no parameters. Likewise,
+if formula is ~0 and not all values are fixed then an error is generated. 
+
+* The above change made it possible to allow an mvmscjs specification in which all states are certain. In which case,
+no design data is generated for the delta parameter.
+
+* global_decode now requires ddl argument to be specified and does not compute on the fly.
+
+* changed AIC calculation for models with random effects to use only number of fixed effect estimates plus number of random effect sigma values.
+
+BUG FIXES
+
+* patched mvms.f which had a bad index. Only worked if delta did not vary by individual. 
+
+marked 1.1.11 7 March 2016
+-----------------
+
+NEW FEATURES
+
+* can now add sigmaPhi and sigmap to list of initial values for random effects CJS model. If none are specified, initial values are now set to -2 instead of 0.1
+
+BUG FIXES
+
+* patched create.dm which was leaving out one record when chunking through design data. This caused failure when using splines.
+
+* beta v-c matrix not being properly stored on CJS with use.admb=TRUE
+
+* modified cjs so it doesn't check for tplcpp before running admb. This was stopping it from using admb on Linux.
+
+* run=FALSE was not working for non-HMM models because initial.list was not assigned.
+
+* fixed bug that was preventing real predictions from being included in results where appropriate.
+
+CHANGES
+
+* in crm.wrapper if a model with the same name is stored externally in the workspace it will load that file and use it as initial values unless the initial argument has been specified in the call.
+
+* modified crmlist_fromfiles and model.table to prevent issues with lack of memory by removing models after loading. 
+
+* modified reSplit so it would cope with left-hand-side of random effect being a formula with more than one term
+
+* stop message was changed to warning when right-hand-side of random effect is not a factor variable. This was needed to do something like (1|time:post) where post is a 0/1 variable that restricts the random effect to occur where post=1.
+
+marked 1.1.10 20 Aug 2015
+-----------------
+BUG FIXES
+
+* qualified call to choose_files and removed from import so it would build on Linux
+
+marked 1.1.9 19 Aug 2015
+-----------------
+BUG FIXES
+
+* fixed bug in compute.real which would fail computing real values for Psi in some models
+
+* made change to setup.parameters to handle include and mlogit parameter setting when model is re-run with rerun_crm.
+
+CHANGES
+
+* modified omega to accept a list of transition matrices
+
+* added sealions data for example
+
+marked 1.1.8 16 March 2015
+-----------------
+CHANGES
+
+* modified crmlist_fromfiles to avoid issue on non-Windows machines which do not support choose.files
+
+
+
+marked 1.1.7 10 March 2015
+-----------------
+CHANGES
+
+* modified R_HMMlikelihood and loglikelihood to be more useful for computations like in hmmDemo and local_decode
+
+* matrices delta, gamma, and dmat no longer stored in model object unless argument save.matrices=TRUE. They can be computed with compute_matrices.
+
+* specification of strata.labels is now required for multistate models. Code will no longer use values it finds in capture history. You can specify more strata that are in the data (unobserved strata).
+
+* modified mscjs.r to return standard crm model object rather than admb object.   
+
+NEW FEATURES
+
+* added compute_matrices, local_decode, global_decode, backward_prob, omega functions for HMM manipulations
+
+* added load.model into print.crm so if it is given a file string it will load the external model and then print results.
+
+* added function crmlist_fromfiles which allows you to select a set of .rda files for external models to create a crmlist with a model table.
+
+* added function rerun_crm which will run through a model list and re-run any models that did not converge (convergence !=0). A different method can be specified. If a specific set of models are to be re-run regardless of the convergence criterion then modelnums set to a vector of model numbers in the model list and they are re-run instead of those that did not converge. An initial model can be specified which is useful to rerun a model with a model that is a subset of that model.
+
+* added model class mvmscjs 
+
+* added data set mstrata from MARK and examples showing fitted models from hmmmscjs, mscjs and mvmscjs. The mscjs is not run unless ADMB is available. Code from help can be copied and pasted.
+
+BUG FIXES
+
+* fixed bug in multistate.tpl that caused array out of bounds in ADMB when in safe mode
+
+* fixed bug in msgamma.f; PSISUM not defined as REAL*8 so sum of transitions slightly less (1E-8) than 1.
+
+
+marked 1.1.6 29 Aug 2014
+-----------------
+CHANGES
+
+* Modification to documentation to avoid overflow on pdf
+
+* Patches to crm so design.data and fixed values were handled when the ddl is specified
+
+* cjs and js were patched so only the initial parameter values are stored; it was errantly storing the model when a model was used to specify initial values
+
+* Additional changes to crm to use optimx to work with HMM models.  This required changes to HMMLikelihood argument names which conflicted with optimx.
+
+* cjs and *.tpl files for cjs were modified to use debug; not all exes have been changed yet
+
+
+marked 1.1.5 16 June 2014
+-----------------
+NEW FEATURES
+
+* Real parameters are now created for HMM models with predict.crm; modified compute.real so reduction to unique real parameters occurs before computation of v-c matrix; also certain fields are added (eg occ) so that a full set of real parameters is displayed. That includes showing all parameters in an mlogit set.
+
+* Added tag loss models HMMCJS1TL and HMMCJS2TL
+
+* Added switch (remove.unused.columns) to create.dml and create.dm functions that controls whether unused columns in the design matrix are removed or not. The default is TRUE. 
+
+CHANGES
+
+* marked now depends on lme4 rather than imports; only way that Rscript would work. Also added methods to depends.
+
+* ehmat (encounter history matrix) is now stored with ddl in make.design.data
+
+* Model BayesMSCJS which also contains uncertain state was added to models.txt in anticipation of its inclusion and probitMsCJS was never used and was removed.
+
+
+marked 1.1.4 10 Jan 2014
+-----------------
+NEW FEATURES
+
+* Random effects added to probitCJS
+
+BUG FIXES
+
+* patch made to cjs so accumulate set to FALSE with fixed parameter values and bug in create.fixed.matrix for cjs model was patched
+
+CHANGES
+
+* proc.form was modified to use code from lme4 to provide better handling of formula; removing intercept was not fully supported in previous version.
+
+KNOWN PROBLEM
+
+* used of fixed= in parameter specification currently doesn't work; use ddl$fix approach to setting fixed values. Merging described below is not working properly.
+
+
+marked 1.1.3 22 Nov 2013
+-----------------
+
+NEW FEATURES
+
+* use of fix column in ddl is now supported for all models. By assigning a non-NA value, the real parameter is fixed to the assigned value.  If both ddl$fix is assigned and fixed argument is specified these values are merged and the fixed values in the parameter specification will override those in the ddl.
+
+* HMM models are now fitted with crm rather than fitHMM which has been removed. HMM models now include HMMCJS(cjs model),HMMMSCJS (multistate CJS), HMMUMSCJS (multi-state with state uncertainty), HMMU2MSCJS (2 strata level MS with state uncertainty), HMMU2IMSCJS (2 strata level MS with state uncertainty; independent state and second level strata transtions)
+
+* time interval specification can now be assigned via the design data for a parameter if it is not constant across individuals.
+
+
+CHANGES
+
+* model is no longer case-sensitive
+
+* code for creating design data was improved and is now much faster
+
+* error message given if data contains a field called id; id is forced to be a factor variable throughout
+
+* in mscjs, dml now refers to dml$fe to use fixed effects dm because it currently does not support random effects
+
+* removed use of ::: and exported more functions in marked to avoid that usage
+
+marked 1.1.1/1.1.2 14 Aug 2013
+-----------------
+
+* fixes for CRAN submission; same as 1.1.0 except for some transparent changes for CRAN submission
+
+
+marked 1.1.0 5 Aug 2013
+------------
+NEW FEATURES
+
+* improved and added to ADMB options for mixed effect modeling which resulted in the modification of a number of calling arguments to crm.
+
+* included code that looks for ADMB executable files in the package directory or workspace directory and uses them if they are found and !compile. This allows the user to avoid downloading ADMB and gcc but exe's are only available for windows at present. 
+
+* included code for HMM likelihood model fitting of c-r models (fitHMM) and simulation (simHMM) and supporting functions
+
+* added clean argument to remove TPL and executable files remaining in the working directory
+
+* capture history strings can now be comma separated strings to cope with multi-character states
+
+CHANGES
+
+* modified print.marked.version so it would not conflict with loading devtools
+
+* modified code in cjs.f and ADMB TPL files to more closely match MARK in handling small values of Prob(ch) to avoid log(0)
+
+* code was moved from crm to process.data which sets accumulate=FALSE if MCMC method is selected. 
+
+* removed code that prevented splitCH from working on a single ch value
+
+* added code to crm to assure accumulate=FALSE with any random effect; individual random effect is supposed to work with weights but
+tpl and cpp code do not appear to be working together; with accumulate=FALSE, results are correct.
+
+* added code to make.design.data which handles subtract.stratum for Psi type parameters and cjs type parameters which sets value to 1
+when cohort=time. Those changes are for fitHMM code which uses subtract.stratum in MS models and uses first occasion seen parameters to 
+make the hmm code work with JS and CJS type models.
+
+* made changes to cjs and js for changes in optimx package
+
+BUG FIXES
+
+* create.dmdf was not assigning id values correctly for MSCJS model
+
+* fixed problem introduced in v1.0.7 in which scaled parameters were not being adjusted back to original scale with R MLE optimization. Did not affect results with MCMC or when use.admb=T.
+
+* on Mac or Linux the code to assess whether admb was available, did not work. This was patched.
+
+* fixed bug in cjs which was written with a local copy of R2admb and did not work with the posted R2admb. This also involved changes to coef.crm 
+
+
+marked 1.0.9 24 Jan 2013
+------------
+
+CHANGES
+
+* modified iteration counter so it was stored in an environment rather than in global workspace to meet CRAN policy
+
+
+marked 1.0.8 23 Jan 2013
+------------
+
+NEW FEATURES
+
+* added multi-state model with fixed effects using admb. This is done with new function mscjs and multistate.tpl. 
+It required changes to create.dm,create.dmdf, crm, process.ch and process.data. The code is functional but currently only 
+returns admb object that will not work with other generic functions, so crm will not allow it currently.
+
+
+marked 1.0.7 14 Dec 2012)
+------------
+
+NEW FEATURES
+
+* added use of admb and random effects for CJS. Controlled through arguments use.admb=TRUE and re=TRUE respectively. Doesn't currently work with predict.
+
+BUG FIXES
+
+* fixed problem in create.dmdf which was removing id field if fields (static) specified
+
+* made change to cjs.f which was incorrectly fixed for loss on capture
+
+* made changes to bayesCR.cpp to remove compilation warnings
+
+
+marked 1.0.6 (5 Oct 2012)
+------------
+CHANGES
+
+* removed autoscale feature which complicated code and was not very effective
+
+* Removed simulation code and put in a separate package - simcr.
+
+* restructured the model object that is returned from crm
+
+NEW FEATURES
+
+* Function load.model will return externally stored model. Most useful with crm.wrapper and external=TRUE 
+
+* Generic function predict will provide estimates of real parameters and optionally std errors, conf intervals and vcv matrix for the existing or newdata. Does not handle fixed parameters at present.
+
+* crm.wrapper now returns a list like mark.wrapper in RMark with a model.table.  The model list elements are the filenames of the externally saved model results. A default print method is included to print out model selection table. Also, an external argument was added.
+
+* Modified cjs.initial to use either logit or probit and added initial value calculation to probitCJS 
+
+* Allows initial=value and all parameters given that initial value
+
+* Can now handle specification of more than one method for optimization within optimx; setting control=list(follow.on=TRUE) in the arguments will let it use par estimates as starting values as it proceeds through list of methods.
+
+* Added SANN as a stand alone method with optim. Default of itnmax should be increased substantially for this method.
+
+* Modified cjs.initial to use freq as weight in glm to properly weight estimation when freq>1.
+
+BUG FIXES
+
+* Fixed bug in js.lnl which was not getting lnl correct when there were no groups; cosmetic and did not affect estimates because was constant part (ui)
+
+* Fixed bug in which accumulate argument was not passed to process.data from crm  
+
+
+marked 1.0.5 (12 July 2012)
+------------
+NEW FEATURES
+
+* Simplified code in cjs.f but no obvious payoff in speed. Set p=1e-307 if p=0 and freq>0 to avoid log(0) issue. This is close to value used in MARK.
+
+BUG FIXES
+
+* Fixed bug in hessian calculation which was using 2*lnl instead of lnl
+
+
+marked 1.0.4 (6 July 2012)
+------------
+NEW FEATURES
+
+* js is now structured the same as cjs and includes all features.
+
+* integrated probitCJS into crm.
+
+* Added automatic data accumulation and creation of freq field where all data fields are the same. See argument accumulate in crm.
+
+* added autoscaling of parameters; see autoscale argument
+
+* added simcjs and simpopan and related functions for simulating data for cjs and js models
+
+marked 1.0.3 (4 October 2011)
+------------
+
+NEW FEATURES
+
+* Code was modularized to make package easier to extend. js is now structured the same as cjs.
+
+* If time.interval is a field in the Phi design data it will be used as Phi^time.interval.  This allows variation in time intervals across animals as with cohorts of pups branded at different times each year.
+
+* Added probitCJS model and accompanying code.
+
+
+BUG FIXES
+
+* Change made in cjs.accumulate to compare accumulated frequencies to sum of data frequencies. Previously was using number of rows and would fail if any freq>1.
+
+marked 1.0.2 (30 March 2011)
+------------
+
+NEW FEATURES
+
+* Added check on accumulator to report error if sum of frequencies does not match original number of records.
+
+* Added model convergence check and reporting of model convergence message, if non-null.
+
+* Added function fix.parameters to create matrix needed for fixing real parameters 
+
+* Added option to include remove.intercept=TRUE in model.parameters list for each parameter to force removal of intercept. 
+
+* Added refit argument to crm, cjs and js to control number of refittings if model doesn't converge.
+
+* Added function create.links which works out which real parameters can use a sin link.  Code was added to cjs and cjs.lnl to use the sin link where appropriate.  This is commented out at present!  Not sure it is working correctly.
+
+* Uses optimx function for optimization which allows more methods and multiple methods to be selected.
+
+BUG FIXES
+
+* Fixed issue with capture history accumulator when chunk_size was larger than needed. Added 1 to pieces.
+
+* Beta estimate names were lost once sparse matrices were implemented and this was fixed.
+
+* Made change to accumulation code to correct error introduced in last version with fixed parameters.
+
+* Made fixes to js to accommodate accumulation. 
+  
+marked 1.0.1 (22 March 2011)
+------------
+
+NEW FEATURES
+
+* Added use of sparse matrices for design matrices which sped up code and reduced memory consumption. The argument chunk_size was added to crm, create.dm,cjs, and js to control amount of memory usage.
+
+* Added run timing and various print statements to track progress of model.  If debug=FALSE, includes function evaluation counter (every 100) and neg lnl which remains on same line unless used in Rterm.
+
+marked 1.0.0 (Initial posting 2011)
+------------
+
+NEW FEATURES
+
+* Extracted crm and accompanying code from RMark and created initial base package.
+
+
+

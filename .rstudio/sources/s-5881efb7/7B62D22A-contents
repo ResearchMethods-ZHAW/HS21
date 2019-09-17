@@ -1,0 +1,863 @@
+---
+title: "Kira Masterarbeit Kurzbericht"
+output: html_document
+---
+
+
+```{r, echo=F, message=F, warning=FALSE}
+# load themes,data, packages-----------
+source("kira_masterarbeit_edit_190418.R")
+source("mytheme.R")
+detach("package:psych", unload=TRUE) # attention psych and ggplot do not well togheter
+library(cowplot)
+library(lme4)
+library(multilevel)
+detach("package:multilevel", unload=TRUE)
+
+# library(multcomp) # funktioniert nicht => wieso?
+
+
+# setze chunk optionen
+knitr::opts_chunk$set(fig.align = "center", fig.height = 12, fig.width = 14)
+```
+
+
+# deskriptive Statistik
+
+## Soziodemografische Variablen
+```{r, echo=F}
+
+# Verteilung
+table(data_wide$sex)
+Hmisc::describe(data_wide$sex)
+Hmisc::describe(data_wide$age_group)
+psych::describe(data_wide$age, na.rm = T) # one missing => which(is.na(data_wide$age))
+Hmisc::describe(data_wide$educ)
+
+# Fisher tests
+fisher.test(data_wide$trans, data_wide$sex)
+chisq.test(data_wide$trans, data_wide$sex)# n.s.  
+fisher.test(data_wide$trans, data_wide$age_group) # n.s
+fisher.test(data_wide$trans, data_wide$educ) # signifikante unterschiede
+
+# überprüfe einzelunterschiede => macht keinen sinn
+dat <- xtabs(~ trans + educ, data = data_wide)
+fisher.test(dat[ , c(1,2)])
+
+
+```
+
+
+## Überweisung und Alter
+
+```{r}
+
+dat <- data_wide %>%
+  group_by(trans, age_group) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(age_group = ifelse(is.na(.$age_group), "Unbekannt", age_group)) %>%
+  complete(age_group, trans, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+
+ggplot(dat, aes(x = parse_factor(age_group, levels = c("<29 Jahre", "30 bis 39 Jahre", "40 bis 49 Jahre", "50 bis 59 Jahre", ">60 Jahre", "Unbekannt")), y = pct, fill = trans)) +
+  geom_bar(stat = "identity", position = position_dodge(), width = .6) + 
+  scale_fill_manual(values = c("PR" = "#8b0000", "SR" = "#1c661c", "Unbekannt" = "grey80")) +
+  scale_x_discrete(labels = c("F" = "Frauen", "M" = "Männer")) + 
+  scale_y_continuous(labels = scales::percent) +
+  guides(fill = guide_legend("Überweisungsquelle")) +
+  xlab("Alter") +
+  ylab("Anteil Personen") +
+  mytheme
+
+ggsave("plots/age_trans_190513.pdf",
+       height = 12,
+       width = 18,
+       device = cairo_pdf)
+
+
+```
+
+
+## Überweisung und Geschlecht
+
+```{r}
+
+dat <- data_wide %>%
+  group_by(sex, trans) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(sex = ifelse(is.na(.$sex), "Unbekannt", sex)) %>%
+  complete(sex, trans, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = sex, y = tot, fill = trans)) +
+  geom_bar(stat = "identity", position = position_dodge(), width = .6) + 
+  xlab("Geschlecht") +
+  ylab("Anzahl Personen") +
+  scale_fill_manual(values = c("PR" = "#8b0000", "SR" = "#1c661c", "Unbekannt" = "grey80")) +
+  scale_x_discrete(labels = c("F" = "Frauen", "M" = "Männer")) + 
+  guides(fill = guide_legend("Überweisungsquelle")) +
+  mytheme
+
+ggsave("plots/gender_condit_190513.pdf",
+       height = 12,
+       width = 12,
+       device = cairo_pdf)
+```
+
+
+## Überweisung und Bildung
+
+```{r}
+
+dat <- data_wide %>%
+  group_by(educ, trans) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(educ = ifelse(is.na(.$educ), "Unbekannt", educ)) %>%
+  complete(educ, trans, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = parse_factor(educ, levels = c("Primar/Sekundarschule", "Berufsmaturität", "Sekundarschule", "Fachmatur", "Fachchule", "Universität", "anderes", "Unbekannt")), y = tot, fill = trans)) +
+  geom_bar(stat = "identity", position = position_dodge(), width = .6) + 
+   scale_fill_manual(values = c("PR" = "#8b0000", "SR" = "#1c661c")) +
+  guides(fill = guide_legend("Überweisungsquelle")) +
+  scale_x_discrete(labels = c("Primar-/Sekundarstufe", "Berufsmaturität", "Sekundarstufe2", "Fachmittelschule/-maturität", "höhere Fachschule", "Universität", "anderer Abschluss", "Unbekannt")) +
+  xlab("Höchster Schulabschluss") +
+  ylab("Anzahl Personen") +
+  mytheme
+   # is not working => attention detach psych package
+ggsave("plots/educ_trans_190513.pdf", 
+       height = 12,
+       width = 30,
+       device = cairo_pdf)
+
+```
+
+
+# dropouts: beschreibung
+## missings t1_phq9
+
+```{r}
+# beschreibe kanditaden die in t1 herausgefallen sind (zwischen 5 und 6 personen)
+
+miss_ <- filter(data_wide, is.na(data_wide$T1_phq9))
+apply(t(miss_[ ,c(2:3,5:8)]),1, FUN = describe)
+
+```
+
+# dropouts: beschreibung
+## missings t1_phq15
+
+```{r, echo=F}
+# beschreibe kanditaden die in t1 herausgefallen sind (zwischen 5 und 6 personen)
+
+miss_ <- filter(data_wide, is.na(data_wide$T1_phq15))
+apply(t(miss_[ ,c(2:3,5:8)]),1, FUN = describe)
+
+```
+
+# dropouts: beschreibung
+## missings t1_gad
+
+```{r, echo = F}
+# beschreibe kanditaden die in t1 herausgefallen sind (zwischen 5 und 6 personen)
+
+miss_ <- filter(data_wide, is.na(data_wide$T1_gad))
+apply(t(miss_[ ,c(2:3,5:8)]),1, FUN = describe)
+
+```
+
+# konfirmatorische analyse und hypothesen testung
+
+
+## h1: Self-referrals und Professional referrals zeigen unterschiedliche Depressions-Werte auf
+
+
+```{r}
+# achtung unterschiedliche gruppengrösse => welch-test (default bei t-test!)
+# daselbe für ein subsample resp. diejenigen personen ausschliessen die bei t1 weggefallen sind
+
+table(data_wide$trans)
+psych::describe(data_wide$T0_phq9)
+
+# schaue boxplots an => varianzhomogenität gegeben
+ggplot(data_wide, aes( y = T0_phq9, x = data_wide$trans)) +
+  geom_boxplot() +
+  xlab("Überweisungsquelle") +
+  ylab("Summenscore PHQ-9 Zeitpunkt T0") +
+  scale_y_continuous(limits = c(0,30))+
+  mytheme# varianzen fast gleich, verteilung aber nicht (PR rechtsschief)
+
+t.test(data_wide$T0_phq9 ~ data_wide$trans) # n.s.
+# summary(aov(data_wide$T0_phq9 ~ data_wide$trans))¨
+
+wilcox.test(data_wide$T0_phq9 ~ data_wide$trans)
+
+```
+
+
+## h2: Self-referrals weisen höhere Therapiemotivation auf als Professional referrals. 
+
+```{r, echo=F}
+# subsample
+
+pat <- c("ld|ho|zw|vh")
+
+dat <- data_long[grepl(pat, data_long$variable) & !is.na(data_long$value), ]
+
+# überprüfe ob auch alle datenpunkte drin sind
+t <- dat %>%
+  group_by(Patientencode, trans) %>%
+  summarise(occur = n()) %>%
+  mutate(occur = ifelse(occur == 4, T, F))
+sum(t$occur) # 53 personen
+
+table(t$trans)
+
+# schaue die mittelwerte an
+aggregate(value ~ variable + trans, dat, function(x) c(mean = mean(x), median = median(x), sd = sd(x), min = min(x), max = max(x))) # wieso keine t-tests möglich?
+
+
+# ld: n.s.
+boxplot(dat[dat$variable == "ld",]$value ~ dat[dat$variable == "ld",]$trans)
+
+wilcox.test(dat[dat$variable == "ld",]$value ~ dat[dat$variable == "ld",]$trans)
+
+# ho: n.s.
+boxplot(dat[dat$variable == "ho",]$value ~ dat[dat$variable == "ho",]$trans)
+
+wilcox.test(dat[dat$variable == "ho",]$value ~ dat[dat$variable == "ho",]$trans)
+
+# zw: n.s.
+boxplot(dat[dat$variable == "zw",]$value ~ dat[dat$variable == "zw",]$trans)
+
+wilcox.test(dat[dat$variable == "zw",]$value ~ dat[dat$variable == "zw",]$trans)
+
+# vh: n.s.
+boxplot(dat[dat$variable == "vh",]$value ~ dat[dat$variable == "vh",]$trans)
+
+wilcox.test(dat[dat$variable == "vh",]$value ~ dat[dat$variable == "vh",]$trans)
+
+```
+
+
+
+
+
+
+
+##h3: Self-referrals und Professional referrals zeigen unterschiedliche Ausprägungen in der Angstsymptomatik auf.
+
+```{r}
+
+# subsample
+dat <- data_long[data_long$variable == "T0_gad" & !is.na(data_long$value),] # eine person fehlt
+
+
+# paar weitere parameter
+table(dat$trans) 
+
+
+aggregate(value ~ variable + trans, dat, function(x) c(mean = mean(x), sd = sd(x)))
+
+
+# t-test
+t.test(data_wide$T0_gad ~ data_wide$trans)
+
+# fisher test
+wilcox.test(data_wide$T0_gad ~ data_wide$trans)
+
+#plotte das ergebnis =>  boxplot
+ggplot(dat, aes(x = trans, y = value)) +
+  geom_boxplot() +
+  xlab("Überweisungsquelle") +
+  ylab("Summenscore GAD") +
+  scale_y_continuous(limits = c(0,25)) +
+  mytheme
+
+
+```
+
+
+##h4: Self-referrals und Professional referrals zeigen unterschiedliche Ausprägungen in den
+somatischen Beschwerden auf.
+
+```{r, echo=F}
+
+# subsample
+dat <- data_long[grepl("T0_phq15", data_long$variable) &! is.na(data_long$value), ] # zwei fehlende werte
+
+# schaue daten an
+table(dat$trans) # nur erste drei linien vom obigen code
+
+aggregate(value ~ variable + trans, dat, function(x) c(mean = mean(x), sd = sd(x))) # kaum unterschiede
+
+# t-test
+t.test(data_wide$T0_phq15 ~ data_wide$trans)
+
+# man u test
+wilcox.test(data_wide$T0_phq15 ~ data_wide$trans)
+
+#plotte ergebnisse
+ggplot(dat, aes(x = trans, y = value)) +
+  geom_boxplot() +
+  xlab("Überweisungsquelle") +
+  ylab("Summenscore PHQ-15") +
+  scale_y_continuous(limits = c(0,25)) +
+  mytheme
+
+
+```
+
+## h5: Der Depressionsverlauf von t0 zu t1 unterscheidet sich zwischen den beiden Überweisungsquellen (Self-referrals vs. Professional referrals) in der Interventionsgruppe.
+
+
+```{r, echo=F}
+
+# check that out
+#https://ase.tufts.edu/gsc/gradresources/guidetomixedmodelsinr/mixed%20model%20guide.html
+
+table(data_wide$trans) # sehr ungleiche gruppengrössen
+
+
+# h1b:schaue boxplots an
+# hier ein beispiel für die resultate: http://rcompanion.org/handbook/I_06.html 
+p1 <- ggplot(data_wide, aes(y = T0_phq9 , x = trans)) +
+  geom_boxplot() +
+  scale_y_continuous(limits = c(0,20))# dont look very nice :(
+
+# ggplot(dat, aes(x = dat$T0_phq9 )) + geom_histogram()
+p2 <- ggplot(data_wide, aes(y = T1_phq9 , x = trans)) +
+  geom_boxplot() +
+  scale_y_continuous(limits = c(0,20))# looks good
+
+plot_grid(p1, p2, ncol = 2)
+
+# h1b:versuche das ganze zu plotten
+pat <- ("T0_phq9|T1_phq9")
+dat1 <- data_long[grepl(pat, data_long$variable) & !is.na(data_long$value),]
+
+# überprüfe ob auch alle teilnehmer beide zeitpunkte haben, ansonsten ausschliessen
+dat2 <- group_by(dat1, Patientencode) %>% 
+  summarise(occur = n()) %>%
+  filter(occur == 2) %>%
+  left_join(., dat1, by = "Patientencode") # nur 46 personen haben beide zeitpunkte
+
+# group_by(dat2, Patientencode, trans) %>% count()
+
+# siehe diese seite: https://rpsychologist.com/r-guide-longitudinal-lme-lmer
+
+library(sjstats)
+library(optimx)
+
+
+lm <- lmer(value ~ variable * trans * condit + (variable|condit:Patientencode) , data = dat2, control = lmerControl(optimizer ='optimx', optCtrl=list(method='nlminb'), check.nobs.vs.nRE="ignore"), REML = T) 
+
+# ist das model konvergiert?
+converge_ok(lm) # gemäss diesen funktionen ist das obige modell doch konvergiert
+
+is_singular(lm) #auch hier False
+
+# gebe p-werte aus
+pv <- p_value(lm, p.kr = TRUE) # sieht nicht schlecht aus, wurde für freiheitsgrade korrigiert
+
+summary(pv) # scheint nicht zu funktioneiren
+
+# nehme residual varianz
+get_re_var(lm, "sigma_2")
+
+# alle random effekte
+re_var(lm)
+
+re_var(lm, adjusted = TRUE) # weitere varianzkomponenten für das ganze modell angepasst?=> interpretationen kann siehe unten
+
+#verständnis interpretation: 
+# random effects intercept: heisst zwischen-Gruppen/subjects Varianz (hier 7.867)
+# random effects residual: heisst inner-Gruppen/subjects Varianz (hier 8.863)
+#inhaltliche interpretation:
+# fixed effects intercept: mittlere phc_9 summenscore beträgt 11.42 (beta0)
+# Der phq verkleinert sich bei t1 im Mittel um -5 Summenpunkte (beta1) 
+# Die Varianz der mittleren Abweichung einer Person von dem mittleren phq aller Personen beträgt 7.995 Summenpunkte
+# Die Varianz der Residuen beträgt 9.858 Summenpunkte
+
+# r-quadrat (gut oder schlecht?)
+r2(lm) # interpretation https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+
+
+# berechne icc, von einem bestehenden modell => ist anders als ICC1!!
+icc(lm, adjusted = T) # conditionelles modell!
+
+# teste ob daten gruppiert
+# literatur dazu: LeBreton and Senter (2008) have suggested that an ICC(1)=.05 represents a small to medium effect (p. 838)
+av <- aov(value ~ Patientencode, dat2) # nullmodell resp unconditionelles modell
+library(multilevel)
+ICC1(av) # 12% ja gibt gruppenvariablität/subjektvariablität
+
+
+# zweiter versuch mit anderem packet
+# drei ebenen modell => macht sinn das ganze so zu testen => ähnliche werte zum lme4 package, aber das obige modell konvergiert nicht => gründe?
+
+dat2$variable <- parse_factor(dat2$variable, levels = c("T1_phq9", "T0_phq9"))
+
+
+library(nlme)
+lm1 <- lme(value ~ variable * trans * condit + sex + educ + age, random = list(condit  = ~ variable,
+                                                             Patientencode = ~ variable), data=dat2) # das scheint zu funktionieren => gründe, aber seh ähnliche werte zu oben!!
+
+summary(lm1)
+
+# https://cran.r-project.org/web/packages/sjstats/vignettes/mixedmodels-statistics.html
+# step by step gemäss obigen link
+
+
+
+# design effect zur überprüfung der multikollinearität
+
+# n = grupen von cluster, icc annahme mind .05; VIF kleiner als 5 ok grösser nicht OK
+deff(n = 36, icc = 0.12)
+
+#berechnung der sample size: nahe zu unmöglich diese sample size zu generieren
+smpsize_lmm(eff.size = .2, df.n = 17, k = 20, power = .9) # bisschen nichtsagend
+
+
+###############
+# test with glm: weiterführende analysen und infos
+################
+
+# schaue nochmals nach wie man den random effect interpretiert!!
+#https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#count-data
+#https://bbolker.github.io/mixedmodels-misc/ecostats_chap.html
+
+
+
+
+
+####################################
+# überprüfe nochmals die modellgüte
+##################################
+
+#1. Zufällige Abweichungen sind normalverteilt mit EW 0 und Varianz
+pl <- lme4::ranef(lm1)$`condit:Patientencode`
+boxplot(pl[[1]] ~ rownames(pl), xlab = "Patient", ylab = "Zufällige Abweichungen") # nicht sehr normalverteilt
+abline(h = c(-2,2), col = "red")
+abline(h = 0, col = "black")
+
+#2. Fehler sind i.i.d. normalverteilt mit EW 0 und Varianz (residuen)
+fm <- lm(value ~ Patientencode, dat2)
+boxplot(residuals(lm1) ~ dat2$Patientencode, xlab = "Patient", ylab = "Residuen") # boxplots sind nicht um 0 verzeilt => wieso?? mit fm ja
+abline(h = c(-2,2), col = "red")
+abline(h = 0, col = "black")
+
+
+###################
+# beste alternativ byesian statistics
+###################
+
+# hier literatur dazu http://sumsar.net/blog/2014/01/bayesian-first-aid/
+# https://vuorre.netlify.com/post/2017/03/21/bayes-factors-with-brms/
+# https://sahirbhatnagar.com/bayesian-stan
+# am besten buch: Doing Bayesian Data Analysis 
+
+brms::brm(value ~ variable * trans * condit + (variable|condit:Patientencode), data = dat2)
+
+
+########
+# ergebnisse visualisieren
+########
+
+# plot0
+newdat <- expand.grid(Patientencode = unique(dat2$Patientencode), condit = unique(dat2$condit),trans=unique(dat2$trans), variable = unique(dat2$variable),
+                  value=c(min(dat2[dat2$variable == "T1_phq9",]$value),
+                            max(dat2[dat2$variable == "T0_phq9",]$value)))
+
+ggplot(dat2, aes(x = variable, y = value, color = trans)) +
+  geom_point(size = 3) +
+  geom_line(aes(y=predict(lm), group=Patientencode, size="Patient"), size = 1) +
+  xlab("Zeitpunkt") +
+  ylab("Summenscore PHQ-9") +
+  guides(color = guide_legend("Überweisungsquelle"))+
+  mytheme
+  
+ggsave("plots/prediction_h5_190526.pdf",
+       height = 12,
+       width = 12,
+       device = cairo_pdf)
+
+# plot1
+pl <- dat2 %>%
+  group_by(variable, trans, condit) %>%
+  summarise(mean_t = mean(value))
+
+ggplot(pl, aes(x = variable, y = mean_t, linetype = trans ,shape = trans, group = trans)) + 
+  geom_point(size= 4) +
+  geom_line(size = 1.5) +
+  scale_y_continuous(breaks = seq(0,20,5), limits = c(0,20)) +
+  ylab("Mittelwerte der Summenscore") +
+  xlab("Zeitpunkt") +
+  guides(linetype = guide_legend(title = "Überweisungsquelle"), shape = F) +
+  facet_wrap(~condit) +
+  # scale_fill_manual("") + # falls PR und SR noch ausgeschrieben werden soll
+  mytheme
+
+
+
+# plot2
+# sample
+pl <- dat2 %>%
+  mutate(xlab = paste(trans, variable, sep = "_"))
+# marginal <- lsmeans::lsmeans(av2, ~ variable) # check that out again
+
+ggplot(pl, aes(x = xlab, y = value)) + 
+  stat_summary(fun.y = mean, geom = "point", shape = 15, size = 4) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", size = .7, width = .2) + # lese standardfehler nach => stimmt was nicht
+  scale_y_continuous(limits = c(0,20)) + 
+  ylab("Mittelwerte und Standardfehler der Summenscores") +
+  xlab("Überweisungsquellen und Zeitpunkt")
+
+
+#plo3 age: sieht aus als ob junge personen mehr von dem treatment profitiert haben als andere
+
+ggplot(pl, aes(x = age, y = value, color = variable, group = variable)) +
+  geom_point() + 
+  #geom_line(aes(group = variable))+ # somehow not working
+  geom_smooth(method = 'lm', se = F)
+  stat_summary(fun.y = mean, geom = "point", shape = 15, size = 4)
+
+
+# age und phq9
+ggplot(dat2, aes(y = value, x = age, col = trans)) + geom_point() + facet_wrap(~variable) + geom_smooth(method = "lm", se = F) +
+  scale_x_continuous(breaks = seq(24, 84,15)) +
+  xlab("Alter") +
+  ylab("Summenscore PHQ9") +
+  guides(col = guide_legend("Überweisungsquelle")) +
+  mytheme +
+  ggsave("plots/age_trans_190516.pdf",
+         width = 15,
+         height = 12,
+         device = cairo_pdf)
+
+```
+
+
+##h6: Die Depressionsverläufe (von t0 zu t1) der beiden Überweisungsquellen unterscheiden sich in Abhängigkeit der Therapiemotivation zu t0.
+
+```{r}
+# grosse probleme das passende modell zu finden
+
+# literatur: http://afhayes.com/public/spsp2016.pdf
+
+#daten aufbereiten
+dat <- data_wide %>%
+  # mutate(moder_ld = (T0_phq9 - T1_phq9)* ld,
+  #        moder_ho = (T0_phq9 - T1_phq9) * ho,
+  #        moder_zw = (T0_phq9 - T1_phq9) * zw,
+  #        moder_vh = (T0_phq9 - T1_phq9) * vh) %>%
+  melt(measure.vars = c("T0_phq9", "T1_phq9")) %>%
+  dplyr::select(-T1_phq15, -T0_phq15, -T0_gad, -T1_gad) %>%
+  drop_na(value)
+
+# check again
+dat2 <- group_by(dat, Patientencode) %>% 
+  summarise(occur = n()) %>%
+  filter(occur == 2) %>%
+  left_join(., dat, by = "Patientencode") # 46 personen
+
+dat2$ho2 <- ifelse(dat2$ho > median(dat2$ho), "grosse Hoffnung", "kleine Hoffnung")
+
+# second option: glmm
+# eventuel motivation so umformulieren dass wie eine zeit und gruppenvariable berücksichtigen kann im sinne einer 3ten ebene
+
+
+#########
+# modell ld
+########
+
+# icc: unconditional modell
+av <- aov(value ~ Patientencode + trans, dat2) # keinen Unterschied zum obigen ICC, wieso??
+library(multilevel)
+ICC1(av)
+
+# model
+lm1 <- lme4::lmer(value ~ variable * trans + ld + 
+                (variable | trans:Patientencode), # + 
+                #(variable | trans),
+        data=dat2, REML = TRUE, control = lmerControl(optimizer ='optimx', optCtrl=list(method='nlminb'), check.nobs.vs.nRE="ignore"))
+
+
+
+# ist das model konvergiert?
+converge_ok(lm1) # gemäss diesen funktionen ist das obige modell doch konvergiert
+
+is_singular(lm1) #auch hier False
+
+# gebe p-werte aus
+pv <- p_value(lm1, p.kr = TRUE) # sieht nicht schlecht aus, wurde für freiheitsgrade korrigiert
+
+summary(pv) # scheint nicht zu funktioneiren
+
+# nehme residual varianz
+get_re_var(lm1, "sigma_2")
+
+# alle random effekte
+re_var(lm1) # negative covariancen und correlation http://www.bristol.ac.uk/cmm/learning/videos/random-slopes.html#covar
+
+re_var(lm1, adjusted = TRUE) # weitere varianzkomponenten für das ganze modell angepasst?=> interpretationen kann siehe unten
+
+summary(lm1)
+
+#verständnis interpretation: 
+# random effects intercept: heisst zwischen-Gruppen/subjects Varianz (hier 7.867)
+# random effects residual: heisst inner-Gruppen/subjects Varianz (hier 8.863)
+#inhaltliche interpretation:
+# fixed effects intercept: mittlere phc_9 summenscore beträgt 11.42 (beta0)
+# Der phq verkleinert sich bei t1 im Mittel um -5 Summenpunkte (beta1) 
+# Die Varianz der mittleren Abweichung einer Person von dem mittleren phq aller Personen beträgt 7.995 Summenpunkte
+# Die Varianz der Residuen beträgt 9.858 Summenpunkte
+
+# r-quadrat (gut oder schlecht?)
+r2(lm1) # interpretation https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+
+
+# berechne icc, von einem bestehenden modell => ist anders als ICC1!!
+icc(lm1, adjusted = T) # conditionelles modell!
+
+# zur überprüfung mit nlme
+lm1 <- lme(value ~ variable * trans * ld, random = list(trans  = ~ variable,
+                                                        Patientencode = ~ variable), data=dat2)
+
+summary(lm1) # ähnliche werte zu oben mit lme4 methode
+
+# modell ho-----
+
+
+lm2 <- lme4::lmer(value ~ variable * trans * ho2 + 
+                (variable | trans:Patientencode), # + 
+                #(variable | trans),
+        data=dat2, REML = F, control = lmerControl(optimizer ='optimx', optCtrl=list(method='nlminb'), check.nobs.vs.nRE="ignore"))
+
+summary(lm2)
+
+# ist das model konvergiert?
+converge_ok(lm2) # gemäss diesen funktionen ist das obige modell doch konvergiert
+
+is_singular(lm2) #auch hier False
+
+# gebe p-werte aus
+pv <- p_value(lm2, p.kr = TRUE) # sieht nicht schlecht aus, wurde für freiheitsgrade korrigiert
+
+summary(pv) # scheint nicht zu funktioneiren
+
+# nehme residual varianz
+get_re_var(lm2, "sigma_2")
+
+# alle random effekte
+re_var(lm2) # negative covariancen und correlation http://www.bristol.ac.uk/cmm/learning/videos/random-slopes.html#covar
+
+re_var(lm1, adjusted = TRUE) # weitere varianzkomponenten für das ganze modell angepasst?=> interpretationen kann siehe unten
+
+summary(lm2)
+
+
+# r-quadrat (gut oder schlecht?)
+r2(lm2) # interpretation https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+
+
+# berechne icc, von einem bestehenden modell => ist anders als ICC1!!
+icc(lm2, adjusted = T) # conditionelles modell!
+
+# ho mit lme
+lm2<- lme(value ~ variable * trans * ho2, random = list(trans  = ~ variable,
+                                                        Patientencode = ~ variable), data=dat2)
+summary(lm2)
+
+
+##########
+# modell mit zw
+##########
+
+lm3 <- lme4::lmer(value ~ variable * trans * zw + 
+                (variable | trans:Patientencode), # + 
+                #(variable | trans),
+        data=dat2, REML = TRUE, control = lmerControl(check.nobs.vs.nRE = "ignore"))
+
+
+
+# ist das model konvergiert?
+converge_ok(lm3) # gemäss diesen funktionen ist das obige modell doch konvergiert
+
+is_singular(lm3) #auch hier False
+
+# gebe p-werte aus
+pv <- p_value(lm3, p.kr = TRUE) # sieht nicht schlecht aus, wurde für freiheitsgrade korrigiert
+
+summary(pv) # scheint nicht zu funktioneiren
+
+# nehme residual varianz
+get_re_var(lm3, "sigma_2")
+
+# alle random effekte
+re_var(lm3) # negative covariancen und correlation http://www.bristol.ac.uk/cmm/learning/videos/random-slopes.html#covar
+
+re_var(lm3, adjusted = TRUE) # weitere varianzkomponenten für das ganze modell angepasst?=> interpretationen kann siehe unten
+
+# r-quadrat (gut oder schlecht?)
+r2(lm3) # interpretation https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+
+
+# berechne icc, von einem bestehenden modell => ist anders als ICC1!!
+icc(lm3, adjusted = T) # conditionelles modell!
+
+
+# zeige modell
+summary(lm3)
+
+
+# zw mit lme
+lm3 <- lme(value ~ variable * trans * zw, random = list(trans  = ~ variable,
+                                                        Patientencode = ~ variable), data=dat2)
+summary(lm3)
+######
+# modell vh
+#######
+
+lm4 <- lme4::lmer(value ~ variable * trans * vh + 
+                (variable | trans:Patientencode), # + 
+                #(variable | trans),
+        data=dat2, REML = TRUE, control = lmerControl(check.nobs.vs.nRE = "ignore"))
+
+
+# ist das model konvergiert?
+converge_ok(lm4) # gemäss diesen funktionen ist das obige modell doch konvergiert
+
+is_singular(lm4) #auch hier False
+
+# gebe p-werte aus
+pv <- p_value(lm4, p.kr = TRUE) # sieht nicht schlecht aus, wurde für freiheitsgrade korrigiert
+
+summary(pv) # scheint nicht zu funktioneiren
+
+# nehme residual varianz
+get_re_var(lm4, "sigma_2")
+
+# alle random effekte
+re_var(lm4) # negative covariancen und correlation http://www.bristol.ac.uk/cmm/learning/videos/random-slopes.html#covar
+
+re_var(lm4, adjusted = TRUE) # weitere varianzkomponenten für das ganze modell angepasst?=> interpretationen kann siehe unten
+
+# r-quadrat (gut oder schlecht?)
+r2(lm4) # interpretation https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+
+
+# berechne icc, von einem bestehenden modell => ist anders als ICC1!!
+icc(lm4, adjusted = T) # conditionelles modell!
+
+
+# zeige modell
+summary(lm4)
+
+# vh mit lme
+lm4 <- lme(value ~ variable * trans * vh, random = list(trans  = ~ variable,
+                                                        Patientencode = ~ variable), data=dat2)
+summary(lm4)
+
+
+
+# versuche zu plotten
+
+# modelfit
+dat2$fit <- predict(lm2) 
+
+ggplot(dat2,aes(variable, value, group = Patientencode, col = trans)) + 
+      # facet_grid(~variable) +
+      # geom_line(aes(y=fit, lty=Patientencode), size=0.8) +
+      geom_point() + 
+      geom_line() + 
+      geom_hline(yintercept=mean(dat2$ho), linetype="dashed") # mittwelwert hoffnung
+
+
+# plot hoffnung => SR höhere hoffnung als PR (knapp nicht signifikant. fisher.test(dat2$ho, dat2$trans))
+ggplot(dat2, aes(trans, ho, col = trans)) + 
+    geom_point() +
+    geom_line()
+
+
+# plot pqh9 und zeit
+ggplot(dat2, aes(y = value, x = variable, col = trans)) + 
+    geom_point()
+
+# model depreverlauf und überweisungsquelle
+
+
+lm <- lmer(value ~ variable * trans + (variable | trans:Patientencode), data = dat2, REML = TRUE, control = lmerControl(check.nobs.vs.nRE = "ignore"))
+
+summary(lm)
+
+#test with difference-------
+# get data (only those with two timepoints)
+dat3 <- filter(data_wide, Patientencode %in% dat2$Patientencode)
+dat3$diff <- dat3$T0_phq9-dat3$T1_phq9 #(positiv bedeutet verbesserung, negativ verschlechterung)
+# neue variable hoffnung getrennt durch median
+dat3$ho2 <- ifelse(dat3$ho > median(dat3$ho), "grosse Hoffnung", "kleine Hoffnung")
+
+# erzeuge interactionsterm
+dat3$inter <- dat3$T0_phq9*dat3$ho
+
+av <- aov(diff ~ trans * ho2 + Error(Patientencode), data = dat3)
+
+summary(av)
+
+ggplot(dat3, aes(y = diff, x = ho, col= trans)) + geom_point() + geom_smooth(method = "lm", se = F) + 
+  mytheme
+
+#posthoc test
+library(emmeans)
+emm <- emmeans(av, ~ trans * ho2)
+pairs(emm)
+
+
+# plotte das ganze
+ggplot(dat3, aes(y = diff, x = ho2, col = trans)) + 
+  geom_boxplot() + 
+  xlab("Hoffnung") +
+  ylab("Differenz von t0 zu t1 im PHQ9") + 
+  guides(col = guide_legend("Überweisungsquellen")) +
+   scale_color_manual(values = c("PR" = "#8b0000", "SR" = "#1c661c", "Unbekannt" = "grey80")) +
+  mytheme + 
+  ggsave("plots/hoffnung_trans_190528.pdf", width = 12, height = 12, device = cairo_pdf)
+
+
+# # plotte ergebnis zwischen hoffnung t1 und t0 zwischen überweisungsquelle------------
+pl <- dat2 %>%
+  group_by(variable, trans) %>%
+  summarise(mean_t = mean(value))
+
+ggplot(data=dat2, aes(y=value, x= variable, col=as.factor(trans)))+
+  geom_point(size=1, position = "jitter") +
+  geom_line(data = pl, aes(y = mean_t, x = variable, group = trans), size = 2) +
+  geom_hline(yintercept = mean(dat2$ho), size = 1.3, color = "grey60") +
+  xlab("Zeitpunkt") +
+  ylab("Summencore PHQ9") +
+  scale_y_continuous(limits = c(0,25)) +
+  guides(col = guide_legend("Überweisungsquelle")) + # , labels=c("PR", "RS"), values=c("lightblue", "pink")
+  mytheme +
+  ggsave("plots/hoffnung_phq_190526.pdf", height = 12, width = 12, device = cairo_pdf)
+
+ggplot(dat2, aes(x=variable, y=value)) +
+  geom_point(size=2) +
+  geom_point(aes(y = ho, x = variable)) +
+  geom_line(aes(y=predict(lm2), group=Patientencode, size = "Patientencode"), size = 1)
+
+# plotte phq9 und hoffnung mit trans-----
+
+ggplot(data_wide, aes(x = ho, y = T0_phq9, color = trans)) + geom_point() +
+  geom_smooth(method = "lm",se = F) +
+  scale_y_continuous(limits = c(0,25)) + mytheme +
+  xlab("Hoffnung") +
+  ylab("Summenscore PHQ9 t0")
+
+ggsave("plots/phq9_ho_190527.pdf", height = 8, width = 12, device = cairo_pdf)
+
+```

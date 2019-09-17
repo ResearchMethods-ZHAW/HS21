@@ -1,0 +1,49 @@
+# load packages
+
+library(tidyverse)
+library(drake)
+library(foreign)
+
+
+# orig_data <- read.spss("TIDe_Gesamt_20190404_kopie.sav", 
+#                        to.data.frame = T, 
+#                        add.undeclared.levels = "append")
+
+plan <- drake_plan(
+    raw_data = read_delim("TIDe_Gesamt_20190404_kopie.csv", 
+                          delim = ";", 
+                          na = c(" ", "-99"),
+                          col_types = cols(T0_Datum = col_date(format = "%m/%d/%Y"))) %>% 
+        drop_na(Patientencode) %>% 
+        mutate(T0_sex = recode(.$T0_sex, '2' = "F", '1' = "M"),
+               GRUPPENZUTEILUNG = recode(.$GRUPPENZUTEILUNG, '0' = "Kontrolle", '1' = "Intervention")),
+               # Schulabschluss = recode(.$Schulabschluss, ???)),
+    raw_data[raw_data$Patientencode == "MARE60",]$T0_Geb <- "01.1960",
+    raw_data$T0_Geb <- parse_date(raw_data$T0_Geb, format = "%m.%Y"),
+    
+)
+
+
+pattern2 <- c("T1_phq9", "T0_phq15", "T1_phq15", "T0_fptm", "T1_gad")
+
+empty <- list() # somehow shuld it be possible with dataframe and notb only with list
+for (nam in pattern2) {
+    sub_dat <- raw_data[,grep(nam, names(raw_data), value = T)]
+    sub_dat$sum <- rowSums(sub_dat, na.rm = T)
+    sub_dat$sum_row <- paste("sum_", nam, sep = "")
+    empty[[nam]] <- sub_dat
+} 
+
+data <- do.call(bind_cols,empty) 
+
+# slice raw_data and paste back
+data2 <- raw_data[, c(1:23,69:78)]
+dat <- data[, grep("sum", names(data), value = T)]
+raw_data2 <- bind_cols(data2, dat) # cbind
+
+# maybe rename some variables
+
+# melt into long format 
+
+# do some plots
+

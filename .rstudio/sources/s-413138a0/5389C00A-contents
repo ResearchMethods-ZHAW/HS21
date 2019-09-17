@@ -1,0 +1,135 @@
+# lade Packages
+
+library(tidyverse)
+library(Amelia)
+library(reshape2)
+library(gmodels)
+library(lubridate)
+library(psych)
+library(Hmisc)
+library(psych)
+
+
+# # lade original spss
+# orig_data <- read_sav("TIDe_Gesamt_20190404_kopie.sav",
+#                        to.data.frame = T,
+#                        add.undeclared.levels = "append")
+# 
+# lade daten csv
+raw_data = read_delim("TIDe_Gesamt_20190404_kopie.csv", 
+                          delim = ";", 
+                          na = c(" ", "-99"),
+                          col_types = cols(T0_Datum = col_date(format = "%m/%d/%Y"))) %>% 
+  drop_na(Patientencode) %>% 
+  mutate(T0_sex = recode(.$T0_sex, '2' = "F", '1' = "M"),
+         GRUPPENZUTEILUNG = recode(.$GRUPPENZUTEILUNG, '0' = "Kontrolle", '1' = "Intervention"),
+         T0_Schulabschluss = recode(.$T0_Schulabschluss, 
+                                 '1' = "noch in der Schule",
+                                 '2' = "ohne Schulabschluss",
+                                 '3' = "Primar/Sekundarschule",
+                                 '4' = "Berufsmaturität",
+                                 '5' = "Sekundarschule",
+                                 '6' = "Fachmatur",
+                                 '7' = "Fachchule",
+                                 '8' = "Universität",
+                                 '9' = "anderes"),
+         REKRUTIERUNG = recode(.$REKRUTIERUNG, '0' = "PR", '1' = "SR")) %>%
+  # Psychotherapiemotivation Subskalen:
+  # Psychischer Leidensdruck (LD), Hoffnung (HO), Symptombezogene Zuwendung (ZW), Verneinung psychischer Hilfsbedürftigkeit (VH)
+  # Achtung: Hoffnungsitems rekodieren
+  # Achtung: einige items fptm23, einige fptm, eins fprm_9 -> noch ändern?
+  # LD <- c("T0_fptm_6, T0_fptm_7, T0_fptm_13, T0_fptm_15")
+  # HO <- c("T0_fptm23_1, T0_fptm23_4, T0_fprm_9, T0_fptm_14")
+  # ZW <- c("T0_fptm_5, T0_fptm_8, T0_fptm_11, T0_fptm_12")
+  # VH <- c("T0_fptm23_2, T0_fptm23_3, T0_fptm_10")
+  rename(ld1 = T0_fptm_6, ld2 = T0_fptm_7, ld3 = T0_fptm_13, ld4 = T0_fptm_15,
+         ho1 = T0_fptm23_1, ho2 = T0_fptm23_4, ho3 = T0_fprm_9, ho4 = T0_fptm_14,
+         zw_1 = T0_fptm_5, zw_2 = T0_fptm_8, zw_3 = T0_fptm_11, zw_4 = T0_fptm_12,
+         vh1 = T0_fptm23_2, vh2 = T0_fptm23_3, vh3 = T0_fptm_10) %>%
+  mutate(ho1 = recode(ho1, '1' = "4",'2' = "3", '3' = "2", '4' = "1"),
+         ho2 = recode(ho2, '1' = "4",'2' = "3", '3' = "2", '4' = "1"),
+         ho3 = recode(ho3, '1' = "4",'2' = "3", '3' = "2", '4' = "1"),
+         ho4 = recode(ho4, '1' = "4",'2' = "3", '3' = "2", '4' = "1")) %>%
+  mutate(ho1 = parse_number(.$ho1), 
+         ho2 = parse_number(.$ho2),
+         ho3 = parse_number(.$ho3),
+         ho4 = parse_number(.$ho4))
+
+raw_data[raw_data$Patientencode == "MARE60",]$T0_Geb <- "01.1960" # bei einer Altersangabe fehlt Monat => nehme Januar
+raw_data$T0_Geb <- parse_date(raw_data$T0_Geb, format = "%m.%Y") # Ändere Alter in Datum
+raw_data$Alter <- 2018- year(raw_data$T0_Geb)
+raw_data$Altersgruppen <- cut(raw_data$Alter,
+                          breaks = c(-Inf, 29, 39, 49, 59, Inf), # menuCH Kategorien
+                          labels = c("<29 Jahre", "30 bis 39 Jahre", "40 bis 49 Jahre", "50 bis 59 Jahre", ">60 Jahre"))
+raw_data$Altersgruppen <- as.character(raw_data$Altersgruppen) # parse to character (parse_character funktioniet hier nicht => wieso?)
+
+
+pattern2 <- c("T0_phq9" ,"T1_phq9", "T0_phq15", "T1_phq15", "T0_gad", "T1_gad")
+
+# achtung bei rowsums werden 0 erzeugt => ich gehe davon aus, dass diese NA' sein sollten
+# überprüfe das mit plausibilitätschecks (...)
+empty <- list() # funktioniert hier nur mit liste, eigentlich auch mit data.frame möglich sein
+for (nam in pattern2) {
+    sub_dat <- raw_data[,grep(nam, names(raw_data), value = T)]
+    sub_dat$sum <- rowSums(sub_dat, na.rm = T)
+    sub_dat$sum_row <- paste("sum_", nam, sep = "")
+    empty[[nam]] <- sub_dat
+} 
+
+data <- do.call(bind_cols,empty) 
+
+pattern2 <- c("ld", "ho", "zw_", "vh")
+empty2 <- list() # funktioniert hier nur mit liste, eigentlich auch mit data.frame möglich sein
+for (nam in pattern2) {
+  sub_dat <- raw_data[,grep(nam, names(raw_data), value = T)]
+  sub_dat$rowmean <- rowSums(sub_dat, na.rm = T)/ncol(sub_dat)
+  # sum_dat$men <- rowMeans(sub_dat, na.rm = T)
+  sub_dat$rowmean_sum <- paste("rowmean_", nam, sep = "")
+  empty2[[nam]] <- sub_dat
+} 
+
+data2 <- do.call(bind_cols, empty2)
+
+# slice raw_data and paste back
+data_ <- raw_data[, c(1:23,69:78, 108:109)]
+dat <- data[, grep("sum", names(data), value = T)]
+dat2 <- data2[, grep("rowmean", names(data2), value = T)]
+raw_data_ <- bind_cols(data_, dat) 
+raw_data2 <- bind_cols(raw_data_, dat2)
+
+
+# #missing map
+# missmap(raw_data2) # 20 percent fehlen v.a. bei variable schluabschluss
+
+# drop all usless variables and rename
+raw_data2 <- raw_data2[-55,] # contains only NA 
+
+#suche alle variablen
+data_wide <- raw_data2 %>%
+  dplyr::select(Patientencode, GRUPPENZUTEILUNG, REKRUTIERUNG,
+         T0_Datum, T0_sex, T0_Schulabschluss, Alter, Altersgruppen, T0_erwerbstätig_ALLGEMEIN,
+         sum, sum1, sum2, sum3, sum4, sum5, rowmean, rowmean1, rowmean2, rowmean3) %>%
+  rename(trans = REKRUTIERUNG, condit = GRUPPENZUTEILUNG, date = T0_Datum, sex = T0_sex, work = T0_erwerbstätig_ALLGEMEIN, educ = T0_Schulabschluss, age = Alter, age_group = Altersgruppen,
+         # test = sum_row, test = sum_row1, test = sum_row2, test = sum_row3, test = sum_row4)
+  T0_phq9 = sum, T1_phq9 = sum1, T0_phq15 = sum2, T1_phq15 = sum3, ld = rowmean, ho = rowmean1, zw = rowmean2, vh = rowmean3, T0_gad = sum4, T1_gad = sum5) # rename for melting data
+
+# # neue variable therapiemotivation
+# # rowsum von ld, ho, zw, vh
+# pattern3 = c("ld|ho|zw|vh")
+# data_wide$motivation <- rowSums(data_wide[, grep(pattern3, names(data_wide), value = T)], na.rm = T)
+
+# rowsums mit 0 sind NA's
+data_wide[data_wide == 0] <- NA
+
+# funktioniert irgendwie nicht so recht
+# test <- data_wide %>% 
+#          if_else(vars(10:19) == 0, "NA", .)
+# 
+# data_wide %>% if_else(. == 0, TRUE ~ NA_real_, .)
+
+
+# melt into long format => v.a. für statistische analysen wichtig
+data_long <- melt(data_wide,  measure.vars = c("T0_phq9","T1_phq9", "T0_phq15", "T1_phq15", "T0_gad", "T1_gad", "ld", "ho", "zw", "vh"))
+
+# achtung variable sind factoren => parse to characters
+data_long$variable <- as.character(data_long$variable)

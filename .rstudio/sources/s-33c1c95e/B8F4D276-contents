@@ -1,0 +1,310 @@
+---
+title: "3sme WA Datenanalyse - R Notebook"
+output:
+  html_document:
+    df_print: paged
+  html_notebook:
+    theme: journal
+  pdf_document: default
+---
+
+
+### Notes
+
+Clear the console: CTRL + L
+
+read.csv set separator to semicilon: ..., sep=';'
+
+Missings:                 https://medium.com/coinmonks/dealing-with-missing-data-using-r-3ae428da2d17
+Descriptive Statistics:   https://machinelearningmastery.com/descriptive-statistics-examples-with-r/
+Cronbachs Alpha:          https://www.rdocumentation.org/packages/psych/versions/1.8.12/topics/alpha
+CFA:                      https://www.youtube.com/watch?v=eUwaNcnJLfA&t=175s
+Correlation:              http://www.sthda.com/english/wiki/correlation-matrix-a-quick-start-guide-to-analyze-format-and-visualize-a-correlation-matrix-using-r-software#correlation-matrix-with-significance-levels-p-value
+Moderated Mediation:      https://rpubs.com/markhw/processr AND https://github.com/cardiomoon/processR
+
+
+Write Data to CSV:
+write.csv(data.subsetNum, file = "DataSubsetNum.csv")
+
+
+
+### Setup
+
+```{r setup}
+# Install and load Packackges
+# install.packages("rmarkdown")
+# install.packages("car")
+# install.packages("e1071")
+# install.packages("psych")
+# install.packages("lavaan")
+# install.packages("semPlot")
+# install.packages("Hmisc")
+# install.packages("pequod")
+
+# install.packages("devtools")
+# library(devtools)
+# devtools::install_github("cardiomoon/processR")
+
+library(e1071)
+
+# Set Encoding to interpret special caracters
+options(encoding="utf-8")
+```
+
+
+
+### Read raw data.
+
+```{r}
+data.raw <- read.csv("data.csv", sep=';')
+```
+
+
+
+
+### Delete Test Data
+
+```{r}
+data.raw <- subset(data.raw, !(p_0001 == 1))
+
+# Remove Data from Persons with higher Position
+#data.raw <- subset(data.raw, (position == 1 ))
+```
+
+
+
+### Select only relevant columns.
+
+```{r}
+data <- subset(data.raw, select=c("va_1", "va_2", "va_3", "va_4", "va_5", "ps_1", "ps_2", "ps_3", "ps_4", "ps_5", "ps_6", "ps_7", "if_1", "if_2", "if_3", "if_4", "if_5", "if_6", "if_7", "if_8", "os_1", "os_2", "os_3", "os_4", "os_5", "os_6", "os_7", "position", "anstellungsdauer", "ausbildung", "alter", "geschlecht"))
+```
+
+
+
+### Recode reverse coded items.
+
+```{r}
+library(car)
+library(carData)
+
+data$ps_1 <- car::recode(data$ps_1, "1=7; 2=6; 3=5; 5=3; 6=2; 7=1")
+data$ps_3 <- car::recode(data$ps_3, "1=7; 2=6; 3=5; 5=3; 6=2; 7=1")
+data$ps_5 <- car::recode(data$ps_5, "1=7; 2=6; 3=5; 5=3; 6=2; 7=1")
+```
+
+
+
+### Missings
+
+```{r}
+# Recode Missings
+data[data == -99] <- NA
+
+# Check for Missings
+#is.na(data)
+cat("Number of Empty Cells:", sum(is.na(data)))
+
+# Delete Missings
+data <- na.omit(data)
+
+```
+
+
+
+### Construct the latent variables.
+
+```{r}
+data$va <- (data$va_1 + data$va_2 + data$va_3 + data$va_4 + data$va_5)  / 5
+data$ps <- (data$ps_1 + data$ps_2 + data$ps_3 + data$ps_4 + data$ps_5 + data$ps_6 + data$ps_7) / 7
+data$ifv <- (data$if_1 + data$if_2 + data$if_3 + data$if_4 + data$if_5 + data$if_6 + data$if_7 + data$if_8) / 8
+data$os <- (data$os_1 + data$os_2 + data$os_3 + data$os_4 + data$os_5 + data$os_6 + data$os_7) / 7
+```
+
+
+
+### Generate a numeric subset without the single items
+
+```{r}
+data.subsetNum <- subset(data, select=c("va", "ps", "ifv", "os", "position", "anstellungsdauer", "ausbildung", "alter", "geschlecht"))
+data.subset <- subset(data, select=c("va", "ps", "ifv", "os", "position", "anstellungsdauer", "ausbildung", "alter", "geschlecht"))
+```
+
+
+
+### Recode variables "position", "ausbildung" and geschlecht and define them as factor.
+
+```{r}
+data.subset$position <- factor(data$position, levels = c(1,2,3,4), labels = c("keine Kaderfunktion", "unteres Kader", "mitleres Kader", "oberes Kader"))
+data.subset$ausbildung <- factor(data$ausbildung, levels = c(1,2,3,4), labels = c("obligatorische Schule", "Lehre oder Matura", "h?here Berufsbildung", "Hochschulausbildung"))
+data.subset$geschlecht <- factor(data$geschlecht, levels = c(1,2,3), labels = c("weiblich", "m?nnlich", "anderes"))
+```
+
+
+
+### Descriptive Statisitcs
+
+```{r}
+# min, 1qu., median, mean, 3rd qu., max
+cat("Summary")
+summary(data.subset) 
+
+# standard deviation
+cat("Standard Deviation")
+sapply(data.subsetNum, sd)
+
+# skewness
+cat("Skewness")
+sapply(data.subsetNum, skewness)
+
+# kurtosis
+cat("Kurtosis")
+sapply(data.subsetNum, kurtosis)
+```
+
+
+
+### Histograms 
+
+```{r}
+hist(data.subset$va, xlim = c(1, 7), main ='Histogram', xlab = 'Verbesserungsorienterites ?usserungsverhalten')
+hist(data.subset$ps, xlim = c(1, 7), main ='Histogram', xlab = 'Psychologische Sicherheit')
+hist(data.subset$ifv, xlim = c(1, 7), main ='Histogram', xlab = 'Integratives F?hrungsverhalten')
+hist(data.subset$os, xlim = c(1, 7), main ='Histogram', xlab = 'Organisationsbezogenes Selbstvertrauen')
+hist(data.subset$anstellungsdauer, main ='Histogram', xlab = 'Anstellungsdauer')
+hist(data.subset$alter, main ='Histogram', xlab = 'Alter')
+```
+
+
+
+### Group means by the categorial variables.
+
+```{r}
+aggregate(data.subsetNum, list(data.subset$position), mean)
+aggregate(data.subsetNum, list(data.subset$ausbildung), mean)
+aggregate(data.subsetNum, list(data.subset$geschlecht), mean)
+```
+
+
+
+### Cronbachs Alpha
+
+```{r}
+library(psych)
+
+# Create Variable Subsets
+data.va <- subset(data, select=c("va_1", "va_2", "va_3", "va_4", "va_5"))
+data.ps <- subset(data, select=c("ps_1", "ps_2", "ps_3", "ps_4", "ps_5", "ps_6", "ps_7"))
+data.ifv <- subset(data, select=c("if_1", "if_2", "if_3", "if_4", "if_5", "if_6", "if_7", "if_8"))
+data.os <- subset(data, select=c("os_1", "os_2", "os_3", "os_4", "os_5", "os_6", "os_7"))
+
+# Compute Cronbachs Alphas
+psych::alpha(data.va)
+psych::alpha(data.ps)
+psych::alpha(data.ifv)
+psych::alpha(data.os)
+```
+
+
+
+### Confirmatory Factor Analysis
+
+```{r}
+library(lavaan)
+library(semPlot)
+
+# Create requiered Data Subset
+cfa.data <- subset(data, select=c("va_1", "va_2", "va_3", "va_4", "va_5", "ps_1", "ps_2", "ps_3", "ps_4", "ps_5", "ps_6", "ps_7", "if_1", "if_2", "if_3", "if_4", "if_5", "if_6", "if_7", "if_8", "os_1", "os_2", "os_3", "os_4", "os_5", "os_6", "os_7"))
+
+# Create Model
+cfa.model <- 'va  =~ va_1 + va_2 + va_3 + va_4 + va_5 
+              ps =~  ps_1 + ps_2 + ps_3 + ps_4 + ps_5 + ps_6 + ps_7
+              ifv =~ if_1 + if_2 + if_3 + if_4 + if_5 + if_6 + if_7 + if_8
+              os =~ os_1 + os_2 + os_3 + os_4 + os_5 + os_6 + os_7'
+
+# Perfosrm CFA
+cfa.fit <- cfa(model = cfa.model,
+               data = cfa.data)
+
+summary(cfa.fit,
+        standardized = TRUE,
+        rsquare = TRUE)
+
+# Plot Results
+semPaths(cfa.fit,
+         whatLabels = "std",
+         layout = "tree")
+```
+
+
+
+### Correlation Matrix
+
+```{r}
+library(Hmisc)
+
+# cor(data.subsetNum)
+rcorr(as.matrix(data.subsetNum))
+
+```
+
+
+
+### Moderated Mediation
+
+```{r}
+library(processR)
+library(lavaan)
+library(pequod)
+
+## Test Model 14
+
+# Conceptual the Model
+labels=list(X="ifv",M="ps",Y="va",W="os")
+#pmacroModel(14,labels=labels)
+#statisticalDiagram(14, labels=labels)
+
+moderator=list(name="os",site="b")
+model=tripleEquation(X="ifv",M="ps",Y="va",moderator=moderator)
+cat(model)
+
+semfit=sem(model=model,data=data.subsetNum)
+summary(semfit)
+
+estimatesTable(semfit)
+# estimatesTable2(semfit, vanilla = TRUE)
+statisticalDiagram(14,labels=labels,fit=semfit,whatLabel="std")
+
+# Correlation Table
+corTable2(semfit)
+
+# Conditional direct Effect
+conditionalEffectPlot(semfit,data=data.subsetNum,mod="os")
+
+# Plot Moderation Effect
+lmres.model <- lmres(va~ps*os, data=data.subsetNum)
+S_slopes    <- simpleSlope(lmres.model, pred="ps", mod1="os")
+PlotSlope(S_slopes) + ggtitle(paste("Moderationseffekt von OS auf PS->VA")) 
+
+
+# ------------------------------------------------------------------------
+
+## Test Model 6
+
+# Conceptual the Model
+labels=list(X="ifv", M1="ps", M2="os", Y="va")
+#pmacroModel(6,labels=labels)
+#statisticalDiagram(6, labels=labels)
+
+model=makeEquation(X="ifv", M=c("ps", "os"),Y="va", add2ndMediation = TRUE)
+cat(model)
+
+semfit=sem(model=model,data=data.subsetNum)
+summary(semfit)
+
+estimatesTable(semfit)
+# estimatesTable2(semfit, vanilla = TRUE)
+statisticalDiagram(6,labels=labels,fit=semfit,whatLabel="std")
+
+# Correlation Table
+corTable2(semfit)
+```

@@ -1,0 +1,39 @@
+BBS2001                 Species Richness Data from the North American
+                        Breeding Bird Survey (BBS) in 2001
+HIV                     Epidemiological capture-recapture Data on HIV
+Rcapture-package        Loglinear Models for Capture-Recapture
+                        Experiments
+bunting                 Lazuli Bunting Data
+cbird                   Catbird Site Occupancy Data
+closedp                 Loglinear Models for Closed Population
+                        Capture-Recapture Experiments
+closedp.Mtb             Closed Population Capture-Recapture Model Mtb
+closedp.bc              Bias Correction for Closed Population Loglinear
+                        Models
+closedp.custom          Customization of a Loglinear Model for Closed
+                        Populations Capture-Recapture Experiments
+closedpCI               Customization of a Loglinear Model and
+                        Confidence Interval for Abundance Estimation in
+                        Closed Population Capture-Recapture Experiments
+closedpMS               Hierarchical Loglinear Model Selection in
+                        Closed Population Capture-Recapture Experiments
+descriptive             Descriptive Statistics
+duck                    Eider Duck Data
+hare                    Snowshoe Hare Data
+histpos                 Possible Capture Histories
+ill                     Illegal immigrants in the Netherlands
+lesbian                 Epidemiological capture-recapture Data on the
+                        lesbian population
+mvole                   Robust Design Data for Adult Male Meadow Voles
+openp                   Loglinear Models for Open Population
+                        Capture-Recapture Experiments
+periodhist              Merge capture occasions
+profileCI               Profile Likelihood Confidence Interval for
+                        Abundance Estimation in Closed Populations
+                        Capture-Recapture Experiments
+rbvole                  Robust Design Data for Red-Back Voles
+robustd                 Loglinear Models for Capture-Recapture
+                        Experiments Carried Out According to a Robust
+                        Design
+uifit                   Closed Population Models Fit Statistics
+                        Concerning the ui

@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Mark-Recapture Analysis for Survival and Abundance Estimation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Mark-Recapture Analysis for Survival and Abundance Estimation
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;marked&rsquo; version 1.2.1</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+<li><a href="../doc/index.html">User guides, package vignettes and other documentation.</a></li>
+<li><a href="../demo">Code demos</a>.  Use <a href="../../utils/help/demo">demo()</a> to run them.</li>
+<li><a href="../NEWS">Package NEWS</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<p style="text-align: center;">
+<a href="#A">A</a>
+<a href="#B">B</a>
+<a href="#C">C</a>
+<a href="#D">D</a>
+<a href="#F">F</a>
+<a href="#G">G</a>
+<a href="#H">H</a>
+<a href="#I">I</a>
+<a href="#J">J</a>
+<a href="#L">L</a>
+<a href="#M">M</a>
+<a href="#N">N</a>
+<a href="#O">O</a>
+<a href="#P">P</a>
+<a href="#R">R</a>
+<a href="#S">S</a>
+<a href="#T">T</a>
+<a href="#U">U</a>
+<a href="#V">V</a>
+</p>
+
+
+<h2><a name="A">-- A --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="process.data.html">accumulate_data</a></td>
+<td>Process encounter history dataframe for MARK analysis</td></tr>
+</table>
+
+<h2><a name="B">-- B --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="backward_prob.html">backward_prob</a></td>
+<td>Computes backward probabilities</td></tr>
+</table>
+
+<h2><a name="C">-- C --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="cjs.accumulate.html">cjs.accumulate</a></td>
+<td>Accumulates common capture history values</td></tr>
+<tr><td style="width: 25%;"><a href="cjs.hessian.html">cjs.hessian</a></td>
+<td>Compute variance-covariance matrix for fitted CJS model</td></tr>
+<tr><td style="width: 25%;"><a href="cjs.initial.html">cjs.initial</a></td>
+<td>Computes starting values for CJS p and Phi parameters</td></tr>
+<tr><td style="width: 25%;"><a href="cjs.lnl.html">cjs.lnl</a></td>
+<td>Likelihood function for Cormack-Jolly-Seber model</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_admb.html">cjs_admb</a></td>
+<td>Fitting function for CJS models</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_delta.html">cjs_delta</a></td>
+<td>HMM Initial state distribution functions</td></tr>
+<tr><td style="width: 25%;"><a href="mvms_dmat.html">cjs_dmat</a></td>
+<td>HMM Observation Probability matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_gamma.html">cjs_gamma</a></td>
+<td>HMM Transition matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_tmb.html">cjs_tmb</a></td>
+<td>Fitting function for CJS models</td></tr>
+<tr><td style="width: 25%;"><a href="coef.crm.html">coef.crm</a></td>
+<td>Extract coefficients</td></tr>
+<tr><td style="width: 25%;"><a href="splitCH.html">collapseCH</a></td>
+<td>Split/collapse capture histories</td></tr>
+<tr><td style="width: 25%;"><a href="compute.real.html">compute.real</a></td>
+<td>Compute estimates of real parameters</td></tr>
+<tr><td style="width: 25%;"><a href="compute_matrices.html">compute_matrices</a></td>
+<td>Compute HMM matrices</td></tr>
+<tr><td style="width: 25%;"><a href="convert.link.to.real.html">convert.link.to.real</a></td>
+<td>Convert link values to real parameters</td></tr>
+<tr><td style="width: 25%;"><a href="create.dm.html">create.dm</a></td>
+<td>Creates a design matrix for a parameter</td></tr>
+<tr><td style="width: 25%;"><a href="create.dmdf.html">create.dmdf</a></td>
+<td>Creates a dataframe with all the design data for a particular parameter in a crm model</td></tr>
+<tr><td style="width: 25%;"><a href="create.dm.html">create.dml</a></td>
+<td>Creates a design matrix for a parameter</td></tr>
+<tr><td style="width: 25%;"><a href="create.fixed.matrix.html">create.fixed.matrix</a></td>
+<td>Create parameters with fixed matrix</td></tr>
+<tr><td style="width: 25%;"><a href="create.links.html">create.links</a></td>
+<td>Creates a 0/1 vector for real parameters with sin link</td></tr>
+<tr><td style="width: 25%;"><a href="crm.wrapper.html">create.model.list</a></td>
+<td>Automation of model runs</td></tr>
+<tr><td style="width: 25%;"><a href="crm.html">crm</a></td>
+<td>Capture-recapture model fitting function</td></tr>
+<tr><td style="width: 25%;"><a href="crm.wrapper.html">crm.wrapper</a></td>
+<td>Automation of model runs</td></tr>
+<tr><td style="width: 25%;"><a href="crm.wrapper.html">crmlist_fromfiles</a></td>
+<td>Automation of model runs</td></tr>
+</table>
+
+<h2><a name="D">-- D --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="deriv_inverse.link.html">deriv.inverse.link</a></td>
+<td>Derivatives of inverse of link function (internal use)</td></tr>
+<tr><td style="width: 25%;"><a href="deriv_inverse.link.html">deriv_inverse.link</a></td>
+<td>Derivatives of inverse of link function (internal use)</td></tr>
+<tr><td style="width: 25%;"><a href="dipper.html">dipper</a></td>
+<td>Dipper capture-recapture data</td></tr>
+<tr><td style="width: 25%;"><a href="dmat_hsmm2hmm.html">dmat_hsmm2hmm</a></td>
+<td>Create expanded state-dependent observation matrix for HMM from HSMM</td></tr>
+</table>
+
+<h2><a name="F">-- F --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="fix.parameters.html">fix.parameters</a></td>
+<td>Fixing real parameters in crm models</td></tr>
+<tr><td style="width: 25%;"><a href="function.wrapper.html">function.wrapper</a></td>
+<td>Utility extract functions</td></tr>
+<tr><td style="width: 25%;"><a href="function.wrapper.html">fx.aic</a></td>
+<td>Utility extract functions</td></tr>
+<tr><td style="width: 25%;"><a href="function.wrapper.html">fx.par.count</a></td>
+<td>Utility extract functions</td></tr>
+</table>
+
+<h2><a name="G">-- G --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="global_decode.html">global_decode</a></td>
+<td>Global decoding of HMM</td></tr>
+</table>
+
+<h2><a name="H">-- H --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="HMMLikelihood.html">hmm.lnl</a></td>
+<td>Hidden Markov Model likelihood functions</td></tr>
+<tr><td style="width: 25%;"><a href="hmmDemo.html">hmmDemo</a></td>
+<td>HMM computation demo functions</td></tr>
+<tr><td style="width: 25%;"><a href="HMMLikelihood.html">HMMLikelihood</a></td>
+<td>Hidden Markov Model likelihood functions</td></tr>
+<tr><td style="width: 25%;"><a href="hsmm2hmm.html">hsmm2hmm</a></td>
+<td>Compute transition matrix for HMM from HSMM</td></tr>
+</table>
+
+<h2><a name="I">-- I --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="initiate_pi.html">initiate_pi</a></td>
+<td>Setup fixed values for pi in design data</td></tr>
+<tr><td style="width: 25%;"><a href="inverse.link.html">inverse.link</a></td>
+<td>Inverse link functions (internal use)</td></tr>
+</table>
+
+<h2><a name="J">-- J --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="js.html">js</a></td>
+<td>Fitting function for Jolly-Seber model using Schwarz-Arnason POPAN formulation</td></tr>
+<tr><td style="width: 25%;"><a href="js.accumulate.html">js.accumulate</a></td>
+<td>Accumulates common capture history values</td></tr>
+<tr><td style="width: 25%;"><a href="js.hessian.html">js.hessian</a></td>
+<td>Compute variance-covariance matrix for fitted JS model</td></tr>
+<tr><td style="width: 25%;"><a href="js.lnl.html">js.lnl</a></td>
+<td>Likelihood function for Jolly-Seber model using Schwarz-Arnason POPAN formulation</td></tr>
+</table>
+
+<h2><a name="L">-- L --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="crm.wrapper.html">load.model</a></td>
+<td>Automation of model runs</td></tr>
+<tr><td style="width: 25%;"><a href="local_decode.html">local_decode</a></td>
+<td>Local decoding of HMM</td></tr>
+<tr><td style="width: 25%;"><a href="R_HMMLikelihood.html">loglikelihood</a></td>
+<td>Hidden Markov Model Functions</td></tr>
+</table>
+
+<h2><a name="M">-- M --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="make.design.data.html">make.design.data</a></td>
+<td>Create design dataframes for crm</td></tr>
+<tr><td style="width: 25%;"><a href="resight.matrix.html">mcmc_mode</a></td>
+<td>Various utility functions</td></tr>
+<tr><td style="width: 25%;"><a href="merge_design.covariates.html">merge.design.covariates</a></td>
+<td>Merge time (occasion) and/or group specific covariates into design data</td></tr>
+<tr><td style="width: 25%;"><a href="merge_design.covariates.html">merge_design.covariates</a></td>
+<td>Merge time (occasion) and/or group specific covariates into design data</td></tr>
+<tr><td style="width: 25%;"><a href="mixed.model.admb.html">mixed.model</a></td>
+<td>Mixed effect model contstruction</td></tr>
+<tr><td style="width: 25%;"><a href="mixed.model.admb.html">mixed.model.admb</a></td>
+<td>Mixed effect model contstruction</td></tr>
+<tr><td style="width: 25%;"><a href="mixed.model.admb.html">mixed.model.dat</a></td>
+<td>Mixed effect model contstruction</td></tr>
+<tr><td style="width: 25%;"><a href="crm.wrapper.html">model.table</a></td>
+<td>Automation of model runs</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_gamma.html">ms2_gamma</a></td>
+<td>HMM Transition matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="mscjs.html">mscjs</a></td>
+<td>Fitting function for Multistate CJS models</td></tr>
+<tr><td style="width: 25%;"><a href="mscjs_tmb.html">mscjs_tmb</a></td>
+<td>Fitting function for Multistate CJS models with TMB</td></tr>
+<tr><td style="width: 25%;"><a href="mstrata.html">mstrata</a></td>
+<td>Multistrata example data</td></tr>
+<tr><td style="width: 25%;"><a href="mvms_dmat.html">ms_dmat</a></td>
+<td>HMM Observation Probability matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_gamma.html">ms_gamma</a></td>
+<td>HMM Transition matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="mvmscjs.html">mvmscjs</a></td>
+<td>Fitting function for Multivariate Multistate CJS with uncertainty models</td></tr>
+<tr><td style="width: 25%;"><a href="cjs_delta.html">mvmscjs_delta</a></td>
+<td>HMM Initial state distribution functions</td></tr>
+<tr><td style="width: 25%;"><a href="mvms_design_data.html">mvms_design_data</a></td>
+<td>Multivariate Multistate (mvms) Design Data</td></tr>
+<tr><td style="width: 25%;"><a href="mvms_dmat.html">mvms_dmat</a></td>
+<td>HMM Observation Probability matrix functions</td></tr>
+</table>
+
+<h2><a name="N">-- N --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="resight.matrix.html">naive.survival</a></td>
+<td>Various utility functions</td></tr>
+</table>
+
+<h2><a name="O">-- O --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="omega.html">omega</a></td>
+<td>Compute 1 to k-step transition proportions</td></tr>
+</table>
+
+<h2><a name="P">-- P --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Phi.mean.html">p.boxplot</a></td>
+<td>Various utility parameter summary functions</td></tr>
+<tr><td style="width: 25%;"><a href="Phi.mean.html">p.mean</a></td>
+<td>Various utility parameter summary functions</td></tr>
+<tr><td style="width: 25%;"><a href="Phi.mean.html">Phi.boxplot</a></td>
+<td>Various utility parameter summary functions</td></tr>
+<tr><td style="width: 25%;"><a href="Phi.mean.html">Phi.mean</a></td>
+<td>Various utility parameter summary functions</td></tr>
+<tr><td style="width: 25%;"><a href="predict.crm.html">predict.crm</a></td>
+<td>Compute estimates of real parameters</td></tr>
+<tr><td style="width: 25%;"><a href="print.crm.html">print.crm</a></td>
+<td>Print model results</td></tr>
+<tr><td style="width: 25%;"><a href="print.crmlist.html">print.crmlist</a></td>
+<td>Print model table from model list</td></tr>
+<tr><td style="width: 25%;"><a href="probitCJS.html">probitCJS</a></td>
+<td>Perform MCMC analysis of a CJS model</td></tr>
+<tr><td style="width: 25%;"><a href="proc.form.html">proc.form</a></td>
+<td>Mixed effect model formula parser Parses a mixed effect model in the lme4 structure of ~fixed +(re1|g1) +...+(ren|gn)</td></tr>
+<tr><td style="width: 25%;"><a href="process.ch.html">process.ch</a></td>
+<td>Process release-recapture history data</td></tr>
+<tr><td style="width: 25%;"><a href="process.data.html">process.data</a></td>
+<td>Process encounter history dataframe for MARK analysis</td></tr>
+</table>
+
+<h2><a name="R">-- R --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="HMMLikelihood.html">reals</a></td>
+<td>Hidden Markov Model likelihood functions</td></tr>
+<tr><td style="width: 25%;"><a href="mixed.model.admb.html">reindex</a></td>
+<td>Mixed effect model contstruction</td></tr>
+<tr><td style="width: 25%;"><a href="crm.wrapper.html">rerun_crm</a></td>
+<td>Automation of model runs</td></tr>
+<tr><td style="width: 25%;"><a href="resight.matrix.html">resight.matrix</a></td>
+<td>Various utility functions</td></tr>
+<tr><td style="width: 25%;"><a href="R_HMMLikelihood.html">R_HMMLikelihood</a></td>
+<td>Hidden Markov Model Functions</td></tr>
+</table>
+
+<h2><a name="S">-- S --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="set.scale.html">scale.dm</a></td>
+<td>Scaling functions</td></tr>
+<tr><td style="width: 25%;"><a href="set.scale.html">scale.par</a></td>
+<td>Scaling functions</td></tr>
+<tr><td style="width: 25%;"><a href="sealions.html">sealions</a></td>
+<td>Multivariate State example data</td></tr>
+<tr><td style="width: 25%;"><a href="set.fixed.html">set.fixed</a></td>
+<td>Set fixed real parameter values in ddl</td></tr>
+<tr><td style="width: 25%;"><a href="set.initial.html">set.initial</a></td>
+<td>Set initial values</td></tr>
+<tr><td style="width: 25%;"><a href="set.scale.html">set.scale</a></td>
+<td>Scaling functions</td></tr>
+<tr><td style="width: 25%;"><a href="setup.model.html">setup.model</a></td>
+<td>Defines model specific parameters (internal use)</td></tr>
+<tr><td style="width: 25%;"><a href="setup.parameters.html">setup.parameters</a></td>
+<td>Setup parameter structure specific to model (internal use)</td></tr>
+<tr><td style="width: 25%;"><a href="setup.model.html">setupHMM</a></td>
+<td>Defines model specific parameters (internal use)</td></tr>
+<tr><td style="width: 25%;"><a href="setup_admb.html">setup_admb</a></td>
+<td>ADMB setup</td></tr>
+<tr><td style="width: 25%;"><a href="setup_tmb.html">setup_tmb</a></td>
+<td>TMB setup</td></tr>
+<tr><td style="width: 25%;"><a href="set_mvms.html">set_mvms</a></td>
+<td>Multivariate Multistate (mvms) Specification</td></tr>
+<tr><td style="width: 25%;"><a href="simHMM.html">simHMM</a></td>
+<td>Simulates data from Hidden Markov Model</td></tr>
+<tr><td style="width: 25%;"><a href="skagit.html">skagit</a></td>
+<td>An example of the Mulstistrata (multi-state) model in which states are routes taken by migrating fish.</td></tr>
+<tr><td style="width: 25%;"><a href="splitCH.html">splitCH</a></td>
+<td>Split/collapse capture histories</td></tr>
+</table>
+
+<h2><a name="T">-- T --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="tagloss.html">tagloss</a></td>
+<td>Tag loss example</td></tr>
+</table>
+
+<h2><a name="U">-- U --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="mvms_dmat.html">ums2_dmat</a></td>
+<td>HMM Observation Probability matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="mvms_dmat.html">ums_dmat</a></td>
+<td>HMM Observation Probability matrix functions</td></tr>
+<tr><td style="width: 25%;"><a href="set.scale.html">unscale.par</a></td>
+<td>Scaling functions</td></tr>
+</table>
+
+<h2><a name="V">-- V --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="valid.parameters.html">valid.parameters</a></td>
+<td>Determine validity of parameters for a model (internal use)</td></tr>
+</table>
+</body></html>
