@@ -1,0 +1,8 @@
+## Übung A: Lösung
+
+[R-Code als Download](10_PrePro2/RFiles/Uebung_A.R)
+
+
+```{r code=readLines('10_PrePro2/RFiles/Uebung_A.R'), echo=T, eval=F, include = T}
+```
+

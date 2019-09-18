@@ -1,0 +1,159 @@
+---
+title: "MSc. Research Methods - Statistikteil Lösungen 2019"
+author: "Juergen Dengler"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+
+```{r,include=FALSE}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
+```
+
+## Musterlösung Aufgabe 5.1: Split-plot ANOVA
+
+**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+
+- Ladet den Datensatz splityield.csv. Dieser enthält Versuchsergebnisse eines
+  Experiments zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei
+  Faktoren Bewässerung (irrigated vs. control), Düngung (N, NP, P) und Aussaatdichten
+  (low, medium, high). Es gab vier ganze Felder (block), die zwei Hälften mit den beiden
+  Bewässerungstreatments (irrigation), diese wiederum drei Drittel für die drei
+  Saatdichten (density) und diese schliesslich je drei Drittel für die drei
+  Düngertreatments (fertilizer) hatten.
+- **Ermittelt das minimal adäquate statistische Modell, das den Ernteertrag in
+  Abhängigkeit von den angegebenen Faktoren beschreibt.**
+- Bitte erklärt und begründet die einzelnen Schritte, die ihr unternehmt, um zu diesem
+  Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in das ihr Schritt für
+  Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, eure
+  Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
+  Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
+      und welches die unabängige(n) Variablen
+    - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
+      Datentransformationen vorgenommen werden sollten
+    - Auswahl und Begründung eines statistischen Verfahrens
+    - Bestimmung des vollständigen/maximalen Models
+    - Selektion des/der besten Models/Modelle
+    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss
+    
+         _(Ergebnisdarstellung benötigt werden)_
+         
+    - Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten
+      Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit
+      (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100
+      Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen
+      Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
+    - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
+      (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter
+      Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+      
+
+### Übung 5.1 - Split-plot ANOVA -- Lösung
+
+```{r}
+splityield <-read.csv("17_Statistik5/data/splityield.csv")
+attach(splityield)
+
+#Checken der eingelesenen Daten
+splityield
+```
+Man sieht, dass das Design vollkommen balanciert ist, d.h. jede Kombination irrigation *
+density * fertilizer kommt genau 4x vor (in jedem der vier Blöcke A-D einmal).
+
+```{r}
+str(splityield)
+summary(splityield)
+```
+Man sieht, dass die Variable yield metrisch ist, während die vier anderen Variablen schon
+korrekt als kategoriale Variablen (factors) kodiert sind
+
+```{r}
+#Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
+boxplot(yield)
+boxplot(yield~fertilizer)
+boxplot(yield~irrigation)
+boxplot(yield~density)
+boxplot(yield~irrigation*density*fertilizer)
+```
+Die Boxplots sind generell hinreichend symmetrisch, so dass man davon ausgehen kann, dass
+keine problematische Abweichung von der Normalverteilung vorliegt. Die Varianzhomogenität
+sieht für den Gesamtboxplot sowie für fertilizer und density bestens aus, für irrigation und für
+die 3-fach-Interaktion deuten sich aber gewisse Varianzheterogenitäten an, d. h. die Boxen
+(Interquartil-Spannen) sind deutlich unterschiedlich lang. Da das Design aber vollkommen
+„balanciert“ war, wie wir von oben wissen, sind selbst relativ stark divergierende Varianzen
+nicht besonders problematisch. Der Boxplot der Dreifachinteraktion zeigt zudem, dass
+grössere Varianzen (~Boxen) mal bei kleinen, mal bei grossen Mittelwerten vorkommen,
+womit wir bedenkenlos weitermachen können (Wenn die grossen Varianzen immer bei
+grossen Mittelwerten aufgetreten wären, hätten wir eine log- oder Wurzeltransformation von
+yield in Betracht ziehen müssen).
+
+```{r}
+boxplot(log10(yield)~irrigation*density*fertilizer) #bringt keine Verbesserung
+model<-aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density))
+```
+
+Das schwierigste an der Analyse ist hier die Definition des Splitt-Plot ANOVA-Modells. Hier
+machen wir es mit der einfachsten Möglichkeit, dem aov-Befehl. Um diesen richtig zu
+spezifieren, muss man verstanden haben, welches der „random“-Faktor war und wie die
+„fixed“ factors ineinander geschachtelt waren. In diesem Fall ist block der random Faktor, in
+den zunächst irrigation und dann density geschachtelt sind (die unterste Ebene fertilizer muss
+man nicht mehr angeben, da diese in der nächsthöheren nicht repliziert ist).
+
+(Übrigens: das simple 3-faktorielle ANOVA-Modell
+model2<-aov(yield~irrigation*density*fertilizer würde unterstellen, dass alle 72 subplot
+unabhängig von allen anderen angeordnet sind, also nicht in Blöcken. Man kann ausprobieren,
+wie sich das Ergebnis mit dieser Einstellung unterscheidet)
+
+```{r}
+summary(model)
+```
+
+Wir bekommen p-Werte für die drei Einzeltreatments, die drei 2-fach-Interaktionen und die 3-
+fach Interaktion. Keinen p-Wert gibt es dagegen für block, da dieser als „random“ Faktor
+spezifiziert wurde.
+Signifikant sind für sich genommen irrigation und fertilizer sowie die Interaktionen
+irrigation:density und irrigation:fertilizer.
+Jetzt muss man nur noch herausfinden, wie irrigation und fertilizer wirken und wie die
+Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:
+
+```{r}
+#Visualisierung der Ergebnisse
+boxplot(yield~fertilizer)
+boxplot(yield~irrigation)
+
+interaction.plot(fertilizer,irrigation,yield)
+
+interaction.plot(density,irrigation,yield)
+```
+
+
+**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
+
+**Methoden**
+
+
+**Es wurde der Ertrag einer Kulturpflanze in Abhängigkeit von zwei Bewässerungsmethoden (ja/nein), zwei Saatdichten (niedrig/mittel/hoch) und drei Düngevarianten (N/P/NP) untersucht. Das Experiment wurde in vollkommen balanciertem split-plot-Design auf vier zufällig ausgewählten Blöcken durchgeführt. Innerhalb der Blöcke waren die Bewässerungsvarianten, Saatdichten und Düngevarianten sukzessive geschachtelt.**
+
+**Die 3-fach ANOVA wurde mit dem Befehl aov in R analysiert, wobei folgende Fehlerstruktur angenommen wurde: block/irrigation/density**
+
+**Ergebnisse**
+
+**Es zeigte sich, dass von den Einzelfaktoren sowohl Düngung (p < 0.001) als auch Bewässerung (p = 0.025) signifikanten Einfluss auf den Ertrag haben, die Saatdichte dagegen nicht (p = 0.053). Bewässerung hat dabei den Ertrag um ca. 20 % erhöht (Abb. 1), während NPDüngung einen etwas höheren Ertrag erbrachte als die Düngung mit jeweils nur einem der Elemente (Abb. 2). Zudem waren die Interaktionen Bewässerung x Düngung (p = 0.008; Abb.3) und Bewässerung x Saatdichte (p = 0.016; Abb. 4) signifikant, nicht jedoch Düngung x Saatdichte (p = 0.484) und die Dreifachinteraktion (p = 0.681). Düngung hatte nur auf bewässerten Flächen einen nennenswerten Einfluss auf den Ertrag (Abb. 3). Nur auf bewässerten Flächen stieg der Ertrag mit der Saatdichte kontinuierlich an, während er auf unbewässerten Flächen bei mittlerer Saatdichte am höchsten war (Abb. 4).**
+
+![**Abb. 1: Einfluss der Bewässerung auf den Ertrag.**](17_Statistik5/data/Abb1_5.1.png)
+
+
+
+![**Abb. 2:  Einfluss der Düngung auf den Ertrag.**](17_Statistik5/data/Abb2_5.1.png)
+
+
+
+![**Abb. 3:  Interaktion der Treatments Düngung und Bewässerung.**](17_Statistik5/data/Abb3_5.1.png)
+
+
+
+![**Abb. 4: Interaktion der Treatments Saatdichte und Bewässerung.**](17_Statistik5/data/Abb4_5.1.png)

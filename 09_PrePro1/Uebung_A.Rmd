@@ -1,0 +1,226 @@
+
+```{r, include=FALSE, purl = F}
+knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE, warning = F)
+```
+
+
+## Übung A
+
+R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal installieren.
+
+```
+install.packages("tidyverse")
+```
+
+Um ein `package` in R verwenden zu können, gibt es zwei Möglichkeiten: 
+
+- entweder man lädt es zu Beginn der R-session mittles `library()`. 
+- oder man ruft eine `function` mit vorangestelltem Packetname sowie zwei Doppelpunkten auf. `dplyr::filter()` ruft die Funktion `filter()` des Packets `dplyr` auf. 
+
+Letztere Notation ist vor allem dann sinnvoll, wenn sich zwei unterschiedliche Funktionen mit dem gleichen namen in verschiedenen pacakges existieren. `filter()` existiert als Funktion einersits im package `dplyr` sowie in  `stats`. Dieses Phänomen nennt man "masking". 
+
+
+Zu beginn laden wir die nötigen Pakete:
+
+
+```{r,message = F}
+library(tidyverse)
+# Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs- 
+# und Schlusszeichen gesetzt.
+
+
+library(lubridate)
+# Im Unterschied zu install.packages("tidyverse") wird bei library(tidyverse) 
+# das package lubridate nicht berücksichtigt
+```
+
+
+### Aufgabe 1
+
+Erstelle eine `data.frame` mit nachstehenden Daten.
+
+Tipps:
+
+- Eine leere `data.frame` zu erstellen ist schwieriger als wenn erstellen und befüllen der `data.frame` in einem Schritt erfolgt
+- R ist dafür gedacht, Spalte für Spalte zu arbeiten ([warum?](http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html)), nicht Reihe für Reihe. Versuche dich an dieses Schema zu halten.
+
+```{r}
+
+# Lösung Aufgabe 1
+
+df <- data_frame(
+  Tierart = c("Fuchs","Bär","Hase","Elch"),
+  Anzahl = c(2,5,1,3),
+  Gewicht = c(4.4, 40.3,1.1,120),
+  Geschlecht = c("m","f","m","m"),
+  Beschreibung = c("Rötlich","Braun, gross", "klein, mit langen Ohren","Lange Beine, Schaufelgeweih")
+  )
+
+```
+
+
+```{r, echo = F, purl=F}
+knitr::kable(df)
+```
+
+
+
+### Aufgabe 2
+
+Was für Datentypen wurden (in Aufgabe 1) von R automatisch angenommen? Sind diese sinnvoll? 
+
+Tipp: Nutze dazu `str()`
+
+```{r}
+# Lösung Aufgabe 2
+
+str(df)
+
+# Anzahl wurde als `double` interpretiert, ist aber eigentlich ein `integer`. 
+# Mit data.frame() wurde Beschreibung wurde als `factor` interpretiert, ist 
+# aber eigentlich `character`
+```
+
+
+```{r}
+
+
+typeof(df$Anzahl)
+
+df$Anzahl <- as.integer(df$Anzahl)
+df$Beschreibung <- as.character(df$Beschreibung)
+
+```
+
+
+### Aufgabe 3
+
+
+Nutze die Spalte `Gewicht` um die Tiere in 3 Gewichtskategorien einzuteilen: 
+
+- leicht: < 5kg
+- mittel: 5 - 100 kg
+- schwer: > 100kg
+
+
+```{r}
+
+# Lösung Aufgabe 3
+
+df$Gewichtsklasse[df$Gewicht > 100] <- "schwer"
+df$Gewichtsklasse[df$Gewicht <= 100 & df$Gewicht > 5] <- "mittel"
+df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
+
+```
+
+
+```{r, purl=F}
+knitr::kable(df)
+```
+
+
+
+
+### Aufgabe 4
+
+Importiere den Datensatz [order_52252_data.txt](09_PrePro1/data/order_52252_data.txt). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz im Zeitraum 2000 - 2005. Wir empfehlen `read_table()`^[@wickham2017, Kapitel 8 bzw. http://r4ds.had.co.nz/data-import.html)] anstelle von `read.table()`.
+
+```{r, message = F}
+# Lösung Aufgabe 4
+
+wetter <- readr::read_table("09_PrePro1/data/order_52252_data.txt")
+```
+
+
+
+
+```{r, purl=F}
+knitr::kable(head(wetter,10))
+```
+
+
+### Aufgabe 5
+
+Schau dir die Rückmeldung von `read_table()`an. Sind die Daten korrekt interpretiert worden?
+
+
+```{r}
+# Lösung Aufgabe 5
+# Die Spalte 'time' wurde als 'integer' interpretiert. Dabei handelt es
+# sich offensichtlich um Zeitangaben.
+```
+
+
+
+### Aufgabe 6
+
+Die Spalte `time` ist eine Datum/Zeitangabe im Format JJJJMMTTHH (siehe [meta.txt](09_PrePro1/data/meta.txt)). Damit R dies als Datum-/Zeitangabe erkennt, müssen wir die Spalte in einem R-Format (`POSIXct`) einlesen und dabei R mitteilen, wie sie aktuell formatiert ist. Lies die Spalte mit `as.POSIXct()` (oder `parse_datetime`) ein und spezifiziere sowohl `format` wie auch `tz`. 
+
+Tipps: 
+
+- Wenn keine Zeitzone festgelegt wird, trifft `as.POSIXct()` eine Annahme (basierend auf `Sys.timezone()`). In unserem Fall handelt es sich aber um Werte in UTC (siehe [meta.txt](09_PrePro1/data/meta.txt))
+- `as.POSIXct`erwartet `character`
+
+```{r}
+# Lösung Aufgabe 6
+
+# mit readr
+parse_datetime(as.character(wetter$time[1:10]), format = "%Y%m%d%H")
+
+
+# mit as.POSIXct()
+wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H",tz = "UTC")
+
+```
+
+
+```{r, purl=F}
+knitr::kable(head(wetter,10))
+```
+
+
+
+
+### Aufgabe 7
+
+
+Erstelle zwei neue Spalten mit Wochentag (Montag, Dienstag, etc) und Kalenderwoche. Verwende dazu die neu erstellte `POSIXct`-Spalte
+
+
+```{r}
+
+# Lösung Aufgabe 7
+
+wetter$wochentag <- wday(wetter$time,label = T)
+wetter$kw <- week(wetter$time)
+
+```
+
+
+```{r, purl=F}
+knitr::kable(head(wetter,10))
+```
+
+
+
+
+
+### Aufgabe 8
+
+
+Erstelle eine neue Spalte basierend auf die Temperaturwerte mit der Einteilung "kalt" (Unter Null Grad) und "warm" (über Null Grad)
+
+```{r}
+
+# Lösung Aufgabe 8
+
+wetter$temp_kat[wetter$tre200h0>0] <- "warm"
+wetter$temp_kat[wetter$tre200h0<=0] <- "kalt"
+```
+
+
+```{r, purl=F}
+knitr::kable(head(wetter,10))
+```
+
+

@@ -1,0 +1,213 @@
+
+```{r, echo = F, purl = F}
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+library(knitr)
+
+```
+
+
+
+
+## Demo A: Multiple Regression
+
+[Demoscript als Download](15_Statistik3/RFiles/Demo_A_MultReg.R)
+
+
+### Teil 1: Multiple Regressionen
+@logan2010 [S. 224 ff]
+
+
+```{r, message=F}
+
+library(tidyverse)
+library(car)
+library(GGally)
+library(ggfortify)
+
+```
+
+
+
+Datensatz [loyn.csv](15_Statistik3/data/loyn.csv) einlesen.
+
+```{r, message=F}
+###################################################
+### chunk number 1: pg 224
+###################################################
+# loyn <- read.csv('loyn.csv', header=T, sep=',')
+
+
+loyn <- read_csv("15_Statistik3/data/loyn.csv")
+```
+
+```{r}
+###################################################
+### chunk number 2: pg 225
+###################################################
+# scatterplotMatrix(~ABUND+AREA+YR.ISOL+DIST+LDIST+GRAZE+ALT, data=loyn, diag="boxplot")
+
+
+GGally::ggpairs(loyn)
+```
+
+
+
+```{r}
+###################################################
+### chunk number 3: pg 225
+###################################################
+# scatterplotMatrix(~ABUND+log10(AREA)+YR.ISOL+log10(DIST)+log10(LDIST)+GRAZE+ALT, data=loyn, diag="boxplot")
+
+loyn %>%
+  mutate(
+    AREA_log10 = log10(AREA),
+    DIST_log10 = log10(DIST),
+    LDIST_log10 = log10(LDIST)
+    ) %>%
+  dplyr::select(-AREA,-DIST,-LDIST) %>%
+  ggpairs()
+
+```
+
+```{r}
+###################################################
+### chunk number 4: pg 226
+###################################################
+cor(loyn[,2:7])
+
+```
+
+
+```{r}
+###################################################
+### chunk number 5: pg 227
+###################################################
+
+vif(lm(ABUND~log10(AREA)+YR.ISOL+log10(DIST)+log10(LDIST) +GRAZE+ALT, data=loyn))
+1/vif(lm(ABUND~log10(AREA)+YR.ISOL+log10(DIST)+log10(LDIST) +GRAZE+ALT, data=loyn))
+```
+
+
+```{r}
+###################################################
+### chunk number 6: pg 227
+###################################################
+
+# Added "na.action = "na.fail"" see https://stackoverflow.com/a/26437578/4139249
+
+loyn.lm<-lm(ABUND~log10(AREA)+YR.ISOL+log10(DIST)+log10(LDIST)+GRAZE+ALT,data=loyn,na.action = "na.fail")
+```
+
+
+```{r}
+###################################################
+### chunk number 6: pg 227
+###################################################
+
+# plot(loyn.lm)
+autoplot(loyn.lm)
+```
+
+```{r}
+###################################################
+### chunk number 7: pg 228
+###################################################
+
+summary(influence.measures(loyn.lm))
+```
+
+```{r}
+###################################################
+### chunk number 8: pg 228
+###################################################
+
+summary(loyn.lm)
+
+```
+
+```{r, message = F}
+
+###################################################
+### chunk number 9: pg 229
+###################################################
+
+avPlots(loyn.lm, ask=F)
+
+```
+
+
+### Teil 2: Selecting the "best" regression model
+
+@logan2010 [S. 237 ff]
+
+
+```{r}
+library(MuMIn)
+```
+
+
+```{r, eval = F}
+
+# Package biology wird von Logan nicht mehr weitergeführt und ist mit der aktuellen R Version nicht kompatibel
+library(biology)
+m<-Model.selection(loyn.lm)
+Model.selection(loyn.lm)[[1]][1:45,c(2,5,6,7)]
+```
+
+
+```{r}
+
+loyn.lm.sel <- dredge(loyn.lm, rank = "AICc")
+loyn.lm.getmodels <- get.models(loyn.lm.sel, subset = T)
+loyn.lm.av <- model.avg(loyn.lm.getmodels)
+summary(loyn.lm.av)
+
+
+```
+
+
+```{r}
+###################################################
+### chunk number 3: pg 239
+###################################################
+loyn.lm2<-lm(ABUND~log10(AREA)+GRAZE, data=loyn)
+summary(loyn.lm2)
+```
+
+
+### Teil 3: Hierarchical partitioning
+
+@logan2010 [S. 240 ff]
+
+```{r, message = F}
+library(hier.part)
+```
+
+
+
+```{r}
+###################################################
+### chunk number 1: pg 240
+###################################################
+#construct a dataset entirely of predictor variables
+loyn.preds <- with(loyn,data.frame(logAREA=log10(AREA), YR.ISOL, logDIST=log10(DIST), logLDIST=log10(LDIST), GRAZE, ALT))
+
+
+#perform hierarchical partitioning 
+hier.part(loyn$ABUND,loyn.preds, gof="Rsqu")
+
+```
+
+
+```{r}
+r.HP<-rand.hp(loyn$ABUND,loyn.preds, gof="Rsqu", num.reps=100)$Iprobs
+
+r.HP
+```
+
+
+### Libraries
+
+```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
+```
+

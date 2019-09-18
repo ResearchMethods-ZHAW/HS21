@@ -1,0 +1,94 @@
+
+
+```{r,message=F}
+library(broom)
+library(tidyverse)
+```
+
+
+## Rückblick Statistik 1
+
+```{r}
+haar_augen <- data.frame( 
+  row.names = c("Helle Haare", "Dunkle Haare"),
+  Blaue_Augen = c(38,11),
+  Braune_Augen = c(14,51)
+  )
+
+```
+
+```{r}
+fisher.test(haar_augen)
+```
+
+
+## Korrelation
+
+
+```{r}
+
+blumen_sorte <- data.frame(
+  a = c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14),
+  b = c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+)
+cor.test(~a+b,blumen_sorte,method = "pearson")
+cor.test(~a+b,blumen_sorte,method = "spearman")
+cor.test(~a+b,blumen_sorte,method = "kendal")
+
+```
+
+## Einfache lineare Regression
+
+
+
+```{r}
+anova(lm(b~a,blumen_sorte))
+
+```
+
+```{r}
+summary(lm(b~a,blumen_sorte))
+```
+
+```{r}
+
+
+```
+
+Mit Baseplot ist die Visualisierung in diesem Fall einiges leichter zu bewerkstelligen.
+
+```{r}
+plot(blumen_sorte$b~blumen_sorte$a) 
+abline(lm(b~a,blumen_sorte))
+```
+
+
+<!-- *Ein* lineares Modell kann mit ggplot ebenfalls leicht hinzugefügt werden (`geom_smooth(method = "lm")`).  -->
+<!-- ```{r} -->
+<!-- ggplot(blumen_sorte, aes(a,b)) +  -->
+<!--   geom_point() -->
+<!-- ``` -->
+
+
+<!-- Etwas umständlicher ist es hingegen, das *eigene*, mit `lm()` generierte Lineare Modell hinzu zu fügen. Mit `tidy()` bringt man den Modelloutput zuerst in eine tabellarische Form und fügt "slope" und "intercept" als `geom_abline()` hinzu. -->
+
+<!-- ```{r} -->
+
+<!-- anova_tidy <- tidy(lm(b~a,blumen_sorte)) #  -->
+
+
+<!-- ggplot(blumen_sorte, aes(a,b)) +  -->
+<!--   geom_point() + -->
+<!--   geom_smooth(method = "lm",se = F,lty = "dotted") + -->
+<!--   geom_abline(slope = anova_tidy$estimate[2],intercept = anova_tidy$estimate[1],alpha = 0.4) -->
+<!-- ``` -->
+
+## Lineare Modelle
+
+```{r}
+
+par(mfrow = c(2,2)) 
+plot(lm(b~a,blumen_sorte))
+
+```
+

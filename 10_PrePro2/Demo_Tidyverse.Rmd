@@ -1,0 +1,246 @@
+
+```{r, include=F, purl=F}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
+```
+
+
+
+## Demo: `tidyverse`
+
+[Demoscript als Download](10_PrePro2/RFiles/Demo_Tidyverse.R)
+
+
+Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden. Der Prozess und das Modell ist hier^[http://r4ds.had.co.nz/introduction.html#] schön beschrieben.
+Die Sammlung von Tools wird unter dem namen [tidyverse](https://www.tidyverse.org/) vertrieben, welches wir ja schon zu Beginn der ersten Übung installiert und geladen haben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem "must have" im Umgang mit Daten in R entwickelt. 
+
+Wir können euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten^[`dplyr, ggplot2, tidyr, stringr, magrittr, lubridate`] und zeigen ein paar Funktionalitäten, die wir oft verwenden und euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch @wickham2017 beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online^[http://r4ds.had.co.nz/], das vollständige eBook kann über die Bibliothek bezogen werden^[https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093].
+
+
+
+### Split-Apply-Combine
+
+#### Packete laden
+
+```{r,message=F}
+library(tidyverse)
+```
+
+Mit `library(tidyverse)` werden nicht alle Packete geladen, die mit `install.packages(tidyverse)` intalliert wurden ([warum?](https://community.rstudio.com/t/which-packages-get-loaded/298)). Unter anderem muss `lubridate` noch separat geladen werden:
+
+```{r, message=F}
+library(lubridate) 
+```
+
+
+
+#### Daten Laden
+
+Wir Laden die Wetterdaten von der letzten Übung.
+
+```{r}
+
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                  col_types = list(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
+
+```
+
+
+#### Kennwerte berechnen
+Wir möchten den Mittelwert aller gemessenen Temperaturwerte berechnen. Dazu könnten wir folgenden Befehl verwenden:
+
+```{r}
+mean(wetter$tre200h0, na.rm = T) 
+```
+
+Die option `na.rm = T` bedeutet, dass NA Werte von der Berechnung ausgeschlossen werden sollen. 
+
+Mit der selben Herangehensweise können diverse Werte berechnet werden (z.B. das Maximum (`max()`), Minimum (`min()`), Median (`median()`) u.v.m.). 
+
+Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *alle* Beobachtungen (Zeilen) für eine Variable (Spalte) berechnen wollen. Sobald wir die Beobachtungen gruppieren wollen, wird es schwierig. Zum Beispiel, wenn wir die durchschnittliche Temperatur *pro Jahr* berechnen wollen.
+
+
+#### Convenience Variablen
+
+Um diese Aufgabe zu lösen, muss zuerst das "Jahr" berechnen können (das Jahr ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `year()` (von `lubridate`). 
+
+Nun kann kann die **convenience Variable** "Jahr" erstellt werden. Ohne `dpylr` wird eine neue Spalte wird folgendermassen hinzugefügt. 
+```{r}
+wetter$year <- year(wetter$time)
+```
+
+
+Mit `dplyr` (siehe ^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html]) sieht der gleiche Befehl folgendermassen aus:
+```{r}
+wetter <- mutate(wetter,year = year(time))
+```
+
+Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dieser wird aber später klar.
+
+
+#### Kennwerte nach Gruppen berechnen
+
+Jetzt kann man die `data.frame` mithilfe der Spalte "Jahr" filtern. 
+```{r}
+mean(wetter$tre200h0[wetter$year == 2000], na.rm = T)
+```
+
+Dies müssen wir pro Jahr wiederholen, was natürlich sehr umständlich ist, v.a. wenn man eine Vielzahl an Gruppen hat (z.B. Kalenderwochen statt Jahre). Deshalb nutzen wir das package `dplyr`. Damit geht die Aufgabe (Temperaturmittel pro Jahr berechnen) folgendermassen:
+
+
+```{r}
+summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = T))
+```
+
+
+#### Verketten vs. verschachteln
+
+Auf Deutsch übersetzt heisst die obige Operation folgendermassen: 
+
+1) nimm den Datensatz `wetter`
+2) Bilde Gruppen pro Jahr  (`group_by(wetter,year)`) 
+3) Berechne das Temperaturmittel (`mean(tre200h0)`)
+
+Diese Übersetzung `R`-> Deutsch unterscheidet sich vor allem darin, dass die Operation auf Deutsch *verkettet* ausgesprochen wird (Operation 1->2->3) während der Computer *verschachtelt* liest 3(2(1)). Um `R` näher an die gesprochene Sprache zu bringen, kann man den `%>%`-Operator verwenden  (siehe ^[@wickham2017, Kapitel 14 / http://r4ds.had.co.nz/pipes.html]). 
+```{r, eval = F}
+
+summarise(group_by(wetter,year),temp_mittel = mean(tre200h0))
+
+# wird zu:
+
+wetter %>%                                #1) nimm den Datensatz "wetter"
+  group_by(year) %>%                      #2) Bilde Gruppen pro Jahr
+  summarise(temp_mittel = mean(tre200h0)) #3) berechne das Temperaturmittel 
+
+```
+
+
+Dieses Verketten mittels `%>%` macht ein Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Dabei handelt es sich um das package `magrittr`, welches mit dem `tidyverse` mitgeliefert wird. 
+
+Zu `dplyr` und `magrittr`gibt es etliche Tutorials online (siehe^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html, oder [Hands-on dplyr tutorial..](https://youtu.be/jWjqLW-u3hc)]), deshalb werden wir diese Tools nicht in allen Details erläutern. Nur noch folgenden wichtigen Unterschied zu zwei wichtigen Funktionen in `dpylr`: `mutate()` und `summarise()`.
+
+- `summarise()` fasst einen Datensatz zusammen. Dabei reduziert sich die Anzahl Beobachtungen (Zeilen) auf die Anzahl Gruppen (z.B. eine zusammengefasste Beobachtung (Zeile) pro Jahr). Zudem reduziert sich die Anzahl Variablen (Spalten) auf diejenigen, die in der "summarise" Funktion spezifiziert wurde (z.B. `temp_mittel`)
+- mit `mutate` wird eine `data.frame` vom Umfang her belassen, es werden lediglich *zusätzliche* Variablen (Spalten) hinzugefügt (siehe Beispiel unten)
+
+```{r, eval=T}
+# Maximal und minimal Temperatur pro Kalenderwoche
+wetter %>%                              #1) nimm den Datensatz "wetter"
+  filter(stn == "ABO") %>%              #2) filter auf Station namnes "ABO"
+  mutate(kw = week(time)) %>%       #3) erstelle eine neue Spalte "kw"
+  group_by(kw) %>%                      #4) Nutze die neue Spalte um Guppen zu bilden
+  summarise(
+    temp_max = max(tre200h0, na.rm = T),#5) Berechne das Maximum 
+    temp_min = min(tre200h0, na.rm = T) #6) Berechne das Minimum
+    )   
+```
+
+
+#### Resultate plotten
+
+Mit diesen Tools können wir nun auch eine neue Grafik plotten, ähnlich wie in der Übung 1. Dafür müssen wir die ganzen Operationen aber zuerst in einer Variabel speichern (bis jetzt hat R zwar alles schön berechnet, aber uns nur auf die Konsole ausgegeben).
+
+```{r, warning = F}
+
+wetter_sry <- wetter %>%                              
+  mutate(
+    kw = week(time)
+    ) %>%
+  filter(stn == "ABO") %>%
+  group_by(kw) %>%                      
+  summarise(
+    temp_max = max(tre200h0),               
+    temp_min = min(tre200h0),
+    temp_mean = mean(tre200h0)
+    )  
+```
+
+Dieses mal plotten wir nur mit `ggplot2` (siehe ^[@wickham2017, Kapitel 1 / http://r4ds.had.co.nz/data-visualisation.html oder hier ein sehr schönes Video: [Learn R: An Introduction to ggplot2](https://youtu.be/YxKr2a-Y1WE?t=1m40s)]) 
+ 
+```{r}
+
+ggplot() +
+  geom_line(data = wetter_sry, aes(kw,temp_max), colour = "yellow") +
+  geom_line(data = wetter_sry, aes(kw,temp_mean), colour = "pink") +
+  geom_line(data = wetter_sry, aes(kw,temp_min), colour = "black") +
+  labs(y = "temp")
+
+```
+
+
+Ok das sieht schon mal gut aus. Nur, wir mussten pro Linie einen eigene Zeile schreiben (`geom_line()`) und dieser eine Farbe zuweisen. Bei drei Werten ist das ja ok, aber wie sieht es den aus wenn es Hunderte sind? Da hat ggplot natürlich eine Lösung, dafür müssen aber alle Werte in *einer* Spalte daher kommen. Das ist ein häufiges Problem: Wir haben eine *breite* Tabelle (viele Spalten), bräuchten aber eine *lange* Tabelle (viele Zeilen).
+
+
+### Reshaping data
+
+#### Breit -> lang
+
+Da kommt `tidyverse` wieder ins Spiel. Die Umformung von Tabellen *breit*->*lang* erfolgt mittels `tidyr`(siehe ^[http://r4ds.had.co.nz/tidy-data.html#gathering]). Auch dieses package funktioniert wunderbar mit piping (`%>%`). 
+
+```{r}
+wetter_sry_long <- wetter_sry %>%
+  gather(Key, Value, c(temp_max,temp_min,temp_mean))
+
+```
+
+Im Befehl `gather()` braucht es drei Werte:
+
+- beliebiger Name der neuen Variablen (Spalte) für die *Schlüssel*: "temp_mean", "temp_min"... (ich verwenden den Namen: `Key`)
+- beliebiger Name der neuen Variablen (Spalte) für die effektiven *Werte*: 5°C, 10°C (ich verwenden den Namen: `Value`)
+- Name der (bestehenden) Variablen (Spalten), die zusammen gefasst werden sollten: `(hier: temp_max,temp_min,temp_mean`)
+
+
+Die ersten 6 Zeilen von `wetter_sry`:
+```{r, echo = F, purl = F}
+kable(head(wetter_sry,6))
+```
+
+Die ersten 6 Zeilen von `wetter_sry_long`:
+```{r, echo = F, purl=F}
+kable(head(arrange(wetter_sry_long,kw),6))
+
+```
+
+Beachte: `wetter_sry_long` umfasst 159 Beobachtungen (Zeilen), das sind 3 mal soviel wie `wetter_sry`, da wir ja drei Spalten zusammengefasst haben.
+```{r}
+nrow(wetter_sry)
+nrow(wetter_sry_long)
+```
+
+
+Statt die Variablen (Spalten) zu benennen, die zusammengefasst werden sollten, wäre es in unserem Fall einfacher, die Variablen (Spalten) zu benennen die *nicht* zusammengefasst werden sollen (`kw`):
+
+```{r,}
+wetter_sry_long <- wetter_sry %>%
+  gather(Key, Value, -kw)
+```
+
+Nun können wir den obigen Plot viel einfacher erstellen:
+
+```{r}
+ggplot(wetter_sry_long, aes(kw,Value, colour = Key)) +
+  geom_line()
+```
+
+Beachtet, dass wir gegenüber dem letzten Plot `colour` nun *innerhalb* von `aes()` festlegen und nicht mit einem expliziten Farbwert, sondern mit dem Verweis auf die Spalte `key`.
+
+
+#### Lang -> breit
+
+Um unsere *lange* Tabelle wieder zurück in eine *breite* zu überführen, brauchen wir lediglich ein Befehl (`spread`):
+
+```{r}
+wetter_sry_long %>%
+  spread(Key,Value)
+```
+
+
+### Quellen
+
+```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
+```
+

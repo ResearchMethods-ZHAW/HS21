@@ -1,0 +1,150 @@
+
+```{r, include=F, purl = F}
+# knitr::opts_knit$set(root.dir = "14_Statistik2") 
+```
+
+
+
+```{r, message=F}
+library(tidyverse)
+library(ggfortify) # um autoplot() für lm/aov nutzen zu können
+
+```
+
+
+Aus @logan2010 [S. 457]: Script an Tools/Packages des Moduls Research Methods angepasst
+
+To investigate the impacts of sexual activity on male fruitfly longevity, Partridge and Farquhar (1981), measured the longevity of male fruitflies with access to either one virgin female (potential mate), eight virgin females, one pregnant female (not a potential mate), eight pregnant females or no females. The available male fruitflies varied in size and since size is known to impact longevity, the researchers randomly allocated each individual fruitfly to one of the five treatments and also measured thorax length as a covariate (from Box 12.1 of Quinn and Keough (2002)).
+
+
+#### Step 1
+
+Import the Partridge and Farquhar (1981) data set [partridge](14_Statistik2/data/partridge.csv)
+
+```{r, message = F}
+
+
+partridge <- read_csv("14_Statistik2/data/partridge.csv")
+
+```
+
+#### Step 2
+
+Assess assumptions of normality and homogeneity of variance for each null hypothesis ensuring that the correct scale of replicates are represented for each (they should reflect the appropriate F-ratio denominators see).
+
+Conclusions - A distinct wedge shape is apparent in the residuals from the model fitted with the raw longevity measurements suggesting homogeneity of variance issues. This issue is less obvious in the residual plot based upon $log_{10}$ transformed data, and thus analyses should be based on the transformed data.
+
+
+#### Step 3
+
+Assess assumptions of linearity, homogeneity of slopes and covariate range equality (using log transformed data).
+
+
+```{r, fig.cap="Conclusions - The slopes of each of the relationships between the response (longevity) and the covariate (thorax length) appear similar and there is no evidence of non-linearity."}
+
+partrigdge.aov <- aov(LONGEV ~ THORAX+TREATMENT, partridge)
+
+
+autoplot(partrigdge.aov)
+
+partrigdge.aov.log10 <- aov(log10(LONGEV) ~ THORAX+TREATMENT, partridge)
+
+autoplot(partrigdge.aov.log10)
+
+ggplot(partridge, aes(THORAX,LONGEV)) +
+  geom_point() +
+  scale_y_log10() +
+  facet_wrap(~TREATMENT) +
+  geom_smooth(method = "lm", se = F)
+
+```
+
+
+```{r}
+anova(aov(log10(LONGEV) ~ THORAX * TREATMENT, partridge))
+```
+
+Conclusions - There is noevidence that the slopes arenot parallel ($F_{4.115} = 1.56, P = 0.182$).
+
+
+
+
+
+```{r}
+ggplot(partridge, aes(THORAX,log10(LONGEV), colour = TREATMENT)) +
+  geom_point(aes(pch = TREATMENT)) +
+  geom_smooth(method = "lm", se = F, aes(lty = TREATMENT)) +
+  labs(y = expression(paste(log[10]*LONGEV)))
+
+```
+
+
+```{r}
+anova(aov(THORAX ~ TREATMENT, partridge))
+```
+Conclusions - There is no evidence that the treatments affect male fruitfly longevity and thus that the covariate ranges are not substantially different ($F_{4,120} = 1.26$, $P = 0.289$).
+
+
+#### Step 4 
+
+Fit the linear model and produce an ANOVA table to test the null hypotheses That there are no effects of treatment (female type) on the (log transformed) longevity of male fruitflies adjusted for thorax length. Note that as the design is inherently imbalanced (since there is a different series of thorax lengths within each treatment type), Type I sums of squares are inappropriate. To be consistent with Quinn and Keough (2002) Box 12.1, Type III sums of squares will be used. In addition to the global ANCOVA, the researchers are likely to have been interested in examining a set of specific planned comparisons. Two such contrasts could be pregnant versus virgin partners (to investigate the impacts of any sexual activity) and one virgin versus eight virgin partners (to investigate the impacts of sexual frequency).
+
+
+
+```{r}
+partridge$TREATMENT <- as.factor(partridge$TREATMENT)
+contrasts(partridge$TREATMENT) <- cbind(c(0, 0.5, 0.5, -0.5,-0.5), c(0, 0, 0, 1, -1))
+
+
+round(crossprod(contrasts(partridge$TREATMENT)), 1)
+
+partridge.aov <- aov(log10(LONGEV) ~ THORAX +TREATMENT,partridge)
+
+
+```
+
+
+Das Package "biology" wird von M. Logan leider nicht mehr weitergeführt, die lezte Version wurd für R2.15.2 entwickelt und lässt sich auf R3.4.1 nicht mehr installieren. Hier der Output gemäss @logan2010 [S. 460]
+
+```{r, eval = F}
+library(biology)
+AnovaM(partridge.aov, type = "III", split = list(TREATMENT = list('PregvsVirg'=1,'1Virgvs8Virg'=2)))
+```
+
+
+```{r, eval = F}
+Df Sum Sq Mean Sq
+THORAX 1 1.01749 1.01749
+TREATMENT 4 0.78272 0.19568
+TREATMENT: Preg vs Virg 1 0.54203 0.54203
+TREATMENT: 1 Virg vs 8 Virg 1 0.19934 0.19934
+Residuals 119 0.83255 0.00700
+F value Pr(>F)
+THORAX 145.435 < 2.2e-16
+TREATMENT 27.970 2.231e-16
+TREATMENT: Preg vs Virg 77.474 1.269e-14
+TREATMENT: 1 Virg vs 8 Virg 28.492 4.567e-07
+Residuals
+THORAX ***
+TREATMENT ***
+TREATMENT: Preg vs Virg ***
+TREATMENT: 1 Virg vs 8 Virg ***
+Residuals
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+Conclusions - The quantity ($F_{1,119} = 77.47$, $P < 0.001$) and reproductive state ($F_{1,119} = 28.49, $P < 0.001$) of female partners that a male fruitfly has access to has a significant affect on male longevity.
+
+#### Step 5
+
+Summarize the trends in a plot. Note this is not the same as the plot produced by Quinn and Keough (2002). Whilst Quinn and Keough (2002) logged $log_{10}$ transformed data on the y-axis, I have elected to plot the raw data on a log-scale y-axis.
+
+
+```{r}
+ggplot(partridge, aes(THORAX,LONGEV, colour = TREATMENT)) +
+  geom_point(aes(pch = TREATMENT)) +
+  scale_y_log10(breaks = seq(0,100,20)) +
+  geom_smooth(method = "lm", se = F, aes(lty = TREATMENT)) +
+  labs(y = expression(paste(log[10]*LONGEV))) 
+```

@@ -1,0 +1,103 @@
+```{r, include=F, purl = F}
+# knitr::opts_knit$set(root.dir = "14_Statistik2") 
+```
+
+
+Fortsetzung von [ANOVA mit Gewässerdaten] aus @logan2010 [S. 265]: Script an Tools/Packages des Moduls Research Methods angepasst
+
+
+
+Schritte 1 bis 4 rekonstruieren (mit dem Datensatz [medley.csv](14_Statistik2/data/medley.csv))
+```{r,message=F}
+
+library(tidyverse)
+library(ggfortify)
+
+
+medley <- read_delim("14_Statistik2/data/medley.csv", ",")
+medley$ZINC <- factor(medley$ZINC, levels=c("BACK", "LOW", "MED","HIGH"), ordered=T)
+
+medley_sry <- medley %>%
+  group_by(ZINC) %>%
+  summarise(
+    mean = mean(DIVERSITY),
+    var = var(DIVERSITY),
+    sd = sd(DIVERSITY)
+  )
+
+```
+
+
+
+#### Step 5
+
+Test $H_0$ that population group means are all equal - perform analysis of variance (fit the linear model) of species diversity versus zinc-level group and examine the diagnostics (residual plot)
+
+
+```{r, fig.cap="Conclusions - no obvious violations of normality or homogeneity of variance (no obvious wedge shape in residuals, normal Q-Q plot approximately linear). Note that Cook’s D values meaningless in ANOVA."}
+
+medley.aov <- aov(DIVERSITY~ZINC, medley)
+autoplot(medley.aov)
+
+
+```
+
+
+#### Step 6
+
+(lassen wir aus)
+
+<!-- Examine the ANOVA table. -->
+
+<!-- ```{r} -->
+
+<!-- anova(medley.aov) -->
+<!-- ``` -->
+<!-- Conclusions - reject $H_0$ that population group means are equal, ZINC was found to have a significant impact on the DIVERSITY of diatoms ($F_{3,30} = 3.939$, $P = 0.018$). -->
+
+
+#### Step 7
+
+Perform post-hoc Tukey’s test to investigate pairwise mean differences between all groups
+
+
+```{r}
+library(multcomp)
+library(stringr)
+smry <- summary(glht(medley.aov, linfct=mcp(ZINC='Tukey')))
+
+smry
+# Um die Gruppen automatisch zu generieren kann man die Funtion multcompView::multcompLetters()
+# benutzen. Leider habe ich keine elegante Weise gefunden den Ouput aus glht() in multcompLetters()
+# einzulesen. Hier deshalb eine etwas klobige Lösung:
+library(multcompView)
+
+pvals <- smry$test[["pvalues"]]                         # p-Werte in Variabel speichern
+gr.names <- names(smry$test[["tstat"]])                 # der Vektor hat keine Namen, braucht aber welche
+gr.names <- str_replace_all(gr.names, fixed(" "), "")   # Leerschläge entfernen (damit hat multcompLetters Mühe)
+names(pvals) <- gr.names                                # bereinigte Namen den p-Werten zuweisen
+
+lets <- multcompLetters(pvals)                          # Gruppen generieren
+lets <- as.data.frame(lets$Letters)                     # Output als dataframe abspeichern
+lets <- rownames_to_column(lets)                        # Rownames als Spalte abspeichern (für "join")
+colnames(lets) <- c("ZINC","Group")                     # Spaltenamen der neuen df anpassen
+
+medley_sry <- left_join(medley_sry,lets)                # Gruppennamen der summary zuweisen
+
+```
+
+Conclusions - diatom species diversity is significantly higher in low zinc sites than high zinc sites ($t_{15} = 3.333$, $P = 0.011$). No other H0 rejected. Note, the Tukey’s adjusted P-values are based on robust procedures that were not available to Quinn and Keough (2002). The more recent Tukey’s test makes use of randomization procedures and thus the exact P-values differ from run to run.
+
+#### Step 8
+
+Summarize findings of global ANOVA and post-hoc Tukey’s test with a bargraph
+
+```{r}
+
+ggplot(medley_sry, aes(ZINC,mean)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean-sd, ymax = mean+sd),width = 0.2) +
+  geom_label(aes(label = Group)) +                      # so werden Gruppennamen dargestellt
+  labs(x = "Zinc concentration",y = "Mean diatom diversity")
+```
+

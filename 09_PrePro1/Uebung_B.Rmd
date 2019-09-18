@@ -1,0 +1,93 @@
+
+```{r, include=FALSE, purl = F}
+
+knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE)
+# knitr::opts_knit$set(root.dir = "09_PrePro1") 
+
+```
+
+
+
+## Übung B 
+
+
+
+
+```{r, message = F}
+library(tidyverse)
+```
+
+
+
+Fahre mit dem Datensatz `wetter` aus Übung A fort. 
+```{r, purl=F}
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                  col_types = list(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
+```
+
+
+### Aufgabe 1
+
+Nutze `plot()` um die Temparaturkurve zu visualisieren. Verwende aber vorher `filter()` um dich auf eine Station (z.B. "`ABO`") zu beschränken (es handelt sich sonst um zuviele Datenpunkte).
+
+
+
+```{r}
+# Lösung Aufgabe 1
+
+wetter_fil <- dplyr::filter(wetter, stn == "ABO")
+
+plot(wetter_fil$time,wetter_fil$tre200h0, type = "l")
+
+```
+
+
+Nun schauen wir uns das plotten mit `ggplot2` an. Ein simpler Plot wie der in der vorherigen Aufgabe ist in `ggplot2` zugegebenermassen *etwas* komplizierter. `ggplot2` wird aber rasch einfacher, wenn die Grafiken komplexer werden. Wir empfehlen deshalb stark, `ggplot2` zu verwenden.
+
+Schau dir ein paar online Tutorials zu `ggplot2` an (siehe ^[@wickham2017, Kapitel 1 bzw. [http://r4ds.had.co.nz/data-visualisation.html](http://r4ds.had.co.nz/data-visualisation.html) oder hier ein sehr schönes Video: [Learn R: An Introduction to ggplot2](https://youtu.be/YxKr2a-Y1WE?t=1m40s)]) 
+und reproduziere den obigen Plot mit `ggplot2`
+
+
+```{r}
+
+p <- ggplot(wetter_fil, aes(time,tre200h0)) +
+  geom_line()
+
+p
+```
+
+
+
+### Aufgabe 2
+
+Spiele mit Hilfe der erwähnten Tutorials mit dem Plot etwas rum. Versuche die x-/y-Achsen zu beschriften sowie einen Titel hinzu zu fügen.
+
+```{r}
+# Lösung Aufgabe 2
+p <- p +
+  labs(x = "Datum", y = "Temperatur", title = "Stündlich gemittelte Temperaturwerte")
+
+p
+```
+
+
+### Aufgabe 3
+
+Reduziere den x-Achsenausschnitt auf einen kleineren Zeitraum, beispielsweise einn beliebigen Monat. Verwende dazu `lims()` zusammen mit `as.POSIXct()` oder mache ein Subset von deinem Datensatz mit einer convenience-Variabel und `filter()`.
+
+```{r}
+# Lösung Aufgabe 3
+
+limits <- as.POSIXct(c("2002-01-01 00:00:00","2002-02-01 00:00:00"),tz = "UTC")
+
+p +
+  lims(x = limits)
+```
+
+
+

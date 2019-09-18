@@ -1,0 +1,207 @@
+---
+title: "MSc. Research Methods - Statistikteil Lösungen 2019"
+author: "Juergen Dengler"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
+```
+
+## Musterlösung Aufgabe 4.1: Nicht-lineare Regression
+
+**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+
+- Laden Sie den Datensatz Curonia_spit.xlsx. Dieser enthält gemittelte            
+  Pflanzenartenzahlen (Species.richness) von geschachtelten Plots 
+  (Vegetationsaufnahmen) der Pflanzengesellschaft Lolio-Cynosuretum im
+  Nationalpark Kurische Nehrung (Russland) auf Flächengrössen (Area) von 0.0001 bis
+  900 m².
+- **Ermitteln Sie den funktionellen Zusammenhang, der die Zunahme der Artenzahl mit der     Flächengrösse am besten beschreibt. Berücksichtigen Sie dabei mindestens die            Potenzfunktion (power function), die logarithmische Funktion (logarithmic function)     und eine Funktion mit Sättigung (saturation, asymptote) Ihrer Wahl**
+- Bitte erklären und begründen Sie die einzelnen Schritte, die Sie unternehmen, um zu
+  diesem Ergebnis zu kommen. Dazu erstellen Sie bitte ein Word-Dokument, in das Sie
+  Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, Ihre
+  Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
+  Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
+      und welches die unabängige(n) Variablen
+    - Explorative Datenanalyse, um zu sehen, ob eine nicht-lineare Regression überhaupt
+      nötig ist und ob evtl. Dateneingabefehler vorliegen vorgenommen werden sollten
+    - Definition von mindestens drei nicht-linearen Regressionsmodellen
+    - Selektion des/der besten Models/Modelle
+    - Durchführen der Modelldiagnostik für die Modelle in der engeren Auswahl, um zu
+      entscheiden, ob das gewählte Vorgehen korrekt war oder ggf. angepasst werden
+      muss
+    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
+      Ergebnisdarstellung benötigt werden
+- Formulieren Sie abschliessend einen Methoden- und Ergebnisteil (ggf. incl.
+  adäquaten Abbildungen) zu dieser Untersuchung in der Form einer
+  wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je
+  einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und
+  Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige
+  Redundanz dagegen vermieden werden.
+- **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg       (Kombination aus R-Code, R Output und dessen Interpretation) und (c)                  ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+
+
+### Übung 4.1 - Nicht-lineare Regression -- Lösung
+
+Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
+
+```{r}
+SAR<-read.csv("16_Statistik4/data/Curonian_Spit.csv",sep=";")
+str(SAR)
+summary(SAR)
+attach(SAR)
+#Explorative Datenanalyse
+plot(Species.richness~Area)
+```
+
+Es liegt in der Tat ein nicht-linearer Zusammenhang vor, der sich gut mit nls analysieren lässt.
+Die Daten beinhalten keine erkennbaren Fehler, da der Artenreichtum der geschachtelten
+Plots mit der Fläche ansteigt.
+
+```{r}
+#Potenzfunktion selbst definiert
+#power.model<-nls(Species.richness~c*Area^z)
+#summary(power.model)
+```
+Falls die Funktion so keine Ergebnisse liefert, oder das Ergebnis unsinnig aussieht, wenn man
+es später plottet, müsste man hier geeignete Startwerte angeben, die man aus der
+Betrachtung der Daten oder aus Erfahrungen mit der Funktion für ähnliche Datensets gewinnt,etwa so:
+
+```{r}
+power.model<-nls(Species.richness~c*Area^z, start=(list(c=1,z=0.2)))
+summary(power.model)
+```
+Das Ergebnis ist identisch
+
+```{r}
+#logarithmische Funktion selbst definiert
+logarithmic.model<-nls(Species.richness~b0+b1*log10(Area))
+summary(logarithmic.model)
+
+# Zu den verschiedenen Funktionen mit Sättigungswert (Asymptote) gehören  Michaelis-Menten, das aymptotische Modell durch den Ursprung und die logistische
+# Funktion. Die meisten gibt es in R
+# als selbststartende Funktionen, was meist besser funktioniert als
+# wenn man sich selbst Gedanken
+# über Startwerte usw. machen muss. Man kann sie aber auch selbst definieren
+```
+_Im Folgenden habe ich ein paar unterschiedliche Sättigungsfunktionen mit verschiedenen Einstellungen durchprobiert, um zu zeigen, was alles passieren kann…_
+
+```{r}
+micmen.model<-nls(Species.richness~SSmicmen(Area, Vm, K))
+summary(micmen.model)
+
+#Dasselbe selbst definiert (mit default-Startwerten)
+micmen.model2<-nls(Species.richness~Vm*Area/(K+Area))
+summary(micmen.model2)
+```
+
+Hier ist das Ergebnis deutlich verschieden, ein Phänomen, das einem bei nicht-linearen
+Regressionen anders als bei linearen Regressionen immer wieder begegnen kann, da der
+Iterationsalgorithmus in lokalen Optima hängen bleiben kann. Oftmals dürfte die eingebaute
+Selbststartfunktion bessere Ergebnisse liefern, aber das werden wir unten sehen.
+
+```{r}
+#Dasselbe selbst definiert (mit sinnvollen Startwerten, basierend auf dem Plot)
+micmen.model3<-
+nls(Species.richness~Vm*Area/(K+Area),start=list(Vm=100,K=1))
+summary(micmen.model3)
+```
+
+Wenn man sinnvollere Startwerte als die default-Werte (1 für alle Parameter) eingibt, hier etwas einen mutmasslichen Asymptoten-Wert (aus der Grafik) von Vm = ca. 100, dann bekommt man das gleiche Ergebnis wie bei der Selbsstartfunktion
+
+```{r}
+#Eine asymptotische Funktion durch den Ursprung (mit implementierter Selbststartfunktion)
+asym.model<-nls(Species.richness~SSasympOrig(Area, Asym, lrc))
+summary(asym.model)
+
+#Logistische Regression als Selbststart-Funktion
+#logistic.model<-nls(Species.richness~SSlogis(Area,asym,xmid,scal))
+```
+<font color="red">**Error in nls(y ~ 1/(1 + exp((xmid - x)/scal)), data = xy, start = list(xmid= aux[1L], : Iterationenzahl überschritt Maximum 50**</font>
+
+Das ist etwas, was einem bei nls immer wieder passieren kann. Die Iteration ist nach der eingestellten max. Iterationszahl noch nicht zu einem Ergebnis konvergiert. Um ein Ergebnis für diese Funktion zu bekommen, müsste man mit den Einstellungen von nls „herumspielen“, etwas bei den Startwerten oder den max. Um das effizient zu machen, braucht man aber etwas Erfahrung Interationszahlen (man kann z. B. manuell die Maximalzahl der Iterationen erhöhen, indem man in den Funktionsaufruf etwa maxiter =100 als zusätzliches Argument reinschreibtn). Da wir aber schon mehrere funktionierende Funktionen mit oberem Grenzwert haben –und damit die Aufgabe erfüllt – lassen wir es hier.
+
+```{r}
+#Vergleich der Modellgüte mittels AICc
+library(AICcmodavg)
+cand.models<-list()
+cand.models[[1]]<-power.model
+cand.models[[2]]<-logarithmic.model
+cand.models[[3]]<-micmen.model
+cand.models[[4]]<-micmen.model2
+cand.models[[5]]<-asym.model
+
+Modnames<-c("Power","Logarithmic","Michaelis-Menten (SS)","Michaelis-Menten","Asymptotic through origin")
+aictab(cand.set=cand.models,modnames=Modnames)
+```
+
+Diese Ergebnistabelle vergleicht die Modellgüte zwischen den fünf Modellen, die wir in unsere Auswahl reingesteckt haben. Alle haben drei geschätzte Parameter (K), also zwei Funktionsparameter und die Varianz. Das beste Modell (niedrigster AICc bzw. Delta = 0) hat das Potenzmodell (power). Das zweitbeste Modell (logarithmic) hat bereits einen Delta-AICc von mehr als 4, ist daher statistisch nicht relevant. Das zeigt sich auch am Akaike weight, das für das zweite Modell nur noch 2 % ist. Die verschiedenen Modelle mit oberem Grenzwert (3-5) sind komplett ungeeignet.
+
+```{r}
+#Modelldiagnostik für das beste Modell
+library(nlstools)
+plot(nlsResiduals(power.model))
+```
+
+Links oben sieht man zwar ein Muster (liegt daran, dass in diesem Fall die Plots geschachtelt, und nicht unabhängig waren), aber jedenfalls keinen problematischen Fall wie einen Bogen oder einen Keil. Der QQ-Plot rechts unten ist völlig OK. Somit haben wir auch keine problematische Abweichung von der Normalverteilung der Residuen. Da es sich bei den einzelnen Punkten allerdings bereits um arithmetische Mittelwerte aus je 8 Beobachtungen handelt, hätte man sich auch einfach auf das Central Limit Theorem beziehen können, das sagt, dass Mittelwerte automatisch einer Normalverteilung folgen.
+
+
+```{r}
+#Ergebnisplot
+plot(Area,Species.richness,pch=16,xlab="Flaeche [m2]",ylab="Artenreichtum")
+xv<-seq(0,1000,by=0.1)
+yv<-predict(power.model,list(Area=xv))
+lines(xv,yv,lwd=2,col="red")
+
+#Das ist der Ergebnisplot für das beste Modell. Wichtig ist, dass man die Achsen korrekt beschriftet und nicht einfach die mehr oder weniger kryptischen Spaltennamen aus R nimmt.
+
+#Im Weiteren habe ich noch eine Sättigungsfunktion (Michaelis-Menten mit Selbststarter) zum Vergleich hinzugeplottet
+
+yv2<-predict(micmen.model,list(Area=xv))
+lines(xv,yv2,lwd=2,col="blue")
+```
+Man erkennt, dass die Sättigungsfunktion offensichtlich den tatsächlichen Kurvenverlauf sehr
+schlecht widergibt. Im mittleren Kurvenbereich sind die Schätzwerte zu hoch, für grosse
+Flächen dann aber systematisch viel zu niedrig.
+Man kann die Darstellung im doppeltlogarithmischen Raum wiederholen, um die
+Kurvenanpassung im linken Bereich besser differenzieren zu können:
+
+```{r}
+#Ergebnisplot Double-log
+plot(log10(Area),log10(Species.richness),pch=16,xlab="logA",ylab="log (S)")
+xv<-seq(0,1000,by=0.0001)
+yv<-predict(power.model,list(Area=xv))
+lines(log10(xv),log10(yv),lwd=2,col="red")
+yv2<-predict(micmen.model,list(Area=xv))
+lines(log10(xv),log10(yv2),lwd=2,col="blue")
+```
+
+Auch hier sieht man, dass die rote Kurve zwar nicht perfekt, aber doch viel besser als die blaue Kurve ist.
+
+**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
+
+**Methoden**
+**Es wurden Pflanzenartenzahlen der Pflanzengesellschaft Lolio-Cynosuretum im Nationalpark Kurische Nehrung auf verschieden grossen, geschachtelten Flächen erhoben. Eine solche nested-plot-Serie bestand aus 16 Erhebungen auf Flächen von 0.0001 m² bis 900 m². Die Werte von acht untersuchten nested-plot Serien wurden für die weiteren Analysen gemittelt.**
+
+**Mittels nicht-linearer Regression (Funktion nls in R) wurde ermittelt, welche Funktion die Artenzahlzunahme mit der Flächengrösse am besten beschreibt. Verglichen wurden vier Modelle mit je zwei Funktionsparametern (Potenzfunktion, logarithmische Funktion, Michaelis-Menten-Funktion, asymptotische Funktion durch den Ursprung; Tab. 1). Die Modelle wurden anschliessend mittels AICc verglichen und ihre Validität visuell in den Residualplots begutachtet.**
+
+![](16_Statistik4/data/tab1_4.1.png)
+
+**Ergebnisse**
+
+**Unter den verglichenen fünf Modellen (vier Funktionen, darunter zwei Variaten von Michaelis-Menten mit unterschiedlichen Startwerten) war die Potenzfunktion mit einem Akaike weight von 0.98 klar die beste (Tab. 2, Abb. 1). Die Logarithmusfunktion als zweitbeste Funktion war mit einem Delta-AICc von 7.68 (Akaike weight = 0.02) schon weit abgeschlagen und die drei Modelle mit einem modellierten oberen Grenzwert statistisch bedeutungslos (Delta-AICc > 33) (Tab. 2).**
+
+![](16_Statistik4/data/abb1.png)
+
+
+**Abb. 1: Modellierte Artenzahl-Areal-Beziehungen für die nested-plot-Serie aus dem Nationalpark Kurische Nehrung. Die Potenzfunktion (rot) gab den Zusammenhang am besten wider (Akaike weight = 0.98), selbst die relativ beste der drei Sättigungsmodelle, die Michaelis-Menten-Funktion (mit Selbststart; blau), zeigte starke Abweichungen (Akaike weight < 0.01); der vorhergesagte Sättigungswert lag weit unter dem empirischen höchsten Wert.**
+
+**Tab. 2. Modellgüte und Funktionsparameter der fünf verglichenen Modelle. A = Fläche in m²,S = Artenreichtum.**
+
+![](16_Statistik4/data/tab2.png)
