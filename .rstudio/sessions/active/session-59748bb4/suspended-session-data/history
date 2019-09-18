@@ -1,0 +1,10 @@
+file.edit("index.Rmd")
+dir()
+library(tidyverse)
+read_delim("Unterrichtsunterlagen_HS19/13_Statistik1/data/novanimal.csv")
+read_delim("Unterrichtsunterlagen_HS19/13_Statistik1/data/novanimal.csv", delim = ";")
+df <- read_delim("Unterrichtsunterlagen_HS19/13_Statistik1/data/novanimal.csv", delim = ";")
+group_by(df, gender, member) %>% summarise()
+group_by(df, gender, member) %>% summarise(tot = n)
+group_by(df, gender, member) %>% summarise(tot = n())
+719 +816 +345 +339

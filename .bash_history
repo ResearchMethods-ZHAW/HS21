@@ -51,3 +51,63 @@ git commit -m "add some folders for second group"
 git push
 git status
 git commit -m
+git status
+git pull
+git remote add origin https://github.zhaw.ch/egel/Unterrichtsunterlagen_HS19.git
+git push -u origin master
+git status
+git add
+git add .
+git status
+git remote add origin https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+git statzs
+git status
+git pull
+ssh -vT git@github.com
+ssh -T git@github.com
+git remote -v
+git remote add origin https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+git push origin master
+git pull
+git config --global user.name "egel"
+git config --global user.email "egel@zhaw.ch"
+ssh -T git@github.com
+git remote set-url origin https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+git remote -v
+git pull
+git status
+gitt add .
+git add .
+git status
+git add .rstudio/notebooks/6B6F522-assigment_stat1/1/s/
+git status
+gitst
+git st
+git stage
+git a
+git add -a
+git add .
+git status
+git checkout .rstudio/projects/none/console06/293F2942
+git checkout --  .rstudio/projects/none/console06/293F2942
+git add Unterrichtsunterlagen_HS19/
+git status
+git add "Unterrichtsunterlagen_HS19/"
+git statzs
+git status
+git add .A
+git add -A
+git commit -m "changes in statistik1"
+git push
+git push --set-upstream origin master
+git pull
+git-pull(1)
+git-pull
+git -pull
+git branch -a
+git remote -v
+git remote show origin
+git pull
+git branch
+git pull https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+git pu
