@@ -12,7 +12,7 @@
 ~h
 # Command Line History (newest to oldest):
 :qa!
-|2,0,1566562767,,"qa!"
+|2,0,1568789772,,"qa!"
 :QA!
 |2,0,1566562761,,"QA!"
 
@@ -25,18 +25,40 @@
 # Debug Line History (newest to oldest):
 
 # Registers:
+""-	CHAR	0
+	M
+|3,1,36,0,1,0,1568789683,"M"
 
 # File marks:
-'0  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
-|4,48,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+'0  5  0  ~/.git/MERGE_MSG
+|4,48,5,0,1568789772,"~/.git/MERGE_MSG"
+'1  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,49,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 
 # Jumplist (newest first):
+-'  5  0  ~/.git/MERGE_MSG
+|4,39,5,0,1568789772,"~/.git/MERGE_MSG"
+-'  1  0  ~/.git/MERGE_MSG
+|4,39,1,0,1568789664,"~/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 -'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
 |4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 -'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
 |4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 
 # History of marks within files (newest to oldest):
+
+> ~/.git/MERGE_MSG
+	*	1568789767	0
+	"	5	0
+	^	5	0
+	.	4	0
+	+	1	0
+	+	3	35
+	+	4	0
 
 > ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
 	*	1566562761	0

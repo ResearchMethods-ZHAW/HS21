@@ -1104,3 +1104,719 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .a
 fatal: pathspec '.a' did not match any files
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .a[K[K-A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commo [K[Kit ""-""m"" ""[Cp"r"o"b"l"e"m"s" "w"i"t"h" "g"i"t"
+[master 094549d] problems with git
+ 26 files changed, 1372 insertions(+), 32763 deletions(-)
+ rewrite .rstudio/projects/none/console06/293F2942 (99%)
+ rewrite .rstudio/projects/none/console06/INDEX001 (100%)
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/graphics-r3/INDEX
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/rmd-outputs
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/console_actions
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment_vars
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/history
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/libpaths
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/options
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/rversion
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/package_paths
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/search_path_elements
+ create mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/settings
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel	
+Password for 'https://egel@github.zhaw.ch': 
+fatal: refusing to merge unrelated histories
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ i[Kgit remote -v
+origin	https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git (fetch)
+origin	https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git (push)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull --allow-unrelated-histories
+Username for 'https://github.zhaw.ch': egel	
+Password for 'https://egel@github.zhaw.ch': 
+hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
+ .gitignore                                                    |      14 [32m+[m
+ .travis.yml                                                   |      11 [32m+[m
+ 000_Purl.R                                                    |      17 [32m+[m
+ 00_Admin/Clear_vars_and_pkgs.R                                |      12 [32m+[m
+ 00_Admin/Render_books.R                                       |       9 [32m+[m
+ 00_Admin/book.bib                                             |     225 [32m+[m
+ 00_Admin/get_chapter_references.R                             |       5 [32m+[m
+ 00_Admin/packages.bib                                         |     225 [32m+[m
+ 00_Admin/preamble.tex                                         |      19 [32m+[m
+ 00_Admin/references.Rmd                                       |       1 [32m+[m
+ 00_Admin/style.css                                            |      14 [32m+[m
+ 00_Admin/subset_nova_data_180911_egel.R                       |      49 [32m+[m
+ 00_Admin/titlepage.tex                                        |      57 [32m+[m
+ 00_Admin/toc.css                                              |     127 [32m+[m
+ 09_PrePro1/Abstract.Rmd                                       |       6 [32m+[m
+ 09_PrePro1/Demo_Datentypen.Rmd                                |     288 [32m+[m
+ 09_PrePro1/RFiles/Demo_Datentypen.R                           |     132 [32m+[m
+ 09_PrePro1/RFiles/Quellen.R                                   |       1 [32m+[m
+ 09_PrePro1/RFiles/Uebung_A.R                                  |      85 [32m+[m
+ 09_PrePro1/RFiles/Uebung_A_loesung.R                          |       1 [32m+[m
+ 09_PrePro1/RFiles/Uebung_B.R                                  |      29 [32m+[m
+ 09_PrePro1/RFiles/Uebung_B_loesung.R                          |       1 [32m+[m
+ 09_PrePro1/Uebung_A.Rmd                                       |     226 [32m+[m
+ 09_PrePro1/Uebung_A_loesung.Rmd                               |       7 [32m+[m
+ 09_PrePro1/Uebung_B.Rmd                                       |      93 [32m+[m
+ 09_PrePro1/Uebung_B_loesung.Rmd                               |       7 [32m+[m
+ 09_PrePro1/data/meta.txt                                      |      33 [32m+[m
+ 09_PrePro1/data/order_52252_data.txt                          | 1262640 [32m+++++++++++++++++++++++[m
+ 09_PrePro1/data/order_52252_legend.csv                        |      25 [32m+[m
+ 10_PrePro2/Abstract.Rmd                                       |       3 [32m+[m
+ 10_PrePro2/Demo_Tidyverse.Rmd                                 |     246 [32m+[m
+ 10_PrePro2/Nachtrag.Rmd                                       |     148 [32m+[m
+ 10_PrePro2/RFiles/Demo_Tidyverse.R                            |      84 [32m+[m
+ 10_PrePro2/RFiles/Nachtrag.R                                  |      57 [32m+[m
+ 10_PrePro2/RFiles/Uebung_A.R                                  |      76 [32m+[m
+ 10_PrePro2/RFiles/Uebung_A_loesung.R                          |       1 [32m+[m
+ 10_PrePro2/RFiles/Uebung_B.R                                  |      86 [32m+[m
+ 10_PrePro2/RFiles/Uebung_B_loesung.R                          |       1 [32m+[m
+ 10_PrePro2/Uebung_A.Rmd                                       |     171 [32m+[m
+ 10_PrePro2/Uebung_A_loesung.Rmd                               |       8 [32m+[m
+ 10_PrePro2/Uebung_B.Rmd                                       |     161 [32m+[m
+ 10_PrePro2/Uebung_B_loesung.Rmd                               |       8 [32m+[m
+ 10_PrePro2/data/sensor1.csv                                   |      11 [32m+[m
+ 10_PrePro2/data/sensor2.csv                                   |      17 [32m+[m
+ 10_PrePro2/data/sensor3.csv                                   |       9 [32m+[m
+ 10_PrePro2/data/sensor_fail.csv                               |      11 [32m+[m
+ 11_InfoVis1/Abstract.Rmd                                      |       3 [32m+[m
+ 11_InfoVis1/Demo_EDA.Rmd                                      |     181 [32m+[m
+ 11_InfoVis1/Demo_ggplot.Rmd                                   |     251 [32m+[m
+ 11_InfoVis1/RFiles/Demo_EDA.R                                 |     159 [32m+[m
+ 11_InfoVis1/RFiles/Demo_ggplot.R                              |     133 [32m+[m
+ 11_InfoVis1/RFiles/Uebung.R                                   |      97 [32m+[m
+ 11_InfoVis1/RFiles/Uebung_loesung.R                           |       1 [32m+[m
+ 11_InfoVis1/Uebung.Rmd                                        |     216 [32m+[m
+ 11_InfoVis1/Uebung_loesung.Rmd                                |       7 [32m+[m
+ 11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv   |    2343 [32m+[m
+ 11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv     |      27 [32m+[m
+ 11_InfoVis1/data/wetter.rda                                   |     Bin [31m0[m -> [32m6045533[m bytes
+ 11_InfoVis1/plot.png                                          |     Bin [31m0[m -> [32m276676[m bytes
+ 12_InfoVis2/Abstract.Rmd                                      |       3 [32m+[m
+ 12_InfoVis2/Demo_Debbuggin_R.html                             |     164 [32m+[m
+ 12_InfoVis2/Demo_Debug.Rmd                                    |      75 [32m+[m
+ 12_InfoVis2/RFiles/Demo_Debbuggin_R.R                         |       7 [32m+[m
+ 12_InfoVis2/RFiles/Demo_Debug.R                               |      54 [32m+[m
+ 12_InfoVis2/RFiles/Demo_Debug_laup.R                          |      58 [32m+[m
+ 12_InfoVis2/RFiles/Uebung_A.R                                 |     127 [32m+[m
+ 12_InfoVis2/RFiles/Uebung_A_loesung.R                         |       1 [32m+[m
+ 12_InfoVis2/RFiles/Uebung_B.R                                 |     118 [32m+[m
+ 12_InfoVis2/RFiles/Uebung_B_loesung.R                         |       1 [32m+[m
+ 12_InfoVis2/Uebung_A.Rmd                                      |     246 [32m+[m
+ 12_InfoVis2/Uebung_A_loesung.Rmd                              |       8 [32m+[m
+ 12_InfoVis2/Uebung_B.Rmd                                      |     276 [32m+[m
+ 12_InfoVis2/Uebung_B_loesung.Rmd                              |       7 [32m+[m
+ 12_InfoVis2/aufgabe_1.png                                     |     Bin [31m0[m -> [32m103365[m bytes
+ 12_InfoVis2/aufgabe_1b.png                                    |      10 [32m+[m
+ 12_InfoVis2/aufgabe_2.png                                     |     Bin [31m0[m -> [32m57370[m bytes
+ 12_InfoVis2/aufgabe_3.png                                     |     Bin [31m0[m -> [32m86136[m bytes
+ 12_InfoVis2/aufgabe_4.png                                     |     Bin [31m0[m -> [32m33946[m bytes
+ 13_Statistik1/Abstract.Rmd                                    |       9 [32m+[m
+ 13_Statistik1/Demo_Tests.Rmd                                  |     129 [32m+[m
+ 13_Statistik1/Intro_Daten_egel.Rmd                            |      37 [32m+[m
+ 13_Statistik1/Loesungen.Rmd                                   |     141 [32m+[m
+ 13_Statistik1/Musterloesung_Statistik_1_Skript.R              |      76 [32m+[m
+ 13_Statistik1/Musterloesungen Statistik 1.R                   |      66 [32m+[m
+ 13_Statistik1/Musterloesungen Statistik 1.Rmd                 |     147 [32m+[m
+ 13_Statistik1/Musterloesungen_Statistik_1.pdf                 |     Bin [31m0[m -> [32m223807[m bytes
+ 13_Statistik1/RFiles/Demo_Tests.R                             |      90 [32m+[m
+ 13_Statistik1/RFiles/Folien.R                                 |     117 [32m+[m
+ 13_Statistik1/RFiles/Intro_Daten_egel.R                       |       6 [32m+[m
+ 13_Statistik1/RFiles/Loesungen.R                              |      85 [32m+[m
+ 13_Statistik1/RFiles/Musterloesungen Statistik 1.R            |      61 [32m+[m
+ 13_Statistik1/RFiles/Uebung.R                                 |       1 [32m+[m
+ 13_Statistik1/RFiles/Uebung_A.R                               |       1 [32m+[m
+ 13_Statistik1/RFiles/Uebung_A_loesung.R                       |      73 [32m+[m
+ 13_Statistik1/RFiles/Uebung_A_loesung_nicht_gebraucht.R       |      73 [32m+[m
+ 13_Statistik1/RFiles/Uebung_B.R                               |       1 [32m+[m
+ 13_Statistik1/RFiles/Uebung_B_loesung.R                       |      82 [32m+[m
+ 13_Statistik1/RFiles/Uebungen.R                               |       1 [32m+[m
+ 13_Statistik1/Uebungen.Rmd                                    |      28 [32m+[m
+ 13_Statistik1/data/beetle.csv                                 |      46 [32m+[m
+ 13_Statistik1/data/competition.csv                            |      31 [32m+[m
+ 13_Statistik1/data/medley.csv                                 |      35 [32m+[m
+ 13_Statistik1/data/novanimal.csv                              |    1117 [32m+[m
+ 13_Statistik1/data/novanimal_data_181029_egel.csv             |   23684 [32m+[m
+ 13_Statistik1/design_experiment.png                           |     Bin [31m0[m -> [32m2111379[m bytes
+ 13_Statistik1/novanimal_variabeln.csv                         |      19 [32m+[m
+ 14_Statistik2/Abstract.Rmd                                    |       3 [32m+[m
+ 14_Statistik2/Demoskript.Rmd                                  |     145 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.1.Rmd                 |     177 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.1.pdf                 |     Bin [31m0[m -> [32m314032[m bytes
+ 14_Statistik2/Musterloesung_Statistik_2.2 Skript.R            |      74 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.2.Rmd                 |     105 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.2.pdf                 |     Bin [31m0[m -> [32m212258[m bytes
+ 14_Statistik2/Musterloesung_Statistik_2.2.tex                 |     256 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.3N.Rmd                |     123 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.3N.pdf                |     Bin [31m0[m -> [32m90842[m bytes
+ 14_Statistik2/Musterloesung_Statistik_2.3S Skript.R           |      84 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.3S.R                  |      83 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.3S.Rmd                |     117 [32m+[m
+ 14_Statistik2/Musterloesung_Statistik_2.3S.pdf                |     Bin [31m0[m -> [32m216786[m bytes
+ 14_Statistik2/Musterloesung_Statistik_2.3S.tex                |     309 [32m+[m
+ 14_Statistik2/RFiles/Demo.R                                   |       1 [32m+[m
+ 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel1.R             |      14 [32m+[m
+ 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel2.R             |      27 [32m+[m
+ 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel3.R             |      36 [32m+[m
+ 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel4.R             |      49 [32m+[m
+ 14_Statistik2/RFiles/Demo_02_Polynom_Reg.R                    |      33 [32m+[m
+ 14_Statistik2/RFiles/Demo_03_Einfaktorielle_ANOVA_einfach.R   |      49 [32m+[m
+ 14_Statistik2/RFiles/Demo_05_Mehrfaktorielle_ANOVA.R          |      56 [32m+[m
+ 14_Statistik2/RFiles/Demo_06_ANCOVA.R                         |      65 [32m+[m
+ 14_Statistik2/RFiles/Folien.R                                 |      29 [32m+[m
+ 14_Statistik2/RFiles/Musterloesung_Statistik_2.2.R            |      70 [32m+[m
+ 14_Statistik2/RFiles/Musterloesung_Statistik_2.3S.R           |      77 [32m+[m
+ 14_Statistik2/RFiles/Uebung.R                                 |       1 [32m+[m
+ 14_Statistik2/RFiles/Uebung_2.1_Loesung.R                     |      38 [32m+[m
+ 14_Statistik2/RFiles/Uebung_2.2_Loesung.R                     |     113 [32m+[m
+ 14_Statistik2/RFiles/Uebung_2.3N_Loesung.R                    |      90 [32m+[m
+ 14_Statistik2/RFiles/Uebung_2.3S_Loesung.R                    |      24 [32m+[m
+ 14_Statistik2/RFiles/Uebung_A.R                               |       1 [32m+[m
+ 14_Statistik2/RFiles/Uebung_A_Aufgabe1.R                      |      29 [32m+[m
+ 14_Statistik2/RFiles/Uebung_A_Aufgabe2.R                      |      79 [32m+[m
+ 14_Statistik2/RFiles/Uebung_A_loesung.R                       |     125 [32m+[m
+ 14_Statistik2/RFiles/Uebung_Aufgabe1.R                        |      46 [32m+[m
+ 14_Statistik2/RFiles/Uebung_Aufgabe2.R                        |      79 [32m+[m
+ 14_Statistik2/RFiles/Uebung_Aufgabe3_egel.R                   |      74 [32m+[m
+ 14_Statistik2/RFiles/Uebung_B.R                               |       1 [32m+[m
+ 14_Statistik2/RFiles/Uebung_B_Aufgabe1.R                      |      84 [32m+[m
+ 14_Statistik2/RFiles/Uebung_loesung.R                         |       1 [32m+[m
+ 14_Statistik2/RFiles/Uebungen.R                               |       1 [32m+[m
+ 14_Statistik2/Uebung_2.1_Loesung.Rmd                          |     100 [32m+[m
+ 14_Statistik2/Uebung_2.2_Loesung.Rmd                          |     155 [32m+[m
+ 14_Statistik2/Uebung_2.3N_Loesung.Rmd                         |     120 [32m+[m
+ 14_Statistik2/Uebung_2.3S_Loesung.Rmd                         |      42 [32m+[m
+ 14_Statistik2/Uebungen.Rmd                                    |      68 [32m+[m
+ 14_Statistik2/data/crabs.csv                                  |      13 [32m+[m
+ 14_Statistik2/data/decay.csv                                  |      32 [32m+[m
+ 14_Statistik2/data/green.csv                                  |      19 [32m+[m
+ 14_Statistik2/data/growth.csv                                 |      49 [32m+[m
+ 14_Statistik2/data/kormoran.csv                               |      41 [32m+[m
+ 14_Statistik2/data/medley.csv                                 |      35 [32m+[m
+ 14_Statistik2/data/mytilus.csv                                |      18 [32m+[m
+ 14_Statistik2/data/nelson.csv                                 |      10 [32m+[m
+ 14_Statistik2/data/partridge.csv                              |     126 [32m+[m
+ 14_Statistik2/data/peake.csv                                  |      26 [32m+[m
+ 15_Statistik3/Abstract.Rmd                                    |       4 [32m+[m
+ 15_Statistik3/Demo_A_MultReg.Rmd                              |     213 [32m+[m
+ 15_Statistik3/Demo_B_nichtLin.Rmd                             |     144 [32m+[m
+ 15_Statistik3/Demoskript.Rmd                                  |     123 [32m+[m
+ 15_Statistik3/Musterloesung_Statistik_3.1.Rmd                 |     241 [32m+[m
+ 15_Statistik3/RFiles/Demo_A_MultReg.R                         |     125 [32m+[m
+ 15_Statistik3/RFiles/Demo_B_nichtLin.R                        |      97 [32m+[m
+ 15_Statistik3/RFiles/Uebung.R                                 |       1 [32m+[m
+ 15_Statistik3/RFiles/Uebung2_egel.R                           |      73 [32m+[m
+ 15_Statistik3/Uebungen.Rmd                                    |      12 [32m+[m
+ 15_Statistik3/data/Curonian_Spit.xlsx                         |     Bin [31m0[m -> [32m10741[m bytes
+ 15_Statistik3/data/Ukraine.xlsx                               |     Bin [31m0[m -> [32m49559[m bytes
+ 15_Statistik3/data/Ukraine_bearbeitet.csv                     |     200 [32m+[m
+ 15_Statistik3/data/Ukraine_bearbeitet.xlsx                    |     Bin [31m0[m -> [32m90269[m bytes
+ 15_Statistik3/data/loyn.csv                                   |      57 [32m+[m
+ 15_Statistik3/data/novanimal_time.csv                         |    1096 [32m+[m
+ 15_Statistik3/data/peake.csv                                  |      26 [32m+[m
+ 15_Statistik3/data/tab1_uebungStatistik3.png                  |     Bin [31m0[m -> [32m79700[m bytes
+ 16_Statistik4/Abstract.Rmd                                    |       4 [32m+[m
+ 16_Statistik4/Demo_A_LogisticReg.Rmd                          |     157 [32m+[m
+ 16_Statistik4/Demo_B_Pseudoreplik.Rmd                         |      62 [32m+[m
+ 16_Statistik4/Demo_C_SplitPlotANOVA.Rmd                       |     159 [32m+[m
+ 16_Statistik4/Demoskript.Rmd                                  |     215 [32m+[m
+ 16_Statistik4/Musterloesung_Statistik_4.1.Rmd                 |     207 [32m+[m
+ 16_Statistik4/Musterloesung_Statistik_4.2N.Rmd                |     211 [32m+[m
+ 16_Statistik4/Musterloesung_Statistik_4.2S Skript.R           |      63 [32m+[m
+ 16_Statistik4/Musterloesung_Statistik_4.2S.R                  |      66 [32m+[m
+ 16_Statistik4/Musterloesung_Statistik_4.2S.Rmd                |      92 [32m+[m
+ 16_Statistik4/Musterloesung_Statistik_4.2S.pdf                |     Bin [31m0[m -> [32m201247[m bytes
+ 16_Statistik4/Musterloesung_Statistik_4.2S.tex                |     294 [32m+[m
+ 16_Statistik4/RFiles/Demo_A_LogisticReg.R                     |      87 [32m+[m
+ 16_Statistik4/RFiles/Demo_B_Pseudoreplik.R                    |      35 [32m+[m
+ 16_Statistik4/RFiles/Demo_C_SplitPlotANOVA.R                  |      96 [32m+[m
+ 16_Statistik4/RFiles/Musterloesung_Statistik_4.2S.R           |      63 [32m+[m
+ 16_Statistik4/RFiles/Uebung.R                                 |       1 [32m+[m
+ 16_Statistik4/RFiles/Uebung_Aufgabe1.R                        |      27 [32m+[m
+ 16_Statistik4/RFiles/Uebung_Aufgabe2.R                        |      12 [32m+[m
+ 16_Statistik4/RFiles/Uebung_loesung.R                         |       5 [32m+[m
+ 16_Statistik4/RFiles/test_uebung3_egel.R                      |      13 [32m+[m
+ 16_Statistik4/Uebung.Rmd                                      |      27 [32m+[m
+ 16_Statistik4/Uebung_Aufgabe1.Rmd                             |      30 [32m+[m
+ 16_Statistik4/Uebung_Aufgabe2.Rmd                             |      15 [32m+[m
+ 16_Statistik4/Uebung_loesung.Rmd                              |      36 [32m+[m
+ 16_Statistik4/Uebungen.Rmd                                    |      71 [32m+[m
+ 16_Statistik4/data/Curonian_Spit.csv                          |      17 [32m+[m
+ 16_Statistik4/data/Curonian_Spit.xlsx                         |     Bin [31m0[m -> [32m10754[m bytes
+ 16_Statistik4/data/abb1.png                                   |     Bin [31m0[m -> [32m15508[m bytes
+ 16_Statistik4/data/abb1_4.2N.png                              |     Bin [31m0[m -> [32m42719[m bytes
+ 16_Statistik4/data/ipomopsis.csv                              |      41 [32m+[m
+ 16_Statistik4/data/isolation.csv                              |      51 [32m+[m
+ 16_Statistik4/data/loyn.csv                                   |      57 [32m+[m
+ 16_Statistik4/data/polis.csv                                  |      20 [32m+[m
+ 16_Statistik4/data/rats.csv                                   |      37 [32m+[m
+ 16_Statistik4/data/spf.csv                                    |      33 [32m+[m
+ 16_Statistik4/data/splityield.csv                             |      73 [32m+[m
+ 16_Statistik4/data/tab1_4.1.png                               |     Bin [31m0[m -> [32m36045[m bytes
+ 16_Statistik4/data/tab2.png                                   |     Bin [31m0[m -> [32m41945[m bytes
+ 16_Statistik4/sprechstunde_notizen_egel.R                     |      70 [32m+[m
+ 17_Statistik5/Abstract.Rmd                                    |       1 [32m+[m
+ 17_Statistik5/Demoskript.Rmd                                  |     145 [32m+[m
+ 17_Statistik5/Musterloesung_Statistik_5.1.Rmd                 |     159 [32m+[m
+ 17_Statistik5/Uebungen.Rmd                                    |      29 [32m+[m
+ 17_Statistik5/data/Abb1_5.1.png                               |     Bin [31m0[m -> [32m13503[m bytes
+ 17_Statistik5/data/Abb2_5.1.png                               |     Bin [31m0[m -> [32m11472[m bytes
+ 17_Statistik5/data/Abb3_5.1.png                               |     Bin [31m0[m -> [32m28237[m bytes
+ 17_Statistik5/data/Abb4_5.1.png                               |     Bin [31m0[m -> [32m32046[m bytes
+ 17_Statistik5/data/DeerEcervi.txt                             |     827 [32m+[m
+ 17_Statistik5/data/spf.csv                                    |      33 [32m+[m
+ 17_Statistik5/data/splityield.csv                             |      73 [32m+[m
+ 17_Statistik5/uebung statistik 5.2S.R                         |      73 [32m+[m
+ 17_Statistik5/uebung statistik 5.2S.Rmd                       |     119 [32m+[m
+ 17_Statistik5/uebung_statistik_5.2S.pdf                       |     Bin [31m0[m -> [32m207008[m bytes
+ 17_Statistik5_2/1_github.PNG                                  |     Bin [31m0[m -> [32m28489[m bytes
+ 17_Statistik5_2/2_github.PNG                                  |     Bin [31m0[m -> [32m30113[m bytes
+ 17_Statistik5_2/911.csv                                       |   99493 [32m++[m
+ 17_Statistik5_2/ablauf_inhalt_190823_egel.Rmd                 |      14 [32m+[m
+ 17_Statistik5_2/aufgabe_gruppenarbeit_reme_190823_egel.Rmd    |      40 [32m+[m
+ 17_Statistik5_2/different_datasets_190813_egel.Rmd            |     119 [32m+[m
+ 18_Statistik6/Abstract.Rmd                                    |       1 [32m+[m
+ 18_Statistik6/Demoskript.Rmd                                  |     102 [32m+[m
+ 18_Statistik6/Musterloesung_Statistik_6.1.Rmd                 |     106 [32m+[m
+ 18_Statistik6/Uebungen.Rmd                                    |      17 [32m+[m
+ 18_Statistik6/data/Ukraine.xlsx                               |     Bin [31m0[m -> [32m49559[m bytes
+ 18_Statistik6/master_final.csv                                |      42 [32m+[m
+ 19_Statistik7/Abstract.Rmd                                    |       1 [32m+[m
+ 19_Statistik7/Demoskript.Rmd                                  |    1816 [32m+[m
+ 19_Statistik7/Doubs.RData                                     |     Bin [31m0[m -> [32m4088[m bytes
+ 19_Statistik7/Musterloesung_Statistik_7.1.Rmd                 |     215 [32m+[m
+ 19_Statistik7/Uebungen.Rmd                                    |      18 [32m+[m
+ 19_Statistik7/abb1_7.1.png                                    |     Bin [31m0[m -> [32m26118[m bytes
+ 19_Statistik7/abb2_7.1.png                                    |     Bin [31m0[m -> [32m64460[m bytes
+ 19_Statistik7/abb3_7.1.png                                    |     Bin [31m0[m -> [32m59407[m bytes
+ 19_Statistik7/tab1_7.1.png                                    |     Bin [31m0[m -> [32m25408[m bytes
+ 19_Statistik7/triplot.rda.R                                   |     302 [32m+[m
+ 2019_HS.Rproj                                                 |      15 [32m+[m
+ 20_Statistik8/Abb1_8.1.png                                    |     Bin [31m0[m -> [32m33264[m bytes
+ 20_Statistik8/Abb3_8.1.png                                    |     Bin [31m0[m -> [32m58969[m bytes
+ 20_Statistik8/Abstract.Rmd                                    |       1 [32m+[m
+ 20_Statistik8/Demoskript.Rmd                                  |      66 [32m+[m
+ 20_Statistik8/Doubs.RData                                     |     Bin [31m0[m -> [32m4088[m bytes
+ 20_Statistik8/Musterloesung_Statistik_8.1.Rmd                 |     197 [32m+[m
+ 20_Statistik8/Tab1_8.1.png                                    |     Bin [31m0[m -> [32m42084[m bytes
+ 20_Statistik8/Uebungen.Rmd                                    |      18 [32m+[m
+ 20_Statistik8/crime.csv                                       |      52 [32m+[m
+ 20_Statistik8/statistik8.R                                    |     124 [32m+[m
+ 99_Archive/Aufgabe3_Loesung.Rmd                               |     130 [32m+[m
+ 99_Archive/Aufgabe4_Loesung.Rmd                               |      43 [32m+[m
+ 99_Archive/Aufgabe5_Loesung.Rmd                               |      66 [32m+[m
+ 99_Archive/Demo.Rmd                                           |      67 [32m+[m
+ 99_Archive/Demo_01_Korr_Reg_Beispiel1.Rmd                     |      55 [32m+[m
+ 99_Archive/Demo_01_Korr_Reg_Beispiel2.Rmd                     |      84 [32m+[m
+ 99_Archive/Demo_01_Korr_Reg_Beispiel3.Rmd                     |     131 [32m+[m
+ 99_Archive/Demo_01_Korr_Reg_Beispiel4.Rmd                     |     152 [32m+[m
+ 99_Archive/Demo_02_Polynom_Reg.Rmd                            |     123 [32m+[m
+ 99_Archive/Demo_03_Einfaktorielle_ANOVA_einfach.Rmd           |     103 [32m+[m
+ 99_Archive/Demo_05_Mehrfaktorielle_ANOVA.Rmd                  |     102 [32m+[m
+ 99_Archive/Demo_06_ANCOVA.Rmd                                 |     150 [32m+[m
+ 99_Archive/Folien.Rmd                                         |      94 [32m+[m
+ 99_Archive/Loesungen.Rmd                                      |     136 [32m+[m
+ 99_Archive/biblio_180912.bib                                  |    1919 [32m+[m
+ 99_Archive/novanimal.csv                                      |    1097 [32m+[m
+ 99_Archive/novanimal_data_180911_egel.csv                     |   26235 [32m+[m
+ 99_Book/00_Admin/style.css                                    |      14 [32m+[m
+ 99_Book/index.html                                            |     313 [32m+[m
+ .../gitbook-2.6.7/css/fontawesome/fontawesome-webfont.ttf     |     Bin [31m0[m -> [32m165548[m bytes
+ 99_Book/libs/gitbook-2.6.7/css/plugin-bookdown.css            |      99 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/css/plugin-fontsettings.css        |     292 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/css/plugin-highlight.css           |     426 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/css/plugin-search.css              |      31 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/css/style.css                      |      10 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/app.min.js                      |       1 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/jquery.highlight.js             |      86 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/lunr.js                         |       7 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/plugin-bookdown.js              |     245 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/plugin-fontsettings.js          |     151 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/plugin-search.js                |     223 [32m+[m
+ 99_Book/libs/gitbook-2.6.7/js/plugin-sharing.js               |     113 [32m+[m
+ 99_Book/libs/jquery-2.2.3/jquery.min.js                       |       4 [32m+[m
+ 99_Book/search_index.json                                     |      32 [32m+[m
+ 99_misc/biology_0.7.tar.gz                                    |     Bin [31m0[m -> [32m152518[m bytes
+ DESCRIPTION                                                   |       6 [32m+[m
+ Demo_Datentypen.R                                             |     286 [32m+[m
+ LICENSE                                                       |     117 [32m+[m
+ README.md                                                     |       3 [32m+[m
+ ResearchMethods.R                                             |      33 [32m+[m
+ ResearchMethods.log                                           |    1277 [32m+[m
+ ResearchMethods.rds                                           |     Bin [31m0[m -> [32m185[m bytes
+ ResearchMethods.tex                                           |    1325 [32m+[m
+ ResearchMethodsHS18.Rproj                                     |      15 [32m+[m
+ Unterrichtsunterlagen_HS19.Rproj                              |      15 [32m+[m
+ _bookdown.yml                                                 |      94 [32m+[m
+ _main.Rmd                                                     |    3538 [32m+[m
+ _output.yml                                                   |      19 [32m+[m
+ ablauf_inhalt_190823_egel.R                                   |       1 [32m+[m
+ index.Rmd                                                     |      82 [32m+[m
+ 319 files changed, 1448430 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .travis.yml
+ create mode 100644 000_Purl.R
+ create mode 100644 00_Admin/Clear_vars_and_pkgs.R
+ create mode 100644 00_Admin/Render_books.R
+ create mode 100644 00_Admin/book.bib
+ create mode 100644 00_Admin/get_chapter_references.R
+ create mode 100644 00_Admin/packages.bib
+ create mode 100644 00_Admin/preamble.tex
+ create mode 100644 00_Admin/references.Rmd
+ create mode 100644 00_Admin/style.css
+ create mode 100644 00_Admin/subset_nova_data_180911_egel.R
+ create mode 100644 00_Admin/titlepage.tex
+ create mode 100644 00_Admin/toc.css
+ create mode 100644 09_PrePro1/Abstract.Rmd
+ create mode 100644 09_PrePro1/Demo_Datentypen.Rmd
+ create mode 100644 09_PrePro1/RFiles/Demo_Datentypen.R
+ create mode 100644 09_PrePro1/RFiles/Quellen.R
+ create mode 100644 09_PrePro1/RFiles/Uebung_A.R
+ create mode 100644 09_PrePro1/RFiles/Uebung_A_loesung.R
+ create mode 100644 09_PrePro1/RFiles/Uebung_B.R
+ create mode 100644 09_PrePro1/RFiles/Uebung_B_loesung.R
+ create mode 100644 09_PrePro1/Uebung_A.Rmd
+ create mode 100644 09_PrePro1/Uebung_A_loesung.Rmd
+ create mode 100644 09_PrePro1/Uebung_B.Rmd
+ create mode 100644 09_PrePro1/Uebung_B_loesung.Rmd
+ create mode 100644 09_PrePro1/data/meta.txt
+ create mode 100644 09_PrePro1/data/order_52252_data.txt
+ create mode 100644 09_PrePro1/data/order_52252_legend.csv
+ create mode 100644 10_PrePro2/Abstract.Rmd
+ create mode 100644 10_PrePro2/Demo_Tidyverse.Rmd
+ create mode 100644 10_PrePro2/Nachtrag.Rmd
+ create mode 100644 10_PrePro2/RFiles/Demo_Tidyverse.R
+ create mode 100644 10_PrePro2/RFiles/Nachtrag.R
+ create mode 100644 10_PrePro2/RFiles/Uebung_A.R
+ create mode 100644 10_PrePro2/RFiles/Uebung_A_loesung.R
+ create mode 100644 10_PrePro2/RFiles/Uebung_B.R
+ create mode 100644 10_PrePro2/RFiles/Uebung_B_loesung.R
+ create mode 100644 10_PrePro2/Uebung_A.Rmd
+ create mode 100644 10_PrePro2/Uebung_A_loesung.Rmd
+ create mode 100644 10_PrePro2/Uebung_B.Rmd
+ create mode 100644 10_PrePro2/Uebung_B_loesung.Rmd
+ create mode 100644 10_PrePro2/data/sensor1.csv
+ create mode 100644 10_PrePro2/data/sensor2.csv
+ create mode 100644 10_PrePro2/data/sensor3.csv
+ create mode 100644 10_PrePro2/data/sensor_fail.csv
+ create mode 100644 11_InfoVis1/Abstract.Rmd
+ create mode 100644 11_InfoVis1/Demo_EDA.Rmd
+ create mode 100644 11_InfoVis1/Demo_ggplot.Rmd
+ create mode 100644 11_InfoVis1/RFiles/Demo_EDA.R
+ create mode 100644 11_InfoVis1/RFiles/Demo_ggplot.R
+ create mode 100644 11_InfoVis1/RFiles/Uebung.R
+ create mode 100644 11_InfoVis1/RFiles/Uebung_loesung.R
+ create mode 100644 11_InfoVis1/Uebung.Rmd
+ create mode 100644 11_InfoVis1/Uebung_loesung.Rmd
+ create mode 100644 11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv
+ create mode 100644 11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv
+ create mode 100644 11_InfoVis1/data/wetter.rda
+ create mode 100644 11_InfoVis1/plot.png
+ create mode 100644 12_InfoVis2/Abstract.Rmd
+ create mode 100644 12_InfoVis2/Demo_Debbuggin_R.html
+ create mode 100644 12_InfoVis2/Demo_Debug.Rmd
+ create mode 100644 12_InfoVis2/RFiles/Demo_Debbuggin_R.R
+ create mode 100644 12_InfoVis2/RFiles/Demo_Debug.R
+ create mode 100644 12_InfoVis2/RFiles/Demo_Debug_laup.R
+ create mode 100644 12_InfoVis2/RFiles/Uebung_A.R
+ create mode 100644 12_InfoVis2/RFiles/Uebung_A_loesung.R
+ create mode 100644 12_InfoVis2/RFiles/Uebung_B.R
+ create mode 100644 12_InfoVis2/RFiles/Uebung_B_loesung.R
+ create mode 100644 12_InfoVis2/Uebung_A.Rmd
+ create mode 100644 12_InfoVis2/Uebung_A_loesung.Rmd
+ create mode 100644 12_InfoVis2/Uebung_B.Rmd
+ create mode 100644 12_InfoVis2/Uebung_B_loesung.Rmd
+ create mode 100644 12_InfoVis2/aufgabe_1.png
+ create mode 100644 12_InfoVis2/aufgabe_1b.png
+ create mode 100644 12_InfoVis2/aufgabe_2.png
+ create mode 100644 12_InfoVis2/aufgabe_3.png
+ create mode 100644 12_InfoVis2/aufgabe_4.png
+ create mode 100644 13_Statistik1/Abstract.Rmd
+ create mode 100644 13_Statistik1/Demo_Tests.Rmd
+ create mode 100644 13_Statistik1/Intro_Daten_egel.Rmd
+ create mode 100644 13_Statistik1/Loesungen.Rmd
+ create mode 100644 13_Statistik1/Musterloesung_Statistik_1_Skript.R
+ create mode 100644 13_Statistik1/Musterloesungen Statistik 1.R
+ create mode 100644 13_Statistik1/Musterloesungen Statistik 1.Rmd
+ create mode 100644 13_Statistik1/Musterloesungen_Statistik_1.pdf
+ create mode 100644 13_Statistik1/RFiles/Demo_Tests.R
+ create mode 100644 13_Statistik1/RFiles/Folien.R
+ create mode 100644 13_Statistik1/RFiles/Intro_Daten_egel.R
+ create mode 100644 13_Statistik1/RFiles/Loesungen.R
+ create mode 100644 13_Statistik1/RFiles/Musterloesungen Statistik 1.R
+ create mode 100644 13_Statistik1/RFiles/Uebung.R
+ create mode 100644 13_Statistik1/RFiles/Uebung_A.R
+ create mode 100644 13_Statistik1/RFiles/Uebung_A_loesung.R
+ create mode 100644 13_Statistik1/RFiles/Uebung_A_loesung_nicht_gebraucht.R
+ create mode 100644 13_Statistik1/RFiles/Uebung_B.R
+ create mode 100644 13_Statistik1/RFiles/Uebung_B_loesung.R
+ create mode 100644 13_Statistik1/RFiles/Uebungen.R
+ create mode 100644 13_Statistik1/Uebungen.Rmd
+ create mode 100644 13_Statistik1/data/beetle.csv
+ create mode 100644 13_Statistik1/data/competition.csv
+ create mode 100644 13_Statistik1/data/medley.csv
+ create mode 100644 13_Statistik1/data/novanimal.csv
+ create mode 100644 13_Statistik1/data/novanimal_data_181029_egel.csv
+ create mode 100644 13_Statistik1/design_experiment.png
+ create mode 100644 13_Statistik1/novanimal_variabeln.csv
+ create mode 100644 14_Statistik2/Abstract.Rmd
+ create mode 100644 14_Statistik2/Demoskript.Rmd
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.1.Rmd
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.1.pdf
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.2 Skript.R
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.2.Rmd
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.2.pdf
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.2.tex
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3N.Rmd
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3N.pdf
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S Skript.R
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.R
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.Rmd
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.pdf
+ create mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.tex
+ create mode 100644 14_Statistik2/RFiles/Demo.R
+ create mode 100644 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel1.R
+ create mode 100644 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel2.R
+ create mode 100644 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel3.R
+ create mode 100644 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel4.R
+ create mode 100644 14_Statistik2/RFiles/Demo_02_Polynom_Reg.R
+ create mode 100644 14_Statistik2/RFiles/Demo_03_Einfaktorielle_ANOVA_einfach.R
+ create mode 100644 14_Statistik2/RFiles/Demo_05_Mehrfaktorielle_ANOVA.R
+ create mode 100644 14_Statistik2/RFiles/Demo_06_ANCOVA.R
+ create mode 100644 14_Statistik2/RFiles/Folien.R
+ create mode 100644 14_Statistik2/RFiles/Musterloesung_Statistik_2.2.R
+ create mode 100644 14_Statistik2/RFiles/Musterloesung_Statistik_2.3S.R
+ create mode 100644 14_Statistik2/RFiles/Uebung.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_2.1_Loesung.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_2.2_Loesung.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_2.3N_Loesung.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_2.3S_Loesung.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_A.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_A_Aufgabe1.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_A_Aufgabe2.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_A_loesung.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_Aufgabe1.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_Aufgabe2.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_Aufgabe3_egel.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_B.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_B_Aufgabe1.R
+ create mode 100644 14_Statistik2/RFiles/Uebung_loesung.R
+ create mode 100644 14_Statistik2/RFiles/Uebungen.R
+ create mode 100644 14_Statistik2/Uebung_2.1_Loesung.Rmd
+ create mode 100644 14_Statistik2/Uebung_2.2_Loesung.Rmd
+ create mode 100644 14_Statistik2/Uebung_2.3N_Loesung.Rmd
+ create mode 100644 14_Statistik2/Uebung_2.3S_Loesung.Rmd
+ create mode 100644 14_Statistik2/Uebungen.Rmd
+ create mode 100644 14_Statistik2/data/crabs.csv
+ create mode 100644 14_Statistik2/data/decay.csv
+ create mode 100644 14_Statistik2/data/green.csv
+ create mode 100644 14_Statistik2/data/growth.csv
+ create mode 100644 14_Statistik2/data/kormoran.csv
+ create mode 100644 14_Statistik2/data/medley.csv
+ create mode 100644 14_Statistik2/data/mytilus.csv
+ create mode 100644 14_Statistik2/data/nelson.csv
+ create mode 100644 14_Statistik2/data/partridge.csv
+ create mode 100644 14_Statistik2/data/peake.csv
+ create mode 100644 15_Statistik3/Abstract.Rmd
+ create mode 100644 15_Statistik3/Demo_A_MultReg.Rmd
+ create mode 100644 15_Statistik3/Demo_B_nichtLin.Rmd
+ create mode 100644 15_Statistik3/Demoskript.Rmd
+ create mode 100644 15_Statistik3/Musterloesung_Statistik_3.1.Rmd
+ create mode 100644 15_Statistik3/RFiles/Demo_A_MultReg.R
+ create mode 100644 15_Statistik3/RFiles/Demo_B_nichtLin.R
+ create mode 100644 15_Statistik3/RFiles/Uebung.R
+ create mode 100644 15_Statistik3/RFiles/Uebung2_egel.R
+ create mode 100644 15_Statistik3/Uebungen.Rmd
+ create mode 100644 15_Statistik3/data/Curonian_Spit.xlsx
+ create mode 100644 15_Statistik3/data/Ukraine.xlsx
+ create mode 100644 15_Statistik3/data/Ukraine_bearbeitet.csv
+ create mode 100644 15_Statistik3/data/Ukraine_bearbeitet.xlsx
+ create mode 100644 15_Statistik3/data/loyn.csv
+ create mode 100644 15_Statistik3/data/novanimal_time.csv
+ create mode 100644 15_Statistik3/data/peake.csv
+ create mode 100644 15_Statistik3/data/tab1_uebungStatistik3.png
+ create mode 100644 16_Statistik4/Abstract.Rmd
+ create mode 100644 16_Statistik4/Demo_A_LogisticReg.Rmd
+ create mode 100644 16_Statistik4/Demo_B_Pseudoreplik.Rmd
+ create mode 100644 16_Statistik4/Demo_C_SplitPlotANOVA.Rmd
+ create mode 100644 16_Statistik4/Demoskript.Rmd
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.1.Rmd
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.2N.Rmd
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.2S Skript.R
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.2S.R
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.2S.Rmd
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.2S.pdf
+ create mode 100644 16_Statistik4/Musterloesung_Statistik_4.2S.tex
+ create mode 100644 16_Statistik4/RFiles/Demo_A_LogisticReg.R
+ create mode 100644 16_Statistik4/RFiles/Demo_B_Pseudoreplik.R
+ create mode 100644 16_Statistik4/RFiles/Demo_C_SplitPlotANOVA.R
+ create mode 100644 16_Statistik4/RFiles/Musterloesung_Statistik_4.2S.R
+ create mode 100644 16_Statistik4/RFiles/Uebung.R
+ create mode 100644 16_Statistik4/RFiles/Uebung_Aufgabe1.R
+ create mode 100644 16_Statistik4/RFiles/Uebung_Aufgabe2.R
+ create mode 100644 16_Statistik4/RFiles/Uebung_loesung.R
+ create mode 100644 16_Statistik4/RFiles/test_uebung3_egel.R
+ create mode 100644 16_Statistik4/Uebung.Rmd
+ create mode 100644 16_Statistik4/Uebung_Aufgabe1.Rmd
+ create mode 100644 16_Statistik4/Uebung_Aufgabe2.Rmd
+ create mode 100644 16_Statistik4/Uebung_loesung.Rmd
+ create mode 100644 16_Statistik4/Uebungen.Rmd
+ create mode 100644 16_Statistik4/data/Curonian_Spit.csv
+ create mode 100644 16_Statistik4/data/Curonian_Spit.xlsx
+ create mode 100644 16_Statistik4/data/abb1.png
+ create mode 100644 16_Statistik4/data/abb1_4.2N.png
+ create mode 100644 16_Statistik4/data/ipomopsis.csv
+ create mode 100644 16_Statistik4/data/isolation.csv
+ create mode 100644 16_Statistik4/data/loyn.csv
+ create mode 100644 16_Statistik4/data/polis.csv
+ create mode 100644 16_Statistik4/data/rats.csv
+ create mode 100644 16_Statistik4/data/spf.csv
+ create mode 100644 16_Statistik4/data/splityield.csv
+ create mode 100644 16_Statistik4/data/tab1_4.1.png
+ create mode 100644 16_Statistik4/data/tab2.png
+ create mode 100644 16_Statistik4/sprechstunde_notizen_egel.R
+ create mode 100644 17_Statistik5/Abstract.Rmd
+ create mode 100644 17_Statistik5/Demoskript.Rmd
+ create mode 100644 17_Statistik5/Musterloesung_Statistik_5.1.Rmd
+ create mode 100644 17_Statistik5/Uebungen.Rmd
+ create mode 100644 17_Statistik5/data/Abb1_5.1.png
+ create mode 100644 17_Statistik5/data/Abb2_5.1.png
+ create mode 100644 17_Statistik5/data/Abb3_5.1.png
+ create mode 100644 17_Statistik5/data/Abb4_5.1.png
+ create mode 100644 17_Statistik5/data/DeerEcervi.txt
+ create mode 100644 17_Statistik5/data/spf.csv
+ create mode 100644 17_Statistik5/data/splityield.csv
+ create mode 100644 17_Statistik5/uebung statistik 5.2S.R
+ create mode 100644 17_Statistik5/uebung statistik 5.2S.Rmd
+ create mode 100644 17_Statistik5/uebung_statistik_5.2S.pdf
+ create mode 100644 17_Statistik5_2/1_github.PNG
+ create mode 100644 17_Statistik5_2/2_github.PNG
+ create mode 100644 17_Statistik5_2/911.csv
+ create mode 100644 17_Statistik5_2/ablauf_inhalt_190823_egel.Rmd
+ create mode 100644 17_Statistik5_2/aufgabe_gruppenarbeit_reme_190823_egel.Rmd
+ create mode 100644 17_Statistik5_2/different_datasets_190813_egel.Rmd
+ create mode 100644 18_Statistik6/Abstract.Rmd
+ create mode 100644 18_Statistik6/Demoskript.Rmd
+ create mode 100644 18_Statistik6/Musterloesung_Statistik_6.1.Rmd
+ create mode 100644 18_Statistik6/Uebungen.Rmd
+ create mode 100644 18_Statistik6/data/Ukraine.xlsx
+ create mode 100644 18_Statistik6/master_final.csv
+ create mode 100644 19_Statistik7/Abstract.Rmd
+ create mode 100644 19_Statistik7/Demoskript.Rmd
+ create mode 100644 19_Statistik7/Doubs.RData
+ create mode 100644 19_Statistik7/Musterloesung_Statistik_7.1.Rmd
+ create mode 100644 19_Statistik7/Uebungen.Rmd
+ create mode 100644 19_Statistik7/abb1_7.1.png
+ create mode 100644 19_Statistik7/abb2_7.1.png
+ create mode 100644 19_Statistik7/abb3_7.1.png
+ create mode 100644 19_Statistik7/tab1_7.1.png
+ create mode 100644 19_Statistik7/triplot.rda.R
+ create mode 100644 2019_HS.Rproj
+ create mode 100644 20_Statistik8/Abb1_8.1.png
+ create mode 100644 20_Statistik8/Abb3_8.1.png
+ create mode 100644 20_Statistik8/Abstract.Rmd
+ create mode 100644 20_Statistik8/Demoskript.Rmd
+ create mode 100644 20_Statistik8/Doubs.RData
+ create mode 100644 20_Statistik8/Musterloesung_Statistik_8.1.Rmd
+ create mode 100644 20_Statistik8/Tab1_8.1.png
+ create mode 100644 20_Statistik8/Uebungen.Rmd
+ create mode 100644 20_Statistik8/crime.csv
+ create mode 100644 20_Statistik8/statistik8.R
+ create mode 100644 99_Archive/Aufgabe3_Loesung.Rmd
+ create mode 100644 99_Archive/Aufgabe4_Loesung.Rmd
+ create mode 100644 99_Archive/Aufgabe5_Loesung.Rmd
+ create mode 100644 99_Archive/Demo.Rmd
+ create mode 100644 99_Archive/Demo_01_Korr_Reg_Beispiel1.Rmd
+ create mode 100644 99_Archive/Demo_01_Korr_Reg_Beispiel2.Rmd
+ create mode 100644 99_Archive/Demo_01_Korr_Reg_Beispiel3.Rmd
+ create mode 100644 99_Archive/Demo_01_Korr_Reg_Beispiel4.Rmd
+ create mode 100644 99_Archive/Demo_02_Polynom_Reg.Rmd
+ create mode 100644 99_Archive/Demo_03_Einfaktorielle_ANOVA_einfach.Rmd
+ create mode 100644 99_Archive/Demo_05_Mehrfaktorielle_ANOVA.Rmd
+ create mode 100644 99_Archive/Demo_06_ANCOVA.Rmd
+ create mode 100644 99_Archive/Folien.Rmd
+ create mode 100644 99_Archive/Loesungen.Rmd
+ create mode 100644 99_Archive/biblio_180912.bib
+ create mode 100644 99_Archive/novanimal.csv
+ create mode 100644 99_Archive/novanimal_data_180911_egel.csv
+ create mode 100644 99_Book/00_Admin/style.css
+ create mode 100644 99_Book/index.html
+ create mode 100644 99_Book/libs/gitbook-2.6.7/css/fontawesome/fontawesome-webfont.ttf
+ create mode 100644 99_Book/libs/gitbook-2.6.7/css/plugin-bookdown.css
+ create mode 100644 99_Book/libs/gitbook-2.6.7/css/plugin-fontsettings.css
+ create mode 100644 99_Book/libs/gitbook-2.6.7/css/plugin-highlight.css
+ create mode 100644 99_Book/libs/gitbook-2.6.7/css/plugin-search.css
+ create mode 100644 99_Book/libs/gitbook-2.6.7/css/style.css
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/app.min.js
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/jquery.highlight.js
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/lunr.js
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/plugin-bookdown.js
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/plugin-fontsettings.js
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/plugin-search.js
+ create mode 100644 99_Book/libs/gitbook-2.6.7/js/plugin-sharing.js
+ create mode 100644 99_Book/libs/jquery-2.2.3/jquery.min.js
+ create mode 100644 99_Book/search_index.json
+ create mode 100644 99_misc/biology_0.7.tar.gz
+ create mode 100644 DESCRIPTION
+ create mode 100644 Demo_Datentypen.R
+ create mode 100644 LICENSE
+ create mode 100644 README.md
+ create mode 100644 ResearchMethods.R
+ create mode 100644 ResearchMethods.log
+ create mode 100644 ResearchMethods.rds
+ create mode 100644 ResearchMethods.tex
+ create mode 100644 ResearchMethodsHS18.Rproj
+ create mode 100644 Unterrichtsunterlagen_HS19.Rproj
+ create mode 100644 _bookdown.yml
+ create mode 100644 _main.Rmd
+ create mode 100644 _output.yml
+ create mode 100644 ablauf_inhalt_190823_egel.R
+ create mode 100644 index.Rmd
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	[31mmodified:   .rstudio/projects/none/console06/293F2942[m
+	[31mmodified:   .rstudio/projects/none/console06/INDEX001[m
+	[31mmodified:   .viminfo[m
+	[31mmodified:   Unterrichtsunterlagen_HS19[m (modified content, untracked content)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	[31mmodified:   .rstudio/projects/none/console06/293F2942[m
+	[31mmodified:   .rstudio/projects/none/console06/INDEX001[m
+	[31mmodified:   .rstudio/sources/prop/8FB911A4[m
+	[31mmodified:   .rstudio/sources/s-59748bb4/E4B0C720[m
+	[31mmodified:   .rstudio/sources/s-59748bb4/E4B0C720-contents[m
+	[31mmodified:   .viminfo[m
+	[31mmodified:   Unterrichtsunterlagen_HS19[m (modified content, untracked content)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add 
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .

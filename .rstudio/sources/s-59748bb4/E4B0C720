@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1505587431",
     "id" : "E4B0C720",
-    "lastKnownWriteTime" : 1568720072,
-    "last_content_update" : 1568720072891,
+    "lastKnownWriteTime" : 1568789809,
+    "last_content_update" : 1568789810060,
     "path" : "~/Unterrichtsunterlagen_HS19/13_Statistik1/assigment_stat1.Rmd",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "26,109",
+        "cursorPosition" : "28,0",
         "scrollLine" : "14"
     },
     "read_only" : false,
