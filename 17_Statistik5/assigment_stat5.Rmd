@@ -1,6 +1,6 @@
 ##Statistik 5: Übungen
 
-### Übung 5.1: Split-plot ANOVA (naturwissenschaftlich)
+### Übung 5.1: Split-plot ANOVA
 
 <font color="blue">Datensatz splityield.csv</font>
 
@@ -13,7 +13,7 @@
 - **Stellt die Ergebnisse dar**
 
 
-### Übung 5.2: GLMM (sozioökonomisch)
+### Übung 5.2: GLMM
 
 <font color="blue">Führt mit dem Datensatz novanimal.csv eine logistische Regression durch, wobei ihr die einzelnen Käufer (single campus_card holder) als weitere randomisierte Variable mitberücksichtigt.</font>
 
