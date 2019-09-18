@@ -111,3 +111,25 @@ git pull
 git branch
 git pull https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
 git pu
+git status
+git pull
+git pull https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git master
+git branch --set-upstream-to=origin/https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git master
+git branch --set-upstream-to=origin/master
+git pull
+git status
+git add .a
+git add -A
+git commit -m "problems with git"
+git push
+git pull
+git remote -v
+git pull --allow-unrelated-histories
+git status
+git add 
+git add .
+git commit -m "some probs with pulling repository"
+git push
+git remote -v
+git status
+git remote -v

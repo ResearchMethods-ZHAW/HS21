@@ -1,0 +1,121 @@
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs
+git: 'statzs' is not a git command. See 'git --help'.
+
+The most similar command is
+	status
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs[K[Kus
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rhistory[m
+	[31mmodified:   .bash_history[m
+	[31mdeleted:    .rstudio/client-state/console.temporary[m
+	[31mdeleted:    .rstudio/client-state/environment-panel.temporary[m
+	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
+	[31mmodified:   .rstudio/history_database[m
+	[31mmodified:   .rstudio/monitored/lists/file_mru[m
+	[31mmodified:   .rstudio/monitored/lists/project_mru[m
+	[31mmodified:   .rstudio/notebooks/paths[m
+	[31mmodified:   .rstudio/pcs/files-pane.pper[m
+	[31mmodified:   .rstudio/pcs/source-pane.pper[m
+	[31mmodified:   .rstudio/pcs/windowlayoutstate.pper[m
+	[31mmodified:   .rstudio/projects/none/console06/293F2942[m
+	[31mmodified:   .rstudio/projects/none/console06/INDEX001[m
+	[31mmodified:   .rstudio/projects_settings/project-id-mappings[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/last-used[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/project[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/save_prompt_required[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/session-persistent-state[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/console_actions[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment_vars[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/history[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/libpaths[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/options[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/rversion[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/package_paths[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/search_path_elements[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/settings[m
+	[31mmodified:   .rstudio/sources/prop/8FB911A4[m
+	[31mmodified:   .rstudio/sources/prop/INDEX[m
+	[31mdeleted:    .rstudio/sources/s-59748bb4/E4B0C720[m
+	[31mdeleted:    .rstudio/sources/s-59748bb4/E4B0C720-contents[m
+	[31mdeleted:    .rstudio/sources/s-59748bb4/lock_file[m
+	[31mdeleted:    13_Statistik1/Loesungen.Rmd[m
+	[31mdeleted:    13_Statistik1/Musterloesung_Statistik_1_Skript.R[m
+	[31mdeleted:    13_Statistik1/Musterloesungen Statistik 1.R[m
+	[31mdeleted:    13_Statistik1/Musterloesungen Statistik 1.Rmd[m
+	[31mdeleted:    13_Statistik1/Musterloesungen_Statistik_1.pdf[m
+	[31mdeleted:    13_Statistik1/Uebungen.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.1.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.1.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2 Skript.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.tex[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3N.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3N.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S Skript.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.tex[m
+	[31mdeleted:    14_Statistik2/Uebung_2.1_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.2_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.3N_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.3S_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebungen.Rmd[m
+	[31mdeleted:    Unterrichtsunterlagen_HS19[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/notebooks/18496658-solution_stat2.1N/[m
+	[31m.rstudio/notebooks/19996CED-solution_stat2/[m
+	[31m.rstudio/notebooks/B84DCDE5-solution_stat2.1/[m
+	[31m.rstudio/notebooks/F4095748-solution_stat2.2/[m
+	[31m.rstudio/projects/165271d3/[m
+	[31m.rstudio/rversion-settings/74523165271d3-RVersion[m
+	[31m.rstudio/rversion-settings/74523165271d3-RVersionHome[m
+	[31m.rstudio/sources/per/[m
+	[31m.rstudio/sources/prop/21922FB[m
+	[31m.rstudio/sources/prop/2648B786[m
+	[31m.rstudio/sources/prop/2A77CD20[m
+	[31m.rstudio/sources/prop/2EF74CF2[m
+	[31m.rstudio/sources/prop/35DE7D3E[m
+	[31m.rstudio/sources/prop/4CE5B87E[m
+	[31m.rstudio/sources/prop/5A00A8F9[m
+	[31m.rstudio/sources/prop/6C9FEA8C[m
+	[31m.rstudio/sources/prop/6DE5A6AD[m
+	[31m.rstudio/sources/prop/7CD23578[m
+	[31m.rstudio/sources/prop/85D248CD[m
+	[31m.rstudio/sources/prop/8A6C16B2[m
+	[31m.rstudio/sources/prop/94923CEE[m
+	[31m.rstudio/sources/prop/9842B41D[m
+	[31m.rstudio/sources/prop/994DC85[m
+	[31m.rstudio/sources/prop/9B9A4745[m
+	[31m.rstudio/sources/prop/B049D7EB[m
+	[31m.rstudio/sources/prop/B504EE9A[m
+	[31m.rstudio/sources/prop/C3889C18[m
+	[31m.rstudio/sources/prop/CD571D82[m
+	[31m.rstudio/sources/prop/EF9D83AF[m
+	[31m.rstudio/sources/prop/F107227F[m
+	[31m.rstudio/sources/prop/F8DF5538[m
+	[31m.rstudio/sources/prop/F961EA34[m
+	[31m13_Statistik1/assigment_stat1.Rmd[m
+	[31m13_Statistik1/solution_stat1.Rmd[m
+	[31m14_Statistik2/assigment_stat2.Rmd[m
+	[31m14_Statistik2/solution_stat2.1.Rmd[m
+	[31m14_Statistik2/solution_stat2.2.Rmd[m
+	[31m14_Statistik2/solution_stat2.3n.Rmd[m
+	[31m14_Statistik2/solution_stat2.3s.Rmd[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .a[KA[Ka
+fatal: pathspec '.a' did not match any files
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .a[K[K-A

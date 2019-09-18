@@ -1,6 +1,0 @@
-bibentry(bibtype = "Manual",
-         title = "The Pairwise Multiple Comparison of Mean Ranks Package (PMCMR)",
-         author = person("Thorsten", "Pohlert"),
-         year = 2014,
-         note = "R package",
-         url = "https://CRAN.R-project.org/package=PMCMR")

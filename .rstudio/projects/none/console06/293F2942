@@ -1820,3 +1820,117 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Nothing specified, nothing added.
 Maybe you wanted to say 'git add .'?
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git v[Kci[Kommit -m ""d"i"d" "s"o"m"e" "c"h"a"n"g"e"s" "i"n" "s"t"a"t"2"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"s"o"m"e" "p"r"o"b"s" "w"i"t"h" "g"[1P"p"u"l"l"i"n"g" "r"e"p"o"s"i"t"r"[1P"p"r"[1P"[1P"o"r"y"[C
+[master beef2fa] some probs with pulling repository
+ 7 files changed, 749 insertions(+), 11 deletions(-)
+ rewrite .rstudio/projects/none/console06/INDEX001 (70%)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 2709, done.
+Delta compression using up to 16 threads.
+Compressing objects:   0% (1/2588)   Compressing objects:   1% (26/2588)   Compressing objects:   2% (52/2588)   Compressing objects:   3% (78/2588)   Compressing objects:   4% (104/2588)   Compressing objects:   5% (130/2588)   Compressing objects:   6% (156/2588)   Compressing objects:   7% (182/2588)   Compressing objects:   8% (208/2588)   Compressing objects:   9% (233/2588)   Compressing objects:  10% (259/2588)   Compressing objects:  11% (285/2588)   Compressing objects:  12% (311/2588)   Compressing objects:  13% (337/2588)   Compressing objects:  14% (363/2588)   Compressing objects:  15% (389/2588)   Compressing objects:  16% (415/2588)   Compressing objects:  17% (440/2588)   Compressing objects:  18% (466/2588)   Compressing objects:  19% (492/2588)   Compressing objects:  20% (518/2588)   Compressing objects:  21% (544/2588)   Compressing objects:  22% (570/2588)   Compressing objects:  23% (596/2588)   Compressing objects:  24% (622/2588)   Compressing objects:  25% (647/2588)   Compressing objects:  26% (673/2588)   Compressing objects:  27% (699/2588)   Compressing objects:  28% (725/2588)   Compressing objects:  29% (751/2588)   Compressing objects:  30% (777/2588)   Compressing objects:  31% (803/2588)   Compressing objects:  32% (829/2588)   Compressing objects:  33% (855/2588)   Compressing objects:  34% (880/2588)   Compressing objects:  35% (906/2588)   Compressing objects:  36% (932/2588)   Compressing objects:  37% (958/2588)   Compressing objects:  38% (984/2588)   Compressing objects:  39% (1010/2588)   Compressing objects:  40% (1036/2588)   Compressing objects:  41% (1062/2588)   Compressing objects:  42% (1087/2588)   Compressing objects:  43% (1113/2588)   Compressing objects:  44% (1139/2588)   Compressing objects:  45% (1165/2588)   Compressing objects:  46% (1191/2588)   Compressing objects:  47% (1217/2588)   Compressing objects:  48% (1243/2588)   Compressing objects:  49% (1269/2588)   Compressing objects:  50% (1294/2588)   Compressing objects:  51% (1320/2588)   Compressing objects:  52% (1346/2588)   Compressing objects:  53% (1372/2588)   Compressing objects:  54% (1398/2588)   Compressing objects:  55% (1424/2588)   Compressing objects:  56% (1450/2588)   Compressing objects:  57% (1476/2588)   Compressing objects:  58% (1502/2588)   Compressing objects:  59% (1527/2588)   Compressing objects:  60% (1553/2588)   Compressing objects:  61% (1579/2588)   Compressing objects:  62% (1605/2588)   Compressing objects:  63% (1631/2588)   Compressing objects:  64% (1657/2588)   Compressing objects:  65% (1683/2588)   Compressing objects:  66% (1709/2588)   Compressing objects:  67% (1734/2588)   Compressing objects:  68% (1760/2588)   Compressing objects:  69% (1786/2588)   Compressing objects:  70% (1812/2588)   Compressing objects:  71% (1838/2588)   Compressing objects:  72% (1864/2588)   Compressing objects:  73% (1890/2588)   Compressing objects:  74% (1916/2588)   Compressing objects:  75% (1941/2588)   Compressing objects:  76% (1967/2588)   Compressing objects:  77% (1993/2588)   Compressing objects:  78% (2019/2588)   Compressing objects:  79% (2045/2588)   Compressing objects:  80% (2071/2588)   Compressing objects:  81% (2097/2588)   Compressing objects:  82% (2123/2588)   Compressing objects:  83% (2149/2588)   Compressing objects:  84% (2174/2588)   Compressing objects:  85% (2200/2588)   Compressing objects:  86% (2226/2588)   Compressing objects:  87% (2252/2588)   Compressing objects:  88% (2278/2588)   Compressing objects:  89% (2304/2588)   Compressing objects:  90% (2330/2588)   Compressing objects:  91% (2356/2588)   Compressing objects:  92% (2381/2588)   Compressing objects:  93% (2407/2588)   Compressing objects:  94% (2433/2588)   Compressing objects:  95% (2459/2588)   Compressing objects:  96% (2485/2588)   Compressing objects:  97% (2511/2588)   Compressing objects:  98% (2537/2588)   Compressing objects:  99% (2563/2588)   Compressing objects:  99% (2586/2588)   Compressing objects: 100% (2588/2588)   Compressing objects: 100% (2588/2588), done.
+Writing objects:   0% (1/2709)   Writing objects:   1% (28/2709)   Writing objects:   2% (55/2709)   Writing objects:   3% (82/2709)   Writing objects:   4% (109/2709)   Writing objects:   5% (136/2709)   Writing objects:   6% (163/2709)   Writing objects:   7% (190/2709)   Writing objects:   8% (217/2709)   Writing objects:   9% (244/2709), 2.06 MiB | 3.39 MiB/s   Writing objects:  10% (271/2709), 2.06 MiB | 3.39 MiB/s   Writing objects:  10% (281/2709), 2.06 MiB | 3.39 MiB/s   Writing objects:  11% (298/2709), 2.06 MiB | 3.39 MiB/s   Writing objects:  12% (326/2709), 2.06 MiB | 3.39 MiB/s   Writing objects:  13% (353/2709), 8.90 MiB | 7.98 MiB/s   Writing objects:  14% (380/2709), 8.90 MiB | 7.98 MiB/s   Writing objects:  15% (407/2709), 8.90 MiB | 7.98 MiB/s   Writing objects:  16% (434/2709), 8.90 MiB | 7.98 MiB/s   Writing objects:  17% (461/2709), 8.90 MiB | 7.98 MiB/s   Writing objects:  18% (488/2709), 8.90 MiB | 7.98 MiB/s   Writing objects:  19% (515/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  20% (542/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  21% (569/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  22% (596/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  23% (624/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  24% (651/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  25% (678/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  26% (705/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  27% (732/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  28% (760/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  29% (786/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  30% (813/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  30% (829/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  31% (840/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  32% (867/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  33% (894/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  34% (922/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  35% (949/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  36% (976/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  37% (1003/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  38% (1030/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  39% (1057/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  40% (1084/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  41% (1111/2709), 11.63 MiB | 6.24 MiB/s   Writing objects:  42% (1138/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  43% (1165/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  44% (1192/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  45% (1220/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  46% (1247/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  47% (1274/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  48% (1301/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  49% (1328/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  50% (1355/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  51% (1382/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  52% (1409/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  53% (1437/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  54% (1463/2709), 21.52 MiB | 8.90 MiB/s   Writing objects:  55% (1490/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  55% (1503/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  56% (1518/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  57% (1545/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  58% (1572/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  59% (1599/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  60% (1626/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  61% (1653/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  62% (1680/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  63% (1707/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  64% (1734/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  65% (1761/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  66% (1788/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  67% (1816/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  68% (1843/2709), 26.63 MiB | 9.08 MiB/s   Writing objects:  69% (1870/2709), 33.10 MiB | 8.53 MiB/s   Writing objects:  70% (1897/2709), 33.10 MiB | 8.53 MiB/s   Writing objects:  70% (1917/2709), 33.10 MiB | 8.53 MiB/s   Writing objects:  71% (1924/2709), 33.10 MiB | 8.53 MiB/s   Writing objects:  71% (1943/2709), 39.19 MiB | 8.09 MiB/s   Writing objects:  72% (1951/2709), 39.19 MiB | 8.09 MiB/s   Writing objects:  73% (1978/2709), 39.19 MiB | 8.09 MiB/s   Writing objects:  74% (2005/2709), 39.19 MiB | 8.09 MiB/s   Writing objects:  75% (2032/2709), 39.19 MiB | 8.09 MiB/s   Writing objects:  76% (2059/2709), 39.19 MiB | 8.09 MiB/s   Writing objects:  77% (2086/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  78% (2114/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  79% (2141/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  80% (2168/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  81% (2195/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  82% (2222/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  83% (2249/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  84% (2276/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  85% (2303/2709), 45.15 MiB | 8.41 MiB/s   Writing objects:  86% (2330/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  87% (2357/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  88% (2384/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  89% (2412/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  90% (2439/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  90% (2458/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  91% (2466/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  92% (2493/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  93% (2520/2709), 48.77 MiB | 8.31 MiB/s   Writing objects:  93% (2529/2709), 57.46 MiB | 8.57 MiB/s   Writing objects:  94% (2547/2709), 57.46 MiB | 8.57 MiB/s   Writing objects:  95% (2574/2709), 57.46 MiB | 8.57 MiB/s   Writing objects:  96% (2601/2709), 57.46 MiB | 8.57 MiB/s   Writing objects:  97% (2628/2709), 57.46 MiB | 8.57 MiB/s   Writing objects:  98% (2655/2709), 57.46 MiB | 8.57 MiB/s   Writing objects:  99% (2682/2709), 57.46 MiB | 8.57 MiB/s   Writing objects: 100% (2709/2709), 57.46 MiB | 8.57 MiB/s   Writing objects: 100% (2709/2709), 62.39 MiB | 8.66 MiB/s, done.
+Total 2709 (delta 269), reused 1 (delta 0)
+remote: Resolving deltas:   0% (0/269)   [Kremote: Resolving deltas:   1% (3/269)   [Kremote: Resolving deltas:   2% (7/269)   [Kremote: Resolving deltas:   3% (10/269)   [Kremote: Resolving deltas:   4% (11/269)   [Kremote: Resolving deltas:   5% (14/269)   [Kremote: Resolving deltas:   6% (17/269)   [Kremote: Resolving deltas:   7% (19/269)   [Kremote: Resolving deltas:  15% (42/269)   [Kremote: Resolving deltas:  18% (51/269)   [Kremote: Resolving deltas:  27% (74/269)   [Kremote: Resolving deltas:  28% (77/269)   [Kremote: Resolving deltas:  29% (80/269)   [Kremote: Resolving deltas:  30% (81/269)   [Kremote: Resolving deltas:  33% (89/269)   [Kremote: Resolving deltas:  34% (93/269)   [Kremote: Resolving deltas:  36% (97/269)   [Kremote: Resolving deltas:  42% (114/269)   [Kremote: Resolving deltas:  43% (116/269)   [Kremote: Resolving deltas:  47% (129/269)   [Kremote: Resolving deltas:  49% (132/269)   [Kremote: Resolving deltas:  50% (135/269)   [Kremote: Resolving deltas:  51% (139/269)   [Kremote: Resolving deltas:  52% (141/269)   [Kremote: Resolving deltas:  54% (146/269)   [Kremote: Resolving deltas:  55% (148/269)   [Kremote: Resolving deltas:  56% (151/269)   [Kremote: Resolving deltas:  57% (154/269)   [Kremote: Resolving deltas:  58% (157/269)   [Kremote: Resolving deltas:  59% (159/269)   [Kremote: Resolving deltas:  60% (163/269)   [Kremote: Resolving deltas:  61% (165/269)   [Kremote: Resolving deltas:  62% (167/269)   [Kremote: Resolving deltas:  63% (172/269)   [Kremote: Resolving deltas:  64% (173/269)   [Kremote: Resolving deltas:  65% (175/269)   [Kremote: Resolving deltas:  66% (179/269)   [Kremote: Resolving deltas:  67% (182/269)   [Kremote: Resolving deltas:  68% (183/269)   [Kremote: Resolving deltas:  69% (186/269)   [Kremote: Resolving deltas:  70% (189/269)   [Kremote: Resolving deltas:  71% (191/269)   [Kremote: Resolving deltas:  72% (194/269)   [Kremote: Resolving deltas:  73% (197/269)   [Kremote: Resolving deltas:  75% (204/269)   [Kremote: Resolving deltas:  78% (210/269)   [Kremote: Resolving deltas:  80% (216/269)   [Kremote: Resolving deltas:  81% (218/269)   [Kremote: Resolving deltas:  82% (223/269)   [Kremote: Resolving deltas:  84% (226/269)   [Kremote: Resolving deltas:  85% (230/269)   [Kremote: Resolving deltas:  86% (232/269)   [Kremote: Resolving deltas:  87% (236/269)   [Kremote: Resolving deltas:  88% (237/269)   [Kremote: Resolving deltas:  89% (242/269)   [Kremote: Resolving deltas:  90% (243/269)   [Kremote: Resolving deltas:  91% (245/269)   [Kremote: Resolving deltas:  92% (249/269)   [Kremote: Resolving deltas:  94% (254/269)   [Kremote: Resolving deltas:  95% (256/269)   [Kremote: Resolving deltas:  96% (259/269)   [Kremote: Resolving deltas:  97% (262/269)   [Kremote: Resolving deltas:  98% (264/269)   [Kremote: Resolving deltas: 100% (269/269)   [Kremote: Resolving deltas: 100% (269/269), completed with 1 local object.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   7bf1562..beef2fa  master -> master
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git remote -v
+origin	https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git (fetch)
+origin	https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git (push)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs[K[Kus
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	[31mmodified:   .rstudio/monitored/lists/file_mru[m
+	[31mmodified:   .rstudio/notebooks/paths[m
+	[31mmodified:   .rstudio/projects/none/console06/293F2942[m
+	[31mmodified:   .rstudio/projects/none/console06/INDEX001[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/last-used[m
+	[31mmodified:   .rstudio/sources/prop/8FB911A4[m
+	[31mmodified:   .rstudio/sources/prop/INDEX[m
+	[31mmodified:   .rstudio/sources/s-59748bb4/E4B0C720[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.1.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.1.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2 Skript.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.tex[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3N.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3N.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S Skript.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.tex[m
+	[31mdeleted:    14_Statistik2/Uebung_2.1_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.2_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.3N_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.3S_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebungen.Rmd[m
+	[31mmodified:   Unterrichtsunterlagen_HS19[m (modified content, untracked content)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/notebooks/18496658-solution_stat2.1N/[m
+	[31m.rstudio/notebooks/19996CED-solution_stat2/[m
+	[31m.rstudio/notebooks/B84DCDE5-solution_stat2.1/[m
+	[31m.rstudio/notebooks/F4095748-solution_stat2.2/[m
+	[31m.rstudio/sources/prop/2648B786[m
+	[31m.rstudio/sources/prop/4CE5B87E[m
+	[31m.rstudio/sources/prop/6C9FEA8C[m
+	[31m.rstudio/sources/prop/6DE5A6AD[m
+	[31m.rstudio/sources/prop/85D248CD[m
+	[31m.rstudio/sources/prop/8A6C16B2[m
+	[31m.rstudio/sources/prop/94923CEE[m
+	[31m.rstudio/sources/prop/994DC85[m
+	[31m.rstudio/sources/prop/9B9A4745[m
+	[31m.rstudio/sources/prop/B049D7EB[m
+	[31m.rstudio/sources/prop/B504EE9A[m
+	[31m.rstudio/sources/prop/C3889C18[m
+	[31m.rstudio/sources/prop/CD571D82[m
+	[31m.rstudio/sources/prop/EF9D83AF[m
+	[31m.rstudio/sources/prop/F107227F[m
+	[31m.rstudio/sources/prop/F8DF5538[m
+	[31m.rstudio/sources/prop/F961EA34[m
+	[31m.rstudio/sources/s-59748bb4/136EC0C4[m
+	[31m.rstudio/sources/s-59748bb4/136EC0C4-contents[m
+	[31m.rstudio/sources/s-59748bb4/1FAD21DA-contents[m
+	[31m.rstudio/sources/s-59748bb4/49D092DD[m
+	[31m.rstudio/sources/s-59748bb4/49D092DD-contents[m
+	[31m.rstudio/sources/s-59748bb4/582C27E[m
+	[31m.rstudio/sources/s-59748bb4/582C27E-contents[m
+	[31m.rstudio/sources/s-59748bb4/65A1893A[m
+	[31m.rstudio/sources/s-59748bb4/65A1893A-contents[m
+	[31m.rstudio/sources/s-59748bb4/6D7F52CB-contents[m
+	[31m.rstudio/sources/s-59748bb4/759037D1[m
+	[31m.rstudio/sources/s-59748bb4/759037D1-contents[m
+	[31m.rstudio/sources/s-59748bb4/784DAB79-contents[m
+	[31m.rstudio/sources/s-59748bb4/7CDBB4E5[m
+	[31m.rstudio/sources/s-59748bb4/7CDBB4E5-contents[m
+	[31m.rstudio/sources/s-59748bb4/970A09F4[m
+	[31m.rstudio/sources/s-59748bb4/970A09F4-contents[m
+	[31m.rstudio/sources/s-59748bb4/ABF87A1B[m
+	[31m.rstudio/sources/s-59748bb4/ABF87A1B-contents[m
+	[31m.rstudio/sources/s-59748bb4/B142FBA1[m
+	[31m.rstudio/sources/s-59748bb4/B142FBA1-contents[m
+	[31m.rstudio/sources/s-59748bb4/C1316119-contents[m
+	[31m.rstudio/sources/s-59748bb4/C9CCBDE9[m
+	[31m.rstudio/sources/s-59748bb4/C9CCBDE9-contents[m
+	[31m14_Statistik2/assigment_stat2.Rmd[m
+	[31m14_Statistik2/solution_stat2.1.Rmd[m
+	[31m14_Statistik2/solution_stat2.2.Rmd[m
+	[31m14_Statistik2/solution_stat2.3s.Rmd[m
+	[31m14_Statistik2/solution_stat2n.Rmd[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git [K[K[K[K[K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rmeo[K[K[Kemote -v
+origin	https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git (fetch)
+origin	https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git (push)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ 

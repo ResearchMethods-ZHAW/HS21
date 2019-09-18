@@ -10479,3 +10479,5 @@
 1568719650191:group_by(df, gender, member) %>% summarise(tot = n)
 1568719652431:group_by(df, gender, member) %>% summarise(tot = n())
 1568719866795:719 +816 +345 +339
+1568791712968:getwd()
+1568791745974:getwd()
