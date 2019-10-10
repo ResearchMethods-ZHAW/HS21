@@ -1,0 +1,18 @@
+##Statistik 8: Übungen
+
+### Übung 8.1: Clusteranalyse (sozioökonomisch)
+
+<font color="blue">Datensatz in crime2.csv</font>
+
+<font color="blue">Raten von 7 Kriminalitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA</font>
+
+<font color="blue">**(a)  Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch.**</font>
+
+<font color="blue">**(b) Überlegt in beiden Fällen, wie viele Cluster sinnvoll sind** (k-means z. B.visuelle Betrachtung einer PCA, agglomerative Clusteranalyse z. B. SilhouettePlot).</font>
+
+<font color="blue">**(c)** Abschliessend entscheidet euch für eine Clusterung und **vergleicht die erhaltenen Cluster bezüglich der Kriminalitätsformen mittels ANOVA und interpretiert die Cluster entsprechend.**</font>
+
+
+**Hinweis:**
+
+Wegen der sehr ungleichen Varianzen muss auf jeden Fall eine Standardisierung stattfinden, damit Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können

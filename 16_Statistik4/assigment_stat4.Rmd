@@ -1,0 +1,71 @@
+## Statistik 4: Übungen
+
+-   Abzugeben sind am Ende
+    a. lauffähiges R-Skript
+    b. begründeter Lösungsweg (Kombination aus R-Code, R Output 
+       und dessen Interpretation)
+    c. ausformulierter Methoden- und Ergebnisteil (für eine wiss.Arbeit).
+    
+- Bitte **erklärt und begründet die einzelnen Schritte,** die ihr
+  unternehmt, um zu eurem Ergebnis zu kommen. Dazu erstellt bitte ein
+  Word-Dokument, in dem ihr Schritt für Schritt den verwendeten **R-Code**, die dazu      gehörigen **Ausgaben von R**, eure **Interpretation**
+  derselben und die sich ergebenden **Schlussfolgerungen** für das
+  weitere Vorgehen dokumentiert.
+  
+- Dieser **Ablauf** sollte insbesondere beinhalten:
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
+      und welches die unabängige(n) Variablen etc.
+    - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
+      Datentransformationen vorgenommen werden sollten
+    - Auswahl und Begründung eines statistischen Verfahrens
+    - Bestimmung des vollständigen/maximalen Models
+    - Selektion des/der besten Models/Modelle
+    - Durchführen der Modelldiagnostik für dieses
+    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
+    Ergebnisdarstellung benötigt werden
+    
+- Formuliert abschliessend einen **Methoden- und Ergebnisteil** (ggf. incl.
+  adäquaten Abbildungen/Tabellen) zu dieser Untersuchung in der Form
+  einer wissenschaftlichen Arbeit (je einen ausformulierten Absatz von
+  ca. 60-100 Worten bzw. 3-8 Sätzen). Alle wichtigen Informationen
+  sollten enthalten sein, unnötige Redundanz dagegen vermieden
+  werden.
+  
+
+### Übung 4.1: Nicht-lineare Regression (naturwissenschaftlich)
+
+<font color="blue">**Datensatz Curonian_Spit.xlsx**</font>
+
+<font color="blue">Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
+geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf
+Flächengrössen (Area) von 0.0001 bis 900 m².</font>
+
+<font color="blue">**Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function,**</font>$S=$c$A^{n}$<font color="blue">**), die logarithmische Funktion (logarithmic function,**</font>$S$=$b_{0}$$+$$b_{1}$$\log_{10}$A<font color="blue">**)und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**</font>
+
+
+### Übung 4.2N: Multiple logistische Regression (naturwissenschaftlich)
+
+<font color="blue">**Datensatz isolation.csv**</font>
+
+<font color="blue">Dieser enthält für 50 Inseln die Information, ob eine bestimmte Vogelart dort vorkommt (incidence = 1) oder nicht vorkommt (incidence = 0). Für jede der Inseln sind zudem zwei Umweltvariablen angegeben: area (Fläche in km²) und
+isolation (Entfernung vom Festland in km).</font>
+
+<font color="blue">**Ermittelt das minimal adäquate statistische Modell, das die Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**</font>
+
+
+### Übung 4.2S: Multiple logistische Regression (sozioökonomisch)
+
+<font color="blue">**Führt mit dem Datensatz novanimal.csv eine logistische Regression durch.Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?**</font>
+
+**Hinweise:**
+
+- Generiert eine neue Variable "Fleisch" (0 = kein Fleisch, 1 = Fleisch)
+- Entfernt fehlende Werte aus der Variable "Fleisch"
+- Lasst für die Analyse den Menü-Inhalt «Buffet» weg
+- Definiert das Modell und wendet es auf den Datensatz an
+- Berechnet eine Vorhersage des Modells mit predict()
+- Eruiert den Modellfit und die Modellgenauigkeit
+- Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus
+
+
+

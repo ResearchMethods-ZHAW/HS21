@@ -1,0 +1,66 @@
+```{r, include=FALSE, purl=F}
+
+knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
+```
+
+## Statistik 8 - Demoskript
+
+**(c) Juergen Dengler**
+
+
+```{r}
+## k-means clustering
+
+# das Moordatenset aus Wildi...
+library(dave)
+o.pca<-pca(sveg^0.25,cor=T)
+o.ca<-cca(sveg^0.5)
+
+model <- kmeans(sveg,4)
+model
+plot(o.ca$CA$u, asp=1,col=model[[1]])
+
+model <- kmeans(sveg,3)
+plot(o.pca$scores[,1],o.pca$scores[,2],type="n", asp=1, xlab="PC1", ylab="PC2")
+points(o.pca$scores[,1],o.pca$scores[,2],pch=18,col=model[[1]])
+plot(o.pca$scores[,1],o.pca$scores[,3],type="n", asp=1, xlab="PC1", ylab="PC3")
+points(o.pca$scores[,1],o.pca$scores[,3],pch=18,col=model[[1]])
+
+# k-means partitioning, 2 to 10 groups
+library(cclust)
+spe.KM.cascade <-
+  cascadeKM(
+    sveg,
+    inf.gr = 2,
+    sup.gr = 10,
+    iter = 100,
+    criterion = "ssi"
+  )
+summary(spe.KM.cascade)
+spe.KM.cascade$results
+spe.KM.cascade$partition
+
+# k-means visualisation
+plot(spe.KM.cascade, sortg = TRUE)
+#clustIndex()
+
+### Agglomarative Clusteranalyse mit Daten und Skripten aus Borcard et al. (2018)
+
+
+load("Doubs.Rdata")
+
+# Remove empty site 8
+spe <- spe[-8, ]
+env <- env[-8, ]
+spa <- spa[-8, ]
+latlong <- latlong[-8, ]
+
+# Compute and plot dendrograms ====================================
+
+## Hierarchical agglomerative clustering of the species abundance 
+## data
+
+# Compute matrix of chord distance among sites
+spe.norm <- decostand(spe, "normalize")
+spe.ch <- vegdist(spe.norm, "euc")
+```

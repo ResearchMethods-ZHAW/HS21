@@ -1,0 +1,2455 @@
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs
+git: 'statzs' is not a git command. See 'git --help'.
+
+The most similar command is
+	status
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs[K[Kus
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rhistory[m
+	[31mmodified:   .bash_history[m
+	[31mdeleted:    .rstudio/client-state/console.temporary[m
+	[31mdeleted:    .rstudio/client-state/environment-panel.temporary[m
+	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
+	[31mmodified:   .rstudio/history_database[m
+	[31mmodified:   .rstudio/monitored/lists/file_mru[m
+	[31mmodified:   .rstudio/monitored/lists/project_mru[m
+	[31mmodified:   .rstudio/notebooks/paths[m
+	[31mmodified:   .rstudio/pcs/files-pane.pper[m
+	[31mmodified:   .rstudio/pcs/source-pane.pper[m
+	[31mmodified:   .rstudio/pcs/windowlayoutstate.pper[m
+	[31mmodified:   .rstudio/projects/none/console06/293F2942[m
+	[31mmodified:   .rstudio/projects/none/console06/INDEX001[m
+	[31mmodified:   .rstudio/projects_settings/project-id-mappings[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/last-used[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/project[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/properites/save_prompt_required[m
+	[31mmodified:   .rstudio/sessions/active/session-59748bb4/session-persistent-state[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/console_actions[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment_vars[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/history[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/libpaths[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/options[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/rversion[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/package_paths[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/search_path_elements[m
+	[31mdeleted:    .rstudio/sessions/active/session-59748bb4/suspended-session-data/settings[m
+	[31mmodified:   .rstudio/sources/prop/8FB911A4[m
+	[31mmodified:   .rstudio/sources/prop/INDEX[m
+	[31mdeleted:    .rstudio/sources/s-59748bb4/E4B0C720[m
+	[31mdeleted:    .rstudio/sources/s-59748bb4/E4B0C720-contents[m
+	[31mdeleted:    .rstudio/sources/s-59748bb4/lock_file[m
+	[31mdeleted:    13_Statistik1/Loesungen.Rmd[m
+	[31mdeleted:    13_Statistik1/Musterloesung_Statistik_1_Skript.R[m
+	[31mdeleted:    13_Statistik1/Musterloesungen Statistik 1.R[m
+	[31mdeleted:    13_Statistik1/Musterloesungen Statistik 1.Rmd[m
+	[31mdeleted:    13_Statistik1/Musterloesungen_Statistik_1.pdf[m
+	[31mdeleted:    13_Statistik1/Uebungen.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.1.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.1.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2 Skript.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.2.tex[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3N.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3N.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S Skript.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.R[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.Rmd[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.pdf[m
+	[31mdeleted:    14_Statistik2/Musterloesung_Statistik_2.3S.tex[m
+	[31mdeleted:    14_Statistik2/Uebung_2.1_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.2_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.3N_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebung_2.3S_Loesung.Rmd[m
+	[31mdeleted:    14_Statistik2/Uebungen.Rmd[m
+	[31mdeleted:    Unterrichtsunterlagen_HS19[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/notebooks/18496658-solution_stat2.1N/[m
+	[31m.rstudio/notebooks/19996CED-solution_stat2/[m
+	[31m.rstudio/notebooks/B84DCDE5-solution_stat2.1/[m
+	[31m.rstudio/notebooks/F4095748-solution_stat2.2/[m
+	[31m.rstudio/projects/165271d3/[m
+	[31m.rstudio/rversion-settings/74523165271d3-RVersion[m
+	[31m.rstudio/rversion-settings/74523165271d3-RVersionHome[m
+	[31m.rstudio/sources/per/[m
+	[31m.rstudio/sources/prop/21922FB[m
+	[31m.rstudio/sources/prop/2648B786[m
+	[31m.rstudio/sources/prop/2A77CD20[m
+	[31m.rstudio/sources/prop/2EF74CF2[m
+	[31m.rstudio/sources/prop/35DE7D3E[m
+	[31m.rstudio/sources/prop/4CE5B87E[m
+	[31m.rstudio/sources/prop/5A00A8F9[m
+	[31m.rstudio/sources/prop/6C9FEA8C[m
+	[31m.rstudio/sources/prop/6DE5A6AD[m
+	[31m.rstudio/sources/prop/7CD23578[m
+	[31m.rstudio/sources/prop/85D248CD[m
+	[31m.rstudio/sources/prop/8A6C16B2[m
+	[31m.rstudio/sources/prop/94923CEE[m
+	[31m.rstudio/sources/prop/9842B41D[m
+	[31m.rstudio/sources/prop/994DC85[m
+	[31m.rstudio/sources/prop/9B9A4745[m
+	[31m.rstudio/sources/prop/B049D7EB[m
+	[31m.rstudio/sources/prop/B504EE9A[m
+	[31m.rstudio/sources/prop/C3889C18[m
+	[31m.rstudio/sources/prop/CD571D82[m
+	[31m.rstudio/sources/prop/EF9D83AF[m
+	[31m.rstudio/sources/prop/F107227F[m
+	[31m.rstudio/sources/prop/F8DF5538[m
+	[31m.rstudio/sources/prop/F961EA34[m
+	[31m13_Statistik1/assigment_stat1.Rmd[m
+	[31m13_Statistik1/solution_stat1.Rmd[m
+	[31m14_Statistik2/assigment_stat2.Rmd[m
+	[31m14_Statistik2/solution_stat2.1.Rmd[m
+	[31m14_Statistik2/solution_stat2.2.Rmd[m
+	[31m14_Statistik2/solution_stat2.3n.Rmd[m
+	[31m14_Statistik2/solution_stat2.3s.Rmd[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .a[KA[Ka
+fatal: pathspec '.a' did not match any files
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .a[K[K-A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m "some changes in stat2[K1 and 2[Kd[Kstat2"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[master 53ae0ee] some changes in stat1 and stat2
+ 2335 files changed, 2022 insertions(+), 263376 deletions(-)
+ rename .rstudio/sessions/active/session-59748bb4/suspended-session-data/history => .Rhistory (98%)
+ delete mode 100644 .rstudio/client-state/console.temporary
+ delete mode 100644 .rstudio/client-state/environment-panel.temporary
+ rewrite .rstudio/monitored/lists/file_mru (100%)
+ create mode 100644 .rstudio/notebooks/18496658-solution_stat2.1N/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/19996CED-solution_stat2/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/B84DCDE5-solution_stat2.1/1/s/chunks.json
+ create mode 100644 .rstudio/notebooks/F4095748-solution_stat2.2/1/B90983E59748bb4/chunks.json
+ create mode 100644 .rstudio/notebooks/F4095748-solution_stat2.2/1/s/chunks.json
+ create mode 100644 .rstudio/projects/165271d3/console06/5B5B353F
+ create mode 100644 .rstudio/projects/165271d3/console06/5B5B353F.env
+ create mode 100644 .rstudio/projects/165271d3/console06/INDEX001
+ rewrite .rstudio/projects/none/console06/INDEX001 (70%)
+ rename .rstudio/{sessions/active/session-59748bb4/suspended-session-data/rversion => rversion-settings/74523165271d3-RVersion} (100%)
+ create mode 100644 .rstudio/rversion-settings/74523165271d3-RVersionHome
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/console_actions
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/environment_vars
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/libpaths
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/options
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/package_paths
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/search_path/search_path_elements
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/suspended-session-data/settings
+ create mode 100644 .rstudio/sources/per/t/136EC0C4
+ create mode 100644 .rstudio/sources/per/t/136EC0C4-contents
+ create mode 100644 .rstudio/sources/per/t/49D092DD
+ rename 14_Statistik2/Uebung_2.3N_Loesung.Rmd => .rstudio/sources/per/t/49D092DD-contents (100%)
+ create mode 100644 .rstudio/sources/per/t/582C27E
+ rename 14_Statistik2/Uebung_2.2_Loesung.Rmd => .rstudio/sources/per/t/582C27E-contents (100%)
+ create mode 100644 .rstudio/sources/per/t/65A1893A
+ rename 14_Statistik2/Musterloesung_Statistik_2.1.Rmd => .rstudio/sources/per/t/65A1893A-contents (99%)
+ create mode 100644 .rstudio/sources/per/t/703614B2
+ create mode 100644 .rstudio/sources/per/t/703614B2-contents
+ create mode 100644 .rstudio/sources/per/t/70E57268
+ rename .rstudio/sources/{s-59748bb4/E4B0C720-contents => per/t/70E57268-contents} (100%)
+ create mode 100644 .rstudio/sources/per/t/7371C5AD
+ rename 13_Statistik1/Musterloesungen Statistik 1.Rmd => .rstudio/sources/per/t/7371C5AD-contents (100%)
+ create mode 100644 .rstudio/sources/per/t/759037D1
+ create mode 100644 .rstudio/sources/per/t/759037D1-contents
+ create mode 100644 .rstudio/sources/per/t/7CDBB4E5
+ rename 14_Statistik2/Uebung_2.1_Loesung.Rmd => .rstudio/sources/per/t/7CDBB4E5-contents (100%)
+ create mode 100644 .rstudio/sources/per/t/970A09F4
+ create mode 100644 .rstudio/sources/per/t/970A09F4-contents
+ create mode 100644 .rstudio/sources/per/t/ABF87A1B
+ rename 14_Statistik2/Uebungen.Rmd => .rstudio/sources/per/t/ABF87A1B-contents (93%)
+ create mode 100644 .rstudio/sources/per/t/B142FBA1
+ create mode 100644 .rstudio/sources/per/t/B142FBA1-contents
+ create mode 100644 .rstudio/sources/per/t/C9CCBDE9
+ rename 14_Statistik2/Musterloesung_Statistik_2.3N.Rmd => .rstudio/sources/per/t/C9CCBDE9-contents (100%)
+ create mode 100644 .rstudio/sources/per/t/D0DA42D9
+ create mode 100644 .rstudio/sources/per/t/D0DA42D9-contents
+ rename .rstudio/sources/{s-59748bb4 => per/t}/E4B0C720 (94%)
+ rename 13_Statistik1/Uebungen.Rmd => .rstudio/sources/per/t/E4B0C720-contents (50%)
+ create mode 100644 .rstudio/sources/per/t/FEF4505C
+ rename 13_Statistik1/Loesungen.Rmd => .rstudio/sources/per/t/FEF4505C-contents (100%)
+ create mode 100644 .rstudio/sources/prop/21922FB
+ create mode 100644 .rstudio/sources/prop/2648B786
+ create mode 100644 .rstudio/sources/prop/2A77CD20
+ create mode 100644 .rstudio/sources/prop/2EF74CF2
+ create mode 100644 .rstudio/sources/prop/35DE7D3E
+ create mode 100644 .rstudio/sources/prop/4CE5B87E
+ create mode 100644 .rstudio/sources/prop/5A00A8F9
+ create mode 100644 .rstudio/sources/prop/6C9FEA8C
+ create mode 100644 .rstudio/sources/prop/6DE5A6AD
+ create mode 100644 .rstudio/sources/prop/7CD23578
+ create mode 100644 .rstudio/sources/prop/85D248CD
+ create mode 100644 .rstudio/sources/prop/8A6C16B2
+ create mode 100644 .rstudio/sources/prop/94923CEE
+ create mode 100644 .rstudio/sources/prop/9842B41D
+ create mode 100644 .rstudio/sources/prop/994DC85
+ create mode 100644 .rstudio/sources/prop/9B9A4745
+ create mode 100644 .rstudio/sources/prop/B049D7EB
+ create mode 100644 .rstudio/sources/prop/B504EE9A
+ create mode 100644 .rstudio/sources/prop/C3889C18
+ create mode 100644 .rstudio/sources/prop/CD571D82
+ create mode 100644 .rstudio/sources/prop/EF9D83AF
+ create mode 100644 .rstudio/sources/prop/F107227F
+ create mode 100644 .rstudio/sources/prop/F8DF5538
+ create mode 100644 .rstudio/sources/prop/F961EA34
+ delete mode 100644 .rstudio/sources/s-59748bb4/lock_file
+ delete mode 100644 13_Statistik1/Musterloesung_Statistik_1_Skript.R
+ delete mode 100644 13_Statistik1/Musterloesungen Statistik 1.R
+ delete mode 100644 13_Statistik1/Musterloesungen_Statistik_1.pdf
+ create mode 100644 13_Statistik1/assigment_stat1.Rmd
+ create mode 100644 13_Statistik1/solution_stat1.Rmd
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.1.pdf
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.2 Skript.R
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.2.Rmd
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.2.pdf
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.2.tex
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.3N.pdf
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S Skript.R
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.R
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.pdf
+ delete mode 100644 14_Statistik2/Musterloesung_Statistik_2.3S.tex
+ delete mode 100644 14_Statistik2/Uebung_2.3S_Loesung.Rmd
+ create mode 100644 14_Statistik2/assigment_stat2.Rmd
+ create mode 100644 14_Statistik2/solution_stat2.1.Rmd
+ create mode 100644 14_Statistik2/solution_stat2.2.Rmd
+ create mode 100644 14_Statistik2/solution_stat2.3n.Rmd
+ rename 14_Statistik2/{Musterloesung_Statistik_2.3S.Rmd => solution_stat2.3s.Rmd} (71%)
+ delete mode 100644 Library/R/3.4/library/BWStest/CITATION
+ delete mode 100644 Library/R/3.4/library/BWStest/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/BWStest/INDEX
+ delete mode 100644 Library/R/3.4/library/BWStest/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/BWStest/R/BWStest
+ delete mode 100644 Library/R/3.4/library/BWStest/R/BWStest.rdb
+ delete mode 100644 Library/R/3.4/library/BWStest/R/BWStest.rdx
+ delete mode 100644 Library/R/3.4/library/BWStest/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/BWStest/help/BWStest.rdb
+ delete mode 100644 Library/R/3.4/library/BWStest/help/BWStest.rdx
+ delete mode 100644 Library/R/3.4/library/BWStest/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/BWStest/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/BWStest/html/R.css
+ delete mode 100755 Library/R/3.4/library/BWStest/libs/BWStest.so
+ delete mode 100644 Library/R/3.4/library/DescTools/CITATION
+ delete mode 100644 Library/R/3.4/library/DescTools/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/DescTools/INDEX
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/demo.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/DescTools/NEWS
+ delete mode 100644 Library/R/3.4/library/DescTools/R/DescTools
+ delete mode 100644 Library/R/3.4/library/DescTools/R/DescTools.rdb
+ delete mode 100644 Library/R/3.4/library/DescTools/R/DescTools.rdx
+ delete mode 100644 Library/R/3.4/library/DescTools/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/DescTools/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/DescTools/demo/describe.r
+ delete mode 100644 Library/R/3.4/library/DescTools/demo/plots.R
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/Combinatorics.Rnw
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/Combinatorics.pdf
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/DescToolsCompanion.Rnw
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/DescToolsCompanion.pdf
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/TablesInR.Rnw
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/TablesInR.pdf
+ delete mode 100644 Library/R/3.4/library/DescTools/doc/index.html
+ delete mode 100644 Library/R/3.4/library/DescTools/extdata/R.ico
+ delete mode 100644 Library/R/3.4/library/DescTools/extdata/SortListAsc.gif
+ delete mode 100644 Library/R/3.4/library/DescTools/extdata/SortListDesc.gif
+ delete mode 100644 Library/R/3.4/library/DescTools/extdata/SortListNo.gif
+ delete mode 100644 Library/R/3.4/library/DescTools/extdata/key.ico
+ delete mode 100644 Library/R/3.4/library/DescTools/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/DescTools/help/DescTools.rdb
+ delete mode 100644 Library/R/3.4/library/DescTools/help/DescTools.rdx
+ delete mode 100644 Library/R/3.4/library/DescTools/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/help/figures/ModelDlg.png
+ delete mode 100644 Library/R/3.4/library/DescTools/help/figures/faces.png
+ delete mode 100644 Library/R/3.4/library/DescTools/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/DescTools/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/DescTools/html/R.css
+ delete mode 100755 Library/R/3.4/library/DescTools/libs/DescTools.so
+ delete mode 100644 Library/R/3.4/library/FSA/CITATION
+ delete mode 100644 Library/R/3.4/library/FSA/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/FSA/INDEX
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/FSA/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/FSA/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/FSA/NEWS.md
+ delete mode 100644 Library/R/3.4/library/FSA/R/FSA
+ delete mode 100644 Library/R/3.4/library/FSA/R/FSA.rdb
+ delete mode 100644 Library/R/3.4/library/FSA/R/FSA.rdx
+ delete mode 100644 Library/R/3.4/library/FSA/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/FSA/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/FSA/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/FSA/extdata/PSDWR_testdata.csv
+ delete mode 100644 Library/R/3.4/library/FSA/extdata/bootCase1.RData
+ delete mode 100644 Library/R/3.4/library/FSA/extdata/nlsBoot1.RData
+ delete mode 100644 Library/R/3.4/library/FSA/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/FSA/help/FSA.rdb
+ delete mode 100644 Library/R/3.4/library/FSA/help/FSA.rdx
+ delete mode 100644 Library/R/3.4/library/FSA/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/FSA/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/FSA/helpers/installTester.R
+ delete mode 100644 Library/R/3.4/library/FSA/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/FSA/html/R.css
+ delete mode 100644 Library/R/3.4/library/FSAdata/CITATION
+ delete mode 100644 Library/R/3.4/library/FSAdata/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/FSAdata/INDEX
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/FSAdata/R/FSAdata
+ delete mode 100644 Library/R/3.4/library/FSAdata/R/FSAdata.rdb
+ delete mode 100644 Library/R/3.4/library/FSAdata/R/FSAdata.rdx
+ delete mode 100644 Library/R/3.4/library/FSAdata/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/FSAdata/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/FSAdata/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/FSAdata/help/FSAdata.rdb
+ delete mode 100644 Library/R/3.4/library/FSAdata/help/FSAdata.rdx
+ delete mode 100644 Library/R/3.4/library/FSAdata/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/FSAdata/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/FSAdata/html/R.css
+ delete mode 100644 Library/R/3.4/library/PMCMR/CITATION
+ delete mode 100644 Library/R/3.4/library/PMCMR/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/PMCMR/INDEX
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/PMCMR/NEWS.Rd
+ delete mode 100644 Library/R/3.4/library/PMCMR/R/PMCMR
+ delete mode 100644 Library/R/3.4/library/PMCMR/R/PMCMR.rdb
+ delete mode 100644 Library/R/3.4/library/PMCMR/R/PMCMR.rdx
+ delete mode 100644 Library/R/3.4/library/PMCMR/doc/PMCMR.R
+ delete mode 100644 Library/R/3.4/library/PMCMR/doc/PMCMR.Rnw
+ delete mode 100644 Library/R/3.4/library/PMCMR/doc/PMCMR.pdf
+ delete mode 100644 Library/R/3.4/library/PMCMR/doc/index.html
+ delete mode 100644 Library/R/3.4/library/PMCMR/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/PMCMR/help/PMCMR.rdb
+ delete mode 100644 Library/R/3.4/library/PMCMR/help/PMCMR.rdx
+ delete mode 100644 Library/R/3.4/library/PMCMR/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/PMCMR/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/PMCMR/html/R.css
+ delete mode 100644 Library/R/3.4/library/R2admb/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/R2admb/INDEX
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/NAMESPACE
+ delete mode 100755 Library/R/3.4/library/R2admb/NEWS.Rd
+ delete mode 100644 Library/R/3.4/library/R2admb/R/R2admb
+ delete mode 100644 Library/R/3.4/library/R2admb/R/R2admb.rdb
+ delete mode 100644 Library/R/3.4/library/R2admb/R/R2admb.rdx
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/README
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/ReedfrogSizepred0.tpl
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/catage.cor
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/catage.par
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/catage.rep
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/catage.std
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/catage.tpl
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/deltavar_prof.tpl
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/fileswitch.R
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/longvars.R
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/longvars.tpl
+ delete mode 100755 Library/R/3.4/library/R2admb/admbtests/racecond.RData
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/reedfrog.R
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/simple.R
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/toy1.R
+ delete mode 100644 Library/R/3.4/library/R2admb/admbtests/toy1.tpl
+ delete mode 100644 Library/R/3.4/library/R2admb/doc/R2admb.R
+ delete mode 100644 Library/R/3.4/library/R2admb/doc/R2admb.Rnw
+ delete mode 100644 Library/R/3.4/library/R2admb/doc/R2admb.pdf
+ delete mode 100644 Library/R/3.4/library/R2admb/doc/Reedfrog_runs.RData
+ delete mode 100644 Library/R/3.4/library/R2admb/doc/index.html
+ delete mode 100644 Library/R/3.4/library/R2admb/doc/toy1_runs.RData
+ delete mode 100644 Library/R/3.4/library/R2admb/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/R2admb/help/R2admb.rdb
+ delete mode 100644 Library/R/3.4/library/R2admb/help/R2admb.rdx
+ delete mode 100644 Library/R/3.4/library/R2admb/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/R2admb/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/R2admb/html/R.css
+ delete mode 100644 Library/R/3.4/library/R2admb/tplfiles/ReedfrogSizepred0.tpl
+ delete mode 100755 Library/R/3.4/library/R2admb/tplfiles/glmmadmb.tpl
+ delete mode 100644 Library/R/3.4/library/R2admb/tplfiles/testversion.tpl
+ delete mode 100644 Library/R/3.4/library/R2admb/tplfiles/toy1.tpl
+ delete mode 100644 Library/R/3.4/library/Rcapture/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/Rcapture/INDEX
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/Rcapture/NEWS
+ delete mode 100644 Library/R/3.4/library/Rcapture/R/Rcapture
+ delete mode 100644 Library/R/3.4/library/Rcapture/R/Rcapture.rdb
+ delete mode 100644 Library/R/3.4/library/Rcapture/R/Rcapture.rdx
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/BBS2001.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/HIV.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/bunting.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/cbird.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/duck.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/hare.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/ill.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/lesbian.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/mvole.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/data/rbvole.rda
+ delete mode 100644 Library/R/3.4/library/Rcapture/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/Rcapture/help/Rcapture.rdb
+ delete mode 100644 Library/R/3.4/library/Rcapture/help/Rcapture.rdx
+ delete mode 100644 Library/R/3.4/library/Rcapture/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/Rcapture/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/Rcapture/html/R.css
+ delete mode 100644 Library/R/3.4/library/SuppDists/DESCRIPTION
+ delete mode 100755 Library/R/3.4/library/SuppDists/INDEX
+ delete mode 100644 Library/R/3.4/library/SuppDists/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/SuppDists/R/SuppDists
+ delete mode 100644 Library/R/3.4/library/SuppDists/R/SuppDists.rdb
+ delete mode 100644 Library/R/3.4/library/SuppDists/R/SuppDists.rdx
+ delete mode 100644 Library/R/3.4/library/SuppDists/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/SuppDists/help/SuppDists.rdb
+ delete mode 100644 Library/R/3.4/library/SuppDists/help/SuppDists.rdx
+ delete mode 100644 Library/R/3.4/library/SuppDists/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/SuppDists/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/SuppDists/html/R.css
+ delete mode 100755 Library/R/3.4/library/SuppDists/libs/SuppDists.so
+ delete mode 100644 Library/R/3.4/library/TMB/CITATION
+ delete mode 100644 Library/R/3.4/library/TMB/COPYRIGHTS
+ delete mode 100644 Library/R/3.4/library/TMB/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/TMB/INDEX
+ delete mode 100644 Library/R/3.4/library/TMB/Matrix-version
+ delete mode 100644 Library/R/3.4/library/TMB/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/TMB/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/TMB/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/TMB/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/TMB/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/TMB/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/TMB/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/TMB/NEWS
+ delete mode 100644 Library/R/3.4/library/TMB/R/TMB
+ delete mode 100644 Library/R/3.4/library/TMB/R/TMB.rdb
+ delete mode 100644 Library/R/3.4/library/TMB/R/TMB.rdx
+ delete mode 100644 Library/R/3.4/library/TMB/examples/ar1xar1.R
+ delete mode 100644 Library/R/3.4/library/TMB/examples/ar1xar1.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/examples/linreg_parallel.R
+ delete mode 100644 Library/R/3.4/library/TMB/examples/linreg_parallel.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/examples/randomregression.R
+ delete mode 100644 Library/R/3.4/library/TMB/examples/randomregression.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/examples/simple.R
+ delete mode 100644 Library/R/3.4/library/TMB/examples/simple.cpp
+ delete mode 100755 Library/R/3.4/library/TMB/examples/simple.so
+ delete mode 100644 Library/R/3.4/library/TMB/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/TMB/help/TMB.rdb
+ delete mode 100644 Library/R/3.4/library/TMB/help/TMB.rdx
+ delete mode 100644 Library/R/3.4/library/TMB/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/TMB/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/TMB/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/TMB/html/R.css
+ delete mode 100644 Library/R/3.4/library/TMB/include/Rstream.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/TMB.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/Vectorize.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/atomic_convolve.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/atomic_macro.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/atomic_math.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/checkpoint_macro.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/config.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/convenience.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/convert.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/CMakeLists.txt
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/COPYING
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/CheckNumericType.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/CheckSimpleVector.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/CppAD.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/CppAD_vector.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ErrorHandler.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/LuFactor.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/LuInvert.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/LuSolve.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/NearEqual.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/OdeErrControl.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/OdeGear.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/OdeGearControl.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/Poly.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/PowInt.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/RombergMul.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/RombergOne.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/Rosen34.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/Runge45.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/SpeedTest.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/TrackNewDel.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/base_require.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/check_numeric_type.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/check_simple_vector.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/configure.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/configure.hpp.in
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/cppad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/elapsed_seconds.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/error_handler.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/example/base_adolc.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/example/cppad_eigen.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/example/eigen_plugin.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/example/matrix_mul.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/index_sort.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ipopt/solve.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ipopt/solve_callback.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ipopt/solve_result.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/abort_recording.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/abs.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/abs_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/acos_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_assign.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_binary.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_ctor.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_fun.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_io.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_tape.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ad_valued.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/add.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/add_eq.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/add_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/arithmetic.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/asin_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/atan2.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/atan_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/atomic_base.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/base_complex.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/base_cond_exp.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/base_double.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/base_float.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/base_std_math.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/bender_quad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/bool_fun.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/bool_valued.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/capacity_order.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/checkpoint.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/color_general.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/color_symmetric.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/comp_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/compare.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/compute_assign.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cond_exp.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cond_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/config.h.in
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/convert.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cos_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cosh_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cppad_assert.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cppad_colpack.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cppad_colpack.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/cskip_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/csum_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/declare_ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/define.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/dependent.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/discrete.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/discrete_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/div.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/div_eq.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/div_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/drivers.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/epsilon.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/equal_op_seq.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/erf.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/erf_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/exp_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/for_jac_sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/for_one.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/for_sparse_jac.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/for_two.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/forward.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/forward0sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/forward1sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/forward2sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/fun_check.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/fun_construct.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/fun_eval.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/hash_code.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/hessian.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/identical.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/independent.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/integer.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/jacobian.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/kasper.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/limits.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/load_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/log_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/lu_ratio.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/math_other.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/mul.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/mul_eq.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/mul_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/near_equal_ext.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/num_skip.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/old_atomic.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/omp_max_thread.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/op_code.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/opt_val_hes.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/optimize.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/ordered.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/par_var.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/parallel_ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/parameter_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/player.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/pod_vector.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/pow.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/pow_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/print_for.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/print_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/prototype_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/recorder.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/rev_hes_sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/rev_jac_sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/rev_one.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/rev_sparse_hes.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/rev_sparse_jac.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/rev_two.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/reverse.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/reverse_sweep.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sign.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sign_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sin_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sinh_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_binary_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_hessian.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_jacobian.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_list.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_pack.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_pattern.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_set.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sparse_unary_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sqrt_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/std_math_ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/std_set.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/store_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sub.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sub_eq.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/sub_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/tan_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/tanh_op.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/tape_link.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/test_vector.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/testvector.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/unary_minus.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/unary_plus.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/undef.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/user_ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/value.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/var2par.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/local/vec_ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/lu_factor.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/lu_invert.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/lu_solve.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/memory_leak.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/nan.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/near_equal.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ode_err_control.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ode_gear.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/ode_gear_control.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/omp_alloc.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/poly.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/pow_int.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/romberg_mul.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/romberg_one.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/rosen_34.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/runge_45.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/det_33.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/det_by_lu.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/det_by_minor.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/det_grad_33.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/det_of_minor.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/mat_sum_sq.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/ode_evaluate.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/sparse_hes_fun.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/sparse_jac_fun.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed/uniform_01.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/speed_test.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/thread_alloc.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/time_test.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/track_new_del.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/cppad/vector.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/distributions_R.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/dnorm.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/dynamic_data.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/expm.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/lgamma.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/precompile.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/start_parallel.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/atomic.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/bessel.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/bessel.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/bessel_i.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/bessel_j.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/bessel_k.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/bessel_y.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/bessel/undefs.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/d1mach.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/dpq.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/i1mach.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/nmath.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/pbeta.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/pbeta.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/toms708.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/beta/undefs.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/compois/compois.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/chebyshev.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/gamma.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/gamma.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/gamma_cody.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/gammalims.cpp.not_used
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/lgamma.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/lgammacor.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/stirlerr.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/gamma/undefs.h
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/integrate/integrate.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/integrate/integrate.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/mask.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/robust/distributions.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/tiny_ad/tiny_ad.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/tiny_ad/tiny_valarray.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/tiny_ad/tiny_vec.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/tweedie/tweedie.cpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tiny_ad/tweedie/tweedie.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmb_core.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/R_inla.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/array.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/autodiff.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/density.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/kronecker.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/matexp.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/order.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/romberg.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/splines.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/spmat.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/tmbutils.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/tmbutils_extra.hpp
+ delete mode 100644 Library/R/3.4/library/TMB/include/tmbutils/vector.hpp
+ delete mode 100755 Library/R/3.4/library/TMB/libs/TMB.so
+ delete mode 100644 Library/R/3.4/library/TMB/template.cpp
+ delete mode 100644 Library/R/3.4/library/asbio/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/asbio/INDEX
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/asbio/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/asbio/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/asbio/R/asbio
+ delete mode 100644 Library/R/3.4/library/asbio/R/asbio.rdb
+ delete mode 100644 Library/R/3.4/library/asbio/R/asbio.rdx
+ delete mode 100644 Library/R/3.4/library/asbio/data/BCI.count.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/BCI.plant.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/C.isotope.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/Fbird.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/Glucose2.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/K.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/PCB.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/PM2.5.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/Rabino_CO2.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/Rabino_del13C.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/SM.temp.moist.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/Semiconductor.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/SexDeterm.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/agrostis.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/aids.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/alfalfa.split.plot.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/anolis.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/anscombe.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/ant.dew.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/asthma.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/baby.walk.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bats.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bear.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/beetle.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bighorn.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bighornAZ.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bombus.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bone.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/bromus.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/caribou.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/case0902.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/case1202.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/chronic.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/cliff.env.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/cliff.sp.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/co2.us.cities.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/concrete.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/corn.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/crab.weight.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/crabs.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/cuckoo.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/dO2.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/death.penalty.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/deer.296.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/deer.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/depression.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/drugs.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/e.cancer.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/elk.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/enzyme.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/exercise.repeated.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/facebook.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/fire.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/fly.sex.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/frog.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/fruit.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/garments.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/goat.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/goats.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/grass.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/heart.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/ipomopsis.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/juniper.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/larrea.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/life.exp.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/magnets.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/montane.island.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/moose.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/mosquito.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/mule.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/myeloma.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/pika.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/plantTraits.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/polyamine.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/portneuf.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/potash.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/potato.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/prostate.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/quail.sel.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/rat.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/refinery.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/rmvm.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/savage.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/sc.twin.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/sedum.ts.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/shad.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/simberloff.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/snore.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/so2.us.cities.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/starkey.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/suess.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/trag.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/veneer.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/vs.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/wash.rich.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/webs.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/wheat.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/whickham.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/wildebeest.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/wine.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/world.co2.rda
+ delete mode 100644 Library/R/3.4/library/asbio/data/world.pop.rda
+ delete mode 100644 Library/R/3.4/library/asbio/doc/index.html
+ delete mode 100644 Library/R/3.4/library/asbio/doc/ranef.cov.R
+ delete mode 100644 Library/R/3.4/library/asbio/doc/ranef.cov.pdf
+ delete mode 100644 Library/R/3.4/library/asbio/doc/ranef.cov.rnw
+ delete mode 100644 Library/R/3.4/library/asbio/doc/simpson.R
+ delete mode 100644 Library/R/3.4/library/asbio/doc/simpson.pdf
+ delete mode 100644 Library/R/3.4/library/asbio/doc/simpson.rnw
+ delete mode 100644 Library/R/3.4/library/asbio/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/asbio/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/asbio/help/asbio.rdb
+ delete mode 100644 Library/R/3.4/library/asbio/help/asbio.rdx
+ delete mode 100644 Library/R/3.4/library/asbio/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/asbio/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/asbio/html/R.css
+ delete mode 100644 Library/R/3.4/library/asbio/pictures/goat1.pgm
+ delete mode 100644 Library/R/3.4/library/asbio/pictures/goat3.pgm
+ delete mode 100644 Library/R/3.4/library/bootstrap/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/bootstrap/INDEX
+ delete mode 100644 Library/R/3.4/library/bootstrap/LICENSE
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/bootstrap/NEWS
+ delete mode 100644 Library/R/3.4/library/bootstrap/R/bootstrap
+ delete mode 100644 Library/R/3.4/library/bootstrap/R/bootstrap.rdb
+ delete mode 100644 Library/R/3.4/library/bootstrap/R/bootstrap.rdx
+ delete mode 100644 Library/R/3.4/library/bootstrap/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/bootstrap/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/bootstrap/data/datalist
+ delete mode 100644 Library/R/3.4/library/bootstrap/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/bootstrap/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/help/bootstrap.rdb
+ delete mode 100644 Library/R/3.4/library/bootstrap/help/bootstrap.rdx
+ delete mode 100644 Library/R/3.4/library/bootstrap/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/bootstrap/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/bootstrap/html/R.css
+ delete mode 100755 Library/R/3.4/library/bootstrap/libs/bootstrap.so
+ delete mode 100644 Library/R/3.4/library/cowplot/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/cowplot/INDEX
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/cowplot/NEWS.md
+ delete mode 100644 Library/R/3.4/library/cowplot/R/cowplot
+ delete mode 100644 Library/R/3.4/library/cowplot/R/cowplot.rdb
+ delete mode 100644 Library/R/3.4/library/cowplot/R/cowplot.rdx
+ delete mode 100644 Library/R/3.4/library/cowplot/doc/index.html
+ delete mode 100644 Library/R/3.4/library/cowplot/doc/introduction.R
+ delete mode 100644 Library/R/3.4/library/cowplot/doc/introduction.Rmd
+ delete mode 100644 Library/R/3.4/library/cowplot/doc/introduction.html
+ delete mode 100644 Library/R/3.4/library/cowplot/extdata/cow.jpg
+ delete mode 100644 Library/R/3.4/library/cowplot/extdata/logo.png
+ delete mode 100644 Library/R/3.4/library/cowplot/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/cowplot/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/help/cowplot.rdb
+ delete mode 100644 Library/R/3.4/library/cowplot/help/cowplot.rdx
+ delete mode 100644 Library/R/3.4/library/cowplot/help/figures/logo.png
+ delete mode 100644 Library/R/3.4/library/cowplot/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/cowplot/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/cowplot/html/R.css
+ delete mode 100755 Library/R/3.4/library/deSolve/CITATION
+ delete mode 100644 Library/R/3.4/library/deSolve/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/deSolve/INDEX
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/demo.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/deSolve/NEWS
+ delete mode 100644 Library/R/3.4/library/deSolve/R/deSolve
+ delete mode 100644 Library/R/3.4/library/deSolve/R/deSolve.rdb
+ delete mode 100644 Library/R/3.4/library/deSolve/R/deSolve.rdx
+ delete mode 100644 Library/R/3.4/library/deSolve/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/deSolve/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/deSolve/demo/CCL4model.R
+ delete mode 100644 Library/R/3.4/library/deSolve/demo/odedim.R
+ delete mode 100644 Library/R/3.4/library/deSolve/doc/compiledCode.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/compiledCode.Rnw
+ delete mode 100644 Library/R/3.4/library/deSolve/doc/compiledCode.pdf
+ delete mode 100644 Library/R/3.4/library/deSolve/doc/deSolve.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/deSolve.Rnw
+ delete mode 100644 Library/R/3.4/library/deSolve/doc/deSolve.pdf
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dedeUtils.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dede_lv.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dede_lv.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dede_lv2.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dede_lv2.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dede_lv2F.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dede_lvF.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dedesimple.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dedesimple.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload-dede/dedesimpleF.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/Aquaphy.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/AquaphyEvent.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/AquaphyForcing.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/AquaphyForcing.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/CCL4model.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ChemicalDAE.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/Forcing_lv.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/Forcing_lv.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/SCOC.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/daspkdll.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/daspkfor.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ex_Aquaphy.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ex_Aquaphy.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ex_CCL4model.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ex_CCL4model.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ex_SCOC.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/ex_SCOC.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/intakes.RData
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/lsodardll.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/lsodarfor.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/odeband.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/odeband.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/odec.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/odedll.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/odefor.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/odefor2.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/radaudae.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/radaudaedll.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/satres.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/satres.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/satresC.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/zvodedll.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/dynload/zvodedll.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Arenstorf.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Daphnia_event.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Nand.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Pollution.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Schelde_DSA.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Schelde_FKA.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Schelde_FNA.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Schelde_OSA.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/Schelde_pars.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/ballode.R
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/examples/examples_paper.R
+ delete mode 100644 Library/R/3.4/library/deSolve/doc/index.html
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/mymod.c
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/mymod.f
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/source/ddaspkcomments.txt.gz
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/source/opkdmain.f.gz
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/source/opkdmaincomments.txt.gz
+ delete mode 100755 Library/R/3.4/library/deSolve/doc/source/vodecomments.txt.gz
+ delete mode 100644 Library/R/3.4/library/deSolve/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/deSolve/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/help/deSolve.rdb
+ delete mode 100644 Library/R/3.4/library/deSolve/help/deSolve.rdx
+ delete mode 100644 Library/R/3.4/library/deSolve/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/deSolve/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/deSolve/html/R.css
+ delete mode 100755 Library/R/3.4/library/deSolve/libs/deSolve.so
+ delete mode 100644 Library/R/3.4/library/dunn.test/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/dunn.test/INDEX
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/dunn.test/R/dunn.test
+ delete mode 100644 Library/R/3.4/library/dunn.test/R/dunn.test.rdb
+ delete mode 100644 Library/R/3.4/library/dunn.test/R/dunn.test.rdx
+ delete mode 100644 Library/R/3.4/library/dunn.test/data/homecare.rda
+ delete mode 100644 Library/R/3.4/library/dunn.test/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/dunn.test/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/help/dunn.test.rdb
+ delete mode 100644 Library/R/3.4/library/dunn.test/help/dunn.test.rdx
+ delete mode 100644 Library/R/3.4/library/dunn.test/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/dunn.test/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/dunn.test/html/R.css
+ delete mode 100644 Library/R/3.4/library/epitools/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/epitools/INDEX
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/epitools/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/epitools/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/epitools/R/epitools
+ delete mode 100644 Library/R/3.4/library/epitools/R/epitools.rdb
+ delete mode 100644 Library/R/3.4/library/epitools/R/epitools.rdx
+ delete mode 100644 Library/R/3.4/library/epitools/data/oswego.rda
+ delete mode 100644 Library/R/3.4/library/epitools/data/wcgs.rda
+ delete mode 100644 Library/R/3.4/library/epitools/data/wnv.rda
+ delete mode 100644 Library/R/3.4/library/epitools/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/epitools/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/epitools/help/epitools.rdb
+ delete mode 100644 Library/R/3.4/library/epitools/help/epitools.rdx
+ delete mode 100644 Library/R/3.4/library/epitools/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/epitools/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/epitools/html/R.css
+ delete mode 100644 Library/R/3.4/library/expm/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/expm/INDEX
+ delete mode 100644 Library/R/3.4/library/expm/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/demo.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/expm/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/expm/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/expm/R/expm
+ delete mode 100644 Library/R/3.4/library/expm/R/expm.rdb
+ delete mode 100644 Library/R/3.4/library/expm/R/expm.rdx
+ delete mode 100644 Library/R/3.4/library/expm/data/matStig.R
+ delete mode 100644 Library/R/3.4/library/expm/demo/balanceTst.R
+ delete mode 100644 Library/R/3.4/library/expm/demo/exact-fn.R
+ delete mode 100644 Library/R/3.4/library/expm/demo/expm.R
+ delete mode 100644 Library/R/3.4/library/expm/doc/expm.R
+ delete mode 100644 Library/R/3.4/library/expm/doc/expm.Rnw
+ delete mode 100644 Library/R/3.4/library/expm/doc/expm.pdf
+ delete mode 100644 Library/R/3.4/library/expm/doc/index.html
+ delete mode 100644 Library/R/3.4/library/expm/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/expm/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/expm/help/expm.rdb
+ delete mode 100644 Library/R/3.4/library/expm/help/expm.rdx
+ delete mode 100644 Library/R/3.4/library/expm/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/expm/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/expm/html/R.css
+ delete mode 100755 Library/R/3.4/library/expm/libs/expm.so
+ delete mode 100644 Library/R/3.4/library/expm/po/en@quot/LC_MESSAGES/R-expm.mo
+ delete mode 100644 Library/R/3.4/library/expm/po/en@quot/LC_MESSAGES/expm.mo
+ delete mode 100644 Library/R/3.4/library/expm/po/fr/LC_MESSAGES/expm.mo
+ delete mode 100644 Library/R/3.4/library/expm/po/fr/LC_MESSAGES/fr.mo
+ delete mode 100644 Library/R/3.4/library/expm/test-tools.R
+ delete mode 100644 Library/R/3.4/library/fansi/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/fansi/INDEX
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/fansi/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/fansi/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/fansi/NEWS.md
+ delete mode 100644 Library/R/3.4/library/fansi/R/fansi
+ delete mode 100644 Library/R/3.4/library/fansi/R/fansi.rdb
+ delete mode 100644 Library/R/3.4/library/fansi/R/fansi.rdx
+ delete mode 100644 Library/R/3.4/library/fansi/doc/index.html
+ delete mode 100644 Library/R/3.4/library/fansi/doc/sgr-in-rmd.R
+ delete mode 100755 Library/R/3.4/library/fansi/doc/sgr-in-rmd.Rmd
+ delete mode 100644 Library/R/3.4/library/fansi/doc/sgr-in-rmd.html
+ delete mode 100644 Library/R/3.4/library/fansi/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/fansi/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/fansi/help/fansi.rdb
+ delete mode 100644 Library/R/3.4/library/fansi/help/fansi.rdx
+ delete mode 100644 Library/R/3.4/library/fansi/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/fansi/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/fansi/html/R.css
+ delete mode 100755 Library/R/3.4/library/fansi/libs/fansi.so
+ delete mode 100644 Library/R/3.4/library/feather/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/feather/INDEX
+ delete mode 100644 Library/R/3.4/library/feather/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/feather/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/feather/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/feather/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/feather/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/feather/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/feather/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/feather/NEWS.md
+ delete mode 100644 Library/R/3.4/library/feather/R/feather
+ delete mode 100644 Library/R/3.4/library/feather/R/feather.rdb
+ delete mode 100644 Library/R/3.4/library/feather/R/feather.rdx
+ delete mode 100644 Library/R/3.4/library/feather/feather/iris.feather
+ delete mode 100644 Library/R/3.4/library/feather/feather/mtcars.feather
+ delete mode 100644 Library/R/3.4/library/feather/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/feather/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/feather/help/feather.rdb
+ delete mode 100644 Library/R/3.4/library/feather/help/feather.rdx
+ delete mode 100644 Library/R/3.4/library/feather/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/feather/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/feather/html/R.css
+ delete mode 100755 Library/R/3.4/library/feather/libs/feather.so
+ delete mode 100644 Library/R/3.4/library/fishmethods/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/fishmethods/INDEX
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/fishmethods/R/fishmethods
+ delete mode 100644 Library/R/3.4/library/fishmethods/R/fishmethods.rdb
+ delete mode 100644 Library/R/3.4/library/fishmethods/R/fishmethods.rdx
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Gerking.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Hightower.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Hoenig.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Jensen.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Jiang.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Kimura.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/P.donacina.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/Shepherd.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/alkdata.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/bonito.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/buffalo.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/catch.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/codcluslen.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/codstrcluslen.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/counts.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/cowcod.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/darter.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/goosefish.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/haddock.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/kappenman.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/lingcod.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/maki.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/menhaden.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/nshrimp.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/pinfish.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/rig.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/rockbass.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/sblen.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/sbotos.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/sole.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/striper.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/tanaka.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/trout.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/wolffish.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/data/yellowtail.rda
+ delete mode 100644 Library/R/3.4/library/fishmethods/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/fishmethods/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/help/fishmethods.rdb
+ delete mode 100644 Library/R/3.4/library/fishmethods/help/fishmethods.rdx
+ delete mode 100644 Library/R/3.4/library/fishmethods/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/fishmethods/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/fishmethods/html/R.css
+ delete mode 100644 Library/R/3.4/library/gdata/ChangeLog
+ delete mode 100644 Library/R/3.4/library/gdata/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/gdata/INDEX
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/gdata/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/gdata/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/gdata/NEWS
+ delete mode 100644 Library/R/3.4/library/gdata/R/gdata
+ delete mode 100644 Library/R/3.4/library/gdata/R/gdata.rdb
+ delete mode 100644 Library/R/3.4/library/gdata/R/gdata.rdx
+ delete mode 100755 Library/R/3.4/library/gdata/bin/xls2csv
+ delete mode 100644 Library/R/3.4/library/gdata/bin/xls2csv.bat
+ delete mode 100644 Library/R/3.4/library/gdata/data/MedUnits.rda
+ delete mode 100644 Library/R/3.4/library/gdata/doc/gregmisc.pdf
+ delete mode 100644 Library/R/3.4/library/gdata/doc/index.html
+ delete mode 100644 Library/R/3.4/library/gdata/doc/mapLevels.R
+ delete mode 100644 Library/R/3.4/library/gdata/doc/mapLevels.Rnw
+ delete mode 100644 Library/R/3.4/library/gdata/doc/mapLevels.pdf
+ delete mode 100644 Library/R/3.4/library/gdata/doc/unknown.R
+ delete mode 100644 Library/R/3.4/library/gdata/doc/unknown.Rnw
+ delete mode 100644 Library/R/3.4/library/gdata/doc/unknown.pdf
+ delete mode 100644 Library/R/3.4/library/gdata/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/gdata/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/gdata/help/gdata.rdb
+ delete mode 100644 Library/R/3.4/library/gdata/help/gdata.rdx
+ delete mode 100644 Library/R/3.4/library/gdata/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/gdata/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/gdata/html/R.css
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/README-Archive-Zip
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/Archive.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/BufferedFileHandle.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/DirectoryMember.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/FAQ.pod
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/FileMember.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/Member.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/MemberRead.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/MockFileHandle.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/NewFileMember.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/StringMember.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/Tree.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Archive/Zip/ZipFileMember.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Crypt/RC4.pm
+ delete mode 100755 Library/R/3.4/library/gdata/perl/Digest/Perl/MD5.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Graphics/ColorUtils.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/AtomicFile.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/InnerFile.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/Lines.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/Scalar.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/Scalar.pm.html
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/ScalarArray.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/Stringy.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/Wrap.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/IO/WrapTie.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/OLE/README-OLE-Storage_Lite
+ delete mode 100644 Library/R/3.4/library/gdata/perl/OLE/Storage_Lite.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Cell.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Dump.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/FmtDefault.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/FmtJapan.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/FmtJapan2.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/FmtUnicode.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Font.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Format.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/SaveParser.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/SaveParser/Workbook.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/SaveParser/Worksheet.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Utility.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Workbook.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseExcel/Worksheet.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/ParseXLSX.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/Spreadsheet/README-ParseExcel
+ delete mode 100755 Library/R/3.4/library/gdata/perl/Spreadsheet/README-XLS
+ delete mode 100644 Library/R/3.4/library/gdata/perl/VERSIONS
+ delete mode 100644 Library/R/3.4/library/gdata/perl/XML/Twig.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/XML/Twig/XPath.pm
+ delete mode 100644 Library/R/3.4/library/gdata/perl/install_modules.pl
+ delete mode 100755 Library/R/3.4/library/gdata/perl/module_tools.pl
+ delete mode 100644 Library/R/3.4/library/gdata/perl/sheetCount.pl
+ delete mode 100644 Library/R/3.4/library/gdata/perl/sheetNames.pl
+ delete mode 100644 Library/R/3.4/library/gdata/perl/supportedFormats.pl
+ delete mode 100755 Library/R/3.4/library/gdata/perl/xls2csv.pl
+ delete mode 100755 Library/R/3.4/library/gdata/perl/xls2tab.pl
+ delete mode 100755 Library/R/3.4/library/gdata/perl/xls2tsv.pl
+ delete mode 100644 Library/R/3.4/library/gdata/xls/ExampleExcelFile.xls
+ delete mode 100644 Library/R/3.4/library/gdata/xls/ExampleExcelFile.xlsx
+ delete mode 100644 Library/R/3.4/library/gdata/xls/ExampleExcelFile_1900.xls
+ delete mode 100644 Library/R/3.4/library/gdata/xls/ExampleExcelFile_1900.xlsx
+ delete mode 100644 Library/R/3.4/library/gdata/xls/ExampleExcelFile_1904.xls
+ delete mode 100644 Library/R/3.4/library/gdata/xls/ExampleExcelFile_1904.xlsx
+ delete mode 100644 Library/R/3.4/library/gdata/xls/iris.xls
+ delete mode 100644 Library/R/3.4/library/gdata/xls/latin-1.xls
+ delete mode 100644 Library/R/3.4/library/gdata/xls/latin-1.xlsx
+ delete mode 100644 Library/R/3.4/library/gdata/xls/wide.xls
+ delete mode 100644 Library/R/3.4/library/gdata/xls/wide.xlsx
+ delete mode 100644 Library/R/3.4/library/ggpubr/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/ggpubr/INDEX
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/ggpubr/NEWS.md
+ delete mode 100644 Library/R/3.4/library/ggpubr/R/ggpubr
+ delete mode 100644 Library/R/3.4/library/ggpubr/R/ggpubr.rdb
+ delete mode 100644 Library/R/3.4/library/ggpubr/R/ggpubr.rdx
+ delete mode 100644 Library/R/3.4/library/ggpubr/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/ggpubr/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/ggpubr/demo-data/housetasks.txt
+ delete mode 100644 Library/R/3.4/library/ggpubr/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/ggpubr/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/help/ggpubr.rdb
+ delete mode 100644 Library/R/3.4/library/ggpubr/help/ggpubr.rdx
+ delete mode 100644 Library/R/3.4/library/ggpubr/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/ggpubr/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/ggpubr/html/R.css
+ delete mode 100644 Library/R/3.4/library/ggpubr/images/background-image.png
+ delete mode 100644 Library/R/3.4/library/ggrepel/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/ggrepel/INDEX
+ delete mode 100644 Library/R/3.4/library/ggrepel/LICENSE
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/ggrepel/NEWS.md
+ delete mode 100644 Library/R/3.4/library/ggrepel/R/ggrepel
+ delete mode 100644 Library/R/3.4/library/ggrepel/R/ggrepel.rdb
+ delete mode 100644 Library/R/3.4/library/ggrepel/R/ggrepel.rdx
+ delete mode 100644 Library/R/3.4/library/ggrepel/doc/ggrepel.R
+ delete mode 100644 Library/R/3.4/library/ggrepel/doc/ggrepel.Rmd
+ delete mode 100644 Library/R/3.4/library/ggrepel/doc/ggrepel.html
+ delete mode 100644 Library/R/3.4/library/ggrepel/doc/index.html
+ delete mode 100644 Library/R/3.4/library/ggrepel/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/ggrepel/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/help/ggrepel.rdb
+ delete mode 100644 Library/R/3.4/library/ggrepel/help/ggrepel.rdx
+ delete mode 100644 Library/R/3.4/library/ggrepel/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/ggrepel/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/ggrepel/html/R.css
+ delete mode 100755 Library/R/3.4/library/ggrepel/libs/ggrepel.so
+ delete mode 100644 Library/R/3.4/library/ggsci/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/ggsci/INDEX
+ delete mode 100644 Library/R/3.4/library/ggsci/LICENSE
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/ggsci/NEWS.md
+ delete mode 100644 Library/R/3.4/library/ggsci/R/ggsci
+ delete mode 100644 Library/R/3.4/library/ggsci/R/ggsci.rdb
+ delete mode 100644 Library/R/3.4/library/ggsci/R/ggsci.rdx
+ delete mode 100644 Library/R/3.4/library/ggsci/R/sysdata.rdb
+ delete mode 100644 Library/R/3.4/library/ggsci/R/sysdata.rdx
+ delete mode 100644 Library/R/3.4/library/ggsci/doc/ggsci.R
+ delete mode 100644 Library/R/3.4/library/ggsci/doc/ggsci.Rmd
+ delete mode 100644 Library/R/3.4/library/ggsci/doc/ggsci.html
+ delete mode 100644 Library/R/3.4/library/ggsci/doc/index.html
+ delete mode 100644 Library/R/3.4/library/ggsci/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/ggsci/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/help/ggsci.rdb
+ delete mode 100644 Library/R/3.4/library/ggsci/help/ggsci.rdx
+ delete mode 100644 Library/R/3.4/library/ggsci/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/ggsci/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/ggsci/html/R.css
+ delete mode 100644 Library/R/3.4/library/ggsignif/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/ggsignif/INDEX
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/ggsignif/NEWS.md
+ delete mode 100644 Library/R/3.4/library/ggsignif/R/ggsignif
+ delete mode 100644 Library/R/3.4/library/ggsignif/R/ggsignif.rdb
+ delete mode 100644 Library/R/3.4/library/ggsignif/R/ggsignif.rdx
+ delete mode 100644 Library/R/3.4/library/ggsignif/doc/index.html
+ delete mode 100644 Library/R/3.4/library/ggsignif/doc/intro.R
+ delete mode 100644 Library/R/3.4/library/ggsignif/doc/intro.Rmd
+ delete mode 100644 Library/R/3.4/library/ggsignif/doc/intro.html
+ delete mode 100644 Library/R/3.4/library/ggsignif/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/ggsignif/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/help/ggsignif.rdb
+ delete mode 100644 Library/R/3.4/library/ggsignif/help/ggsignif.rdx
+ delete mode 100644 Library/R/3.4/library/ggsignif/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/ggsignif/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/ggsignif/html/R.css
+ delete mode 100644 Library/R/3.4/library/gplots/ChangeLog
+ delete mode 100644 Library/R/3.4/library/gplots/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/gplots/INDEX
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/gplots/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/gplots/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/gplots/NEWS
+ delete mode 100644 Library/R/3.4/library/gplots/R/gplots
+ delete mode 100644 Library/R/3.4/library/gplots/R/gplots.rdb
+ delete mode 100644 Library/R/3.4/library/gplots/R/gplots.rdx
+ delete mode 100644 Library/R/3.4/library/gplots/TODO
+ delete mode 100644 Library/R/3.4/library/gplots/data/rtPCR.rda
+ delete mode 100644 Library/R/3.4/library/gplots/doc/BalloonPlot.pdf
+ delete mode 100644 Library/R/3.4/library/gplots/doc/index.html
+ delete mode 100644 Library/R/3.4/library/gplots/doc/venn.R
+ delete mode 100644 Library/R/3.4/library/gplots/doc/venn.Rnw
+ delete mode 100644 Library/R/3.4/library/gplots/doc/venn.pdf
+ delete mode 100644 Library/R/3.4/library/gplots/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/gplots/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/gplots/help/gplots.rdb
+ delete mode 100644 Library/R/3.4/library/gplots/help/gplots.rdx
+ delete mode 100644 Library/R/3.4/library/gplots/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/gplots/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/gplots/html/R.css
+ delete mode 100644 Library/R/3.4/library/gtools/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/gtools/INDEX
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/gtools/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/gtools/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/gtools/NEWS
+ delete mode 100644 Library/R/3.4/library/gtools/R/gtools
+ delete mode 100644 Library/R/3.4/library/gtools/R/gtools.rdb
+ delete mode 100644 Library/R/3.4/library/gtools/R/gtools.rdx
+ delete mode 100644 Library/R/3.4/library/gtools/data/ELISA.rda
+ delete mode 100644 Library/R/3.4/library/gtools/data/badDend.rda
+ delete mode 100644 Library/R/3.4/library/gtools/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/gtools/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/gtools/help/gtools.rdb
+ delete mode 100644 Library/R/3.4/library/gtools/help/gtools.rdx
+ delete mode 100644 Library/R/3.4/library/gtools/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/gtools/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/gtools/html/R.css
+ delete mode 100755 Library/R/3.4/library/gtools/libs/gtools.so
+ delete mode 100644 Library/R/3.4/library/highlight/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/highlight/INDEX
+ delete mode 100644 Library/R/3.4/library/highlight/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/highlight/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/highlight/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/highlight/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/highlight/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/highlight/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/highlight/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/highlight/NEWS
+ delete mode 100644 Library/R/3.4/library/highlight/R/highlight
+ delete mode 100644 Library/R/3.4/library/highlight/R/highlight.rdb
+ delete mode 100644 Library/R/3.4/library/highlight/R/highlight.rdx
+ delete mode 100644 Library/R/3.4/library/highlight/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/highlight/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/highlight/help/highlight.rdb
+ delete mode 100644 Library/R/3.4/library/highlight/help/highlight.rdx
+ delete mode 100644 Library/R/3.4/library/highlight/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/filetypes.conf
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/4gl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/a4c.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/abnf.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/abp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ada.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/agda.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ahk.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ampl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/amtrix.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/applescript.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/arc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/arm.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/as.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/asm.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/asp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/aspect.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ats.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/au3.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/avenue.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/awk.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/bat.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/bb.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/bbcode.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/bib.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/bms.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/bnf.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/boo.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/c.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/cb.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/cfc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/chl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/clipper.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/clojure.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/clp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/cob.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/cs.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/css.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/d.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/diff.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/dot.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/dylan.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/e.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ebnf.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/erl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/euphoria.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/exp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/f77.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/f90.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/flx.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/frink.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/fs.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/go.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/haskell.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/hcl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/html.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/httpd.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/hx.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/icl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/icn.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/idl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/idlang.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ili.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/inc_luatex.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ini.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/inp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/io.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/iss.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/j.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/java.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/js.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/jsp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lbn.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ldif.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lgt.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lhs.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lisp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lotos.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ls.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lsl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/lua.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ly.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/m.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/make.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mel.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mercury.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mib.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/miranda.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ml.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mo.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mod2.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mod3.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mpl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ms.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/mssql.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/n.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nas.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nbc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nice.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nrx.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nsi.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nut.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/nxc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/oberon.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/objc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/octave.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/oorexx.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/os.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/oz.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pas.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/php.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pike.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pl1.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pov.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pro.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/progress.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ps.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ps1.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/psl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pure.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/py.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/pyx.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/q.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/qmake.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/qu.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/r.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/rb.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/rebol.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/rexx.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/rnc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/s.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sas.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sc.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/scala.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/scilab.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sh.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sma.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/smalltalk.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sml.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sno.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/spec.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/spn.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sql.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/sybase.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/tcl.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/tcsh.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/test_re.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/tex.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/ttcn3.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/txt.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/vala.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/vb.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/verilog.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/vhd.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/xml.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/xpp.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/y.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/yaiff.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/langDefs/znn.lang
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/acid.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/bipolar.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/blacknblue.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/bright.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/contrast.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/darkblue.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/darkness.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/desert.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/easter.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/emacs.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/golden.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/greenlcd.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/ide-anjuta.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/ide-codewarrior.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/ide-eclipse.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/ide-kdev.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/ide-msvs2008.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/ide-xcode.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/jedit.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/kwrite.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/lucretia.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/matlab.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/moe.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/navy.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/nedit.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/neon.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/night.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/orion.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/pablo.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/peachpuff.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/print.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/rand01.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/seashell.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/the.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/typical.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/vampire.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/vim-dark.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/vim.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/whitengrey.style
+ delete mode 100644 Library/R/3.4/library/highlight/highlight/themes/zellner.style
+ delete mode 100644 Library/R/3.4/library/highlight/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/highlight/html/R.css
+ delete mode 100755 Library/R/3.4/library/highlight/libs/highlight.so
+ delete mode 100644 Library/R/3.4/library/highlight/stylesheet/default.css
+ delete mode 100644 Library/R/3.4/library/kSamples/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/kSamples/INDEX
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/kSamples/NEWS.Rd
+ delete mode 100644 Library/R/3.4/library/kSamples/R/kSamples
+ delete mode 100644 Library/R/3.4/library/kSamples/R/kSamples.rdb
+ delete mode 100644 Library/R/3.4/library/kSamples/R/kSamples.rdx
+ delete mode 100644 Library/R/3.4/library/kSamples/data/ShorelineFireEMS.rda
+ delete mode 100644 Library/R/3.4/library/kSamples/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/kSamples/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/help/kSamples.rdb
+ delete mode 100644 Library/R/3.4/library/kSamples/help/kSamples.rdx
+ delete mode 100644 Library/R/3.4/library/kSamples/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/kSamples/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/kSamples/html/R.css
+ delete mode 100755 Library/R/3.4/library/kSamples/libs/kSamples.so
+ delete mode 100644 Library/R/3.4/library/lme4/CITATION
+ delete mode 100644 Library/R/3.4/library/lme4/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/lme4/INDEX
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/lme4/Meta/package.rds
+ delete mode 100755 Library/R/3.4/library/lme4/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/lme4/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/lme4/NEWS.Rd
+ delete mode 100644 Library/R/3.4/library/lme4/R/lme4
+ delete mode 100644 Library/R/3.4/library/lme4/R/lme4.rdb
+ delete mode 100644 Library/R/3.4/library/lme4/R/lme4.rdx
+ delete mode 100644 Library/R/3.4/library/lme4/R/sysdata.rdb
+ delete mode 100644 Library/R/3.4/library/lme4/R/sysdata.rdx
+ delete mode 100644 Library/R/3.4/library/lme4/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/lme4/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/lme4/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/lme4/doc/Doxyfile
+ delete mode 100644 Library/R/3.4/library/lme4/doc/PLSvGLS.pdf
+ delete mode 100644 Library/R/3.4/library/lme4/doc/Theory.pdf
+ delete mode 100644 Library/R/3.4/library/lme4/doc/index.html
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4-extras.pdf
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/Doxyfile
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/PLSvGLS.R
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/PLSvGLS.Rnw
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/Theory.R
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/Theory.Rnw
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmer.R
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmer.Rnw
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmerperf.R
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmerperf.Rmd
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lme4/inst/doc/profiling.txt
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lmer.pdf
+ delete mode 100644 Library/R/3.4/library/lme4/doc/lmerperf.html
+ delete mode 100644 Library/R/3.4/library/lme4/doc/profiling.txt
+ delete mode 100644 Library/R/3.4/library/lme4/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/lme4/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/lme4/help/lme4.rdb
+ delete mode 100644 Library/R/3.4/library/lme4/help/lme4.rdx
+ delete mode 100644 Library/R/3.4/library/lme4/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/lme4/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/lme4/html/R.css
+ delete mode 100755 Library/R/3.4/library/lme4/libs/lme4.so
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/Johnson.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/Rplots.pdf
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/SO_sep25.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/Thailand.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/badhess.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/badprof.rds
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/boo01L.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/colonizer_rand.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/confint_ex.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/crabs_randdata00.Rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/crabs_randdata2.Rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/culcita_dat.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/dat20101314.csv
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/dataEx_Glmer.txt
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/fakesim.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/gopherdat2.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/gotway_hessianfly.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/hotpower.csv
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/koller-data.R
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/lme-tst-fits.R
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/lme-tst-fits.Rout
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/lme-tst-fits.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/lme-tst-funs.R
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/mastitis.rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/polytom2.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/polytom3.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/polytomous_test.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/polytomous_vcov_ex.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/prLogistic.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/radinger_dat.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/rankMatrix.rds
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/respiratory.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/sbTobb.Rdata
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/survdat_reduced.Rda
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/tmp.txt
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/tprfm1.RData
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/trees513.R
+ delete mode 100644 Library/R/3.4/library/lme4/testdata/trees513.RData
+ delete mode 100755 Library/R/3.4/library/lme4/vignettedata/calcium.txt
+ delete mode 100755 Library/R/3.4/library/lme4/vignettedata/mcmcsampdat.RData
+ delete mode 100644 Library/R/3.4/library/lmtest/CITATION
+ delete mode 100644 Library/R/3.4/library/lmtest/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/lmtest/INDEX
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/lmtest/NEWS
+ delete mode 100644 Library/R/3.4/library/lmtest/R/lmtest
+ delete mode 100644 Library/R/3.4/library/lmtest/R/lmtest.rdb
+ delete mode 100644 Library/R/3.4/library/lmtest/R/lmtest.rdx
+ delete mode 100644 Library/R/3.4/library/lmtest/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/lmtest/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/lmtest/doc/index.html
+ delete mode 100644 Library/R/3.4/library/lmtest/doc/lmtest-intro.R
+ delete mode 100644 Library/R/3.4/library/lmtest/doc/lmtest-intro.Rnw
+ delete mode 100644 Library/R/3.4/library/lmtest/doc/lmtest-intro.pdf
+ delete mode 100644 Library/R/3.4/library/lmtest/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/lmtest/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/help/lmtest.rdb
+ delete mode 100644 Library/R/3.4/library/lmtest/help/lmtest.rdx
+ delete mode 100644 Library/R/3.4/library/lmtest/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/lmtest/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/lmtest/html/R.css
+ delete mode 100755 Library/R/3.4/library/lmtest/libs/lmtest.so
+ delete mode 100644 Library/R/3.4/library/lubridate/CITATION
+ delete mode 100644 Library/R/3.4/library/lubridate/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/lubridate/INDEX
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/lubridate/NEWS.md
+ delete mode 100644 Library/R/3.4/library/lubridate/R/lubridate
+ delete mode 100644 Library/R/3.4/library/lubridate/R/lubridate.rdb
+ delete mode 100644 Library/R/3.4/library/lubridate/R/lubridate.rdx
+ delete mode 100644 Library/R/3.4/library/lubridate/cctz.sh
+ delete mode 100644 Library/R/3.4/library/lubridate/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/lubridate/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/lubridate/doc/index.html
+ delete mode 100644 Library/R/3.4/library/lubridate/doc/lubridate.R
+ delete mode 100644 Library/R/3.4/library/lubridate/doc/lubridate.Rmd
+ delete mode 100644 Library/R/3.4/library/lubridate/doc/lubridate.html
+ delete mode 100644 Library/R/3.4/library/lubridate/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/lubridate/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/help/figures/logo.png
+ delete mode 100644 Library/R/3.4/library/lubridate/help/lubridate.rdb
+ delete mode 100644 Library/R/3.4/library/lubridate/help/lubridate.rdx
+ delete mode 100644 Library/R/3.4/library/lubridate/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/lubridate/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/lubridate/html/R.css
+ delete mode 100755 Library/R/3.4/library/lubridate/libs/lubridate.so
+ delete mode 100644 Library/R/3.4/library/lubridate/pkgdown/assets/tidyverse.css
+ delete mode 100644 Library/R/3.4/library/lubridate/pkgdown/assets/tidyverse.css.map
+ delete mode 100644 Library/R/3.4/library/manipulate/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/manipulate/INDEX
+ delete mode 100644 Library/R/3.4/library/manipulate/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/manipulate/R/manipulate
+ delete mode 100644 Library/R/3.4/library/manipulate/R/manipulate.rdb
+ delete mode 100644 Library/R/3.4/library/manipulate/R/manipulate.rdx
+ delete mode 100644 Library/R/3.4/library/manipulate/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/manipulate/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/help/manipulate.rdb
+ delete mode 100644 Library/R/3.4/library/manipulate/help/manipulate.rdx
+ delete mode 100644 Library/R/3.4/library/manipulate/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/manipulate/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/manipulate/html/R.css
+ delete mode 100644 Library/R/3.4/library/marked/CITATION
+ delete mode 100644 Library/R/3.4/library/marked/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/marked/INDEX
+ delete mode 100644 Library/R/3.4/library/marked/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/demo.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/marked/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/marked/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/marked/NEWS
+ delete mode 100644 Library/R/3.4/library/marked/R/marked
+ delete mode 100644 Library/R/3.4/library/marked/R/marked.rdb
+ delete mode 100644 Library/R/3.4/library/marked/R/marked.rdx
+ delete mode 100644 Library/R/3.4/library/marked/README.txt
+ delete mode 100644 Library/R/3.4/library/marked/cjs.tpl
+ delete mode 100644 Library/R/3.4/library/marked/cjs_reml.tpl
+ delete mode 100644 Library/R/3.4/library/marked/cjs_tmb.cpp
+ delete mode 100644 Library/R/3.4/library/marked/cjsre.tpl
+ delete mode 100644 Library/R/3.4/library/marked/cjsre_tmb.cpp
+ delete mode 100644 Library/R/3.4/library/marked/data/dipper.rda
+ delete mode 100644 Library/R/3.4/library/marked/data/mstrata.rda
+ delete mode 100644 Library/R/3.4/library/marked/data/sealions.rda
+ delete mode 100644 Library/R/3.4/library/marked/data/skagit.rda
+ delete mode 100644 Library/R/3.4/library/marked/data/tagloss.rda
+ delete mode 100644 Library/R/3.4/library/marked/demo/tests.r
+ delete mode 100644 Library/R/3.4/library/marked/df1b2gh.cpp
+ delete mode 100644 Library/R/3.4/library/marked/df1b2ghmult.cpp
+ delete mode 100644 Library/R/3.4/library/marked/doc/index.html
+ delete mode 100644 Library/R/3.4/library/marked/doc/markedVignette.R
+ delete mode 100644 Library/R/3.4/library/marked/doc/markedVignette.Rnw
+ delete mode 100644 Library/R/3.4/library/marked/doc/markedVignette.pdf
+ delete mode 100644 Library/R/3.4/library/marked/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/marked/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/marked/help/marked.rdb
+ delete mode 100644 Library/R/3.4/library/marked/help/marked.rdx
+ delete mode 100644 Library/R/3.4/library/marked/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/marked/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/marked/html/R.css
+ delete mode 100755 Library/R/3.4/library/marked/libs/marked.so
+ delete mode 100644 Library/R/3.4/library/marked/minfil.cpp
+ delete mode 100644 Library/R/3.4/library/marked/models.txt
+ delete mode 100644 Library/R/3.4/library/marked/multistate.tpl
+ delete mode 100644 Library/R/3.4/library/marked/multistate_tmb.cpp
+ delete mode 100644 Library/R/3.4/library/marked/mvms.tpl
+ delete mode 100644 Library/R/3.4/library/marked/parameters.txt
+ delete mode 100644 Library/R/3.4/library/marked/xmodelm5.cpp
+ delete mode 100644 Library/R/3.4/library/minqa/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/minqa/INDEX
+ delete mode 100644 Library/R/3.4/library/minqa/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/minqa/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/minqa/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/minqa/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/minqa/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/minqa/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/minqa/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/minqa/R/minqa
+ delete mode 100644 Library/R/3.4/library/minqa/R/minqa.rdb
+ delete mode 100644 Library/R/3.4/library/minqa/R/minqa.rdx
+ delete mode 100644 Library/R/3.4/library/minqa/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/minqa/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/minqa/help/minqa.rdb
+ delete mode 100644 Library/R/3.4/library/minqa/help/minqa.rdx
+ delete mode 100644 Library/R/3.4/library/minqa/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/minqa/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/minqa/html/R.css
+ delete mode 100755 Library/R/3.4/library/minqa/libs/minqa.so
+ delete mode 100644 Library/R/3.4/library/mnormt/CITATION
+ delete mode 100644 Library/R/3.4/library/mnormt/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/mnormt/INDEX
+ delete mode 100644 Library/R/3.4/library/mnormt/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/mnormt/NEWS
+ delete mode 100644 Library/R/3.4/library/mnormt/R/mnormt
+ delete mode 100644 Library/R/3.4/library/mnormt/R/mnormt.rdb
+ delete mode 100644 Library/R/3.4/library/mnormt/R/mnormt.rdx
+ delete mode 100644 Library/R/3.4/library/mnormt/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/mnormt/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/help/mnormt.rdb
+ delete mode 100644 Library/R/3.4/library/mnormt/help/mnormt.rdx
+ delete mode 100644 Library/R/3.4/library/mnormt/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/mnormt/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/mnormt/html/R.css
+ delete mode 100755 Library/R/3.4/library/mnormt/libs/mnormt.so
+ delete mode 100644 Library/R/3.4/library/multcompView/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/multcompView/INDEX
+ delete mode 100644 Library/R/3.4/library/multcompView/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/multcompView/R/multcompView
+ delete mode 100644 Library/R/3.4/library/multcompView/R/multcompView.rdb
+ delete mode 100644 Library/R/3.4/library/multcompView/R/multcompView.rdx
+ delete mode 100644 Library/R/3.4/library/multcompView/doc/VisualizingPairedComparisons.doc
+ delete mode 100644 Library/R/3.4/library/multcompView/doc/VisualizingPairedComparisons.pdf
+ delete mode 100644 Library/R/3.4/library/multcompView/doc/VisualizingPairedComparisons.ppt
+ delete mode 100644 Library/R/3.4/library/multcompView/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/multcompView/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/help/multcompView.rdb
+ delete mode 100644 Library/R/3.4/library/multcompView/help/multcompView.rdx
+ delete mode 100644 Library/R/3.4/library/multcompView/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/multcompView/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/multcompView/html/R.css
+ delete mode 100644 Library/R/3.4/library/nloptr/CITATION
+ delete mode 100644 Library/R/3.4/library/nloptr/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/nloptr/INDEX
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/nloptr/R/nloptr
+ delete mode 100644 Library/R/3.4/library/nloptr/R/nloptr.rdb
+ delete mode 100644 Library/R/3.4/library/nloptr/R/nloptr.rdx
+ delete mode 100644 Library/R/3.4/library/nloptr/doc/index.html
+ delete mode 100644 Library/R/3.4/library/nloptr/doc/nloptr.R
+ delete mode 100644 Library/R/3.4/library/nloptr/doc/nloptr.Rmd
+ delete mode 100644 Library/R/3.4/library/nloptr/doc/nloptr.pdf
+ delete mode 100644 Library/R/3.4/library/nloptr/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/nloptr/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/help/nloptr.rdb
+ delete mode 100644 Library/R/3.4/library/nloptr/help/nloptr.rdx
+ delete mode 100644 Library/R/3.4/library/nloptr/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/nloptr/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/nloptr/html/R.css
+ delete mode 100644 Library/R/3.4/library/nloptr/include/nlopt.f
+ delete mode 100644 Library/R/3.4/library/nloptr/include/nlopt.h
+ delete mode 100644 Library/R/3.4/library/nloptr/include/nlopt.hpp
+ delete mode 100644 Library/R/3.4/library/nloptr/include/nloptrAPI.h
+ delete mode 100755 Library/R/3.4/library/nloptr/libs/nloptr.so
+ delete mode 100644 Library/R/3.4/library/nlstools/CITATION
+ delete mode 100644 Library/R/3.4/library/nlstools/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/nlstools/INDEX
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/nlstools/NEWS
+ delete mode 100644 Library/R/3.4/library/nlstools/R/nlstools
+ delete mode 100644 Library/R/3.4/library/nlstools/R/nlstools.rdb
+ delete mode 100644 Library/R/3.4/library/nlstools/R/nlstools.rdx
+ delete mode 100644 Library/R/3.4/library/nlstools/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/nlstools/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/nlstools/gpl-3.0.txt
+ delete mode 100644 Library/R/3.4/library/nlstools/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/nlstools/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/help/nlstools.rdb
+ delete mode 100644 Library/R/3.4/library/nlstools/help/nlstools.rdx
+ delete mode 100644 Library/R/3.4/library/nlstools/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/nlstools/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/nlstools/html/R.css
+ delete mode 100644 Library/R/3.4/library/numDeriv/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/numDeriv/INDEX
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/numDeriv/NEWS
+ delete mode 100644 Library/R/3.4/library/numDeriv/R/numDeriv
+ delete mode 100644 Library/R/3.4/library/numDeriv/R/numDeriv.rdb
+ delete mode 100644 Library/R/3.4/library/numDeriv/R/numDeriv.rdx
+ delete mode 100644 Library/R/3.4/library/numDeriv/doc/Guide.R
+ delete mode 100644 Library/R/3.4/library/numDeriv/doc/Guide.Stex
+ delete mode 100644 Library/R/3.4/library/numDeriv/doc/Guide.pdf
+ delete mode 100644 Library/R/3.4/library/numDeriv/doc/index.html
+ delete mode 100644 Library/R/3.4/library/numDeriv/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/numDeriv/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/help/numDeriv.rdb
+ delete mode 100644 Library/R/3.4/library/numDeriv/help/numDeriv.rdx
+ delete mode 100644 Library/R/3.4/library/numDeriv/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/numDeriv/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/numDeriv/html/R.css
+ delete mode 100755 Library/R/3.4/library/optimx/CITATION
+ delete mode 100644 Library/R/3.4/library/optimx/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/optimx/INDEX
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/demo.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/optimx/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/optimx/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/optimx/NEWS
+ delete mode 100644 Library/R/3.4/library/optimx/R/optimx
+ delete mode 100644 Library/R/3.4/library/optimx/R/optimx.rdb
+ delete mode 100644 Library/R/3.4/library/optimx/R/optimx.rdx
+ delete mode 100644 Library/R/3.4/library/optimx/demo/brown_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/brown_testRV.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/broydt_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/chen_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/chenlog_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/cyq_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/froth_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/genrose_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/maxtestJN.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/onepar_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/ox.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/poissmix_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/rosbkext_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/sc2_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/trig_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/unit1.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/unitTests.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/valley_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/demo/vmmix_test.R
+ delete mode 100644 Library/R/3.4/library/optimx/doc/Extend-optimx.R
+ delete mode 100644 Library/R/3.4/library/optimx/doc/Extend-optimx.Rmd
+ delete mode 100644 Library/R/3.4/library/optimx/doc/Extend-optimx.pdf
+ delete mode 100644 Library/R/3.4/library/optimx/doc/Rvmmin.R
+ delete mode 100644 Library/R/3.4/library/optimx/doc/Rvmmin.Rmd
+ delete mode 100644 Library/R/3.4/library/optimx/doc/Rvmmin.html
+ delete mode 100644 Library/R/3.4/library/optimx/doc/SNewton.R
+ delete mode 100644 Library/R/3.4/library/optimx/doc/SNewton.Rmd
+ delete mode 100644 Library/R/3.4/library/optimx/doc/SNewton.pdf
+ delete mode 100644 Library/R/3.4/library/optimx/doc/index.html
+ delete mode 100644 Library/R/3.4/library/optimx/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/optimx/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/optimx/help/optimx.rdb
+ delete mode 100644 Library/R/3.4/library/optimx/help/optimx.rdx
+ delete mode 100644 Library/R/3.4/library/optimx/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/optimx/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/optimx/html/R.css
+ delete mode 100644 Library/R/3.4/library/pixmap/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/pixmap/INDEX
+ delete mode 100644 Library/R/3.4/library/pixmap/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/pixmap/NEWS
+ delete mode 100644 Library/R/3.4/library/pixmap/R/pixmap
+ delete mode 100644 Library/R/3.4/library/pixmap/R/pixmap.rdb
+ delete mode 100644 Library/R/3.4/library/pixmap/R/pixmap.rdx
+ delete mode 100644 Library/R/3.4/library/pixmap/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/pixmap/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/pixmap/help/pixmap.rdb
+ delete mode 100644 Library/R/3.4/library/pixmap/help/pixmap.rdx
+ delete mode 100644 Library/R/3.4/library/pixmap/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/pixmap/html/R.css
+ delete mode 100644 Library/R/3.4/library/pixmap/pictures/logo.pbm
+ delete mode 100644 Library/R/3.4/library/pixmap/pictures/logo.pgm
+ delete mode 100644 Library/R/3.4/library/pixmap/pictures/logo.ppm
+ delete mode 100755 Library/R/3.4/library/plotrix/CITATION
+ delete mode 100644 Library/R/3.4/library/plotrix/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/plotrix/INDEX
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/demo.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/plotrix/NEWS
+ delete mode 100644 Library/R/3.4/library/plotrix/R/plotrix
+ delete mode 100644 Library/R/3.4/library/plotrix/R/plotrix.rdb
+ delete mode 100644 Library/R/3.4/library/plotrix/R/plotrix.rdx
+ delete mode 100644 Library/R/3.4/library/plotrix/data/death_reg.rda
+ delete mode 100644 Library/R/3.4/library/plotrix/data/l2010.rda
+ delete mode 100644 Library/R/3.4/library/plotrix/data/soils.rda
+ delete mode 100644 Library/R/3.4/library/plotrix/demo/plotrix.R
+ delete mode 100644 Library/R/3.4/library/plotrix/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/plotrix/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/plotrix/help/plotrix.rdb
+ delete mode 100644 Library/R/3.4/library/plotrix/help/plotrix.rdx
+ delete mode 100644 Library/R/3.4/library/plotrix/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/plotrix/html/R.css
+ delete mode 100644 Library/R/3.4/library/polynom/CITATION
+ delete mode 100644 Library/R/3.4/library/polynom/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/polynom/INDEX
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/polynom/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/polynom/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/polynom/R/polynom
+ delete mode 100644 Library/R/3.4/library/polynom/R/polynom.rdb
+ delete mode 100644 Library/R/3.4/library/polynom/R/polynom.rdx
+ delete mode 100644 Library/R/3.4/library/polynom/doc/index.html
+ delete mode 100644 Library/R/3.4/library/polynom/doc/polynomials.R
+ delete mode 100644 Library/R/3.4/library/polynom/doc/polynomials.Rmd
+ delete mode 100644 Library/R/3.4/library/polynom/doc/polynomials.pdf
+ delete mode 100644 Library/R/3.4/library/polynom/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/polynom/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/polynom/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/polynom/help/polynom.rdb
+ delete mode 100644 Library/R/3.4/library/polynom/help/polynom.rdx
+ delete mode 100644 Library/R/3.4/library/polynom/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/polynom/html/R.css
+ delete mode 100644 Library/R/3.4/library/psych/CITATION
+ delete mode 100644 Library/R/3.4/library/psych/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/psych/INDEX
+ delete mode 100644 Library/R/3.4/library/psych/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/data.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/psych/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/psych/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/psych/NEWS.Rd
+ delete mode 100644 Library/R/3.4/library/psych/R/psych
+ delete mode 100644 Library/R/3.4/library/psych/R/psych.rdb
+ delete mode 100644 Library/R/3.4/library/psych/R/psych.rdx
+ delete mode 100644 Library/R/3.4/library/psych/data/Rdata.rdb
+ delete mode 100644 Library/R/3.4/library/psych/data/Rdata.rds
+ delete mode 100644 Library/R/3.4/library/psych/data/Rdata.rdx
+ delete mode 100644 Library/R/3.4/library/psych/doc/index.html
+ delete mode 100644 Library/R/3.4/library/psych/doc/intro.R
+ delete mode 100644 Library/R/3.4/library/psych/doc/intro.Rnw
+ delete mode 100644 Library/R/3.4/library/psych/doc/intro.pdf
+ delete mode 100644 Library/R/3.4/library/psych/doc/overview.R
+ delete mode 100644 Library/R/3.4/library/psych/doc/overview.Rnw
+ delete mode 100644 Library/R/3.4/library/psych/doc/overview.pdf
+ delete mode 100644 Library/R/3.4/library/psych/doc/psych_for_sem.R
+ delete mode 100644 Library/R/3.4/library/psych/doc/psych_for_sem.Rnw
+ delete mode 100644 Library/R/3.4/library/psych/doc/psych_for_sem.pdf
+ delete mode 100644 Library/R/3.4/library/psych/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/psych/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/psych/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/psych/help/psych.rdb
+ delete mode 100644 Library/R/3.4/library/psych/help/psych.rdx
+ delete mode 100644 Library/R/3.4/library/psych/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/psych/html/R.css
+ delete mode 100644 Library/R/3.4/library/readr/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/readr/INDEX
+ delete mode 100644 Library/R/3.4/library/readr/LICENSE
+ delete mode 100644 Library/R/3.4/library/readr/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/readr/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/readr/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/readr/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/readr/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/readr/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/readr/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/readr/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/readr/NEWS.md
+ delete mode 100644 Library/R/3.4/library/readr/R/readr
+ delete mode 100644 Library/R/3.4/library/readr/R/readr.rdb
+ delete mode 100644 Library/R/3.4/library/readr/R/readr.rdx
+ delete mode 100644 Library/R/3.4/library/readr/R/sysdata.rdb
+ delete mode 100644 Library/R/3.4/library/readr/R/sysdata.rdx
+ delete mode 100644 Library/R/3.4/library/readr/WORDLIST
+ delete mode 100644 Library/R/3.4/library/readr/doc/index.html
+ delete mode 100644 Library/R/3.4/library/readr/doc/locales.R
+ delete mode 100644 Library/R/3.4/library/readr/doc/locales.Rmd
+ delete mode 100644 Library/R/3.4/library/readr/doc/locales.html
+ delete mode 100644 Library/R/3.4/library/readr/doc/readr.R
+ delete mode 100644 Library/R/3.4/library/readr/doc/readr.Rmd
+ delete mode 100644 Library/R/3.4/library/readr/doc/readr.html
+ delete mode 100644 Library/R/3.4/library/readr/extdata/challenge.csv
+ delete mode 100755 Library/R/3.4/library/readr/extdata/epa78.txt
+ delete mode 100644 Library/R/3.4/library/readr/extdata/example.log
+ delete mode 100644 Library/R/3.4/library/readr/extdata/fwf-sample.txt
+ delete mode 100644 Library/R/3.4/library/readr/extdata/massey-rating.txt
+ delete mode 100644 Library/R/3.4/library/readr/extdata/mtcars.csv
+ delete mode 100644 Library/R/3.4/library/readr/extdata/mtcars.csv.bz2
+ delete mode 100644 Library/R/3.4/library/readr/extdata/mtcars.csv.zip
+ delete mode 100644 Library/R/3.4/library/readr/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/readr/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/readr/help/figures/logo.png
+ delete mode 100644 Library/R/3.4/library/readr/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/readr/help/readr.rdb
+ delete mode 100644 Library/R/3.4/library/readr/help/readr.rdx
+ delete mode 100644 Library/R/3.4/library/readr/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/readr/html/R.css
+ delete mode 100755 Library/R/3.4/library/readr/libs/readr.so
+ delete mode 100755 Library/R/3.4/library/readr/rcon/librcon.so
+ delete mode 100644 Library/R/3.4/library/rematch2/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/rematch2/INDEX
+ delete mode 100644 Library/R/3.4/library/rematch2/LICENSE
+ delete mode 100644 Library/R/3.4/library/rematch2/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/rematch2/NEWS.md
+ delete mode 100644 Library/R/3.4/library/rematch2/R/rematch2
+ delete mode 100644 Library/R/3.4/library/rematch2/R/rematch2.rdb
+ delete mode 100644 Library/R/3.4/library/rematch2/R/rematch2.rdx
+ delete mode 100644 Library/R/3.4/library/rematch2/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/rematch2/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/rematch2/help/rematch2.rdb
+ delete mode 100644 Library/R/3.4/library/rematch2/help/rematch2.rdx
+ delete mode 100644 Library/R/3.4/library/rematch2/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/rematch2/html/R.css
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/CITATION
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/INDEX
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/R/scatterplot3d
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/R/scatterplot3d.rdb
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/R/scatterplot3d.rdx
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/doc/index.html
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/doc/s3d.Rnw
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/doc/s3d.pdf
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/help/scatterplot3d.rdb
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/help/scatterplot3d.rdx
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/html/R.css
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/po/de/LC_MESSAGES/R-scatterplot3d.mo
+ delete mode 100644 Library/R/3.4/library/scatterplot3d/po/en/LC_MESSAGES/R-scatterplot3d.mo
+ delete mode 100644 Library/R/3.4/library/sciplot/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/sciplot/INDEX
+ delete mode 100644 Library/R/3.4/library/sciplot/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/sciplot/R/sciplot
+ delete mode 100644 Library/R/3.4/library/sciplot/R/sciplot.rdb
+ delete mode 100644 Library/R/3.4/library/sciplot/R/sciplot.rdx
+ delete mode 100644 Library/R/3.4/library/sciplot/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/sciplot/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/sciplot/help/sciplot.rdb
+ delete mode 100644 Library/R/3.4/library/sciplot/help/sciplot.rdx
+ delete mode 100644 Library/R/3.4/library/sciplot/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/sciplot/html/R.css
+ delete mode 100644 Library/R/3.4/library/truncnorm/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/truncnorm/INDEX
+ delete mode 100644 Library/R/3.4/library/truncnorm/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/truncnorm/R/truncnorm
+ delete mode 100644 Library/R/3.4/library/truncnorm/R/truncnorm.rdb
+ delete mode 100644 Library/R/3.4/library/truncnorm/R/truncnorm.rdx
+ delete mode 100644 Library/R/3.4/library/truncnorm/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/truncnorm/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/truncnorm/help/truncnorm.rdb
+ delete mode 100644 Library/R/3.4/library/truncnorm/help/truncnorm.rdx
+ delete mode 100644 Library/R/3.4/library/truncnorm/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/truncnorm/html/R.css
+ delete mode 100755 Library/R/3.4/library/truncnorm/libs/truncnorm.so
+ delete mode 100644 Library/R/3.4/library/utf8/DESCRIPTION
+ delete mode 100644 Library/R/3.4/library/utf8/INDEX
+ delete mode 100644 Library/R/3.4/library/utf8/LICENSE
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/Rd.rds
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/features.rds
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/hsearch.rds
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/links.rds
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/nsInfo.rds
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/package.rds
+ delete mode 100644 Library/R/3.4/library/utf8/Meta/vignette.rds
+ delete mode 100644 Library/R/3.4/library/utf8/NAMESPACE
+ delete mode 100644 Library/R/3.4/library/utf8/NEWS
+ delete mode 100644 Library/R/3.4/library/utf8/R/utf8
+ delete mode 100644 Library/R/3.4/library/utf8/R/utf8.rdb
+ delete mode 100644 Library/R/3.4/library/utf8/R/utf8.rdx
+ delete mode 100644 Library/R/3.4/library/utf8/doc/index.html
+ delete mode 100644 Library/R/3.4/library/utf8/doc/utf8.Rmd
+ delete mode 100644 Library/R/3.4/library/utf8/doc/utf8.html
+ delete mode 100644 Library/R/3.4/library/utf8/help/AnIndex
+ delete mode 100644 Library/R/3.4/library/utf8/help/aliases.rds
+ delete mode 100644 Library/R/3.4/library/utf8/help/paths.rds
+ delete mode 100644 Library/R/3.4/library/utf8/help/utf8.rdb
+ delete mode 100644 Library/R/3.4/library/utf8/help/utf8.rdx
+ delete mode 100644 Library/R/3.4/library/utf8/html/00Index.html
+ delete mode 100644 Library/R/3.4/library/utf8/html/R.css
+ delete mode 100755 Library/R/3.4/library/utf8/libs/utf8.so
+ delete mode 160000 Unterrichtsunterlagen_HS19
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 75, done.
+Delta compression using up to 16 threads.
+Compressing objects:   1% (1/63)   Compressing objects:   3% (2/63)   Compressing objects:   4% (3/63)   Compressing objects:   6% (4/63)   Compressing objects:   7% (5/63)   Compressing objects:   9% (6/63)   Compressing objects:  11% (7/63)   Compressing objects:  12% (8/63)   Compressing objects:  14% (9/63)   Compressing objects:  15% (10/63)   Compressing objects:  17% (11/63)   Compressing objects:  19% (12/63)   Compressing objects:  20% (13/63)   Compressing objects:  22% (14/63)   Compressing objects:  23% (15/63)   Compressing objects:  25% (16/63)   Compressing objects:  26% (17/63)   Compressing objects:  28% (18/63)   Compressing objects:  30% (19/63)   Compressing objects:  31% (20/63)   Compressing objects:  33% (21/63)   Compressing objects:  34% (22/63)   Compressing objects:  36% (23/63)   Compressing objects:  38% (24/63)   Compressing objects:  39% (25/63)   Compressing objects:  41% (26/63)   Compressing objects:  42% (27/63)   Compressing objects:  44% (28/63)   Compressing objects:  46% (29/63)   Compressing objects:  47% (30/63)   Compressing objects:  49% (31/63)   Compressing objects:  50% (32/63)   Compressing objects:  52% (33/63)   Compressing objects:  53% (34/63)   Compressing objects:  55% (35/63)   Compressing objects:  57% (36/63)   Compressing objects:  58% (37/63)   Compressing objects:  60% (38/63)   Compressing objects:  61% (39/63)   Compressing objects:  63% (40/63)   Compressing objects:  65% (41/63)   Compressing objects:  66% (42/63)   Compressing objects:  68% (43/63)   Compressing objects:  69% (44/63)   Compressing objects:  71% (45/63)   Compressing objects:  73% (46/63)   Compressing objects:  74% (47/63)   Compressing objects:  76% (48/63)   Compressing objects:  77% (49/63)   Compressing objects:  79% (50/63)   Compressing objects:  80% (51/63)   Compressing objects:  82% (52/63)   Compressing objects:  84% (53/63)   Compressing objects:  85% (54/63)   Compressing objects:  87% (55/63)   Compressing objects:  88% (56/63)   Compressing objects:  90% (57/63)   Compressing objects:  92% (58/63)   Compressing objects:  93% (59/63)   Compressing objects:  95% (60/63)   Compressing objects:  96% (61/63)   Compressing objects:  98% (62/63)   Compressing objects: 100% (63/63)   Compressing objects: 100% (63/63), done.
+Writing objects:   1% (1/75)   Writing objects:   2% (2/75)   Writing objects:   4% (3/75)   Writing objects:   5% (4/75)   Writing objects:   6% (5/75)   Writing objects:   8% (6/75)   Writing objects:   9% (7/75)   Writing objects:  10% (8/75)   Writing objects:  12% (9/75)   Writing objects:  13% (10/75)   Writing objects:  14% (11/75)   Writing objects:  16% (12/75)   Writing objects:  17% (13/75)   Writing objects:  18% (14/75)   Writing objects:  20% (15/75)   Writing objects:  21% (16/75)   Writing objects:  22% (17/75)   Writing objects:  24% (18/75)   Writing objects:  25% (19/75)   Writing objects:  26% (20/75)   Writing objects:  28% (21/75)   Writing objects:  29% (22/75)   Writing objects:  30% (23/75)   Writing objects:  32% (24/75)   Writing objects:  33% (25/75)   Writing objects:  34% (26/75)   Writing objects:  36% (27/75)   Writing objects:  37% (28/75)   Writing objects:  38% (29/75)   Writing objects:  40% (30/75)   Writing objects:  41% (31/75)   Writing objects:  42% (32/75)   Writing objects:  44% (33/75)   Writing objects:  45% (34/75)   Writing objects:  46% (35/75)   Writing objects:  48% (36/75)   Writing objects:  49% (37/75)   Writing objects:  50% (38/75)   Writing objects:  52% (39/75)   Writing objects:  53% (40/75)   Writing objects:  54% (41/75)   Writing objects:  56% (42/75)   Writing objects:  57% (43/75)   Writing objects:  58% (44/75)   Writing objects:  60% (45/75)   Writing objects:  61% (46/75)   Writing objects:  62% (47/75)   Writing objects:  64% (48/75)   Writing objects:  68% (51/75)   Writing objects:  69% (52/75)   Writing objects:  70% (53/75)   Writing objects:  72% (54/75)   Writing objects:  73% (55/75)   Writing objects:  74% (56/75)   Writing objects:  76% (57/75)   Writing objects:  77% (58/75)   Writing objects:  78% (59/75)   Writing objects:  80% (60/75)   Writing objects:  81% (61/75)   Writing objects:  82% (62/75)   Writing objects:  84% (63/75)   Writing objects:  85% (64/75)   Writing objects:  86% (65/75)   Writing objects:  88% (66/75)   Writing objects:  89% (67/75)   Writing objects:  90% (68/75)   Writing objects:  92% (69/75)   Writing objects:  93% (70/75)   Writing objects:  94% (71/75)   Writing objects:  96% (72/75)   Writing objects:  97% (73/75)   Writing objects:  98% (74/75)   Writing objects: 100% (75/75)   Writing objects: 100% (75/75), 22.16 KiB | 3.69 MiB/s, done.
+Total 75 (delta 29), reused 1 (delta 0)
+remote: Resolving deltas:   0% (0/29)   [Kremote: Resolving deltas:   3% (1/29)   [Kremote: Resolving deltas:  41% (12/29)   [Kremote: Resolving deltas:  51% (15/29)   [Kremote: Resolving deltas:  55% (16/29)   [Kremote: Resolving deltas:  58% (17/29)   [Kremote: Resolving deltas:  62% (18/29)   [Kremote: Resolving deltas:  65% (19/29)   [Kremote: Resolving deltas:  68% (20/29)   [Kremote: Resolving deltas:  72% (21/29)   [Kremote: Resolving deltas:  75% (22/29)   [Kremote: Resolving deltas:  79% (23/29)   [Kremote: Resolving deltas:  82% (24/29)   [Kremote: Resolving deltas:  86% (25/29)   [Kremote: Resolving deltas:  89% (26/29)   [Kremote: Resolving deltas:  93% (27/29)   [Kremote: Resolving deltas:  96% (28/29)   [Kremote: Resolving deltas: 100% (29/29)   [Kremote: Resolving deltas: 100% (29/29), completed with 14 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   beef2fa..53ae0ee  master -> master
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git com[K[K[Kadd -A

@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1568791080554.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1468109716",
+    "id" : "49D092DD",
+    "lastKnownWriteTime" : 1566206491,
+    "last_content_update" : 1566206491,
+    "path" : "/home/staff/egel/unix/14_Statistik2/solution_stat2.3n.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

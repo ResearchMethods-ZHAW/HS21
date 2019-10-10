@@ -1,0 +1,490 @@
+---
+title: "Kira Masterarbeit Kurzbericht"
+output: html_document
+---
+
+
+```{r, echo=F, message=F, warning=FALSE}
+# load themes,data, packages-----------
+source("kira_masterarbeit_edit_190418.R")
+source("mytheme.R")
+detach("package:psych", unload=TRUE) # attention psych and ggplot do not well togheter
+library(cowplot)
+library(lme4)
+library(nlme)
+
+# setze chunk optionen
+knitr::opts_chunk$set(fig.align = "center", fig.height = 12, fig.width = 14)
+```
+
+# Stichprobe: deskriptive Statistik
+## Geschlecht und Überweisung
+
+```{r,  echo=FALSE}
+
+dat <- data_wide %>%
+  # filter(!duplicated(raw_data3$Patientencode)) %>%
+  dplyr::group_by(sex) %>% 
+  dplyr::summarise(tot = n()) %>%
+  mutate(pct = tot / sum(tot))
+
+ggplot(dat, aes(x = sex, y = pct)) + 
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = scales::percent) +
+  geom_text(aes(label = tot), position = position_dodge(width = 1),vjust = -.25) +
+  mytheme
+
+dat <- data_wide %>%
+  # filter(!duplicated(raw_data3$Patientencode)) %>%
+  dplyr::group_by(trans) %>% 
+  dplyr::summarise(tot = n()) %>%
+  mutate(pct = tot / sum(tot))
+
+ggplot(dat, aes(x = trans, y = pct)) + 
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = scales::percent) +
+  geom_text(aes(label = tot), position = position_dodge(width = 1),vjust = -.25, size = 9) +
+  mytheme
+
+
+```
+
+## geschlecht, alter, bildung
+
+```{r, echo=F}
+
+# Verteilung
+table(data_wide$sex)
+psych::describe(data_wide$age, na.rm = T) # one missing => which(is.na(data_wide$age))
+Hmisc::describe(data_wide$educ)
+
+# geschlecht und transfer
+CrossTable(data_wide$sex, data_wide$trans, fisher = T, chisq = T) # n.s. => seems weird for me => check out graphic
+fisher.test(data_wide$sex, data_wide$trans) # n.s
+chisq.test(data_wide$sex, data_wide$trans) # n.s
+
+dat <- data_wide %>%
+  group_by(sex, trans) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(sex = ifelse(is.na(.$sex), "Unbekannt", sex)) %>%
+  complete(sex, trans, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = sex, y = tot, fill = trans)) +
+  geom_bar(stat = "identity", position = position_dodge()) + 
+  mytheme
+
+
+```
+
+## altersgruppen und überweisung
+
+```{r}
+
+CrossTable(data_wide$age_group, data_wide$trans, fisher = T) # n.s.
+
+dat <- data_wide %>%
+  group_by(age_group, trans) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(age_group = ifelse(is.na(.$age_group), "Unbekannt", age_group)) %>%
+  complete(age_group, trans, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = age_group, y = tot, fill = trans)) +
+  geom_bar(stat = "identity", position = position_dodge()) + 
+  mytheme
+
+
+```
+
+
+## bildung und überweisung
+
+```{r}
+
+CrossTable(data_wide$educ, data_wide$trans, fisher = T) # signifikante unterschiede 
+
+dat <- data_wide %>%
+  group_by(educ, trans) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(educ = ifelse(is.na(.$educ), "Unbekannt", educ)) %>%
+  complete(educ, trans, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = dat$educ, y = dat$tot, fill = dat$trans)) +
+  geom_bar(stat = "identity", position = position_dodge()) + 
+  mytheme # is not working => attention detach psych package
+
+
+```
+
+
+
+## geschlecht und experimentbedingung
+
+```{r}
+CrossTable(data_wide$sex, data_wide$condit, fisher = T, chisq = T) # one missing, n.s.
+
+```
+
+## Altersgruppen und Bedingung
+
+```{r}
+
+CrossTable(data_wide$age_group, data_wide$condit, fisher = T) # n.s
+
+dat <- data_wide %>%
+  group_by(age_group, condit) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(age_group = ifelse(is.na(.$age_group), "Unbekannt", age_group)) %>%
+  complete(age_group, condit, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = age_group, y = tot, fill = condit)) +
+  geom_bar(stat = "identity", position = position_dodge()) + 
+  mytheme
+
+```
+
+
+
+
+## Bildung und Experimentbedingung
+
+```{r}
+
+CrossTable(data_wide$educ, data_wide$condit, fisher = T) # n.s. 
+
+
+dat <- data_wide %>%
+  group_by(educ, condit) %>%
+  dplyr::summarise(tot = n()) %>% 
+  mutate(pct = tot / sum(tot)) %>%
+  ungroup() %>%
+  mutate(educ = ifelse(is.na(.$educ), "Unbekannt", educ)) %>%
+  complete(educ, condit, fill = list(tot = 0, pct = 0)) # complete cases with value 0
+
+ggplot(dat, aes(x = dat$educ, y = dat$tot, fill = dat$condit)) +
+  geom_bar(stat = "identity", position = position_dodge()) + 
+  mytheme # is not working => attention detach psych package
+
+
+```
+
+
+# dropouts: beschreibung
+## missings t1_phq9
+
+```{r}
+# beschreibe kanditaden die in t1 herausgefallen sind (zwischen 5 und 6 personen)
+
+miss_ <- filter(data_wide, is.na(data_wide$T1_phq9))
+apply(t(miss_[ ,c(2:3,5:8)]),1, FUN = describe)
+
+```
+
+# dropouts: beschreibung
+## missings t1_phq15
+
+```{r, echo=F}
+# beschreibe kanditaden die in t1 herausgefallen sind (zwischen 5 und 6 personen)
+
+miss_ <- filter(data_wide, is.na(data_wide$T1_phq15))
+apply(t(miss_[ ,c(2:3,5:8)]),1, FUN = describe)
+
+```
+
+# dropouts: beschreibung
+## missings t1_gad
+
+```{r, echo = F}
+# beschreibe kanditaden die in t1 herausgefallen sind (zwischen 5 und 6 personen)
+
+miss_ <- filter(data_wide, is.na(data_wide$T1_gad))
+apply(t(miss_[ ,c(2:3,5:8)]),1, FUN = describe)
+
+```
+
+# konfirmatorische analyse und hypothesen testung
+
+
+## h1a: Unterschied zwischen überweisungsquellen im phq_9 zeitpunkt 0
+
+### kein statistischer Unterschied zwischen Überweisungsquellen
+
+```{r}
+# achtung unterschiedliche gruppengrösse => welch-test (default bei t-test!)
+# daselbe für ein subsample resp. diejenigen personen ausschliessen die bei t1 weggefallen sind
+
+# schaue boxplots an => varianzhomogenität gegeben
+ggplot(data_wide, aes( y = T0_phq9, x = data_wide$trans)) +
+  geom_boxplot() # varianzen fast gleich, verteilung aber nicht (PR rechtsschief)
+
+t.test(data_wide$T0_phq9 ~ data_wide$trans) # n.s.
+# summary(aov(data_wide$T0_phq9 ~ data_wide$trans))
+
+```
+
+## h1b: Unterschied im Verlauf der Überweisungsquellen
+
+### kein Unterschied zwischen Überweisungsquellen, aber t0 zu t1 eine Verbesserung
+
+```{r, echo=F}
+# achtung abhängige datenpunkte => Wilcoxon-Test für zwei abhängige Stichproben
+# achtung unterschiedliche gruppengrössen
+
+# subsample
+dat <- data_wide[data_wide$condit == "Intervention" & !is.na(data_wide$T1_phq9),] # nehme nur personen aus der Intervention (telefongespräche)
+
+table(dat$trans) # sehr ungleiche gruppengrössen
+
+# h1b:schaue boxplots an
+# hier ein beispiel für die resultate: http://rcompanion.org/handbook/I_06.html 
+p1 <- ggplot(dat, aes(y = dat$T0_phq9 , x = trans)) +
+  geom_boxplot() +
+  scale_y_continuous(limits = c(0,20))# dont look very nice :(
+
+# ggplot(dat, aes(x = dat$T0_phq9 )) + geom_histogram()
+p2 <- ggplot(dat, aes(y = dat$T1_phq9 , x = trans)) +
+  geom_boxplot() +
+  scale_y_continuous(limits = c(0,20))# looks good
+
+plot_grid(p1, p2, ncol = 2)
+
+# h1b:versuche das ganze zu plotten
+pat <- ("T0_phq9|T1_phq9")
+dat1 <- data_long[grepl(pat, data_long$variable) & data_long$condit == "Intervention" & !is.na(data_long$value),]
+
+# überprüfe ob auch alle teilnehmer beide zeitpunkte haben, ansonsten ausschliessen
+dat2 <- group_by(dat1, Patientencode) %>% 
+  summarise(occur = n()) %>%
+  filter(occur == 2) %>%
+  left_join(., dat1, by = "Patientencode") # nur 23 personen haben beide zeitpunkte
+
+
+# h1b:test over all
+wilcox.test(dat$T0_phq9, dat$T1_phq9, paired = T) # über alles hoch signifikant
+
+# test with glm
+# schaue nochmals nach wie man den random effect interpretiert!!
+#https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#count-data
+#https://bbolker.github.io/mixedmodels-misc/ecostats_chap.html
+
+lm1 <- lmer(dat2$value ~ dat2$variable * dat2$trans + (1|dat2$Patientencode))
+summary(lm1)
+
+isSingular(lm1) # False = gut
+
+# überprüfe nochmals die modell-güte
+av1 <- aov(value ~ variable * trans, data = dat2)
+av2 <- aov(value ~ variable * trans + Error(Patientencode/variable), data = dat2)
+summary(av1)
+
+# posthoc tests
+TukeyHSD(av1)
+
+library(ggfortify)
+autoplot(av1)
+
+boxplot(dat2$value~dat2$variable + dat2$trans)
+
+# versuche das ganze in brms
+# serw die beste alternative
+# zumindest für mich
+# scheint zu konvergieren, aber hat probleme
+# brm(value ~ variable * trans + (1|Patientencode), data = dat2)
+
+
+# h1b:linienplot (mit mittelwerten)
+pl <- dat2 %>%
+  group_by(variable, trans) %>%
+  summarise(mean_t = mean(value))
+
+ggplot(pl, aes(x = variable, y = mean_t, linetype =trans ,shape = trans, group = trans)) + 
+  geom_point(size= 2) +
+  geom_line(size = 1.5) +
+  scale_y_continuous(breaks = seq(0,20,5), limits = c(0,20)) +
+  ylab("Mittelwerte der Summenscore") +
+  xlab("Zeitpunk t0 und t1") +
+  guides(linetype = guide_legend(title = "Überweisungsquelle"), shape = F) +
+  # scale_fill_manual("") + # falls PR und SR noch ausgeschrieben werden soll
+  mytheme
+
+# another plot
+# sample
+pl <- dat2 %>%
+  mutate(xlab = paste(trans, variable, sep = "_"))
+# marginal <- lsmeans::lsmeans(av2, ~ variable) # check that out again
+
+ggplot(pl, aes(x = xlab, y = value)) + 
+  stat_summary(fun.y = mean, geom = "point", shape = 15, size = 4) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", size = .7, width = .2) + # lese standardfehler nach => stimmt was nicht
+  scale_y_continuous(limits = c(0,20)) + 
+  ylab("Mittelwerte und Standardfehler der Summenscores") +
+  xlab("Überweisungsquellen und Zeitpunkt")
+
+
+
+```
+
+## h2a: Unterschied zwischen Überweisungsquellen und fptm 
+
+### keine Unterschiede in Therapiemotivation, scheint so, dass SR immer tiefere Werte aufweisen
+
+```{r, echo=F}
+# subsample
+pat <- c("ld|ho|zw|vh|motivation")
+
+dat <- data_long[grepl(pat, data_long$variable) & !is.na(data_long$value), ]
+
+# überprüfe ob auch alle datenpunkte drin sind
+t <- dat %>%
+  group_by(Patientencode, trans) %>%
+  summarise(occur = n()) %>%
+  mutate(occur = ifelse(occur == 5, T, F))
+sum(t$occur) # 53 personen
+
+table(t$trans)
+
+# schaue die mittelwerte an
+aggregate(dat$value ~ dat$variable + dat$trans, FUN = mean) 
+
+
+# ld: n.s.
+summary.lm(aov(dat[dat$variable == "ld",]$value ~ dat[dat$variable == "ld",]$trans))
+
+t.test(dat[dat$variable == "ld",]$value ~ dat[dat$variable == "ld",]$trans)
+
+# ho: n.s.
+summary.lm(aov(dat[dat$variable == "ho",]$value ~ dat[dat$variable == "ho",]$trans))
+
+t.test(dat[dat$variable == "ho",]$value ~ dat[dat$variable == "ho",]$trans)
+
+# zw: n.s.
+summary.lm(aov(dat[dat$variable == "zw",]$value ~ dat[dat$variable == "zw",]$trans))
+
+t.test(dat[dat$variable == "zw",]$value ~ dat[dat$variable == "zw",]$trans)
+
+# vh: n.s.
+summary.lm(aov(dat[dat$variable == "vh",]$value ~ dat[dat$variable == "vh",]$trans))
+
+t.test(dat[dat$variable == "vh",]$value ~ dat[dat$variable == "vh",]$trans)
+
+# summe davon auch nicht unterschiedlich
+t.test(dat[dat$variable == "motivation",]$value ~ dat[dat$variable == "motivation",]$trans)
+
+# plot that => nicht mehr sicher was ein balkendiagramm abzeichnet => max werte, daher nicht geeignet, besser boxplots (siehe oben)
+# ggplot(dat, aes(x = , y = )) +
+#   geom_boxplot()
+
+```
+
+
+
+##h2b: Unterschied im Verlauf phq9 zwischen Überweisungsquellen und fptm
+
+### kein triviales modell, noch keine lösung gefunden, versuche data_wide neu zu transformieren aber ohne motivationsvariable
+
+```{r}
+#daten aufbereiten
+dat <- melt(data_wide, measure.vars = c("T0_phq9", "T1_phq9")) %>%
+  select(-T1_phq15, T0_phq15) %>%
+  drop_na(value)
+
+# überprüfe ob auch beide zeitounkte pro patient drin sind
+
+dat2 <- group_by(dat, Patientencode, trans) %>%
+  summarise(occur = n()) %>%
+  filter( occur == 2) %>%
+  left_join(., dat, by = c("Patientencode", "trans"))
+
+# pat <- ("T0_phq9|T1_phq9")
+# dat <- data_long[grepl(pat, data_long$variable) & !is.na(data_long$value),]
+
+# nehme nur die mit zwei einträge (t0 und t1)
+dat2 <- group_by(dat, Patientencode) %>% 
+  summarise(occur = n()) %>%
+  filter(occur == 2) %>%
+  left_join(., data_wide, by = "Patientencode") # 46 personen
+
+# model
+# av3 <- 
+# lm3 <- lmer(value ~ variable * trans + )
+
+```
+
+
+##h3: Unterschied im Verlauf der Überweisungsquellen und gad_7
+
+```{r}
+
+# subsample
+dat <- data_long[data_long$variable == "T0_gad" | data_long$variable == "T1_gad" & !is.na(data_long$value),]
+
+# überprüfe ob alle patienten auch zwei datenpunkte haben => rest weg
+dat1 <- dat %>%
+  group_by(Patientencode, trans) %>%
+  summarise(occur = n()) %>%
+  filter( occur == 2) %>%
+  left_join(., dat, by = c("Patientencode", "trans")) # 45 personen
+
+# paar weitere parameter
+table(dat1$trans) # führe nur die ersten drei linien vom obigen code aus => 18_PR und 36_SR
+
+aggregate(value ~ variable + trans, FUN = mean, data = dat1)
+
+
+# modelle
+dat1$variable <- as.character(dat1$variable) # probleme mit factoren => versuche noch zu ändern
+av3 <- aov(value ~ variable * trans + Error(Patientencode/variable), data = dat1)
+summary(av3)
+
+lm3 <- lmer(dat1$value ~ dat1$variable * dat1$trans + (1|dat1$Patientencode))
+
+summary(lm3)
+
+isSingular(lm3) # => False
+
+#plotte das ergebnis => linienpolot (siehe oben) + boxplot
+
+
+
+```
+
+
+##h4: Unterschied im Verlauf der Überweisungsquellen und phq_15  
+
+### keine Unterschiede zwischen Überweisungsquelle, auch keine Unterschiede zwischen t0 und t1
+
+```{r, echo=F}
+
+# subsample
+pat = c("T0_phq15|T1_phq15")
+
+dat <- data_long[grepl(pat, data_long$variable) &! is.na(dat$value), ]
+
+dat1 <- group_by(dat, Patientencode, trans) %>%
+  summarise(occur = n())  %>%
+  filter(occur == 2) %>%
+  left_join(., dat, by = c("Patientencode", "trans")) # 44 patienten; 13_PR und 31_SR
+
+# schaue daten an
+table(dat1$trans) # nur erste drei linien vom obigen code
+
+aggregate(value ~ variable + trans, FUN = mean, data = dat1) # kaum unterschiede
+
+# modelle
+av4 <- aov(value ~ variable * trans + Error(Patientencode/variable), data = dat1)
+summary(av4)
+
+lm4 <- lmer(value ~ variable * trans + (1|Patientencode), data = dat1)
+summary(lm4)
+
+#plotte ergebnisse
+
+```
+
