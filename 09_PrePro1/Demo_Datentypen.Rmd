@@ -80,7 +80,7 @@ is.integer(a)
 
 
 
-Mit `c()` können eine Reihe von Werten in einer Variabel zugewiesen werden (als `vector`). Es gibt zudem auch `character verctors`. 
+Mit `c()` können eine Reihe von Werten in einer Variabel zugewiesen werden (als `vector`). Es gibt zudem auch `character vectors`. 
 
 ```{r}
 vector <- c(10,20,33,42,54,66,77)
