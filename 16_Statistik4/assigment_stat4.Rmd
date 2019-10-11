@@ -1,37 +1,5 @@
 ## Statistik 4: Übungen
 
--   Abzugeben sind am Ende
-    a. lauffähiges R-Skript
-    b. begründeter Lösungsweg (Kombination aus R-Code, R Output 
-       und dessen Interpretation)
-    c. ausformulierter Methoden- und Ergebnisteil (für eine wiss.Arbeit).
-    
-- Bitte **erklärt und begründet die einzelnen Schritte,** die ihr
-  unternehmt, um zu eurem Ergebnis zu kommen. Dazu erstellt bitte ein
-  Word-Dokument, in dem ihr Schritt für Schritt den verwendeten **R-Code**, die dazu      gehörigen **Ausgaben von R**, eure **Interpretation**
-  derselben und die sich ergebenden **Schlussfolgerungen** für das
-  weitere Vorgehen dokumentiert.
-  
-- Dieser **Ablauf** sollte insbesondere beinhalten:
-    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
-      und welches die unabängige(n) Variablen etc.
-    - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
-      Datentransformationen vorgenommen werden sollten
-    - Auswahl und Begründung eines statistischen Verfahrens
-    - Bestimmung des vollständigen/maximalen Models
-    - Selektion des/der besten Models/Modelle
-    - Durchführen der Modelldiagnostik für dieses
-    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
-    Ergebnisdarstellung benötigt werden
-    
-- Formuliert abschliessend einen **Methoden- und Ergebnisteil** (ggf. incl.
-  adäquaten Abbildungen/Tabellen) zu dieser Untersuchung in der Form
-  einer wissenschaftlichen Arbeit (je einen ausformulierten Absatz von
-  ca. 60-100 Worten bzw. 3-8 Sätzen). Alle wichtigen Informationen
-  sollten enthalten sein, unnötige Redundanz dagegen vermieden
-  werden.
-  
-
 ### Übung 4.1: Nicht-lineare Regression (naturwissenschaftlich)
 
 <font color="blue">**Datensatz Curonian_Spit.xlsx**</font>
