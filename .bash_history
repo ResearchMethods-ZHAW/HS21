@@ -133,3 +133,20 @@ git push
 git remote -v
 git status
 git remote -v
+git statzs
+git status
+git add .a
+git add -A
+git commit -m "some changes in stat1 and stat2"
+git push
+git add -A
+git commit -m "changes in file names"
+git push
+git pull
+git status
+status
+git status
+git statzs
+gut status
+iut status
+git status 

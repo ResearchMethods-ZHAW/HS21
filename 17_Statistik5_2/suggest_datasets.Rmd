@@ -1,0 +1,26 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Liste von Datensätzen
+
+### R data sets
+
+* chickwts
+* iris
+* mtcars
+* Titanic (achtung ist noch eine table)
+* starwars (dplyr package) # canot find that one
+
+### Research Methods data sets
+
+* novanimal
+* 
+* 
+
+*******
+##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch

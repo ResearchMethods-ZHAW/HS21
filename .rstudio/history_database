@@ -10481,3 +10481,36 @@
 1568719866795:719 +816 +345 +339
 1568791712968:getwd()
 1568791745974:getwd()
+1570778858181:install.packages("multcomp")
+1570779687955:library(tidyverse)
+1570779704775:install.packages("lubridate")
+1570779784811:install.packages("psych")
+1570779824836:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1570779827516:library(tidyverse)
+1570779840704:install.packages("tidyverse", dependencies = T)
+1570779923778:library(tidyverse)
+1570779935467:install.packages("readr")
+1570783386161:chickwts
+1570783427473:glm(wight ~ feed, data = chickwts)
+1570783431418:glm(weight ~ feed, data = chickwts)
+1570783442056:summary.lm(glm(weight ~ feed, data = chickwts))
+1570783450098:summary.lm(aov(weight ~ feed, data = chickwts))
+1570783453203:summary.lm(aov(weight ~ feed, data = chickwts))
+1570783455587:summary.lm(glm(weight ~ feed, data = chickwts))
+1570783472018:TukeyHSD(aov(weight ~ feed, data = chickwts))
+1570783561798:iris
+1570783576585:mtcars
+1570783590562:Titanic
+1570783607812:str(Titanic)
+1570783625205:tibble::tibble(Titanic)
+1570783633297:tibble::as_tibble(Titanic)
+1570783642458:as.data.frame(Titanic)
+1570783669532:strwars
+1570783671867:starwars
+1570783680979:library(dyplr)
+1570783689074:install.packages("dyplr2)
+1570783695082:install.packages("dyplr")
+1570783705453:install.packages("dplyr")
+1570783708523:install.packages("dplyr")
+1570783897668:starwars
+1570783906781:data(starwars)
