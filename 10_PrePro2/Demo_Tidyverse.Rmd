@@ -1,7 +1,7 @@
 
 ```{r, include=F, purl=F}
 library(knitr)
-knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
+knitr::opts_chunk$set(echo = TRUE,include = TRUE, collapse=TRUE)
 ```
 
 
@@ -12,9 +12,9 @@ knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
 
 
 Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden. Der Prozess und das Modell ist hier^[http://r4ds.had.co.nz/introduction.html#] schön beschrieben.
-Die Sammlung von Tools wird unter dem namen [tidyverse](https://www.tidyverse.org/) vertrieben, welches wir ja schon zu Beginn der ersten Übung installiert und geladen haben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem "must have" im Umgang mit Daten in R entwickelt. 
+Die Sammlung von Tools wird unter dem Namen [tidyverse](https://www.tidyverse.org/) vertrieben, welches wir ja schon zu Beginn der ersten Übung installiert und geladen haben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem "must have" im Umgang mit Daten in R entwickelt. 
 
-Wir können euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten^[`dplyr, ggplot2, tidyr, stringr, magrittr, lubridate`] und zeigen ein paar Funktionalitäten, die wir oft verwenden und euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch @wickham2017 beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online^[http://r4ds.had.co.nz/], das vollständige eBook kann über die Bibliothek bezogen werden^[https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093].
+Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten^[`dplyr, ggplot2, tidyr, stringr, magrittr, lubridate`] und zeigen ein paar Funktionalitäten, die wir oft verwenden und Euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch @wickham2017 beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online^[http://r4ds.had.co.nz/], das vollständige eBook kann über die Bibliothek bezogen werden^[https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093].
 
 
 
@@ -36,7 +36,7 @@ library(lubridate)
 
 #### Daten Laden
 
-Wir Laden die Wetterdaten von der letzten Übung.
+Wir laden die Wetterdaten von der letzten Übung.
 
 ```{r}
 
@@ -55,10 +55,10 @@ wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
 Wir möchten den Mittelwert aller gemessenen Temperaturwerte berechnen. Dazu könnten wir folgenden Befehl verwenden:
 
 ```{r}
-mean(wetter$tre200h0, na.rm = T) 
+mean(wetter$tre200h0, na.rm = TRUE) 
 ```
 
-Die option `na.rm = T` bedeutet, dass NA Werte von der Berechnung ausgeschlossen werden sollen. 
+Die Option `na.rm = T` bedeutet, dass NA Werte von der Berechnung ausgeschlossen werden sollen. 
 
 Mit der selben Herangehensweise können diverse Werte berechnet werden (z.B. das Maximum (`max()`), Minimum (`min()`), Median (`median()`) u.v.m.). 
 
@@ -67,7 +67,7 @@ Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *
 
 #### Convenience Variablen
 
-Um diese Aufgabe zu lösen, muss zuerst das "Jahr" berechnen können (das Jahr ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `year()` (von `lubridate`). 
+Um diese Aufgabe zu lösen, muss zuerst das "Jahr" berechne werden (das Jahr ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `year()` (von `lubridate`). 
 
 Nun kann kann die **convenience Variable** "Jahr" erstellt werden. Ohne `dpylr` wird eine neue Spalte wird folgendermassen hinzugefügt. 
 ```{r}
@@ -87,14 +87,14 @@ Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dies
 
 Jetzt kann man die `data.frame` mithilfe der Spalte "Jahr" filtern. 
 ```{r}
-mean(wetter$tre200h0[wetter$year == 2000], na.rm = T)
+mean(wetter$tre200h0[wetter$year == 2000], na.rm = TRUE)
 ```
 
 Dies müssen wir pro Jahr wiederholen, was natürlich sehr umständlich ist, v.a. wenn man eine Vielzahl an Gruppen hat (z.B. Kalenderwochen statt Jahre). Deshalb nutzen wir das package `dplyr`. Damit geht die Aufgabe (Temperaturmittel pro Jahr berechnen) folgendermassen:
 
 
 ```{r}
-summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = T))
+summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = TRUE))
 ```
 
 
@@ -120,12 +120,12 @@ wetter %>%                                #1) nimm den Datensatz "wetter"
 ```
 
 
-Dieses Verketten mittels `%>%` macht ein Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Dabei handelt es sich um das package `magrittr`, welches mit dem `tidyverse` mitgeliefert wird. 
+Dieses Verketten mittels `%>%` macht den Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Dabei handelt es sich um das package `magrittr`, welches mit `tidyverse` mitgeliefert wird. 
 
 Zu `dplyr` und `magrittr`gibt es etliche Tutorials online (siehe^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html, oder [Hands-on dplyr tutorial..](https://youtu.be/jWjqLW-u3hc)]), deshalb werden wir diese Tools nicht in allen Details erläutern. Nur noch folgenden wichtigen Unterschied zu zwei wichtigen Funktionen in `dpylr`: `mutate()` und `summarise()`.
 
-- `summarise()` fasst einen Datensatz zusammen. Dabei reduziert sich die Anzahl Beobachtungen (Zeilen) auf die Anzahl Gruppen (z.B. eine zusammengefasste Beobachtung (Zeile) pro Jahr). Zudem reduziert sich die Anzahl Variablen (Spalten) auf diejenigen, die in der "summarise" Funktion spezifiziert wurde (z.B. `temp_mittel`)
-- mit `mutate` wird eine `data.frame` vom Umfang her belassen, es werden lediglich *zusätzliche* Variablen (Spalten) hinzugefügt (siehe Beispiel unten)
+- `summarise()` fasst einen Datensatz zusammen. Dabei reduziert sich die Anzahl Beobachtungen (Zeilen) auf die Anzahl Gruppen (z.B. eine zusammengefasste Beobachtung (Zeile) pro Jahr). Zudem reduziert sich die Anzahl Variablen (Spalten) auf diejenigen, die in der "summarise" Funktion spezifiziert wurde (z.B. `temp_mittel`).
+- mit `mutate` wird ein `data.frame` vom Umfang her belassen, es werden lediglich *zusätzliche* Variablen (Spalten) hinzugefügt (siehe Beispiel unten).
 
 ```{r, eval=T}
 # Maximal und minimal Temperatur pro Kalenderwoche
@@ -134,8 +134,8 @@ wetter %>%                              #1) nimm den Datensatz "wetter"
   mutate(kw = week(time)) %>%       #3) erstelle eine neue Spalte "kw"
   group_by(kw) %>%                      #4) Nutze die neue Spalte um Guppen zu bilden
   summarise(
-    temp_max = max(tre200h0, na.rm = T),#5) Berechne das Maximum 
-    temp_min = min(tre200h0, na.rm = T) #6) Berechne das Minimum
+    temp_max = max(tre200h0, na.rm = TRUE),#5) Berechne das Maximum 
+    temp_min = min(tre200h0, na.rm = TRUE) #6) Berechne das Minimum
     )   
 ```
 
@@ -159,7 +159,7 @@ wetter_sry <- wetter %>%
     )  
 ```
 
-Dieses mal plotten wir nur mit `ggplot2` (siehe ^[@wickham2017, Kapitel 1 / http://r4ds.had.co.nz/data-visualisation.html oder hier ein sehr schönes Video: [Learn R: An Introduction to ggplot2](https://youtu.be/YxKr2a-Y1WE?t=1m40s)]) 
+Dieses Mal plotten wir nur mit `ggplot2` (siehe ^[@wickham2017, Kapitel 1 / http://r4ds.had.co.nz/data-visualisation.html oder hier ein sehr schönes Video: [Learn R: An Introduction to ggplot2](https://youtu.be/YxKr2a-Y1WE?t=1m40s)]) 
  
 ```{r}
 
@@ -172,7 +172,7 @@ ggplot() +
 ```
 
 
-Ok das sieht schon mal gut aus. Nur, wir mussten pro Linie einen eigene Zeile schreiben (`geom_line()`) und dieser eine Farbe zuweisen. Bei drei Werten ist das ja ok, aber wie sieht es den aus wenn es Hunderte sind? Da hat ggplot natürlich eine Lösung, dafür müssen aber alle Werte in *einer* Spalte daher kommen. Das ist ein häufiges Problem: Wir haben eine *breite* Tabelle (viele Spalten), bräuchten aber eine *lange* Tabelle (viele Zeilen).
+Das sieht schon mal gut aus. Nur, wir mussten pro Linie einen eigene Zeile schreiben (`geom_line()`) und dieser eine Farbe zuweisen. Bei drei Werten ist das ja ok, aber wie sieht es denn aus wenn es Hunderte sind? Da hat ggplot natürlich eine Lösung, dafür müssen aber alle Werte in *einer* Spalte daher kommen. Das ist ein häufiges Problem: Wir haben eine *breite* Tabelle (viele Spalten), bräuchten aber eine *lange* Tabelle (viele Zeilen).
 
 
 ### Reshaping data
@@ -231,7 +231,7 @@ Beachtet, dass wir gegenüber dem letzten Plot `colour` nun *innerhalb* von `aes
 
 #### Lang -> breit
 
-Um unsere *lange* Tabelle wieder zurück in eine *breite* zu überführen, brauchen wir lediglich ein Befehl (`spread`):
+Um unsere *lange* Tabelle wieder zurück in eine *breite* zu überführen, brauchen wir lediglich einen Befehl (`spread`):
 
 ```{r}
 wetter_sry_long %>%

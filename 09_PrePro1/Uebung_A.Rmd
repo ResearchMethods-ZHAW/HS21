@@ -48,7 +48,7 @@ Tipps:
 
 # Lösung Aufgabe 1
 
-df <- data_frame(
+df <- data.frame(
   Tierart = c("Fuchs","Bär","Hase","Elch"),
   Anzahl = c(2,5,1,3),
   Gewicht = c(4.4, 40.3,1.1,120),
@@ -159,7 +159,7 @@ Die Spalte `time` ist eine Datum/Zeitangabe im Format JJJJMMTTHH (siehe [meta.tx
 Tipps: 
 
 - Wenn keine Zeitzone festgelegt wird, trifft `as.POSIXct()` eine Annahme (basierend auf `Sys.timezone()`). In unserem Fall handelt es sich aber um Werte in UTC (siehe [meta.txt](09_PrePro1/data/meta.txt))
-- `as.POSIXct`erwartet `character`
+- `as.POSIXct`erwartet `character`: Wenn du eine Fehlermeldung hast die `'origin' must be supplied` (o.ä) heisst, hast du der Funktion vermutlich einen `Numeric` übergeben.
 
 ```{r}
 # Lösung Aufgabe 6
