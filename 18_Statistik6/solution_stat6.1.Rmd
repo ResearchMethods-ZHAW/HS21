@@ -7,6 +7,8 @@ output:
   pdf_document: default
 ---
 
+## Musterlöseung Aufgabe 6.1: PCA
+
 
 ```{r,include=FALSE}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")

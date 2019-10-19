@@ -10,7 +10,7 @@ output:
 knitr::opts_chunk$set(results = "hide", fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
 ```
 
-## Übung 3.1: Multiple Regression
+## Musterlösung Aufgabe 3.1: Multiple Regression
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
