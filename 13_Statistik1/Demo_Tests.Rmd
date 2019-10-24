@@ -43,7 +43,7 @@ t.test(blume$a,blume$b) #zweiseitig
 t.test(blume$a,blume$b, alternative="greater") #einseitig
 t.test(blume$a,blume$b, alternative="less") #einseitig
 t.test(blume$a,blume$b, var.equal=T) #Varianzen gleich, klassischer t-Test
-t.test(blume$a,blume$b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default, , d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgeführt. 
+t.test(blume$a,blume$b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgeführt. 
 t.test(blume$a,blume$b, paired=T) #gepaarter t-Test 
 t.test(blume$a,blume$b, paired=T,alternative="greater") #gepaarter t-Test 
 
