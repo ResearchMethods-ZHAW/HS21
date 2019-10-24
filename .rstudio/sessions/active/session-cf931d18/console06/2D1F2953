@@ -1,211 +1,0 @@
-groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .bash_history[m
-	[31mmodified:   .rstudio/client-state/console.temporary[m
-	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
-	[31mmodified:   .rstudio/history_database[m
-	[31mmodified:   .rstudio/monitored/lists/file_mru[m
-	[31mmodified:   .rstudio/monitored/lists/help_history_links[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/5B5B353F[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/5B5B353F.env[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/INDEX[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/empty.png[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/executing[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/initial[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/project[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-home[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/running[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/working-dir[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/rmd-outputs[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/session-persistent-state[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/client-state/history.temporary[m
-	[31m.rstudio/content_urls/[m
-	[31m.rstudio/sessions/active/session-cf931d18/[m
-	[31m13_Statistik1/solution_stat1.pdf[m
-	[31m13_Statistik1/solution_stat1.tex[m
-	[31mLibrary/R/3.4/library/fansi/[m
-	[31mLibrary/R/3.4/library/utf8/[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-remote: Enumerating objects: 21, done.[K
-remote: Counting objects:   4% (1/21)   [Kremote: Counting objects:   9% (2/21)   [Kremote: Counting objects:  14% (3/21)   [Kremote: Counting objects:  19% (4/21)   [Kremote: Counting objects:  23% (5/21)   [Kremote: Counting objects:  28% (6/21)   [Kremote: Counting objects:  33% (7/21)   [Kremote: Counting objects:  38% (8/21)   [Kremote: Counting objects:  42% (9/21)   [Kremote: Counting objects:  47% (10/21)   [Kremote: Counting objects:  52% (11/21)   [Kremote: Counting objects:  57% (12/21)   [Kremote: Counting objects:  61% (13/21)   [Kremote: Counting objects:  66% (14/21)   [Kremote: Counting objects:  71% (15/21)   [Kremote: Counting objects:  76% (16/21)   [Kremote: Counting objects:  80% (17/21)   [Kremote: Counting objects:  85% (18/21)   [Kremote: Counting objects:  90% (19/21)   [Kremote: Counting objects:  95% (20/21)   [Kremote: Counting objects: 100% (21/21)   [Kremote: Counting objects: 100% (21/21), done.[K
-Unpacking objects:   3% (1/27)   Unpacking objects:   7% (2/27)   Unpacking objects:  11% (3/27)   Unpacking objects:  14% (4/27)   remote: Total 27 (delta 21), reused 21 (delta 21), pack-reused 6[K
-Unpacking objects:  18% (5/27)   Unpacking objects:  22% (6/27)   Unpacking objects:  25% (7/27)   Unpacking objects:  29% (8/27)   Unpacking objects:  33% (9/27)   Unpacking objects:  37% (10/27)   Unpacking objects:  40% (11/27)   Unpacking objects:  44% (12/27)   Unpacking objects:  48% (13/27)   Unpacking objects:  51% (14/27)   Unpacking objects:  55% (15/27)   Unpacking objects:  59% (16/27)   Unpacking objects:  62% (17/27)   Unpacking objects:  66% (18/27)   Unpacking objects:  70% (19/27)   Unpacking objects:  74% (20/27)   Unpacking objects:  77% (21/27)   Unpacking objects:  81% (22/27)   Unpacking objects:  85% (23/27)   Unpacking objects:  88% (24/27)   Unpacking objects:  92% (25/27)   Unpacking objects:  96% (26/27)   Unpacking objects: 100% (27/27)   Unpacking objects: 100% (27/27), done.
-From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
-   a41758d..391d628  master     -> origin/master
-Updating a41758d..391d628
-Fast-forward
- 09_PrePro1/Abstract.Rmd        |    1 [31m-[m
- 09_PrePro1/Demo_Datentypen.Rmd |    2 [32m+[m[31m-[m
- 09_PrePro1/Uebung_A.Rmd        |    4 [32m+[m[31m-[m
- 10_PrePro2/Demo_Tidyverse.Rmd  |   34 [32m+[m[31m-[m
- 10_PrePro2/Uebung_A.Rmd        |   14 [32m+[m[31m-[m
- 15_Statistik3/Demoskript.Rmd   |    2 [32m+[m[31m-[m
- 99_Book/index.html             |  113 [32m+[m[31m-[m
- 99_Book/search_index.json      |   38 [32m+[m[31m-[m
- _bookdown.yml                  |   80 [32m+[m[31m-[m
- _main.Rmd                      | 3538 [31m---------------------------------[m
- _main.log                      |  952 [32m+++++++++[m
- _main.tex                      | 1552 [32m+++++++++++++++[m
- _output.yml                    |    2 [32m+[m[31m-[m
- 13 files changed, 2620 insertions(+), 3712 deletions(-)
- delete mode 100644 _main.Rmd
- create mode 100644 _main.log
- create mode 100644 _main.tex
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ status
-bash: status: command not found
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .bash_history[m
-	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
-	[31mmodified:   .rstudio/history_database[m
-	[31mmodified:   .rstudio/monitored/lists/file_mru[m
-	[31mmodified:   .rstudio/monitored/lists/help_history_links[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/5B5B353F[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/5B5B353F.env[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/INDEX001[m
-	[31mmodified:   .rstudio/projects_settings/next-session-project[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/INDEX[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/empty.png[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/executing[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/initial[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/project[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-home[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/running[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/working-dir[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/rmd-outputs[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/session-persistent-state[m
-	[31mmodified:   13_Statistik1/assigment_stat1.Rmd[m
-	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
-	[31mmodified:   14_Statistik2/assigment_stat2.Rmd[m
-	[31mmodified:   14_Statistik2/solution_stat2.3s.Rmd[m
-	[31mmodified:   15_Statistik3/assigment_stat3.Rmd[m
-	[31mmodified:   16_Statistik4/assigment_stat4.Rmd[m
-	[31mmodified:   16_Statistik4/solution_stat4.2s.Rmd[m
-	[31mmodified:   17_Statistik5/assigment_stat5.Rmd[m
-	[31mmodified:   17_Statistik5/solution_stat5.2.Rmd[m
-	[31mmodified:   18_Statistik6/assigment_stat6.Rmd[m
-	[31mmodified:   19_Statistik7/assigment_stat7.Rmd[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/client-state/history.temporary[m
-	[31m.rstudio/content_urls/[m
-	[31m.rstudio/sessions/active/session-cf931d18/[m
-	[31m13_Statistik1/solution_stat1.pdf[m
-	[31m13_Statistik1/solution_stat1.tex[m
-	[31mLibrary/R/3.4/library/MuMIn/[m
-	[31mLibrary/R/3.4/library/fansi/[m
-	[31mLibrary/R/3.4/library/lme4/[m
-	[31mLibrary/R/3.4/library/minqa/[m
-	[31mLibrary/R/3.4/library/nloptr/[m
-	[31mLibrary/R/3.4/library/nnet/[m
-	[31mLibrary/R/3.4/library/utf8/[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Already up to date.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git s§[K[K statusl[K
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .bash_history[m
-	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
-	[31mmodified:   .rstudio/history_database[m
-	[31mmodified:   .rstudio/monitored/lists/file_mru[m
-	[31mmodified:   .rstudio/monitored/lists/help_history_links[m
-	[31mmodified:   .rstudio/monitored/user-settings/user-settings[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/5B5B353F[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/5B5B353F.env[m
-	[31mmodified:   .rstudio/projects/165271d3/console06/INDEX001[m
-	[31mmodified:   .rstudio/projects_settings/next-session-project[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/INDEX[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/empty.png[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/executing[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/initial[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/project[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-home[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/running[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/working-dir[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/rmd-outputs[m
-	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/session-persistent-state[m
-	[31mmodified:   13_Statistik1/assigment_stat1.Rmd[m
-	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
-	[31mmodified:   14_Statistik2/assigment_stat2.Rmd[m
-	[31mmodified:   14_Statistik2/solution_stat2.3s.Rmd[m
-	[31mmodified:   15_Statistik3/assigment_stat3.Rmd[m
-	[31mmodified:   15_Statistik3/solution_stat3.1.Rmd[m
-	[31mmodified:   16_Statistik4/assigment_stat4.Rmd[m
-	[31mmodified:   16_Statistik4/solution_stat4.2s.Rmd[m
-	[31mmodified:   17_Statistik5/assigment_stat5.Rmd[m
-	[31mmodified:   17_Statistik5/solution_stat5.2.Rmd[m
-	[31mmodified:   18_Statistik6/assigment_stat6.Rmd[m
-	[31mmodified:   18_Statistik6/solution_stat6.1.Rmd[m
-	[31mmodified:   19_Statistik7/assigment_stat7.Rmd[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/client-state/history.temporary[m
-	[31m.rstudio/content_urls/[m
-	[31m.rstudio/sessions/active/session-cf931d18/[m
-	[31m13_Statistik1/solution_stat1.pdf[m
-	[31m13_Statistik1/solution_stat1.tex[m
-	[31mLibrary/R/3.4/library/MuMIn/[m
-	[31mLibrary/R/3.4/library/Rcpp/[m
-	[31mLibrary/R/3.4/library/emo/[m
-	[31mLibrary/R/3.4/library/fansi/[m
-	[31mLibrary/R/3.4/library/glue/[m
-	[31mLibrary/R/3.4/library/lme4/[m
-	[31mLibrary/R/3.4/library/minqa/[m
-	[31mLibrary/R/3.4/library/nloptr/[m
-	[31mLibrary/R/3.4/library/nnet/[m
-	[31mLibrary/R/3.4/library/purrr/[m
-	[31mLibrary/R/3.4/library/utf8/[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
