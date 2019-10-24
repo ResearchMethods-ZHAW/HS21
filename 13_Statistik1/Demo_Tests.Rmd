@@ -50,6 +50,7 @@ t.test(blume$a,blume$b, paired=T,alternative="greater") #gepaarter t-Test
 shapiro.test(blume$b)
 
 var.test(blume$a,blume$b)
+if(!require(car)){install.packages("car")} # installiert das Zusatzpacket car (wenn nicht bereits installiert)
 library(car)
 leveneTest(blume$a,blume$b,center=mean)
 
@@ -86,7 +87,7 @@ t.test(size~cultivar, blume.long, var.equal=F)
 
 ```{r}
 
-library(ggplot2)
+library(tidyverse)
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()+theme_classic()
 
