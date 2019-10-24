@@ -12,7 +12,7 @@ library(knitr)
 
 [Demoscript als Download](13_Statistik1/RFiles/Demo_Tests.R)
 
-### Chi-Quadrat-Test
+### Chi-Quadrat-Test & Fishers Test
 
 ```{r}
 qchisq(0.95,1)
@@ -75,7 +75,7 @@ blume.long<-data.frame(cultivar=c(rep("a",10),rep("b",10)),size=c(a,b))
 summary(blume.long)             
 head(blume.long)
 
-boxplot(long,size~cultivar, data=blume)
+boxplot(size~cultivar, data=blume.long)
 
 t.test(size~cultivar, blume.long, var.equal=T)
 t.test(size~cultivar, blume.long, var.equal=F)
