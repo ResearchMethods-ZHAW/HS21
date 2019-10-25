@@ -49,7 +49,7 @@ summary.lm(aov.1)
 #Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
 aggregate(size~cultivar,blume2, function(x) c(Mean = mean(x), SD = sd(x), Min=min(x), Max=max(x)))
 
-lm1 <- lm(size~cultivar,data=blume2)
+lm.1 <- lm(size~cultivar,data=blume2)
 summary(lm.1)
 ```
 
