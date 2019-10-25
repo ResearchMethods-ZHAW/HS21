@@ -139,7 +139,7 @@ boxplot(size~cultivar+house,data=blume3)
 
 summary(aov(size~cultivar+house,data=blume3))
 summary(aov(size~cultivar+house+cultivar:house,data=blume3)) 
-summary(aov(size~cultivar*house,data=blume3)) ## Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
+summary(aov(size~cultivar*house,data=blume3)) #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
 
 summary.lm(aov(size~cultivar+house,data=blume3))
 
