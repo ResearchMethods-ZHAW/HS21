@@ -36,20 +36,28 @@ summary(blume2)
 head(blume2)
 
 par(mfrow=c(1,1))
-boxplot (data=blume2, size~cultivar, xlab="Sorte", ylab="Bl�tengr�sse [cm�]")
+boxplot (data=blume2, size~cultivar, xlab="Sorte", ylab="Blütengrösse [cm]")
 
 aov(size~cultivar,data=blume2)
 summary(aov(size~cultivar,data=blume2))
 summary.lm(aov(size~cultivar,data=blume2))
 
-lm(size~cultivar,data=blume2)
-summary(lm(size~cultivar,data=blume2))
+aov.1 <- aov(size~cultivar,data=blume2)
+summary(aov.1)
+summary.lm(aov.1)
+
+#Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
+aggregate(size~cultivar,blume2, function(x) c(Mean = mean(x), SD = sd(x), Min=min(x), Max=max(x)))
+
+lm1 <- lm(size~cultivar,data=blume2)
+summary(lm.1)
 ```
 
 
 __Tukeys Posthoc-Test__
 
 ```{r}
+if(!require(multcomp)){install.packages("multcomp")}
 library(multcomp)
 summary(glht(aov(size~cultivar, data=blume2),linfct=mcp(cultivar ="Tukey")))
 ```
@@ -62,10 +70,15 @@ anova <- aov(Sepal.Width ~ Species, data=iris)
 letters <- cld(glht(anova, linfct=mcp(Species="Tukey")))
 boxplot(Sepal.Width ~ Species, data=iris)
 mtext(letters$mcletters$Letters, at=1:3)
+
+library(tidyverse)
+ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
+  annotate("text", y = 5, x = 1:3, label = letters$mcletters$Letters)
+
 ```
 
 
-__Classical tests for model assumptions (NOT RECOMMENDED!!!)__
+__Klassische Tests der Modellannahmenmptions (NICHT EMPFOHLEN!!!) __
 
 ```{r}
 attach(blume2)
@@ -73,6 +86,7 @@ shapiro.test(size[cultivar == "a"])
 
 var.test(size[cultivar == "a"],size[cultivar == "b"])
 
+if(!require(car)){install.packages("car")}
 library(car)
 leveneTest(size[cultivar == "a"],size[cultivar == "b"],center=mean)
 
@@ -82,7 +96,7 @@ detach(blume2)
 ```
 
 
-__Non-parametric alternatives if assumptions of ANOVA are strongly violated__
+__Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA massiv verletzt sind__
 
 __Zum Vergleich normale ANOVA noch mal__
 
@@ -90,17 +104,18 @@ __Zum Vergleich normale ANOVA noch mal__
 summary(aov(size~cultivar,data=blume2))
 ```
 
-__For strong deviation from normality, but similar variances__
+__Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen__
 
 __Kruskal-Wallis-Test__
 
 ```{r}
 kruskal.test(data=blume2, size~cultivar)
+if(!require(FSA)){install.packages("FSA")} 
 library(FSA)
 dunnTest(data=blume2, size~cultivar, method="bh") #korrigierte p-Werte nach Bejamini-Hochberg
 ```
 
-__For strong heteroscedasticity, but relatively normal/symmetric distributions of residuals: We__
+__Bei erheblicher Heteroskedastizität, aber relative normal/symmetrisch verteilten Residuen__
 
 __Welch-Test__
 
@@ -108,7 +123,7 @@ __Welch-Test__
 oneway.test(data=blume2, size~cultivar, var.equal=F)
 ```
 
-__2-way ANOVA__
+__2-faktorielle ANOVA__
 
 ```{r}
 
@@ -123,12 +138,14 @@ blume3
 boxplot(size~cultivar+house,data=blume3)
 
 summary(aov(size~cultivar+house,data=blume3))
-summary(aov(size~cultivar*house,data=blume3))
+summary(aov(size~cultivar+house+cultivar:house,data=blume3)) 
+summary(aov(size~cultivar*house,data=blume3)) ## Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
 
 summary.lm(aov(size~cultivar+house,data=blume3))
 
 
 interaction.plot(blume3$cultivar,blume3$house,blume3$size)
+interaction.plot(blume3$house,blume3$cultivar,blume3$size)
 
 anova(lm(blume3$size~blume3$cultivar*blume3$house),lm(blume3$size~blume3$cultivar+blume3$house))
 anova(lm(blume3$size~blume3$house),lm(blume3$size~blume3$cultivar*blume3$house))
@@ -142,4 +159,52 @@ library(car)
 
 blume<-data.frame(a,b)
 scatterplot(a~b,blume)
+
+cor.test(a,b,data = blume, method="pearson")
+cor.test(a,b,data = blume, method="spearman")
+cor.test(a,b,data = blume, method="kendall") 
+
+#Jetzt als Regression
+lm.2 <- lm(b~a)
+anova(lm.2)
+summary(lm.2)
+
+#Model II-Regression
+if(!require(lmodel2)){install.packages("lmodel2")} 
+library(lmodel2)
+lmodel2(b~a)
 ```
+
+__Beispiele Modelldiagnostik__
+```{r}
+par(mfrow=c(2,2)) #4 Plots in einem Fenster
+plot(lm(b~a))
+
+if(!require(ggfortify)){install.packages("ggfortify")}
+library(ggfortify)
+autoplot(lm(b~a))
+
+#Modellstatistik nicht OK
+
+g<-c(20,19,25,10,8,15,13,18,11,14,25,39,38,28,24)
+h<-c(12,15,10,7,8,10,12,11,13,10,25,12,30,26,13)
+par(mfrow=c(1,1))
+plot(h~g,xlim=c(0,40),ylim=c(0,30))
+abline(lm(h~g))
+
+
+#Modelldiagnostik mit ggplot
+df <- data.frame(g,h)
+ggplot(df, aes(x = g, y = h)) + 
+    # scale_x_continuous(limits = c(0,25)) +
+    # scale_y_continuous(limits = c(0,25)) +
+    geom_point() +
+    geom_smooth( method = "lm", color = "black", size = .5, se = F) + 
+    theme_classic()
+
+par(mfrow=c(2,2))
+plot(lm(h~g))
+
+autoplot(lm(h~g))
+
+
