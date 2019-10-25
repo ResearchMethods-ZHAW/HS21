@@ -78,7 +78,7 @@ ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
 ```
 
 
-__Klassische Tests der Modellannahmenmptions (NICHT EMPFOHLEN!!!) __
+__Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!) __
 
 ```{r}
 attach(blume2)
