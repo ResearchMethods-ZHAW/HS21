@@ -115,12 +115,12 @@ ggplot(blume.long, aes(cultivar,size)) +
   geom_boxplot(size=1) +
   mytheme
 
-t.test(size~cultivar, blume.long)
+t_test <- t.test(size~cultivar, blume.long)
 
 ggplot(blume.long, aes(cultivar,size)) + 
   geom_boxplot(size=1) + 
   mytheme +
-  annotate("text", x = 1.5, y = 10, label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
+  annotate("text", x = "b", y = 24, label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
 
 ggplot (blume.long, aes(cultivar,size)) + 
   geom_boxplot(size=1) + 
