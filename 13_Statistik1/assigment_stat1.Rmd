@@ -3,7 +3,7 @@
 
 ###	Übung 1.1: Assoziationstest
 
-Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test
+Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat Test
 
 
 ###	Übung 1.2: $\chi^2$-Test
