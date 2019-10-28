@@ -15,7 +15,7 @@ Unterscheidet sich die Stichprobe des NOVANIMAL-Projekts von der gesamten Popula
 Die Grundgesamtheit setzt sich aus 719 Studentinnen und 816 Studenten, 345 Mitarbeiterinnen und 339 Mitarbeiter. Die gesamte Population umfasst 2219 Personen mit einer aktiven CampusCard.
 
 - Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$)
-- Führt einen $\chi^2$-Test und anschliessend einen Fishers exakten Test mit dem Datensatz novanimal.csv durch
+- Führt einen $\chi^2$-Test mit dem Datensatz novanimal.csv durch
 - Stellt eure Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle
 
 
