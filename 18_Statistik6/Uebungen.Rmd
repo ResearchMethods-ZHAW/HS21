@@ -1,4 +1,4 @@
-##Statistik 6: Übungen
+## Statistik 6: Übungen
 
 ### Übung 6.1: PCA (naturwissenschaftlich)
 

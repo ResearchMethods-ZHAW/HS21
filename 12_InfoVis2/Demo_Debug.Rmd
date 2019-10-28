@@ -1,9 +1,15 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 ## Demo Debuggin Tipps
 
 
 
 ```{r}
+
 library(tidyverse)
 library(lubridate)
 
@@ -28,7 +34,6 @@ wetter_fil <- wetter %>%
 ```
 
 
-
 1 Einzelne Zeilen ausführen  (Selektieren > run) 
 2 Einzelne Zeilen ein/auskommentieren: 
   - von Hand
@@ -41,17 +46,17 @@ wetter_fil <- wetter %>%
 ```{r}
 
 
-ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
+ ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_point() +
-  geom_line() +
-  labs(x = "Woche",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "Januar 2000") +  
-  scale_y_continuous(limit = ("-30","30"")) +
-  scale_x_datetime(date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "KW%W") +
-  facet_wrap(~stn,ncol = 3) +
-  theme(legend.position="none")
+   geom_line() +
+   labs(x = "Woche",
+        y = "Temperatur in Grad C°", 
+        title = "Temperaturdaten Schweiz",
+      subtitle = "Januar 2000") 
+  #scale_y_continuous(limit = c("-30","30")) 
+  #scale_x_datetime(date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "KW%W") +
+  #facet_wrap(~stn,ncol = 3) +
+  #theme(legend.position="none")
 
 
 
