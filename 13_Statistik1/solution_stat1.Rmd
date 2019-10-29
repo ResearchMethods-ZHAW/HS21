@@ -7,7 +7,7 @@ output:
 
 
 ###  Musterlösung Aufgabe 1.2: $\chi^2$-Test
-## Meine Empefhlung Kapitel 4 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
+## Meine Empfhelung Kapitel 4 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
 
 ```{r setup, include=FALSE, purl = F, message=F}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, error = F, include = T, fig.pos = 'H')
