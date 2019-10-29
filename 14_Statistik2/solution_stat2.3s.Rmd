@@ -66,7 +66,7 @@ model2 <- aov(tot_sold ~ label_content * condit, data = df_)
 
 autoplot(model2) + mytheme  # Inspektion der Modellvoraussetzungen sehen nicht schlecht aus => einzig Normalverteilung Q-Q Plot nicht optimal (vgl. Statistik 2: Folie 42)
 
-summary.lm(model1)
+summary(model1)
 
 # Alternativ gibt es zwei Möglichkeiten: 1) Transformation der Daten, 2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
 model3 <- aov(log10(tot_sold) ~ label_content * condit, data = df_)
