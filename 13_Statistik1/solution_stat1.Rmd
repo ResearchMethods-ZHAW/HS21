@@ -113,7 +113,7 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
     labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
     mytheme
 
-# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefe Verteilungen ersichtlich (vgl. Statistik 2, Folien 12-21)
+# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen ersichtlich (vgl. Statistik 2, Folien 12-21)
 
 ```
 

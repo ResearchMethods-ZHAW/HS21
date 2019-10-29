@@ -10892,3 +10892,43 @@
 1571489864890:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
 1571489865562:summary(mod0)
 1571489869481:r.squaredGLMM(mod0)
+1572333607039:library(tidyverse)
+1572333607181:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572333614049:library(tidyverse)
+1572333635913:library(readr)
+1572333648052:library(tidyverse)
+1572333660704:install.packages("tidyverse")
+1572333665658:library(tidyverse)
+1572333678525:install.packages("lifecylce")
+1572333688076:library(tidyverse)
+1572333691420:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572333696720:mytheme <-
+1572333696721:theme_classic() +
+1572333696722:theme(
+1572333696723:axis.line = element_line(color = "black"),
+1572333696724:axis.text = element_text(size = 20, color = "black"),
+1572333696725:axis.title = element_text(size = 20, color = "black"),
+1572333696727:axis.ticks = element_line(size = 1, color = "black"),
+1572333696728:axis.ticks.length = unit(.5, "cm")
+1572333696729:)
+1572333702106:library(ggplot2)
+1572333704802:mytheme <-
+1572333704803:theme_classic() +
+1572333704804:theme(
+1572333704805:axis.line = element_line(color = "black"),
+1572333704807:axis.text = element_text(size = 20, color = "black"),
+1572333704808:axis.title = element_text(size = 20, color = "black"),
+1572333704809:axis.ticks = element_line(size = 1, color = "black"),
+1572333704810:axis.ticks.length = unit(.5, "cm")
+1572333704811:)
+1572333717400:df <- nova %>%
+1572333717401:group_by(week, condit) %>%
+1572333717402:summarise(tot_sold = n())
+1572333724489:library(dplyr)
+1572333727617:df <- nova %>%
+1572333727618:group_by(week, condit) %>%
+1572333727620:summarise(tot_sold = n())
+1572333750117:t_test <- t.test(df[df$condit == "Basis", ]$tot_sold,
+1572333750118:df[df$condit == "Intervention", ]$tot_sold)
+1572333754307:t_test
+1572333757438:t.test(tot_sold~condit, data=df)#alternative formulierung

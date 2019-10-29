@@ -53,6 +53,15 @@
         "package" : "colourpicker",
         "title" : ""
     },
+    "covr::addin_report" : {
+        "binding" : "addin_report",
+        "description" : "Calculates the package test coverage and opens a report, using `covr::report()`",
+        "interactive" : false,
+        "name" : "Calculate package test coverage",
+        "ordinal" : 12,
+        "package" : "covr",
+        "title" : ""
+    },
     "devtools::test_coverage" : {
         "binding" : "test_coverage",
         "description" : "Calculate and report the test coverage for the current package, using `devtools::test_coverage()`.",

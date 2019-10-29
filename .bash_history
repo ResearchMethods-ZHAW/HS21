@@ -155,3 +155,8 @@ git commit -m "changes in sozoec assigments"
 git push
 git status
 git pull
+git status
+git pull
+git add -A
+git commit -m "last changes in assigments"
+git push
