@@ -126,6 +126,8 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
 t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, 
                  df[df$condit == "Intervention", ]$tot_sold)
 t_test
+
+t.test(tot_sold~condit, data=df)#alternative formulierung
 ```
 
 #### Methodenteil

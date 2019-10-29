@@ -5,7 +5,6 @@
 
 Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test
 
-
 ###	Übung 1.2: $\chi^2$-Test
 
 Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) 
@@ -15,7 +14,7 @@ Unterscheidet sich die Stichprobe des NOVANIMAL-Projekts von der gesamten Popula
 Die Grundgesamtheit setzt sich aus 719 Studentinnen und 816 Studenten, 345 Mitarbeiterinnen und 339 Mitarbeiter. Die gesamte Population umfasst 2219 Personen mit einer aktiven CampusCard.
 
 - Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$)
-- Führt einen $\chi^2$-Test und anschliessend einen Fishers exakten Test mit dem Datensatz novanimal.csv durch
+- Führt einen $\chi^2$-Test mit dem Datensatz novanimal.csv durch
 - Stellt eure Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle
 
 
