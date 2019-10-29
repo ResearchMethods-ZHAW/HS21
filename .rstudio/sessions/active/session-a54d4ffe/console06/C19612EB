@@ -1,0 +1,136 @@
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 17 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+
+	[32mmodified:   13_Statistik1/Abstract.Rmd[m
+	[32mmodified:   13_Statistik1/Demo_Tests.Rmd[m
+	[32mmodified:   13_Statistik1/assigment_stat1.Rmd[m
+	[32mmodified:   13_Statistik1/solution_stat1.Rmd[m
+	[32mmodified:   14_Statistik2/Abstract.Rmd[m
+	[32mmodified:   14_Statistik2/Demoskript.Rmd[m
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rhistory[m
+	[31mmodified:   .bash_history[m
+	[31mdeleted:    .rstudio/client-state/console.temporary[m
+	[31mdeleted:    .rstudio/client-state/environment-panel.temporary[m
+	[31mdeleted:    .rstudio/client-state/history.temporary[m
+	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
+	[31mmodified:   .rstudio/history_database[m
+	[31mmodified:   .rstudio/projects_settings/last-project-path[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/console06/70AAD085[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/console06/70AAD085.env[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/console06/INDEX001[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/graphics-r3/empty.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/created[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/executing[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/initial[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/last-used[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/project[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/r-version[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/r-version-home[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/r-version-label[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/running[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/save_prompt_required[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/working-dir[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/session-persistent-state[m
+	[31mmodified:   .viminfo[m
+	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/monitored/lists/notebooks[m
+	[31m.rstudio/sessions/active/session-a54d4ffe/[m
+	[31m.rstudio/sessions/session-locks/[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+error: You have not concluded your merge (MERGE_HEAD exists).
+hint: Please, commit your changes before merging.
+fatal: Exiting because of unfinished merge.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit m[K-m ""u"[1P"g"e"t" "a"[1P"l"a"s"t" [A]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C ""u"p"d"a"t"e"
+[master 098ee32] get last update
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 4, done.[K
+remote: Counting objects:  25% (1/4)   [Kremote: Counting objects:  50% (2/4)   [Kremote: Counting objects:  75% (3/4)   [Kremote: Counting objects: 100% (4/4)   [Kremote: Counting objects: 100% (4/4), done.[K
+remote: Compressing objects:  25% (1/4)   [Kremote: Compressing objects:  50% (2/4)   [Kremote: Compressing objects:  75% (3/4)   [Kremote: Compressing objects: 100% (4/4)   [Kremote: Compressing objects: 100% (4/4), done.[K
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects:  25% (1/4)   Unpacking objects:  50% (2/4)   Unpacking objects:  75% (3/4)   Unpacking objects: 100% (4/4)   Unpacking objects: 100% (4/4), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   789f5b7..3064a42  master     -> origin/master
+hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
+ 14_Statistik2/solution_stat2.3s.Rmd | 2 [32m+[m[31m-[m
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rhistory[m
+	[31mmodified:   .bash_history[m
+	[31mdeleted:    .rstudio/client-state/console.temporary[m
+	[31mdeleted:    .rstudio/client-state/environment-panel.temporary[m
+	[31mdeleted:    .rstudio/client-state/history.temporary[m
+	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
+	[31mmodified:   .rstudio/history_database[m
+	[31mmodified:   .rstudio/projects_settings/last-project-path[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/console06/70AAD085[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/console06/70AAD085.env[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/console06/INDEX001[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/graphics-r3/empty.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/created[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/executing[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/initial[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/last-used[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/project[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/r-version[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/r-version-home[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/r-version-label[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/running[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/save_prompt_required[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/properites/working-dir[m
+	[31mdeleted:    .rstudio/sessions/active/session-f03d6fce/session-persistent-state[m
+	[31mmodified:   .viminfo[m
+	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/monitored/lists/notebooks[m
+	[31m.rstudio/sessions/active/session-a54d4ffe/[m
+	[31m.rstudio/sessions/session-locks/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git p[Kpull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Already up to date.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A

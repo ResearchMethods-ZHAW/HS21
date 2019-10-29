@@ -10932,3 +10932,16 @@
 1572333750118:df[df$condit == "Intervention", ]$tot_sold)
 1572333754307:t_test
 1572333757438:t.test(tot_sold~condit, data=df)#alternative formulierung
+1572334135083:matrix(df_t[ ,c("stichprobe", "gesamtheit")])
+1572334141058:df_t <- group_by(nova, gender, member) %>%
+1572334141060:summarise(stichprobe = n()) %>%
+1572334141061:ungroup() %>%
+1572334141063:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572334141064:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572334141065:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572334141066:stichprobe_pct = stichprobe / sum(stichprobe))
+1572334145902:matrix(df_t[ ,c("stichprobe", "gesamtheit")])
+1572334154155:df_t[ ,c("stichprobe", "gesamtheit")]
+1572334171246:matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
+1572334180245:a <- matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
+1572334181328:a

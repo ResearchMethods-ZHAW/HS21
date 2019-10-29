@@ -1,111 +1,0 @@
-groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git stats[Kus [A
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .bash_history[m
-	[31mmodified:   .rstudio/addin_registry[m
-	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
-	[31mmodified:   .rstudio/monitored/lists/file_mru[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/console06/962B51E2[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/console06/962B51E2.env[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/executing[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/initial[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/project[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/r-version[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/r-version-home[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/running[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/working-dir[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/session-persistent-state[m
-	[31mmodified:   .rstudio/sessions/session-locks/3c286bd3/3c286bd3[m
-	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-f03d6fce/[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-remote: Enumerating objects: 52, done.[K
-remote: Counting objects:   1% (1/52)   [Kremote: Counting objects:   3% (2/52)   [Kremote: Counting objects:   5% (3/52)   [Kremote: Counting objects:   7% (4/52)   [Kremote: Counting objects:   9% (5/52)   [Kremote: Counting objects:  11% (6/52)   [Kremote: Counting objects:  13% (7/52)   [Kremote: Counting objects:  15% (8/52)   [Kremote: Counting objects:  17% (9/52)   [Kremote: Counting objects:  19% (10/52)   [Kremote: Counting objects:  21% (11/52)   [Kremote: Counting objects:  23% (12/52)   [Kremote: Counting objects:  25% (13/52)   [Kremote: Counting objects:  26% (14/52)   [Kremote: Counting objects:  28% (15/52)   [Kremote: Counting objects:  30% (16/52)   [Kremote: Counting objects:  32% (17/52)   [Kremote: Counting objects:  34% (18/52)   [Kremote: Counting objects:  36% (19/52)   [Kremote: Counting objects:  38% (20/52)   [Kremote: Counting objects:  40% (21/52)   [Kremote: Counting objects:  42% (22/52)   [Kremote: Counting objects:  44% (23/52)   [Kremote: Counting objects:  46% (24/52)   [Kremote: Counting objects:  48% (25/52)   [Kremote: Counting objects:  50% (26/52)   [Kremote: Counting objects:  51% (27/52)   [Kremote: Counting objects:  53% (28/52)   [Kremote: Counting objects:  55% (29/52)   [Kremote: Counting objects:  57% (30/52)   [Kremote: Counting objects:  59% (31/52)   [Kremote: Counting objects:  61% (32/52)   [Kremote: Counting objects:  63% (33/52)   [Kremote: Counting objects:  65% (34/52)   [Kremote: Counting objects:  67% (35/52)   [Kremote: Counting objects:  69% (36/52)   [Kremote: Counting objects:  71% (37/52)   [Kremote: Counting objects:  73% (38/52)   [Kremote: Counting objects:  75% (39/52)   [Kremote: Counting objects:  76% (40/52)   [Kremote: Counting objects:  78% (41/52)   [Kremote: Counting objects:  80% (42/52)   [Kremote: Counting objects:  82% (43/52)   [Kremote: Counting objects:  84% (44/52)   [Kremote: Counting objects:  86% (45/52)   [Kremote: Counting objects:  88% (46/52)   [Kremote: Counting objects:  90% (47/52)   [Kremote: Counting objects:  92% (48/52)   [Kremote: Counting objects:  94% (49/52)   [Kremote: Counting objects:  96% (50/52)   [Kremote: Counting objects:  98% (51/52)   [Kremote: Counting objects: 100% (52/52)   [Kremote: Counting objects: 100% (52/52), done.[K
-remote: Compressing objects:   1% (1/52)   [Kremote: Compressing objects:   3% (2/52)   [Kremote: Compressing objects:   5% (3/52)   [Kremote: Compressing objects:   7% (4/52)   [Kremote: Compressing objects:   9% (5/52)   [Kremote: Compressing objects:  11% (6/52)   [Kremote: Compressing objects:  13% (7/52)   [Kremote: Compressing objects:  15% (8/52)   [Kremote: Compressing objects:  17% (9/52)   [Kremote: Compressing objects:  19% (10/52)   [Kremote: Compressing objects:  21% (11/52)   [Kremote: Compressing objects:  23% (12/52)   [Kremote: Compressing objects:  25% (13/52)   [Kremote: Compressing objects:  26% (14/52)   [Kremote: Compressing objects:  28% (15/52)   [Kremote: Compressing objects:  30% (16/52)   [Kremote: Compressing objects:  32% (17/52)   [Kremote: Compressing objects:  34% (18/52)   [Kremote: Compressing objects:  36% (19/52)   [Kremote: Compressing objects:  38% (20/52)   [Kremote: Compressing objects:  40% (21/52)   [Kremote: Compressing objects:  42% (22/52)   [Kremote: Compressing objects:  44% (23/52)   [Kremote: Compressing objects:  46% (24/52)   [Kremote: Compressing objects:  48% (25/52)   [Kremote: Compressing objects:  50% (26/52)   [Kremote: Compressing objects:  51% (27/52)   [Kremote: Compressing objects:  53% (28/52)   [Kremote: Compressing objects:  55% (29/52)   [Kremote: Compressing objects:  57% (30/52)   [Kremote: Compressing objects:  59% (31/52)   [Kremote: Compressing objects:  61% (32/52)   [Kremote: Compressing objects:  63% (33/52)   [Kremote: Compressing objects:  65% (34/52)   [Kremote: Compressing objects:  67% (35/52)   [Kremote: Compressing objects:  69% (36/52)   [Kremote: Compressing objects:  71% (37/52)   [Kremote: Compressing objects:  73% (38/52)   [Kremote: Compressing objects:  75% (39/52)   [Kremote: Compressing objects:  76% (40/52)   [Kremote: Compressing objects:  78% (41/52)   [Kremote: Compressing objects:  80% (42/52)   [Kremote: Compressing objects:  82% (43/52)   [Kremote: Compressing objects:  84% (44/52)   [Kremote: Compressing objects:  86% (45/52)   [Kremote: Compressing objects:  88% (46/52)   [Kremote: Compressing objects:  90% (47/52)   [Kremote: Compressing objects:  92% (48/52)   [Kremote: Compressing objects:  94% (49/52)   [Kremote: Compressing objects:  96% (50/52)   [Kremote: Compressing objects:  98% (51/52)   [Kremote: Compressing objects: 100% (52/52)   [Kremote: Compressing objects: 100% (52/52), done.[K
-Unpacking objects:   1% (1/68)   Unpacking objects:   2% (2/68)   Unpacking objects:   4% (3/68)   Unpacking objects:   5% (4/68)   Unpacking objects:   7% (5/68)   Unpacking objects:   8% (6/68)   Unpacking objects:  10% (7/68)   remote: Total 68 (delta 30), reused 0 (delta 0), pack-reused 16[K
-Unpacking objects:  11% (8/68)   Unpacking objects:  13% (9/68)   Unpacking objects:  14% (10/68)   Unpacking objects:  16% (11/68)   Unpacking objects:  17% (12/68)   Unpacking objects:  19% (13/68)   Unpacking objects:  20% (14/68)   Unpacking objects:  22% (15/68)   Unpacking objects:  23% (16/68)   Unpacking objects:  25% (17/68)   Unpacking objects:  26% (18/68)   Unpacking objects:  27% (19/68)   Unpacking objects:  29% (20/68)   Unpacking objects:  30% (21/68)   Unpacking objects:  32% (22/68)   Unpacking objects:  33% (23/68)   Unpacking objects:  35% (24/68)   Unpacking objects:  36% (25/68)   Unpacking objects:  38% (26/68)   Unpacking objects:  39% (27/68)   Unpacking objects:  41% (28/68)   Unpacking objects:  42% (29/68)   Unpacking objects:  44% (30/68)   Unpacking objects:  45% (31/68)   Unpacking objects:  47% (32/68)   Unpacking objects:  48% (33/68)   Unpacking objects:  50% (34/68)   Unpacking objects:  51% (35/68)   Unpacking objects:  52% (36/68)   Unpacking objects:  54% (37/68)   Unpacking objects:  55% (38/68)   Unpacking objects:  57% (39/68)   Unpacking objects:  58% (40/68)   Unpacking objects:  60% (41/68)   Unpacking objects:  61% (42/68)   Unpacking objects:  63% (43/68)   Unpacking objects:  64% (44/68)   Unpacking objects:  66% (45/68)   Unpacking objects:  67% (46/68)   Unpacking objects:  69% (47/68)   Unpacking objects:  70% (48/68)   Unpacking objects:  72% (49/68)   Unpacking objects:  73% (50/68)   Unpacking objects:  75% (51/68)   Unpacking objects:  76% (52/68)   Unpacking objects:  77% (53/68)   Unpacking objects:  79% (54/68)   Unpacking objects:  80% (55/68)   Unpacking objects:  82% (56/68)   Unpacking objects:  83% (57/68)   Unpacking objects:  85% (58/68)   Unpacking objects:  86% (59/68)   Unpacking objects:  88% (60/68)   Unpacking objects:  89% (61/68)   Unpacking objects:  91% (62/68)   Unpacking objects:  92% (63/68)   Unpacking objects:  94% (64/68)   Unpacking objects:  95% (65/68)   Unpacking objects:  97% (66/68)   Unpacking objects:  98% (67/68)   Unpacking objects: 100% (68/68)   Unpacking objects: 100% (68/68), done.
-From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
-   86568a3..789f5b7  master     -> origin/master
-Updating 86568a3..789f5b7
-error: Your local changes to the following files would be overwritten by merge:
-	13_Statistik1/solution_stat1.Rmd
-Please commit your changes or stash them before you merge.
-Aborting
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git oz[K[Kpull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Updating 86568a3..789f5b7
-error: Your local changes to the following files would be overwritten by merge:
-	13_Statistik1/solution_stat1.Rmd
-Please commit your changes or stash them before you merge.
-Aborting
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs [A
-git: 'statzs' is not a git command. See 'git --help'.
-
-The most similar command is
-	status
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gu[Ku[Kit statz[Kus [A
-On branch master
-Your branch is behind 'origin/master' by 17 commits, and can be fast-forwarded.
-  (use "git pull" to update your local branch)
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .bash_history[m
-	[31mmodified:   .rstudio/addin_registry[m
-	[31mmodified:   .rstudio/client-state/workbenchp.persistent[m
-	[31mmodified:   .rstudio/monitored/lists/file_mru[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/console06/962B51E2[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/console06/962B51E2.env[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/executing[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/initial[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/project[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/r-version[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/r-version-home[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/running[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/properites/working-dir[m
-	[31mdeleted:    .rstudio/sessions/active/session-59990d10/session-persistent-state[m
-	[31mdeleted:    .rstudio/sessions/session-locks/3c286bd3/3c286bd3[m
-	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-f03d6fce/[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git DD[K[KPULL[K[K[K[Kpull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Updating 86568a3..789f5b7
-error: Your local changes to the following files would be overwritten by merge:
-	13_Statistik1/solution_stat1.Rmd
-Please commit your changes or stash them before you merge.
-Aborting
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit [K[K[K[K[K[K[Kadd -A

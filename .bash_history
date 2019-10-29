@@ -160,3 +160,12 @@ git pull
 git add -A
 git commit -m "last changes in assigments"
 git push
+git status
+git pull
+git statzs
+git status
+git pull
+git add -A
+git commit -m "check for updates"
+git push
+git pull
