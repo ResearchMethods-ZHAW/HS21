@@ -61,16 +61,9 @@ df_t <- group_by(nova, gender, member) %>%
 # berechnet den Chi-Quadrat-Test
 ## Meine Empfehlung Kapitel 4 von Manny Gimond https://mgimond.github.io/Stats-in-R/index.html
 
-chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], ) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (siehe Statistik 1, Folie 33, oder lest die Details von der Help-Funktion)
+chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], ) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (lest die Details von der Help-Funktion)
 
 chi_sq
-
-
-# führt einen Fishers exakten Test durch
-# simulate.p.value simuliert einen p-Wert mit 100000 Replikaten
-
-fish <- fisher.test(df_t[ ,c("stichprobe", "gesamtheit")], simulate.p.value=TRUE, B = 100000) 
-fish
 
 ```
 

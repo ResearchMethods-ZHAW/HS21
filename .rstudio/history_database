@@ -10945,3 +10945,69 @@
 1572334171246:matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
 1572334180245:a <- matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
 1572334181328:a
+1572336121174:chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], )
+1572336175651:df_t <- group_by(nova, gender, member) %>%
+1572336175652:summarise(stichprobe = n()) %>%
+1572336175653:ungroup() %>%
+1572336175654:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572336175656:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572336175657:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572336175658:stichprobe_pct = stichprobe / sum(stichprobe))
+1572336187541:library(dplyr)
+1572336190176:df_t <- group_by(nova, gender, member) %>%
+1572336190177:summarise(stichprobe = n()) %>%
+1572336190179:ungroup() %>%
+1572336190180:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572336190181:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572336190182:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572336190183:stichprobe_pct = stichprobe / sum(stichprobe))
+1572336196821:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572336205589:library(readr)
+1572336212708:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572336219181:df_t <- group_by(nova, gender, member) %>%
+1572336219182:summarise(stichprobe = n()) %>%
+1572336219183:ungroup() %>%
+1572336219184:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572336219186:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572336219187:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572336219188:stichprobe_pct = stichprobe / sum(stichprobe))
+1572336224614:chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], ) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (siehe Statistik 1, Folie 33, oder lest die Details von der Help-Funktion)
+1572336226672:chi_sq
+1572336235830:df_t
+1572336243115:df_t$gesamtheit_pct
+1572336274488:chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct)
+1572336305891:chisq.test(df_t$stichprobe, df_t$gesamtheit)
+1572336314026:chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct)
+1572427470639:chi_sq <- chisq.test(df_t$canteen_member, p = df_t$gesamtheit_pct) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (lest die Details von der Help-Funktion)
+1572427477170:library(tidyverse)
+1572427477331:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572427477358:## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+1572427477361:mytheme <-
+1572427477362:theme_classic() +
+1572427477363:theme(
+1572427477365:axis.line = element_line(color = "black"),
+1572427477366:axis.text = element_text(size = 20, color = "black"),
+1572427477367:axis.title = element_text(size = 20, color = "black"),
+1572427477369:axis.ticks = element_line(size = 1, color = "black"),
+1572427477370:axis.ticks.length = unit(.5, "cm")
+1572427477371:)
+1572427499026:library(tidyverse)
+1572427506401:install.packages("lifecylce")
+1572427661022:.libPaths()
+1572427886202:rm
+1572427888947:rm()
+1572427894142:clean()
+1572427895910:clea
+1572427923897:library(tidyverse)
+1572428040003:library(dplyr)
+1572428048041:df_t <- group_by(nova, gender, member) %>%
+1572428048042:summarise(stichprobe = n()) %>%
+1572428048044:ungroup() %>%
+1572428048045:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), # Achtung: Reihenfolge muss stimmten vgl. canteen_member
+1572428048046:gesamtheit = c(345, 719, 339, 816), # Achtung: Reihenfolge muss stimmten vgl. oben
+1572428048047:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572428048048:stichprobe_pct = stichprobe / sum(stichprobe)) # Berechnung der relativen Häufigkeiten
+1572428138208:chi_sq <- chisq.test(df_t$canteen_member, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (canteen_member) und die in der Grundgesamtheit/Population erwarteten Werte (als relative Häufigkeiten)
+1572428149024:df_t
+1572428164181:chi_sq <- chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (stichprobe) und die in der Grundgesamtheit/Population erwarteten Werte (als relative Häufigkeiten)
+1572428165353:chi_sq
