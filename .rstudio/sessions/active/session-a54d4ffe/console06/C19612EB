@@ -226,3 +226,71 @@ Please commit your changes or stash them before you merge.
 Aborting
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^C
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ex[K[Kgit add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""p"r"o"b"l"e"m"s" "u"p"d"a"t"i"n"g" "g"i"t"[C
+[master c8e9910] problems updating git
+ 27 files changed, 564 insertions(+), 16 deletions(-)
+ create mode 100644 .rstudio/client-state/console.temporary
+ create mode 100644 .rstudio/client-state/environment-panel.temporary
+ rewrite .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001 (100%)
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/rmd-outputs
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment_vars
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/libpaths
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/rversion
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/search_path_elements
+ create mode 100644 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Auto-merging 13_Statistik1/solution_stat1.Rmd
+CONFLICT (content): Merge conflict in 13_Statistik1/solution_stat1.Rmd
+Automatic merge failed; fix conflicts and then commit the result.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	[31mboth modified:   13_Statistik1/solution_stat1.Rmd[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt a[K[K[K add -A

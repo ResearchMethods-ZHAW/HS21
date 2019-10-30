@@ -7,7 +7,7 @@ output:
 
 
 ###  Musterlösung Aufgabe 1.2: $\chi^2$-Test
-## Meine Empefhlung Kapitel 4 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
+## Meine Empfhelung Kapitel 4 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
 
 ```{r setup, include=FALSE, purl = F, message=F}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, error = F, include = T, fig.pos = 'H')
@@ -65,6 +65,19 @@ chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], ) # beachtet dabei w
 
 chi_sq
 
+<<<<<<< HEAD
+=======
+
+# Alternativer Lösungsweg
+observed <- group_by(nova, gender, member) %>% 
+  summarise(tot = n())
+observed
+
+expected <- c(0.15,0.32,0.16,0.37) # definiert einen Vektor mit den erwarteten Wahrscheinlichkeiten, beachtet dabei die Reihenfolge 
+
+chi_sq <- chisq.test(observed$tot, p = expected)
+chi_sq
+>>>>>>> b80e0385d631ec5b0d1baa14566dc0ad99d6502d
 ```
 
 #### Methodenteil
@@ -106,6 +119,10 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
     geom_boxplot(fill = "white", color = "black", size = 1) + 
     labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
     mytheme
+    
+#boxplot mit base R
+par(mar=c(5.1,5.5,4.1,2.1)) #Anpassen der Seitenränder (default: mar=c(5.1,4.1,4.1,2.1))
+boxplot(tot_sold~condit, df,boxwex = 0.4, col = "lightgrey",ylab="Durchschnittlich verkaufte Gerichte pro Woche",xlab="Bedingungen", cex.axis=1.5 ,cex.lab=1.5)
 
 # Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen ersichtlich (vgl. Statistik 2, Folien 12-21)
 
@@ -146,3 +163,4 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
 
 *******
 ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+##### stefan.widmer@zhaw.ch
