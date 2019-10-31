@@ -60,11 +60,13 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Uebung 2.1 - Regressionsanalyse
 
 ```{r}
-data <-read.csv("14_Statistik2/data/decay.csv")
-data
-attach(data)
-summary(data)
-str(data)
+decay <-read.csv("decay.csv")
+decay
+
+# Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu können
+attach(decay)
+summary(decay)
+str(decay)
 ```
 
 **Explorative Datenanalyse**
@@ -76,14 +78,14 @@ plot(amount~time)
 
 **Einfaches lineares Modell**
 ```{r}
-model1<-lm(amount~time)
-summary(model1)
+lm.1<-lm(amount~time)
+summary(lm.1)
 ```
 
 **Modelldiagnostik**
 ```{r}
 par(mfrow=c(2,2))
-plot(model1)
+plot(lm.1)
 ```
 
 **Ergebnisplot**
@@ -91,6 +93,7 @@ plot(model1)
 par(mfrow=c(1,1))
 plot(time,amount)
 abline(lm(amount~time),col="red")
+abline(lm.1,col="red")
 ```
 
 **Loesung 1: log-Transformation der abhaengigen Variablen**
@@ -100,15 +103,18 @@ boxplot(amount)
 boxplot(log(amount))
 hist(amount)
 hist(log(amount))
-model2<-lm(log(amount)~time)
-summary(model2)
+
+lm.2<-lm(log(amount)~time)
+summary(lm.2)
 ```
 
 **Modelldiagnostik**
 ```{r}
 par(mfrow=c(2,2))
-plot(model2)
+plot(lm.2)
 ```
+
+Lösungen 2 und 3 greifen auf Methoden von Statistik 3 und 4 zurück, sie sind hier nur zum Vergleich angeführt
 
 **Loesung 2: quadratische Regression (kam erst in Statistik 3;**
 _**koente fuer die Datenverteilung passen, entspricht aber nicht der physikalischen**_
@@ -122,7 +128,7 @@ summary(model.quad)
 
 **Vergleich mit dem einfachen Modell mittels ANOVA (es ginge auch AICc)**
 ```{r}
-anova(model1,model.quad)
+anova(lm.1,model.quad)
 ```
 
 **Modelldiagnostik**
@@ -141,6 +147,7 @@ summary(model.nls)
 
 **Modelldiagnostik**
 ```{r}
+if(!require(nlstools)){install.packages("nlstools")}
 library(nlstools)
 residuals.nls <- nlsResiduals(model.nls)
 plot(residuals.nls)
@@ -156,7 +163,7 @@ xv<-seq(0,30,0.1)
 
 ```{r}
 plot(time,amount)
-yv1<-exp(predict(model2,list(time=xv)))
+yv1<-exp(predict(lm.2,list(time=xv)))
 lines(xv,yv1,col="red")
 ```
 
