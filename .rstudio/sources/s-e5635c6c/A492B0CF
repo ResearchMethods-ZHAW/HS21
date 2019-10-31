@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1555599645672.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A492B0CF",
+    "lastKnownWriteTime" : 1555605537,
+    "last_content_update" : 1555605537007,
+    "path" : "~/kira_masterarbeit_190418.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "49,0",
+        "scrollLine" : "26"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

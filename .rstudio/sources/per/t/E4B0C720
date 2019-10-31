@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1568716882366.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1505587431",
+    "id" : "E4B0C720",
+    "lastKnownWriteTime" : 1568789809,
+    "last_content_update" : 1568789810060,
+    "path" : "~/Unterrichtsunterlagen_HS19/13_Statistik1/assigment_stat1.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "24,13",
+        "scrollLine" : "14"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

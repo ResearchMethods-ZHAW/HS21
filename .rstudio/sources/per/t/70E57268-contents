@@ -1,0 +1,50 @@
+## Übungen
+
+###	Übung 1.1: Assoziationstest
+
+Datenerhebung für einen Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test
+
+
+###	Übung 1.2: $\chi^2$-Test
+
+Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) 
+
+Unterscheidet sich die Stichprobe des NOVANIMAL-Projekts von der gesamten Population bezüglich Geschlecht und Hochschulzugehörigkeit? 
+
+Die Grundgesamtheit setzt sich aus 719 Studentinnen und 816 Studenten, 345 Mitarbeiterinnen und 339 Mitarbeiter. Die gesamte Population umfasst 2219 Personen mit einer aktiven CampusCard.
+<<<<<<< HEAD:13_Statistik1/Uebungen.Rmd
+
+- Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$)
+- Führt einen $\chi^2$-Test und anschliessend einen Fishers exakten Test mit dem Datensatz novanimal.csv durch
+- Stellt eure Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle
+
+
+=======
+
+* Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$).
+* Führt einen $\chi^2$-Test und anschliessend einen Fishers exakten Test mit dem Datensatz novanimal.csv durch.
+* Stell die Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
+>>>>>>> 789f5b7272e61dd1b1105af875d95f91afb6a3fd:.rstudio/sources/per/t/70E57268-contents
+
+###	Übung 1.3: t-Test
+
+Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?
+
+<<<<<<< HEAD:13_Statistik1/Uebungen.Rmd
+- Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$).
+- Führt einen t-Test mit dem Datensatz novanimal.csv durch.
+- Welche Form von t-Test musst Du anwenden: einseitig/zweiseitig resp. gepaart/ungepaart?
+- Wie gut sind die Voraussetzungen für einen t-Test erfüllt (z.B. Normalverteilung der Residuen und Varianzhomogenität)?
+- Stell eure Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle 
+- Das gilt für alle Übungen und wird von euch auch an der Prüfung verlangt. Abzugeben sind am Ende 
+  
+  (a) **Ein lauffähiges R-Skript**
+  (b) **begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation)** 
+  (c) **ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit)**
+=======
+* Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$).
+* Führt einen t-Test mit dem Datensatz novanimal.csv durch.
+* Welche Form von t-Test musst Du anwenden: einseitig/zweiseitig resp. gepaart/ungepaart?
+* Wie gut sind die Voraussetzungen für einen t-Test erfüllt (z.B. Normalverteilung der Residuen und Varianzhomogenität)?
+* Stell die Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
+>>>>>>> 789f5b7272e61dd1b1105af875d95f91afb6a3fd:.rstudio/sources/per/t/70E57268-contents

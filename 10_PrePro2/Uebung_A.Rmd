@@ -85,17 +85,29 @@ wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";
 ### Aufgabe 5
 
 
-Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die x und y Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze Excel oder `str_split_fixed()` aus `stringr`).
+Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die x und y Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze dafür `tidyr::separate()`).
 
 ```{r}
 
 # Lösung Aufgabe 5
 
+# Variante mit str_split_fixed()
 koordinaten <- str_split_fixed(wetter_legende$Koordinaten, "/", 2)
 
 colnames(koordinaten) <- c("x","y")
 
 wetter_legende <- cbind(wetter_legende,koordinaten)
+
+
+
+# Variante mit tidyr::separate
+# ich lösche die Spalten wieder, damit ich die tidyr lösung zeigen kann
+wetter_legende$x <- NULL 
+wetter_legende$y <- NULL
+
+wetter_legende <- wetter_legende %>%
+  separate(Koordinaten,c("x","y"),"/")
+
 ```
 
 

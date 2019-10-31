@@ -1,0 +1,41 @@
+## Statistik 4: Übungen
+
+### Übung 4.1: Nicht-lineare Regression (naturwissenschaftlich)
+
+**Datensatz [Curonian_Spit.xlsx](16_Statistik4/data/Curonian_Spit.xlsx)**
+
+Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
+geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf
+Flächengrössen (Area) von 0.0001 bis 900 m².
+
+**Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function,**</font>$S=$c$A^{n}$<font color="blue">**), die logarithmische Funktion (logarithmic function,**</font>$S$=$b_{0}$$+$$b_{1}$$\log_{10}$A<font color="blue">**)und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
+
+
+### Übung 4.2N: Multiple logistische Regression (naturwissenschaftlich)
+
+**Datensatz [isolation.csv](16_Statistik4/data/isolation.csv)**
+
+Dieser enthält für 50 Inseln die Information, ob eine bestimmte Vogelart dort vorkommt (incidence = 1) oder nicht vorkommt (incidence = 0). Für jede der Inseln sind zudem zwei Umweltvariablen angegeben: area (Fläche in km²) und
+isolation (Entfernung vom Festland in km).
+
+**Ermittelt das minimal adäquate statistische Modell, das die Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**
+
+
+### Übung 4.2S: Multiple logistische Regression (sozioökonomisch)
+
+Führt mit dem Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) eine logistische Regression durch.Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?
+
+**Hinweise:**
+
+- Generiert eine neue Variable "Fleisch" (0 = kein Fleisch, 1 = Fleisch)
+- Entfernt fehlende Werte aus der Variable "Fleisch"
+- Lasst für die Analyse den Menü-Inhalt «Buffet» weg
+- Definiert das Modell und wendet es auf den Datensatz an
+- Berechnet eine Vorhersage des Modells mit predict()
+- Eruiert den Modellfit und die Modellgenauigkeit
+- Für Motivierte: Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus (vgl. )
+- Stellt eure Ergebnisse dann angemessen dar (Text und/oder Tabelle).
+
+
+
+

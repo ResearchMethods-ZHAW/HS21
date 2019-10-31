@@ -1,0 +1,206 @@
+groups: cannot find name for group ID 10000
+groups: cannot find name for group ID 10000
+groups: cannot find name for group ID 10000
+groups: cannot find name for group ID 10000
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs
+git: 'statzs' is not a git command. See 'git --help'.
+
+The most similar command is
+	status
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs[K[Kus
+fatal: not a git repository (or any of the parent directories): .git
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^M[K^[[2~[K[K[K[Kgit init
+Initialized empty Git repository in /home/staff/egel/unix/.git/
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git remote add origin <>^[>[2~>[1P>[1P>[1P>[2P>[1P>^[>[2~>[1P>[1P>[1P>[2P>[1P> >[C>[K<>https://github.engineering.zhaw..ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git>[C
+bash: syntax error near unexpected token `newline'
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git clone ssh://dev@10.11.12.13/srv/repositories/awesommeproject.git
+Cloning into 'awesomeproject'...
+^[  ^C
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git col[K[Klone git@github.engineering.zhaw.ch:ModulResearchMMethods/Unterrichtsunterlagen_HS19.git
+Cloning into 'Unterrichtsunterlagen_HS19'...
+The authenticity of host 'github.engineering.zhaw.ch (160.85.67.101)' can't be established.
+RSA key fingerprint is SHA256:2IrlPO/7BypebR35P2SI0vJpgIsRYcX9Obmqrr5LrVg.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.engineering.zhaw.ch,160.85.67.101' (RSA) to the list of known hosts.
+git@github.engineering.zhaw.ch: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^C
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^C
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git@github.engineering.zhaw.ch:ModulResearchMethods/Untterrichtsunterlagen_HS19.git[K[A
+bash: git@github.engineering.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HS19.[A: No such file or directory
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git remote set-url origin git@github.engineering.zhaw.cch:ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+fatal: No such remote 'origin'
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git clone 2~[K[K[K 5~[K[Kgit@github.engineering.zhaw.ch:ModulResearchMMethods/Unterrichtsunterlagen_HS19.git
+Cloning into 'Unterrichtsunterlagen_HS19'...
+git@github.engineering.zhaw.ch: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git remote add origin git@github.engineering.zhaw.ch:MoodulResearchMethods/Unterrichtsunterlagen_HS19.git
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gu[Kit status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.bash_history[m
+	[31m.bash_logout[m
+	[31m.bashrc[m
+	[31m.profile[m
+	[31m.rstudio/[m
+	[31m.ssh/[m
+	[31mLibrary/[m
+	[31mTIDe_Gesamt_20190404_kopie.csv[m
+	[31mTIDe_Gesamt_20190404_kopie.sav[m
+	[31mavailability-heuristic.webp[m
+	[31mkira_masterarbeit_190418.R[m
+	[31mkira_masterarbeit_analyse_190418.R[m
+	[31mkira_masterarbeit_bericht_190503.Rmd[m
+	[31mkira_masterarbeit_bericht_190503.html[m
+	[31mkira_masterarbeit_bericht_190506.Rmd[m
+	[31mkira_masterarbeit_bericht_190506.html[m
+	[31mkira_masterarbeit_bericht_190517.Rmd[m
+	[31mkira_masterarbeit_bericht_190517_files/[m
+	[31mkira_masterarbeit_bericht_190522.R[m
+	[31mkira_masterarbeit_bericht_190522.Rmd[m
+	[31mkira_masterarbeit_edit_190418.R[m
+	[31mmytheme.R[m
+	[31mplots/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.bash_history[m
+	[31m.bash_logout[m
+	[31m.bashrc[m
+	[31m.profile[m
+	[31m.rstudio/[m
+	[31m.ssh/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git cl[K[Kpull[K[K[K[K[K[K[K[Kgit remote -v
+origin	git@github.engineering.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HS19.git (fetch)
+origin	git@github.engineering.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HS19.git (push)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ cd
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ 
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ s
+bash: s: command not found
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ ls
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ gt[Kit ststu[K[K[Katus
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.bash_history[m
+	[31m.bash_logout[m
+	[31m.bashrc[m
+	[31m.profile[m
+	[31m.rstudio/[m
+	[31m.ssh/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ git config --global user.name "bob""[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cebob"[A]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgbob"[A]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cebob"lbob"[C@bob"[C[Czbob"hbob"abob"wbob".bob"cbob"hbob"[1Pob"[1Pb"[1P"[C[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[C
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ git col[Knfig --global user.email "eg el@zhaw.ch"
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ ssh -vT git@github.com
+OpenSSH_7.6p1 Ubuntu-4ubuntu0.3, OpenSSL 1.0.2n  7 Dec 2017
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 23: Applying options for *
+debug1: /etc/ssh/ssh_config line 27: Deprecated option "useroaming"
+debug1: Connecting to github.com [192.30.253.112] port 22.
+ssh -T git@github.com
+^C
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ ssh -T git@github.com
+ssh: connect to host github.com port 22: Connection timed out
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ git pull
+git@github.engineering.zhaw.ch: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ cd ~/.ssh && ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/./staff/egel/unix/.ssh/id_rsa): ^[[B^[[A        cat id_rsa.pub | clip
+Enter passphrase (empty for no passphrase): 
+
+]0;/home/staff/egel/unix/.ssh]0;egel@svma-s-01171: /home/staff/egel/unix/.ssh[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix/.ssh[00m$ ssh-keygen -t rsa -b 4096 -C  ""e"g"e"l"@"z"h"a"w"."c"h"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/./staff/egel/unix/.ssh/id_rsa): 
+/home/./staff/egel/unix/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+
+]0;/home/staff/egel/unix/.ssh]0;egel@svma-s-01171: /home/staff/egel/unix/.ssh[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix/.ssh[00m$ ssh-keygen -t rsa -b 4096 -C ""egel@zhaw.ch"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/./staff/egel/unix/.ssh/id_rsa): 
+/home/./staff/egel/unix/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/./staff/egel/unix/.ssh/id_rsa.
+Your public key has been saved in /home/./staff/egel/unix/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:7gjPWGPqUeZ5T1CdRiGhqQjqs0awGCzbi11sSE+pQPQ egel@zhaw.ch
+The key's randomart image is:
++---[RSA 4096]----+
+|..        o.o.   |
+| ..      o + .   |
+|o .E .  o . +    |
+|=o..o. . . .     |
+|=B *. + S        |
+|=.+ =+ o .       |
+|.= +o * o .      |
+|..=  X = o       |
+|.. .+ + . .      |
++----[SHA256]-----+
+]0;/home/staff/egel/unix/.ssh]0;egel@svma-s-01171: /home/staff/egel/unix/.ssh[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix/.ssh[00m$ cd
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ ^C
+^groups: cannot find name for group ID 10000
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ git remote -v
+origin	git@github.engineering.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HS19.git (fetch)
+origin	git@github.engineering.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HS19.git (push)
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ git remote add  r[K[Korigin git@github.enngineering.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+fatal: remote origin already exists.
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ [K]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ ^C
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ git clone https://github.engineerinng.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+Cloning into 'Unterrichtsunterlagen_HS19'...
+Username for 'https://github.engineering.zhaw.ch': egel
+Password for 'https://egel@github.engineering.zhaw.ch': 
+remote: Enumerating objects: 1544, done.[K
+remote: Counting objects:   0% (1/1544)   [Kremote: Counting objects:   1% (16/1544)   [Kremote: Counting objects:   2% (31/1544)   [Kremote: Counting objects:   3% (47/1544)   [Kremote: Counting objects:   4% (62/1544)   [Kremote: Counting objects:   5% (78/1544)   [Kremote: Counting objects:   6% (93/1544)   [Kremote: Counting objects:   7% (109/1544)   [Kremote: Counting objects:   8% (124/1544)   [Kremote: Counting objects:   9% (139/1544)   [Kremote: Counting objects:  10% (155/1544)   [Kremote: Counting objects:  11% (170/1544)   [Kremote: Counting objects:  12% (186/1544)   [Kremote: Counting objects:  13% (201/1544)   [Kremote: Counting objects:  14% (217/1544)   [Kremote: Counting objects:  15% (232/1544)   [Kremote: Counting objects:  16% (248/1544)   [Kremote: Counting objects:  17% (263/1544)   [Kremote: Counting objects:  18% (278/1544)   [Kremote: Counting objects:  19% (294/1544)   [Kremote: Counting objects:  20% (309/1544)   [Kremote: Counting objects:  21% (325/1544)   [Kremote: Counting objects:  22% (340/1544)   [Kremote: Counting objects:  23% (356/1544)   [Kremote: Counting objects:  24% (371/1544)   [Kremote: Counting objects:  25% (386/1544)   [Kremote: Counting objects:  26% (402/1544)   [Kremote: Counting objects:  27% (417/1544)   [Kremote: Counting objects:  28% (433/1544)   [Kremote: Counting objects:  29% (448/1544)   [Kremote: Counting objects:  30% (464/1544)   [Kremote: Counting objects:  31% (479/1544)   [Kremote: Counting objects:  32% (495/1544)   [Kremote: Counting objects:  33% (510/1544)   [Kremote: Counting objects:  34% (525/1544)   [Kremote: Counting objects:  35% (541/1544)   [Kremote: Counting objects:  36% (556/1544)   [Kremote: Counting objects:  37% (572/1544)   [Kremote: Counting objects:  38% (587/1544)   [Kremote: Counting objects:  39% (603/1544)   [Kremote: Counting objects:  40% (618/1544)   [Kremote: Counting objects:  41% (634/1544)   [Kremote: Counting objects:  42% (649/1544)   [Kremote: Counting objects:  43% (664/1544)   [Kremote: Counting objects:  44% (680/1544)   [Kremote: Counting objects:  45% (695/1544)   [Kremote: Counting objects:  46% (711/1544)   [Kremote: Counting objects:  47% (726/1544)   [Kremote: Counting objects:  48% (742/1544)   [Kremote: Counting objects:  49% (757/1544)   [Kremote: Counting objects:  50% (772/1544)   [Kremote: Counting objects:  51% (788/1544)   [Kremote: Counting objects:  52% (803/1544)   [Kremote: Counting objects:  53% (819/1544)   [Kremote: Counting objects:  54% (834/1544)   [Kremote: Counting objects:  55% (850/1544)   [Kremote: Counting objects:  56% (865/1544)   [Kremote: Counting objects:  57% (881/1544)   [Kremote: Counting objects:  58% (896/1544)   [Kremote: Counting objects:  59% (911/1544)   [Kremote: Counting objects:  60% (927/1544)   [Kremote: Counting objects:  61% (942/1544)   [Kremote: Counting objects:  62% (958/1544)   [Kremote: Counting objects:  63% (973/1544)   [Kremote: Counting objects:  64% (989/1544)   [Kremote: Counting objects:  65% (1004/1544)   [Kremote: Counting objects:  66% (1020/1544)   [Kremote: Counting objects:  67% (1035/1544)   [Kremote: Counting objects:  68% (1050/1544)   [Kremote: Counting objects:  69% (1066/1544)   [Kremote: Counting objects:  70% (1081/1544)   [Kremote: Counting objects:  71% (1097/1544)   [Kremote: Counting objects:  72% (1112/1544)   [Kremote: Counting objects:  73% (1128/1544)   [Kremote: Counting objects:  74% (1143/1544)   [Kremote: Counting objects:  75% (1158/1544)   [Kremote: Counting objects:  76% (1174/1544)   [Kremote: Counting objects:  77% (1189/1544)   [Kremote: Counting objects:  78% (1205/1544)   [Kremote: Counting objects:  79% (1220/1544)   [Kremote: Counting objects:  80% (1236/1544)   [Kremote: Counting objects:  81% (1251/1544)   [Kremote: Counting objects:  82% (1267/1544)   [Kremote: Counting objects:  83% (1282/1544)   [Kremote: Counting objects:  84% (1297/1544)   [Kremote: Counting objects:  85% (1313/1544)   [Kremote: Counting objects:  86% (1328/1544)   [Kremote: Counting objects:  87% (1344/1544)   [Kremote: Counting objects:  88% (1359/1544)   [Kremote: Counting objects:  89% (1375/1544)   [Kremote: Counting objects:  90% (1390/1544)   [Kremote: Counting objects:  91% (1406/1544)   [Kremote: Counting objects:  92% (1421/1544)   [Kremote: Counting objects:  93% (1436/1544)   [Kremote: Counting objects:  94% (1452/1544)   [Kremote: Counting objects:  95% (1467/1544)   [Kremote: Counting objects:  96% (1483/1544)   [Kremote: Counting objects:  97% (1498/1544)   [Kremote: Counting objects:  98% (1514/1544)   [Kremote: Counting objects:  99% (1529/1544)   [Kremote: Counting objects: 100% (1544/1544)   [Kremote: Counting objects: 100% (1544/1544), done.[K
+remote: Compressing objects:   0% (1/642)   [Kremote: Compressing objects:   1% (7/642)   [Kremote: Compressing objects:   2% (13/642)   [Kremote: Compressing objects:   3% (20/642)   [Kremote: Compressing objects:   4% (26/642)   [Kremote: Compressing objects:   5% (33/642)   [Kremote: Compressing objects:   6% (39/642)   [Kremote: Compressing objects:   7% (45/642)   [Kremote: Compressing objects:   8% (52/642)   [Kremote: Compressing objects:   9% (58/642)   [Kremote: Compressing objects:  10% (65/642)   [Kremote: Compressing objects:  11% (71/642)   [Kremote: Compressing objects:  12% (78/642)   [Kremote: Compressing objects:  13% (84/642)   [Kremote: Compressing objects:  14% (90/642)   [Kremote: Compressing objects:  15% (97/642)   [Kremote: Compressing objects:  16% (103/642)   [Kremote: Compressing objects:  17% (110/642)   [Kremote: Compressing objects:  18% (116/642)   [Kremote: Compressing objects:  19% (122/642)   [Kremote: Compressing objects:  20% (129/642)   [Kremote: Compressing objects:  21% (135/642)   [Kremote: Compressing objects:  22% (142/642)   [Kremote: Compressing objects:  23% (148/642)   [Kremote: Compressing objects:  24% (155/642)   [Kremote: Compressing objects:  25% (161/642)   [Kremote: Compressing objects:  26% (167/642)   [Kremote: Compressing objects:  27% (174/642)   [Kremote: Compressing objects:  28% (180/642)   [Kremote: Compressing objects:  29% (187/642)   [Kremote: Compressing objects:  30% (193/642)   [Kremote: Compressing objects:  31% (200/642)   [Kremote: Compressing objects:  32% (206/642)   [Kremote: Compressing objects:  33% (212/642)   [Kremote: Compressing objects:  34% (219/642)   [Kremote: Compressing objects:  35% (225/642)   [Kremote: Compressing objects:  36% (232/642)   [Kremote: Compressing objects:  37% (238/642)   [Kremote: Compressing objects:  38% (244/642)   remote: Compressing objects:  39% (251/642)   [Kremote: Compressing objects:  40% (257/642)   [Kremote: Compressing objects:  41% (264/642)   [Kremote: Compressing objects:  42% (270/642)   [Kremote: Compressing objects:  43% (277/642)   [Kremote: Compressing objects:  44% (283/642)   [Kremote: Compressing objects:  45% (289/642)   [Kremote: Compressing objects:  46% (296/642)   [Kremote: Compressing objects:  47% (302/642)   [Kremote: Compressing objects:  48% (309/642)   [Kremote: Compressing objects:  49% (315/642)   [Kremote: Compressing objects:  50% (321/642)   [Kremote: Compressing objects:  51% (328/642)   [Kremote: Compressing objects:  52% (334/642)   [Kremote: Compressing objects:  53% (341/642)   [Kremote: Compressing objects:  54% (347/642)   [Kremote: Compressing objects:  55% (354/642)   [Kremote: Compressing objects:  56% (360/642)   [Kremote: Compressing objects:  57% (366/642)   [Kremote: Compressing objects:  58% (373/642)   [Kremote: Compressing objects:  59% (379/642)   [Kremote: Compressing objects:  60% (386/642)   [Kremote: Compressing objects:  61% (392/642)   [Kremote: Compressing objects:  62% (399/642)   [Kremote: Compressing objects:  63% (405/642)   [Kremote: Compressing objects:  64% (411/642)   [Kremote: Compressing objects:  65% (418/642)   [Kremote: Compressing objects:  66% (424/642)   [Kremote: Compressing objects:  67% (431/642)   [Kremote: Compressing objects:  68% (437/642)   [Kremote: Compressing objects:  69% (443/642)   [Kremote: Compressing objects:  70% (450/642)   [Kremote: Compressing objects:  71% (456/642)   [Kremote: Compressing objects:  72% (463/642)   [Kremote: Compressing objects:  73% (469/642)   [Kremote: Compressing objects:  74% (476/642)   [Kremote: Compressing objects:  75% (482/642)   [Kremote: Compressing objects:  76% (488/642)   [Kremote: Compressing objects:  77% (495/642)   [Kremote: Compressing objects:  78% (501/642)   [Kremote: Compressing objects:  79% (508/642)   [Kremote: Compressing objects:  80% (514/642)   [Kremote: Compressing objects:  81% (521/642)   [Kremote: Compressing objects:  82% (527/642)   [Kremote: Compressing objects:  83% (533/642)   [Kremote: Compressing objects:  84% (540/642)   [Kremote: Compressing objects:  85% (546/642)   [Kremote: Compressing objects:  86% (553/642)   [Kremote: Compressing objects:  87% (559/642)   [Kremote: Compressing objects:  88% (565/642)   [Kremote: Compressing objects:  89% (572/642)   [Kremote: Compressing objects:  90% (578/642)   [Kremote: Compressing objects:  91% (585/642)   [Kremote: Compressing objects:  92% (591/642)   [Kremote: Compressing objects:  93% (598/642)   [Kremote: Compressing objects:  94% (604/642)   [Kremote: Compressing objects:  95% (610/642)   [Kremote: Compressing objects:  96% (617/642)   [Kremote: Compressing objects:  97% (623/642)   [Kremote: Compressing objects:  98% (630/642)   [Kremote: Compressing objects:  99% (636/642)   [Kremote: Compressing objects: 100% (642/642)   [Kremote: Compressing objects: 100% (642/642), done.[K
+Receiving objects:   0% (1/1544)   Receiving objects:   1% (16/1544)   Receiving objects:   2% (31/1544)   Receiving objects:   3% (47/1544)   Receiving objects:   4% (62/1544)   Receiving objects:   5% (78/1544)   Receiving objects:   6% (93/1544)   Receiving objects:   7% (109/1544)   Receiving objects:   8% (124/1544)   Receiving objects:   9% (139/1544)   Receiving objects:  10% (155/1544)   Receiving objects:  11% (170/1544)   Receiving objects:  12% (186/1544)   Receiving objects:  13% (201/1544)   Receiving objects:  14% (217/1544)   Receiving objects:  15% (232/1544)   Receiving objects:  16% (248/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  17% (263/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  18% (278/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  19% (294/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  20% (309/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  21% (325/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  22% (340/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  23% (356/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  24% (371/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  25% (386/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  26% (402/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  27% (417/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  28% (433/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  29% (448/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  30% (464/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  31% (479/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  32% (495/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  33% (510/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  34% (525/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  35% (541/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  36% (556/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  37% (572/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  38% (587/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  39% (603/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  40% (618/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  41% (634/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  42% (649/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  43% (664/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  44% (680/1544), 12.41 MiB | 24.81 MiB/s   Receiving objects:  44% (694/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  45% (695/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  46% (711/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  47% (726/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  48% (742/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  49% (757/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  50% (772/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  51% (788/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  52% (803/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  53% (819/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  54% (834/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  55% (850/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  56% (865/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  57% (881/1544), 25.36 MiB | 25.35 MiB/s   Receiving objects:  58% (896/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  59% (911/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  60% (927/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  61% (942/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  62% (958/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  63% (973/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  64% (989/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  65% (1004/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  66% (1020/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  67% (1035/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  68% (1050/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  69% (1066/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  70% (1081/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  71% (1097/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  72% (1112/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  73% (1128/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  74% (1143/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  75% (1158/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  76% (1174/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  77% (1189/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  78% (1205/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  79% (1220/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  80% (1236/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  81% (1251/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  82% (1267/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  83% (1282/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  84% (1297/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  85% (1313/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  86% (1328/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  87% (1344/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  88% (1359/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  89% (1375/1544), 52.48 MiB | 34.98 MiB/s   Receiving objects:  89% (1385/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  90% (1390/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  91% (1406/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  92% (1421/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  93% (1436/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  94% (1452/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  95% (1467/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  96% (1483/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  97% (1498/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects:  98% (1514/1544), 78.11 MiB | 39.05 MiB/s   remote: Total 1544 (delta 862), reused 1540 (delta 858), pack-reused 0[K
+Receiving objects:  99% (1529/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects: 100% (1544/1544), 78.11 MiB | 39.05 MiB/s   Receiving objects: 100% (1544/1544), 89.40 MiB | 40.10 MiB/s, done.
+Resolving deltas:   0% (0/862)   Resolving deltas:   1% (9/862)   Resolving deltas:   3% (33/862)   Resolving deltas:   4% (36/862)   Resolving deltas:   5% (45/862)   Resolving deltas:   6% (52/862)   Resolving deltas:   7% (62/862)   Resolving deltas:   8% (73/862)   Resolving deltas:   9% (81/862)   Resolving deltas:  11% (95/862)   Resolving deltas:  14% (121/862)   Resolving deltas:  22% (194/862)   Resolving deltas:  23% (206/862)   Resolving deltas:  24% (207/862)   Resolving deltas:  25% (219/862)   Resolving deltas:  26% (232/862)   Resolving deltas:  27% (234/862)   Resolving deltas:  29% (250/862)   Resolving deltas:  30% (259/862)   Resolving deltas:  31% (268/862)   Resolving deltas:  32% (278/862)   Resolving deltas:  33% (289/862)   Resolving deltas:  35% (302/862)   Resolving deltas:  36% (311/862)   Resolving deltas:  37% (320/862)   Resolving deltas:  38% (328/862)   Resolving deltas:  39% (344/862)   Resolving deltas:  41% (356/862)   Resolving deltas:  42% (363/862)   Resolving deltas:  43% (378/862)   Resolving deltas:  44% (380/862)   Resolving deltas:  45% (390/862)   Resolving deltas:  47% (406/862)   Resolving deltas:  69% (596/862)   Resolving deltas:  71% (618/862)   Resolving deltas:  74% (640/862)   Resolving deltas:  83% (721/862)   Resolving deltas:  84% (725/862)   Resolving deltas:  85% (737/862)   Resolving deltas:  86% (746/862)   Resolving deltas:  87% (756/862)   Resolving deltas:  88% (760/862)   Resolving deltas:  89% (768/862)   Resolving deltas:  90% (778/862)   Resolving deltas:  91% (785/862)   Resolving deltas:  92% (801/862)   Resolving deltas:  94% (812/862)   Resolving deltas:  95% (820/862)   Resolving deltas:  96% (830/862)   Resolving deltas:  97% (838/862)   Resolving deltas:  98% (846/862)   Resolving deltas: 100% (862/862)   Resolving deltas: 100% (862/862), done.
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ cd
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ dir
+Library  Unterrichtsunterlagen_HS19
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ dir
+Library  Unterrichtsunterlagen_HS19
+]0;/home/staff/egel/unix]0;egel@svma-s-01171: /home/staff/egel/unix[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix[00m$ cd Unterrichtsunterlagen_HS19/
+]0;/home/staff/egel/unix/Unterrichtsunterlagen_HS19]0;egel@svma-s-01171: /home/staff/egel/unix/Unterrichtsunterlagen_HS19[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix/Unterrichtsunterlagen_HS19[00m$ c[Kdir
+000_Purl.R     15_Statistik3  99_Book		 _main.tex
+00_Admin       16_Statistik4  99_misc		 _output.yml
+09_PrePro1     17_Statistik5  _bookdown.yml	 README.md
+10_PrePro2     18_Statistik6  Demo_Datentypen.R  ResearchMethodsHS18.Rproj
+11_InfoVis1    19_Statistik7  DESCRIPTION	 ResearchMethods.log
+12_InfoVis2    2019_HS.Rproj  index.Rmd		 ResearchMethods.R
+13_Statistik1  20_Statistik8  LICENSE		 ResearchMethods.rds
+14_Statistik2  99_Archive     _main.log		 ResearchMethods.tex
+]0;/home/staff/egel/unix/Unterrichtsunterlagen_HS19]0;egel@svma-s-01171: /home/staff/egel/unix/Unterrichtsunterlagen_HS19[01;32megel@svma-s-01171[00m:[01;34m/home/staff/egel/unix/Unterrichtsunterlagen_HS19[00m$ 

@@ -1,0 +1,70 @@
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ stat[K[K[K[Kgit stats^[K[Kus
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/projects_settings/next-session-project[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/console06/2D1F2953[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/console06/2D1F2953.env[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/console06/INDEX001[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/157d8094-0ae7-4553-9077-70a0d510908e.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/157d8094-0ae7-4553-9077-70a0d510908e.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/32b378c8-bdd8-451d-9eb7-9555418d3544.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/32b378c8-bdd8-451d-9eb7-9555418d3544.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/5375c4da-dccd-45ae-8db5-d881b940a006.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/5375c4da-dccd-45ae-8db5-d881b940a006.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/INDEX[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/a83bb9d4-c4f3-416c-b3cf-9301c294a646.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/a83bb9d4-c4f3-416c-b3cf-9301c294a646.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/bb14a9ac-7aa5-425a-a5e8-262f9d07fb16.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/bb14a9ac-7aa5-425a-a5e8-262f9d07fb16.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/cdf6568d-97c3-4d6e-90b6-cd1c367c9ac7.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/cdf6568d-97c3-4d6e-90b6-cd1c367c9ac7.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/ce714b3e-e15c-48fc-a8c7-2d4d229b453e.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/ce714b3e-e15c-48fc-a8c7-2d4d229b453e.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/df5b3e23-c3b1-4be2-9656-3126e196038e.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/df5b3e23-c3b1-4be2-9656-3126e196038e.snapshot[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/graphics-r3/empty.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/created[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/executing[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/initial[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/last-used[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/project[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/r-version[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/r-version-home[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/r-version-label[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/running[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/save_prompt_required[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/properites/working-dir[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/rmd-outputs[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/session-persistent-state[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/console_actions[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/environment[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/environment_vars[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/history[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/libpaths[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/options[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/rversion[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/search_path/package_paths[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/search_path/search_path_elements[m
+	[31mdeleted:    .rstudio/sessions/active/session-cf931d18/suspended-session-data/settings[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/monitored/lists/addins_mru[m
+	[31m.rstudio/monitored/lists/plot_publish_mru[m
+	[31m.rstudio/monitored/lists/user_dictionary[m
+	[31m.rstudio/sessions/active/session-59990d10/[m
+	[31m.rstudio/sessions/session-locks/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel	
+Password for 'https://egel@github.zhaw.ch': 
+Already up to date.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gu[Kiz [K[Kt commo[Kit [K[K[K[K[K[K[Kadd -A

@@ -1,0 +1,108 @@
+---
+title: "Modul Research Methods HS19"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE, purl=F}
+knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
+#knitr::opts_chunk$get("root.dir")
+```
+
+
+## Musterlösung Aufgabe 5.2S: GLMM
+> Meine Leseempfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
+
+> Für Interessierte [hier](https://rpsychologist.com/r-guide-longitudinal-lme-lmer) oder [hier](https://rpubs.com/kaz_yos/glmm1)
+
+
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(tidyverse)
+library(ggfortify)
+library(lme4)
+
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 20, color = "black"), 
+    axis.title = element_text(size = 20, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
+
+```
+
+### kommentierter Lösungsweg
+```{r}
+
+# Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
+df <- nova # kopiert originaler Datensatz
+df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
+df_ <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffet Teller gekauft haben und speichert es in eine neuen Datensatz
+
+# Löscht alle Missings bei der Variable "Fleisch"
+df_ <- df_[!is.na(df_$meat), ]
+
+# setzt andere Reihenfolge für die Hochschulzugehörigkeit
+df_$member <- factor(df_$member, levels = c("Studierende", "Mitarbeitende"))
+
+#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch an
+# table(df_$meat)
+
+# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an (vgl. Statistik 5, Folien 17-23, achtung Beispiel dort ist mit Package nlme )
+mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit")) 
+summary(mod0)
+ 
+# Pseudo R^2
+library(MuMIn)
+r.squaredGLMM(mod0) 
+# das marginale R^2 gibt uns die erklärte Varianz der fixen Effekte: hier 5%
+# das conditionale R^2 gibt uns die erklärte Varianz für das ganze Modell (mit fixen und variablen Effekten): hier 26%
+# für weitere Informationen: https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html 
+
+# zusätzliche Informationen, welche für die Interpretation gut sein kann
+# berechnet den Standardfehler (mehr infos: https://www.youtube.com/watch?v=r-txC-dpI-E oder hier: https://mgimond.github.io/Stats-in-R/CI.html)
+# weitere info: https://stats.stackexchange.com/questions/26650/how-do-i-reference-a-regression-models-coefficients-standard-errors
+se <- sqrt(diag(vcov(mod0)))
+
+# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall => falls 0 enthalten dann ist der Unterschied statistisch nicht signifikant
+tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+    se)
+
+# erzeugt die Odds Ratios
+tab2 <- exp(tab1)
+```
+
+### Methodenteil
+
+Die Responsevariable "Fleischkonsum" ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren "Alter", "Geschlecht" und "Hochschulzugehörigkeit" gerechnet. Da in den Daten gewisse Individuen mehrmals vorkommen, wird das Individuum (Variable card_num) als variabler Effekt in das Modell aufgenommen und deshalb ein GLMM gerechnet
+
+
+### Ergebnisteil
+
+```{r, message=F, echo=F}
+
+rownames(tab1) <- c("Intercept", "Geschlecht (Mann)", "Hochschulzugehörigkeit (Mitarbeitende)", "Alter") # change rownames
+knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2) 
+
+```
+
+Lediglich das Geschlecht nimmt einen signifikanten Einfluss auf den Fleischkonsum (siehe Tabelle 1). Die Prädiktoren Alter und Hochschulzugehörigkeit nehmen keinen signifikanten Einfluss auf den Fleischkonsum. Die Chance, dass Männer Fleisch konsumieren ist 2.5mal höher als bei Frauen (siehe Tabelle 2). Das marginale pseudo-$R^2$ zeigt uns, dass die fixen Effekte kaum zur Varianzaufklärung beitragen. 
+
+```{r, message=F, echo=F}
+rownames(tab2) <- c("Intercept", "Geschlecht (Mann)", "Hochschulzugehörigkeit (Mitarbeitende)", "Alter") # change rownames
+knitr::kable(a, caption = "Tabelle 2: Odds Ratios und das dazugehörige 95% Konfidenzintervall", digits = 2)
+```
+
+Im Vergleich zur Aufgabe von letzter Woche 4.2S passt dieses Modell besser zu den Daten, da pseudo-$R^2$ (5% vs. 1%) höher. Dennoch scheint die Suche nach dem passenden Modell nicht abggeschlossen zu sein `r emo::ji("smile")`.
+
+*******
+##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+

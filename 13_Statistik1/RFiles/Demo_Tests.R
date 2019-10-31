@@ -1,7 +1,7 @@
 ## Research Methods Statistik 1
 
 
-# Chi-Quuadrat-Test & Fisher Test -----------------------------------------
+# Chi-Quadrat-Test & Fisher Test -----------------------------------------
 
 qchisq(0.95,1)
 count<-matrix(c(38,14,11,51),nrow=2)
@@ -19,6 +19,7 @@ blume
 summary(blume)
 boxplot(blume$a,blume$b)
 boxplot(blume)
+
 hist(blume$a)
 hist(blume$b)
 
@@ -87,12 +88,12 @@ ggplot(blume.long, aes(cultivar,size)) +
   geom_boxplot(size=1) +
   mytheme
 
-t.test(size~cultivar, blume.long)
+t_test<-t.test(size~cultivar, blume.long)
 
 ggplot(blume.long, aes(cultivar,size)) + 
   geom_boxplot(size=1) + 
   mytheme +
-  annotate("text", x = 1.5, y = 10, label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
+  annotate("text", x = "b", y = 24, label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
 
 ggplot (blume.long, aes(cultivar,size)) + 
   geom_boxplot(size=1) + 
