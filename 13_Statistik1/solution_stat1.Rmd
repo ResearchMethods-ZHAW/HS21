@@ -5,10 +5,6 @@ output:
     df_print: paged
 ---
 
-
-###  Musterlösung Aufgabe 1.2: $\chi^2$-Test
-## Meine Empefhlung Kapitel 4 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
-
 ```{r setup, include=FALSE, purl = F, message=F}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, error = F, include = T, fig.pos = 'H')
 
@@ -35,67 +31,123 @@ mytheme <-
 
 ```
 
-# Null- und Alternativhypothese
-## Beachtet: ungerichtet vs. gerichtete Hypothesen (z.B. Statistik 1, Folie 24)
-## überblick zu Hypothesentestung dazu: https://www.youtube.com/watch?v=F4c0EjsDvzo 
- 
 
+###  Musterlösung Aufgabe 1.1: Assoziationstest
+
+```{r}
+# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
+
+# berücksichtigt nur vegetarische und fleischhaltige Menüs
+# 1) alle Buffet-Menüs weglassen
+# 2) alle veganen Gerichte zu vegetarische Gerichte umbenennen
+nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
+
+nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "Vegetarisch" # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch"
+
+nova2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch" # alternativer Lösungsweg
+
+#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+observed<-table(nova2$gender, nova2$label_content) 
+
+
+#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+#braucht in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+# unser Vorschlag, nehmt den table Befehl
+# untenstehend der vollständige Code in Tidyverse
+observed_t <- nova2 %>% 
+  group_by(gender, label_content) %>% 
+  summarise(tot = n()) %>% 
+  ungroup() %>%
+  spread(., key = label_content, value = tot) %>%  #
+  # set_rownames(.$gender) %>% funktioniert leider nicht mehr mit tibble
+  select(-gender) %>%
+  as.matrix()
+
+
+#Chi-squared Test
+chi_sq <- chisq.test(observed)
+chi_sq
+
+#Fisher's Test 
+fisher.test(observed)
+```
+
+#### Ergebnisteil
+Der $\chi^2$-Test sagt uns, dass das Geschlecht und die Kaufentscheidung eines Menüinhalts zusammenhängen. Es gibt signifikante Unterscheide zwischen dem Geschlecht und dem Menüinhalt ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Es sieht so aus, dass Männer rund doppel so viel Fleischgerichte wählen als Frauen (siehe Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und Menüinhalt vorliegt. Um die Unterschiede innerhalb der Gruppen festzustellen bedarf es weiterer Analysen z. B. einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 2, Folien 3 bis 11).
+
+```{r, echo=F}
+library(reshape2)
+table <- as.data.frame(observed) %>%
+  mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq) * 100, 1)) %>% 
+  rename(Geschlecht = Var1, Menüinhalt = Var2, Verkaufszahlen = Freq) %>% 
+  mutate(Geschlecht = recode(Geschlecht, "F" = "Frauen", "M" = "Männer"))
+knitr::kable(table, caption = "Tabelle 1 \n Verkaufszahlen des Menüinhalts nach Geschlecht")
+
+```
+
+
+*******
+
+### Musterlösung Aufgabe 1.2: $\chi^2$-Test
+> Zur eurer Info: dies ist eine spezielle, aber wichtige Anwendung eines $\chi^2$-Tests
+> Meine Empfehlung Kapitel "Single factor classification" von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
+
+
+#### Null- und Alternativhypothese
+> Beachtet: ungerichtet vs. gerichtete Hypothesen (z. B. Statistik 1, Folie 24)
+> Überblick zu Hypothesentestung dazu: https://www.youtube.com/watch?v=F4c0EjsDvzo 
+ 
 $H_0$: Es gibt keine Unterschiede zwischen der Population und der Stichprobe bezüglich Geschlecht und Hochschulzugehörigkeit. 
 \par
 $H_1$: Es gibt Unterschiede zwischen der Population und der Stichprobe bezüglich Geschlecht und Hochschulzugehörigkeit.
 
 ```{r}
 # bereitet eure Daten auf
-# gruppiert die Varieblen und fasst sie 
+# gruppiert die Variablen und fasst sie 
 # nach Geschlecht und Hochschulzugehörigkeit zusammen 
 # fügt Information aus der Aufgabenstellung hinzu: absolute Häufigkeiten der Gesamtheit
+# für den Chi-Quardrat-Test ist eine Berechnung der relativen Häufigkeiten nötig
 
 df_t <- group_by(nova, gender, member) %>% 
   summarise(stichprobe = n()) %>% 
   ungroup() %>%
-  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
-         gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), # Achtung: Reihenfolge muss stimmten vgl. canteen_member
+         gesamtheit = c(345, 719, 339, 816), # Achtung: Reihenfolge muss stimmten vgl. oben
          gesamtheit_pct = gesamtheit / sum(gesamtheit),
-         stichprobe_pct = stichprobe / sum(stichprobe)) 
+         stichprobe_pct = stichprobe / sum(stichprobe)) # Berechnung der relativen Häufigkeiten
 
 # berechnet den Chi-Quadrat-Test
-## Meine Empfehlung Kapitel 4 von Manny Gimond https://mgimond.github.io/Stats-in-R/index.html
 
-chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], ) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (siehe Statistik 1, Folie 31, oder lest die Details von der Help-Funktion)
+chi_sq <- chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (stichprobe) und die in der Grundgesamtheit/Population erwarteten Werte (wichtig als relative Häufigkeiten)
 
 chi_sq
-
-# führt einen Fishers exakten Test durch
-# simulate.p.value simuliert einen p-Wert mit 100000 Replikaten
-
-fish <- fisher.test(df_t[ ,c("stichprobe", "gesamtheit")], simulate.p.value=TRUE, B = 100000) 
-fish
 
 ```
 
 #### Methodenteil
 
-Ziel war es die novanimal Stichprobe in der Gesamtpopulation bezüglich Geschlecht und Hochschulzugehörigkeit besser einzuordnen. Die Gesamtpopulation definiert sich durch alle aktiven CampusCards. Da die untersuchten Variablen Kategorien sind, wurde einen $\chi^2$ resp. einen Fishers exakten Test gerechnet. 
+Ziel war es die NOVANIMAL Stichprobe gemäss Geschlecht und Hochschulzugehörigkeit in der Grundgesamtheit besser einzuordnen. Die Grundgesamtheit definiert sich durch alle aktiven CampusCards. Dafür ist ein einfaktorieller $\chi^2$-Test notwendig (siehe [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)). Dieser sagt uns nämlich, ob die beobachteten Häufigkeiten/Frequenzen aus unser Stichprobe mit einer definierten erwarteten Häufigkeit/Frequenz (hier der Grundgesamtheit) übereinstimmen. 
 
 #### Ergebnisteil
 
-Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Auch der Fishers exakte Test zeigt einen ähnlichen p-Wert (*p* > .001). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind (siehe Table 1).
+Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind (siehe Tabelle 2).
 
-```{r, echo=F, fig.}
+```{r, echo=F}
 table <- df_t %>% 
   rename(Hochschulzugehörigkeit = member, `Anzahl Population` = gesamtheit, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = gesamtheit_pct, `Anteil Stichprobe (%)` = stichprobe_pct) %>%
   dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>% 
   mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
-knitr::kable(table, caption = "Anzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
+knitr::kable(table, caption = "Tabelle 2 \nAnzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
 
 ```
 
+*******
 
 ###  Musterlösung Aufgabe 1.3: t-Test
 > Meine Empfehlung Kapitel 2 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/z_t_tests.html) 
 
-## Null- und Alternativhypothese
-$H_0$: Es gibt keine Unterschiede in den Verkaufszahlen zwischen Basis- und Interventionswochen. 
+#### Null- und Alternativhypothese
+<>$H_0$: Es gibt keine Unterschiede in den Verkaufszahlen zwischen Basis- und Interventionswochen. <>
 \par
 $H_1$: Es gibt Unterschiede in den Verkaufszahlen zwischen Basis- und Interventionswochen.
 
@@ -113,7 +165,7 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
     labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
     mytheme
 
-# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefe Verteilungen ersichtlich (vgl. Statistik 2, Folien 12-21)
+# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen ersichtlich (vgl. Statistik 2, Folien 12-21)
 
 ```
 
@@ -123,11 +175,11 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
 # führt einen t-Tests durch; 
 # es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen unabhängig sind
 
-t_test <- t.test(df[df$condit == "Basis", ]$tot_sold, 
-                 df[df$condit == "Intervention", ]$tot_sold)
-t_test
+t_test <- t.test(tot_sold~condit, data=df)
 
-t.test(tot_sold~condit, data=df)#alternative formulierung
+t.test(df[df$condit == "Basis", ]$tot_sold, 
+                 df[df$condit == "Intervention", ]$tot_sold) #alternative Formulierung
+
 ```
 
 #### Methodenteil
@@ -136,10 +188,10 @@ Ziel war es die wöchentlichen Verkaufszahlen zwischen den Interventions- und Ba
 
 #### Ergebnisteil
 
-In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowochen (siehe Figure 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`).
+In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowochen (siehe Abbildung 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`).
 
 
-```{r, purl=F, message=F, echo = F,  fig.cap="Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant."}
+```{r, purl=F, message=F, echo = F,  fig.cap="Abbildung1. Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant."}
 # zeigt die Ergebnisse mit einer Abbildung
 ggplot(df, aes(x = condit, y= tot_sold)) + 
   stat_boxplot(geom ='errorbar', width = .25) + # erzeugt sogenannte Whiskers mit Strichen
@@ -151,4 +203,4 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
 
 
 *******
-##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch & stefan.widmer@zhaw.ch

@@ -107,7 +107,7 @@ as.integer(as.character(zahlen2))
 
 ### Heikle Annahmen - bessere Alternativen
 
-Aus oben beschriebenen Grund ist es auch problematisch, dass `data.frame()` sowie alle `read.*` Funktionen (`read.table`, `read.csv` etc) immer davon ausgehen, dass `Strings` als `factors` interpretiert werden sollten. Es gibt in Base R einige Funktionen, welche Annahmen treffen die problematisch sein können. Ein weiteres Beispiel ist die Annahme der Zeitzone und Verwendung von Sommerzeit bei `as.POSIXct()`.
+Aus oben beschriebenen Grund ist es auch problematisch, dass `data.frame()` sowie alle `read.*` Funktionen (`read.table`, `read.csv` etc) immer davon ausgehen, dass `strings` als `factors` interpretiert werden sollten. Es gibt in Base R einige Funktionen, welche Annahmen treffen die problematisch sein können. Ein weiteres Beispiel ist die Annahme der Zeitzone und Verwendung von Sommerzeit bei `as.POSIXct()`.
 
 Oft gibt es dafür im Tidyverse alternative Funktionen, in denen diese Probleme besser gelöst sind. Wir empfehlen, wenn immer Möglich die Tidyverse-Alternativen zu verwenden. Beispiele:
 
@@ -118,7 +118,7 @@ Oft gibt es dafür im Tidyverse alternative Funktionen, in denen diese Probleme 
 
 Beim Import von Daten kann es sinnvoll sein, die Datentypen der Spalten bereits _im Importbefehl_ zu spezifizieren. So vermeidet man die anschliessende  Typumwandlung und die damit verbundenen Fehlerquellen. Zudem wird der Importprozess beschleunigt, da R keine Zeit daran verschwenden muss die Datentypen (aufgrund der ersten 1000 Zeilen) zu erraten.
 
-```{r,message=F}
+```{r,message=FALSE, eval = FALSE}
 
 library(tidyverse)
 
@@ -130,7 +130,6 @@ df1 <- read_table("09_PrePro1/data/order_52252_data.txt",
                     )
                   )
 
-df1
 
 df1 <- read_table("09_PrePro1/data/order_52252_data.txt",
                   col_types = list(
@@ -141,7 +140,6 @@ df1 <- read_table("09_PrePro1/data/order_52252_data.txt",
                   )
 
 
-df1
 
 ```
 

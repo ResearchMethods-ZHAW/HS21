@@ -1,0 +1,8 @@
+datasets="/usr/lib/R/library/datasets"
+dplyr="/home/staff/egel/unix/Library/R/3.4/library/dplyr"
+grDevices="/usr/lib/R/library/grDevices"
+graphics="/usr/lib/R/library/graphics"
+methods="/usr/lib/R/library/methods"
+readr="/home/staff/egel/unix/Library/R/3.4/library/readr"
+stats="/usr/lib/R/library/stats"
+utils="/usr/lib/R/library/utils"
