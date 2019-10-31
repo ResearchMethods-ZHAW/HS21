@@ -150,3 +150,22 @@ git statzs
 gut status
 iut status
 git status 
+git add -A
+git commit -m "changes in sozoec assigments"
+git push
+git status
+git pull
+git status
+git pull
+git add -A
+git commit -m "last changes in assigments"
+git push
+git status
+git pull
+git statzs
+git status
+git pull
+git add -A
+git commit -m "check for updates"
+git push
+git pull

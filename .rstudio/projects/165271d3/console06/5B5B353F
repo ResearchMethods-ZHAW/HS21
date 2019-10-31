@@ -1240,3 +1240,482 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .[K-A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit m[K-m ""c"h"a"n"g"e"s" "i"n" "a"[1P"a"s"s"i"g"m"e"n"t"s"[C[C assigments"[C[C assigments"[1@s[1@o[1@z[1@o[1@e[1@c[C[1Passigments"[C[C[C[C[C[C[C[C[C[C[C[C
+[master a41758d] changes in sozoec assigments
+ 473 files changed, 58432 insertions(+), 1627 deletions(-)
+ create mode 100644 .rstudio/client-state/console.temporary
+ create mode 100644 .rstudio/client-state/environment-panel.temporary
+ rewrite .rstudio/monitored/lists/file_mru (79%)
+ rewrite .rstudio/projects/165271d3/console06/INDEX001 (100%)
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/graphics-r3/INDEX (100%)
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/graphics-r3/empty.png (100%)
+ create mode 100644 .rstudio/sessions/active/session-1b2aa2af/properites/created
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/properites/executing (100%)
+ rename .rstudio/sessions/active/{session-59748bb4/properites/running => session-1b2aa2af/properites/initial} (100%)
+ create mode 100644 .rstudio/sessions/active/session-1b2aa2af/properites/last-used
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/properites/project (100%)
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/properites/r-version (100%)
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/properites/r-version-home (100%)
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/properites/r-version-label (100%)
+ create mode 100644 .rstudio/sessions/active/session-1b2aa2af/properites/running
+ create mode 100644 .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required
+ rename .rstudio/sessions/active/{session-59748bb4 => session-1b2aa2af}/properites/working-dir (100%)
+ create mode 100644 .rstudio/sessions/active/session-1b2aa2af/rmd-outputs
+ create mode 100644 .rstudio/sessions/active/session-1b2aa2af/session-persistent-state
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/properites/created
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/properites/initial
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/properites/last-used
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/properites/save_prompt_required
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/rmd-outputs
+ delete mode 100644 .rstudio/sessions/active/session-59748bb4/session-persistent-state
+ rename 16_Statistik4/{solution_stat4.1.Rmd => solution_stat4.1n.Rmd} (100%)
+ create mode 100644 17_Statistik5_2/assigment_5_2.1.Rmd
+ delete mode 100644 17_Statistik5_2/aufgabe_gruppenarbeit_reme_190823_egel.Rmd
+ rename 17_Statistik5_2/{different_datasets_190813_egel.Rmd => open_datasets.Rmd} (98%)
+ create mode 100644 17_Statistik5_2/suggest_datasets.Rmd
+ create mode 100644 Library/R/3.4/library/TH.data/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/TH.data/INDEX
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/data.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/demo.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/TH.data/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/TH.data/NAMESPACE
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/makeData.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/makeEnvir.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/psglmm.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/psglmmSim.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/README.txt
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/analysis_birdData/mBirdsESM1_2.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/analysis_birdData/mBirdsESM3_2.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel11.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel11bin.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel11pois.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel12.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel12bin.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel12pois.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel13.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel13bin.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel13pois.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel21.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel21bin.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel21pois.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel22.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel22bin.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel22pois.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel23.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel23bin.R
+ create mode 100644 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel23pois.R
+ create mode 100644 Library/R/3.4/library/TH.data/data/Rdata.rdb
+ create mode 100644 Library/R/3.4/library/TH.data/data/Rdata.rds
+ create mode 100644 Library/R/3.4/library/TH.data/data/Rdata.rdx
+ create mode 100644 Library/R/3.4/library/TH.data/demo/PROACT.R
+ create mode 100644 Library/R/3.4/library/TH.data/help/AnIndex
+ create mode 100644 Library/R/3.4/library/TH.data/help/TH.data.rdb
+ create mode 100644 Library/R/3.4/library/TH.data/help/TH.data.rdx
+ create mode 100644 Library/R/3.4/library/TH.data/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/TH.data/help/paths.rds
+ create mode 100644 Library/R/3.4/library/TH.data/html/R.css
+ create mode 100644 Library/R/3.4/library/TH.data/rda/ALSFRSdata.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/ALSsurvdata.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/AML_Bullinger.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/BavarianDVCs.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/CHFLS.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/Primary_endpoint_data.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/beetles.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/birdsData.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/fetus.rda
+ create mode 100644 Library/R/3.4/library/TH.data/rda/india.rda
+ create mode 100644 Library/R/3.4/library/dplyr/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/dplyr/INDEX
+ create mode 100644 Library/R/3.4/library/dplyr/LICENSE
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/data.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/dplyr/Meta/vignette.rds
+ create mode 100644 Library/R/3.4/library/dplyr/NAMESPACE
+ create mode 100644 Library/R/3.4/library/dplyr/NEWS.md
+ create mode 100644 Library/R/3.4/library/dplyr/R/dplyr
+ create mode 100644 Library/R/3.4/library/dplyr/R/dplyr.rdb
+ create mode 100644 Library/R/3.4/library/dplyr/R/dplyr.rdx
+ create mode 100644 Library/R/3.4/library/dplyr/data/Rdata.rdb
+ create mode 100644 Library/R/3.4/library/dplyr/data/Rdata.rds
+ create mode 100644 Library/R/3.4/library/dplyr/data/Rdata.rdx
+ create mode 100644 Library/R/3.4/library/dplyr/doc/compatibility.R
+ create mode 100644 Library/R/3.4/library/dplyr/doc/compatibility.Rmd
+ create mode 100644 Library/R/3.4/library/dplyr/doc/dplyr.R
+ create mode 100644 Library/R/3.4/library/dplyr/doc/dplyr.Rmd
+ create mode 100644 Library/R/3.4/library/dplyr/doc/programming.R
+ create mode 100644 Library/R/3.4/library/dplyr/doc/programming.Rmd
+ create mode 100644 Library/R/3.4/library/dplyr/doc/two-table.R
+ create mode 100644 Library/R/3.4/library/dplyr/doc/two-table.Rmd
+ create mode 100644 Library/R/3.4/library/dplyr/doc/window-functions.R
+ create mode 100644 Library/R/3.4/library/dplyr/doc/window-functions.Rmd
+ create mode 100644 Library/R/3.4/library/dplyr/help/AnIndex
+ create mode 100644 Library/R/3.4/library/dplyr/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/dplyr/help/dplyr.rdb
+ create mode 100644 Library/R/3.4/library/dplyr/help/dplyr.rdx
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-archived.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-defunct.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-deprecated.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-experimental.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-maturing.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-questioning.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-retired.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-soft-deprecated.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/lifecycle-stable.svg
+ create mode 100644 Library/R/3.4/library/dplyr/help/figures/logo.png
+ create mode 100644 Library/R/3.4/library/dplyr/help/paths.rds
+ create mode 100644 Library/R/3.4/library/dplyr/html/R.css
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/Collecter.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/NamedListAccumulator.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/allow_list.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/checks.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/config.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/data/DataMask.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/data/GroupedDataFrame.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/data/NaturalDataFrame.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/data/RowwiseDataFrame.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/dplyr.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/Column.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/Dispatch.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/Expression.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/HybridVectorScalarResult.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/HybridVectorSummaryRecycleResult.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/HybridVectorVectorResult.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/hybrid.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/first_last.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/group_indices.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/mean_sd_var.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/min_max.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/n.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/n_distinct.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/sum.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/echo.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/in.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/lead_lag.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/ntile.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/rank.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/row_number.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/lifecycle.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/main.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/standard/GroupedCallReducer.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/symbols.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorEqualPredicate.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorHash.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetEqual.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetEqualPredicate.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetGreater.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetHash.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetHasher.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetIndexMap.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetIndexSet.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetLess.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/visitor_set.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/CharacterVectorOrderer.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/Comparer.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/SliceVisitor.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/Column.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/DataFrameJoinVisitors.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/JoinVisitor.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/JoinVisitorImpl.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/join_match.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/order/Order.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/order/OrderVisitor.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/order/OrderVisitorImpl.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/subset/DataFrameSelect.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/subset/DataFrameSubsetVisitors.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/subset/column_subset.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/DataFrameColumnVisitor.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/DataFrameVisitors.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/MatrixColumnVisitor.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/MultipleVectorVisitors.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/VectorVisitor.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/VectorVisitorImpl.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/visitor_impl.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/workarounds/installChar.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/workarounds/static_assert.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr/workarounds/xlen.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/dplyr_types.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/solaris/solaris.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/BoolResult.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/Quosure.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/SlicingIndex.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/SymbolMap.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/SymbolString.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/SymbolVector.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/VectorView.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/all_na.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/bad.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/collapse.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/comparisons.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/debug.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/default_value.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/encoding.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/hash.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/match.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/pointer_vector.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/rlang-export.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/scalar_type.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/set_rownames.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/tools.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/train.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/utils.h
+ create mode 100644 Library/R/3.4/library/dplyr/include/tools/vector_class.h
+ create mode 100755 Library/R/3.4/library/dplyr/libs/dplyr.so
+ create mode 100644 Library/R/3.4/library/feather/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/feather/INDEX
+ create mode 100644 Library/R/3.4/library/feather/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/feather/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/feather/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/feather/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/feather/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/feather/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/feather/NAMESPACE
+ create mode 100644 Library/R/3.4/library/feather/NEWS.md
+ create mode 100644 Library/R/3.4/library/feather/R/feather
+ create mode 100644 Library/R/3.4/library/feather/R/feather.rdb
+ create mode 100644 Library/R/3.4/library/feather/R/feather.rdx
+ create mode 100644 Library/R/3.4/library/feather/feather/iris.feather
+ create mode 100644 Library/R/3.4/library/feather/feather/mtcars.feather
+ create mode 100644 Library/R/3.4/library/feather/help/AnIndex
+ create mode 100644 Library/R/3.4/library/feather/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/feather/help/feather.rdb
+ create mode 100644 Library/R/3.4/library/feather/help/feather.rdx
+ create mode 100644 Library/R/3.4/library/feather/help/paths.rds
+ create mode 100644 Library/R/3.4/library/feather/html/R.css
+ create mode 100755 Library/R/3.4/library/feather/libs/feather.so
+ create mode 100644 Library/R/3.4/library/lubridate/CITATION
+ create mode 100644 Library/R/3.4/library/lubridate/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/lubridate/INDEX
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/data.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/lubridate/Meta/vignette.rds
+ create mode 100644 Library/R/3.4/library/lubridate/NAMESPACE
+ create mode 100644 Library/R/3.4/library/lubridate/NEWS.md
+ create mode 100644 Library/R/3.4/library/lubridate/R/lubridate
+ create mode 100644 Library/R/3.4/library/lubridate/R/lubridate.rdb
+ create mode 100644 Library/R/3.4/library/lubridate/R/lubridate.rdx
+ create mode 100644 Library/R/3.4/library/lubridate/cctz.sh
+ create mode 100644 Library/R/3.4/library/lubridate/data/Rdata.rdb
+ create mode 100644 Library/R/3.4/library/lubridate/data/Rdata.rds
+ create mode 100644 Library/R/3.4/library/lubridate/data/Rdata.rdx
+ create mode 100644 Library/R/3.4/library/lubridate/doc/lubridate.R
+ create mode 100644 Library/R/3.4/library/lubridate/doc/lubridate.Rmd
+ create mode 100644 Library/R/3.4/library/lubridate/help/AnIndex
+ create mode 100644 Library/R/3.4/library/lubridate/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/lubridate/help/figures/logo.png
+ create mode 100644 Library/R/3.4/library/lubridate/help/lubridate.rdb
+ create mode 100644 Library/R/3.4/library/lubridate/help/lubridate.rdx
+ create mode 100644 Library/R/3.4/library/lubridate/help/paths.rds
+ create mode 100644 Library/R/3.4/library/lubridate/html/R.css
+ create mode 100755 Library/R/3.4/library/lubridate/libs/lubridate.so
+ create mode 100644 Library/R/3.4/library/lubridate/pkgdown/assets/tidyverse.css
+ create mode 100644 Library/R/3.4/library/lubridate/pkgdown/assets/tidyverse.css.map
+ create mode 100644 Library/R/3.4/library/mnormt/CITATION
+ create mode 100644 Library/R/3.4/library/mnormt/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/mnormt/INDEX
+ create mode 100644 Library/R/3.4/library/mnormt/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/mnormt/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/mnormt/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/mnormt/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/mnormt/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/mnormt/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/mnormt/NAMESPACE
+ create mode 100644 Library/R/3.4/library/mnormt/NEWS
+ create mode 100644 Library/R/3.4/library/mnormt/R/mnormt
+ create mode 100644 Library/R/3.4/library/mnormt/R/mnormt.rdb
+ create mode 100644 Library/R/3.4/library/mnormt/R/mnormt.rdx
+ create mode 100644 Library/R/3.4/library/mnormt/help/AnIndex
+ create mode 100644 Library/R/3.4/library/mnormt/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/mnormt/help/mnormt.rdb
+ create mode 100644 Library/R/3.4/library/mnormt/help/mnormt.rdx
+ create mode 100644 Library/R/3.4/library/mnormt/help/paths.rds
+ create mode 100644 Library/R/3.4/library/mnormt/html/R.css
+ create mode 100755 Library/R/3.4/library/mnormt/libs/mnormt.so
+ create mode 100644 Library/R/3.4/library/multcomp/CITATION
+ create mode 100644 Library/R/3.4/library/multcomp/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/multcomp/INDEX
+ create mode 100644 Library/R/3.4/library/multcomp/MCMT/MCMT.R
+ create mode 100644 Library/R/3.4/library/multcomp/MCMT/MCMT.Rout
+ create mode 100644 Library/R/3.4/library/multcomp/MCMT/MCMT.Rout.save
+ create mode 100644 Library/R/3.4/library/multcomp/MCMT/MCMT.rda
+ create mode 100644 Library/R/3.4/library/multcomp/MCMT/multcomp.sas
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/data.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/demo.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/multcomp/Meta/vignette.rds
+ create mode 100644 Library/R/3.4/library/multcomp/NAMESPACE
+ create mode 100644 Library/R/3.4/library/multcomp/NEWS
+ create mode 100644 Library/R/3.4/library/multcomp/R/multcomp
+ create mode 100644 Library/R/3.4/library/multcomp/R/multcomp.rdb
+ create mode 100644 Library/R/3.4/library/multcomp/R/multcomp.rdx
+ create mode 100644 Library/R/3.4/library/multcomp/data/Rdata.rdb
+ create mode 100644 Library/R/3.4/library/multcomp/data/Rdata.rds
+ create mode 100644 Library/R/3.4/library/multcomp/data/Rdata.rdx
+ create mode 100644 Library/R/3.4/library/multcomp/demo/Ch_Appl.R
+ create mode 100644 Library/R/3.4/library/multcomp/demo/Ch_GLM.R
+ create mode 100644 Library/R/3.4/library/multcomp/demo/Ch_Intro.R
+ create mode 100644 Library/R/3.4/library/multcomp/demo/Ch_Misc.R
+ create mode 100644 Library/R/3.4/library/multcomp/demo/Ch_Theory.R
+ create mode 100644 Library/R/3.4/library/multcomp/deprecated/deprecated.R
+ create mode 100644 Library/R/3.4/library/multcomp/deprecated/multcomp-deprecated.Rd
+ create mode 100644 Library/R/3.4/library/multcomp/deprecated/multcomp-oldtests.R
+ create mode 100644 Library/R/3.4/library/multcomp/deprecated/multcomp-oldtests.Rout.save
+ create mode 100644 Library/R/3.4/library/multcomp/doc/chfls1.R
+ create mode 100644 Library/R/3.4/library/multcomp/doc/chfls1.Rnw
+ create mode 100644 Library/R/3.4/library/multcomp/doc/chfls1.pdf
+ create mode 100644 Library/R/3.4/library/multcomp/doc/generalsiminf.R
+ create mode 100644 Library/R/3.4/library/multcomp/doc/generalsiminf.Rnw
+ create mode 100644 Library/R/3.4/library/multcomp/doc/generalsiminf.pdf
+ create mode 100644 Library/R/3.4/library/multcomp/doc/multcomp-examples.R
+ create mode 100644 Library/R/3.4/library/multcomp/doc/multcomp-examples.Rnw
+ create mode 100644 Library/R/3.4/library/multcomp/doc/multcomp-examples.pdf
+ create mode 100644 Library/R/3.4/library/multcomp/help/AnIndex
+ create mode 100644 Library/R/3.4/library/multcomp/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/multcomp/help/multcomp.rdb
+ create mode 100644 Library/R/3.4/library/multcomp/help/multcomp.rdx
+ create mode 100644 Library/R/3.4/library/multcomp/help/paths.rds
+ create mode 100644 Library/R/3.4/library/multcomp/html/R.css
+ create mode 100644 Library/R/3.4/library/multcomp/multcomp_VA.R
+ create mode 100644 Library/R/3.4/library/multcomp/multcomp_coxme.R
+ create mode 100644 Library/R/3.4/library/psych/CITATION
+ create mode 100644 Library/R/3.4/library/psych/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/psych/INDEX
+ create mode 100644 Library/R/3.4/library/psych/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/data.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/psych/Meta/vignette.rds
+ create mode 100644 Library/R/3.4/library/psych/NAMESPACE
+ create mode 100644 Library/R/3.4/library/psych/NEWS.Rd
+ create mode 100644 Library/R/3.4/library/psych/R/psych
+ create mode 100644 Library/R/3.4/library/psych/R/psych.rdb
+ create mode 100644 Library/R/3.4/library/psych/R/psych.rdx
+ create mode 100644 Library/R/3.4/library/psych/data/Rdata.rdb
+ create mode 100644 Library/R/3.4/library/psych/data/Rdata.rds
+ create mode 100644 Library/R/3.4/library/psych/data/Rdata.rdx
+ create mode 100644 Library/R/3.4/library/psych/doc/intro.R
+ create mode 100644 Library/R/3.4/library/psych/doc/intro.Rnw
+ create mode 100644 Library/R/3.4/library/psych/doc/intro.pdf
+ create mode 100644 Library/R/3.4/library/psych/doc/overview.R
+ create mode 100644 Library/R/3.4/library/psych/doc/overview.Rnw
+ create mode 100644 Library/R/3.4/library/psych/doc/overview.pdf
+ create mode 100644 Library/R/3.4/library/psych/doc/psych_for_sem.R
+ create mode 100644 Library/R/3.4/library/psych/doc/psych_for_sem.Rnw
+ create mode 100644 Library/R/3.4/library/psych/doc/psych_for_sem.pdf
+ create mode 100644 Library/R/3.4/library/psych/help/AnIndex
+ create mode 100644 Library/R/3.4/library/psych/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/psych/help/paths.rds
+ create mode 100644 Library/R/3.4/library/psych/help/psych.rdb
+ create mode 100644 Library/R/3.4/library/psych/help/psych.rdx
+ create mode 100644 Library/R/3.4/library/psych/html/R.css
+ create mode 100644 Library/R/3.4/library/readr/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/readr/INDEX
+ create mode 100644 Library/R/3.4/library/readr/LICENSE
+ create mode 100644 Library/R/3.4/library/readr/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/readr/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/readr/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/readr/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/readr/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/readr/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/readr/Meta/vignette.rds
+ create mode 100644 Library/R/3.4/library/readr/NAMESPACE
+ create mode 100644 Library/R/3.4/library/readr/NEWS.md
+ create mode 100644 Library/R/3.4/library/readr/R/readr
+ create mode 100644 Library/R/3.4/library/readr/R/readr.rdb
+ create mode 100644 Library/R/3.4/library/readr/R/readr.rdx
+ create mode 100644 Library/R/3.4/library/readr/R/sysdata.rdb
+ create mode 100644 Library/R/3.4/library/readr/R/sysdata.rdx
+ create mode 100644 Library/R/3.4/library/readr/WORDLIST
+ create mode 100644 Library/R/3.4/library/readr/doc/locales.R
+ create mode 100644 Library/R/3.4/library/readr/doc/locales.Rmd
+ create mode 100644 Library/R/3.4/library/readr/doc/readr.R
+ create mode 100644 Library/R/3.4/library/readr/doc/readr.Rmd
+ create mode 100644 Library/R/3.4/library/readr/extdata/challenge.csv
+ create mode 100755 Library/R/3.4/library/readr/extdata/epa78.txt
+ create mode 100644 Library/R/3.4/library/readr/extdata/example.log
+ create mode 100644 Library/R/3.4/library/readr/extdata/fwf-sample.txt
+ create mode 100644 Library/R/3.4/library/readr/extdata/massey-rating.txt
+ create mode 100644 Library/R/3.4/library/readr/extdata/mtcars.csv
+ create mode 100644 Library/R/3.4/library/readr/extdata/mtcars.csv.bz2
+ create mode 100644 Library/R/3.4/library/readr/extdata/mtcars.csv.zip
+ create mode 100644 Library/R/3.4/library/readr/help/AnIndex
+ create mode 100644 Library/R/3.4/library/readr/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/readr/help/figures/logo.png
+ create mode 100644 Library/R/3.4/library/readr/help/paths.rds
+ create mode 100644 Library/R/3.4/library/readr/help/readr.rdb
+ create mode 100644 Library/R/3.4/library/readr/help/readr.rdx
+ create mode 100644 Library/R/3.4/library/readr/html/R.css
+ create mode 100755 Library/R/3.4/library/readr/libs/readr.so
+ create mode 100755 Library/R/3.4/library/readr/rcon/librcon.so
+ create mode 100644 Library/R/3.4/library/sandwich/CITATION
+ create mode 100644 Library/R/3.4/library/sandwich/DESCRIPTION
+ create mode 100644 Library/R/3.4/library/sandwich/INDEX
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/Rd.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/data.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/features.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/hsearch.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/links.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/nsInfo.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/package.rds
+ create mode 100644 Library/R/3.4/library/sandwich/Meta/vignette.rds
+ create mode 100644 Library/R/3.4/library/sandwich/NAMESPACE
+ create mode 100644 Library/R/3.4/library/sandwich/NEWS
+ create mode 100644 Library/R/3.4/library/sandwich/R/sandwich
+ create mode 100644 Library/R/3.4/library/sandwich/R/sandwich.rdb
+ create mode 100644 Library/R/3.4/library/sandwich/R/sandwich.rdx
+ create mode 100644 Library/R/3.4/library/sandwich/data/InstInnovation.rda
+ create mode 100644 Library/R/3.4/library/sandwich/data/Investment.rda
+ create mode 100644 Library/R/3.4/library/sandwich/data/PetersenCL.rda
+ create mode 100644 Library/R/3.4/library/sandwich/data/PublicSchools.rda
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich-CL.R
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich-CL.Rnw
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich-CL.pdf
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich-OOP.R
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich-OOP.Rnw
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich-OOP.pdf
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich.R
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich.Rnw
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sandwich.pdf
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sim-CL.R
+ create mode 100644 Library/R/3.4/library/sandwich/doc/sim-CL.rda
+ create mode 100644 Library/R/3.4/library/sandwich/help/AnIndex
+ create mode 100644 Library/R/3.4/library/sandwich/help/aliases.rds
+ create mode 100644 Library/R/3.4/library/sandwich/help/paths.rds
+ create mode 100644 Library/R/3.4/library/sandwich/help/sandwich.rdb
+ create mode 100644 Library/R/3.4/library/sandwich/help/sandwich.rdx
+ create mode 100644 Library/R/3.4/library/sandwich/html/R.css
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel	
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 538, done.
+Delta compression using up to 16 threads.
+Compressing objects:   0% (1/515)   Compressing objects:   1% (6/515)   Compressing objects:   2% (11/515)   Compressing objects:   3% (16/515)   Compressing objects:   4% (21/515)   Compressing objects:   5% (26/515)   Compressing objects:   6% (31/515)   Compressing objects:   7% (37/515)   Compressing objects:   8% (42/515)   Compressing objects:   9% (47/515)   Compressing objects:  10% (52/515)   Compressing objects:  11% (57/515)   Compressing objects:  12% (62/515)   Compressing objects:  13% (67/515)   Compressing objects:  14% (73/515)   Compressing objects:  15% (78/515)   Compressing objects:  16% (83/515)   Compressing objects:  17% (88/515)   Compressing objects:  18% (93/515)   Compressing objects:  19% (98/515)   Compressing objects:  20% (103/515)   Compressing objects:  21% (109/515)   Compressing objects:  22% (114/515)   Compressing objects:  23% (119/515)   Compressing objects:  24% (124/515)   Compressing objects:  25% (129/515)   Compressing objects:  26% (134/515)   Compressing objects:  27% (140/515)   Compressing objects:  28% (145/515)   Compressing objects:  29% (150/515)   Compressing objects:  30% (155/515)   Compressing objects:  31% (160/515)   Compressing objects:  32% (165/515)   Compressing objects:  33% (170/515)   Compressing objects:  34% (176/515)   Compressing objects:  35% (181/515)   Compressing objects:  36% (186/515)   Compressing objects:  37% (191/515)   Compressing objects:  38% (196/515)   Compressing objects:  39% (201/515)   Compressing objects:  40% (206/515)   Compressing objects:  41% (212/515)   Compressing objects:  42% (217/515)   Compressing objects:  43% (222/515)   Compressing objects:  44% (227/515)   Compressing objects:  45% (232/515)   Compressing objects:  46% (237/515)   Compressing objects:  47% (243/515)   Compressing objects:  48% (248/515)   Compressing objects:  49% (253/515)   Compressing objects:  50% (258/515)   Compressing objects:  51% (263/515)   Compressing objects:  52% (268/515)   Compressing objects:  53% (273/515)   Compressing objects:  54% (279/515)   Compressing objects:  55% (284/515)   Compressing objects:  56% (289/515)   Compressing objects:  57% (294/515)   Compressing objects:  58% (299/515)   Compressing objects:  59% (304/515)   Compressing objects:  60% (309/515)   Compressing objects:  61% (315/515)   Compressing objects:  62% (320/515)   Compressing objects:  63% (325/515)   Compressing objects:  64% (330/515)   Compressing objects:  65% (335/515)   Compressing objects:  66% (340/515)   Compressing objects:  67% (346/515)   Compressing objects:  68% (351/515)   Compressing objects:  69% (356/515)   Compressing objects:  70% (361/515)   Compressing objects:  71% (366/515)   Compressing objects:  72% (371/515)   Compressing objects:  73% (376/515)   Compressing objects:  74% (382/515)   Compressing objects:  75% (387/515)   Compressing objects:  76% (392/515)   Compressing objects:  77% (397/515)   Compressing objects:  78% (402/515)   Compressing objects:  79% (407/515)   Compressing objects:  80% (412/515)   Compressing objects:  81% (418/515)   Compressing objects:  82% (423/515)   Compressing objects:  83% (428/515)   Compressing objects:  84% (433/515)   Compressing objects:  85% (438/515)   Compressing objects:  86% (443/515)   Compressing objects:  87% (449/515)   Compressing objects:  88% (454/515)   Compressing objects:  89% (459/515)   Compressing objects:  90% (464/515)   Compressing objects:  91% (469/515)   Compressing objects:  92% (474/515)   Compressing objects:  93% (479/515)   Compressing objects:  94% (485/515)   Compressing objects:  95% (490/515)   Compressing objects:  96% (495/515)   Compressing objects:  97% (500/515)   Compressing objects:  98% (505/515)   Compressing objects:  98% (508/515)   Compressing objects:  99% (510/515)   Compressing objects: 100% (515/515)   Compressing objects: 100% (515/515), done.
+Writing objects:   0% (1/538)   Writing objects:   1% (6/538)   Writing objects:   2% (11/538)   Writing objects:   3% (17/538)   Writing objects:   4% (22/538)   Writing objects:   5% (27/538)   Writing objects:   6% (33/538)   Writing objects:   7% (38/538)   Writing objects:   8% (44/538)   Writing objects:   9% (49/538)   Writing objects:  10% (54/538)   Writing objects:  11% (60/538)   Writing objects:  12% (65/538)   Writing objects:  13% (72/538)   Writing objects:  14% (76/538)   Writing objects:  15% (81/538)   Writing objects:  16% (87/538)   Writing objects:  17% (92/538)   Writing objects:  18% (97/538)   Writing objects:  19% (103/538)   Writing objects:  20% (108/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  21% (113/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  22% (119/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  23% (124/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  24% (130/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  25% (135/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  26% (140/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  27% (146/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  28% (151/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  29% (157/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  30% (162/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  31% (167/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  32% (173/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  33% (178/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  34% (184/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  35% (189/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  36% (194/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  37% (200/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  38% (205/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  39% (210/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  40% (216/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  41% (221/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  42% (226/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  43% (232/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  44% (237/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  45% (243/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  46% (248/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  47% (253/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  48% (259/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  49% (264/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  50% (269/538), 7.35 MiB | 14.38 MiB/s   Writing objects:  50% (271/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  51% (275/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  52% (280/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  53% (286/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  54% (291/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  55% (296/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  56% (302/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  57% (307/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  58% (313/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  59% (318/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  60% (323/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  61% (329/538), 9.25 MiB | 4.43 MiB/s   Writing objects:  62% (334/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  63% (339/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  64% (345/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  65% (350/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  66% (356/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  67% (361/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  68% (366/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  69% (372/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  70% (377/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  71% (382/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  72% (388/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  73% (393/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  74% (399/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  75% (404/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  76% (409/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  77% (415/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  78% (420/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  79% (426/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  80% (431/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  81% (436/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  82% (442/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  83% (447/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  84% (452/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  85% (458/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  86% (463/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  86% (468/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  87% (469/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  88% (474/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  89% (479/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  90% (485/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  91% (490/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  92% (495/538), 19.15 MiB | 7.36 MiB/s   Writing objects:  92% (495/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  93% (501/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  94% (506/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  95% (512/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  96% (517/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  97% (522/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  98% (528/538), 30.80 MiB | 6.87 MiB/s   Writing objects:  99% (533/538), 30.80 MiB | 6.87 MiB/s   Writing objects: 100% (538/538), 30.80 MiB | 6.87 MiB/s   Writing objects: 100% (538/538), 32.26 MiB | 6.79 MiB/s, done.
+Total 538 (delta 49), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/49)   [Kremote: Resolving deltas:   2% (1/49)   [Kremote: Resolving deltas:  12% (6/49)   [Kremote: Resolving deltas:  34% (17/49)   [Kremote: Resolving deltas:  40% (20/49)   [Kremote: Resolving deltas:  48% (24/49)   [Kremote: Resolving deltas:  51% (25/49)   [Kremote: Resolving deltas:  53% (26/49)   [Kremote: Resolving deltas:  55% (27/49)   [Kremote: Resolving deltas:  57% (28/49)   [Kremote: Resolving deltas:  59% (29/49)   [Kremote: Resolving deltas:  61% (30/49)   [Kremote: Resolving deltas:  63% (31/49)   [Kremote: Resolving deltas:  65% (32/49)   [Kremote: Resolving deltas:  67% (33/49)   [Kremote: Resolving deltas:  69% (34/49)   [Kremote: Resolving deltas:  71% (35/49)   [Kremote: Resolving deltas:  73% (36/49)   [Kremote: Resolving deltas:  75% (37/49)   [Kremote: Resolving deltas:  79% (39/49)   [Kremote: Resolving deltas:  81% (40/49)   [Kremote: Resolving deltas:  83% (41/49)   [Kremote: Resolving deltas:  85% (42/49)   [Kremote: Resolving deltas:  87% (43/49)   [Kremote: Resolving deltas:  89% (44/49)   [Kremote: Resolving deltas:  91% (45/49)   [Kremote: Resolving deltas:  93% (46/49)   [Kremote: Resolving deltas:  95% (47/49)   [Kremote: Resolving deltas:  97% (48/49)   [Kremote: Resolving deltas: 100% (49/49)   [Kremote: Resolving deltas: 100% (49/49), completed with 15 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   cff46f5..a41758d  master -> master
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ 

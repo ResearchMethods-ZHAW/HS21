@@ -10514,3 +10514,434 @@
 1570783708523:install.packages("dplyr")
 1570783897668:starwars
 1570783906781:data(starwars)
+1570785376022:starwar
+1570785378707:starwars
+1570785485283:dat()
+1570785487458:data()
+1570785552770:library(tidyverse)
+1570785608368:str(starwars)
+1570785673290:plot(starwars$height~ starwars$hair_color)
+1570785681175:plot(starwars$height~ starwars$mass)
+1570785688855:plot(starwars$height~ starwars$mass)
+1570785711291:lm(starwars$height ~ starwars$mass)
+1570785727664:summary.lm(lm(starwars$height ~ starwars$mass))
+1570785796397:ggplot(starwars, aes(x = height, y = mass)) + geom_point() + geom_smooth()
+1570785808343:ggplot(starwars, aes(y = height, x = mass)) + geom_point() + geom_smooth()
+1570785830306:max(starwars$mass)
+1570785835492:max(starwars$mass, na.rm = T)
+1570785852490:starwars[max(starwars$mass, na.rm = T),]
+1570785865742:starwars[starwars$mass == max(starwars$mass, na.rm = T),]
+1570785872662:install.packages("fansi")
+1570785893859:starwars[starwars$mass == max(starwars$mass, na.rm = T),]
+1570785901642:install.packages("utf8")
+1570785910346:starwars[starwars$mass == max(starwars$mass, na.rm = T),]
+1570785938813:test <- starwars[starwars$mass != max(starwars$mass, na.rm = T),]
+1570785941168:test
+1570785950292:starwars
+1570785962058:ggplot(test, aes(y = height, x = mass)) + geom_point() + geom_smooth()
+1570785978749:lm(starwars$height ~ starwars$mass)
+1570785995772:summary.lm(lm(test$height ~ test$mass))
+1571408389658:knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, error = F, include = T, fig.pos = 'H')
+1571408562346:canteen <- group_by(nova, gender, member) %>%
+1571408562348:summarise(tot = n()) %>%
+1571408562349:ungroup() %>%
+1571408562356:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
+1571408568662:library(dyplr)
+1571408582844:library(tidyverse)
+1571408586739:canteen <- group_by(nova, gender, member) %>%
+1571408586741:summarise(tot = n()) %>%
+1571408586742:ungroup() %>%
+1571408586743:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
+1571408593505:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1571408599042:canteen <- group_by(nova, gender, member) %>%
+1571408599044:summarise(tot = n()) %>%
+1571408599045:ungroup() %>%
+1571408599046:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
+1571408768118:population_exp <- c(345, 719, 339, 816) # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571408769692:chi_sq <- chisq.test(canteen$tot, population_exp)
+1571408772738:chi_sq
+1571408797716:isher_t <- tibble(
+1571408797717:member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571408797718:population = round(population_exp * 2138,0),
+1571408797719:stichprobe = canteen$tot,
+1571408797721:population_pct = population_exp,
+1571408797722:canteen_pct = canteen$tot / sum(canteen$tot))
+1571408801992:isher_t
+1571408882039:fisher_t <- tibble(
+1571408882040:member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571408882042:population = round(population_exp),
+1571408882043:stichprobe = canteen$tot,
+1571408882044:population_pct = population_exp,
+1571408882045:canteen_pct = canteen$tot / sum(canteen$tot))
+1571408885975:fisher_t
+1571408907585:fisher_t <- tibble(
+1571408907586:member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571408907587:stichprobe = canteen$tot,
+1571408907589:population_pct = population_exp,
+1571408907590:canteen_pct = canteen$tot / sum(canteen$tot))
+1571409003577:fisher_t <- tibble(
+1571409003578:member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571409003579:stichprobe = canteen$tot,
+1571409003580:gesamtheit = gesamtheit_exp,
+1571409003582:stichprobe_pct = gesamtheit / sum(gesamtheit),
+1571409003583:canteen_pct = canteen$tot / sum(canteen$tot)) # berechne prozentsätze für stichprobe und population
+1571409007459:gesamtheit_exp <- c(345, 719, 339, 816) # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571409009709:fisher_t <- tibble(
+1571409009710:member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571409009711:stichprobe = canteen$tot,
+1571409009712:gesamtheit = gesamtheit_exp,
+1571409009714:stichprobe_pct = gesamtheit / sum(gesamtheit),
+1571409009715:canteen_pct = canteen$tot / sum(canteen$tot)) # berechne prozentsätze für stichprobe und population
+1571409014015:fisher_t
+1571409018319:fisher_t
+1571409045020:group_by(nova, gender, member) %>%
+1571409045023:summarise(tot = n()) %>%
+1571409045024:ungroup()
+1571410824777:fish <- fisher.test(fisher_t[ ,2:3], simulate.p.value=TRUE, B = 100000)
+1571410827162:fish
+1571410833523:fisher_t[ ,2:3]
+1571410844058:c(canteen$tot, population_exp)
+1571411193404:# bereitet eure Daten auf;
+1571411193406:# tibble() ist eine ähnliche Funktion wie data.frame()
+1571411193407:df_t <- tibble(
+1571411193408:member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571411193409:stichprobe = canteen$tot,
+1571411193410:gesamtheit = gesamtheit_exp,
+1571411193411:stichprobe_pct = gesamtheit / sum(gesamtheit),
+1571411193413:canteen_pct = canteen$tot / sum(canteen$tot)) # berechne prozentsätze für stichprobe und population
+1571411218074:canteen <- group_by(nova, gender, member) %>%
+1571411218076:summarise(tot = n()) %>%
+1571411218077:ungroup() %>%
+1571411218078:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"))
+1571411221596:canteen
+1571411275939:canteen <- group_by(nova, gender, member) %>%
+1571411275941:summarise(stichprobe = n()) %>%
+1571411275942:ungroup() %>%
+1571411275943:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571411275944:gesamtheit = c(345, 719, 339, 816))
+1571416502445:canteen
+1571416721314:df_t <- group_by(nova, gender, member) %>%
+1571416721315:summarise(stichprobe = n()) %>%
+1571416721316:ungroup() %>%
+1571416721317:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571416721318:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571416721319:stichprobe_pct = gesamtheit / sum(gesamtheit),
+1571416721320:canteen_pct = canteen$tot / sum(canteen$tot))
+1571416730183:group_by(nova, gender, member) %>%
+1571416730184:summarise(stichprobe = n()) %>%
+1571416730186:ungroup() %>%
+1571416730187:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571416730188:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571416730189:stichprobe_pct = gesamtheit / sum(gesamtheit),
+1571416730190:canteen_pct = canteen$tot / sum(canteen$tot))
+1571416738167:group_by(nova, gender, member) %>%
+1571416738168:summarise(stichprobe = n())
+1571416752600:group_by(nova, gender, member) %>%
+1571416752601:summarise(stichprobe = n()) %>%
+1571416752602:ungroup() %>%
+1571416752604:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571416752605:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571416752606:stichprobe_pct = gesamtheit / sum(gesamtheit)
+1571416755596:)
+1571416781599:df_t <- group_by(nova, gender, member) %>%
+1571416781600:summarise(stichprobe = n()) %>%
+1571416781601:ungroup() %>%
+1571416781602:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571416781604:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571416781605:stichprobe_pct = gesamtheit / sum(gesamtheit),
+1571416781606:canteen_pct = stichprobe / sum(stichprobe))
+1571416786997:df_t
+1571416811400:# berechnet den Chi-Quadrat-Test
+1571416811401:chi_sq <- chisq.test(df_t$stichprobe, df_t$gesamtheit)
+1571416812761:chi_sq
+1571416826839:df_t[ ,2:3]
+1571416846088:df_t[ ,3:4]
+1571416848931:df_t[ ,3:5]
+1571416857238:df_t[ ,c(3,5)]
+1571416876224:fish <- fisher.test(df_t[ ,c("stichprobe", "gesamtheit"], simulate.p.value=TRUE, B = 100000)
+1571416891187:df_t[ ,c("stichprobe", "gesamtheit")]
+1571416894191:fish <- fisher.test(df_t[ ,c("stichprobe", "gesamtheit")], simulate.p.value=TRUE, B = 100000)
+1571416897123:fish
+1571416911725:# berechnet den Chi-Quadrat-Test
+1571416911726:chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")])
+1571416912268:chi_sq
+1571419406551:chi_sq
+1571419409008:fish
+1571420152153:table <- fisher_t %>%
+1571420152155:rename(Hochschulzugehörigkeit = member, `Anzahl Population` = population, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = population_pct, `Anteil Stichprobe (%)` = canteen_pct) %>%
+1571420152156:dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>%
+1571420152157:mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
+1571420152191:knitr::kable(table, caption = "Anzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
+1571420198485:df_t <- group_by(nova, gender, member) %>%
+1571420198486:summarise(stichprobe = n()) %>%
+1571420198487:ungroup() %>%
+1571420198488:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571420198490:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571420198491:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1571420198492:stichprobe_pct = stichprobe / sum(stichprobe))
+1571420236332:table <- canteen %>%
+1571420236334:rename(Hochschulzugehörigkeit = member, `Anzahl Population` = gesamtheit, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = gesamtheit_pct, `Anteil Stichprobe (%)` = stichprobe_pct) %>%
+1571420236335:dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>%
+1571420236336:mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
+1571420244197:df_t <- group_by(nova, gender, member) %>%
+1571420244198:summarise(stichprobe = n()) %>%
+1571420244199:ungroup() %>%
+1571420244200:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1571420244202:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1571420244203:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1571420244204:stichprobe_pct = stichprobe / sum(stichprobe))
+1571420257227:table <- df_t %>%
+1571420257228:rename(Hochschulzugehörigkeit = member, `Anzahl Population` = gesamtheit, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = gesamtheit_pct, `Anteil Stichprobe (%)` = stichprobe_pct) %>%
+1571420257229:dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>%
+1571420257230:mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
+1571420259177:knitr::kable(table, caption = "Anzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
+1571420388492:df <- nova %>%
+1571420388493:group_by(week, condit) %>%
+1571420388494:summarise(tot_sold = n())
+1571420390116:# überprüft die Voraussetzungen für einen t-Test
+1571420390118:ggplot(df, aes(x = condit, y= tot_sold)) +
+1571420390119:geom_boxplot(fill = "white", color = "black", size = 1) +
+1571420390120:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1571420390121:mytheme
+1571420396926:mytheme <-
+1571420396928:theme_classic() +
+1571420396929:theme(
+1571420396930:axis.line = element_line(color = "black"),
+1571420396931:axis.text = element_text(size = 20, color = "black"),
+1571420396932:axis.title = element_text(size = 20, color = "black"),
+1571420396933:axis.ticks = element_line(size = 1, color = "black"),
+1571420396934:axis.ticks.length = unit(.5, "cm")
+1571420396936:)
+1571420403980:# überprüft die Voraussetzungen für einen t-Test
+1571420403981:ggplot(df, aes(x = condit, y= tot_sold)) +
+1571420403982:geom_boxplot(fill = "white", color = "black", size = 1) +
+1571420403983:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1571420403984:mytheme
+1571420679495:t_test <- t.test(df[df$condit == "Basis", ]$tot_sold,
+1571420679497:df[df$condit == "Intervention", ]$tot_sold)
+1571420680409:t_test
+1571420726642:In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowochen (siehe Figure 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`).
+1571420739052:ggplot(df, aes(x = condit, y= tot_sold)) +
+1571420739053:geom_boxplot(fill = "white", color = "black", size = 1) +
+1571420739054:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1571420739056:mytheme
+1571420809992:# zeigt die Ergebnisse mit einer Abbildung
+1571420809993:ggplot(df, aes(x = condit, y= tot_sold)) +
+1571420809995:geom_boxplot(fill = "white", color = "black", size = 1) +
+1571420809998:stat_boxplot(geom ='errorbar', width = .6) +
+1571420809999:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1571420810001:mytheme
+1571420824448:# zeigt die Ergebnisse mit einer Abbildung
+1571420824450:ggplot(df, aes(x = condit, y= tot_sold)) +
+1571420824451:stat_boxplot(geom ='errorbar', width = .6) +
+1571420824452:geom_boxplot(fill = "white", color = "black", size = 1) +
+1571420824453:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1571420824454:mytheme
+1571420877024:# zeigt die Ergebnisse mit einer Abbildung
+1571420877025:ggplot(df, aes(x = condit, y= tot_sold)) +
+1571420877027:stat_boxplot(geom ='errorbar', width = .4) + # erzeugt sogenannte Whiskers mit Strichen
+1571420877028:geom_boxplot(fill = "white", color = "black", size = 1) +
+1571420877029:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1571420877030:mytheme
+1571421114552:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421114553:df %>%
+1571421114555:mutate(label_content = str_replace(.$label_content, "Pflanzlich+", "Vegetarisch"))
+1571421118101:# klone den originaler Datensatz
+1571421118102:df <- nova
+1571421121853:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421121854:df %>%
+1571421121855:mutate(label_content = str_replace(.$label_content, "Pflanzlich+", "Vegetarisch"))
+1571421138354:df <- df %>%
+1571421138355:mutate(label_content = str_replace(.$label_content, "Pflanzlich+", "Vegetarisch"))
+1571421143144:View(df)
+1571421166550:unique(df$label_content)
+1571421180896:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421180897:df <- df %>%
+1571421180898:mutate(label_content = str_replace(.$label_content, "\Pflanzlich+", "Vegetarisch"))
+1571421193332:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421193333:df <- df %>%
+1571421193334:mutate(label_content = str_replace(.$label_content, "*Pflanzlich*", "Vegetarisch"))
+1571421199746:# klone den originaler Datensatz
+1571421199747:df <- nova
+1571421201468:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421201470:df <- df %>%
+1571421201471:mutate(label_content = str_replace(.$label_content, "*Pflanzlich*", "Vegetarisch"))
+1571421209721:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421209722:df <- df %>%
+1571421209724:mutate(label_content = str_replace(.$label_content, "//Pflanzlich*", "Vegetarisch"))
+1571421226930:unique(df$label_content)
+1571421249935:# klone den originaler Datensatz
+1571421249944:df <- nova
+1571421250867:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421250868:df <- df %>%
+1571421250870:mutate(label_content = str_replace(.$label_content, "//Pflanzlich+//", "Vegetarisch"))
+1571421255431:unique(df$label_content)
+1571421270115:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1571421270116:df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+1571421274515:unique(df$label_content)
+1571421303567:# gruppiert Daten gemäss Bedingungen, Menü-Inhalt und Wochen
+1571421303569:df_ <- df %>%
+1571421303570:group_by(condit, label_content, week) %>%
+1571421303571:summarise(tot_sold = n()) %>%
+1571421303573:drop_na() # lasst die unbekannten Menü-Inhalte weg
+1571421307612:# überprüft Voraussetzungen für eine ANOVA
+1571421307614:# Boxplots zeigt klare Varianzheterogenität
+1571421307615:ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) +
+1571421307616:stat_boxplot(geom = "errorbar", width = .25) +
+1571421307617:geom_boxplot(fill="white", size = 1, width = .5) +
+1571421307619:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1571421307620:mytheme
+1571422240697:ggplot(df_, aes(x = condit, y = tot_sold, linetype = label_content, shape = label_content)) +
+1571422240698:geom_point(data = m_sell, aes(y = val), size = 4) +
+1571422240699:geom_line(data = m_sell, aes(y = val, group = label_content), size = 2) +
+1571422240700:labs(y = "Durchschnittlich verkaufte Gerichte pro Woche", x = "Bedingungen") +
+1571422240702:guides(linetype = F, shape = guide_legend(title = "Menü-Inhalt"))+
+1571422240703:scale_y_continuous(breaks = seq(0,120,20), limits = c(0,120))+
+1571422240704:mytheme
+1571422250796:# eine weitere Möglichkeit die Ergebnisse darzustellen
+1571422250798:m_sell <- na.omit(df_) %>% group_by(condit,label_content) %>% summarise(val = mean(tot_sold)) # berechne die durchschnittlichen Verkaufszahlen pro Bedingung
+1571422251650:ggplot(df_, aes(x = condit, y = tot_sold, linetype = label_content, shape = label_content)) +
+1571422251651:geom_point(data = m_sell, aes(y = val), size = 4) +
+1571422251652:geom_line(data = m_sell, aes(y = val, group = label_content), size = 2) +
+1571422251654:labs(y = "Durchschnittlich verkaufte Gerichte pro Woche", x = "Bedingungen") +
+1571422251655:guides(linetype = F, shape = guide_legend(title = "Menü-Inhalt"))+
+1571422251656:scale_y_continuous(breaks = seq(0,120,20), limits = c(0,120))+
+1571422251657:mytheme
+1571422261826:# zeigt die Ergebnisse anhand eines Boxplots
+1571422261828:library(multcomp)
+1571422263702:df_$cond_label <- interaction(df_$condit, df_$label_content) # bei Interaktionen gibt es diesen Trick, um bei den multiplen Vergleiche, die richtigen Buchstaben zu bekommen
+1571422265314:model1 <- aov(tot_sold ~ cond_label, data = df_)
+1571422266958:letters <-cld(glht(model1, linfct=mcp(cond_label="Tukey")))
+1571422269045:ggplot(df_, aes(x = cond_label, y= tot_sold)) +
+1571422269046:geom_boxplot(fill="white", color = "black", size = 1) +
+1571422269048:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1571422269049:scale_y_continuous(breaks = seq(0, 130,25), limits = c(0, 130)) +
+1571422269050:annotate("text", x = 1:6, y = 130, label = letters$mcletters$Letters, size = 8) +
+1571422269051:mytheme
+1571423042651:# Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
+1571423042653:df <- nova # kopiert originaler Datensatz
+1571423043060:df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
+1571423045168:df_ <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffet Teller gekauft haben und speichert es in eine neuen Datensatz
+1571423047509:# Löscht alle Missings bei der Variable "Fleisch"
+1571423047510:df_ <- df_[!is.na(df_$meat), ]
+1571423054714:#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch
+1571423054716:table(df_$meat)
+1571423064896:# definiert das logistische Modell und wende es auf den Datensatz an
+1571423064898:mod0 <- glm(meat ~ gender + member + age, data = df_, binomial("logit"))
+1571423065359:summary.lm(mod0) # Member  und Alter scheinen keinen Einfluss zu nehmen, lassen wir also weg
+1571423105417:# neues Modell ohne Alter und Hochschulzugehörigkeit
+1571423105418:mod1 <- update(mod0, ~. -member - age)
+1571423106435:summary.lm(mod1)
+1571423113283:# Modeldiagnostik (wenn nicht signifikant, dann OK)
+1571423113284:1 - pchisq(mod1$deviance, mod1$df.resid) # hochsignifikant, d.h. kein gutes Modell
+1571423115299:#Modellgüte (pseudo-R²)
+1571423115300:1 - (mod1$dev / mod1$null) # sehr kleines pseudo-R²
+1571423118822:# Konfusionsmatrix vom  Datensatz
+1571423118824:# Model Vorhersage
+1571423118825:predicted <- predict(mod1, df_, type = "response")
+1571423120594:# erzeugt eine Tabelle mit den beobachteten
+1571423120595:# Fleischesser/Nichtleischesser und den Vorhersagen des Modells
+1571423120596:km <- table(df_$meat, predicted > 0.5)
+1571423121086:dimnames(km) <- list(
+1571423121088:c("Beobachtung kein Fleisch", "Beobachtung Fleisch"),
+1571423121089:c("Modell kein Fleisch", "Modell Fleisch"))
+1571423122024:km
+1571423123924:# kalkuliert die Missklassifizierungsrate
+1571423123925:mf <- 1-sum(diag(km)/sum(km)) # ist mit knapp 40% eher hoch
+1571423124406:mf
+1571423613305:names(df)
+1571424166153:install.packages("multinom")
+1571424194087:install.packages("nnet")
+1571424201074:library(nnet)
+1571424226571:multinom(meat ~ gender + member + age, data = df_)
+1571424237226:test <- multinom(meat ~ gender + member + age, data = df_)
+1571425720166:library(lme4)
+1571425728886:install.packages("lme4")
+1571426089886:# Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
+1571426089887:df <- nova # kopiert originaler Datensatz
+1571426090274:df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
+1571426090701:df_ <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffet Teller gekauft haben und speichert es in eine neuen Datensatz
+1571426091715:# Löscht alle Missings bei der Variable "Fleisch"
+1571426091716:df_ <- df_[!is.na(df_$meat), ]
+1571426092745:# setzt andere Reihenfolge für die Hochschulzugehörigkeit
+1571426092746:df_$member <- factor(df_$member, levels = c("Studierende", "Mitarbeitende"))
+1571426093761:#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch an
+1571426093762:table(df_$meat)
+1571426096725:# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an
+1571426096726:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1571426103487:library(lme4)
+1571426106102:# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an
+1571426106103:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1571426107864:summary(mod0)
+1571426130223:# Pseudo R^2
+1571426130224:library(MuMIn)
+1571426142098:install.packages("MuMIn")
+1571426288170:# Pseudo R^2
+1571426288171:library(MuMIn)
+1571426288498:r.squaredGLMM(mod0)
+1571426337427:# zusätzliche Informationen, welche für die Interpretation gut sein kann
+1571426337428:# berechnet den Standardfehler
+1571426337429:se <- sqrt(diag(vcov(mod0)))
+1571426339700:# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall => falls 0 enthalten dann ist der Unterschied statistisch nicht signifikant
+1571426339701:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1571426339702:se)
+1571426341036:# erzeugt die Odds Ratios
+1571426341037:exp(tab1)
+1571489585388:devtools::install_github("hadley/emo")
+1571489762942:library(emo)
+1571489864890:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1571489865562:summary(mod0)
+1571489869481:r.squaredGLMM(mod0)
+1572333607039:library(tidyverse)
+1572333607181:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572333614049:library(tidyverse)
+1572333635913:library(readr)
+1572333648052:library(tidyverse)
+1572333660704:install.packages("tidyverse")
+1572333665658:library(tidyverse)
+1572333678525:install.packages("lifecylce")
+1572333688076:library(tidyverse)
+1572333691420:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572333696720:mytheme <-
+1572333696721:theme_classic() +
+1572333696722:theme(
+1572333696723:axis.line = element_line(color = "black"),
+1572333696724:axis.text = element_text(size = 20, color = "black"),
+1572333696725:axis.title = element_text(size = 20, color = "black"),
+1572333696727:axis.ticks = element_line(size = 1, color = "black"),
+1572333696728:axis.ticks.length = unit(.5, "cm")
+1572333696729:)
+1572333702106:library(ggplot2)
+1572333704802:mytheme <-
+1572333704803:theme_classic() +
+1572333704804:theme(
+1572333704805:axis.line = element_line(color = "black"),
+1572333704807:axis.text = element_text(size = 20, color = "black"),
+1572333704808:axis.title = element_text(size = 20, color = "black"),
+1572333704809:axis.ticks = element_line(size = 1, color = "black"),
+1572333704810:axis.ticks.length = unit(.5, "cm")
+1572333704811:)
+1572333717400:df <- nova %>%
+1572333717401:group_by(week, condit) %>%
+1572333717402:summarise(tot_sold = n())
+1572333724489:library(dplyr)
+1572333727617:df <- nova %>%
+1572333727618:group_by(week, condit) %>%
+1572333727620:summarise(tot_sold = n())
+1572333750117:t_test <- t.test(df[df$condit == "Basis", ]$tot_sold,
+1572333750118:df[df$condit == "Intervention", ]$tot_sold)
+1572333754307:t_test
+1572333757438:t.test(tot_sold~condit, data=df)#alternative formulierung
+1572334135083:matrix(df_t[ ,c("stichprobe", "gesamtheit")])
+1572334141058:df_t <- group_by(nova, gender, member) %>%
+1572334141060:summarise(stichprobe = n()) %>%
+1572334141061:ungroup() %>%
+1572334141063:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572334141064:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572334141065:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572334141066:stichprobe_pct = stichprobe / sum(stichprobe))
+1572334145902:matrix(df_t[ ,c("stichprobe", "gesamtheit")])
+1572334154155:df_t[ ,c("stichprobe", "gesamtheit")]
+1572334171246:matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
+1572334180245:a <- matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
+1572334181328:a

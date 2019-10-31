@@ -1,10 +1,10 @@
-##Statistik 5: Übungen
+##Übungen 5
 
 ### Übung 5.1: Split-plot ANOVA
 
-<font color="blue">Datensatz splityield.csv</font>
+**Datensatz [splityield.csv](17_Statistik5/data/splityield)**
 
-<font color="blue">**Versuch zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei Faktoren Bewässerung (irrigated vs. control), Düngung (N, NP, P) und Aussaatdichten (low, medium, high). Es gab vier ganze Felder (block), die zwei Hälften mit den beiden Bewässerungstreatments, diese wiederum drei Drittel für die drei Saatdichten und diese schliesslich je drei Drittel für die drei Düngertreatments hatten.**</font>
+Versuch zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei Faktoren Bewässerung (irrigated vs. control), Düngung (N, NP, P) und Aussaatdichten (low, medium, high). Es gab vier ganze Felder (block), die zwei Hälften mit den beiden Bewässerungstreatments, diese wiederum drei Drittel für die drei Saatdichten und diese schliesslich je drei Drittel für die drei Düngertreatments hatten.
 
 
 **Aufgaben**
@@ -15,15 +15,18 @@
 
 ### Übung 5.2: GLMM
 
-<font color="blue">Führt mit dem Datensatz novanimal.csv eine logistische Regression durch, wobei ihr die einzelnen Käufer (single campus_card holder) als weitere randomisierte Variable mitberücksichtigt.</font>
+Führt mit dem Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) eine logistische Regression durch, wobei ihr die einzelnen Käufer (single campus_card holder) als weitere randomisierte Variable mitberücksichtigt. Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden? Vergleich die Ergebnisse mit der eurem multiplen logistische Modell von 4.2
 
-<font color="blue">**Kann der Fleischkonsum nun besser durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?**</font>
+**Kann der Fleischkonsum nun besser durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?**
+
+**Aufgaben**
+
+- **Bestimmt das minimal adäquate Modell**
+- **Stellt die Ergebnisse dar**
+
 
 Ähnliches Vorgehen wie bei der Übung 4.2S:
 
 -   Generiert eine neue Variable "Fleisch" (0 = kein Fleisch, 1 = Fleisch)
--   Entfernt fehlende Werte aus der Variable "Fleisch “
--   Lasst für die Analyse den Menü-Inhalt «Buffet» weg
--   Definiert ein Modell mit einem random intercept und wendet es auf den
-    Datensatz an
--   Interpretiert die Ergebnisse
+-   Entfernt fehlende Werte aus der Variable "Fleisch"
+-   Lasst für die Analyse den Menü-Inhalt "Buffet" weg

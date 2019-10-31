@@ -1,9 +1,8 @@
 ---
-# lang: de-DE
-title: "MSc. Research Methods - Statistikteil Lösungen 2018"
-author: "Gian-Andrea Egeler"
-date: "`r format(Sys.Date(), '%B %Y')`"
-output: pdf_document
+title: "Modul Research Methods HS19"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE, purl=F}
@@ -34,7 +33,8 @@ mytheme <-
 ```
 
 
-### Übung 4.2S: multiple logistische Regression
+### Musterlösung Aufgabe 4.2S: multiple logistische Regression
+> Meine Empfehlung Kapitel 6 von Manny Gimond https://mgimond.github.io/Stats-in-R/Logistic.html
 
 ```{r}
 
@@ -50,7 +50,8 @@ df_ <- df_[!is.na(df_$meat), ]
 table(df_$meat)
 
 # definiert das logistische Modell und wende es auf den Datensatz an
-mod0 <- glm(meat ~ gender + member + age, data = df_, binomial("logit"))
+# modell nicht signifikant, rechnen mal trotzdem weiter
+  mod0 <- glm(meat ~ gender + member + age, data = df_, binomial("logit"))
 summary.lm(mod0) # Member  und Alter scheinen keinen Einfluss zu nehmen, lassen wir also weg
 
 # neues Modell ohne Alter und Hochschulzugehörigkeit
@@ -66,6 +67,7 @@ summary.lm(mod1)
 
 # Konfusionsmatrix vom  Datensatz
 # Model Vorhersage
+# hier ein anderes Beispiel: 
 predicted <- predict(mod1, df_, type = "response")
 
 # erzeugt eine Tabelle mit den beobachteten
@@ -83,10 +85,15 @@ mf
 
 ```
 
-#### Methoden
-Die Kriteriumsvariable "Fleischkonsum" ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren "Alter", "Geschlecht" und "Hochschulzugehörigkeit" gerechnet. Die Modelldiagnostik und das pseudo-$R^2$ zeigen allerdings, dass das Modell nicht gut zu den empirischen Daten passt. 
+#### Methodenteil
+Die Kriteriumsvariable "Fleischkonsum" ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren "Alter", "Geschlecht" und "Hochschulzugehörigkeit" gerechnet. Die Modelldiagnostik und das pseudo-$R^2$ von 2% zeigen allerdings, dass das Modell nicht gut zu den empirischen Daten passt. Eine weitere Lösung könnten weitere statistische Methoden sein, welche besser zu den vorliegenden Daten passen (z.B. multinomiale logistische Regression, weitere Infos [hier](https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/))
 
 
-#### Ergebnisse
+#### Ergebnisteil
 Mit der logistischen Regression kann der Fleischkonsum werder durch das Geschlecht, die Hochschulzugehörigkeit noch das Alter vorhergesagt werden. Die Tests für die Modelldiagnostik und das kleine pseudo-$R^2$ unterstützen diesen Befund. Auch die hohe Missklassifizierungsrate (`r round(mf*100,1)`%) deutet auf ein Modell hin, welches nicht zu den Daten passt. Es sollte nach einem weiteren adäquateren Modell gesucht werden. 
-Bei näherer Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen (siehe card_num). Bei einer weiteren Analyse müssten die einzelne Individuen ebenfalls berücksichtigt werden z. B. als festen Effekt (siehe Statistik 5).
+Bei näherer Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen (siehe card_num). Bei einer weiteren Analyse müssten die einzelne Individuen ebenfalls berücksichtigt werden z.B. als festen Effekt (z.B. GLMM, für mehr Infos [hier](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html) oder [hier](ncbi.nlm.nih.gov/pmc/articles/PMC5970551/)) oder durch eine weitere Methode wie z.B. multinomiale logistische Regression.
+
+
+
+*******
+##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch

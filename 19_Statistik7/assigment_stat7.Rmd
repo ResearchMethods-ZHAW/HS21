@@ -1,4 +1,4 @@
-##Statistik 7: Übungen
+## Übungen 7
 
 ### Übung 7.1: RDA (naturwissenschaftlich)
 
@@ -7,7 +7,7 @@ Moordatensatz in **library(dave)**:
 - sveg (Vegetationsdaten)
 - ssit (Umweltdaten)
 
-<font color="blue">**Führt eine RDA mit allen in der Vorlesung gezeigten Schritten durch und interpretiert die Ergebnisse.**</font>
+**Führt eine RDA mit allen in der Vorlesung gezeigten Schritten durch und interpretiert die Ergebnisse.**
 
 **Von den Umweltvariablen entfallen x.axis & y.axis**
 

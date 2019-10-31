@@ -2,28 +2,28 @@
 
 ### Übung 4.1: Nicht-lineare Regression (naturwissenschaftlich)
 
-<font color="blue">**Datensatz Curonian_Spit.xlsx**</font>
+**Datensatz [Curonian_Spit.xlsx](16_Statistik4/data/Curonian_Spit.xlsx)**
 
-<font color="blue">Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
+Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
 geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf
-Flächengrössen (Area) von 0.0001 bis 900 m².</font>
+Flächengrössen (Area) von 0.0001 bis 900 m².
 
-<font color="blue">**Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function,**</font>$S=$c$A^{n}$<font color="blue">**), die logarithmische Funktion (logarithmic function,**</font>$S$=$b_{0}$$+$$b_{1}$$\log_{10}$A<font color="blue">**)und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**</font>
+**Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function,**</font>$S=$c$A^{n}$<font color="blue">**), die logarithmische Funktion (logarithmic function,**</font>$S$=$b_{0}$$+$$b_{1}$$\log_{10}$A<font color="blue">**)und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
 
 
 ### Übung 4.2N: Multiple logistische Regression (naturwissenschaftlich)
 
-<font color="blue">**Datensatz isolation.csv**</font>
+**Datensatz [isolation.csv](16_Statistik4/data/isolation.csv)**
 
-<font color="blue">Dieser enthält für 50 Inseln die Information, ob eine bestimmte Vogelart dort vorkommt (incidence = 1) oder nicht vorkommt (incidence = 0). Für jede der Inseln sind zudem zwei Umweltvariablen angegeben: area (Fläche in km²) und
-isolation (Entfernung vom Festland in km).</font>
+Dieser enthält für 50 Inseln die Information, ob eine bestimmte Vogelart dort vorkommt (incidence = 1) oder nicht vorkommt (incidence = 0). Für jede der Inseln sind zudem zwei Umweltvariablen angegeben: area (Fläche in km²) und
+isolation (Entfernung vom Festland in km).
 
-<font color="blue">**Ermittelt das minimal adäquate statistische Modell, das die Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**</font>
+**Ermittelt das minimal adäquate statistische Modell, das die Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**
 
 
 ### Übung 4.2S: Multiple logistische Regression (sozioökonomisch)
 
-<font color="blue">**Führt mit dem Datensatz novanimal.csv eine logistische Regression durch.Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?**</font>
+Führt mit dem Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) eine logistische Regression durch.Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?
 
 **Hinweise:**
 
@@ -33,7 +33,9 @@ isolation (Entfernung vom Festland in km).</font>
 - Definiert das Modell und wendet es auf den Datensatz an
 - Berechnet eine Vorhersage des Modells mit predict()
 - Eruiert den Modellfit und die Modellgenauigkeit
-- Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus
+- Für Motivierte: Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus (vgl. )
+- Stellt eure Ergebnisse dann angemessen dar (Text und/oder Tabelle).
+
 
 
 

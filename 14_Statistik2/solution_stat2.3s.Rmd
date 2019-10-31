@@ -13,6 +13,7 @@ knitr::opts_chunk$set(fig.width = 15, fig.height = 12, warning = F, message = F,
 ```
 
 ### Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
+## Meine Empfehlung Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
@@ -42,8 +43,8 @@ mytheme <-
 # klone den originaler Datensatz
 df <- nova 
 
-# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
-df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # ersetzt beide Pflanzlich und Pflanzlich+
  
 # gruppiert Daten gemäss Bedingungen, Menü-Inhalt und Wochen
 df_ <- df %>%
@@ -65,16 +66,16 @@ model2 <- aov(tot_sold ~ label_content * condit, data = df_)
 
 autoplot(model2) + mytheme  # Inspektion der Modellvoraussetzungen sehen nicht schlecht aus => einzig Normalverteilung Q-Q Plot nicht optimal (vgl. Statistik 2: Folie 42)
 
-summary.lm(model1)
+summary(model1)
 
-# Alternativ gibt es zwei Möglichkeiten: 1) Transformation der Daten, 2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test
+# Alternativ gibt es zwei Möglichkeiten: 1) Transformation der Daten, 2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
 model3 <- aov(log10(tot_sold) ~ label_content * condit, data = df_)
 
 autoplot(model3) + mytheme # Ich entscheide mich aufgrund keiner Verbesserung durch Transformation für den nicht-parametrischen Test
 
 ```
 
-Fazit: Die Inspektion des Modells zeigt leichte Verletzungen beim Q-Q Plot, d.h. die Residuen sind nicht normalverteilt. Aufgrund keiner Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für einen nicht-parametrischer Test, Kruskal-Wallis-Test (Statistik 2: Folie 18).
+<span style="color:blue"> Fazit: Die Inspektion des Modells zeigt leichte Verletzungen beim Q-Q Plot, d.h. die Residuen sind nicht normalverteilt. Aufgrund keiner Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für einen nicht-parametrischer Test, Kruskal-Wallis-Test (Statistik 2: Folie 18)</span>.
 
 ```{r}
 # post-hoc-Tests nach Dunn
@@ -84,19 +85,19 @@ summary.lm(model2) # es gibt signifikante Unterschiede in den Interaktionen
 # in einem nächsten Schritt könnt ihr mit Post-hoc Tests diese Unterschiede genauer betrachten
 # es gibt zwei Möglochkeiten dunnTest (mit Package FSA)
 library(FSA)
-dunnTest(df_$tot_sold, df_$condit, method="bh") # Korrektur für Mehrfachvergleiche
+dunnTest(df_$tot_sold, df_$condit, method="bh") # Korrektur für Mehrfachvergleiche (vgl. https://mgimond.github.io/Stats-in-R/ANOVA.html#4_identifying_which_levels_are_different)
 
 
 
 ```
 ---------
 
-#### Methoden
+#### Methodenteil
 
-Ziel war es, die Unterschiede in den Verkaufszahlen pro Menü-Inhalt und pro Bedingung aufzuzeigen. Da die Kriteriumsvariable (Verkaufszahlen) metrisch und die beiden Prädiktorvariablen kategorial sind, wurde eine zweifaktorielle ANOVA mit Interaktion gerechnet. Die visuelle Inspektion des Models zeigte keine schwerwiegenden Verletzungen der Voraussetzungen. Um die Einzelvergleiche zu sehen, wurde einen post-hoc-Test nach Tukey durchgeführt.  
+Ziel war es, die Unterschiede in den Verkaufszahlen pro Menü-Inhalt und pro Bedingung aufzuzeigen. Da die Kriteriumsvariable (Verkaufszahlen) metrisch und die beiden Prädiktorvariablen kategorial sind, wurde eine zweifaktorielle ANOVA mit Interaktion gerechnet. Die visuelle Inspektion des Models zeigte keine schwerwiegenden Verletzungen der Voraussetzungen. Um die Einzelvergleiche zu sehen, wurde einen post-hoc-Test nach Tukey durchgeführt (für mehr Informationen [hier]( https://mgimond.github.io/Stats-in-R/ANOVA.html#4_identifying_which_levels_are_different)).  
 
 
-#### Ergebnisse
+#### Ergebnisteil
 Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant (*F*(5, 12) = `r round(summary.lm(model1)$fstatistic[[1]], digit = 3)`, *p* < .001). Anschliessend durchgeführte post-hoc-Tests (Tukey) zeigen vor allem zwei interessante Ergbenisse: 1) in den Interventionswochen wurden signifikant weniger Fleischgerichte gekauft als in den Basiswochen 2) in den Interventionswochen wurden signifikant mehr vegetarische Gerichte verkauft (siehe Figure 1 oder Figure 2). 
 
 

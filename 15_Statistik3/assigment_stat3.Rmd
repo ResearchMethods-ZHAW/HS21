@@ -1,10 +1,10 @@
-
-## Übungen
-
+## Übung 3
 
 ### Aufgabe 3.1: Multiple Regression
 
-Artenzahlen von Vegetationsaufnahmen in der Ukraine vs. diverse Umweltparameter (farbig gruppiert nach Kategorien, aus Kuzemko et al. 2016) [Ukraine.xlsx](15_Statistik3/data/Ukraine.xlsx)
+**Datensatz [Ukraine.xlsx](15_Statistik3/data/Ukraine.xlsx)**
+
+Artenzahlen von Vegetationsaufnahmen in der Ukraine vs. diverse Umweltparameter (farbig gruppiert nach Kategorien, aus Kuzemko et al. 2016) 
 
 - Bestimmt ein minimal adäquates Modell für die Erklärung der Artenzahlen mit allen notwendigen Arbeitsschritten
 - Wahlweise könnt ihr mit AICc und dredge oder mit p-Werten und schrittweiser Vereinfachung eines globalen Models arbeiten

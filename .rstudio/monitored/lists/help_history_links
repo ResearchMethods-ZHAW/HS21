@@ -1,6 +1,3 @@
-help/library/lme4/html/lmer.html,R: Fit Linear Mixed-Effects Models
-help/library/lme4/html/glmer.html,R: Fitting Generalized Linear Mixed-Effects Models
-help/library/haven/html/read_spss.html,"R: Read SPSS ('.sav', '.zsav', '.por') files. Write '.sav' and..."
 help/library/ggplot2/html/geom_smooth.html,R: Smoothed conditional means
 help/library/multilevel/html/ICC1.html,R: Function to Estimate Intraclass Correlation Coefficient 1 or...
 help/library/nlme/html/Orthodont.html,R: Growth curve data on an orthdontic measurement
@@ -13,3 +10,6 @@ help/library/ggsignif/html/stat_signif.html,R: Create significance layer
 help/library/stats/html/p.adjust.html,R: Adjust P-values for Multiple Comparisons
 help/library/ggpubr/html/compare_means.html,R: Comparison of Means
 help/library/FSA/html/dunnTest.html,R: Dunn's Kruskal-Wallis Multiple Comparisons.
+help/library/base/html/c.html,R: Combine Values into a Vector or List
+help/library/stats/html/chisq.test.html,R: Pearson's Chi-squared Test for Count Data
+help/library/stats/html/vcov.html,R: Calculate Variance-Covariance Matrix for a Fitted Model...
