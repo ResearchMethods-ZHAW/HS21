@@ -9,7 +9,6 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
 
 ```{r}
-compensation<-read.table("ipomopsis.csv", header=T,sep=",")
 summary(compensation)
 attach(compensation)
 
