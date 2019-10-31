@@ -10945,3 +10945,312 @@
 1572334171246:matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
 1572334180245:a <- matrix(df_t[ ,c("stichprobe", "gesamtheit")], nrow = 2)
 1572334181328:a
+1572336121174:chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], )
+1572336175651:df_t <- group_by(nova, gender, member) %>%
+1572336175652:summarise(stichprobe = n()) %>%
+1572336175653:ungroup() %>%
+1572336175654:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572336175656:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572336175657:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572336175658:stichprobe_pct = stichprobe / sum(stichprobe))
+1572336187541:library(dplyr)
+1572336190176:df_t <- group_by(nova, gender, member) %>%
+1572336190177:summarise(stichprobe = n()) %>%
+1572336190179:ungroup() %>%
+1572336190180:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572336190181:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572336190182:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572336190183:stichprobe_pct = stichprobe / sum(stichprobe))
+1572336196821:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572336205589:library(readr)
+1572336212708:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572336219181:df_t <- group_by(nova, gender, member) %>%
+1572336219182:summarise(stichprobe = n()) %>%
+1572336219183:ungroup() %>%
+1572336219184:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"),
+1572336219186:gesamtheit = c(345, 719, 339, 816), # Achtung: reihenfolge muss stimmten vgl. canteen_member
+1572336219187:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572336219188:stichprobe_pct = stichprobe / sum(stichprobe))
+1572336224614:chi_sq <- chisq.test(df_t[ ,c("stichprobe", "gesamtheit")], ) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (siehe Statistik 1, Folie 33, oder lest die Details von der Help-Funktion)
+1572336226672:chi_sq
+1572336235830:df_t
+1572336243115:df_t$gesamtheit_pct
+1572336274488:chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct)
+1572336305891:chisq.test(df_t$stichprobe, df_t$gesamtheit)
+1572336314026:chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct)
+1572427470639:chi_sq <- chisq.test(df_t$canteen_member, p = df_t$gesamtheit_pct) # beachtet dabei wie ihr die Variablen resp. die Zahlen dem chisq.test übergibt (lest die Details von der Help-Funktion)
+1572427477170:library(tidyverse)
+1572427477331:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572427477358:## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+1572427477361:mytheme <-
+1572427477362:theme_classic() +
+1572427477363:theme(
+1572427477365:axis.line = element_line(color = "black"),
+1572427477366:axis.text = element_text(size = 20, color = "black"),
+1572427477367:axis.title = element_text(size = 20, color = "black"),
+1572427477369:axis.ticks = element_line(size = 1, color = "black"),
+1572427477370:axis.ticks.length = unit(.5, "cm")
+1572427477371:)
+1572427499026:library(tidyverse)
+1572427506401:install.packages("lifecylce")
+1572427661022:.libPaths()
+1572427886202:rm
+1572427888947:rm()
+1572427894142:clean()
+1572427895910:clea
+1572427923897:library(tidyverse)
+1572428040003:library(dplyr)
+1572428048041:df_t <- group_by(nova, gender, member) %>%
+1572428048042:summarise(stichprobe = n()) %>%
+1572428048044:ungroup() %>%
+1572428048045:mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), # Achtung: Reihenfolge muss stimmten vgl. canteen_member
+1572428048046:gesamtheit = c(345, 719, 339, 816), # Achtung: Reihenfolge muss stimmten vgl. oben
+1572428048047:gesamtheit_pct = gesamtheit / sum(gesamtheit),
+1572428048048:stichprobe_pct = stichprobe / sum(stichprobe)) # Berechnung der relativen Häufigkeiten
+1572428138208:chi_sq <- chisq.test(df_t$canteen_member, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (canteen_member) und die in der Grundgesamtheit/Population erwarteten Werte (als relative Häufigkeiten)
+1572428149024:df_t
+1572428164181:chi_sq <- chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (stichprobe) und die in der Grundgesamtheit/Population erwarteten Werte (als relative Häufigkeiten)
+1572428165353:chi_sq
+1572430863757:# berücksichtigt nur vegetarische und fleischhaltige Menüs
+1572430863759:nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
+1572430873076:nova2$label_content[grep("Pflanzlich+", nova2$label_content), ]
+1572430880296:nova2$label_content[grep("Pflanzlich+", nova2$label_content)]
+1572430970158:nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "Vegetarisch" # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch"
+1572430982194:unique(nova2$label_content)
+1572430989244:str(nova2)
+1572431007329:# berücksichtigt nur vegetarische und fleischhaltige Menüs
+1572431007330:# 1) alle Buffet-Menüs weglassen
+1572431007332:# 2) alle veganen Gerichte zu vegetarische Gerichte umbenennen
+1572431007333:nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
+1572431009852:str(nova2)
+1572431011876:unique(nova2$label_content)
+1572431014846:nova2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch" # alternativer Lösungsweg
+1572431018370:unique(nova2$label_content)
+1572431037232:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572431037234:observed<-table(nova2$gender, nova2$label_content)
+1572431037925:observed
+1572431049288:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431049289:observed <- group_by(nova3, gender, label_content) %>%
+1572431049290:summarise(tot = n())
+1572431064784:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431064785:observed <- nova2 %>%
+1572431064786:group_by(gender, label_content) %>%
+1572431064787:summarise(tot = n())
+1572431065542:observed
+1572431072858:#Chi-squared Test
+1572431072859:chisq.test(observed)
+1572431082730:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572431082732:observed<-table(nova2$gender, nova2$label_content)
+1572431084991:#Chi-squared Test
+1572431084993:chisq.test(observed)
+1572431103021:chisq.test(observed$tot)
+1572431107383:chisq.test(observed$tot)
+1572431112514:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431112516:observed <- nova2 %>%
+1572431112517:group_by(gender, label_content) %>%
+1572431112518:summarise(tot = n())
+1572431115753:chisq.test(observed$tot)
+1572431129468:as.matric(observed)
+1572431147695:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572431147697:observed<-table(nova2$gender, nova2$label_content)
+1572431149021:observed
+1572431156924:str(observed)
+1572431173900:as.matrix(observed)
+1572431179003:observed <- nova2 %>%
+1572431179005:group_by(gender, label_content) %>%
+1572431179006:summarise(tot = n())
+1572431179008:observed
+1572431183324:as.matrix(observed)
+1572431194562:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431194563:observed <- nova2 %>%
+1572431194564:group_by(gender, label_content) %>%
+1572431194565:summarise(tot = n()) %>%
+1572431194567:spread()
+1572431222348:library(tidyr)
+1572431248836:install.packages("lifecycle")
+1572431253990:library(tidyr)
+1572431266661:nova2 %>%
+1572431266662:group_by(gender, label_content) %>%
+1572431266663:summarise(tot = n()) %>%
+1572431266664:spread()
+1572431274109:nova2 %>%
+1572431274111:group_by(gender, label_content) %>%
+1572431274113:summarise(tot = n()) %>%
+1572431274114:spread(.)
+1572431290211:nova2 %>%
+1572431290212:group_by(gender, label_content) %>%
+1572431290213:summarise(tot = n()) %>%
+1572431290215:spread(., key = gender)
+1572431298885:nova2 %>%
+1572431298886:group_by(gender, label_content) %>%
+1572431298887:summarise(tot = n())
+1572431447577:nova2 %>%
+1572431447578:group_by(gender, label_content) %>%
+1572431447579:summarise(tot = n()) %>%
+1572431447580:ungroup() %>%
+1572431447582:spread(., key = label_content)
+1572431455349:nova2 %>%
+1572431455352:group_by(gender, label_content) %>%
+1572431455353:summarise(tot = n()) %>%
+1572431455354:ungroup() %>%
+1572431455356:spread(key = label_content)
+1572431467184:spread(nova2, key = label_content)
+1572431477695:spread(nova2, key = label_content, value = tot)
+1572431491056:tidyr::spread(nova2, key = label_content, value = tot)
+1572431523143:observed <- nova2 %>%
+1572431523144:group_by(gender, label_content) %>%
+1572431523146:summarise(tot = n()) %>%
+1572431523147:ungroup()
+1572431527408:tidyr::spread(observed, key = label_content, value = tot)
+1572431584015:observed <- nova2 %>%
+1572431584016:group_by(gender, label_content) %>%
+1572431584017:summarise(tot = n()) %>%
+1572431584019:ungroup() %>%
+1572431584020:spread(., key = label_content, value = tot)
+1572431587010:observed
+1572431590263:chisq.test(observed)
+1572431598683:#Fisher's Test
+1572431598685:fisher.test(as.matrix(observed))
+1572431620232:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431620234:observed <- nova2 %>%
+1572431620235:group_by(gender, label_content) %>%
+1572431620236:summarise(tot = n()) %>%
+1572431620237:ungroup() %>%
+1572431620238:spread(., key = label_content, value = tot) %>%  # Chi-Quadrat-Test hat am liebsten Matrizen
+1572431620240:as.matrix
+1572431621371:observed
+1572431745081:library(magrittr)
+1572431754071:library(tidyverse)
+1572431784418:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431784420:#braucht mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+1572431784421:observed <- nova2 %>%
+1572431784422:group_by(gender, label_content) %>%
+1572431784423:summarise(tot = n()) %>%
+1572431784425:ungroup() %>%
+1572431784426:spread(., key = label_content, value = tot) %>%  #
+1572431784427:set_rownames(.$gender)
+1572431794216:nova2 %>%
+1572431794218:group_by(gender, label_content) %>%
+1572431794219:summarise(tot = n()) %>%
+1572431794220:ungroup() %>%
+1572431794221:spread(., key = label_content, value = tot) %>%  #
+1572431794222:set_rownames(.$gender)
+1572431805425:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431805427:#braucht mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+1572431805428:observed <- nova2 %>%
+1572431805429:group_by(gender, label_content) %>%
+1572431805430:summarise(tot = n()) %>%
+1572431805431:ungroup() %>%
+1572431805432:spread(., key = label_content, value = tot) %>%  #
+1572431805433:set_rownames(.$gender) %>%
+1572431805435:select(-gender)
+1572431808832:observed
+1572431815013:as.matrix()
+1572431823651:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572431823653:#braucht mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+1572431823654:observed <- nova2 %>%
+1572431823655:group_by(gender, label_content) %>%
+1572431823656:summarise(tot = n()) %>%
+1572431823657:ungroup() %>%
+1572431823658:spread(., key = label_content, value = tot) %>%  #
+1572431823660:set_rownames(.$gender) %>%
+1572431823661:select(-gender) %>%
+1572431823662:as.matrix()
+1572431824339:observed
+1572432030355:#Chi-squared Test
+1572432030357:chisq.test(observed) # mit Base R
+1572432040349:#Fisher's Test
+1572432040350:fisher.test(observed)
+1572432096175:bserved <- nova2 %>%
+1572432096176:group_by(gender, label_content) %>%
+1572432096177:summarise(tot = n()) %>%
+1572432096178:ungroup() %>%
+1572432096180:spread(., key = label_content, value = tot) %>%  #
+1572432096181:set_rownames(.$gender) %>%
+1572432096183:select(-gender) %>%
+1572432096184:as.matrix()
+1572432102760:observed <- nova2 %>%
+1572432102762:group_by(gender, label_content) %>%
+1572432102763:summarise(tot = n()) %>%
+1572432102764:ungroup() %>%
+1572432102765:spread(., key = label_content, value = tot) %>%  #
+1572432102766:# set_rownames(.$gender) %>%
+1572432102767:select(-gender) %>%
+1572432102769:as.matrix()
+1572432105693:observed
+1572432109382:#Chi-squared Test
+1572432109384:chisq.test(observed)
+1572432112520:#Fisher's Test
+1572432112522:fisher.test(observed)
+1572432200899:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
+1572432200900:#braucht mehr in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+1572432200902:# unser Vorschlag, nehmt den table Befehl
+1572432200903:# hier findet ihr doch noch der Code in Tidyverse
+1572432200904:observed <- nova2 %>%
+1572432200905:group_by(gender, label_content) %>%
+1572432200906:summarise(tot = n()) #%>%
+1572432202515:# ungroup() %>%
+1572432202516:# spread(., key = label_content, value = tot) %>%  #
+1572432202517:# # set_rownames(.$gender) %>% funktioniert leider nicht mehr
+1572432202519:# select(-gender) %>%
+1572432202520:# as.matrix()
+1572432202521:observed
+1572432228030:observed[observed$gender == "F"]$tot
+1572432233327:observed[observed$gender == "F", ]$tot
+1572432277188:chisq.test(observed[observed$gender == "F", ]$tot, observed[observed$gender == "M", ]$tot
+1572432281654:observed[observed$gender == "F", ]$tot)
+1572432286663:chisq.test(observed[observed$gender == "F", ]$tot, observed[observed$gender == "M", ]$tot)
+1572432317689:chisq.test(observed[observed$label_content == "Fleisch", ]$tot, observed[observed$label_content == "Vegetarisch", ]$tot)
+1572432324192:observed[observed$label_content == "Fleisch", ]$tot
+1572432327910:observed[observed$label_content == "Vegetarisch", ]$tot
+1572432359423:as.matrix(observed[observed$label_content == "Fleisch", ]$tot, observed[observed$label_content == "Vegetarisch", ]$tot)
+1572432380480:as.matrix(observed[observed$label_content, ]$tot, observed[observed$label_content == "Vegetarisch", ]$tot)
+1572432385400:as.matrix(observed[observed$label_content, ]$tot)
+1572432440036:#Chi-squared Test
+1572432440037:chisq.test(observed)
+1572432443259:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572432443260:observed<-table(nova2$gender, nova2$label_content)
+1572432446252:#Chi-squared Test
+1572432446254:chisq.test(observed)
+1572432447516:#Fisher's Test
+1572432447517:fisher.test(observed)
+1572433176201:observed
+1572433223861:library(reshape2)
+1572433235584:install.packages("reshape2")
+1572433274185:library(reshape2)
+1572433281633:table <- observed %>%
+1572433281634:melt(.)
+1572433285437:View(table)
+1572433302797:table <- observed %>%
+1572433302799:gather(.)
+1572433306235:table <- observed %>%
+1572433306236:gather_(.)
+1572433312682:table <- observed %>%
+1572433312684:gather(., tot)
+1572433332971:table <- observed %>%
+1572433332972:gather(., key = c("Vegetarisch", "Fleisch"),)
+1572433334426:table <- observed %>%
+1572433334427:gather(., key = c("Vegetarisch", "Fleisch"))
+1572433345769:observed
+1572433354038:as_tibble(observed)
+1572433367730:as.data.frame()
+1572433370218:as.data.frame(observed)
+1572433432660:table <- as.data.frame(observed) %>%
+1572433432661:rename(Geschlecht = Var1, Menüinhalt = Var2)
+1572433437298:table
+1572433489066:table <- as.data.frame(observed) %>%
+1572433489067:rename(Geschlecht = Var1, Menüinhalt = Var2) %>%
+1572433489068:mutate(Geschlecht = recode(Geschlecht, "F" = "Frauen", "M" = "Männer"))
+1572433493305:table
+1572433588190:as.data.frame(observed) %>%
+1572433588191:mutate(`Verkaufszahlen (%)` = Freq / sum(Freq))
+1572433598042:table <- as.data.frame(observed) %>%
+1572433598044:mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq), 2))
+1572433600923:table
+1572433614623:round(Freq / sum(Freq) * 100, 2))
+1572433618811:as.data.frame(observed) %>%
+1572433618812:mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq) * 100, 2))
+1572434159706:chi_sq
+1572434167475:($\chi^2$(`r chi_sq$parameter`)
+1572434172526:chi_sq$parameter
+1572434178879:chi_sq$statistic[[1]]

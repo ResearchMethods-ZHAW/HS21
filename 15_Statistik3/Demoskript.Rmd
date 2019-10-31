@@ -5,15 +5,50 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 ## Demoskript
 
+**ANCOVA**
+Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
+
+```{r}
+setwd("C:/Users/deng/Documents/Lehre ZHAW/MSc. Research Methods/2018-19/R Scripte Jürgen")
+compensation<-read.table("ipomopsis.csv", header=T,sep=",")
+summary(compensation)
+attach(compensation)
+
+plot(Fruit~Root)
+plot(Fruit~Grazing)
+
+tapply(Fruit,Grazing,mean)
+
+aoc.1<-lm(Fruit~Root*Grazing)
+summary.aov(aoc.1)
+
+aoc.2<-lm(Fruit~Grazing*Root)
+summary.aov(aoc.2)
+
+aoc.3<-lm(Fruit~Grazing+Root)
+summary.lm(aoc.3)
+
+# Plotten der Ergebnisse
+plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
+legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16)
+
+abline(-127.829,23.56,col="red")
+abline(-127.892+36.103,23.56,col="green")
+```
+
+
 **Polynomische Regression**
 
 ```{r}
 e<-c(20,19,25,10,8,15,13,18,11,14,25,39,38,28,24)
 f<-c(12,15,10,7,2,10,12,11,13,10,9,2,4,7,13)
-par(mfrow=c(1,1))
+
 summary(lm(f~e))
+
+par(mfrow=c(1,1))
 plot(f~e,xlim=c(0,40),ylim=c(0,30))
 abline(lm(f~e))
+
 par(mfrow=c(2,2))
 plot(lm(f~e))
 plot(lm(f~e+I(e^2)))
@@ -24,18 +59,18 @@ summary(lm(f~e+I(e^2)))
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 
 
 ```{r}
-loyn <- read.table("15_Statistik3/data/loyn.csv", header=T,sep=",")
+loyn <- read.table("loyn.csv", header=T,sep=",")
 loyn
 library(car)
 
 summary(loyn)
 
-model <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
-summary(model)
+lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
+summary(lm.1)
 
-aov(model)
+aov(lm.1)
 par(mfrow=c(2,2))
-plot(model)
+plot(lm.1)
 influence.measures(model)
 
 cor <- cor(loyn[,2:7])
@@ -45,7 +80,7 @@ cor[abs(cor)<0.6] <- 0
 cor
 print(cor, digits=3)
 
-vif(model)
+vif(lm.1)
 ```
 
 **Simulation Overfitting**
@@ -53,14 +88,15 @@ vif(model)
 ```{r}
 test <- data.frame("x"=c(1,2,3,4,5,6),"y"=c(34,21,70,47,23,45))
 attach(test)
+
 plot(x,y)
-lm0=lm(y~1)
-lm1=lm(y~x)
-lm2=lm(y~x+I(x^2))
-lm3=lm(y~x+I(x^2)+I(x^3))
-lm4=lm(y~x+I(x^2)+I(x^3)+I(x^4))
-lm5=lm(y~x+I(x^2)+I(x^3)+I(x^4)+I(x^5))
-lm6=lm(y~x+I(x^2)+I(x^3)+I(x^4)+I(x^5)+I(x^6))
+lm0 <- lm(y~1)
+lm1 <- lm(y~x)
+lm2 <- lm(y~x+I(x^2))
+lm3 <- lm(y~x+I(x^2)+I(x^3))
+lm4 <- lm(y~x+I(x^2)+I(x^3)+I(x^4))
+lm5 <- lm(y~x+I(x^2)+I(x^3)+I(x^4)+I(x^5))
+lm6 <- lm(y~x+I(x^2)+I(x^3)+I(x^4)+I(x^5)+I(x^6))
 summary(lm0)
 summary(lm1)
 summary(lm2)
@@ -85,16 +121,18 @@ lines(xv,yv,col="black",lwd=3)
 
 **Modellvereinfachung (mit Loyn-Datensatz)**
 ```{r}
-model1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
-summary(model1)
-model2 <- update(model1,~.-YR.ISOL)
-summary(model2)
+lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
+summary(lm.1)
+lm.2 <- update(lm.1,~.-YR.ISOL)
 
-anova(model1,model2)
+summary(lm.2)
+
+anova(lm.1,lm.2)
 ```
 
 **Hierarchical partitioning**
 ```{r}
+if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
 
 loyn.preds <-with(loyn, data.frame(YR.ISOL,ALT,GRAZE))
@@ -108,10 +146,12 @@ hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
 avPlots(model,ask=F)
 ```
 
-**multimodel inference**
+**Multimodel inference**
 
 ```{r}
+if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
+
 global.model <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
 options(na.action="na.fail")
 allmodels <- dredge(global.model)
