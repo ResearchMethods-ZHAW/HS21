@@ -51,7 +51,7 @@ observed<-table(nova2$gender, nova2$label_content)
 
 
 #Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
-#braucht mehr in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+#braucht in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
 # unser Vorschlag, nehmt den table Befehl
 # untenstehend der vollständige Code in Tidyverse
 observed_t <- nova2 %>% 
