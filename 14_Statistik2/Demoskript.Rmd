@@ -185,12 +185,14 @@ library(ggfortify)
 autoplot(lm(b~a))
 
 #Modellstatistik nicht OK
-
 g<-c(20,19,25,10,8,15,13,18,11,14,25,39,38,28,24)
 h<-c(12,15,10,7,8,10,12,11,13,10,25,12,30,26,13)
 par(mfrow=c(1,1))
+
 plot(h~g,xlim=c(0,40),ylim=c(0,30))
 abline(lm(h~g))
+
+par(mfrow=c(2,2))
 plot(lm(h~g))
 
 #Modelldiagnostik mit ggplot
