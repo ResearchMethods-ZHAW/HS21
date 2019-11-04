@@ -8,12 +8,6 @@ output:
 ---
 
 
-```{r setup, include=FALSE, purl=F}
-knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
-# knitr::opts_chunk$get("root.dir")
-
-```
-
 ### Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}

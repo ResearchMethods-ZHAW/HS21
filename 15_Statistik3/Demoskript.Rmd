@@ -5,12 +5,14 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 ## Demoskript
 
+[Demoscript als Download](15_Statistik3/RFiles/Demo_Tests.R)
+
 **ANCOVA**
 Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
 
-```{r}
-setwd("C:/Users/deng/Documents/Lehre ZHAW/MSc. Research Methods/2018-19/R Scripte Jürgen")
-compensation<-read.table("ipomopsis.csv", header=T,sep=",")
+```{r, eval=FALSE}
+
+compensation<-read.table("data/ipomopsis.csv", header=T,sep=",")
 summary(compensation)
 attach(compensation)
 
@@ -39,7 +41,7 @@ abline(-127.892+36.103,23.56,col="green")
 
 **Polynomische Regression**
 
-```{r}
+```{r, eval=FALSE}
 e<-c(20,19,25,10,8,15,13,18,11,14,25,39,38,28,24)
 f<-c(12,15,10,7,2,10,12,11,13,10,9,2,4,7,13)
 
@@ -58,8 +60,8 @@ summary(lm(f~e+I(e^2)))
 
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 
 
-```{r}
-loyn <- read.table("loyn.csv", header=T,sep=",")
+```{r, eval=FALSE}
+loyn <- read.table("data/loyn.csv", header=T,sep=",")
 loyn
 library(car)
 
@@ -85,7 +87,7 @@ vif(lm.1)
 
 **Simulation Overfitting**
 
-```{r}
+```{r, eval=FALSE}
 test <- data.frame("x"=c(1,2,3,4,5,6),"y"=c(34,21,70,47,23,45))
 attach(test)
 
@@ -120,7 +122,7 @@ lines(xv,yv,col="black",lwd=3)
 ```
 
 **Modellvereinfachung (mit Loyn-Datensatz)**
-```{r}
+```{r, eval=FALSE}
 lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
 summary(lm.1)
 lm.2 <- update(lm.1,~.-YR.ISOL)
@@ -131,7 +133,7 @@ anova(lm.1,lm.2)
 ```
 
 **Hierarchical partitioning**
-```{r}
+```{r, eval=FALSE}
 if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
 
@@ -142,13 +144,13 @@ hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
 
 **Partial regressions**
 
-```{r}
+```{r, eval=FALSE}
 avPlots(model,ask=F)
 ```
 
 **Multimodel inference**
 
-```{r}
+```{r, eval=FALSE}
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
 

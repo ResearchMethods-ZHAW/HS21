@@ -32,7 +32,7 @@ mytheme <-
 ```
 
 
-###  Musterlösung Aufgabe 1.1: Assoziationstest
+##  Musterlösung Aufgabe 1.1: Assoziationstest
 
 ```{r}
 # Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
