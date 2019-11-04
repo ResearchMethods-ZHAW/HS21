@@ -28,8 +28,9 @@ summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
 plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
-legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16)
-#legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende in Code definieren
+legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16) # Position von Legende von Hand setzen
+
+#legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # Position von Legende in Code definieren
 #legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) # Alternative position von Legende in Code definieren
 
 
@@ -122,7 +123,7 @@ lines(xv,yv,col="black",lwd=3)
 
 **Modellvereinfachung (mit Loyn-Datensatz)**
 ```{r}
-lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
+lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
 summary(lm.1)
 lm.2 <- update(lm.1,~.-YR.ISOL)
 
@@ -144,7 +145,7 @@ hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
 **Partial regressions**
 
 ```{r}
-avPlots(model,ask=F)
+avPlots(lm.1,ask=F)
 ```
 
 **Multimodel inference**
@@ -159,6 +160,6 @@ allmodels <- dredge(global.model)
 allmodels
 importance(allmodels)
 
-avgmodel<-model.avg(get.models(dredge(model,rank="AICc"),subset=TRUE))
+avgmodel<-model.avg(get.models(dredge(global.model,rank="AICc"),subset=TRUE))
 summary(avgmodel)
 ```
