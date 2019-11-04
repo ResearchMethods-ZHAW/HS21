@@ -1000,3 +1000,123 @@ Password for 'https://egel@github.zhaw.ch':
 Already up to date.
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
 [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ a[Kgit add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it stat[K[K[K[K[K[K[Kgit status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   .bash_history[m
+	[32mmodified:   .rstudio/client-state/console.temporary[m
+	[32mmodified:   .rstudio/client-state/environment-grid.persistent[m
+	[32mmodified:   .rstudio/client-state/environment-panel.temporary[m
+	[32mmodified:   .rstudio/client-state/workbenchp.persistent[m
+	[32mnew file:   .rstudio/content_urls/6d99fe6f66f74e489a0fe0aa24fc329d[m
+	[32mmodified:   .rstudio/history_database[m
+	[32mmodified:   .rstudio/monitored/lists/file_mru[m
+	[32mmodified:   .rstudio/projects_settings/next-session-project[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/INDEX[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/empty.png[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/created[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/last-used[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-label[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/rmd-outputs[m
+	[32mdeleted:    .rstudio/sessions/active/session-1b2aa2af/session-persistent-state[m
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[32mdeleted:    .rstudio/sessions/active/session-2fb301fd/graphics-r3/7825d8ff-db91-4f85-bb4f-2af405cdcce8.png[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/9b20e9ca-5d78-4baa-a0b8-8693fbc77909.png[m
+	[32mrenamed:    .rstudio/sessions/active/session-2fb301fd/graphics-r3/7825d8ff-db91-4f85-bb4f-2af405cdcce8.snapshot -> .rstudio/sessions/active/session-2fb301fd/graphics-r3/9b20e9ca-5d78-4baa-a0b8-8693fbc77909.snapshot[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/INDEX[m
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/rmd-outputs[m
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/session-persistent-state[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/console_actions[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/environment[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/environment_vars[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/history[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/libpaths[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/options[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/rversion[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/package_paths[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/search_path_elements[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/settings[m
+	[32mmodified:   .viminfo[m
+	[32mmodified:   17_Statistik5_2/assigment_5_2.1.Rmd[m
+	[32mmodified:   17_Statistik5_2/open_datasets.Rmd[m
+	[32mmodified:   17_Statistik5_2/suggest_datasets.Rmd[m
+	[32mmodified:   18_Statistik6/assigment_stat6.Rmd[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"n" "5"[1P"d"[1P"s"t"a"t" "5"[1P"[1P"[C stat"c stat"o stat"n stat"[C[C[C[C[C " [A]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C1""e"g"e"l"[C
+[master e8481c8] changes in con stat 1egel
+ 41 files changed, 2030 insertions(+), 89 deletions(-)
+ mode change 100755 => 100644 .rstudio/client-state/console.temporary
+ mode change 100755 => 100644 .rstudio/client-state/environment-grid.persistent
+ mode change 100755 => 100644 .rstudio/client-state/environment-panel.temporary
+ mode change 100755 => 100644 .rstudio/client-state/workbenchp.persistent
+ create mode 100644 .rstudio/content_urls/6d99fe6f66f74e489a0fe0aa24fc329d
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/graphics-r3/INDEX
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/graphics-r3/empty.png
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/properites/created
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/properites/last-used
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/properites/r-version-label
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/rmd-outputs
+ delete mode 100755 .rstudio/sessions/active/session-1b2aa2af/session-persistent-state
+ rewrite .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84 (91%)
+ delete mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/7825d8ff-db91-4f85-bb4f-2af405cdcce8.png
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/9b20e9ca-5d78-4baa-a0b8-8693fbc77909.png
+ rename .rstudio/sessions/active/session-2fb301fd/graphics-r3/{7825d8ff-db91-4f85-bb4f-2af405cdcce8.snapshot => 9b20e9ca-5d78-4baa-a0b8-8693fbc77909.snapshot} (70%)
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/INDEX
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/rmd-outputs
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/console_actions
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/environment
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/environment_vars
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/history
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/libpaths
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/options
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/rversion
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/package_paths
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/search_path_elements
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/settings
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git/'
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it st[K[K[K[K[Kgit status
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mdeleted:    .rstudio/content_urls/6d99fe6f66f74e489a0fe0aa24fc329d[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add .[K-A
