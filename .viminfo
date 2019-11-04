@@ -12,11 +12,13 @@
 ~h
 # Command Line History (newest to oldest):
 :q!
-|2,0,1572859801,,"q!"
+|2,0,1572903969,,"q!"
+:qt!
+|2,0,1572903949,,"qt!"
+:qt
+|2,0,1572903927,,"qt"
 :q
 |2,0,1572859756,,"q"
-:qt
-|2,0,1572859678,,"qt"
 :wq
 |2,0,1572334532,,"wq"
 :qa!
@@ -44,30 +46,36 @@
 |3,1,36,0,1,0,1572859777,"!"
 
 # File marks:
-'0  1  22  ~/.git/MERGE_MSG
-|4,48,1,22,1572859801,"~/.git/MERGE_MSG"
-'1  2  0  ~/.git/MERGE_MSG
-|4,49,2,0,1572334532,"~/.git/MERGE_MSG"
-'2  3  0  ~/.git/MERGE_MSG
-|4,50,3,0,1572334532,"~/.git/MERGE_MSG"
-'3  10  0  ~/.git/MERGE_MSG
-|4,51,10,0,1572334243,"~/.git/MERGE_MSG"
-'4  6  0  ~/.git/MERGE_MSG
-|4,52,6,0,1572334243,"~/.git/MERGE_MSG"
-'5  11  0  ~/.git/MERGE_MSG
-|4,53,11,0,1572334243,"~/.git/MERGE_MSG"
-'6  7  0  ~/.git/MERGE_MSG
-|4,54,7,0,1572334243,"~/.git/MERGE_MSG"
-'7  8  0  ~/.git/MERGE_MSG
-|4,55,8,0,1568789772,"~/.git/MERGE_MSG"
-'8  8  0  ~/.git/MERGE_MSG
-|4,56,8,0,1568789772,"~/.git/MERGE_MSG"
-'9  4  0  ~/.git/MERGE_MSG
-|4,57,4,0,1568789772,"~/.git/MERGE_MSG"
+'0  1  11  ~/.git/MERGE_MSG
+|4,48,1,11,1572903969,"~/.git/MERGE_MSG"
+'1  1  22  ~/.git/MERGE_MSG
+|4,49,1,22,1572859801,"~/.git/MERGE_MSG"
+'2  2  0  ~/.git/MERGE_MSG
+|4,50,2,0,1572334532,"~/.git/MERGE_MSG"
+'3  3  0  ~/.git/MERGE_MSG
+|4,51,3,0,1572334532,"~/.git/MERGE_MSG"
+'4  2  0  ~/.git/MERGE_MSG
+|4,52,2,0,1572334532,"~/.git/MERGE_MSG"
+'5  3  0  ~/.git/MERGE_MSG
+|4,53,3,0,1572334532,"~/.git/MERGE_MSG"
+'6  10  0  ~/.git/MERGE_MSG
+|4,54,10,0,1572334243,"~/.git/MERGE_MSG"
+'7  6  0  ~/.git/MERGE_MSG
+|4,55,6,0,1572334243,"~/.git/MERGE_MSG"
+'8  11  0  ~/.git/MERGE_MSG
+|4,56,11,0,1572334243,"~/.git/MERGE_MSG"
+'9  7  0  ~/.git/MERGE_MSG
+|4,57,7,0,1572334243,"~/.git/MERGE_MSG"
 
 # Jumplist (newest first):
+-'  1  11  ~/.git/MERGE_MSG
+|4,39,1,11,1572903969,"~/.git/MERGE_MSG"
 -'  1  22  ~/.git/MERGE_MSG
 |4,39,1,22,1572859801,"~/.git/MERGE_MSG"
+-'  2  0  ~/.git/MERGE_MSG
+|4,39,2,0,1572334532,"~/.git/MERGE_MSG"
+-'  3  0  ~/.git/MERGE_MSG
+|4,39,3,0,1572334532,"~/.git/MERGE_MSG"
 -'  2  0  ~/.git/MERGE_MSG
 |4,39,2,0,1572334532,"~/.git/MERGE_MSG"
 -'  3  0  ~/.git/MERGE_MSG
@@ -82,8 +90,24 @@
 |4,39,11,0,1572334243,"~/.git/MERGE_MSG"
 -'  7  0  ~/.git/MERGE_MSG
 |4,39,7,0,1572334243,"~/.git/MERGE_MSG"
+-'  10  0  ~/.git/MERGE_MSG
+|4,39,10,0,1572334243,"~/.git/MERGE_MSG"
+-'  6  0  ~/.git/MERGE_MSG
+|4,39,6,0,1572334243,"~/.git/MERGE_MSG"
+-'  11  0  ~/.git/MERGE_MSG
+|4,39,11,0,1572334243,"~/.git/MERGE_MSG"
+-'  7  0  ~/.git/MERGE_MSG
+|4,39,7,0,1572334243,"~/.git/MERGE_MSG"
 -'  1  0  ~/.git/MERGE_MSG
 |4,39,1,0,1572333835,"~/.git/MERGE_MSG"
+-'  8  0  ~/.git/MERGE_MSG
+|4,39,8,0,1568789772,"~/.git/MERGE_MSG"
+-'  4  0  ~/.git/MERGE_MSG
+|4,39,4,0,1568789772,"~/.git/MERGE_MSG"
+-'  9  0  ~/.git/MERGE_MSG
+|4,39,9,0,1568789772,"~/.git/MERGE_MSG"
+-'  5  0  ~/.git/MERGE_MSG
+|4,39,5,0,1568789772,"~/.git/MERGE_MSG"
 -'  8  0  ~/.git/MERGE_MSG
 |4,39,8,0,1568789772,"~/.git/MERGE_MSG"
 -'  4  0  ~/.git/MERGE_MSG
@@ -128,6 +152,70 @@
 |4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 -'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
 |4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  7  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,7,0,1566562767,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
+-'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
+|4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 -'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
 |4,39,1,0,1566562638,"~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG"
 -'  1  0  ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
@@ -164,10 +252,10 @@
 # History of marks within files (newest to oldest):
 
 > ~/.git/MERGE_MSG
-	*	1572859791	0
-	"	1	22
-	^	1	23
-	.	1	22
+	*	1572903964	0
+	"	1	11
+	^	1	12
+	.	2	0
 	+	1	0
 	+	6	35
 	+	7	0
@@ -179,7 +267,8 @@
 	+	1	117
 	+	2	0
 	+	1	121
-	+	1	22
+	+	1	12
+	+	2	0
 
 > ~/Unterrichtsunterlagen_HS19/.git/MERGE_MSG
 	*	1566562761	0
