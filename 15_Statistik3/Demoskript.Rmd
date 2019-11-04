@@ -69,7 +69,7 @@ summary(lm.1)
 aov(lm.1)
 par(mfrow=c(2,2))
 plot(lm.1)
-influence.measures(model)
+influence.measures(lm.1)
 
 cor <- cor(loyn[,2:7])
 print(cor, digits=2)
