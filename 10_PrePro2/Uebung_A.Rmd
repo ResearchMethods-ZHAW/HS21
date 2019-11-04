@@ -85,7 +85,7 @@ wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";
 ### Aufgabe 5
 
 
-Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die x und y Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze dafür `tidyr::separate()`).
+Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die `x` und `y` Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze dafür `tidyr::separate()`).
 
 ```{r}
 

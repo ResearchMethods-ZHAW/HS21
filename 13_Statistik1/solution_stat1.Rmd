@@ -35,7 +35,7 @@ mytheme <-
 ###  Musterlösung Aufgabe 1.1: Assoziationstest
 
 ```{r}
-# Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
+# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
 
 # berücksichtigt nur vegetarische und fleischhaltige Menüs
 # 1) alle Buffet-Menüs weglassen
@@ -46,12 +46,14 @@ nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "
 
 nova2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch" # alternativer Lösungsweg
 
+nova3<-droplevels(nova2) #entfernt die Kategorien die nicht mehr mehr benutzt werden
+
 #Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
 observed<-table(nova2$gender, nova2$label_content) 
 
 
 #Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
-#braucht mehr in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
+#braucht in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
 # unser Vorschlag, nehmt den table Befehl
 # untenstehend der vollständige Code in Tidyverse
 observed_t <- nova2 %>% 
@@ -103,8 +105,8 @@ $H_1$: Es gibt Unterschiede zwischen der Population und der Stichprobe bezüglic
 
 ```{r}
 # bereitet eure Daten auf
-# gruppiert die Varieblen gemäss Geschlecht
-# und Hochschulzugehörigkeit und fasst sie zusammen 
+# gruppiert die Variablen und fasst sie 
+# nach Geschlecht und Hochschulzugehörigkeit zusammen 
 # fügt Information aus der Aufgabenstellung hinzu: absolute Häufigkeiten der Gesamtheit
 # für den Chi-Quardrat-Test ist eine Berechnung der relativen Häufigkeiten nötig
 
