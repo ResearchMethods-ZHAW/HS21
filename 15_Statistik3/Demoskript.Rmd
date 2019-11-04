@@ -30,7 +30,7 @@ summary.lm(aoc.3)
 plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
 legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16)
 #legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende in Code definieren
-#legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) #Alternative position von Legende in Code definieren
+#legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) # Alternative position von Legende in Code definieren
 
 
 abline(-127.829,23.56,col="red")
