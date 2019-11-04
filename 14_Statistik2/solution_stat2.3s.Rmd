@@ -6,14 +6,8 @@ output:
 ---
 
 
-```{r setup, include=FALSE, purl=F}
-knitr::opts_chunk$set(fig.width = 15, fig.height = 12, warning = F, message = F, fig.pos = 'H')
-#knitr::opts_chunk$get("root.dir")
-# problems to knit this file => dont know why
-```
-
-### Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
-## Meine Empfehlung Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
+## Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
+**Meine Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
@@ -66,7 +60,7 @@ model2 <- aov(tot_sold ~ label_content * condit, data = df_)
 
 autoplot(model2) + mytheme  # Inspektion der Modellvoraussetzungen sehen nicht schlecht aus => einzig Normalverteilung Q-Q Plot nicht optimal (vgl. Statistik 2: Folie 42)
 
-summary(model1)
+summary(model2)
 
 # Alternativ gibt es zwei Möglichkeiten: 1) Transformation der Daten, 2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
 model3 <- aov(log10(tot_sold) ~ label_content * condit, data = df_)
@@ -77,7 +71,7 @@ autoplot(model3) + mytheme # Ich entscheide mich aufgrund keiner Verbesserung du
 
 <span style="color:blue"> Fazit: Die Inspektion des Modells zeigt leichte Verletzungen beim Q-Q Plot, d.h. die Residuen sind nicht normalverteilt. Aufgrund keiner Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für einen nicht-parametrischer Test, Kruskal-Wallis-Test (Statistik 2: Folie 18)</span>.
 
-```{r}
+```{r, eval=FALSE}
 # post-hoc-Tests nach Dunn
 
 summary.lm(model2) # es gibt signifikante Unterschiede in den Interaktionen 
@@ -98,7 +92,11 @@ Ziel war es, die Unterschiede in den Verkaufszahlen pro Menü-Inhalt und pro Bed
 
 
 #### Ergebnisteil
-Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant (*F*(5, 12) = `r round(summary.lm(model1)$fstatistic[[1]], digit = 3)`, *p* < .001). Anschliessend durchgeführte post-hoc-Tests (Tukey) zeigen vor allem zwei interessante Ergbenisse: 1) in den Interventionswochen wurden signifikant weniger Fleischgerichte gekauft als in den Basiswochen 2) in den Interventionswochen wurden signifikant mehr vegetarische Gerichte verkauft (siehe Figure 1 oder Figure 2). 
+Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) zwischen den Bedingungen Basis oder Interventionswochen unterscheiden sich in den Verkaufszahlen signifikant
+```{r}
+#(*F*(5, 12) = r round(summary.lm(model1)$fstatistic[[1]], digit = 3), *p* < .001).
+```
+Anschliessend durchgeführte post-hoc-Tests (Tukey) zeigen vor allem zwei interessante Ergbenisse: 1) in den Interventionswochen wurden signifikant weniger Fleischgerichte gekauft als in den Basiswochen 2) in den Interventionswochen wurden signifikant mehr vegetarische Gerichte verkauft (siehe Figure 1 oder Figure 2). 
 
 
 ```{r, echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."}

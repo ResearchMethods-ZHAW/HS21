@@ -9,7 +9,7 @@
 # und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als 
 # Durchmesser an der Spitze des Wurzelstock: "Root")
 
-setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
+setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets") #Besipiel Pfad muss neu gesetzt oder angepasst werden
 compensation<-read.table("ipomopsis.csv", header=T,sep=",")
 summary(compensation)
 attach(compensation)
@@ -30,10 +30,10 @@ summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
 plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
-legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16)
+legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende von Hand setzen
 
-#legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende von Hand definieren
-#legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende von Hand definieren
+#legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende definieren
+#legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende definieren
 
 
 # Polynomische Regression -------------------------------------------------
@@ -123,7 +123,6 @@ summary(lm.2)
 anova(lm.1,lm.2)
 
 
-
 # Hierarchical partitioning -----------------------------------------------
 if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
@@ -134,7 +133,7 @@ hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
 
 
 # Partial regressions -----------------------------------------------------
-avPlots(model,ask=F)
+avPlots(lm.1,ask=F)
 
 
 # Multimodel inference ----------------------------------------------------
@@ -147,6 +146,6 @@ allmodels <- dredge(global.model)
 allmodels
 importance(allmodels)
 
-avgmodel<-model.avg(get.models(dredge(model,rank="AICc"),subset=TRUE))
+avgmodel<-model.avg(get.models(dredge(global.model,rank="AICc"),subset=TRUE))
 summary(avgmodel)
 

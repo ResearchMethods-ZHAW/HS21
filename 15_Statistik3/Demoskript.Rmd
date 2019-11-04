@@ -6,6 +6,8 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ## Demoskript
 
 [Demoscript als Download](15_Statistik3/RFiles/Demo_Tests.R)
+**Datensatz [ipomopsis.csv](15_Statistik3/data/ipomopsis.csv)**
+**Datensatz [loyn.csv](15_Statistik3/data/loyn.csv)**
 
 **ANCOVA**
 Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
@@ -34,7 +36,7 @@ summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
 plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
-legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16) # Position von Legende von Hand setzen
+#legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16) # Position von Legende von Hand setzen
 
 #legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # Position von Legende in Code definieren
 #legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) # Alternative position von Legende in Code definieren
@@ -67,7 +69,7 @@ summary(lm(f~e+I(e^2)))
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 
 
 ```{r, eval=FALSE}
-loyn <- read.table("15_Statistik3/data/loyn.csv", header=T,sep=",")
+loyn <- read.table("data/loyn.csv", header=T,sep=",")
 loyn
 library(car)
 
@@ -128,13 +130,9 @@ lines(xv,yv,col="black",lwd=3)
 ```
 
 **Modellvereinfachung (mit Loyn-Datensatz)**
-<<<<<<< HEAD
+
 ```{r, eval=FALSE}
-lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
-=======
-```{r}
 lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
->>>>>>> 8dfaa657dabe3db468c3188a313397a10a0817a8
 summary(lm.1)
 lm.2 <- update(lm.1,~.-YR.ISOL)
 
@@ -155,13 +153,9 @@ hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
 
 **Partial regressions**
 
-<<<<<<< HEAD
+
 ```{r, eval=FALSE}
-avPlots(model,ask=F)
-=======
-```{r}
 avPlots(lm.1,ask=F)
->>>>>>> 8dfaa657dabe3db468c3188a313397a10a0817a8
 ```
 
 **Multimodel inference**

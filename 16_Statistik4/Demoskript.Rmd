@@ -1,12 +1,13 @@
-```{r, include=FALSE, purl=F}
 
-knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
-```
+
+
 ## Statistik 4 - Demoskript
 
 **(c) Juergen Dengler, 05.11.2019**
 
+[Demoscript als Download](16_Statistik4/RFiles/Demo_Tests.R)
 
+```{r}
 ##von LMs zu GLMs
 
 temp<-c(10,12,16,20,24,25,30,33,37)
@@ -57,7 +58,13 @@ lines(xv,exp(yv2),lwd=3,col="red")
 yv3<-predict(glm.quasi,list(Temperatur=xv))
 lines(xv,exp(yv3),lwd=3,col="green")
 
-# Test für Overdispersion
+```
+
+
+
+```{r}
+
+# Test für Overdispersion  
 library(AER)
 dispersiontest(glm.poisson)
 
@@ -104,7 +111,7 @@ lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
 lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
 ```
 
-
+```{r}
 ##Nicht-lineare Regression
 
 if(!require(AICcmodavg)){install.packages("AICcmodavg")}
@@ -113,7 +120,7 @@ library(AICcmodavg)
 library(nlstools)
 
 
-loyn <- read.delim("loyn.csv", sep=",")
+loyn <- read.delim("16_Statistik4/data/loyn.csv", sep=",")
 attach(loyn)
 
 #Selbstdefinierte Funktion, hier Potenzfunktion
@@ -195,3 +202,5 @@ lines(xv,yv,lwd=2,col="red")
 
 AICc(gam.1)
 summary(gam.1)
+
+```
