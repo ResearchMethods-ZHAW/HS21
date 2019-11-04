@@ -1,4 +1,3 @@
-help/library/ggplot2/html/geom_smooth.html,R: Smoothed conditional means
 help/library/multilevel/html/ICC1.html,R: Function to Estimate Intraclass Correlation Coefficient 1 or...
 help/library/nlme/html/Orthodont.html,R: Growth curve data on an orthdontic measurement
 help/library/brms/html/mmc.html,R: Multi-Membership Covariates
@@ -13,3 +12,4 @@ help/library/FSA/html/dunnTest.html,R: Dunn's Kruskal-Wallis Multiple Comparison
 help/library/base/html/c.html,R: Combine Values into a Vector or List
 help/library/stats/html/chisq.test.html,R: Pearson's Chi-squared Test for Count Data
 help/library/stats/html/vcov.html,R: Calculate Variance-Covariance Matrix for a Fitted Model...
+help/library/graphics/html/boxplot.html,R: Box Plots

@@ -2,14 +2,13 @@
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, error = F, message = F, warning = F, fig.pos = "center")
+```{r, echo=FALSE}
 library(tidyverse)
 ```
 
-## Verschiedene Datensätze
+<!-- ## Verschiedene Datensätze -->
 
-In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen.
+<!-- In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen. -->
 
 ### R data sets
 
@@ -37,7 +36,7 @@ Auf [Kaggle](www.kaggle.com) findet ihr öffentlich zugängliche Datensätze. Ei
 
 ```{r}
 # Load packages and data
-data_911 <- read_delim("911.csv", delim = ",")
+data_911 <- read_delim("17_Statistik5_2/911.csv", delim = ",")
 str(data_911)
 
 ```
@@ -110,5 +109,6 @@ dat_lang <- read_delim(url(urlfile), delim = ",", col_names = T)
 head(dat_lang)
 
 ```
+
 *******
 ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch

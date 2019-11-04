@@ -2,10 +2,6 @@
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Liste von Datensätzen
 
 ### R data sets
@@ -23,4 +19,3 @@ knitr::opts_chunk$set(echo = TRUE)
 * 
 
 *******
-##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch

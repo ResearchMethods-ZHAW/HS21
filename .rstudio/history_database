@@ -11254,3 +11254,120 @@
 1572434167475:($\chi^2$(`r chi_sq$parameter`)
 1572434172526:chi_sq$parameter
 1572434178879:chi_sq$statistic[[1]]
+1572536565539:library(tidyverse)
+1572536566486:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572536579455:nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
+1572536579459:nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "Vegetarisch" # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch"
+1572536582662:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572536582663:observed<-table(nova2$gender, nova2$label_content)
+1572536586861:observed
+1572536966777:150+414
+1572536979115:166+221
+1572536992939:colSums(observed)
+1572537002865:rowSums(observed)
+1572537018777:sum(observed)
+1572537132746:#Chi-squared Test
+1572537132747:chi_sq <- chisq.test(observed)
+1572537141915:chi_sq$observed
+1572537147921:chi_sq$expected
+1572538090049:chi_sq
+1572538191919:qchisq(.95, 1)
+1572538346975:#Fisher's Test
+1572538346977:fisher.test(observed)
+1572538550219:150 * 221 / 166 * 414
+1572538562240:(150 * 221) / (166 * 414)
+1572597797515:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572597797518:observed<-table(nova2$gender, nova2$label_content)
+1572597802335:observed
+1572597814784:chi_sq$expected
+1572597905629:chi_sq$parameter
+1572597911544:chi_sq$method
+1572597922303:chi_sq$residuals
+1572597932065:chi_sq$stdres
+1572597955504:observed - chi_sq$expected
+1572597972127:(observed - chi_sq$expected)^2
+1572598009503:(38-22.35)^2
+1572598024239:(observed - chi_sq$expected)^2/chi_sq$expected
+1572598124229:sum((observed - chi_sq$expected)^2/chi_sq$expected)
+1572600587604:fisher.test(observed)
+1572614023527:df <- nova %>%
+1572614023528:group_by(week, condit) %>%
+1572614023529:summarise(tot_sold = n())
+1572614026665:df
+1572615081986:table(df)
+1572615109887:df$condit[df$condit == "Basiswoche"]$tot
+1572615128203:df$condit[df$condit == "Basiswoche",]$tpt_sold
+1572615134080:df[df$condit == "Basiswoche",]$tpt_sold
+1572615140806:df[df$condit == "Basiswoche",]$tot_sold
+1572615159022:df[df$condit == "Interventionswochee",]$tot_sold
+1572615162157:df[df$condit == "Interventionswoche",]$tot_sold
+1572615167158:df[df$condit == "Interventionswoche",]
+1572615193300:df[df$condit == "Intervention",]$tot_sold-df[df$condit == "Basis", ]$tot_sold
+1572615204448:(df[df$condit == "Intervention",]$tot_sold-df[df$condit == "Basis", ]$tot_sold)^2
+1572615238656:sum((df[df$condit == "Intervention",]$tot_sold-df[df$condit == "Basis", ]$tot_sold)^2)
+1572615254099:t_test <- t.test(tot_sold~condit, data=df)
+1572615256622:t.test(df[df$condit == "Basis", ]$tot_sold,
+1572615256623:df[df$condit == "Intervention", ]$tot_sold) #alternative Formulierung
+1572615270833:t_test
+1572615299382:t_test <- t.test(tot_sold~condit, data=df, equal = T)
+1572615301471:t_test
+1572615314918:t_test <- t.test(tot_sold~condit, data=df, var.equal = T)
+1572615316608:t_test
+1572615630490:mean(df[df$condit == "Basis", ]$tot_sold)
+1572615718282:mean(df[df$condit == "Intervention", ]$tot_sold)
+1572616046567:sd(df[df$condit == "Intervention", ]$tot_sold)
+1572616181203:df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold)
+1572616196352:(df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold))^2
+1572616216287:sum((df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold))^2)/2
+1572616299682:sqrt(sum((df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold))^2)/2)
+1572616433354:sd(df[df$condit == "Basis", ]$tot_sold)
+1572616729413:mean(df[df$condit == "Basis", ]$tot_sold) - mean(df[df$condit == "Intervention", ]$tot_sold)
+1572616783453:sum(sd(df[df$condit == "Basis", ]$tot_sold) + sd(df[df$condit == "Intervention", ]$tot_sold))/2
+1572853166555:library(tidyverse)
+1572853167639:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572853168644:mytheme <-
+1572853168644:theme_classic() +
+1572853168645:theme(
+1572853168646:axis.line = element_line(color = "black"),
+1572853168647:axis.text = element_text(size = 20, color = "black"),
+1572853168648:axis.title = element_text(size = 20, color = "black"),
+1572853168649:axis.ticks = element_line(size = 1, color = "black"),
+1572853168649:axis.ticks.length = unit(.5, "cm")
+1572853168650:)
+1572853185773:df <- nova %>%
+1572853185774:group_by(week, condit) %>%
+1572853185775:summarise(tot_sold = n())
+1572853186713:# überprüft die Voraussetzungen für einen t-Test
+1572853186714:ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
+1572853186715:geom_boxplot(fill = "white", color = "black", size = 1) +
+1572853186716:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1572853186716:mytheme
+1572853222264:t_test <- t.test(tot_sold~condit, data=df)
+1572853225788:t.test
+1572853231208:t_test
+1572853361600:boxplot(df$tot_sold~ df$condit)
+1572853368143:boxplot(df$tot_sold~ df$condit)
+1572853388717:?boxplot
+1572854283833:chisq.test(df$tot_sold ~ df$condit)
+1572854292411:chisq.test(df$tot_sold, df$condit)
+1572854328539:chisq.test(df$tot_sold, df$week)
+1572854540464:df[df$condit == "Basis", ]$tot_sold
+1572854548000:summ(df[df$condit == "Basis", ]$tot_sold)
+1572854553001:sum(df[df$condit == "Basis", ]$tot_sold)
+1572854576917:sum(df[df$condit == "Intervention", ]$tot_sold)
+1572854738629:9.3/7.3
+1572854747377:t_test
+1572854779130:t_test <- t.test(tot_sold~condit, data=df, var.equal = T)
+1572854782603:t_test
+1572855134776:(7.3 * (1/3 + 1/3))^-1
+1572855139178:(7.3 * (1/3 + 1/3))^-2
+1572855189436:sqrt(7.3 * (1/3 + 1/3))
+1572855229319:sqrt(7.3 * 2/3)
+1572855238216:9.3/sqrt(7.3 * 2/3)
+1572858127790:rmarkdown::render("17_Statistik5_2/ablauf_inhalt_190823_egel.Rmd")
+1572858180640:rmarkdown::render("17_Statistik5_2/assigment_5_2.1.Rmd")
+1572858247161:# Load packages and data
+1572858247162:data_911 <- read_delim("911.csv", delim = ",")
+1572858254560:getwd()
+1572858280273:# Load packages and data
+1572858280274:data_911 <- read_delim("17_Statistik5_2/911.csv", delim = ",")

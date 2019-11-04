@@ -33,7 +33,7 @@ Der Datensatz beschreibt in einem physikalischen Experiment die Zahl der radioak
 - Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
 
 
-### Übung 2.2: Einfaktrielle ANOVA (SozOek)
+### Übung 2.2: Einfaktorielle ANOVA (SozOek)
 
 **ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
 

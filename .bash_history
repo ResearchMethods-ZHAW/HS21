@@ -179,3 +179,21 @@ git pull
 git add -A
 git commit -m "changes in solution stat1"
 git push
+git status
+git pull
+git add -A
+git commit -m "problems updating git"
+git push
+git pull
+git status
+git add -A
+git commit -m "get latest version of assigment 1"
+git push
+git status
+git add -A
+git commit -m "changes in solution stat1"
+git push
+git status
+git pull
+git status
+git pull

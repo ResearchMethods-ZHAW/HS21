@@ -1,0 +1,26 @@
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git o[Kpull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 20, done.[K
+remote: Counting objects:   5% (1/20)   [Kremote: Counting objects:  10% (2/20)   [Kremote: Counting objects:  15% (3/20)   [Kremote: Counting objects:  20% (4/20)   [Kremote: Counting objects:  25% (5/20)   [Kremote: Counting objects:  30% (6/20)   [Kremote: Counting objects:  35% (7/20)   [Kremote: Counting objects:  40% (8/20)   [Kremote: Counting objects:  45% (9/20)   [Kremote: Counting objects:  50% (10/20)   [Kremote: Counting objects:  55% (11/20)   [Kremote: Counting objects:  60% (12/20)   [Kremote: Counting objects:  65% (13/20)   [Kremote: Counting objects:  70% (14/20)   [Kremote: Counting objects:  75% (15/20)   [Kremote: Counting objects:  80% (16/20)   [Kremote: Counting objects:  85% (17/20)   [Kremote: Counting objects:  90% (18/20)   [Kremote: Counting objects:  95% (19/20)   [Kremote: Counting objects: 100% (20/20)   [Kremote: Counting objects: 100% (20/20), done.[K
+remote: Compressing objects:   5% (1/20)   [Kremote: Compressing objects:  10% (2/20)   [Kremote: Compressing objects:  15% (3/20)   [Kremote: Compressing objects:  20% (4/20)   [Kremote: Compressing objects:  25% (5/20)   [Kremote: Compressing objects:  30% (6/20)   [Kremote: Compressing objects:  35% (7/20)   [Kremote: Compressing objects:  40% (8/20)   [Kremote: Compressing objects:  45% (9/20)   [Kremote: Compressing objects:  50% (10/20)   [Kremote: Compressing objects:  55% (11/20)   [Kremote: Compressing objects:  60% (12/20)   [Kremote: Compressing objects:  65% (13/20)   [Kremote: Compressing objects:  70% (14/20)   [Kremote: Compressing objects:  75% (15/20)   [Kremote: Compressing objects:  80% (16/20)   [Kremote: Compressing objects:  85% (17/20)   [Kremote: Compressing objects:  90% (18/20)   [Kremote: Compressing objects:  95% (19/20)   [Kremote: Compressing objects: 100% (20/20)   [Kremote: Compressing objects: 100% (20/20), done.[K
+remote: Total 20 (delta 8), reused 0 (delta 0), pack-reused 0[K
+Unpacking objects:   5% (1/20)   Unpacking objects:  10% (2/20)   Unpacking objects:  15% (3/20)   Unpacking objects:  20% (4/20)   Unpacking objects:  25% (5/20)   Unpacking objects:  30% (6/20)   Unpacking objects:  35% (7/20)   Unpacking objects:  40% (8/20)   Unpacking objects:  45% (9/20)   Unpacking objects:  50% (10/20)   Unpacking objects:  55% (11/20)   Unpacking objects:  60% (12/20)   Unpacking objects:  65% (13/20)   Unpacking objects:  70% (14/20)   Unpacking objects:  75% (15/20)   Unpacking objects:  80% (16/20)   Unpacking objects:  85% (17/20)   Unpacking objects:  90% (18/20)   Unpacking objects:  95% (19/20)   Unpacking objects: 100% (20/20)   Unpacking objects: 100% (20/20), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   aefe382..c392dc8  master     -> origin/master
+Updating 313602b..c392dc8
+error: Your local changes to the following files would be overwritten by merge:
+	.bash_history
+	.rstudio/client-state/workbenchp.persistent
+	.rstudio/history_database
+	.rstudio/monitored/lists/file_mru
+	.rstudio/monitored/lists/help_history_links
+	.rstudio/projects_settings/next-session-project
+	14_Statistik2/assigment_stat2.Rmd
+	17_Statistik5_2/assigment_5_2.1.Rmd
+	17_Statistik5_2/open_datasets.Rmd
+	17_Statistik5_2/suggest_datasets.Rmd
+Please commit your changes or stash them before you merge.
+Aborting
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
