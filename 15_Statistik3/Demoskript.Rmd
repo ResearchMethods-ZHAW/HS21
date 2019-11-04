@@ -12,7 +12,9 @@ Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in
 
 ```{r, eval=FALSE}
 
-compensation<-read.table("data/ipomopsis.csv", header=T,sep=",")
+compensation<-read.table("15_Statistik3/data/ipomopsis.csv", header=T,sep=",")
+=======
+```{r}
 summary(compensation)
 attach(compensation)
 
@@ -33,6 +35,9 @@ summary.lm(aoc.3)
 # Plotten der Ergebnisse
 plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
 legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16)
+#legend(4.5,110,c("grazed","ungrazed"),col=c(2,3),pch=16) # position von Legende in Code definieren
+#legend("topleft",c("grazed","ungrazed"),col=c(2,3),pch=16) # Alternative position von Legende in Code definieren
+
 
 abline(-127.829,23.56,col="red")
 abline(-127.892+36.103,23.56,col="green")
@@ -61,7 +66,7 @@ summary(lm(f~e+I(e^2)))
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 
 
 ```{r, eval=FALSE}
-loyn <- read.table("data/loyn.csv", header=T,sep=",")
+loyn <- read.table("15_Statistik3/data/loyn.csv", header=T,sep=",")
 loyn
 library(car)
 
@@ -73,7 +78,7 @@ summary(lm.1)
 aov(lm.1)
 par(mfrow=c(2,2))
 plot(lm.1)
-influence.measures(model)
+influence.measures(lm.1)
 
 cor <- cor(loyn[,2:7])
 print(cor, digits=2)
