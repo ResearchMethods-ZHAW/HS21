@@ -46,6 +46,8 @@ nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "
 
 nova2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch" # alternativer Lösungsweg
 
+nova3<-droplevels(nova2) #entfernt die Kategorien die nicht mehr mehr benutzt werden
+
 #Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
 observed<-table(nova2$gender, nova2$label_content) 
 
