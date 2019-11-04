@@ -129,7 +129,7 @@ par(mfrow=c(1,1)) #Zurückschalten auf Einzelplots
 if(!require(multcomp)){install.packages("multcomp")} 
 library(multcomp)
 
-#letters<-cld(glht(model2,linfct=mcp(Unterart="Tukey")))
+#letters<-cld(glht(aov.2,linfct=mcp(Unterart="Tukey")))
 boxplot(Tauchzeit~Unterart,xlab="Unterart",ylab="Tauchzeit")
 #mtext(letters$mcletters$Letters,at=1:2)
 #genaugenommen braucht man bei nur zwei Kategorien keinen post hoc-Test
