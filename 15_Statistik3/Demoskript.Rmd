@@ -12,9 +12,9 @@ Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in
 
 ```{r, eval=FALSE}
 
-compensation<-read.table("15_Statistik3/data/ipomopsis.csv", header=T,sep=",")
-=======
-```{r}
+compensation<-read.table("data/ipomopsis.csv", header=T,sep=",")
+```
+```{r, eval=FALSE}
 summary(compensation)
 attach(compensation)
 
