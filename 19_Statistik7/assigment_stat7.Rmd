@@ -1,4 +1,8 @@
+<<<<<<< HEAD:19_Statistik7/Uebungen.Rmd
+## Statistik 7: Übungen
+=======
 ## Übungen 7
+>>>>>>> 789f5b7272e61dd1b1105af875d95f91afb6a3fd:19_Statistik7/assigment_stat7.Rmd
 
 ### Übung 7.1: RDA (naturwissenschaftlich)
 

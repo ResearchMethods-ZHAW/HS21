@@ -8,12 +8,7 @@ output:
     df_print: paged
 ---
 
-
-```{r setup, include=FALSE, purl=F}
-knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
-#knitr::opts_chunk$get("root.dir")
-# problems knitting the markdown file => always generates html files and not pdf's
-```
+[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R)
 
 ## Musterlösung Aufgabe 2.1: Regression
 
@@ -60,7 +55,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Uebung 2.1 - Regressionsanalyse
 
 ```{r}
-decay <-read.csv("decay.csv")
+decay <-read.csv("14_Statistik2/data/decay.csv")
 decay
 
 # Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu können
@@ -118,7 +113,7 @@ boxplot(log(amount))
 hist(amount)
 hist(log(amount))
 
-Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich dann folgendes lineares Modell…
+#Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell
 
 lm.2<-lm(log(amount)~time)
 summary(lm.2)

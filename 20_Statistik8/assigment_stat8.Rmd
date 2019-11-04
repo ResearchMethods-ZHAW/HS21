@@ -1,4 +1,4 @@
-##Statistik 8: Übungen
+## Statistik 8: Übungen
 
 ### Übung 8.1: Clusteranalyse (sozioökonomisch)
 

@@ -2,7 +2,7 @@
 
 ### Aufgabe 3.1: Multiple Regression
 
-**Datensatz [Ukraine.xlsx](15_Statistik3/data/Ukraine.xlsx)**
+**Datensatz [Ukraine_bearbeitet.xlsx](15_Statistik3/data/Ukraine_bearbeitet.xlsx)**
 
 Artenzahlen von Vegetationsaufnahmen in der Ukraine vs. diverse Umweltparameter (farbig gruppiert nach Kategorien, aus Kuzemko et al. 2016) 
 

@@ -6,6 +6,8 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 ## Demoskript
 
+[Demoscript als Download](14_Statistik2/RFiles/Demo_Tests.R)
+
  __t-test als ANOVA__ 
 
 ```{r}
@@ -15,7 +17,7 @@ b<-c(12,15,16,7,8,10,12,11,13,10)
 blume<-data.frame(cultivar=c(rep("a",10),rep("b",10)),size=c(a,b))
 
 par(mfrow=c(1,1))
-boxplot (data=blume, size~cultivar, xlab="Sorte", ylab="Bl�tengr�sse [cm�]")
+boxplot (data=blume, size~cultivar, xlab="Sorte", ylab="Bluetengroesse [cm]")
 
 t.test(size~cultivar, blume, var.equal=T)
 
