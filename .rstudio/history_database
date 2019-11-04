@@ -11371,3 +11371,5 @@
 1572858254560:getwd()
 1572858280273:# Load packages and data
 1572858280274:data_911 <- read_delim("17_Statistik5_2/911.csv", delim = ",")
+1572860467149:compensation
+1572860470152:data()

@@ -197,3 +197,9 @@ git status
 git pull
 git status
 git pull
+git add -A
+git commit -m "some changes in assigment 5"
+git push
+git pull
+git status
+git pull

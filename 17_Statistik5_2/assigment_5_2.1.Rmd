@@ -10,16 +10,15 @@ knitr::opts_chunk$set(echo = TRUE, error = F, message = F, warning = F, fig.pos 
 
 ## Übung
 
-Für die nächsten drei gemeinsamen Sitzungen (11./12./18. November) könnt ihr auf unterschiedlicher Weise die statistischen Methoden nochmals anwenden und üben.
+Für die nächsten drei gemeinsamen Sitzungen (11./18./19. November) könnt ihr auf eure eigene Art die statistischen Methoden nochmals anwenden:
 
     a. Ihr sucht euch einen eigenen Datensatz
     b. Ihr nehmt einen vorgeschlagenen Datensatz
-    c. Ihr löst die alten Übungen noch einmal
 
 **Wichtig:** Beachtet, dass ihr einen Datensatz sucht, mit dem folgende Analyse möglich sind:
 
 1. Assoziationstests
-2. ANOVAS
+2. Varianzanalysen
 3. linerare Modelle
 
 
@@ -50,10 +49,7 @@ Das Ziel dieser Übung ist es,
 ```{r child = 'suggest_datasets.Rmd'}
 ```
 
-**[Hier](different_datasets_190813_egel.html) habe ich eine kurze Übersicht zusammengestellt, wie ihr an Datensätzen gelangen könnt und [hier]() findet ihr eine Liste von vorgeschlagenen Datensätzen**
 
 
 
-
-*******
 ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch

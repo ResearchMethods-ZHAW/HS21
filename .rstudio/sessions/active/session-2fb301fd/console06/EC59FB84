@@ -1,26 +1,1002 @@
-groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git o[Kpull
+
+ mode change 100644 => 100755 .rstudio/sources/per/t/7CDBB4E5-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/970A09F4
+ mode change 100644 => 100755 .rstudio/sources/per/t/970A09F4-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/ABF87A1B
+ mode change 100644 => 100755 .rstudio/sources/per/t/ABF87A1B-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/B142FBA1
+ mode change 100644 => 100755 .rstudio/sources/per/t/B142FBA1-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/C9CCBDE9
+ mode change 100644 => 100755 .rstudio/sources/per/t/C9CCBDE9-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/D0DA42D9
+ mode change 100644 => 100755 .rstudio/sources/per/t/D0DA42D9-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/E4B0C720
+ mode change 100644 => 100755 .rstudio/sources/per/t/E4B0C720-contents
+ mode change 100644 => 100755 .rstudio/sources/per/t/FEF4505C
+ mode change 100644 => 100755 .rstudio/sources/per/t/FEF4505C-contents
+ mode change 100644 => 100755 .rstudio/sources/prop/18FF14A7
+ mode change 100644 => 100755 .rstudio/sources/prop/1CEE1986
+ mode change 100644 => 100755 .rstudio/sources/prop/21922FB
+ mode change 100644 => 100755 .rstudio/sources/prop/2648B786
+ mode change 100644 => 100755 .rstudio/sources/prop/2A77CD20
+ mode change 100644 => 100755 .rstudio/sources/prop/2EF74CF2
+ mode change 100644 => 100755 .rstudio/sources/prop/35DE7D3E
+ mode change 100644 => 100755 .rstudio/sources/prop/4084BFF0
+ mode change 100644 => 100755 .rstudio/sources/prop/41EB35BE
+ mode change 100644 => 100755 .rstudio/sources/prop/48EE6D40
+ mode change 100644 => 100755 .rstudio/sources/prop/4CE5B87E
+ mode change 100644 => 100755 .rstudio/sources/prop/5A00A8F9
+ mode change 100644 => 100755 .rstudio/sources/prop/5BD7FCE3
+ mode change 100644 => 100755 .rstudio/sources/prop/5D3784B2
+ mode change 100644 => 100755 .rstudio/sources/prop/6778B0A4
+ mode change 100644 => 100755 .rstudio/sources/prop/6BF78A92
+ mode change 100644 => 100755 .rstudio/sources/prop/6C9FEA8C
+ mode change 100644 => 100755 .rstudio/sources/prop/6DE5A6AD
+ mode change 100644 => 100755 .rstudio/sources/prop/75D1FA4E
+ mode change 100644 => 100755 .rstudio/sources/prop/7CD23578
+ mode change 100644 => 100755 .rstudio/sources/prop/85D248CD
+ mode change 100644 => 100755 .rstudio/sources/prop/8A6C16B2
+ mode change 100644 => 100755 .rstudio/sources/prop/8FB911A4
+ mode change 100644 => 100755 .rstudio/sources/prop/911C5710
+ mode change 100644 => 100755 .rstudio/sources/prop/94923CEE
+ mode change 100644 => 100755 .rstudio/sources/prop/9842B41D
+ mode change 100644 => 100755 .rstudio/sources/prop/994DC85
+ mode change 100644 => 100755 .rstudio/sources/prop/9B9A4745
+ mode change 100644 => 100755 .rstudio/sources/prop/B049D7EB
+ mode change 100644 => 100755 .rstudio/sources/prop/B29C3254
+ mode change 100644 => 100755 .rstudio/sources/prop/B504EE9A
+ mode change 100644 => 100755 .rstudio/sources/prop/BE90BC3B
+ mode change 100644 => 100755 .rstudio/sources/prop/C3889C18
+ mode change 100644 => 100755 .rstudio/sources/prop/C6A7E07
+ mode change 100644 => 100755 .rstudio/sources/prop/CD571D82
+ mode change 100644 => 100755 .rstudio/sources/prop/D41CF882
+ mode change 100644 => 100755 .rstudio/sources/prop/DD7A4831
+ mode change 100644 => 100755 .rstudio/sources/prop/EF9D83AF
+ mode change 100644 => 100755 .rstudio/sources/prop/F107227F
+ mode change 100644 => 100755 .rstudio/sources/prop/F70515DB
+ mode change 100644 => 100755 .rstudio/sources/prop/F8DF5538
+ mode change 100644 => 100755 .rstudio/sources/prop/F961EA34
+ mode change 100644 => 100755 .rstudio/sources/prop/F9939DB2
+ mode change 100644 => 100755 .rstudio/sources/prop/FF48783B
+ mode change 100644 => 100755 .rstudio/sources/prop/INDEX
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/3C00557D
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/3C00557D-contents
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/A0FE7933-contents
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/D2771B8F
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/D2771B8F-contents
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/E455D910
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/E455D910-contents
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/EA3F1746
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/EA3F1746-contents
+ mode change 100644 => 100755 .rstudio/sources/s-1507ddcd/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/145EEF1D
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/145EEF1D-contents
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/6936E22A
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/6936E22A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/6DE9423E
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/6DE9423E-contents
+ mode change 100644 => 100755 .rstudio/sources/s-156f2b9b/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-16bfb347/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-215cd2f3/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/1B7D79E4
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/1B7D79E4-contents
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/56B3682B
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/56B3682B-contents
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/B99BC7C0-contents
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/D99EA784
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/D99EA784-contents
+ mode change 100644 => 100755 .rstudio/sources/s-2e98efaf/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-33ba0e2e/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/69587B7
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/69587B7-contents
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/9B6603DC
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/9B6603DC-contents
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/B8F4D276
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/B8F4D276-contents
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/C48A7E80
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/C48A7E80-contents
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/E898873F
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/E898873F-contents
+ mode change 100644 => 100755 .rstudio/sources/s-33c1c95e/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/1482A871
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/1482A871-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/2E27D5C0
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/2E27D5C0-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/35816575-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/5372CD0C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/5389C00A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/5A36258F
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/5A36258F-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/62C2D4FE
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/62C2D4FE-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/670E7F8C
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/670E7F8C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/7D5291C6-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/89EFFC7-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/A3192A48
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/A3192A48-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/B3A6DBA2-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/D18BDBF7-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/DDED3696-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/E6470106
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/E6470106-contents
+ mode change 100644 => 100755 .rstudio/sources/s-413138a0/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/287789B1
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/287789B1-contents
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/7B62D22A
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/7B62D22A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/9D430EBC
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/9D430EBC-contents
+ mode change 100644 => 100755 .rstudio/sources/s-5881efb7/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-7881856e/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/138D1233-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/162637C8-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/24FC1702-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/27D48AED-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/31EEA754-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/33B9B5F7-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/342EED82-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/3A57114C
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/3A57114C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/3FEEC46A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/4E5EC13A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/6F13D221-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/6FE27D1F
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/6FE27D1F-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/7432A0D7-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/7BA8A4C0
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/7BA8A4C0-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/7C9DC36C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/A105AB80-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/AADA90E-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/B2C17DB2-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/B509C269
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/B509C269-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/B58D7901-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/B9DFBBE6-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/C1DAC990-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/C44C98
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/C44C98-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/CC10300C
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/CC10300C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/D29AE633-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/D748F9F5-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/DDD95382-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/E254C91A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/E605D905-contents
+ mode change 100644 => 100755 .rstudio/sources/s-ac765a2d/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/1F3FAC5C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/1F92ED4A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/2B4252DE-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/2D07063-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/2F0175D2-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/3026E293-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/4199094D-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/46AFE6EB-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/4F5DD2BE-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/51981736-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/5ECB98A1-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/6004B7D1
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/6004B7D1-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/601CBFF3-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/6172E2DE-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/84396349
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/84396349-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/946E8E0F-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/A056E
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/A056E-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/A1DD0C82-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/B72BCD52-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/B9ECB779-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/CC4D6D79-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/D32CB385-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/D8F269D0-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/D98F74ED-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/E90FE266-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/F43236B2-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/F97D431
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/F97D431-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/FC631BBB-contents
+ mode change 100644 => 100755 .rstudio/sources/s-dad12f3f/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/1B2DDE3B-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/1E2C40A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/2DA49D2C
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/2DA49D2C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/3F1B37E5-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/596D2365
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/596D2365-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/81EA9D01-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/963CDD2A
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/963CDD2A-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/BA66B28C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/E757F6AA-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/F525866D-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e48cee0c/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/3327B2B8
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/3327B2B8-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/6DF31EBB-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/8628353D-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/87918F8D-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/90C223C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/9E05D771-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/A2676DF3
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/A2676DF3-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/A492B0CF
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/A492B0CF-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/A7E2BF75-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/B4BD9D66
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/B4BD9D66-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/C07AAB6-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/CB4706D6-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/D7C0625C-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/E57BDA72-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/EDC514F6-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e5635c6c/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-e81a8fce/222B6C7F
+ mode change 100644 => 100755 .rstudio/sources/s-e81a8fce/222B6C7F-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e81a8fce/83B32C6
+ mode change 100644 => 100755 .rstudio/sources/s-e81a8fce/83B32C6-contents
+ mode change 100644 => 100755 .rstudio/sources/s-e81a8fce/suspend_file
+ mode change 100644 => 100755 .rstudio/sources/s-f8b7f189/suspend_file
+ mode change 100644 => 100755 .ssh/id_rsa
+ mode change 100644 => 100755 .ssh/id_rsa.pub
+ mode change 100644 => 100755 .ssh/known_hosts
+ mode change 100644 => 100755 .travis.yml
+ mode change 100644 => 100755 .viminfo
+ mode change 100644 => 100755 000_Purl.R
+ mode change 100644 => 100755 00_Admin/Clear_vars_and_pkgs.R
+ mode change 100644 => 100755 00_Admin/Render_books.R
+ mode change 100644 => 100755 00_Admin/book.bib
+ mode change 100644 => 100755 00_Admin/get_chapter_references.R
+ mode change 100644 => 100755 00_Admin/packages.bib
+ mode change 100644 => 100755 00_Admin/preamble.tex
+ mode change 100644 => 100755 00_Admin/references.Rmd
+ mode change 100644 => 100755 00_Admin/style.css
+ mode change 100644 => 100755 00_Admin/subset_nova_data_180911_egel.R
+ mode change 100644 => 100755 00_Admin/titlepage.tex
+ mode change 100644 => 100755 00_Admin/toc.css
+ mode change 100644 => 100755 09_PrePro1/Abstract.Rmd
+ mode change 100644 => 100755 09_PrePro1/Demo_Datentypen.Rmd
+ mode change 100644 => 100755 09_PrePro1/RFiles/Demo_Datentypen.R
+ mode change 100644 => 100755 09_PrePro1/RFiles/Quellen.R
+ mode change 100644 => 100755 09_PrePro1/RFiles/Uebung_A.R
+ mode change 100644 => 100755 09_PrePro1/RFiles/Uebung_A_loesung.R
+ mode change 100644 => 100755 09_PrePro1/RFiles/Uebung_B.R
+ mode change 100644 => 100755 09_PrePro1/RFiles/Uebung_B_loesung.R
+ mode change 100644 => 100755 09_PrePro1/Uebung_A.Rmd
+ mode change 100644 => 100755 09_PrePro1/Uebung_A_loesung.Rmd
+ mode change 100644 => 100755 09_PrePro1/Uebung_B.Rmd
+ mode change 100644 => 100755 09_PrePro1/Uebung_B_loesung.Rmd
+ mode change 100644 => 100755 09_PrePro1/data/meta.txt
+ mode change 100644 => 100755 09_PrePro1/data/order_52252_data.txt
+ mode change 100644 => 100755 09_PrePro1/data/order_52252_legend.csv
+ mode change 100644 => 100755 10_PrePro2/Abstract.Rmd
+ mode change 100644 => 100755 10_PrePro2/Demo_Tidyverse.Rmd
+ mode change 100644 => 100755 10_PrePro2/Nachtrag.Rmd
+ mode change 100644 => 100755 10_PrePro2/RFiles/Demo_Tidyverse.R
+ mode change 100644 => 100755 10_PrePro2/RFiles/Nachtrag.R
+ mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_A.R
+ mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_A_loesung.R
+ mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_B.R
+ mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_B_loesung.R
+ mode change 100644 => 100755 10_PrePro2/Uebung_A.Rmd
+ mode change 100644 => 100755 10_PrePro2/Uebung_A_loesung.Rmd
+ mode change 100644 => 100755 10_PrePro2/Uebung_B.Rmd
+ mode change 100644 => 100755 10_PrePro2/Uebung_B_loesung.Rmd
+ mode change 100644 => 100755 10_PrePro2/data/sensor1.csv
+ mode change 100644 => 100755 10_PrePro2/data/sensor2.csv
+ mode change 100644 => 100755 10_PrePro2/data/sensor3.csv
+ mode change 100644 => 100755 10_PrePro2/data/sensor_fail.csv
+ mode change 100644 => 100755 11_InfoVis1/Abstract.Rmd
+ mode change 100644 => 100755 11_InfoVis1/Demo_EDA.Rmd
+ mode change 100644 => 100755 11_InfoVis1/Demo_ggplot.Rmd
+ mode change 100644 => 100755 11_InfoVis1/RFiles/Demo_EDA.R
+ mode change 100644 => 100755 11_InfoVis1/RFiles/Demo_ggplot.R
+ mode change 100644 => 100755 11_InfoVis1/RFiles/Uebung.R
+ mode change 100644 => 100755 11_InfoVis1/RFiles/Uebung_loesung.R
+ mode change 100644 => 100755 11_InfoVis1/Uebung.Rmd
+ mode change 100644 => 100755 11_InfoVis1/Uebung_loesung.Rmd
+ mode change 100644 => 100755 11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv
+ mode change 100644 => 100755 11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv
+ mode change 100644 => 100755 11_InfoVis1/data/wetter.rda
+ mode change 100644 => 100755 11_InfoVis1/plot.png
+ mode change 100644 => 100755 12_InfoVis2/Abstract.Rmd
+ mode change 100644 => 100755 12_InfoVis2/Demo_Debbuggin_R.html
+ mode change 100644 => 100755 12_InfoVis2/Demo_Debug.Rmd
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Demo_Debbuggin_R.R
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Demo_Debug.R
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Demo_Debug_laup.R
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_A.R
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_A_loesung.R
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_B.R
+ mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_B_loesung.R
+ mode change 100644 => 100755 12_InfoVis2/Uebung_A.Rmd
+ mode change 100644 => 100755 12_InfoVis2/Uebung_A_loesung.Rmd
+ mode change 100644 => 100755 12_InfoVis2/Uebung_B.Rmd
+ mode change 100644 => 100755 12_InfoVis2/Uebung_B_loesung.Rmd
+ mode change 100644 => 100755 12_InfoVis2/aufgabe_1.png
+ mode change 100644 => 100755 12_InfoVis2/aufgabe_1b.png
+ mode change 100644 => 100755 12_InfoVis2/aufgabe_2.png
+ mode change 100644 => 100755 12_InfoVis2/aufgabe_3.png
+ mode change 100644 => 100755 12_InfoVis2/aufgabe_4.png
+ mode change 100644 => 100755 13_Statistik1/Abstract.Rmd
+ mode change 100644 => 100755 13_Statistik1/Demo_Tests.Rmd
+ mode change 100644 => 100755 13_Statistik1/Intro_Daten_egel.Rmd
+ mode change 100644 => 100755 13_Statistik1/RFiles/Demo_Tests.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Folien.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Intro_Daten_egel.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Loesungen.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Musterloesungen Statistik 1.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebung.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_A.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_A_loesung.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_A_loesung_nicht_gebraucht.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_B.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_B_loesung.R
+ mode change 100644 => 100755 13_Statistik1/RFiles/Uebungen.R
+ mode change 100644 => 100755 13_Statistik1/assigment_stat1.Rmd
+ mode change 100644 => 100755 13_Statistik1/data/beetle.csv
+ mode change 100644 => 100755 13_Statistik1/data/competition.csv
+ mode change 100644 => 100755 13_Statistik1/data/medley.csv
+ mode change 100644 => 100755 13_Statistik1/data/novanimal.csv
+ mode change 100644 => 100755 13_Statistik1/data/novanimal_data_181029_egel.csv
+ mode change 100644 => 100755 13_Statistik1/design_experiment.png
+ mode change 100644 => 100755 13_Statistik1/novanimal_variabeln.csv
+ mode change 100644 => 100755 13_Statistik1/solution_stat1.Rmd
+ mode change 100644 => 100755 14_Statistik2/Abstract.Rmd
+ mode change 100644 => 100755 14_Statistik2/Demoskript.Rmd
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel1.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel2.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel3.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel4.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_02_Polynom_Reg.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_03_Einfaktorielle_ANOVA_einfach.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_05_Mehrfaktorielle_ANOVA.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Demo_06_ANCOVA.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Folien.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Musterloesung_Statistik_2.2.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Musterloesung_Statistik_2.3S.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.1_Loesung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.2_Loesung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.3N_Loesung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.3S_Loesung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A_Aufgabe1.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A_Aufgabe2.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A_loesung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_Aufgabe1.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_Aufgabe2.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_Aufgabe3_egel.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_B.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_B_Aufgabe1.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_loesung.R
+ mode change 100644 => 100755 14_Statistik2/RFiles/Uebungen.R
+ mode change 100644 => 100755 14_Statistik2/assigment_stat2.Rmd
+ mode change 100644 => 100755 14_Statistik2/data/crabs.csv
+ mode change 100644 => 100755 14_Statistik2/data/decay.csv
+ mode change 100644 => 100755 14_Statistik2/data/green.csv
+ mode change 100644 => 100755 14_Statistik2/data/growth.csv
+ mode change 100644 => 100755 14_Statistik2/data/kormoran.csv
+ mode change 100644 => 100755 14_Statistik2/data/medley.csv
+ mode change 100644 => 100755 14_Statistik2/data/mytilus.csv
+ mode change 100644 => 100755 14_Statistik2/data/nelson.csv
+ mode change 100644 => 100755 14_Statistik2/data/partridge.csv
+ mode change 100644 => 100755 14_Statistik2/data/peake.csv
+ mode change 100644 => 100755 14_Statistik2/solution_stat2.1.Rmd
+ mode change 100644 => 100755 14_Statistik2/solution_stat2.2.Rmd
+ mode change 100644 => 100755 14_Statistik2/solution_stat2.3n.Rmd
+ mode change 100644 => 100755 14_Statistik2/solution_stat2.3s.Rmd
+ mode change 100644 => 100755 15_Statistik3/Abstract.Rmd
+ delete mode 100644 15_Statistik3/Demo_A_MultReg.Rmd
+ delete mode 100644 15_Statistik3/Demo_B_nichtLin.Rmd
+ mode change 100644 => 100755 15_Statistik3/Demoskript.Rmd
+ mode change 100644 => 100755 15_Statistik3/RFiles/Demo_A_MultReg.R
+ mode change 100644 => 100755 15_Statistik3/RFiles/Demo_B_nichtLin.R
+ mode change 100644 => 100755 15_Statistik3/RFiles/Uebung.R
+ mode change 100644 => 100755 15_Statistik3/RFiles/Uebung2_egel.R
+ rename 15_Statistik3/{assigment_stat3.Rmd => Uebungen.Rmd} (100%)
+ mode change 100644 => 100755
+ mode change 100644 => 100755 15_Statistik3/data/Curonian_Spit.xlsx
+ mode change 100644 => 100755 15_Statistik3/data/Ukraine.xlsx
+ mode change 100644 => 100755 15_Statistik3/data/Ukraine_bearbeitet.csv
+ mode change 100644 => 100755 15_Statistik3/data/Ukraine_bearbeitet.xlsx
+ mode change 100644 => 100755 15_Statistik3/data/loyn.csv
+ mode change 100644 => 100755 15_Statistik3/data/novanimal_time.csv
+ mode change 100644 => 100755 15_Statistik3/data/peake.csv
+ mode change 100644 => 100755 15_Statistik3/data/tab1_uebungStatistik3.png
+ mode change 100644 => 100755 15_Statistik3/solution_stat3.1.Rmd
+ mode change 100644 => 100755 16_Statistik4/Abstract.Rmd
+ mode change 100644 => 100755 16_Statistik4/Demo_A_LogisticReg.Rmd
+ mode change 100644 => 100755 16_Statistik4/Demo_B_Pseudoreplik.Rmd
+ mode change 100644 => 100755 16_Statistik4/Demo_C_SplitPlotANOVA.Rmd
+ mode change 100644 => 100755 16_Statistik4/Demoskript.Rmd
+ mode change 100644 => 100755 16_Statistik4/RFiles/Demo_A_LogisticReg.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Demo_B_Pseudoreplik.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Demo_C_SplitPlotANOVA.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Musterloesung_Statistik_4.2S.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Uebung.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Uebung_Aufgabe1.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Uebung_Aufgabe2.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/Uebung_loesung.R
+ mode change 100644 => 100755 16_Statistik4/RFiles/test_uebung3_egel.R
+ mode change 100644 => 100755 16_Statistik4/assigment_stat4.Rmd
+ mode change 100644 => 100755 16_Statistik4/data/Curonian_Spit.csv
+ mode change 100644 => 100755 16_Statistik4/data/Curonian_Spit.xlsx
+ mode change 100644 => 100755 16_Statistik4/data/abb1.png
+ mode change 100644 => 100755 16_Statistik4/data/abb1_4.2N.png
+ mode change 100644 => 100755 16_Statistik4/data/ipomopsis.csv
+ mode change 100644 => 100755 16_Statistik4/data/isolation.csv
+ mode change 100644 => 100755 16_Statistik4/data/loyn.csv
+ mode change 100644 => 100755 16_Statistik4/data/polis.csv
+ mode change 100644 => 100755 16_Statistik4/data/rats.csv
+ mode change 100644 => 100755 16_Statistik4/data/spf.csv
+ mode change 100644 => 100755 16_Statistik4/data/splityield.csv
+ mode change 100644 => 100755 16_Statistik4/data/tab1_4.1.png
+ mode change 100644 => 100755 16_Statistik4/data/tab2.png
+ mode change 100644 => 100755 16_Statistik4/solution_stat4.1n.Rmd
+ mode change 100644 => 100755 16_Statistik4/solution_stat4.2n.Rmd
+ mode change 100644 => 100755 16_Statistik4/solution_stat4.2s.Rmd
+ mode change 100644 => 100755 16_Statistik4/sprechstunde_notizen_egel_hs18.R
+ mode change 100644 => 100755 17_Statistik5/Abstract.Rmd
+ mode change 100644 => 100755 17_Statistik5/Demoskript.Rmd
+ mode change 100644 => 100755 17_Statistik5/assigment_stat5.Rmd
+ mode change 100644 => 100755 17_Statistik5/data/Abb1_5.1.png
+ mode change 100644 => 100755 17_Statistik5/data/Abb2_5.1.png
+ mode change 100644 => 100755 17_Statistik5/data/Abb3_5.1.png
+ mode change 100644 => 100755 17_Statistik5/data/Abb4_5.1.png
+ mode change 100644 => 100755 17_Statistik5/data/DeerEcervi.txt
+ mode change 100644 => 100755 17_Statistik5/data/spf.csv
+ mode change 100644 => 100755 17_Statistik5/data/splityield.csv
+ mode change 100644 => 100755 17_Statistik5/solution_stat5.1.Rmd
+ mode change 100644 => 100755 17_Statistik5/solution_stat5.2.Rmd
+ mode change 100644 => 100755 17_Statistik5_2/1_github.PNG
+ mode change 100644 => 100755 17_Statistik5_2/2_github.PNG
+ mode change 100644 => 100755 17_Statistik5_2/911.csv
+ mode change 100644 => 100755 17_Statistik5_2/ablauf_inhalt_190823_egel.Rmd
+ mode change 100644 => 100755 17_Statistik5_2/assigment_5_2.1.Rmd
+ mode change 100644 => 100755 17_Statistik5_2/open_datasets.Rmd
+ mode change 100644 => 100755 17_Statistik5_2/suggest_datasets.Rmd
+ mode change 100644 => 100755 18_Statistik6/Abstract.Rmd
+ mode change 100644 => 100755 18_Statistik6/Demoskript.Rmd
+ mode change 100644 => 100755 18_Statistik6/assigment_stat6.Rmd
+ mode change 100644 => 100755 18_Statistik6/data/Ukraine.xlsx
+ mode change 100644 => 100755 18_Statistik6/master_final.csv
+ mode change 100644 => 100755 18_Statistik6/solution_stat6.1.Rmd
+ mode change 100644 => 100755 19_Statistik7/Abstract.Rmd
+ mode change 100644 => 100755 19_Statistik7/Demoskript.Rmd
+ mode change 100644 => 100755 19_Statistik7/Doubs.RData
+ mode change 100644 => 100755 19_Statistik7/abb1_7.1.png
+ mode change 100644 => 100755 19_Statistik7/abb2_7.1.png
+ mode change 100644 => 100755 19_Statistik7/abb3_7.1.png
+ mode change 100644 => 100755 19_Statistik7/assigment_stat7.Rmd
+ mode change 100644 => 100755 19_Statistik7/solution_stat7.1.Rmd
+ mode change 100644 => 100755 19_Statistik7/tab1_7.1.png
+ mode change 100644 => 100755 19_Statistik7/triplot.rda.R
+ mode change 100644 => 100755 2019_HS.Rproj
+ mode change 100644 => 100755 20_Statistik8/Abb1_8.1.png
+ mode change 100644 => 100755 20_Statistik8/Abb3_8.1.png
+ mode change 100644 => 100755 20_Statistik8/Abstract.Rmd
+ mode change 100644 => 100755 20_Statistik8/Demoskript.Rmd
+ mode change 100644 => 100755 20_Statistik8/Doubs.RData
+ mode change 100644 => 100755 20_Statistik8/Tab1_8.1.png
+ mode change 100644 => 100755 20_Statistik8/assigment_stat8.Rmd
+ mode change 100644 => 100755 20_Statistik8/crime.csv
+ mode change 100644 => 100755 20_Statistik8/solution_stat8.1.Rmd
+ mode change 100644 => 100755 20_Statistik8/statistik8.R
+ mode change 100644 => 100755 99_Archive/Aufgabe3_Loesung.Rmd
+ mode change 100644 => 100755 99_Archive/Aufgabe4_Loesung.Rmd
+ mode change 100644 => 100755 99_Archive/Aufgabe5_Loesung.Rmd
+ mode change 100644 => 100755 99_Archive/Demo.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_01_Korr_Reg_Beispiel1.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_01_Korr_Reg_Beispiel2.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_01_Korr_Reg_Beispiel3.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_01_Korr_Reg_Beispiel4.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_02_Polynom_Reg.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_03_Einfaktorielle_ANOVA_einfach.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_05_Mehrfaktorielle_ANOVA.Rmd
+ mode change 100644 => 100755 99_Archive/Demo_06_ANCOVA.Rmd
+ mode change 100644 => 100755 99_Archive/Folien.Rmd
+ mode change 100644 => 100755 99_Archive/Loesungen.Rmd
+ mode change 100644 => 100755 99_Archive/biblio_180912.bib
+ mode change 100644 => 100755 99_Archive/novanimal.csv
+ mode change 100644 => 100755 99_Archive/novanimal_data_180911_egel.csv
+ mode change 100644 => 100755 99_Book/00_Admin/style.css
+ mode change 100644 => 100755 99_Book/index.html
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/css/fontawesome/fontawesome-webfont.ttf
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/css/plugin-bookdown.css
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/css/plugin-fontsettings.css
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/css/plugin-highlight.css
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/css/plugin-search.css
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/css/style.css
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/app.min.js
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/jquery.highlight.js
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/lunr.js
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/plugin-bookdown.js
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/plugin-fontsettings.js
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/plugin-search.js
+ mode change 100644 => 100755 99_Book/libs/gitbook-2.6.7/js/plugin-sharing.js
+ mode change 100644 => 100755 99_Book/libs/jquery-2.2.3/jquery.min.js
+ mode change 100644 => 100755 99_Book/search_index.json
+ mode change 100644 => 100755 99_misc/biology_0.7.tar.gz
+ mode change 100644 => 100755 DESCRIPTION
+ mode change 100644 => 100755 Demo_Datentypen.R
+ mode change 100644 => 100755 LICENSE
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/data.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/demo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/makeData.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/makeEnvir.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/psglmm.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/R/psglmmSim.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/README.txt
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/analysis_birdData/mBirdsESM1_2.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/analysis_birdData/mBirdsESM3_2.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel11.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel11bin.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel11pois.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel12.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel12bin.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel12pois.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel13.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel13bin.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel13pois.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel21.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel21bin.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel21pois.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel22.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel22bin.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel22pois.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel23.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel23bin.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/PSGLMM_MEE/simulationStudy/simModel23pois.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/data/Rdata.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/data/Rdata.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/data/Rdata.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/demo/PROACT.R
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/help/TH.data.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/help/TH.data.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/ALSFRSdata.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/ALSsurvdata.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/AML_Bullinger.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/BavarianDVCs.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/CHFLS.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/Primary_endpoint_data.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/beetles.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/birdsData.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/fetus.rda
+ mode change 100644 => 100755 Library/R/3.4/library/TH.data/rda/india.rda
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/LICENSE
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/data.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/Meta/vignette.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/NEWS.md
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/R/dplyr
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/R/dplyr.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/R/dplyr.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/data/Rdata.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/data/Rdata.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/data/Rdata.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/compatibility.R
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/compatibility.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/dplyr.R
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/dplyr.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/programming.R
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/programming.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/two-table.R
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/two-table.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/window-functions.R
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/doc/window-functions.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/dplyr.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/dplyr.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-archived.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-defunct.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-deprecated.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-experimental.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-maturing.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-questioning.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-retired.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-soft-deprecated.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/lifecycle-stable.svg
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/figures/logo.png
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/Collecter.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/NamedListAccumulator.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/allow_list.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/checks.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/config.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/data/DataMask.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/data/GroupedDataFrame.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/data/NaturalDataFrame.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/data/RowwiseDataFrame.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/dplyr.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/Column.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/Dispatch.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/Expression.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/HybridVectorScalarResult.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/HybridVectorSummaryRecycleResult.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/HybridVectorVectorResult.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/hybrid.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/first_last.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/group_indices.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/mean_sd_var.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/min_max.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/n.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/n_distinct.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/scalar_result/sum.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/echo.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/in.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/lead_lag.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/ntile.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/rank.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/hybrid/vector_result/row_number.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/lifecycle.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/main.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/standard/GroupedCallReducer.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/symbols.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorEqualPredicate.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorHash.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetEqual.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetEqualPredicate.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetGreater.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetHash.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetHasher.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetIndexMap.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetIndexSet.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/VisitorSetLess.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitor_set/visitor_set.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/CharacterVectorOrderer.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/Comparer.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/SliceVisitor.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/Column.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/DataFrameJoinVisitors.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/JoinVisitor.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/JoinVisitorImpl.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/join/join_match.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/order/Order.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/order/OrderVisitor.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/order/OrderVisitorImpl.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/subset/DataFrameSelect.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/subset/DataFrameSubsetVisitors.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/subset/column_subset.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/DataFrameColumnVisitor.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/DataFrameVisitors.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/MatrixColumnVisitor.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/MultipleVectorVisitors.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/VectorVisitor.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/VectorVisitorImpl.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/visitors/vector/visitor_impl.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/workarounds/installChar.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/workarounds/static_assert.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr/workarounds/xlen.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/dplyr_types.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/solaris/solaris.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/BoolResult.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/Quosure.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/SlicingIndex.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/SymbolMap.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/SymbolString.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/SymbolVector.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/VectorView.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/all_na.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/bad.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/collapse.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/comparisons.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/debug.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/default_value.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/encoding.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/hash.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/match.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/pointer_vector.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/rlang-export.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/scalar_type.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/set_rownames.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/tools.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/train.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/utils.h
+ mode change 100644 => 100755 Library/R/3.4/library/dplyr/include/tools/vector_class.h
+ mode change 100644 => 100755 Library/R/3.4/library/feather/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/feather/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/feather/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/feather/NEWS.md
+ mode change 100644 => 100755 Library/R/3.4/library/feather/R/feather
+ mode change 100644 => 100755 Library/R/3.4/library/feather/R/feather.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/feather/R/feather.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/feather/feather/iris.feather
+ mode change 100644 => 100755 Library/R/3.4/library/feather/feather/mtcars.feather
+ mode change 100644 => 100755 Library/R/3.4/library/feather/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/feather/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/help/feather.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/feather/help/feather.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/feather/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/feather/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/CITATION
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/data.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/Meta/vignette.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/NEWS.md
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/R/lubridate
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/R/lubridate.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/R/lubridate.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/cctz.sh
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/data/Rdata.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/data/Rdata.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/data/Rdata.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/doc/lubridate.R
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/doc/lubridate.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/help/figures/logo.png
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/help/lubridate.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/help/lubridate.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/pkgdown/assets/tidyverse.css
+ mode change 100644 => 100755 Library/R/3.4/library/lubridate/pkgdown/assets/tidyverse.css.map
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/CITATION
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/NEWS
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/R/mnormt
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/R/mnormt.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/R/mnormt.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/help/mnormt.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/help/mnormt.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/mnormt/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/CITATION
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/MCMT/MCMT.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/MCMT/MCMT.Rout
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/MCMT/MCMT.Rout.save
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/MCMT/MCMT.rda
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/MCMT/multcomp.sas
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/data.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/demo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/Meta/vignette.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/NEWS
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/R/multcomp
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/R/multcomp.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/R/multcomp.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/data/Rdata.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/data/Rdata.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/data/Rdata.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/demo/Ch_Appl.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/demo/Ch_GLM.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/demo/Ch_Intro.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/demo/Ch_Misc.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/demo/Ch_Theory.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/deprecated/deprecated.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/deprecated/multcomp-deprecated.Rd
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/deprecated/multcomp-oldtests.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/deprecated/multcomp-oldtests.Rout.save
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/chfls1.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/chfls1.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/chfls1.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/generalsiminf.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/generalsiminf.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/generalsiminf.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/multcomp-examples.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/multcomp-examples.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/doc/multcomp-examples.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/help/multcomp.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/help/multcomp.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/multcomp_VA.R
+ mode change 100644 => 100755 Library/R/3.4/library/multcomp/multcomp_coxme.R
+ mode change 100644 => 100755 Library/R/3.4/library/psych/CITATION
+ mode change 100644 => 100755 Library/R/3.4/library/psych/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/psych/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/data.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/Meta/vignette.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/psych/NEWS.Rd
+ mode change 100644 => 100755 Library/R/3.4/library/psych/R/psych
+ mode change 100644 => 100755 Library/R/3.4/library/psych/R/psych.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/psych/R/psych.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/psych/data/Rdata.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/psych/data/Rdata.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/data/Rdata.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/intro.R
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/intro.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/intro.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/overview.R
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/overview.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/overview.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/psych_for_sem.R
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/psych_for_sem.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/psych/doc/psych_for_sem.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/psych/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/psych/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/psych/help/psych.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/psych/help/psych.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/psych/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/readr/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/readr/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/readr/LICENSE
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/Meta/vignette.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/readr/NEWS.md
+ mode change 100644 => 100755 Library/R/3.4/library/readr/R/readr
+ mode change 100644 => 100755 Library/R/3.4/library/readr/R/readr.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/readr/R/readr.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/readr/R/sysdata.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/readr/R/sysdata.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/readr/WORDLIST
+ mode change 100644 => 100755 Library/R/3.4/library/readr/doc/locales.R
+ mode change 100644 => 100755 Library/R/3.4/library/readr/doc/locales.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/readr/doc/readr.R
+ mode change 100644 => 100755 Library/R/3.4/library/readr/doc/readr.Rmd
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/challenge.csv
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/example.log
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/fwf-sample.txt
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/massey-rating.txt
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/mtcars.csv
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/mtcars.csv.bz2
+ mode change 100644 => 100755 Library/R/3.4/library/readr/extdata/mtcars.csv.zip
+ mode change 100644 => 100755 Library/R/3.4/library/readr/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/readr/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/help/figures/logo.png
+ mode change 100644 => 100755 Library/R/3.4/library/readr/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/readr/help/readr.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/readr/help/readr.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/readr/html/R.css
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/CITATION
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/DESCRIPTION
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/INDEX
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/Rd.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/data.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/features.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/hsearch.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/links.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/nsInfo.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/package.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/Meta/vignette.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/NAMESPACE
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/NEWS
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/R/sandwich
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/R/sandwich.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/R/sandwich.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/data/InstInnovation.rda
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/data/Investment.rda
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/data/PetersenCL.rda
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/data/PublicSchools.rda
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich-CL.R
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich-CL.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich-CL.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich-OOP.R
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich-OOP.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich-OOP.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich.R
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich.Rnw
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sandwich.pdf
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sim-CL.R
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/doc/sim-CL.rda
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/help/AnIndex
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/help/aliases.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/help/paths.rds
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/help/sandwich.rdb
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/help/sandwich.rdx
+ mode change 100644 => 100755 Library/R/3.4/library/sandwich/html/R.css
+ mode change 100644 => 100755 README.md
+ mode change 100644 => 100755 ResearchMethods.R
+ mode change 100644 => 100755 ResearchMethods.log
+ mode change 100644 => 100755 ResearchMethods.rds
+ mode change 100644 => 100755 ResearchMethods.tex
+ delete mode 100644 ResearchMethodsHS18.Rproj
+ delete mode 100644 Unterrichtsunterlagen_HS19.Rproj
+ mode change 100644 => 100755 _bookdown.yml
+ mode change 100644 => 100755 _main.log
+ mode change 100644 => 100755 _main.tex
+ mode change 100644 => 100755 _output.yml
+ mode change 100644 => 100755 ablauf_inhalt_190823_egel.R
+ mode change 100644 => 100755 index.Rmd
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git stats[Kus
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/INDEX[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/graphics-r3/empty.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/created[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/last-used[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/r-version-label[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/properites/save_prompt_required[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/rmd-outputs[m
+	[31mdeleted:    .rstudio/sessions/active/session-1b2aa2af/session-persistent-state[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[31mdeleted:    .rstudio/sessions/active/session-2fb301fd/graphics-r3/7825d8ff-db91-4f85-bb4f-2af405cdcce8.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-2fb301fd/graphics-r3/7825d8ff-db91-4f85-bb4f-2af405cdcce8.snapshot[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+	[31mmodified:   .viminfo[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/2e5e4d2b-e71a-4ae3-ba22-f032372c6879.png[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/2e5e4d2b-e71a-4ae3-ba22-f032372c6879.snapshot[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
 Username for 'https://github.zhaw.ch': egel
 Password for 'https://egel@github.zhaw.ch': 
-remote: Enumerating objects: 20, done.[K
-remote: Counting objects:   5% (1/20)   [Kremote: Counting objects:  10% (2/20)   [Kremote: Counting objects:  15% (3/20)   [Kremote: Counting objects:  20% (4/20)   [Kremote: Counting objects:  25% (5/20)   [Kremote: Counting objects:  30% (6/20)   [Kremote: Counting objects:  35% (7/20)   [Kremote: Counting objects:  40% (8/20)   [Kremote: Counting objects:  45% (9/20)   [Kremote: Counting objects:  50% (10/20)   [Kremote: Counting objects:  55% (11/20)   [Kremote: Counting objects:  60% (12/20)   [Kremote: Counting objects:  65% (13/20)   [Kremote: Counting objects:  70% (14/20)   [Kremote: Counting objects:  75% (15/20)   [Kremote: Counting objects:  80% (16/20)   [Kremote: Counting objects:  85% (17/20)   [Kremote: Counting objects:  90% (18/20)   [Kremote: Counting objects:  95% (19/20)   [Kremote: Counting objects: 100% (20/20)   [Kremote: Counting objects: 100% (20/20), done.[K
-remote: Compressing objects:   5% (1/20)   [Kremote: Compressing objects:  10% (2/20)   [Kremote: Compressing objects:  15% (3/20)   [Kremote: Compressing objects:  20% (4/20)   [Kremote: Compressing objects:  25% (5/20)   [Kremote: Compressing objects:  30% (6/20)   [Kremote: Compressing objects:  35% (7/20)   [Kremote: Compressing objects:  40% (8/20)   [Kremote: Compressing objects:  45% (9/20)   [Kremote: Compressing objects:  50% (10/20)   [Kremote: Compressing objects:  55% (11/20)   [Kremote: Compressing objects:  60% (12/20)   [Kremote: Compressing objects:  65% (13/20)   [Kremote: Compressing objects:  70% (14/20)   [Kremote: Compressing objects:  75% (15/20)   [Kremote: Compressing objects:  80% (16/20)   [Kremote: Compressing objects:  85% (17/20)   [Kremote: Compressing objects:  90% (18/20)   [Kremote: Compressing objects:  95% (19/20)   [Kremote: Compressing objects: 100% (20/20)   [Kremote: Compressing objects: 100% (20/20), done.[K
-remote: Total 20 (delta 8), reused 0 (delta 0), pack-reused 0[K
-Unpacking objects:   5% (1/20)   Unpacking objects:  10% (2/20)   Unpacking objects:  15% (3/20)   Unpacking objects:  20% (4/20)   Unpacking objects:  25% (5/20)   Unpacking objects:  30% (6/20)   Unpacking objects:  35% (7/20)   Unpacking objects:  40% (8/20)   Unpacking objects:  45% (9/20)   Unpacking objects:  50% (10/20)   Unpacking objects:  55% (11/20)   Unpacking objects:  60% (12/20)   Unpacking objects:  65% (13/20)   Unpacking objects:  70% (14/20)   Unpacking objects:  75% (15/20)   Unpacking objects:  80% (16/20)   Unpacking objects:  85% (17/20)   Unpacking objects:  90% (18/20)   Unpacking objects:  95% (19/20)   Unpacking objects: 100% (20/20)   Unpacking objects: 100% (20/20), done.
-From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
-   aefe382..c392dc8  master     -> origin/master
-Updating 313602b..c392dc8
-error: Your local changes to the following files would be overwritten by merge:
-	.bash_history
-	.rstudio/client-state/workbenchp.persistent
-	.rstudio/history_database
-	.rstudio/monitored/lists/file_mru
-	.rstudio/monitored/lists/help_history_links
-	.rstudio/projects_settings/next-session-project
-	14_Statistik2/assigment_stat2.Rmd
-	17_Statistik5_2/assigment_5_2.1.Rmd
-	17_Statistik5_2/open_datasets.Rmd
-	17_Statistik5_2/suggest_datasets.Rmd
-Please commit your changes or stash them before you merge.
-Aborting
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
+Already up to date.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
+[K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ a[Kgit add -A
