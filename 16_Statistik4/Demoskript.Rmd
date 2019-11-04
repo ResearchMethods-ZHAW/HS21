@@ -4,40 +4,116 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 ## Statistik 4 - Demoskript
 
-**(c) Juergen Dengler, 05.11.2018**
+**(c) Juergen Dengler, 05.11.2019**
 
-```{r}
-compensation<-read.table("16_Statistik4/data/ipomopsis.csv", header=T,sep=",")
-summary(compensation)
-attach(compensation)
 
-plot(Fruit~Root)
-plot(Fruit~Grazing)
+##von LMs zu GLMs
 
-tapply(Fruit,Grazing,mean)
+temp<-c(10,12,16,20,24,25,30,33,37)
+besucher<-c(40,12,50,500,400,900,1500,900,2000)
+strand<-data.frame("Temperatur"=temp,"Besucher"=besucher)
+attach(strand)
 
-model<-lm(Fruit~Root*Grazing)
-summary.aov(model)
+par(mfrow=c(1,1))
+plot(besucher~temp)
 
-model2<-lm(Fruit~Grazing*Root)
-summary.aov(model2)
+lm.strand<-lm(Besucher~Temperatur, data=strand)
+summary(lm.strand)
 
-model3<-lm(Fruit~Grazing+Root)
-summary.lm(model3)
+par(mfrow=c(2,2))
+plot(lm.strand)
 
-#Plotten der Ergebnisse
-plot(Fruit~Root,pch=21,bg=(1+as.numeric(Grazing)))
-#legend(locator(1),c("grazed","ungrazed"),col=c(2,3),pch=16)
+par(mfrow=c(1,1))
+xv<-rep(0:40,by=.1)
+yv<-predict(lm.strand,list(Temperatur=xv))
+plot(Temperatur,Besucher,xlim=c(0,40))
+lines(xv,yv,lwd=3,col="blue")
 
-abline(-127.829,23.56,col="red")
-abline(-127.892+36.103,23.56,col="green")
+glm.gaussian<-glm(Besucher~Temperatur,family=gaussian)
+glm.poisson<-glm(Besucher~Temperatur,family=poisson)
+
+summary(glm.gaussian)
+summary(glm.poisson)
+
+
+glm.quasi<-glm(Besucher~Temperatur,family=quasipoisson)
+summary(glm.quasi)
+
+par(mfrow=c(2,2))
+plot(glm.gaussian)
+plot(glm.poisson)
+plot(glm.quasi)
+
+par(mfrow=c(1,1))
+plot(Temperatur,Besucher,xlim=c(0,40))
+xv<-rep(0:40,by=.1)
+
+yv<-predict(lm.strand,list(Temperatur=xv))
+lines(xv,yv,lwd=3,col="blue")
+
+yv2<-predict(glm.poisson,list(Temperatur=xv))
+lines(xv,exp(yv2),lwd=3,col="red")
+
+yv3<-predict(glm.quasi,list(Temperatur=xv))
+lines(xv,exp(yv3),lwd=3,col="green")
+
+# Test für Overdispersion
+library(AER)
+dispersiontest(glm.poisson)
+
+
+##Logistische Regression
+
+bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
+                    "bathing"=c(0,0,0,0,0,1,0,0,1,0,1,1,1,1,1))
+plot(bathing~temperature, data=bathing)
+
+glm.1<-glm(bathing~temperature, data=bathing, family="binomial")
+summary(glm.1)
+
+#Modeldiagnostik (wenn nicht signifikant, dann OK)
+1 - pchisq (glm.1$deviance,glm.1$df.resid)
+
+#Modellgüte (pseudo-R²)
+1 - (glm.1$dev / glm.1$null)
+
+#Steilheit der Beziehung (relative Änderung der odds bei x + 1 vs. x)
+exp(glm.1$coefficients[2])
+
+#LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
+-glm.1$coefficients[1]/glm.1$coefficients[2]
+
+#Vorhersagen
+predicted <- predict(glm.1, type="response")
+
+#Konfusionsmatrix
+km <- table(bathing$bathing, predicted > 0.5)
+km
+
+#Missklassifizierungsrate
+1-sum(diag(km)/sum(km))
+
+
+
+#Plotting
+xs<-seq(0,30,l=1000)
+model.predict<-predict(glm.1,type="response",se=T,newdata=data.frame(temperature=xs))
+plot(bathing~temperature,data=bathing,xlab="Temperature (°C)",ylab="% Bathing",pch=16, col="red")
+points(model.predict$fit ~ xs,type="l")
+lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
+lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
+```
+
 
 ##Nicht-lineare Regression
 
+if(!require(AICcmodavg)){install.packages("AICcmodavg")}
+if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
 library(nlstools)
 
-loyn <- read.table("16_Statistik4/data/loyn.csv", header=T,sep=",")
+
+loyn <- read.delim("loyn.csv", sep=",")
 attach(loyn)
 
 #Selbstdefinierte Funktion, hier Potenzfunktion
@@ -105,111 +181,17 @@ lines(lowess(log_AREA,ABUND,f=1),lwd=2,col="green")
 
 #GAMs
 
+if(!require(mgcv)){install.packages("mgcv")}
 library(mgcv)
 
-model<-gam(ABUND~s(log_AREA))
-model
-summary(model)
+gam.1<-gam(ABUND~s(log_AREA))
+gam.1
+summary(gam.1)
+
 plot(log_AREA,ABUND,pch=16)
 xv<-seq(-1,4,by=0.1)
-yv<-predict(model,list(log_AREA=xv))
+yv<-predict(gam.1,list(log_AREA=xv))
 lines(xv,yv,lwd=2,col="red")
-AICc(model)
-summary(model)
 
-
-
-##von LMs zu GLMs
-
-temp<-c(10,12,16,20,24,25,30,33,37)
-besucher<-c(40,12,50,500,400,900,1500,900,2000)
-strand<-data.frame("Temperatur"=temp,"Besucher"=besucher)
-attach(strand)
-par(mfrow=c(1,1))
-plot(besucher~temp)
-lm.strand<-lm(Besucher~Temperatur, data=strand)
-summary(lm.strand)
-par(mfrow=c(2,2))
-plot(lm.strand)
-
-par(mfrow=c(1,1))
-xv<-rep(0:40,by=.1)
-yv<-predict(lm.strand,list(Temperatur=xv))
-plot(Temperatur,Besucher,xlim=c(0,40))
-lines(xv,yv,lwd=3,col="blue")
-
-glm.gaussian<-glm(Besucher~Temperatur,family=gaussian)
-glm.poisson<-glm(Besucher~Temperatur,family=poisson)
-
-summary(glm.gaussian)
-summary(glm.poisson)
-
-
-glm.quasi<-glm(Besucher~Temperatur,family=quasipoisson)
-summary(glm.quasi)
-
-par(mfrow=c(2,2))
-plot(glm.gaussian)
-plot(glm.poisson)
-plot(glm.quasi)
-
-par(mfrow=c(1,1))
-plot(Temperatur,Besucher,xlim=c(0,40))
-xv<-rep(0:40,by=.1)
-
-yv<-predict(lm.strand,list(Temperatur=xv))
-lines(xv,yv,lwd=3,col="blue")
-yv2<-predict(glm.poisson,list(Temperatur=xv))
-lines(xv,exp(yv2),lwd=3,col="red")
-yv3<-predict(glm.quasi,list(Temperatur=xv))
-lines(xv,exp(yv3),lwd=3,col="green")
-
-#test for overdispersion
-
-library(AER)
-dispersiontest(glm.poisson)
-
-
-##logistic regression
-
-bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
-                    "bathing"=c(0,0,0,0,0,1,0,0,1,0,1,1,1,1,1))
-plot(bathing~temperature, data=bathing)
-
-model<-glm(bathing~temperature,data=bathing,family="binomial")
-summary(model)
-
-#Modeldiagnostik (wenn nicht signifikant, dann OK)
-1 - pchisq (model$deviance,model$df.resid)
-
-#Modellge (pseudo-R)
-1 - (model$dev / model$null)
-
-#Steilheit der Beziehung (relative Aenderung der odds bei x + 1 vs. x)
-exp(model$coefficients[2])
-
-#LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
--model$coefficients[1]/model$coefficients[2]
-
-#Vorhersagen
-predicted <- predict(model, type="response")
-
-#Konfusionsmatrix
-km <- table(bathing$bathing, predicted > 0.5)
-km
-
-# Missklassifizierungsrate
-1-sum(diag(km)/sum(km))
-
-
-#Plotting
-xs<-seq(0,30,l=1000)
-model.predict<-predict(model,type="response",se=T,newdata=data.frame(temperature=xs))
-plot(bathing~temperature,data=bathing,xlab="Temperature (C)",ylab="% Bathing",pch=16, col="red")
-points(model.predict$fit ~ xs,type="l")
-lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
-lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
-```
-
-
-
+AICc(gam.1)
+summary(gam.1)
