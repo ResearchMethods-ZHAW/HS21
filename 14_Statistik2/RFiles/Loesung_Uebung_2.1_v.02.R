@@ -1,11 +1,10 @@
 ### MSc. Research Methods
 ### Statistik HS 2019
 ### Übung 2.1 - Regressionsanalyse
-### - Jürgen Dengler, 31.10.2019 -
+### - Jürgen Dengler, 31.10.2019
+
 setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statstik Dengler 2019/Ueberarbeitungsprozess/DataSets")
-
-
-decay <-read.csv("decay.csv")
+decay <- read.delim("decay.csv",sep = ",")
 decay
 
 # Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu können
