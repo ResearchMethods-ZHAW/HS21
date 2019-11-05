@@ -112,3 +112,73 @@ getwd()
 data_911 <- read_delim("17_Statistik5_2/911.csv", delim = ",")
 compensation
 data()
+library(dave)
+install.packages("dave")
+install.packages("vegan")
+df <- nova # klone den originaler Datensatz
+# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+# gruppiert Daten nach Menü-Inhalt und Woche
+df_ <- df %>%
+group_by(label_content, week) %>%
+summarise(tot_sold = n()) %>%
+drop_na() # lasst die unbekannten Menü-Inhalte weg
+# überprüft die Voraussetzungen für eine ANOVA
+# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
+# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4)
+df_  %>%
+split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden
+## ladet die nötigen Packete und die novanimal.csv Datei in R
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+mytheme <-
+theme_classic() +
+theme(
+axis.line = element_line(color = "black"),
+axis.text = element_text(size = 20, color = "black"),
+axis.title = element_text(size = 20, color = "black"),
+axis.ticks = element_line(size = 1, color = "black"),
+axis.ticks.length = unit(.5, "cm")
+)
+df <- nova # klone den originaler Datensatz
+# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+# gruppiert Daten nach Menü-Inhalt und Woche
+df_ <- df %>%
+group_by(label_content, week) %>%
+summarise(tot_sold = n()) %>%
+drop_na() # lasst die unbekannten Menü-Inhalte weg
+# überprüft die Voraussetzungen für eine ANOVA
+# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
+# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4)
+df_  %>%
+split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden
+# Boxplot
+ggplot(df_, aes(x = label_content, y= tot_sold)) +
+stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
+geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+mytheme # achtung erster Hinweis einer Varianzheterogenität
+# definiert das Modell (Statistik 2: Folien 4-8)
+model <- aov(tot_sold ~ label_content, data = df_)
+summary.lm(model)
+# überprüft die Modelvoraussetzungen
+autoplot(model) + mytheme
+# überprüft die Modelvoraussetzungen
+ggfortify::autoplot(model) + mytheme
+library(ggfortify)
+# überprüft die Modelvoraussetzungen
+autoplot(model) + mytheme
+# überprüft die Voraussetzungen des Welch-Tests:
+# Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)
+# Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0 (siehe Folien Statistik 2: Folie 42)
+# Daher ziehe ich eine Transformation der AV dem nicht-parametrischen Test vor
+model1 <- aov(log10(tot_sold) ~ label_content, data = df_)
+autoplot(model) + mytheme # scheint ok zu sein
+autoplot(model1) + mytheme # scheint ok zu sein
+summary.lm(model1)
+TukeyHSD(model1) # (Statistik 2: Folien 9-11)
+boxplot(df_$tot_sold)
+boxplot(df_$tot_sold)

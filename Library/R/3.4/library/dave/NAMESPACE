@@ -1,0 +1,77 @@
+export(centroid,aocc,fitmarkov,orank,dircor,mxplot,Mtabs,srank,pcovar,ccost,overly,pcobiplot,speedprof,pcaser,fspa,vvelocity,SNPtm,SNPsm,outlier,davesil)    
+
+import(labdsv, vegan, nnet, cluster, tree)
+importFrom("grDevices", "gray", "heat.colors", "rainbow", "rgb")
+importFrom("graphics", "abline", "arrows", "barplot", "hist", "image",
+             "legend", "lines", "par", "plot", "points", "text", "title")
+importFrom("stats", "aggregate", "anova", "aov", "as.dendrogram",
+             "as.dist", "cor", "cutree", "dist", "hclust", "prcomp", "dnorm", "sd")
+
+
+  
+# list of all functions seen by user, 10.10.17
+
+
+S3method(print,centroid)                                 # method, class
+S3method(centroid,default)
+
+S3method(plot,aocc)                  
+S3method(aocc,default)
+
+S3method(fitmarkov,default)
+S3method(plot,fitmarkov)
+
+S3method(orank,default)
+S3method(plot,orank)
+S3method(summary,orank)
+
+S3method(dircor,default)
+S3method(plot,dircor)
+
+S3method(mxplot,default)
+S3method(plot,mxplot)
+
+S3method(Mtabs,default)
+S3method(plot,Mtabs)
+S3method(summary,Mtabs)
+
+S3method(srank,default)
+S3method(print,srank)
+
+S3method(pcovar,default)
+S3method(plot,pcovar)
+
+S3method(ccost,default)
+S3method(print,ccost)
+
+S3method(overly,default)
+S3method(plot,overly)
+
+S3method(pcobiplot,default)
+S3method(plot,pcobiplot)
+
+S3method(speedprof,default)
+S3method(plot,speedprof)
+
+S3method(pcaser,default)
+S3method(plot,pcaser)
+
+S3method(fspa,default)
+S3method(plot,fspa)
+
+S3method(vvelocity,default)
+S3method(plot,vvelocity)
+
+S3method(SNPtm,default)
+S3method(plot,SNPtm)
+
+S3method(SNPsm,default)
+S3method(plot,SNPsm)
+
+S3method(outlier,default)
+S3method(plot,outlier)
+S3method(print,outlier)
+
+S3method(davesil,default)
+S3method(plot,davesil)
+

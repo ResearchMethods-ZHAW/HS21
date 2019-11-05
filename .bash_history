@@ -203,3 +203,16 @@ git push
 git pull
 git status
 git pull
+git add -A
+git status
+git commit -m "changes in con stat 1egel"
+git push
+git status
+git add -A
+git commit -m "last changes in con stat1"
+git push
+git pull
+git status
+git add -A
+git commit -m "changes in assigments"
+git push
