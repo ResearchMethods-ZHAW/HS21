@@ -4,6 +4,9 @@ output:
   pdf_document: default
 ---
 
+[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.03.R)
+
+
 ## Musterlösung Aufgabe 2.3N: Mehrfaktorielle ANOVA
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
@@ -141,11 +144,9 @@ mtext(letters$mcletters$Letters,at=c(1:4))
 #Jetzt brauchen wir noch die Mittelwerte bzw. Effektgroessen
 
 #Für den Ergebnistext brauchen wir auch noch Angaben zu den Effektgrössen. Hier sind zwei Möglichkeiten, um an sie zu gelangen.
+aggregate(Tauchzeit~Jahreszeit, FUN=mean)
+aggregate(Tauchzeit~Unterart, FUN=mean)
 
 summary(lm(Tauchzeit~Jahreszeit))
 summary(lm(Tauchzeit~Unterart))
-
-aggregate(kormoran[,1],list(Unterart),mean)
-aggregate(kormoran[,1],list(Jahreszeit),mean)
-
 ```
