@@ -1,162 +1,4 @@
 
- mode change 100644 => 100755 09_PrePro1/data/meta.txt
- mode change 100644 => 100755 09_PrePro1/data/order_52252_data.txt
- mode change 100644 => 100755 09_PrePro1/data/order_52252_legend.csv
- mode change 100644 => 100755 10_PrePro2/Abstract.Rmd
- mode change 100644 => 100755 10_PrePro2/Demo_Tidyverse.Rmd
- mode change 100644 => 100755 10_PrePro2/Nachtrag.Rmd
- mode change 100644 => 100755 10_PrePro2/RFiles/Demo_Tidyverse.R
- mode change 100644 => 100755 10_PrePro2/RFiles/Nachtrag.R
- mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_A.R
- mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_A_loesung.R
- mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_B.R
- mode change 100644 => 100755 10_PrePro2/RFiles/Uebung_B_loesung.R
- mode change 100644 => 100755 10_PrePro2/Uebung_A.Rmd
- mode change 100644 => 100755 10_PrePro2/Uebung_A_loesung.Rmd
- mode change 100644 => 100755 10_PrePro2/Uebung_B.Rmd
- mode change 100644 => 100755 10_PrePro2/Uebung_B_loesung.Rmd
- mode change 100644 => 100755 10_PrePro2/data/sensor1.csv
- mode change 100644 => 100755 10_PrePro2/data/sensor2.csv
- mode change 100644 => 100755 10_PrePro2/data/sensor3.csv
- mode change 100644 => 100755 10_PrePro2/data/sensor_fail.csv
- mode change 100644 => 100755 11_InfoVis1/Abstract.Rmd
- mode change 100644 => 100755 11_InfoVis1/Demo_EDA.Rmd
- mode change 100644 => 100755 11_InfoVis1/Demo_ggplot.Rmd
- mode change 100644 => 100755 11_InfoVis1/RFiles/Demo_EDA.R
- mode change 100644 => 100755 11_InfoVis1/RFiles/Demo_ggplot.R
- mode change 100644 => 100755 11_InfoVis1/RFiles/Uebung.R
- mode change 100644 => 100755 11_InfoVis1/RFiles/Uebung_loesung.R
- mode change 100644 => 100755 11_InfoVis1/Uebung.Rmd
- mode change 100644 => 100755 11_InfoVis1/Uebung_loesung.Rmd
- mode change 100644 => 100755 11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv
- mode change 100644 => 100755 11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv
- mode change 100644 => 100755 11_InfoVis1/data/wetter.rda
- mode change 100644 => 100755 11_InfoVis1/plot.png
- mode change 100644 => 100755 12_InfoVis2/Abstract.Rmd
- mode change 100644 => 100755 12_InfoVis2/Demo_Debbuggin_R.html
- mode change 100644 => 100755 12_InfoVis2/Demo_Debug.Rmd
- mode change 100644 => 100755 12_InfoVis2/RFiles/Demo_Debbuggin_R.R
- mode change 100644 => 100755 12_InfoVis2/RFiles/Demo_Debug.R
- mode change 100644 => 100755 12_InfoVis2/RFiles/Demo_Debug_laup.R
- mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_A.R
- mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_A_loesung.R
- mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_B.R
- mode change 100644 => 100755 12_InfoVis2/RFiles/Uebung_B_loesung.R
- mode change 100644 => 100755 12_InfoVis2/Uebung_A.Rmd
- mode change 100644 => 100755 12_InfoVis2/Uebung_A_loesung.Rmd
- mode change 100644 => 100755 12_InfoVis2/Uebung_B.Rmd
- mode change 100644 => 100755 12_InfoVis2/Uebung_B_loesung.Rmd
- mode change 100644 => 100755 12_InfoVis2/aufgabe_1.png
- mode change 100644 => 100755 12_InfoVis2/aufgabe_1b.png
- mode change 100644 => 100755 12_InfoVis2/aufgabe_2.png
- mode change 100644 => 100755 12_InfoVis2/aufgabe_3.png
- mode change 100644 => 100755 12_InfoVis2/aufgabe_4.png
- mode change 100644 => 100755 13_Statistik1/Abstract.Rmd
- mode change 100644 => 100755 13_Statistik1/Demo_Tests.Rmd
- mode change 100644 => 100755 13_Statistik1/Intro_Daten_egel.Rmd
- mode change 100644 => 100755 13_Statistik1/RFiles/Demo_Tests.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Folien.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Intro_Daten_egel.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Loesungen.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Musterloesungen Statistik 1.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebung.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_A.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_A_loesung.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_A_loesung_nicht_gebraucht.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_B.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebung_B_loesung.R
- mode change 100644 => 100755 13_Statistik1/RFiles/Uebungen.R
- mode change 100644 => 100755 13_Statistik1/assigment_stat1.Rmd
- mode change 100644 => 100755 13_Statistik1/data/beetle.csv
- mode change 100644 => 100755 13_Statistik1/data/competition.csv
- mode change 100644 => 100755 13_Statistik1/data/medley.csv
- mode change 100644 => 100755 13_Statistik1/data/novanimal.csv
- mode change 100644 => 100755 13_Statistik1/data/novanimal_data_181029_egel.csv
- mode change 100644 => 100755 13_Statistik1/design_experiment.png
- mode change 100644 => 100755 13_Statistik1/novanimal_variabeln.csv
- mode change 100644 => 100755 13_Statistik1/solution_stat1.Rmd
- mode change 100644 => 100755 14_Statistik2/Abstract.Rmd
- mode change 100644 => 100755 14_Statistik2/Demoskript.Rmd
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel1.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel2.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel3.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel4.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_02_Polynom_Reg.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_03_Einfaktorielle_ANOVA_einfach.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_05_Mehrfaktorielle_ANOVA.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Demo_06_ANCOVA.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Folien.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Musterloesung_Statistik_2.2.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Musterloesung_Statistik_2.3S.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.1_Loesung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.2_Loesung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.3N_Loesung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_2.3S_Loesung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A_Aufgabe1.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A_Aufgabe2.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_A_loesung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_Aufgabe1.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_Aufgabe2.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_Aufgabe3_egel.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_B.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_B_Aufgabe1.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebung_loesung.R
- mode change 100644 => 100755 14_Statistik2/RFiles/Uebungen.R
- mode change 100644 => 100755 14_Statistik2/assigment_stat2.Rmd
- mode change 100644 => 100755 14_Statistik2/data/crabs.csv
- mode change 100644 => 100755 14_Statistik2/data/decay.csv
- mode change 100644 => 100755 14_Statistik2/data/green.csv
- mode change 100644 => 100755 14_Statistik2/data/growth.csv
- mode change 100644 => 100755 14_Statistik2/data/kormoran.csv
- mode change 100644 => 100755 14_Statistik2/data/medley.csv
- mode change 100644 => 100755 14_Statistik2/data/mytilus.csv
- mode change 100644 => 100755 14_Statistik2/data/nelson.csv
- mode change 100644 => 100755 14_Statistik2/data/partridge.csv
- mode change 100644 => 100755 14_Statistik2/data/peake.csv
- mode change 100644 => 100755 14_Statistik2/solution_stat2.1.Rmd
- mode change 100644 => 100755 14_Statistik2/solution_stat2.2.Rmd
- mode change 100644 => 100755 14_Statistik2/solution_stat2.3n.Rmd
- mode change 100644 => 100755 14_Statistik2/solution_stat2.3s.Rmd
- mode change 100644 => 100755 15_Statistik3/Abstract.Rmd
- delete mode 100644 15_Statistik3/Demo_A_MultReg.Rmd
- delete mode 100644 15_Statistik3/Demo_B_nichtLin.Rmd
- mode change 100644 => 100755 15_Statistik3/Demoskript.Rmd
- mode change 100644 => 100755 15_Statistik3/RFiles/Demo_A_MultReg.R
- mode change 100644 => 100755 15_Statistik3/RFiles/Demo_B_nichtLin.R
- mode change 100644 => 100755 15_Statistik3/RFiles/Uebung.R
- mode change 100644 => 100755 15_Statistik3/RFiles/Uebung2_egel.R
- rename 15_Statistik3/{assigment_stat3.Rmd => Uebungen.Rmd} (100%)
- mode change 100644 => 100755
- mode change 100644 => 100755 15_Statistik3/data/Curonian_Spit.xlsx
- mode change 100644 => 100755 15_Statistik3/data/Ukraine.xlsx
- mode change 100644 => 100755 15_Statistik3/data/Ukraine_bearbeitet.csv
- mode change 100644 => 100755 15_Statistik3/data/Ukraine_bearbeitet.xlsx
- mode change 100644 => 100755 15_Statistik3/data/loyn.csv
- mode change 100644 => 100755 15_Statistik3/data/novanimal_time.csv
- mode change 100644 => 100755 15_Statistik3/data/peake.csv
- mode change 100644 => 100755 15_Statistik3/data/tab1_uebungStatistik3.png
- mode change 100644 => 100755 15_Statistik3/solution_stat3.1.Rmd
- mode change 100644 => 100755 16_Statistik4/Abstract.Rmd
- mode change 100644 => 100755 16_Statistik4/Demo_A_LogisticReg.Rmd
- mode change 100644 => 100755 16_Statistik4/Demo_B_Pseudoreplik.Rmd
- mode change 100644 => 100755 16_Statistik4/Demo_C_SplitPlotANOVA.Rmd
- mode change 100644 => 100755 16_Statistik4/Demoskript.Rmd
- mode change 100644 => 100755 16_Statistik4/RFiles/Demo_A_LogisticReg.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Demo_B_Pseudoreplik.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Demo_C_SplitPlotANOVA.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Musterloesung_Statistik_4.2S.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Uebung.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Uebung_Aufgabe1.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Uebung_Aufgabe2.R
- mode change 100644 => 100755 16_Statistik4/RFiles/Uebung_loesung.R
- mode change 100644 => 100755 16_Statistik4/RFiles/test_uebung3_egel.R
- mode change 100644 => 100755 16_Statistik4/assigment_stat4.Rmd
- mode change 100644 => 100755 16_Statistik4/data/Curonian_Spit.csv
- mode change 100644 => 100755 16_Statistik4/data/Curonian_Spit.xlsx
- mode change 100644 => 100755 16_Statistik4/data/abb1.png
  mode change 100644 => 100755 16_Statistik4/data/abb1_4.2N.png
  mode change 100644 => 100755 16_Statistik4/data/ipomopsis.csv
  mode change 100644 => 100755 16_Statistik4/data/isolation.csv
@@ -1108,4 +950,108 @@ Untracked files:
 	[31mfigure/[m
 
 no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -ASaved working directory and index state WIP on master: c5417f9 changes in stat2
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Removing 14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R
+hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
+ 14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R  |  92 [31m------------------------------[m
+ 14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.03.R |  72 [32m++++++++++++++++++++++++[m
+ 14_Statistik2/RFiles/Uebung_2.1_Loesung.R       | 129 [32m++++++++++++++++++++++++++++++[m[31m-------------[m
+ 14_Statistik2/solution_stat2.1.Rmd              |   3 [32m+[m[31m-[m
+ 14_Statistik2/solution_stat2.3n.Rmd             |   9 [32m+[m[31m--[m
+ 5 files changed, 170 insertions(+), 135 deletions(-)
+ delete mode 100644 14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R
+ create mode 100644 14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.03.R
+ mode change 100755 => 100644 14_Statistik2/RFiles/Uebung_2.1_Loesung.R
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[31mmodified:   .viminfo[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/295e43b8-ee9f-4362-a489-c868269f363e.png[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/295e43b8-ee9f-4362-a489-c868269f363e.snapshot[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/3efdcac5-0af4-462a-b964-2eaa99840b41.png[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/3efdcac5-0af4-462a-b964-2eaa99840b41.snapshot[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/81a4bcd3-8db8-4b6d-822b-b7c0d8ca020c.png[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/81a4bcd3-8db8-4b6d-822b-b7c0d8ca020c.snapshot[m
+	[31m.rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/environment_data/[m
+	[31m14_Statistik2/RFiles/solution_stat2.3n.R[m
+	[31m14_Statistik2/RFiles/solution_stat2.3s.R[m
+	[31m16_Statistik4/RFiles/solution_stat4.1n.R[m
+	[31m16_Statistik4/RFiles/solution_stat4.2n.R[m
+	[31m16_Statistik4/RFiles/solution_stat4.2s.R[m
+	[31m17_Statistik5/RFiles/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commt[Kit m- ""[K[K[K[K[K-m ""c"h"a"n"g"e"s" "i"n" "a"s"[1P"[1P"s"o"l"u"t"i"o"n"s" "2"," "3"," "4"[1P[1P[1P 4"[C[C[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[K[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[K
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statzs[K[Kus
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+	[32mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/295e43b8-ee9f-4362-a489-c868269f363e.png[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/295e43b8-ee9f-4362-a489-c868269f363e.snapshot[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/3efdcac5-0af4-462a-b964-2eaa99840b41.png[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/3efdcac5-0af4-462a-b964-2eaa99840b41.snapshot[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/81a4bcd3-8db8-4b6d-822b-b7c0d8ca020c.png[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/graphics-r3/81a4bcd3-8db8-4b6d-822b-b7c0d8ca020c.snapshot[m
+	[32mnew file:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/environment_data/7[m
+	[32mmodified:   .viminfo[m
+	[32mnew file:   14_Statistik2/RFiles/solution_stat2.3n.R[m
+	[32mnew file:   14_Statistik2/RFiles/solution_stat2.3s.R[m
+	[32mnew file:   16_Statistik4/RFiles/solution_stat4.1n.R[m
+	[32mnew file:   16_Statistik4/RFiles/solution_stat4.2n.R[m
+	[32mnew file:   16_Statistik4/RFiles/solution_stat4.2s.R[m
+	[32mnew file:   17_Statistik5/RFiles/solution_stat5.1.R[m
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/history_database[m
+	[31mmodified:   .rstudio/monitored/lists/file_mru[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[31mdeleted:    .rstudio/sessions/active/session-2fb301fd/graphics-r3/81a4bcd3-8db8-4b6d-822b-b7c0d8ca020c.png[m
+	[31mdeleted:    .rstudio/sessions/active/session-2fb301fd/graphics-r3/81a4bcd3-8db8-4b6d-822b-b7c0d8ca020c.snapshot[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/session-persistent-state[m
+	[31mmodified:   13_Statistik1/solution_stat1.Rmd[m
+	[31mmodified:   14_Statistik2/solution_stat2.1.Rmd[m
+	[31mmodified:   14_Statistik2/solution_stat2.2.Rmd[m
+	[31mmodified:   14_Statistik2/solution_stat2.3n.Rmd[m
+	[31mmodified:   14_Statistik2/solution_stat2.3s.Rmd[m
+	[31mmodified:   16_Statistik4/solution_stat4.2s.Rmd[m
+	[31mmodified:   17_Statistik5/solution_stat5.1.Rmd[m
+	[31mmodified:   17_Statistik5/solution_stat5.2.Rmd[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/65f51868-ef43-4d90-af47-1eadb095561f.png[m
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/65f51868-ef43-4d90-af47-1eadb095561f.snapshot[m
+	[31m.rstudio/sessions/session-locks/[m
+	[31m17_Statistik5/RFiles/solution_stat5.2.R[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt a[K[K[K[Kt add -A

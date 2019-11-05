@@ -11669,3 +11669,5 @@
 1572948669018:height = 8,
 1572948669019:width = 9,
 1572948669020:device = cairo_pdf)
+1572972790328:knitr::purl("17_Statistik5/solution_stat5.2s.Rmd")
+1572972795348:knitr::purl("17_Statistik5/solution_stat5.2.Rmd")

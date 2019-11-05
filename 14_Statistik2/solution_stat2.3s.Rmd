@@ -1,15 +1,7 @@
----
-title: "Modul Research Methods HS19"
-output:
-  html_document:
-    df_print: paged
----
-
-[RCode als Download](14_Statistik2/RFiles/solution_stat2.3s.R)
-
 ## Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
 **Meine Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
 
+**kommentierter Lösungsweg**
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
@@ -140,5 +132,5 @@ ggsave("plot2_solution2.3s.pdf",
 
 ```
 
-*******
-##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+<!-- ******* -->
+<!-- ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch -->

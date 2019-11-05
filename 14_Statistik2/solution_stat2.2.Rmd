@@ -1,16 +1,6 @@
----
-title: "MSc. Research Methods - Statistikteil Lösungen 2019"
-author: "Gian-Andrea Egeler"
-date: "`r format(Sys.Date(), '%B %Y')`"
-output:
-  html_document:
-    df_print: paged
----
-
-[RCode als Download](14_Statistik2/RFiles/solution_stat2.2.R)
-
 ## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
 
+**kommentierter Lösungsweg**
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
@@ -133,5 +123,5 @@ ggplot(df_, aes(x = label_content, y= tot_sold)) +
    
 ```
 
---------
-letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+<!-- -------- -->
+<!-- letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch -->
