@@ -55,7 +55,8 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Uebung 2.1 - Regressionsanalyse
 
 ```{r}
-decay <-read.csv("14_Statistik2/data/decay.csv")
+decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
+
 decay
 
 # Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu können
