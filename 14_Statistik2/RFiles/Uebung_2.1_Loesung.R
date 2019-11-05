@@ -1,13 +1,13 @@
 ### MSc. Research Methods
 ### Statistik HS 2019
-### Übung 2.1 - Regressionsanalyse
-### - Jürgen Dengler, 31.10.2019
+### Ãœbung 2.1 - Regressionsanalyse
+### - JÃ¼rgen Dengler, 31.10.2019
 
 setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statstik Dengler 2019/Ueberarbeitungsprozess/DataSets")
 decay <- read.delim("decay.csv",sep = ",")
 decay
 
-# Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu können
+# Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu kÃ¶nnen
 attach(decay)
 summary(decay)
 str(decay)
@@ -32,7 +32,7 @@ abline(lm(amount~time),col="red")
 abline(lm.1,col="red")
 
 
-# Lösung 1: log-Transformation der abhängigen Variablen
+# LÃ¶sung 1: log-Transformation der abhÃ¤ngigen Variablen
 par(mfrow=c(1,2))
 boxplot(amount)
 boxplot(log(amount))
@@ -46,10 +46,10 @@ summary(lm.2)
 par(mfrow=c(2,2))
 plot(lm.2)
 
-# Lösungen 2 und 3 greifen auf Methoden von Statistik 3 und 4 zurück, sie sind hier nur zum Vergleich angeführt
+# LÃ¶sungen 2 und 3 greifen auf Methoden von Statistik 3 und 4 zurÃ¼ck, sie sind hier nur zum Vergleich angefÃ¼hrt
 
-# Lösung 2: quadratische Regression (kam erst in Statistik 3; könnte für die Datenverteilung passen, 
-# entspricht aber nicht der physikalischen Gesetzmässigkeit)
+# LÃ¶sung 2: quadratische Regression (kam erst in Statistik 3; kÃ¶nnte fÃ¼r die Datenverteilung passen, 
+# entspricht aber nicht der physikalischen GesetzmÃ¤ssigkeit)
 model.quad<-lm(amount~time+I(time^2))
 summary(model.quad)
 
@@ -60,7 +60,7 @@ anova(lm.1,model.quad)
 par(mfrow=c(2,2))
 plot(model.quad)
 
-# Lösung 3 (kam erst in Statistik 4; methodisch beste Lösung;
+# LÃ¶sung 3 (kam erst in Statistik 4; methodisch beste LÃ¶sung;
 # mit Startwerten muss man ggf. ausprobieren)
 model.nls<-nls(amount~a*exp(-b*time),start=(list(a=100,b=1)))
 summary(model.nls)
@@ -75,7 +75,7 @@ plot(residuals.nls)
 par(mfrow=c(1,1))
 xv<-seq(0,30,0.1)
 
-# 1. lineares Modell mit log-transformierter Abhängiger
+# 1. lineares Modell mit log-transformierter AbhÃ¤ngiger
 plot(time,amount)
 yv1<-exp(predict(lm.2,list(time=xv)))
 lines(xv,yv1,col="red")
