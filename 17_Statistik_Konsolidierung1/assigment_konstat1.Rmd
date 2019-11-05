@@ -1,14 +1,4 @@
----
-output: html_document
----
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, error = F, message = F, warning = F, fig.pos = "center")
-
-```
-
-## Übung
+## Übung Konsolidierung Statistik
 
 Für die nächsten drei gemeinsamen Sitzungen (11./18./19. November) könnt ihr auf eure eigene Art die statistischen Methoden nochmals anwenden:
 
@@ -40,16 +30,16 @@ Das Ziel dieser Übung ist es,
 - dass ihr für die Prüfung gut vorbereitet sind
 
 *******
-## Open Datasets
+**Open Datasets**
 ```{r child = "open_datasets.Rmd"}
 ```
 
 
-## Given Datasets
+**Given Datasets**
 ```{r child = 'suggest_datasets.Rmd'}
 ```
 
 
 
 
-##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+<!-- ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch -->

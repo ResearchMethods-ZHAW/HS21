@@ -1,7 +1,3 @@
----
-output: html_document
----
-
 ```{r, echo=FALSE}
 library(tidyverse)
 ```
@@ -10,7 +6,7 @@ library(tidyverse)
 
 <!-- In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen. -->
 
-### R data sets
+<span style="color:blue"> R data sets </span> 
 
 In R gibt es vordefinierte Datensätze, welche gut abrufbar sind. Beispiele sind:
 
@@ -25,7 +21,7 @@ head(chickwts)
 str(chickwts)
 ```
 
-### Kaggle
+<span style="color:blue">Kaggle</span>
 
 Auf [Kaggle](www.kaggle.com) findet ihr öffentlich zugängliche Datensätze. Einzig was ihr tun müsst, ist euch registrieren. Beispiele sind:
 
@@ -36,13 +32,13 @@ Auf [Kaggle](www.kaggle.com) findet ihr öffentlich zugängliche Datensätze. Ei
 
 ```{r}
 # Load packages and data
-data_911 <- read_delim("17_Statistik5_2/911.csv", delim = ",")
+data_911 <- read_delim("17_Statistik_Konsolidierung1/911.csv", delim = ",")
 str(data_911)
 
 ```
 
 
-### Tidytuesday
+<span style="color:blue">Tidytuesday</span>
 
 [Tidytuesday](https://github.com/rfordatascience/tidytuesday) ist eine Plattform, in der wöchentlich - jeden Dienstag - einen öffentlich zugänglichen Datensatz publiziert. Dieses Projekt ist aus der [R4DS](https://r4ds.had.co.nz/) Online Learning Community und dem R for Data Science Lehrbuch hervorgegangen. Beispiele sind:
 
@@ -54,7 +50,7 @@ str(data_911)
 * ...
 
 
-#### Download via Github - 1. Möglichkeit
+**Download via Github - 1. Möglichkeit**
 1. Geht zum File, welches ihr herunterladen wollt
 2. Klickt auf das File (.csv, .xlsx etc.), um den Inhalt innerhalb der GitHub Benutzeroberfläche anzuzeigen
 ![](1_github.PNG){width=70%} 
@@ -62,7 +58,7 @@ str(data_911)
 ![](2_github.PNG){width=70%}
 4. (Ziel) Speichern unter...
 
-#### Download via Github - 2. Möglichkeit
+**Download via Github - 2. Möglichkeit**
 
 ```{r}
 # Beachtet dabei, dass ihr die URL zum originalen (raw) Datensatz habt 
@@ -71,7 +67,7 @@ star_wars <- read_delim("https://raw.githubusercontent.com/rfordatascience/tidyt
 
 ```
 
-#### Download via Github - 3. Möglichkeit
+**Download via Github - 3. Möglichkeit**
 
 ```{r}
 # mehr Infos dazu findet ihr hier: https://rpubs.com/lokraj/github_csv
@@ -82,7 +78,7 @@ star_wars <- read_delim(url(urlfile), delim = ",", col_names = T) # lade die Dat
 ```
 
 
-### opendata.swiss
+<span style="color:blue">opendata.swiss</span>
 
 Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare Daten der Schweizerischen Behörden zu finden. opendata.swiss ist ein gemeinsames Projekt von Bund, Kantonen, Gemeinden und weiteren Organisationen mit einem staatlichen Auftrag. Beispiele sind:
 
@@ -92,7 +88,7 @@ Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare D
 * ...
 
 
-### Open Data Katalog Stadt Zürich
+<span style="color:blue">Open Data Katalog Stadt Zürich</span>
 
 Auf der Seite der [Stadt Zürich Open Data](https://data.stadt-zuerich.ch/) findet ihr verschiedene Datensätze der Stadt Zürich. Spannend daran ist, dass die veröffentlichten Daten kostenlos und zur freien - auch kommerziellen - Weiterverwendung zur Verfügung. Beispiele sind:
 
