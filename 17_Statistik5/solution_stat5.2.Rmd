@@ -45,7 +45,8 @@ df_$member <- factor(df_$member, levels = c("Studierende", "Mitarbeitende"))
 # table(df_$meat)
 
 # definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an (vgl. Statistik 5, Folien 17-23, achtung Beispiel dort ist mit Package nlme )
-mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit")) 
+library(lme4)
+mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit")) # könnte Alter und Geschlecht weglassen (da aber soziodemografische Variablen, lasse ich sie drin)
 summary(mod0)
  
 # Pseudo R^2

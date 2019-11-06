@@ -11671,3 +11671,62 @@
 1572948669020:device = cairo_pdf)
 1572972790328:knitr::purl("17_Statistik5/solution_stat5.2s.Rmd")
 1572972795348:knitr::purl("17_Statistik5/solution_stat5.2.Rmd")
+1572974771737:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572974778585:df <- nova # kopiert originaler Datensatz
+1572974778586:df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
+1572974778587:df_ <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffet Teller gekauft haben und speichert es in eine neuen Datensatz
+1572974778589:# Löscht alle Missings bei der Variable "Fleisch"
+1572974778590:df_ <- df_[!is.na(df_$meat), ]
+1572974778592:# setzt andere Reihenfolge für die Hochschulzugehörigkeit
+1572974778593:df_$member <- factor(df_$member, levels = c("Studierende", "Mitarbeitende"))
+1572974778595:#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch an
+1572974778596:# table(df_$meat)
+1572974778597:# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an (vgl. Statistik 5, Folien 17-23, achtung Beispiel dort ist mit Package nlme )
+1572974778598:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1572974778599:summary(mod0)
+1572974778605:# Pseudo R^2
+1572974778606:library(MuMIn)
+1572974778629:r.squaredGLMM(mod0)
+1572974778637:# das marginale R^2 gibt uns die erklärte Varianz der fixen Effekte: hier 5%
+1572974778638:# das conditionale R^2 gibt uns die erklärte Varianz für das ganze Modell (mit fixen und variablen Effekten): hier 26%
+1572974778639:# für weitere Informationen: https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+1572974778641:# zusätzliche Informationen, welche für die Interpretation gut sein kann
+1572974778642:# berechnet den Standardfehler (mehr infos: https://www.youtube.com/watch?v=r-txC-dpI-E oder hier: https://mgimond.github.io/Stats-in-R/CI.html)
+1572974778643:# weitere info: https://stats.stackexchange.com/questions/26650/how-do-i-reference-a-regression-models-coefficients-standard-errors
+1572974778643:se <- sqrt(diag(vcov(mod0)))
+1572974778646:# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall => falls 0 enthalten dann ist der Unterschied statistisch nicht signifikant
+1572974778646:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974778647:se)
+1572974778649:# erzeugt die Odds Ratios
+1572974778650:tab2 <- exp(tab1)
+1572974778650:```
+1572974806211:# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an (vgl. Statistik 5, Folien 17-23, achtung Beispiel dort ist mit Package nlme )
+1572974806212:library(lme4)
+1572974808279:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1572974809297:summary(mod0)
+1572974823601:se <- sqrt(diag(vcov(mod0)))
+1572974823609:# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall => falls 0 enthalten dann ist der Unterschied statistisch nicht signifikant
+1572974823610:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974823611:se)
+1572974830992:mod0 <- glmer(meat ~ gender + member
+1572974832949:)
+1572974843114:glmer(meat ~ gender + age + (1|card_num), data = df_, binomial("logit"))
+1572974893377:Unterschied statistisch nicht signifikant
+1572974893378:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974893379:se)
+1572974893381:# erzeugt die Odds Ratios
+1572974893381:tab2 <- exp(tab1)
+1572974905082:tab2
+1572974915676:rownames(tab1) <- c("Intercept", "Geschlecht (Mann)", "Hochschulzugehörigkeit (Mitarbeitende)", "Alter") # change rownames
+1572974915677:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572974956945:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572974976778:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572974982023:tab1
+1572974984205:tab2
+1572974990852:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974990853:se)
+1572974994229:# erzeugt die Odds Ratios
+1572974994230:tab2 <- exp(tab1)
+1572975008606:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572975012970:knitr::kable(tab2, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1573047222767:knitr::purl("13_Statistik1/solution_stat1.Rmd")

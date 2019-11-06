@@ -216,3 +216,5 @@ git status
 git add -A
 git commit -m "changes in assigments"
 git push
+git status
+git pull

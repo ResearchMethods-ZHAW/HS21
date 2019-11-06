@@ -1,5 +1,7 @@
 ##  Musterlösung Aufgabe 1.1: Assoziationstest
 
+>Download [R-Skript]("13_Statistik1/RFiles/solution_stat1.R")
+
 **kommentierte Musterlösungen**
 ```{r, message=T, purl = F, include=FALSE}
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
@@ -182,7 +184,7 @@ Ziel war es die wöchentlichen Verkaufszahlen zwischen den Interventions- und Ba
 In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowochen (siehe Abbildung 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`).
 
 
-```{r, purl=F, message=F, echo = F,  fig.cap="Abbildung1. Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant."}
+```{r, purl=F, message=T, echo = F,  fig.cap="Abbildung1. Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant."}
 # zeigt die Ergebnisse mit einer Abbildung
 ggplot(df, aes(x = condit, y= tot_sold)) + 
   stat_boxplot(geom ='errorbar', width = .25) + # erzeugt sogenannte Whiskers mit Strichen

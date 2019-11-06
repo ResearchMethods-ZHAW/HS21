@@ -1,5 +1,7 @@
 ## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
 
+>Download [R-Skript]("14_Statistik2/RFiles/solution_stat2.2.R")
+
 **kommentierter Lösungsweg**
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
