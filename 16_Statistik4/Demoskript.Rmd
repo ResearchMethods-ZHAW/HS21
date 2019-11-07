@@ -36,6 +36,14 @@ glm.poisson<-glm(Besucher~Temperatur,family=poisson)
 summary(glm.gaussian)
 summary(glm.poisson)
 
+#Rücktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion da family=possion als Link-Funktion den natürlichen Logarithmus (log) verwendet)
+#Besucher = exp(3.50 + 0.11 Temperatur/°C)
+exp(3.500301) #Anzahl besucher bei 0°C
+exp(3.500301 + 30*0.112817) #Anzahl besucher bei 30°C
+
+# Test für Overdispersion  
+library(AER)
+dispersiontest(glm.poisson)
 
 glm.quasi<-glm(Besucher~Temperatur,family=quasipoisson)
 summary(glm.quasi)
@@ -57,18 +65,11 @@ lines(xv,exp(yv2),lwd=3,col="red")
 
 yv3<-predict(glm.quasi,list(Temperatur=xv))
 lines(xv,exp(yv3),lwd=3,col="green")
-
 ```
 
 
 
 ```{r}
-
-# Test für Overdispersion  
-library(AER)
-dispersiontest(glm.poisson)
-
-
 ##Logistische Regression
 
 bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
