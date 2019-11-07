@@ -1,0 +1,65 @@
+abundtrans              Species Abundance Data Transformation
+abuocc                  Abundance/Occurrence Graphical Analysis
+as.dsvord               Convert existing and external ordinations to
+                        dsv format
+brycesite               Site Data for Bryce Canyon National Park
+bryceveg                Bryce Canyon Vegetation Data
+calibrate               Calculate fitted environmental attributes in an
+                        ordination
+compspec                Compositional Specificity Analysis
+concov                  Constancy-Coverage Table for Ecological
+                        Community Data
+const                   Constancy Table
+convex                  Convex Data Transformation
+defactorize             Change Factors in Data.frames to Character
+                        Vectors
+dematrify               Create Three Column Database Form Data Frame
+                        from Sparse Data Frames
+dga                     Direct Gradient Analysis
+disana                  Dissimilarity Analysis
+dropplt                 Dropping Plots with Missing Values From Taxon
+                        and Site Data Frames
+dropspc                 Dropping Species with Few Occurrences
+dsvdis                  Dissimilarity Indices and Distance Measures
+dsvls                   LabDSV Object ls() Command
+envrtest                Environmental Distribution Test
+euclidify               Nearest Euclidean Space Representation of a
+                        Dissimilarity Object
+factorize               Change Character Vectors in Data.frames to
+                        Factors
+gsr                     Global Search and Replace for Data.frames
+hellinger               Hellinger Data Transformation
+homoteneity             Homoteneity Analysis of Classified Ecological
+                        Communities
+importance              Importance Table
+indval                  Dufrene-Legendre Indicator Species Analysis
+isamic                  Indicator Species Analysis Minimizing
+                        Intermediate Occurrences
+matrify                 Create Taxon Data.frames From Three Column
+                        Database Form
+metrify                 Nearest Metric Space Representation of a
+                        Dissimilarity Object
+neighbors               Neighbors
+nmds                    Nonmetric Multidimensional Scaling
+ordcomm                 Re-Order the Rows and Columns of a Taxon Data
+                        Frame
+ordcomp                 Ordination to Dissimilarity Comparison
+orddist                 Ordination Point Pair-Wise Distance Calculation
+ordneighbors            Nearest Neighbors Plotted in Ordination Space
+ordpart                 Ordination Partitioning
+ordtest                 Ordination Distribution Test
+pca                     Principal Components Analysis
+pco                     Principal Coordinates Analysis
+plot.dsvord             Plotting Routines For LabDSV Ordinations
+plot.thull              Plotting a Tensioned Hull
+predict                 Predict species abundances in an ordination
+raretaxa                Identify Rare Taxa in a Data Set
+reconcile               Reconcile Community and Site Data.Frames
+rndcomm                 Randomize a Community Data.Frame
+rnddist                 Random Distance
+samptot                 Sample total standardization
+spcdisc                 Species Discrimination Analysis
+spcmax                  Species Maximum Standardization
+stepdist                Step-Across Distance
+tsne                    t-Distributed Stochastic Neighbor Embedding
+vegtab                  Vegetation Table

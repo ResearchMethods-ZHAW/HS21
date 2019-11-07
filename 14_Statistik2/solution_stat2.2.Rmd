@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "MSc. Research Methods - Statistikteil Lösungen 2019"
 author: "Gian-Andrea Egeler"
@@ -13,6 +14,13 @@ output:
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.02.R)
 
+=======
+## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
+
+>Download [R-Skript]("14_Statistik2/RFiles/solution_stat2.2.R")
+
+**kommentierter Lösungsweg**
+>>>>>>> d5c7d8243e2ddbe7e72be0571061310bad0c8296
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
@@ -52,10 +60,10 @@ df_ <- df %>%
 
 # überprüft die Voraussetzungen für eine ANOVA
 # Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
-# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (Statistik 4, Folie: XY)
+# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4, FOlie 17)
 df_  %>% 
   split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
-  purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden
+  purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden (ähnliche Funktion ist aggregate)
 
 
 # Boxplot
@@ -84,22 +92,29 @@ autoplot(model) + mytheme
 # Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)
 # Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0 (siehe Folien Statistik 2: Folie 42)
 # Daher ziehe ich eine Transformation der AV dem nicht-parametrischen Test vor
-model1 <- aov(log10(tot_sold) ~ label_content, data = df_)
+# für weitere Infos: https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/
+model1 <- aov(log10(tot_sold) ~ label_content, data = df_)# achtung hier log10, bei Rücktransformation achten
 
-autoplot(model) + mytheme # scheint ok zu sein
+autoplot(model1) + mytheme # scheint ok zu sein
+
+summary.lm(model1) # Referenzkategorie ist der Buffet-Inhalt
 
 TukeyHSD(model1) # (Statistik 2: Folien 9-11)
+
+# achtung Beta-Werte resp. Koeffinzienten sind nicht direkt interpretierbar
+# sie müssten zuerst wieder transformiert werden, hier ein Beispiel dafür:
+# für Buffet
+10^model1$coefficients[1]
+
+# für Fleisch
+10^(model1$coefficients[1] + model1$coefficients[2])
+
+# für Vegi
+10^(model1$coefficients[1] + model1$coefficients[3])
 ```
 
--------
 
-#### Methoden
 
-Ziel war es, die Unterschide in den Verkaufszahlen pro Menü-Inhalt aufzuzeigen. Da die Responsvariable (AV: Verkaufszahlen) metrisch und die Prädiktorvariable (UV: Menü-Inhalt) kategorial sind, wurde eine einfaktorielle ANOVA gerechnet. Die visuelle Inspektion der Voraussetzungen zeigte insbesondere schwere Verletzungen der Homoskedastizität (siehe Statistik 2: Folien 13-14). Der Boxplot bestätigt diesen Befund. Daher wurde in einem weiteren Schritt eine Transformation oder einen nicht-parametrischen Testden Welch-Test für ungleiche Varianzen gerechnet.  
-
-#### Ergebnisse
-
-Die Menü-Inhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den Verkaufszahlen signifikant (*F*(2,15) = `r round(summary(model1)[[1]][["F value"]][1],2)`, *p* < .001). Die Abbildung zeigt die Verkaufszahlen pro Menü-Inhalt.
 
 ```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark.", tidy=T}
 
@@ -116,9 +131,9 @@ ggplot(df_, aes(x = label_content, y= tot_sold)) +
    geom_boxplot(fill="white", color = "black", size = 1, width = .5) + 
    geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
    geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
-   geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "*", size = 8)+ # Fleisch - Vegetarisch
+   geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
    expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
-   labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + 
+   labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
    mytheme 
 
 # hier ein paar interessante Links zu anderen R-Packages, die es ermöglichen signifikante Ergebniss in den Plot zu integrieren
@@ -128,5 +143,5 @@ ggplot(df_, aes(x = label_content, y= tot_sold)) +
    
 ```
 
---------
-letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+<!-- -------- -->
+<!-- letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch -->

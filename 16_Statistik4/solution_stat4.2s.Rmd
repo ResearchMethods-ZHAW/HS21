@@ -1,16 +1,7 @@
----
-title: "Modul Research Methods HS19"
-output:
-  html_document:
-    df_print: paged
----
+## Musterlösung Aufgabe 4.2S: multiple logistische Regression
+> Meine Empfehlung Kapitel 6 von Manny Gimond https://mgimond.github.io/Stats-in-R/Logistic.html
 
-```{r setup, include=FALSE, purl=F}
-knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F)
-#knitr::opts_chunk$get("root.dir")
-```
-
-
+**kommentierter Lösungsweg**
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
@@ -32,9 +23,6 @@ mytheme <-
 
 ```
 
-
-### Musterlösung Aufgabe 4.2S: multiple logistische Regression
-> Meine Empfehlung Kapitel 6 von Manny Gimond https://mgimond.github.io/Stats-in-R/Logistic.html
 
 ```{r}
 
@@ -85,15 +73,6 @@ mf
 
 ```
 
-#### Methodenteil
-Die Kriteriumsvariable "Fleischkonsum" ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren "Alter", "Geschlecht" und "Hochschulzugehörigkeit" gerechnet. Die Modelldiagnostik und das pseudo-$R^2$ von 2% zeigen allerdings, dass das Modell nicht gut zu den empirischen Daten passt. Eine weitere Lösung könnten weitere statistische Methoden sein, welche besser zu den vorliegenden Daten passen (z.B. multinomiale logistische Regression, weitere Infos [hier](https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/))
 
-
-#### Ergebnisteil
-Mit der logistischen Regression kann der Fleischkonsum werder durch das Geschlecht, die Hochschulzugehörigkeit noch das Alter vorhergesagt werden. Die Tests für die Modelldiagnostik und das kleine pseudo-$R^2$ unterstützen diesen Befund. Auch die hohe Missklassifizierungsrate (`r round(mf*100,1)`%) deutet auf ein Modell hin, welches nicht zu den Daten passt. Es sollte nach einem weiteren adäquateren Modell gesucht werden. 
-Bei näherer Betrachtung der Daten erkennt man, dass einige Personen wiederholt im Datensatz auftauchen (siehe card_num). Bei einer weiteren Analyse müssten die einzelne Individuen ebenfalls berücksichtigt werden z.B. als festen Effekt (z.B. GLMM, für mehr Infos [hier](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html) oder [hier](ncbi.nlm.nih.gov/pmc/articles/PMC5970551/)) oder durch eine weitere Methode wie z.B. multinomiale logistische Regression.
-
-
-
-*******
-##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch
+<!-- ******* -->
+<!-- ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch -->

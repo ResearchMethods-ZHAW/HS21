@@ -1,0 +1,114 @@
+## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE-----------
+
+library(tidyverse)
+library(ggfortify) # zur Testung der Voraussetzungen
+
+## ladet die nötigen Packete und die novanimal.csv Datei in R
+nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 20, color = "black"), 
+    axis.title = element_text(size = 20, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
+
+
+
+
+## ------------------------------------------------------------------------
+
+df <- nova # klone den originaler Datensatz
+
+# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" 
+
+# gruppiert Daten nach Menü-Inhalt und Woche
+df_ <- df %>%
+    group_by(label_content, week) %>% 
+    summarise(tot_sold = n()) %>%
+    drop_na() # lasst die unbekannten Menü-Inhalte weg
+
+# überprüft die Voraussetzungen für eine ANOVA
+# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
+# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4, FOlie 17)
+df_  %>% 
+  split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+  purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden (ähnliche Funktion ist aggregate)
+
+
+# Boxplot
+ggplot(df_, aes(x = label_content, y= tot_sold)) + 
+  stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
+  geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+  labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + 
+  mytheme # achtung erster Hinweis einer Varianzheterogenität
+
+
+# definiert das Modell (Statistik 2: Folien 4-8)
+model <- aov(tot_sold ~ label_content, data = df_)
+
+summary.lm(model)
+
+# überprüft die Modelvoraussetzungen
+autoplot(model) + mytheme 
+
+
+
+## ------------------------------------------------------------------------
+
+# überprüft die Voraussetzungen des Welch-Tests:
+# Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)
+# Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0 (siehe Folien Statistik 2: Folie 42)
+# Daher ziehe ich eine Transformation der AV dem nicht-parametrischen Test vor
+# für weitere Infos: https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/
+model1 <- aov(log10(tot_sold) ~ label_content, data = df_)# achtung hier log10, bei Rücktransformation achten
+
+autoplot(model1) + mytheme # scheint ok zu sein
+
+summary.lm(model1) # Referenzkategorie ist der Buffet-Inhalt
+
+TukeyHSD(model1) # (Statistik 2: Folien 9-11)
+
+# achtung Beta-Werte resp. Koeffinzienten sind nicht direkt interpretierbar
+# sie müssten zuerst wieder transformiert werden, hier ein Beispiel dafür:
+# für Buffet
+10^model1$coefficients[1]
+
+# für Fleisch
+10^(model1$coefficients[1] + model1$coefficients[2])
+
+# für Vegi
+10^(model1$coefficients[1] + model1$coefficients[3])
+
+
+## ---- echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark.", tidy=T----
+
+# plottet die Ergebnisse
+
+# aufbereitung für die Infos der Signifikanzen => Alternative Lösungen findet ihr in der Musterlösung 2.3S
+df1 <- data.frame(a = c(1, 1:3,3), b = c(150, 151, 151, 151, 150)) 
+df2 <- data.frame(a = c(1, 1,2, 2), b = c(130, 131, 131, 130))
+df3 <- data.frame(a = c(2, 2, 3, 3), b = c(140, 141, 141, 140))
+
+
+ggplot(df_, aes(x = label_content, y= tot_sold)) +
+   stat_boxplot(geom = "errorbar", width = .25) +
+   geom_boxplot(fill="white", color = "black", size = 1, width = .5) + 
+   geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+   geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+   geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
+   expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+   labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+   mytheme 
+
+# hier ein paar interessante Links zu anderen R-Packages, die es ermöglichen signifikante Ergebniss in den Plot zu integrieren
+# https://www.r-bloggers.com/add-p-values-and-significance-levels-to-ggplots/
+# https://cran.r-project.org/web/packages/ggsignif/vignettes/intro.html
+  
+   
+

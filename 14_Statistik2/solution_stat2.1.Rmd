@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "MSc. Research Methods - Statistikteil Lösungen 2019"
 author: "Juergen Dengler"
@@ -9,6 +10,8 @@ output:
 ---
 
 
+=======
+>>>>>>> d5c7d8243e2ddbe7e72be0571061310bad0c8296
 ## Musterlösung Aufgabe 2.1: Regression
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R)
@@ -45,18 +48,12 @@ Vorgehen dokumentieren.
       (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
       ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
-      
 
-```{r, include=FALSE, purl=F}
-knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
-```
-
-**Loesung -- Skript**
-
-Uebung 2.1 - Regressionsanalyse
+**kommentierter Lösungsweg**
 
 ```{r}
-decay <-read.csv("14_Statistik2/data/decay.csv")
+decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
+
 decay
 
 # Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = data") ansprechen zu können

@@ -1,0 +1,15 @@
+### R data sets
+
+* chickwts
+* iris
+* mtcars
+* Titanic (achtung hat das table Datenformat)
+* starwars (dplyr package)
+
+### Research Methods data sets
+
+* NOVANIMAL
+* Ukraine (Demoskript 3)
+* Ipomopsis (Demoskript 3)
+
+*******

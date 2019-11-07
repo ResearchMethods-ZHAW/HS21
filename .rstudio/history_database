@@ -11254,3 +11254,479 @@
 1572434167475:($\chi^2$(`r chi_sq$parameter`)
 1572434172526:chi_sq$parameter
 1572434178879:chi_sq$statistic[[1]]
+1572536565539:library(tidyverse)
+1572536566486:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572536579455:nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
+1572536579459:nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "Vegetarisch" # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch"
+1572536582662:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572536582663:observed<-table(nova2$gender, nova2$label_content)
+1572536586861:observed
+1572536966777:150+414
+1572536979115:166+221
+1572536992939:colSums(observed)
+1572537002865:rowSums(observed)
+1572537018777:sum(observed)
+1572537132746:#Chi-squared Test
+1572537132747:chi_sq <- chisq.test(observed)
+1572537141915:chi_sq$observed
+1572537147921:chi_sq$expected
+1572538090049:chi_sq
+1572538191919:qchisq(.95, 1)
+1572538346975:#Fisher's Test
+1572538346977:fisher.test(observed)
+1572538550219:150 * 221 / 166 * 414
+1572538562240:(150 * 221) / (166 * 414)
+1572597797515:#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
+1572597797518:observed<-table(nova2$gender, nova2$label_content)
+1572597802335:observed
+1572597814784:chi_sq$expected
+1572597905629:chi_sq$parameter
+1572597911544:chi_sq$method
+1572597922303:chi_sq$residuals
+1572597932065:chi_sq$stdres
+1572597955504:observed - chi_sq$expected
+1572597972127:(observed - chi_sq$expected)^2
+1572598009503:(38-22.35)^2
+1572598024239:(observed - chi_sq$expected)^2/chi_sq$expected
+1572598124229:sum((observed - chi_sq$expected)^2/chi_sq$expected)
+1572600587604:fisher.test(observed)
+1572614023527:df <- nova %>%
+1572614023528:group_by(week, condit) %>%
+1572614023529:summarise(tot_sold = n())
+1572614026665:df
+1572615081986:table(df)
+1572615109887:df$condit[df$condit == "Basiswoche"]$tot
+1572615128203:df$condit[df$condit == "Basiswoche",]$tpt_sold
+1572615134080:df[df$condit == "Basiswoche",]$tpt_sold
+1572615140806:df[df$condit == "Basiswoche",]$tot_sold
+1572615159022:df[df$condit == "Interventionswochee",]$tot_sold
+1572615162157:df[df$condit == "Interventionswoche",]$tot_sold
+1572615167158:df[df$condit == "Interventionswoche",]
+1572615193300:df[df$condit == "Intervention",]$tot_sold-df[df$condit == "Basis", ]$tot_sold
+1572615204448:(df[df$condit == "Intervention",]$tot_sold-df[df$condit == "Basis", ]$tot_sold)^2
+1572615238656:sum((df[df$condit == "Intervention",]$tot_sold-df[df$condit == "Basis", ]$tot_sold)^2)
+1572615254099:t_test <- t.test(tot_sold~condit, data=df)
+1572615256622:t.test(df[df$condit == "Basis", ]$tot_sold,
+1572615256623:df[df$condit == "Intervention", ]$tot_sold) #alternative Formulierung
+1572615270833:t_test
+1572615299382:t_test <- t.test(tot_sold~condit, data=df, equal = T)
+1572615301471:t_test
+1572615314918:t_test <- t.test(tot_sold~condit, data=df, var.equal = T)
+1572615316608:t_test
+1572615630490:mean(df[df$condit == "Basis", ]$tot_sold)
+1572615718282:mean(df[df$condit == "Intervention", ]$tot_sold)
+1572616046567:sd(df[df$condit == "Intervention", ]$tot_sold)
+1572616181203:df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold)
+1572616196352:(df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold))^2
+1572616216287:sum((df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold))^2)/2
+1572616299682:sqrt(sum((df[df$condit == "Intervention", ]$tot_sold - mean(df[df$condit == "Intervention", ]$tot_sold))^2)/2)
+1572616433354:sd(df[df$condit == "Basis", ]$tot_sold)
+1572616729413:mean(df[df$condit == "Basis", ]$tot_sold) - mean(df[df$condit == "Intervention", ]$tot_sold)
+1572616783453:sum(sd(df[df$condit == "Basis", ]$tot_sold) + sd(df[df$condit == "Intervention", ]$tot_sold))/2
+1572853166555:library(tidyverse)
+1572853167639:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572853168644:mytheme <-
+1572853168644:theme_classic() +
+1572853168645:theme(
+1572853168646:axis.line = element_line(color = "black"),
+1572853168647:axis.text = element_text(size = 20, color = "black"),
+1572853168648:axis.title = element_text(size = 20, color = "black"),
+1572853168649:axis.ticks = element_line(size = 1, color = "black"),
+1572853168649:axis.ticks.length = unit(.5, "cm")
+1572853168650:)
+1572853185773:df <- nova %>%
+1572853185774:group_by(week, condit) %>%
+1572853185775:summarise(tot_sold = n())
+1572853186713:# überprüft die Voraussetzungen für einen t-Test
+1572853186714:ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
+1572853186715:geom_boxplot(fill = "white", color = "black", size = 1) +
+1572853186716:labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") +
+1572853186716:mytheme
+1572853222264:t_test <- t.test(tot_sold~condit, data=df)
+1572853225788:t.test
+1572853231208:t_test
+1572853361600:boxplot(df$tot_sold~ df$condit)
+1572853368143:boxplot(df$tot_sold~ df$condit)
+1572853388717:?boxplot
+1572854283833:chisq.test(df$tot_sold ~ df$condit)
+1572854292411:chisq.test(df$tot_sold, df$condit)
+1572854328539:chisq.test(df$tot_sold, df$week)
+1572854540464:df[df$condit == "Basis", ]$tot_sold
+1572854548000:summ(df[df$condit == "Basis", ]$tot_sold)
+1572854553001:sum(df[df$condit == "Basis", ]$tot_sold)
+1572854576917:sum(df[df$condit == "Intervention", ]$tot_sold)
+1572854738629:9.3/7.3
+1572854747377:t_test
+1572854779130:t_test <- t.test(tot_sold~condit, data=df, var.equal = T)
+1572854782603:t_test
+1572855134776:(7.3 * (1/3 + 1/3))^-1
+1572855139178:(7.3 * (1/3 + 1/3))^-2
+1572855189436:sqrt(7.3 * (1/3 + 1/3))
+1572855229319:sqrt(7.3 * 2/3)
+1572855238216:9.3/sqrt(7.3 * 2/3)
+1572858127790:rmarkdown::render("17_Statistik5_2/ablauf_inhalt_190823_egel.Rmd")
+1572858180640:rmarkdown::render("17_Statistik5_2/assigment_5_2.1.Rmd")
+1572858247161:# Load packages and data
+1572858247162:data_911 <- read_delim("911.csv", delim = ",")
+1572858254560:getwd()
+1572858280273:# Load packages and data
+1572858280274:data_911 <- read_delim("17_Statistik5_2/911.csv", delim = ",")
+1572860467149:compensation
+1572860470152:data()
+1572904288431:library(dave)
+1572904631859:install.packages("dave")
+1572904705360:install.packages("vegan")
+1572937527283:df <- nova # klone den originaler Datensatz
+1572937535849:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+1572937535850:df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+1572937537102:# gruppiert Daten nach Menü-Inhalt und Woche
+1572937537103:df_ <- df %>%
+1572937537104:group_by(label_content, week) %>%
+1572937537104:summarise(tot_sold = n()) %>%
+1572937537105:drop_na() # lasst die unbekannten Menü-Inhalte weg
+1572937542219:# überprüft die Voraussetzungen für eine ANOVA
+1572937542220:# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
+1572937542221:# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4)
+1572937542222:df_  %>%
+1572937542223:split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+1572937542224:purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden
+1572937568331:## ladet die nötigen Packete und die novanimal.csv Datei in R
+1572937568332:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572937571369:## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+1572937571370:mytheme <-
+1572937571371:theme_classic() +
+1572937571372:theme(
+1572937571373:axis.line = element_line(color = "black"),
+1572937571373:axis.text = element_text(size = 20, color = "black"),
+1572937571374:axis.title = element_text(size = 20, color = "black"),
+1572937571375:axis.ticks = element_line(size = 1, color = "black"),
+1572937571376:axis.ticks.length = unit(.5, "cm")
+1572937571377:)
+1572937576899:df <- nova # klone den originaler Datensatz
+1572937578463:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+1572937578464:df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch"
+1572937580173:# gruppiert Daten nach Menü-Inhalt und Woche
+1572937580174:df_ <- df %>%
+1572937580175:group_by(label_content, week) %>%
+1572937580176:summarise(tot_sold = n()) %>%
+1572937580177:drop_na() # lasst die unbekannten Menü-Inhalte weg
+1572937583310:# überprüft die Voraussetzungen für eine ANOVA
+1572937583311:# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
+1572937583312:# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4)
+1572937583313:df_  %>%
+1572937583314:split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+1572937583315:purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden
+1572937630208:# Boxplot
+1572937630209:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572937630210:stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
+1572937630211:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572937630212:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572937630213:mytheme # achtung erster Hinweis einer Varianzheterogenität
+1572937648966:# definiert das Modell (Statistik 2: Folien 4-8)
+1572937648967:model <- aov(tot_sold ~ label_content, data = df_)
+1572937650532:summary.lm(model)
+1572937653248:# überprüft die Modelvoraussetzungen
+1572937653249:autoplot(model) + mytheme
+1572937659516:# überprüft die Modelvoraussetzungen
+1572937659517:ggfortify::autoplot(model) + mytheme
+1572937672383:library(ggfortify)
+1572937677689:# überprüft die Modelvoraussetzungen
+1572937677690:autoplot(model) + mytheme
+1572937707561:# überprüft die Voraussetzungen des Welch-Tests:
+1572937707562:# Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)
+1572937707563:# Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0 (siehe Folien Statistik 2: Folie 42)
+1572937707564:# Daher ziehe ich eine Transformation der AV dem nicht-parametrischen Test vor
+1572937707565:model1 <- aov(log10(tot_sold) ~ label_content, data = df_)
+1572937710172:autoplot(model) + mytheme # scheint ok zu sein
+1572937724804:autoplot(model1) + mytheme # scheint ok zu sein
+1572937788405:summary.lm(model1)
+1572937843240:TukeyHSD(model1) # (Statistik 2: Folien 9-11)
+1572938292398:boxplot(df_$tot_sold)
+1572938297695:boxplot(df_$tot_sold)
+1572939353754:df1 <- data.frame(a = c(1, 1:3,3), b = c(150, 151, 151, 151, 150))
+1572939353756:df2 <- data.frame(a = c(1, 1,2, 2), b = c(130, 131, 131, 130))
+1572939353757:df3 <- data.frame(a = c(2, 2, 3, 3), b = c(140, 141, 141, 140))
+1572939353759:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572939353760:stat_boxplot(geom = "errorbar", width = .25) +
+1572939353761:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572939353762:geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+1572939353763:geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+1572939353764:geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "*", size = 8)+ # Fleisch - Vegetarisch
+1572939353765:expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+1572939353766:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572939353766:mytheme
+1572941029049:model1
+1572941032631:summary.lm(model1)
+1572941190261:rmarkdown::render("14_Statistik2/solution_stat2.2.Rmd", output_dir = "14_Statistik2/RFiles/" = "")
+1572941207735:rmarkdown::render("14_Statistik2/solution_stat2.2.Rmd", output_dir = "14_Statistik2/RFiles/solution_stat_2.2" = "")
+1572941258772:knitr::purl
+1572941278995:knitr::purl("14_Statistik2/solution_stat2.2.Rmd")
+1572941527795:df1 <- data.frame(a = c(1, 1:3,3), b = c(150, 151, 151, 151, 150))
+1572941527797:df2 <- data.frame(a = c(1, 1,2, 2), b = c(130, 131, 131, 130))
+1572941527798:df3 <- data.frame(a = c(2, 2, 3, 3), b = c(140, 141, 141, 140))
+1572941527801:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572941527802:stat_boxplot(geom = "errorbar", width = .25) +
+1572941527803:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572941527806:geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+1572941527808:geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+1572941527809:geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
+1572941527810:expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+1572941527811:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572941527812:mytheme
+1572941595042:ggsave("14_Statistik2/plot_solution_2.2.pdf", device = cairo_pdf)
+1572941624956:ggsave("14_Statistik2/plot_solution_2.2.pdf", height = 20, width = 15, device = cairo_pdf)
+1572941641417:ggsave("14_Statistik2/plot_solution_2.2.pdf", height = 15, width = 15, device = cairo_pdf)
+1572941717481:df_  %>%
+1572941717482:split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+1572941717483:purrr::map(~ psych::describe(.$tot_sold))
+1572941774841:summary.lm(model)
+1572941786065:summary.lm(model1)
+1572941802368:exp(model1$coefficients)
+1572942793036:exp(coef(model1))# Mittelwerte müssen wieder transformiert werden
+1572943066500:(exp(coef(model1)) - 1) * 100
+1572943134859:94-25
+1572943395140:(exp(coef(model1)) - 1) * 100 # um die Prozentwerte zwischen den Kategorien zu bekommen (siehe Statistik )
+1572943436182:(exp(coef(model1["Fleisch"])) - 1) * 100 # um die Prozentwerte zwischen den Kategorien zu bekommen (siehe Statistik )
+1572943441588:model1["Fleisch"]
+1572943447070:model1
+1572943455987:coef(model1[])
+1572943467939:coef(model1["label_contentFleisch"])
+1572943491446:coef(model1["label_contentFleisch"])
+1572943495110:coef(model1["label_contentFleisch",])
+1572943503318:coef(model1["label_contentFleisch"][])
+1572943510224:coef(model1[["label_contentFleisch"]])
+1572943704250:summary.lm(model1) # Referenzkategorie ist der Buffet-Inhalt
+1572943720378:summary.lm(model) # Referenzkategorie ist der Buffet-Inhalt
+1572943729049:summary.lm(model1) # Referenzkategorie ist der Buffet-Inhalt
+1572943754709:10^1.4
+1572943770611:exp(coef(model1))
+1572944298580:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572944298581:stat_boxplot(geom = "errorbar", width = .25) +
+1572944298582:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572944298583:geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+1572944298584:geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+1572944298585:geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
+1572944298585:expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+1572944298586:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572944298587:mytheme
+1572944338729:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572944338730:stat_boxplot(geom = "errorbar", width = .25) +
+1572944338731:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572944338731:geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+1572944338732:geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+1572944338733:geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
+1572944338734:expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+1572944338735:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572944338736:annotate("text", x = 1, y = 100, "text")
+1572944354245:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572944354246:stat_boxplot(geom = "errorbar", width = .25) +
+1572944354247:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572944354248:geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+1572944354249:geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+1572944354250:geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
+1572944354251:expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+1572944354252:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572944354253:annotate("text", x = 1, y = 100, "text")
+1572944377181:ggplot(df_, aes(x = label_content, y= tot_sold)) +
+1572944377182:stat_boxplot(geom = "errorbar", width = .25) +
+1572944377183:geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+1572944377184:geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 152, label = "***", size = 8) + # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+1572944377184:geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 132, label = "***", size = 8) + # Buffet - Fleisch
+1572944377185:geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 142, label = "**", size = 8)+ # Fleisch - Vegetarisch
+1572944377186:expand_limits(y = 0) + # nimmt das 0 bei der y-Achse mit ein
+1572944377187:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572944377188:annotate("text", x = 1, y = 100, label = "text") +
+1572944377188:mytheme
+1572945404806:exp(1.4)
+1572945431079:log(10)
+1572945433779:log10(10)
+1572945441840:exp10(1)
+1572945444268:exp(1)
+1572945455599:exp(2.302585)
+1572945706834:# achtung Beta-Werte resp. Koeffinzienten sind nicht direkt interpretierbar
+1572945706835:# sie müssten zuerst wieder transformiert werden
+1572945706836:10^coef(model1)
+1572945714590:coef(model1)
+1572945726148:10^1.4
+1572945745498:coef(model1[1])
+1572945751548:coef(model1[[1]])
+1572945756380:coef(model1[[2]])
+1572945761449:coef(model1[]2)
+1572945763626:coef(model1[2])
+1572945765980:coef(model1[3])
+1572945770707:coef(model1[1][3])
+1572945772853:coef(model1[1][1])
+1572945783252:coef(model1[1][[1]])
+1572945787945:coef(model1[1][1])
+1572945791432:coef(model1[1][1][1])
+1572945794403:coef(model1[1][1])
+1572945807569:coef(model1["Intercept"])
+1572945819876:model1$coefficients
+1572945822315:model1$coefficients[1]
+1572945834327:# achtung Beta-Werte resp. Koeffinzienten sind nicht direkt interpretierbar
+1572945834329:# sie müssten zuerst wieder transformiert werden
+1572945834329:# für Buffet
+1572945834330:10^model1$coefficients[1]
+1572945854606:# für Fleisch
+1572945854607:10^model1$coefficients[1] + model1$coefficients[2]
+1572945858533:model1$coefficients[1] + model1$coefficients[2]
+1572945866484:10^1.9
+1572945874469:# für Fleisch
+1572945874471:10^(model1$coefficients[1] + model1$coefficients[2])
+1572945937503:kormoran <-read.delim("14_Statistik2/data/kormoran.csv",sep = ";")
+1572945946237:aov.1 <- aov(Tauchzeit~Unterart*Jahreszeit)
+1572945946240:aov.1
+1572945946241:summary(aov.1)
+1572945953326:# Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = kormoran") ansprechen zu koennen
+1572945953327:attach(kormoran)
+1572945957372:aov.1 <- aov(Tauchzeit~Unterart*Jahreszeit)
+1572945957376:aov.1
+1572945957378:summary(aov.1)
+1572945968778:summary(lm(Tauchzeit~Jahreszeit))
+1572945988936:aggregate(Tauchzeit ~ Jahreszeit, FUN = mean)
+1572946023112:model1$coefficients[3]
+1572946025957:# für Vegi
+1572946025958:10^(model1$coefficients[1] + model1$coefficients[3])
+1572946099216:knitr::knit("14_Statistik2/solution_stat2.2.Rmd")
+1572946120247:knitr::purl("14_Statistik2/solution_stat2.2.Rmd")
+1572946371959:## ladet die nötigen Packete und die novanimal.csv Datei in R
+1572946371961:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572946376897:df <- nova
+1572946376898:# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
+1572946376899:df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # ersetzt beide Pflanzlich und Pflanzlich+
+1572946376901:# gruppiert Daten gemäss Bedingungen, Menü-Inhalt und Wochen
+1572946376902:df_ <- df %>%
+1572946376903:group_by(condit, label_content, week) %>%
+1572946376904:summarise(tot_sold = n()) %>%
+1572946376904:drop_na() # lasst die unbekannten Menü-Inhalte weg
+1572946419675:model4 <- kruskal.test(df_$tot_sold ~ df_$condit * df_$label_content)
+1572946432770:# definiert das Modell mit Interaktion
+1572946432772:model2 <- aov(tot_sold ~ label_content * condit, data = df_)
+1572946433414:autoplot(model2) + mytheme  # Inspektion der Modellvoraussetzungen sehen nicht schlecht aus => einzig Normalverteilung Q-Q Plot nicht optimal (vgl. Statistik 2: Folie 42)
+1572946459334:# Alternativ gibt es zwei Möglichkeiten: 1) Transformation der Daten, 2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
+1572946459335:model3 <- aov(log10(tot_sold) ~ label_content * condit, data = df_)
+1572946459701:autoplot(model3) + mytheme # Ich entscheide mich aufgrund keiner Verbesserung durch Transformation für den nicht-parametrischen Test
+1572946608591:# Kruskal Wallis Test
+1572946608592:# für mehr Infos: https://rcompanion.org/handbook/F_08.html
+1572946608593:inter_action <- interaction(df_$condit * df_$label_content)
+1572946617648:# Kruskal Wallis Test
+1572946617649:# für mehr Infos: https://rcompanion.org/handbook/F_08.html
+1572946617650:inter_action <- interaction(df_$condit, df_$label_content)
+1572946634354:model4 <- kruskal.test(df_$tot_sold ~ inter_action)
+1572946635805:summary.lm(model4) # es gibt signifikante Unterschiede in den Interaktionen
+1572946639835:summary(model4) # es gibt signifikante Unterschiede in den Interaktionen
+1572946645717:model4
+1572946721649:library(FSA)
+1572946721650:dunnTest(df_$tot_sold, df_$condit, method="bh") # Korrektur für
+1572946726686:install.packages("FSA")
+1572947136459:library(FSA)
+1572947136460:dunnTest(df_$tot_sold, df_$condit, method="bh") # Korrektur für
+1572947513069:install.packages("FSA")
+1572947528534:install.packages("FSA", dependencies = T)
+1572947936584:TukeyHSD(model2)
+1572948002705:install.packages("DescTool")
+1572948007491:install.packages("DescTools")
+1572948146593:library(DescTools)
+1572948148693:PostHocTest(av0, method = "newmankeuls")
+1572948153140:PostHocTest(model2, method = "newmankeuls")
+1572948174806:PostHocTest(model2, method = "scheffe")
+1572948183831:PostHocTest(model2, method = "bonferroni")
+1572948239513:PostHocTest(model2, method = "scheffe")
+1572948336814:library(multcomp)
+1572948336901:df_$cond_label <- interaction(df_$condit, df_$label_content) # bei Interaktionen gibt es diesen Trick, um bei den multiplen Vergleiche, die richtigen Buchstaben zu bekommen
+1572948336902:model1 <- aov(tot_sold ~ cond_label, data = df_)
+1572948336904:letters <-cld(glht(model1, linfct=mcp(cond_label="Tukey")))
+1572948337824:ggplot(df_, aes(x = cond_label, y= tot_sold)) +
+1572948337825:geom_boxplot(fill="white", color = "black", size = 1) +
+1572948337825:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572948337826:scale_y_continuous(breaks = seq(0, 130,25), limits = c(0, 130)) +
+1572948337827:annotate("text", x = 1:6, y = 130, label = letters$mcletters$Letters, size = 8) +
+1572948337828:mytheme
+1572948369554:ggplot(df_, aes(x = cond_label, y= tot_sold)) +
+1572948369555:stat_boxplot(geom = "errorbar", width = .25) +
+1572948369556:geom_boxplot(fill="white", color = "black", size = 1) +
+1572948369557:labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
+1572948369558:scale_y_continuous(breaks = seq(0, 130,25), limits = c(0, 130)) +
+1572948369559:annotate("text", x = 1:6, y = 130, label = letters$mcletters$Letters, size = 8) +
+1572948369560:mytheme
+1572948461419:ggsave("plot1_solution2.3s.pdf",
+1572948461420:height = 12,
+1572948461421:width = 20,
+1572948461422:device = cairo_pdf)
+1572948590617:m_sell <- na.omit(df_) %>% group_by(condit,label_content) %>% summarise(val = mean(tot_sold)) # berechne die durchschnittlichen Verkaufszahlen pro Bedingung
+1572948590621:ggplot(df_, aes(x = condit, y = tot_sold, linetype = label_content, shape = label_content)) +
+1572948590622:geom_point(data = m_sell, aes(y = val), size = 4) +
+1572948590623:geom_line(data = m_sell, aes(y = val, group = label_content), size = 2) +
+1572948590623:labs(y = "Durchschnittlich verkaufte Gerichte pro Woche", x = "Bedingungen") +
+1572948590624:guides(linetype = F, shape = guide_legend(title = "Menü-Inhalt"))+
+1572948590625:scale_y_continuous(breaks = seq(0,120,20), limits = c(0,120))+
+1572948590626:mytheme
+1572948628996:ggsave("plot2_solution2.3s.pdf",
+1572948628997:height = 14,
+1572948628998:width = 14,
+1572948628999:device = cairo_pdf)
+1572948669017:ggsave("plot2_solution2.3s.pdf",
+1572948669018:height = 8,
+1572948669019:width = 9,
+1572948669020:device = cairo_pdf)
+1572972790328:knitr::purl("17_Statistik5/solution_stat5.2s.Rmd")
+1572972795348:knitr::purl("17_Statistik5/solution_stat5.2.Rmd")
+1572974771737:nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+1572974778585:df <- nova # kopiert originaler Datensatz
+1572974778586:df$meat <- ifelse(nova$label_content == "Fleisch", 1, 0)
+1572974778587:df_ <- df[df$label_content != "Buffet", ] # entfernt Personen die sich ein Buffet Teller gekauft haben und speichert es in eine neuen Datensatz
+1572974778589:# Löscht alle Missings bei der Variable "Fleisch"
+1572974778590:df_ <- df_[!is.na(df_$meat), ]
+1572974778592:# setzt andere Reihenfolge für die Hochschulzugehörigkeit
+1572974778593:df_$member <- factor(df_$member, levels = c("Studierende", "Mitarbeitende"))
+1572974778595:#  sieht euch die Verteilung zwischen Fleisch und  kein Fleisch an
+1572974778596:# table(df_$meat)
+1572974778597:# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an (vgl. Statistik 5, Folien 17-23, achtung Beispiel dort ist mit Package nlme )
+1572974778598:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1572974778599:summary(mod0)
+1572974778605:# Pseudo R^2
+1572974778606:library(MuMIn)
+1572974778629:r.squaredGLMM(mod0)
+1572974778637:# das marginale R^2 gibt uns die erklärte Varianz der fixen Effekte: hier 5%
+1572974778638:# das conditionale R^2 gibt uns die erklärte Varianz für das ganze Modell (mit fixen und variablen Effekten): hier 26%
+1572974778639:# für weitere Informationen: https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html
+1572974778641:# zusätzliche Informationen, welche für die Interpretation gut sein kann
+1572974778642:# berechnet den Standardfehler (mehr infos: https://www.youtube.com/watch?v=r-txC-dpI-E oder hier: https://mgimond.github.io/Stats-in-R/CI.html)
+1572974778643:# weitere info: https://stats.stackexchange.com/questions/26650/how-do-i-reference-a-regression-models-coefficients-standard-errors
+1572974778643:se <- sqrt(diag(vcov(mod0)))
+1572974778646:# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall => falls 0 enthalten dann ist der Unterschied statistisch nicht signifikant
+1572974778646:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974778647:se)
+1572974778649:# erzeugt die Odds Ratios
+1572974778650:tab2 <- exp(tab1)
+1572974778650:```
+1572974806211:# definiert das logistische Modell mit card_num als random intercept und wendet es auf den Datensatz an (vgl. Statistik 5, Folien 17-23, achtung Beispiel dort ist mit Package nlme )
+1572974806212:library(lme4)
+1572974808279:mod0 <- glmer(meat ~ gender + member + age + (1|card_num), data = df_, binomial("logit"))
+1572974809297:summary(mod0)
+1572974823601:se <- sqrt(diag(vcov(mod0)))
+1572974823609:# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall => falls 0 enthalten dann ist der Unterschied statistisch nicht signifikant
+1572974823610:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974823611:se)
+1572974830992:mod0 <- glmer(meat ~ gender + member
+1572974832949:)
+1572974843114:glmer(meat ~ gender + age + (1|card_num), data = df_, binomial("logit"))
+1572974893377:Unterschied statistisch nicht signifikant
+1572974893378:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974893379:se)
+1572974893381:# erzeugt die Odds Ratios
+1572974893381:tab2 <- exp(tab1)
+1572974905082:tab2
+1572974915676:rownames(tab1) <- c("Intercept", "Geschlecht (Mann)", "Hochschulzugehörigkeit (Mitarbeitende)", "Alter") # change rownames
+1572974915677:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572974956945:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572974976778:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572974982023:tab1
+1572974984205:tab2
+1572974990852:tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) + 1.96 *
+1572974990853:se)
+1572974994229:# erzeugt die Odds Ratios
+1572974994230:tab2 <- exp(tab1)
+1572975008606:knitr::kable(tab1, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1572975012970:knitr::kable(tab2, caption = "Tabelle 1: Modellschätzer und das dazugehörige 95% Konfidenzintervall", digits = 2)
+1573047222767:knitr::purl("13_Statistik1/solution_stat1.Rmd")

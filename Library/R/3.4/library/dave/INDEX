@@ -1,0 +1,77 @@
+EKs                     Swiss forest vegetation data base 1972, site
+                        information
+EKv                     Swiss forest vegetation data base 1972,
+                        vegetation information
+Mtabs                   Structuring vegetation data tables
+SNPsm                   The spatial and temporal model of succession in
+                        the Swiss National Park
+SNPtm                   The temporal model of succession in the Swiss
+                        National Park
+aocc                    Analysis of concentration (AOC)
+ccost                   Cost function of 2 alternative classifications
+                        of rows in vegetation data
+centroid                Centroids of row groups (vegetation releves)
+dave                    Data Analysis in Vegetation Ecology
+davesil                 Modified version of silhouette plotting
+dircor                  Directional mantel correlation
+fitmarkov               Approximating a Markov chain
+fspa                    Flexible shortest path adjustment
+ltim                    Lippe et al. 1985 data set, yr of observation
+lveg                    Lippe et al. 1985 data set, vegetation data
+mveg                    Ellenberg's 1956 meadow data
+mxplot                  Matrixplot of groups similarities
+nsit                    European beach forest data, site factors
+nveg                    European beach forest data, vegetation
+orank                   Ranking by orthogonal components (RANK)
+outlier                 Outlier detection
+overly                  Overly of multivariate time series
+pcaser                  Connecting time series in ordinations
+pcobiplot               Computing and plotting a biplot ordination
+                        using principal coordinates analysis
+pcovar                  Plotting 6 variants of principal coordinates
+                        analysis
+psit                    Time scale (yr) for Soppensee pollen data
+pveg                    Soppensee pollen data
+sn59sit                 Time series from the Swiss National Park, 59
+                        plots. Site data.
+sn59veg                 Time series from the Swiss National Park, 59
+                        plots. Vegetation data.
+sn6sit                  Time series from the Swiss National Park, 6
+                        plots. Site data.
+sn6veg                  Time series from the Swiss National Park, 6
+                        plots. Vegetation data.
+sn7sit                  Time series from the Swiss National Park, 7
+                        plots. Site data.
+sn7veg                  Time series from the Swiss National Park, 6
+                        plots. Vegetation data.
+speedprof               Plotting velocity profiles of multivariate time
+                        series
+srank                   Ranking species by IndVal or F-value
+ssind                   Indicator values of all species in data set
+                        "sveg"
+ssit                    Schlaenggli site data
+sspft                   Selected plant functional traits of all species
+                        in data set "sveg"
+sveg                    Schlaenggli vegetation data
+tsit                    Time series from the Swiss National Park, Plot
+                        Tr6. Site data.
+tveg                    Time series from the Swiss National Park, Plot
+                        Tr6. Vegetation data.
+vrsit                   Vraconnaz time series data, site factors and
+                        dates
+vrveg                   Vraconnaz time series data, vegetation
+vvelocity               Printing ordinations of velocity and
+                        acceleration and differently transformed speed
+                        profiles
+wetsit                  Random sample of Swiss wetland vegetation, site
+                        information.
+wetveg                  Random sample of Swiss wetland vegetation,
+                        vegetation information.
+ws200                   Four kilometre grid forest data of Switzerland,
+                        200m2 plots
+ws30                    Four kilometre grid forest data of Switzerland,
+                        30m2 plots
+ws500                   Four kilometre grid forest data of Switzerland,
+                        500m2 plots
+wssit                   Four kilometre grid forest data of Switzerland,
+                        site information

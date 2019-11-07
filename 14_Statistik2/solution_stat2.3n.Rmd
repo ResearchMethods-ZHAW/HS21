@@ -1,9 +1,3 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
-
 ## Musterlösung Aufgabe 2.3N: Mehrfaktorielle ANOVA
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
@@ -43,14 +37,7 @@ Vorgehen dokumentieren.
   ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
 
 
-```{r, include=FALSE, purl=F}
-
-knitr::opts_chunk$set(echo = TRUE, include = T, results = "show",collapse=TRUE)
-```
-
-**Loesung -- Skript**
-
-**Uebung 2.3N - Mehrfaktorielle ANOVA**
+**kommentierter Lösungsweg**
 
 ```{r}
 
@@ -129,7 +116,7 @@ par(mfrow=c(1,1)) #Zurückschalten auf Einzelplots
 if(!require(multcomp)){install.packages("multcomp")} 
 library(multcomp)
 
-#letters<-cld(glht(model2,linfct=mcp(Unterart="Tukey")))
+#letters<-cld(glht(aov.2,linfct=mcp(Unterart="Tukey")))
 boxplot(Tauchzeit~Unterart,xlab="Unterart",ylab="Tauchzeit")
 #mtext(letters$mcletters$Letters,at=1:2)
 #genaugenommen braucht man bei nur zwei Kategorien keinen post hoc-Test
@@ -141,11 +128,9 @@ mtext(letters$mcletters$Letters,at=c(1:4))
 #Jetzt brauchen wir noch die Mittelwerte bzw. Effektgroessen
 
 #Für den Ergebnistext brauchen wir auch noch Angaben zu den Effektgrössen. Hier sind zwei Möglichkeiten, um an sie zu gelangen.
+aggregate(Tauchzeit~Jahreszeit, FUN=mean)
+aggregate(Tauchzeit~Unterart, FUN=mean)
 
 summary(lm(Tauchzeit~Jahreszeit))
 summary(lm(Tauchzeit~Unterart))
-
-aggregate(kormoran[,1],list(Unterart),mean)
-aggregate(kormoran[,1],list(Jahreszeit),mean)
-
 ```
