@@ -9,9 +9,9 @@ Der Ablauf der nächsten vier Sitzungen wird wie folgt aussehen:
 
 <!-- not sure that will work, to embed a pdf in markdown -->
 <!-- found it here: https://stackoverflow.com/questions/39777166/display-pdf-image-in-markdown/39793125 -->
-<object data="17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="http://yoursite.com/the.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
+<object data="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19/blob/master/17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19/blob/master/17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19/blob/master/17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf">Download PDF</a>.</p>
     </embed>
 </object>
 
