@@ -1,7 +1,7 @@
 ## Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
-**Meine Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
+>**Lese-Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
 
->Download [R-Skript]("14_Statistik2/RFiles/solution_stat2.3s.R")
+>Download [R-Skript](14_Statistik2/RFiles/solution_stat2.3s.R)
 
 **kommentierter Lösungsweg**
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
@@ -68,12 +68,6 @@ model4 <- kruskal.test(df_$tot_sold ~ inter_action)
 
 # in einem nächsten Schritt könnt ihr mit Post-hoc Tests diese Unterschiede genauer betrachten
 # es gibt die Möglichkeit mit dunnTest (mit Package FSA)
-#2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
-df_$inter_action <- interaction(df_$condit, df_$label_content) # zuerst Interaktionsterm definineren, da kruskal.test nicht mit Interaktionen umgehen kann
-model4 <- kruskal.test(df_$tot_sold ~ df_$inter_action) 
-
-# in einem nächsten Schritt könnt ihr mit Post-hoc Tests diese Unterschiede genauer betrachten
-# es gibt die Möglichkeit mit dunnTest (mit Package FSA)
 # mehr Infos hier: https://rcompanion.org/rcompanion/d_06.html
 library(FSA)
 dunn <- dunnTest(tot_sold ~ inter_action, data = df_, method="bh") # zur Info: dunnTest kann nur mit Faktoren umgehen
@@ -85,7 +79,7 @@ dunn
 
 ```
 
-<span style="color:blue"> Fazit: Die Inspektion des Modells zeigt leichte Verletzungen beim Q-Q Plot, d.h. die Residuen sind nicht normalverteilt. Aufgrund keiner Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA mit nicht tranformierten Daten.</span>.
+<span style="background-color: #FFFF00"> Fazit: Die Inspektion des Modells zeigt leichte Verletzungen beim Q-Q Plot, d.h. die Residuen sind nicht normalverteilt. Aufgrund keiner Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA mit nicht tranformierten Daten.</span>.
 
 ```{r, eval=FALSE}
 # Post-hoc Vergleiche

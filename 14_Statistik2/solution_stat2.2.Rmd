@@ -1,18 +1,8 @@
----
-title: "MSc. Research Methods - Statistikteil Lösungen 2019"
-author: "Gian-Andrea Egeler"
-date: "`r format(Sys.Date(), '%B %Y')`"
-output:
-  html_document:
-    df_print: paged
----
-
 ## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
 
->Download [R-Skript]("14_Statistik2/RFiles/solution_stat2.2.R")
+>Download [R-Skript](14_Statistik2/RFiles/solution_stat2.2.R)
 
 **kommentierter Lösungsweg**
-
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
@@ -106,9 +96,10 @@ TukeyHSD(model1) # (Statistik 2: Folien 9-11)
 ```
 
 
-```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark.", tidy=T}
+```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark. Das Modell wurde mit den log-tranformierten Daten gerechnet.", tidy=T}
 
-# plottet die Ergebnisse
+# plottet die Ergebnisse, die nicht tranformierten Daten werden hier aufgezeigt
+# Wichtig: einen Verweis auf die Log-Transformation benötigt es jedoch
 
 # aufbereitung für die Infos der Signifikanzen => Alternative Lösungen findet ihr in der Musterlösung 2.3S
 df1 <- data.frame(a = c(1, 1:3,3), b = c(150, 151, 151, 151, 150)) 
