@@ -1,0 +1,19 @@
+# Konsolidierung Statistik (11.11. - 19.11.2019)
+
+In den vier Blöcken "Konsolidierung Statistik" repetieren die Studierenden die wichtigsten Verfahren der Inferenz-Statistik. Beginnend mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen, wiederholen die Studierende auch die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Weiter geht es mit der Repetition von komplexere Versionen linearer Regressionen und generalized linear models (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Abschliessend bekommen die Studierenden eine Einführung in die Welt der Ordinationen z.B. PCA.
+
+
+**Kursinhalt**
+
+Der Ablauf der nächsten vier Sitzungen wird wie folgt aussehen:
+
+<!-- not sure that will work, to embed a pdf in markdown -->
+<!-- found it here: https://stackoverflow.com/questions/39777166/display-pdf-image-in-markdown/39793125 -->
+<object data="17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="http://yoursite.com/the.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+<!-- alternativley this should hopefully work too -->
+<!-- Ablauf der nächsten vier Blöcke kann [hier](17_Statistik5/statistikbloecke_2019_konsolidierung.pdf) geladen werden. -->
