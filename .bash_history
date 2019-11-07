@@ -218,3 +218,16 @@ git commit -m "changes in assigments"
 git push
 git status
 git pull
+git status
+gut pull
+git pull
+git stash
+git pull
+git status
+git commit -a
+git commit -m "change some grammars"
+git push
+git status
+git add -A
+git commit -m "changes in grammars"
+git push

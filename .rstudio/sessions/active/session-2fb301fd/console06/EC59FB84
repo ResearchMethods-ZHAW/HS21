@@ -1000,3 +1000,49 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"[1P"i"n" "g"r"a"m"m"a"r"s"
+[master 92e5734] changes in grammars
+ 37 files changed, 1327 insertions(+), 3920 deletions(-)
+ rewrite .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84 (78%)
+ rewrite .rstudio/sessions/active/session-2fb301fd/console06/INDEX001 (70%)
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/0c085169-28a9-489e-9471-d459654d70eb.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/1bc6f149-d1bf-4861-a06c-0f0ffd915d62.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/32999472-e3f0-402b-aee5-8d52440a3088.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/3cf6a56d-669b-4c80-88b8-057ad5fd3380.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/4893f765-2582-464a-8400-b02612218d15.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/4a389850-b2a6-48e5-881d-bf82862919ae.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/52c051c2-ae64-42ba-81f2-03f2619cc729.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/5996c56d-6132-40a2-883b-361d49302e01.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/88434ac3-69d0-40fd-b6a5-7d749afa37fe.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/d04b8564-da95-4812-af85-9e52e5d22b2e.snapshot
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/created
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/last-used
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/rmd-outputs
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/session-persistent-state
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings
+ create mode 100644 .rstudio/sessions/session-locks/3c286bd3/3c286bd3
+ rewrite .viminfo (65%)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git s[Kpush
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 29, done.
+Delta compression using up to 8 threads.
+Compressing objects:   4% (1/24)   Compressing objects:   8% (2/24)   Compressing objects:  12% (3/24)   Compressing objects:  16% (4/24)   Compressing objects:  20% (5/24)   Compressing objects:  25% (6/24)   Compressing objects:  29% (7/24)   Compressing objects:  33% (8/24)   Compressing objects:  37% (9/24)   Compressing objects:  41% (10/24)   Compressing objects:  45% (11/24)   Compressing objects:  50% (12/24)   Compressing objects:  54% (13/24)   Compressing objects:  58% (14/24)   Compressing objects:  62% (15/24)   Compressing objects:  66% (16/24)   Compressing objects:  70% (17/24)   Compressing objects:  75% (18/24)   Compressing objects:  79% (19/24)   Compressing objects:  83% (20/24)   Compressing objects:  87% (21/24)   Compressing objects:  91% (22/24)   Compressing objects:  95% (23/24)   Compressing objects: 100% (24/24)   Compressing objects: 100% (24/24), done.
+Writing objects:   3% (1/29)   Writing objects:   6% (2/29)   Writing objects:  10% (3/29)   Writing objects:  13% (4/29)   Writing objects:  17% (5/29)   Writing objects:  20% (6/29)   Writing objects:  24% (7/29)   Writing objects:  27% (8/29)   Writing objects:  31% (9/29)   Writing objects:  34% (10/29)   Writing objects:  37% (11/29)   Writing objects:  41% (12/29)   Writing objects:  44% (13/29)   Writing objects:  48% (14/29)   Writing objects:  55% (16/29)   Writing objects:  58% (17/29)   Writing objects:  62% (18/29)   Writing objects:  65% (19/29)   Writing objects:  68% (20/29)   Writing objects:  72% (21/29)   Writing objects:  75% (22/29)   Writing objects:  79% (23/29)   Writing objects:  82% (24/29)   Writing objects:  86% (25/29)   Writing objects:  89% (26/29)   Writing objects:  93% (27/29)   Writing objects:  96% (28/29)   Writing objects: 100% (29/29)   Writing objects: 100% (29/29), 383.43 KiB | 2.32 MiB/s, done.
+Total 29 (delta 17), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/17)   [Kremote: Resolving deltas:  11% (2/17)   [Kremote: Resolving deltas:  17% (3/17)   [Kremote: Resolving deltas:  23% (4/17)   [Kremote: Resolving deltas:  29% (5/17)   [Kremote: Resolving deltas:  35% (6/17)   [Kremote: Resolving deltas:  41% (7/17)   [Kremote: Resolving deltas:  47% (8/17)   [Kremote: Resolving deltas:  52% (9/17)   [Kremote: Resolving deltas:  58% (10/17)   [Kremote: Resolving deltas:  64% (11/17)   [Kremote: Resolving deltas:  70% (12/17)   [Kremote: Resolving deltas:  76% (13/17)   [Kremote: Resolving deltas:  82% (14/17)   [Kremote: Resolving deltas:  88% (15/17)   [Kremote: Resolving deltas:  94% (16/17)   [Kremote: Resolving deltas: 100% (17/17)   [Kremote: Resolving deltas: 100% (17/17), completed with 15 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   16807d2..92e5734  master -> master
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git a[Kadd -A
