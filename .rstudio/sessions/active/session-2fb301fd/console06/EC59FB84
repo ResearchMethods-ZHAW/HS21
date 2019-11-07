@@ -1233,3 +1233,63 @@ The most similar command is
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git git add -A[1P[1P[1P
 bash: gitt: command not found
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt add -A[1P
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"n" "k"o"n"s"o"l"o"[1P"i"d"i"e"r"u"n"g"[C
+[master 87d4187] changes in konsolidierung
+ 12 files changed, 91 insertions(+), 25 deletions(-)
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot
+ rename 17_Statistik_Konsolidierung1/{Abstract.Rmd~HEAD => Abstract.Rmd} (68%)
+ delete mode 100755 17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a
+ rename "17_Statistik_Konsolidierung1/Statistikbl\303\266cke 2019_\303\234bersicht_Konsolidierung.pdf" => 17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf (100%)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit[K[K[K[K[K[K[K push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 7, done.[K
+remote: Counting objects:  14% (1/7)   [Kremote: Counting objects:  28% (2/7)   [Kremote: Counting objects:  42% (3/7)   [Kremote: Counting objects:  57% (4/7)   [Kremote: Counting objects:  71% (5/7)   [Kremote: Counting objects:  85% (6/7)   [Kremote: Counting objects: 100% (7/7)   [Kremote: Counting objects: 100% (7/7), done.[K
+remote: Compressing objects:  25% (1/4)   [Kremote: Compressing objects:  50% (2/4)   [Kremote: Compressing objects:  75% (3/4)   [Kremote: Compressing objects: 100% (4/4)   [Kremote: Compressing objects: 100% (4/4), done.[K
+remote: Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects:  25% (1/4)   Unpacking objects:  50% (2/4)   Unpacking objects:  75% (3/4)   Unpacking objects: 100% (4/4)   Unpacking objects: 100% (4/4), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   2bef144..ac4c836  master     -> origin/master
+error: addinfo_cache failed for path '17_Statistik_Konsolidierung1/Abstract.Rmd'
+hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
+ 16_Statistik4/Demoskript.Rmd | 15 [32m++++++++[m[31m-------[m
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+	[31mmodified:   .viminfo[m
+	[31mmodified:   17_Statistik_Konsolidierung1/Abstract.Rmd[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit [K[K[K[K[K[K[Kadd -A
