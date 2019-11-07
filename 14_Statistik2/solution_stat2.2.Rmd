@@ -7,9 +7,11 @@ output:
     df_print: paged
 ---
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.02.R)
+
 
 ## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
+
+[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.02.R)
 
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 

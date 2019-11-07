@@ -8,9 +8,10 @@ output:
     df_print: paged
 ---
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R)
 
 ## Musterlösung Aufgabe 2.1: Regression
+
+[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
