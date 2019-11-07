@@ -53,9 +53,9 @@ str(data_911)
 **Download via Github - 1. Möglichkeit**
 1. Geht zum File, welches ihr herunterladen wollt
 2. Klickt auf das File (.csv, .xlsx etc.), um den Inhalt innerhalb der GitHub Benutzeroberfläche anzuzeigen
-![](1_github.PNG){width=70%} 
+![](17_Statistik_Konsolidierung1/1_github.PNG){width=70%} 
 3. Klickt mit der rechten Maustaste auf den Knopf "raw"
-![](2_github.PNG){width=70%}
+![](17_Statistik_Konsolidierung1/2_github.PNG){width=70%}
 4. (Ziel) Speichern unter...
 
 **Download via Github - 2. Möglichkeit**
