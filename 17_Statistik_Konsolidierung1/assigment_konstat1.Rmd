@@ -4,6 +4,7 @@ Für die nächsten drei gemeinsamen Sitzungen (11./18./19. November) könnt ihr 
 
     a. Ihr sucht euch einen eigenen Datensatz
     b. Ihr nehmt einen vorgeschlagenen Datensatz
+    c. Ihr nehmt euren Datensatz aus der Fallstudie
 
 **Wichtig:** Beachtet, dass ihr einen Datensatz sucht, mit dem folgende Analyse möglich sind:
 
