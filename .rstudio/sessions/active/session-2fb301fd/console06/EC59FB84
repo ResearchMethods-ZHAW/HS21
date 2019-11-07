@@ -1045,4 +1045,131 @@ remote: Resolving deltas:   0% (0/17)   [Kremote: Resolving deltas:  11% (2/17
 To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
    16807d2..92e5734  master -> master
 groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git a[Kadd -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git a[Kadd -A]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 34, done.[K
+remote: Counting objects:   3% (1/28)   [Kremote: Counting objects:   7% (2/28)   [Kremote: Counting objects:  10% (3/28)   [Kremote: Counting objects:  14% (4/28)   [Kremote: Counting objects:  17% (5/28)   [Kremote: Counting objects:  21% (6/28)   [Kremote: Counting objects:  25% (7/28)   [Kremote: Counting objects:  28% (8/28)   [Kremote: Counting objects:  32% (9/28)   [Kremote: Counting objects:  35% (10/28)   [Kremote: Counting objects:  39% (11/28)   [Kremote: Counting objects:  42% (12/28)   [Kremote: Counting objects:  46% (13/28)   [Kremote: Counting objects:  50% (14/28)   [Kremote: Counting objects:  53% (15/28)   [Kremote: Counting objects:  57% (16/28)   [Kremote: Counting objects:  60% (17/28)   [Kremote: Counting objects:  64% (18/28)   [Kremote: Counting objects:  67% (19/28)   [Kremote: Counting objects:  71% (20/28)   [Kremote: Counting objects:  75% (21/28)   [Kremote: Counting objects:  78% (22/28)   [Kremote: Counting objects:  82% (23/28)   [Kremote: Counting objects:  85% (24/28)   [Kremote: Counting objects:  89% (25/28)   [Kremote: Counting objects:  92% (26/28)   [Kremote: Counting objects:  96% (27/28)   [Kremote: Counting objects: 100% (28/28)   [Kremote: Counting objects: 100% (28/28), done.[K
+remote: Compressing objects:  20% (1/5)   [Kremote: Compressing objects:  40% (2/5)   [Kremote: Compressing objects:  60% (3/5)   [Kremote: Compressing objects:  80% (4/5)   [Kremote: Compressing objects: 100% (5/5)   [Kremote: Compressing objects: 100% (5/5), done.[K
+remote: Total 16 (delta 11), reused 16 (delta 11), pack-reused 0[K
+Unpacking objects:   6% (1/16)   Unpacking objects:  12% (2/16)   Unpacking objects:  18% (3/16)   Unpacking objects:  25% (4/16)   Unpacking objects:  31% (5/16)   Unpacking objects:  37% (6/16)   Unpacking objects:  43% (7/16)   Unpacking objects:  50% (8/16)   Unpacking objects:  56% (9/16)   Unpacking objects:  62% (10/16)   Unpacking objects:  68% (11/16)   Unpacking objects:  75% (12/16)   Unpacking objects:  81% (13/16)   Unpacking objects:  87% (14/16)   Unpacking objects:  93% (15/16)   Unpacking objects: 100% (16/16)   Unpacking objects: 100% (16/16), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   92e5734..8683d61  master     -> origin/master
+CONFLICT (rename/rename): Rename "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd"->"17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd" in branch "HEAD" rename "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd"->"17_Statistik_Konsolidierung1/Abstract.Rmd" in "8683d6149db990246fa415ff1ea3912e7637744a"
+Automatic merge failed; fix conflicts and then commit the result.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^C
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rm "\"17_Statistik_Konsolidierung1" /ablauf_[C[K[K[K[K[K[K[K[K[K[K[K1/abl[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K\"17_Statistik_Konsolidierung1" [1@/[1P[1@\[1@a[1@b[1@l[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P [1P[1P [1P[1P [C 1 7 _Statistik _ K o n solidierung1/ a b l auf_inhalt_190823_egel.Rmd [1@"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C" 
+17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd: needs merge
+rm '17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd'
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1@-[1P
+bash: git-rm: command not found
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git-rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1@ [1P[C[1@ 
+unknown option: -rm
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git -rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1P[1P[1@ 
+fatal: pathspec '17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd' did not match any files
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statz[Kus
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+	[32mmodified:   17_Statistik_Konsolidierung1/assigment_konstat1.Rmd[m
+	[32mmodified:   17_Statistik_Konsolidierung1/open_datasets.Rmd[m
+	[32mmodified:   99_Book/index.html[m
+	[32mmodified:   99_Book/search_index.json[m
+	[32mmodified:   _bookdown.yml[m
+	[32mmodified:   plot1_solution2.3s.pdf[m
+	[32mmodified:   plot2_solution2.3s.pdf[m
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	[31mboth added:      17_Statistik_Konsolidierung1/Abstract.Rmd[m
+	[31madded by us:     17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/002a1a7c-e6af-45a8-8261-06257949a76c.snapshot[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~HEAD[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git stats[Kus
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+	[32mmodified:   17_Statistik_Konsolidierung1/assigment_konstat1.Rmd[m
+	[32mmodified:   17_Statistik_Konsolidierung1/open_datasets.Rmd[m
+	[32mmodified:   99_Book/index.html[m
+	[32mmodified:   99_Book/search_index.json[m
+	[32mmodified:   _bookdown.yml[m
+	[32mmodified:   plot1_solution2.3s.pdf[m
+	[32mmodified:   plot2_solution2.3s.pdf[m
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	[31mboth added:      17_Statistik_Konsolidierung1/Abstract.Rmd[m
+	[31madded by us:     17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/002a1a7c-e6af-45a8-8261-06257949a76c.snapshot[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~HEAD[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status[K[K[K[K[K[K[K[K[Kgit pull
+error: Pulling is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it rm --cached
+bash: it: command not found
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it rm --cached[1@g
+usage: git rm [<options>] [--] <file>...
+
+    -n, --dry-run         dry run
+    -q, --quiet           do not list removed files
+    --cached              only remove from the index
+    -f, --force           override the up-to-date check
+    -r                    allow recursive removal
+    --ignore-unmatch      exit with a zero status even if nothing matched
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ itt a[K[K[K[K[Kgit add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add[C .

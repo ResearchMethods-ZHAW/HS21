@@ -32,12 +32,12 @@ Das Ziel dieser Übung ist es,
 
 *******
 **Open Datasets**
-```{r child = "open_datasets.Rmd"}
+```{r child = "17_Statistik_Konsolidierung1/open_datasets.Rmd"}
 ```
 
 
 **Given Datasets**
-```{r child = 'suggest_datasets.Rmd'}
+```{r child = '17_Statistik_Konsolidierung1/suggest_datasets.Rmd'}
 ```
 
 
