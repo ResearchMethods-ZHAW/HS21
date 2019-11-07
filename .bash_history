@@ -251,3 +251,19 @@ git add .
 git commit "last changes"
 git commit -m "last changes"
 git status
+git clean -n
+git push
+git git add -A
+gitt add -A
+git add -A
+git commit -m "changes in konsolidierung"
+git push
+git pull
+git status
+git add -A
+git commit -m "changes in konsolidierung"
+git push
+git status
+git add -A
+git commit -m "try to embed a pdf in md"
+git push
