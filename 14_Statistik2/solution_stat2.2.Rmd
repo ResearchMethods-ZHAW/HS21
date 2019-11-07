@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "MSc. Research Methods - Statistikteil Lösungen 2019"
 author: "Gian-Andrea Egeler"
@@ -8,19 +7,12 @@ output:
     df_print: paged
 ---
 
-
-
-## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
-
-[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.02.R)
-
-=======
 ## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
 
 >Download [R-Skript]("14_Statistik2/RFiles/solution_stat2.2.R")
 
 **kommentierter Lösungsweg**
->>>>>>> d5c7d8243e2ddbe7e72be0571061310bad0c8296
+
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
@@ -112,8 +104,6 @@ TukeyHSD(model1) # (Statistik 2: Folien 9-11)
 # für Vegi
 10^(model1$coefficients[1] + model1$coefficients[3])
 ```
-
-
 
 
 ```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark.", tidy=T}

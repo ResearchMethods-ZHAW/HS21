@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "MSc. Research Methods - Statistikteil Lösungen 2019"
 author: "Juergen Dengler"
@@ -10,8 +9,6 @@ output:
 ---
 
 
-=======
->>>>>>> d5c7d8243e2ddbe7e72be0571061310bad0c8296
 ## Musterlösung Aufgabe 2.1: Regression
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R)
