@@ -1,1376 +1,0 @@
-
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/matexp.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/order.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/romberg.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/splines.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/spmat.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/tmbutils.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/tmbutils_extra.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/include/tmbutils/vector.hpp[m
-	[31mmodified:   Library/R/3.4/library/TMB/template.cpp[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/INDEX[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/LICENSE[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/NEWS[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/R/bootstrap[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/R/bootstrap.rdb[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/R/bootstrap.rdx[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/data/datalist[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/help/bootstrap.rdb[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/help/bootstrap.rdx[m
-	[31mmodified:   Library/R/3.4/library/bootstrap/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/dave/INDEX[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/dave/R/dave[m
-	[31mmodified:   Library/R/3.4/library/dave/R/dave.rdb[m
-	[31mmodified:   Library/R/3.4/library/dave/R/dave.rdx[m
-	[31mmodified:   Library/R/3.4/library/dave/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/dave/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/dave/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/dave/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/dave/help/dave.rdb[m
-	[31mmodified:   Library/R/3.4/library/dave/help/dave.rdx[m
-	[31mmodified:   Library/R/3.4/library/dave/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/deSolve/INDEX[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/demo.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/deSolve/NEWS[m
-	[31mmodified:   Library/R/3.4/library/deSolve/R/deSolve[m
-	[31mmodified:   Library/R/3.4/library/deSolve/R/deSolve.rdb[m
-	[31mmodified:   Library/R/3.4/library/deSolve/R/deSolve.rdx[m
-	[31mmodified:   Library/R/3.4/library/deSolve/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/deSolve/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/deSolve/demo/CCL4model.R[m
-	[31mmodified:   Library/R/3.4/library/deSolve/demo/odedim.R[m
-	[31mmodified:   Library/R/3.4/library/deSolve/doc/compiledCode.R[m
-	[31mmodified:   Library/R/3.4/library/deSolve/doc/compiledCode.pdf[m
-	[31mmodified:   Library/R/3.4/library/deSolve/doc/deSolve.R[m
-	[31mmodified:   Library/R/3.4/library/deSolve/doc/deSolve.pdf[m
-	[31mmodified:   Library/R/3.4/library/deSolve/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/deSolve/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/deSolve/help/deSolve.rdb[m
-	[31mmodified:   Library/R/3.4/library/deSolve/help/deSolve.rdx[m
-	[31mmodified:   Library/R/3.4/library/deSolve/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/INDEX[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/R/dunn.test[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/R/dunn.test.rdb[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/R/dunn.test.rdx[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/data/homecare.rda[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/help/dunn.test.rdb[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/help/dunn.test.rdx[m
-	[31mmodified:   Library/R/3.4/library/dunn.test/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/emo/INDEX[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/emo/R/emo[m
-	[31mmodified:   Library/R/3.4/library/emo/R/emo.rdb[m
-	[31mmodified:   Library/R/3.4/library/emo/R/emo.rdx[m
-	[31mmodified:   Library/R/3.4/library/emo/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/emo/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/emo/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/emo/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/emo/help/emo.rdb[m
-	[31mmodified:   Library/R/3.4/library/emo/help/emo.rdx[m
-	[31mmodified:   Library/R/3.4/library/emo/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/epitools/INDEX[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/epitools/R/epitools[m
-	[31mmodified:   Library/R/3.4/library/epitools/R/epitools.rdb[m
-	[31mmodified:   Library/R/3.4/library/epitools/R/epitools.rdx[m
-	[31mmodified:   Library/R/3.4/library/epitools/data/oswego.rda[m
-	[31mmodified:   Library/R/3.4/library/epitools/data/wcgs.rda[m
-	[31mmodified:   Library/R/3.4/library/epitools/data/wnv.rda[m
-	[31mmodified:   Library/R/3.4/library/epitools/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/epitools/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/epitools/help/epitools.rdb[m
-	[31mmodified:   Library/R/3.4/library/epitools/help/epitools.rdx[m
-	[31mmodified:   Library/R/3.4/library/epitools/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/expm/INDEX[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/demo.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/expm/R/expm[m
-	[31mmodified:   Library/R/3.4/library/expm/R/expm.rdb[m
-	[31mmodified:   Library/R/3.4/library/expm/R/expm.rdx[m
-	[31mmodified:   Library/R/3.4/library/expm/data/matStig.R[m
-	[31mmodified:   Library/R/3.4/library/expm/demo/balanceTst.R[m
-	[31mmodified:   Library/R/3.4/library/expm/demo/exact-fn.R[m
-	[31mmodified:   Library/R/3.4/library/expm/demo/expm.R[m
-	[31mmodified:   Library/R/3.4/library/expm/doc/expm.R[m
-	[31mmodified:   Library/R/3.4/library/expm/doc/expm.Rnw[m
-	[31mmodified:   Library/R/3.4/library/expm/doc/expm.pdf[m
-	[31mmodified:   Library/R/3.4/library/expm/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/expm/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/help/expm.rdb[m
-	[31mmodified:   Library/R/3.4/library/expm/help/expm.rdx[m
-	[31mmodified:   Library/R/3.4/library/expm/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/expm/po/en@quot/LC_MESSAGES/R-expm.mo[m
-	[31mmodified:   Library/R/3.4/library/expm/po/en@quot/LC_MESSAGES/expm.mo[m
-	[31mmodified:   Library/R/3.4/library/expm/po/fr/LC_MESSAGES/expm.mo[m
-	[31mmodified:   Library/R/3.4/library/expm/po/fr/LC_MESSAGES/fr.mo[m
-	[31mmodified:   Library/R/3.4/library/expm/test-tools.R[m
-	[31mmodified:   Library/R/3.4/library/fansi/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/fansi/INDEX[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/fansi/NEWS.md[m
-	[31mmodified:   Library/R/3.4/library/fansi/R/fansi[m
-	[31mmodified:   Library/R/3.4/library/fansi/R/fansi.rdb[m
-	[31mmodified:   Library/R/3.4/library/fansi/R/fansi.rdx[m
-	[31mmodified:   Library/R/3.4/library/fansi/doc/sgr-in-rmd.R[m
-	[31mmodified:   Library/R/3.4/library/fansi/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/fansi/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/help/fansi.rdb[m
-	[31mmodified:   Library/R/3.4/library/fansi/help/fansi.rdx[m
-	[31mmodified:   Library/R/3.4/library/fansi/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/fansi/html/R.css[m
-	[31mmodified:   Library/R/3.4/library/glue/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/glue/INDEX[m
-	[31mmodified:   Library/R/3.4/library/glue/LICENSE[m
-	[31mmodified:   Library/R/3.4/library/glue/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/glue/NEWS.md[m
-	[31mmodified:   Library/R/3.4/library/glue/R/glue[m
-	[31mmodified:   Library/R/3.4/library/glue/R/glue.rdb[m
-	[31mmodified:   Library/R/3.4/library/glue/R/glue.rdx[m
-	[31mmodified:   Library/R/3.4/library/glue/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/glue/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/glue/help/figures/logo.png[m
-	[31mmodified:   Library/R/3.4/library/glue/help/glue.rdb[m
-	[31mmodified:   Library/R/3.4/library/glue/help/glue.rdx[m
-	[31mmodified:   Library/R/3.4/library/glue/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/ChangeLog[m
-	[31mmodified:   Library/R/3.4/library/labdsv/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/labdsv/INDEX[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/labdsv/R/labdsv[m
-	[31mmodified:   Library/R/3.4/library/labdsv/R/labdsv.rdb[m
-	[31mmodified:   Library/R/3.4/library/labdsv/R/labdsv.rdx[m
-	[31mmodified:   Library/R/3.4/library/labdsv/data/brycesite.rda[m
-	[31mmodified:   Library/R/3.4/library/labdsv/data/bryceveg.rda[m
-	[31mmodified:   Library/R/3.4/library/labdsv/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/labdsv/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/labdsv/help/labdsv.rdb[m
-	[31mmodified:   Library/R/3.4/library/labdsv/help/labdsv.rdx[m
-	[31mmodified:   Library/R/3.4/library/labdsv/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/INDEX[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/NEWS.md[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/R/lifecycle[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/R/lifecycle.rdb[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/R/lifecycle.rdx[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/doc/lifecycle.R[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/doc/lifecycle.Rmd[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-archived.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-defunct.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-deprecated.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-experimental.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-maturing.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-questioning.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-retired.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-soft-deprecated.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/figures/lifecycle-stable.svg[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/lifecycle.rdb[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/lifecycle.rdx[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/macros/lifecycle.Rd[m
-	[31mmodified:   Library/R/3.4/library/lifecycle/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/CITATION[m
-	[31mmodified:   Library/R/3.4/library/lme4/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/lme4/INDEX[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/lme4/NEWS.Rd[m
-	[31mmodified:   Library/R/3.4/library/lme4/R/lme4[m
-	[31mmodified:   Library/R/3.4/library/lme4/R/lme4.rdb[m
-	[31mmodified:   Library/R/3.4/library/lme4/R/lme4.rdx[m
-	[31mmodified:   Library/R/3.4/library/lme4/R/sysdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/lme4/R/sysdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/lme4/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/lme4/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/Doxyfile[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/PLSvGLS.pdf[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/Theory.pdf[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4-extras.pdf[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/Doxyfile[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/PLSvGLS.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/PLSvGLS.Rnw[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/Theory.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/Theory.Rnw[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmer.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmer.Rnw[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmerperf.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/lmerperf.Rmd[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lme4/inst/doc/profiling.txt[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/lmer.pdf[m
-	[31mmodified:   Library/R/3.4/library/lme4/doc/profiling.txt[m
-	[31mmodified:   Library/R/3.4/library/lme4/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/lme4/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/help/lme4.rdb[m
-	[31mmodified:   Library/R/3.4/library/lme4/help/lme4.rdx[m
-	[31mmodified:   Library/R/3.4/library/lme4/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/Johnson.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/Rplots.pdf[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/SO_sep25.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/Thailand.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/badhess.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/badprof.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/boo01L.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/colonizer_rand.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/confint_ex.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/crabs_randdata00.Rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/crabs_randdata2.Rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/culcita_dat.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/dat20101314.csv[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/dataEx_Glmer.txt[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/fakesim.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/gopherdat2.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/gotway_hessianfly.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/hotpower.csv[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/koller-data.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/lme-tst-fits.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/lme-tst-fits.Rout[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/lme-tst-fits.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/lme-tst-funs.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/mastitis.rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/polytom2.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/polytom3.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/polytomous_test.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/polytomous_vcov_ex.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/prLogistic.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/radinger_dat.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/rankMatrix.rds[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/respiratory.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/sbTobb.Rdata[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/survdat_reduced.Rda[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/tmp.txt[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/tprfm1.RData[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/trees513.R[m
-	[31mmodified:   Library/R/3.4/library/lme4/testdata/trees513.RData[m
-	[31mmodified:   Library/R/3.4/library/lmtest/CITATION[m
-	[31mmodified:   Library/R/3.4/library/lmtest/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/lmtest/INDEX[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/lmtest/NEWS[m
-	[31mmodified:   Library/R/3.4/library/lmtest/R/lmtest[m
-	[31mmodified:   Library/R/3.4/library/lmtest/R/lmtest.rdb[m
-	[31mmodified:   Library/R/3.4/library/lmtest/R/lmtest.rdx[m
-	[31mmodified:   Library/R/3.4/library/lmtest/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/lmtest/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/lmtest/doc/lmtest-intro.R[m
-	[31mmodified:   Library/R/3.4/library/lmtest/doc/lmtest-intro.Rnw[m
-	[31mmodified:   Library/R/3.4/library/lmtest/doc/lmtest-intro.pdf[m
-	[31mmodified:   Library/R/3.4/library/lmtest/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/lmtest/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/lmtest/help/lmtest.rdb[m
-	[31mmodified:   Library/R/3.4/library/lmtest/help/lmtest.rdx[m
-	[31mmodified:   Library/R/3.4/library/lmtest/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/minqa/INDEX[m
-	[31mmodified:   Library/R/3.4/library/minqa/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/minqa/R/minqa[m
-	[31mmodified:   Library/R/3.4/library/minqa/R/minqa.rdb[m
-	[31mmodified:   Library/R/3.4/library/minqa/R/minqa.rdx[m
-	[31mmodified:   Library/R/3.4/library/minqa/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/minqa/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/minqa/help/minqa.rdb[m
-	[31mmodified:   Library/R/3.4/library/minqa/help/minqa.rdx[m
-	[31mmodified:   Library/R/3.4/library/minqa/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/multcompView/INDEX[m
-	[31mmodified:   Library/R/3.4/library/multcompView/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/multcompView/R/multcompView[m
-	[31mmodified:   Library/R/3.4/library/multcompView/R/multcompView.rdb[m
-	[31mmodified:   Library/R/3.4/library/multcompView/R/multcompView.rdx[m
-	[31mmodified:   Library/R/3.4/library/multcompView/doc/VisualizingPairedComparisons.doc[m
-	[31mmodified:   Library/R/3.4/library/multcompView/doc/VisualizingPairedComparisons.pdf[m
-	[31mmodified:   Library/R/3.4/library/multcompView/doc/VisualizingPairedComparisons.ppt[m
-	[31mmodified:   Library/R/3.4/library/multcompView/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/multcompView/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/multcompView/help/multcompView.rdb[m
-	[31mmodified:   Library/R/3.4/library/multcompView/help/multcompView.rdx[m
-	[31mmodified:   Library/R/3.4/library/multcompView/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/CITATION[m
-	[31mmodified:   Library/R/3.4/library/nloptr/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/nloptr/INDEX[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/nloptr/R/nloptr[m
-	[31mmodified:   Library/R/3.4/library/nloptr/R/nloptr.rdb[m
-	[31mmodified:   Library/R/3.4/library/nloptr/R/nloptr.rdx[m
-	[31mmodified:   Library/R/3.4/library/nloptr/doc/nloptr.R[m
-	[31mmodified:   Library/R/3.4/library/nloptr/doc/nloptr.Rmd[m
-	[31mmodified:   Library/R/3.4/library/nloptr/doc/nloptr.pdf[m
-	[31mmodified:   Library/R/3.4/library/nloptr/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/nloptr/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/help/nloptr.rdb[m
-	[31mmodified:   Library/R/3.4/library/nloptr/help/nloptr.rdx[m
-	[31mmodified:   Library/R/3.4/library/nloptr/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/nloptr/include/nlopt.f[m
-	[31mmodified:   Library/R/3.4/library/nloptr/include/nlopt.h[m
-	[31mmodified:   Library/R/3.4/library/nloptr/include/nlopt.hpp[m
-	[31mmodified:   Library/R/3.4/library/nloptr/include/nloptrAPI.h[m
-	[31mmodified:   Library/R/3.4/library/nnet/CITATION[m
-	[31mmodified:   Library/R/3.4/library/nnet/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/nnet/INDEX[m
-	[31mmodified:   Library/R/3.4/library/nnet/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/nnet/NEWS[m
-	[31mmodified:   Library/R/3.4/library/nnet/R/nnet[m
-	[31mmodified:   Library/R/3.4/library/nnet/R/nnet.rdb[m
-	[31mmodified:   Library/R/3.4/library/nnet/R/nnet.rdx[m
-	[31mmodified:   Library/R/3.4/library/nnet/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/nnet/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/help/nnet.rdb[m
-	[31mmodified:   Library/R/3.4/library/nnet/help/nnet.rdx[m
-	[31mmodified:   Library/R/3.4/library/nnet/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/nnet/po/de/LC_MESSAGES/R-nnet.mo[m
-	[31mmodified:   Library/R/3.4/library/nnet/po/en@quot/LC_MESSAGES/R-nnet.mo[m
-	[31mmodified:   Library/R/3.4/library/nnet/po/fr/LC_MESSAGES/R-nnet.mo[m
-	[31mmodified:   Library/R/3.4/library/nnet/po/ko/LC_MESSAGES/R-nnet.mo[m
-	[31mmodified:   Library/R/3.4/library/nnet/po/pl/LC_MESSAGES/R-nnet.mo[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/INDEX[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/NEWS[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/R/numDeriv[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/R/numDeriv.rdb[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/R/numDeriv.rdx[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/doc/Guide.R[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/doc/Guide.Stex[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/doc/Guide.pdf[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/help/numDeriv.rdb[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/help/numDeriv.rdx[m
-	[31mmodified:   Library/R/3.4/library/numDeriv/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/COPYRIGHTS[m
-	[31mmodified:   Library/R/3.4/library/permute/ChangeLog[m
-	[31mmodified:   Library/R/3.4/library/permute/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/permute/INDEX[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/permute/NEWS[m
-	[31mmodified:   Library/R/3.4/library/permute/R/permute[m
-	[31mmodified:   Library/R/3.4/library/permute/R/permute.rdb[m
-	[31mmodified:   Library/R/3.4/library/permute/R/permute.rdx[m
-	[31mmodified:   Library/R/3.4/library/permute/TODO.md[m
-	[31mmodified:   Library/R/3.4/library/permute/data/jackal.rda[m
-	[31mmodified:   Library/R/3.4/library/permute/doc/permutations.R[m
-	[31mmodified:   Library/R/3.4/library/permute/doc/permutations.Rnw[m
-	[31mmodified:   Library/R/3.4/library/permute/doc/permutations.pdf[m
-	[31mmodified:   Library/R/3.4/library/permute/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/permute/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/permute/help/permute.rdb[m
-	[31mmodified:   Library/R/3.4/library/permute/help/permute.rdx[m
-	[31mmodified:   Library/R/3.4/library/pixmap/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/pixmap/INDEX[m
-	[31mmodified:   Library/R/3.4/library/pixmap/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/pixmap/NEWS[m
-	[31mmodified:   Library/R/3.4/library/pixmap/R/pixmap[m
-	[31mmodified:   Library/R/3.4/library/pixmap/R/pixmap.rdb[m
-	[31mmodified:   Library/R/3.4/library/pixmap/R/pixmap.rdx[m
-	[31mmodified:   Library/R/3.4/library/pixmap/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/pixmap/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/pixmap/help/pixmap.rdb[m
-	[31mmodified:   Library/R/3.4/library/pixmap/help/pixmap.rdx[m
-	[31mmodified:   Library/R/3.4/library/pixmap/pictures/logo.pbm[m
-	[31mmodified:   Library/R/3.4/library/pixmap/pictures/logo.pgm[m
-	[31mmodified:   Library/R/3.4/library/pixmap/pictures/logo.ppm[m
-	[31mmodified:   Library/R/3.4/library/plotrix/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/plotrix/INDEX[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/demo.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/plotrix/NEWS[m
-	[31mmodified:   Library/R/3.4/library/plotrix/R/plotrix[m
-	[31mmodified:   Library/R/3.4/library/plotrix/R/plotrix.rdb[m
-	[31mmodified:   Library/R/3.4/library/plotrix/R/plotrix.rdx[m
-	[31mmodified:   Library/R/3.4/library/plotrix/data/death_reg.rda[m
-	[31mmodified:   Library/R/3.4/library/plotrix/data/l2010.rda[m
-	[31mmodified:   Library/R/3.4/library/plotrix/data/soils.rda[m
-	[31mmodified:   Library/R/3.4/library/plotrix/demo/plotrix.R[m
-	[31mmodified:   Library/R/3.4/library/plotrix/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/plotrix/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/plotrix/help/plotrix.rdb[m
-	[31mmodified:   Library/R/3.4/library/plotrix/help/plotrix.rdx[m
-	[31mmodified:   Library/R/3.4/library/purrr/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/purrr/INDEX[m
-	[31mmodified:   Library/R/3.4/library/purrr/LICENSE[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/purrr/NEWS.md[m
-	[31mmodified:   Library/R/3.4/library/purrr/R/purrr[m
-	[31mmodified:   Library/R/3.4/library/purrr/R/purrr.rdb[m
-	[31mmodified:   Library/R/3.4/library/purrr/R/purrr.rdx[m
-	[31mmodified:   Library/R/3.4/library/purrr/doc/other-langs.Rmd[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-archived.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-defunct.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-deprecated.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-experimental.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-maturing.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-questioning.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-retired.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-soft-deprecated.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/lifecycle-stable.svg[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/figures/logo.png[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/purrr.rdb[m
-	[31mmodified:   Library/R/3.4/library/purrr/help/purrr.rdx[m
-	[31mmodified:   Library/R/3.4/library/reshape2/CITATION[m
-	[31mmodified:   Library/R/3.4/library/reshape2/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/reshape2/INDEX[m
-	[31mmodified:   Library/R/3.4/library/reshape2/LICENSE[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/reshape2/NEWS.md[m
-	[31mmodified:   Library/R/3.4/library/reshape2/R/reshape2[m
-	[31mmodified:   Library/R/3.4/library/reshape2/R/reshape2.rdb[m
-	[31mmodified:   Library/R/3.4/library/reshape2/R/reshape2.rdx[m
-	[31mmodified:   Library/R/3.4/library/reshape2/data/Rdata.rdb[m
-	[31mmodified:   Library/R/3.4/library/reshape2/data/Rdata.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/data/Rdata.rdx[m
-	[31mmodified:   Library/R/3.4/library/reshape2/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/reshape2/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/reshape2/help/reshape2.rdb[m
-	[31mmodified:   Library/R/3.4/library/reshape2/help/reshape2.rdx[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/CITATION[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/INDEX[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/R/scatterplot3d[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/R/scatterplot3d.rdb[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/R/scatterplot3d.rdx[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/doc/s3d.Rnw[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/doc/s3d.pdf[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/help/scatterplot3d.rdb[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/help/scatterplot3d.rdx[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/po/de/LC_MESSAGES/R-scatterplot3d.mo[m
-	[31mmodified:   Library/R/3.4/library/scatterplot3d/po/en/LC_MESSAGES/R-scatterplot3d.mo[m
-	[31mmodified:   Library/R/3.4/library/sciplot/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/sciplot/INDEX[m
-	[31mmodified:   Library/R/3.4/library/sciplot/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/sciplot/R/sciplot[m
-	[31mmodified:   Library/R/3.4/library/sciplot/R/sciplot.rdb[m
-	[31mmodified:   Library/R/3.4/library/sciplot/R/sciplot.rdx[m
-	[31mmodified:   Library/R/3.4/library/sciplot/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/sciplot/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/sciplot/help/sciplot.rdb[m
-	[31mmodified:   Library/R/3.4/library/sciplot/help/sciplot.rdx[m
-	[31mmodified:   Library/R/3.4/library/tree/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/tree/INDEX[m
-	[31mmodified:   Library/R/3.4/library/tree/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/tree/R/tree[m
-	[31mmodified:   Library/R/3.4/library/tree/R/tree.rdb[m
-	[31mmodified:   Library/R/3.4/library/tree/R/tree.rdx[m
-	[31mmodified:   Library/R/3.4/library/tree/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/tree/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/tree/help/tree.rdb[m
-	[31mmodified:   Library/R/3.4/library/tree/help/tree.rdx[m
-	[31mmodified:   Library/R/3.4/library/tree/po/en@quot/LC_MESSAGES/R-tree.mo[m
-	[31mmodified:   Library/R/3.4/library/tree/po/en@quot/LC_MESSAGES/tree.mo[m
-	[31mmodified:   Library/R/3.4/library/tree/po/pl/LC_MESSAGES/R-tree.mo[m
-	[31mmodified:   Library/R/3.4/library/tree/po/pl/LC_MESSAGES/tree.mo[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/INDEX[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/R/truncnorm[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/R/truncnorm.rdb[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/R/truncnorm.rdx[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/help/truncnorm.rdb[m
-	[31mmodified:   Library/R/3.4/library/truncnorm/help/truncnorm.rdx[m
-	[31mmodified:   Library/R/3.4/library/utf8/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/utf8/INDEX[m
-	[31mmodified:   Library/R/3.4/library/utf8/LICENSE[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/utf8/NEWS[m
-	[31mmodified:   Library/R/3.4/library/utf8/R/utf8[m
-	[31mmodified:   Library/R/3.4/library/utf8/R/utf8.rdb[m
-	[31mmodified:   Library/R/3.4/library/utf8/R/utf8.rdx[m
-	[31mmodified:   Library/R/3.4/library/utf8/doc/utf8.Rmd[m
-	[31mmodified:   Library/R/3.4/library/utf8/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/utf8/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/utf8/help/utf8.rdb[m
-	[31mmodified:   Library/R/3.4/library/utf8/help/utf8.rdx[m
-	[31mmodified:   Library/R/3.4/library/utf8/html/R.css[m
-	[31mmodified:   Library/R/3.4/library/vegan/DESCRIPTION[m
-	[31mmodified:   Library/R/3.4/library/vegan/INDEX[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/Rd.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/data.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/features.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/hsearch.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/links.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/nsInfo.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/package.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/Meta/vignette.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/NAMESPACE[m
-	[31mmodified:   Library/R/3.4/library/vegan/NEWS.Rd[m
-	[31mmodified:   Library/R/3.4/library/vegan/ONEWS[m
-	[31mmodified:   Library/R/3.4/library/vegan/OldChangeLog[m
-	[31mmodified:   Library/R/3.4/library/vegan/R/vegan[m
-	[31mmodified:   Library/R/3.4/library/vegan/R/vegan.rdb[m
-	[31mmodified:   Library/R/3.4/library/vegan/R/vegan.rdx[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/BCI.env.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/BCI.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/dune.env.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/dune.phylodis.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/dune.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/dune.taxon.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/mite.env.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/mite.pcnm.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/mite.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/mite.xy.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/pyrifos.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/sipoo.map.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/sipoo.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/varechem.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/data/varespec.rda[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/FAQ-vegan.R[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/FAQ-vegan.Rmd[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/decision-vegan.R[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/decision-vegan.Rnw[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/decision-vegan.pdf[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/diversity-vegan.R[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/diversity-vegan.Rnw[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/diversity-vegan.pdf[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/intro-vegan.R[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/intro-vegan.Rnw[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/intro-vegan.pdf[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/partitioning.R[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/partitioning.Rnw[m
-	[31mmodified:   Library/R/3.4/library/vegan/doc/partitioning.pdf[m
-	[31mmodified:   Library/R/3.4/library/vegan/help/AnIndex[m
-	[31mmodified:   Library/R/3.4/library/vegan/help/aliases.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/help/paths.rds[m
-	[31mmodified:   Library/R/3.4/library/vegan/help/vegan.rdb[m
-	[31mmodified:   Library/R/3.4/library/vegan/help/vegan.rdx[m
-	[31mmodified:   figure/unnamed-chunk-2-1.png[m
-	[31mmodified:   figure/unnamed-chunk-2-2.png[m
-	[31mmodified:   figure/unnamed-chunk-3-1.png[m
-	[31mmodified:   figure/unnamed-chunk-4-1.png[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/3cecf251-f55f-4b5a-8548-4c80fe054410.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/63c803fc-f7c8-49b8-a5b2-1077ee26512c.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/927f0d26-51e6-418d-8a5e-2cbb39a791d2.png[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/927f0d26-51e6-418d-8a5e-2cbb39a791d2.snapshot[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Already up to date.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
-git add -A
-Saved working directory and index state WIP on master: d5c7d82 changes in solutions 2,3,5
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Updating d5c7d82..16807d2
-Fast-forward
- .../environment_vars                       |   0
- .../suspended-session-data/rversion        |   0
- .../search_path/search_path_elements       |   0
- .../session-a54d4ffe/console06/C19612EB    | 322 [32m++++++++++++++++[m
- .../session-a54d4ffe/console06/INDEX001    |   1 [32m+[m
- .../session-a54d4ffe/graphics-r3/INDEX     |   0
- .../session-a54d4ffe/graphics-r3/empty.png |   0
- .../session-a54d4ffe/properites/created    |   1 [32m+[m
- .../session-a54d4ffe/properites/last-used  |   1 [32m+[m
- .../properites/r-version-label             |   0
- .../properites/save_prompt_required        |   1 [32m+[m
- .../active/session-a54d4ffe/rmd-outputs    |   5 [32m+[m
- .../session-persistent-state               |   2 [32m+[m
- .../suspended-session-data/console_actions | 178 [32m+++++++++[m
- .../suspended-session-data/environment     | Bin [31m0[m -> [32m245818[m bytes
- .../suspended-session-data/history         |  97 [32m+++++[m
- .../suspended-session-data/options         | Bin [31m0[m -> [32m7329921[m bytes
- .../search_path/package_paths              |   8 [32m+[m
- .../suspended-session-data/settings        |   9 [32m+[m
- 14_Statistik2/Demoskript.Rmd               |   4 [32m+[m[31m-[m
- .../RFiles/Loesung_Uebung_2.1_v.02.R       |  92 [32m+++++[m
- 14_Statistik2/solution_stat2.1.Rmd         |  13 [32m+[m
- 14_Statistik2/solution_stat2.2.Rmd         |  12 [32m+[m[31m-[m
- 15_Statistik3/Uebungen.Rmd                 |   3 [32m+[m[31m-[m
- 99_Book/00_Admin/style.css                 |  14 [31m-[m
- 99_Book/index.html                         |  13 [32m+[m[31m-[m
- .../fontawesome/fontawesome-webfont.ttf    | Bin
- .../gitbook-2.6.7/css/plugin-bookdown.css  |   0
- .../css/plugin-fontsettings.css            |   0
- .../gitbook-2.6.7/css/plugin-highlight.css |   0
- .../gitbook-2.6.7/css/plugin-search.css    |   0
- 99_Book/libs/gitbook-2.6.7/css/style.css   |   0
- 99_Book/libs/gitbook-2.6.7/js/app.min.js   |   0
- .../gitbook-2.6.7/js/jquery.highlight.js   |   0
- 99_Book/libs/gitbook-2.6.7/js/lunr.js      |   0
- .../gitbook-2.6.7/js/plugin-bookdown.js    |   0
- .../js/plugin-fontsettings.js              |   0
- .../libs/gitbook-2.6.7/js/plugin-search.js |   0
- .../gitbook-2.6.7/js/plugin-sharing.js     |   0
- 99_Book/libs/jquery-2.2.3/jquery.min.js    |   0
- 99_Book/search_index.json                  |  18 [32m+[m[31m-[m
- plot1_solution2.3s.pdf                     | Bin [31m0[m -> [32m10023[m bytes
- plot2_solution2.3s.pdf                     | Bin [31m0[m -> [32m9822[m bytes
- 43 files changed, 759 insertions(+), 35 deletions(-)
- mode change 100644 => 100755 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/environment_vars
- mode change 100644 => 100755 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/rversion
- mode change 100644 => 100755 .rstudio/sessions/active/session-2fb301fd/suspended-session-data/search_path/search_path_elements
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/created
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/last-used
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/rmd-outputs
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/session-persistent-state
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths
- create mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings
- create mode 100755 14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R
- delete mode 100755 99_Book/00_Admin/style.css
- mode change 100755 => 100644 99_Book/index.html
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/css/fontawesome/fontawesome-webfont.ttf
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/css/plugin-bookdown.css
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/css/plugin-fontsettings.css
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/css/plugin-highlight.css
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/css/plugin-search.css
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/css/style.css
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/app.min.js
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/jquery.highlight.js
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/lunr.js
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/plugin-bookdown.js
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/plugin-fontsettings.js
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/plugin-search.js
- mode change 100755 => 100644 99_Book/libs/gitbook-2.6.7/js/plugin-sharing.js
- mode change 100755 => 100644 99_Book/libs/jquery-2.2.3/jquery.min.js
- mode change 100755 => 100644 99_Book/search_index.json
- create mode 100644 plot1_solution2.3s.pdf
- create mode 100644 plot2_solution2.3s.pdf
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git stat[Ktus
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/rmd-outputs[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/session-persistent-state[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/0c085169-28a9-489e-9471-d459654d70eb.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/1bc6f149-d1bf-4861-a06c-0f0ffd915d62.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/32999472-e3f0-402b-aee5-8d52440a3088.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/3cf6a56d-669b-4c80-88b8-057ad5fd3380.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/4893f765-2582-464a-8400-b02612218d15.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/52c051c2-ae64-42ba-81f2-03f2619cc729.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/5996c56d-6132-40a2-883b-361d49302e01.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/88434ac3-69d0-40fd-b6a5-7d749afa37fe.snapshot[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -a
-hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KAborting commit due to empty commit message.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m[Ka
-hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KAborting commit due to empty commit message.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ i[Kgit commit -m ""c"h"a"n"g"e" "s"o"m"e" "g"r"a"m"m"a"r"s"
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/rmd-outputs[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/session-persistent-state[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings[m
-	[31mmodified:   .viminfo[m
-
-Untracked files:
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/0c085169-28a9-489e-9471-d459654d70eb.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/1bc6f149-d1bf-4861-a06c-0f0ffd915d62.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/32999472-e3f0-402b-aee5-8d52440a3088.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/3cf6a56d-669b-4c80-88b8-057ad5fd3380.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/4893f765-2582-464a-8400-b02612218d15.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/52c051c2-ae64-42ba-81f2-03f2619cc729.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/5996c56d-6132-40a2-883b-361d49302e01.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/88434ac3-69d0-40fd-b6a5-7d749afa37fe.snapshot[m
-
-no changes added to commit
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git sp[K[Kpush
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Everything up-to-date
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push[K[K[K[Kstatus
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/created[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/last-used[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/rmd-outputs[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/session-persistent-state[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths[m
-	[31mdeleted:    .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings[m
-	[31mmodified:   .viminfo[m
-	[31mmodified:   14_Statistik2/solution_stat2.3s.Rmd[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/0c085169-28a9-489e-9471-d459654d70eb.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/1bc6f149-d1bf-4861-a06c-0f0ffd915d62.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/32999472-e3f0-402b-aee5-8d52440a3088.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/3cf6a56d-669b-4c80-88b8-057ad5fd3380.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/4893f765-2582-464a-8400-b02612218d15.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/52c051c2-ae64-42ba-81f2-03f2619cc729.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/5996c56d-6132-40a2-883b-361d49302e01.snapshot[m
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/88434ac3-69d0-40fd-b6a5-7d749afa37fe.snapshot[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"[1P"i"n" "g"r"a"m"m"a"r"s"
-[master 92e5734] changes in grammars
- 37 files changed, 1327 insertions(+), 3920 deletions(-)
- rewrite .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84 (78%)
- rewrite .rstudio/sessions/active/session-2fb301fd/console06/INDEX001 (70%)
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/0c085169-28a9-489e-9471-d459654d70eb.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/1bc6f149-d1bf-4861-a06c-0f0ffd915d62.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/32999472-e3f0-402b-aee5-8d52440a3088.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/3cf6a56d-669b-4c80-88b8-057ad5fd3380.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/4893f765-2582-464a-8400-b02612218d15.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/4a389850-b2a6-48e5-881d-bf82862919ae.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/52c051c2-ae64-42ba-81f2-03f2619cc729.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/5996c56d-6132-40a2-883b-361d49302e01.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/88434ac3-69d0-40fd-b6a5-7d749afa37fe.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/d04b8564-da95-4812-af85-9e52e5d22b2e.snapshot
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/created
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/last-used
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/rmd-outputs
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/session-persistent-state
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths
- delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings
- create mode 100644 .rstudio/sessions/session-locks/3c286bd3/3c286bd3
- rewrite .viminfo (65%)
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git s[Kpush
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Counting objects: 29, done.
-Delta compression using up to 8 threads.
-Compressing objects:   4% (1/24)   Compressing objects:   8% (2/24)   Compressing objects:  12% (3/24)   Compressing objects:  16% (4/24)   Compressing objects:  20% (5/24)   Compressing objects:  25% (6/24)   Compressing objects:  29% (7/24)   Compressing objects:  33% (8/24)   Compressing objects:  37% (9/24)   Compressing objects:  41% (10/24)   Compressing objects:  45% (11/24)   Compressing objects:  50% (12/24)   Compressing objects:  54% (13/24)   Compressing objects:  58% (14/24)   Compressing objects:  62% (15/24)   Compressing objects:  66% (16/24)   Compressing objects:  70% (17/24)   Compressing objects:  75% (18/24)   Compressing objects:  79% (19/24)   Compressing objects:  83% (20/24)   Compressing objects:  87% (21/24)   Compressing objects:  91% (22/24)   Compressing objects:  95% (23/24)   Compressing objects: 100% (24/24)   Compressing objects: 100% (24/24), done.
-Writing objects:   3% (1/29)   Writing objects:   6% (2/29)   Writing objects:  10% (3/29)   Writing objects:  13% (4/29)   Writing objects:  17% (5/29)   Writing objects:  20% (6/29)   Writing objects:  24% (7/29)   Writing objects:  27% (8/29)   Writing objects:  31% (9/29)   Writing objects:  34% (10/29)   Writing objects:  37% (11/29)   Writing objects:  41% (12/29)   Writing objects:  44% (13/29)   Writing objects:  48% (14/29)   Writing objects:  55% (16/29)   Writing objects:  58% (17/29)   Writing objects:  62% (18/29)   Writing objects:  65% (19/29)   Writing objects:  68% (20/29)   Writing objects:  72% (21/29)   Writing objects:  75% (22/29)   Writing objects:  79% (23/29)   Writing objects:  82% (24/29)   Writing objects:  86% (25/29)   Writing objects:  89% (26/29)   Writing objects:  93% (27/29)   Writing objects:  96% (28/29)   Writing objects: 100% (29/29)   Writing objects: 100% (29/29), 383.43 KiB | 2.32 MiB/s, done.
-Total 29 (delta 17), reused 0 (delta 0)
-remote: Resolving deltas:   0% (0/17)   [Kremote: Resolving deltas:  11% (2/17)   [Kremote: Resolving deltas:  17% (3/17)   [Kremote: Resolving deltas:  23% (4/17)   [Kremote: Resolving deltas:  29% (5/17)   [Kremote: Resolving deltas:  35% (6/17)   [Kremote: Resolving deltas:  41% (7/17)   [Kremote: Resolving deltas:  47% (8/17)   [Kremote: Resolving deltas:  52% (9/17)   [Kremote: Resolving deltas:  58% (10/17)   [Kremote: Resolving deltas:  64% (11/17)   [Kremote: Resolving deltas:  70% (12/17)   [Kremote: Resolving deltas:  76% (13/17)   [Kremote: Resolving deltas:  82% (14/17)   [Kremote: Resolving deltas:  88% (15/17)   [Kremote: Resolving deltas:  94% (16/17)   [Kremote: Resolving deltas: 100% (17/17)   [Kremote: Resolving deltas: 100% (17/17), completed with 15 local objects.[K
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
-   16807d2..92e5734  master -> master
-groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git a[Kadd -A]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-remote: Enumerating objects: 34, done.[K
-remote: Counting objects:   3% (1/28)   [Kremote: Counting objects:   7% (2/28)   [Kremote: Counting objects:  10% (3/28)   [Kremote: Counting objects:  14% (4/28)   [Kremote: Counting objects:  17% (5/28)   [Kremote: Counting objects:  21% (6/28)   [Kremote: Counting objects:  25% (7/28)   [Kremote: Counting objects:  28% (8/28)   [Kremote: Counting objects:  32% (9/28)   [Kremote: Counting objects:  35% (10/28)   [Kremote: Counting objects:  39% (11/28)   [Kremote: Counting objects:  42% (12/28)   [Kremote: Counting objects:  46% (13/28)   [Kremote: Counting objects:  50% (14/28)   [Kremote: Counting objects:  53% (15/28)   [Kremote: Counting objects:  57% (16/28)   [Kremote: Counting objects:  60% (17/28)   [Kremote: Counting objects:  64% (18/28)   [Kremote: Counting objects:  67% (19/28)   [Kremote: Counting objects:  71% (20/28)   [Kremote: Counting objects:  75% (21/28)   [Kremote: Counting objects:  78% (22/28)   [Kremote: Counting objects:  82% (23/28)   [Kremote: Counting objects:  85% (24/28)   [Kremote: Counting objects:  89% (25/28)   [Kremote: Counting objects:  92% (26/28)   [Kremote: Counting objects:  96% (27/28)   [Kremote: Counting objects: 100% (28/28)   [Kremote: Counting objects: 100% (28/28), done.[K
-remote: Compressing objects:  20% (1/5)   [Kremote: Compressing objects:  40% (2/5)   [Kremote: Compressing objects:  60% (3/5)   [Kremote: Compressing objects:  80% (4/5)   [Kremote: Compressing objects: 100% (5/5)   [Kremote: Compressing objects: 100% (5/5), done.[K
-remote: Total 16 (delta 11), reused 16 (delta 11), pack-reused 0[K
-Unpacking objects:   6% (1/16)   Unpacking objects:  12% (2/16)   Unpacking objects:  18% (3/16)   Unpacking objects:  25% (4/16)   Unpacking objects:  31% (5/16)   Unpacking objects:  37% (6/16)   Unpacking objects:  43% (7/16)   Unpacking objects:  50% (8/16)   Unpacking objects:  56% (9/16)   Unpacking objects:  62% (10/16)   Unpacking objects:  68% (11/16)   Unpacking objects:  75% (12/16)   Unpacking objects:  81% (13/16)   Unpacking objects:  87% (14/16)   Unpacking objects:  93% (15/16)   Unpacking objects: 100% (16/16)   Unpacking objects: 100% (16/16), done.
-From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
-   92e5734..8683d61  master     -> origin/master
-CONFLICT (rename/rename): Rename "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd"->"17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd" in branch "HEAD" rename "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd"->"17_Statistik_Konsolidierung1/Abstract.Rmd" in "8683d6149db990246fa415ff1ea3912e7637744a"
-Automatic merge failed; fix conflicts and then commit the result.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^C
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rm "\"17_Statistik_Konsolidierung1" /ablauf_[C[K[K[K[K[K[K[K[K[K[K[K1/abl[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K\"17_Statistik_Konsolidierung1" [1@/[1P[1@\[1@a[1@b[1@l[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P [1P[1P [1P[1P [C 1 7 _Statistik _ K o n solidierung1/ a b l auf_inhalt_190823_egel.Rmd [1@"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C" 
-17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd: needs merge
-rm '17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd'
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1@-[1P
-bash: git-rm: command not found
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git-rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1@ [1P[C[1@ 
-unknown option: -rm
-usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           <command> [<args>]
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git -rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1P[1P[1@ 
-fatal: pathspec '17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd' did not match any files
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statz[Kus
-On branch master
-Your branch and 'origin/master' have diverged,
-and have 1 and 2 different commits each, respectively.
-  (use "git pull" to merge the remote branch into yours)
-
-You have unmerged paths.
-  (fix conflicts and run "git commit")
-  (use "git merge --abort" to abort the merge)
-
-Changes to be committed:
-
-	[32mmodified:   17_Statistik_Konsolidierung1/assigment_konstat1.Rmd[m
-	[32mmodified:   17_Statistik_Konsolidierung1/open_datasets.Rmd[m
-	[32mmodified:   99_Book/index.html[m
-	[32mmodified:   99_Book/search_index.json[m
-	[32mmodified:   _bookdown.yml[m
-	[32mmodified:   plot1_solution2.3s.pdf[m
-	[32mmodified:   plot2_solution2.3s.pdf[m
-
-Unmerged paths:
-  (use "git add <file>..." to mark resolution)
-
-	[31mboth added:      17_Statistik_Konsolidierung1/Abstract.Rmd[m
-	[31madded by us:     17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd[m
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/002a1a7c-e6af-45a8-8261-06257949a76c.snapshot[m
-	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a[m
-	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~HEAD[m
-
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git stats[Kus
-On branch master
-Your branch and 'origin/master' have diverged,
-and have 1 and 2 different commits each, respectively.
-  (use "git pull" to merge the remote branch into yours)
-
-You have unmerged paths.
-  (fix conflicts and run "git commit")
-  (use "git merge --abort" to abort the merge)
-
-Changes to be committed:
-
-	[32mmodified:   17_Statistik_Konsolidierung1/assigment_konstat1.Rmd[m
-	[32mmodified:   17_Statistik_Konsolidierung1/open_datasets.Rmd[m
-	[32mmodified:   99_Book/index.html[m
-	[32mmodified:   99_Book/search_index.json[m
-	[32mmodified:   _bookdown.yml[m
-	[32mmodified:   plot1_solution2.3s.pdf[m
-	[32mmodified:   plot2_solution2.3s.pdf[m
-
-Unmerged paths:
-  (use "git add <file>..." to mark resolution)
-
-	[31mboth added:      17_Statistik_Konsolidierung1/Abstract.Rmd[m
-	[31madded by us:     17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd[m
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/002a1a7c-e6af-45a8-8261-06257949a76c.snapshot[m
-	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a[m
-	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~HEAD[m
-
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status[K[K[K[K[K[K[K[K[Kgit pull
-error: Pulling is not possible because you have unmerged files.
-hint: Fix them up in the work tree, and then use 'git add/rm <file>'
-hint: as appropriate to mark resolution and make a commit.
-fatal: Exiting because of an unresolved conflict.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it rm --cached
-bash: it: command not found
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it rm --cached[1@g
-usage: git rm [<options>] [--] <file>...
-
-    -n, --dry-run         dry run
-    -q, --quiet           do not list removed files
-    --cached              only remove from the index
-    -f, --force           override the up-to-date check
-    -r                    allow recursive removal
-    --ignore-unmatch      exit with a zero status even if nothing matched
-
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ itt a[K[K[K[K[Kgit add
-Nothing specified, nothing added.
-Maybe you wanted to say 'git add .'?
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add[C .
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit ""l"a"s"t" "c"h"a"n"g"e"s"
-fatal: cannot do a partial commit during a merge.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit "last changes"[C[1@ [1@-[1@m
-[master 2bef144] last changes
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ g[Kgit statz[Kus
-On branch master
-Your branch is ahead of 'origin/master' by 2 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git s   groups: cannot find name for group ID 10000
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gigi[K[Kt status
-On branch master
-Your branch is ahead of 'origin/master' by 2 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .bash_history[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/session-persistent-state[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/options[m
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git clean -n
-Would remove .rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git p[Kpush
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Counting objects: 43, done.
-Delta compression using up to 8 threads.
-Compressing objects:   2% (1/37)   Compressing objects:   5% (2/37)   Compressing objects:   8% (3/37)   Compressing objects:  10% (4/37)   Compressing objects:  13% (5/37)   Compressing objects:  16% (6/37)   Compressing objects:  18% (7/37)   Compressing objects:  21% (8/37)   Compressing objects:  24% (9/37)   Compressing objects:  27% (10/37)   Compressing objects:  29% (11/37)   Compressing objects:  32% (12/37)   Compressing objects:  35% (13/37)   Compressing objects:  37% (14/37)   Compressing objects:  40% (15/37)   Compressing objects:  43% (16/37)   Compressing objects:  45% (17/37)   Compressing objects:  48% (18/37)   Compressing objects:  51% (19/37)   Compressing objects:  54% (20/37)   Compressing objects:  56% (21/37)   Compressing objects:  59% (22/37)   Compressing objects:  62% (23/37)   Compressing objects:  64% (24/37)   Compressing objects:  67% (25/37)   Compressing objects:  70% (26/37)   Compressing objects:  72% (27/37)   Compressing objects:  75% (28/37)   Compressing objects:  78% (29/37)   Compressing objects:  81% (30/37)   Compressing objects:  83% (31/37)   Compressing objects:  86% (32/37)   Compressing objects:  89% (33/37)   Compressing objects:  91% (34/37)   Compressing objects:  94% (35/37)   Compressing objects:  97% (36/37)   Compressing objects: 100% (37/37)   Compressing objects: 100% (37/37), done.
-Writing objects:   2% (1/43)   Writing objects:   4% (2/43)   Writing objects:   6% (3/43)   Writing objects:   9% (4/43)   Writing objects:  11% (5/43)   Writing objects:  13% (6/43)   Writing objects:  16% (7/43)   Writing objects:  18% (8/43)   Writing objects:  20% (9/43)   Writing objects:  23% (10/43)   Writing objects:  25% (11/43)   Writing objects:  27% (12/43)   Writing objects:  30% (13/43)   Writing objects:  32% (14/43)   Writing objects:  34% (15/43)   Writing objects:  37% (16/43)   Writing objects:  39% (17/43)   Writing objects:  41% (18/43)   Writing objects:  44% (19/43)   Writing objects:  46% (20/43)   Writing objects:  48% (21/43)   Writing objects:  51% (22/43)   Writing objects:  53% (23/43)   Writing objects:  55% (24/43)   Writing objects:  58% (25/43)   Writing objects:  60% (26/43)   Writing objects:  62% (27/43)   Writing objects:  65% (28/43)   Writing objects:  67% (29/43)   Writing objects:  69% (30/43)   Writing objects:  72% (31/43)   Writing objects:  74% (32/43)   Writing objects:  76% (33/43)   Writing objects:  79% (34/43)   Writing objects:  81% (35/43)   Writing objects:  83% (36/43)   Writing objects:  86% (37/43)   Writing objects:  88% (38/43)   Writing objects:  90% (39/43)   Writing objects:  93% (40/43)   Writing objects:  95% (41/43)   Writing objects:  97% (42/43)   Writing objects: 100% (43/43)   Writing objects: 100% (43/43), 792.39 KiB | 1.73 MiB/s, done.
-Total 43 (delta 24), reused 0 (delta 0)
-remote: Resolving deltas:   0% (0/24)   [Kremote: Resolving deltas:   4% (1/24)   [Kremote: Resolving deltas:   8% (2/24)   [Kremote: Resolving deltas:  12% (3/24)   [Kremote: Resolving deltas:  16% (4/24)   [Kremote: Resolving deltas:  25% (6/24)   [Kremote: Resolving deltas:  29% (7/24)   [Kremote: Resolving deltas:  33% (8/24)   [Kremote: Resolving deltas:  41% (10/24)   [Kremote: Resolving deltas:  50% (12/24)   [Kremote: Resolving deltas:  54% (13/24)   [Kremote: Resolving deltas:  58% (14/24)   [Kremote: Resolving deltas:  66% (16/24)   [Kremote: Resolving deltas:  70% (17/24)   [Kremote: Resolving deltas:  75% (18/24)   [Kremote: Resolving deltas:  79% (19/24)   [Kremote: Resolving deltas:  83% (20/24)   [Kremote: Resolving deltas:  87% (21/24)   [Kremote: Resolving deltas:  91% (22/24)   [Kremote: Resolving deltas:  95% (23/24)   [Kremote: Resolving deltas: 100% (24/24)   [Kremote: Resolving deltas: 100% (24/24), completed with 18 local objects.[K
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
-   8683d61..2bef144  master -> master
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt[K git add -A
-git: 'git' is not a git command. See 'git --help'.
-
-The most similar command is
-	init
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git git add -A[1P[1P[1P
-bash: gitt: command not found
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt add -A[1P
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"n" "k"o"n"s"o"l"o"[1P"i"d"i"e"r"u"n"g"[C
-[master 87d4187] changes in konsolidierung
- 12 files changed, 91 insertions(+), 25 deletions(-)
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot
- rename 17_Statistik_Konsolidierung1/{Abstract.Rmd~HEAD => Abstract.Rmd} (68%)
- delete mode 100755 17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a
- rename "17_Statistik_Konsolidierung1/Statistikbl\303\266cke 2019_\303\234bersicht_Konsolidierung.pdf" => 17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf (100%)
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit[K[K[K[K[K[K[K push
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
- ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
- ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-remote: Enumerating objects: 7, done.[K
-remote: Counting objects:  14% (1/7)   [Kremote: Counting objects:  28% (2/7)   [Kremote: Counting objects:  42% (3/7)   [Kremote: Counting objects:  57% (4/7)   [Kremote: Counting objects:  71% (5/7)   [Kremote: Counting objects:  85% (6/7)   [Kremote: Counting objects: 100% (7/7)   [Kremote: Counting objects: 100% (7/7), done.[K
-remote: Compressing objects:  25% (1/4)   [Kremote: Compressing objects:  50% (2/4)   [Kremote: Compressing objects:  75% (3/4)   [Kremote: Compressing objects: 100% (4/4)   [Kremote: Compressing objects: 100% (4/4), done.[K
-remote: Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
-Unpacking objects:  25% (1/4)   Unpacking objects:  50% (2/4)   Unpacking objects:  75% (3/4)   Unpacking objects: 100% (4/4)   Unpacking objects: 100% (4/4), done.
-From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
-   2bef144..ac4c836  master     -> origin/master
-error: addinfo_cache failed for path '17_Statistik_Konsolidierung1/Abstract.Rmd'
-hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
- 16_Statistik4/Demoskript.Rmd | 15 [32m++++++++[m[31m-------[m
- 1 file changed, 8 insertions(+), 7 deletions(-)
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
-On branch master
-Your branch is ahead of 'origin/master' by 2 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
-	[31mmodified:   .viminfo[m
-	[31mmodified:   17_Statistik_Konsolidierung1/Abstract.Rmd[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit [K[K[K[K[K[K[Kadd -A
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s"i" "[1P"[1P" "i"n" "k"o"n"d"[1P"s"o"l"i"d"i"e"r"u"n"g"[C
-[master dad8b18] changes in konsolidierung
- 5 files changed, 116 insertions(+), 56 deletions(-)
- rewrite .rstudio/sessions/active/session-2fb301fd/console06/INDEX001 (70%)
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Counting objects: 39, done.
-Delta compression using up to 8 threads.
-Compressing objects:   3% (1/33)   Compressing objects:   6% (2/33)   Compressing objects:   9% (3/33)   Compressing objects:  12% (4/33)   Compressing objects:  15% (5/33)   Compressing objects:  18% (6/33)   Compressing objects:  21% (7/33)   Compressing objects:  24% (8/33)   Compressing objects:  27% (9/33)   Compressing objects:  30% (10/33)   Compressing objects:  33% (11/33)   Compressing objects:  36% (12/33)   Compressing objects:  39% (13/33)   Compressing objects:  42% (14/33)   Compressing objects:  45% (15/33)   Compressing objects:  48% (16/33)   Compressing objects:  51% (17/33)   Compressing objects:  54% (18/33)   Compressing objects:  57% (19/33)   Compressing objects:  60% (20/33)   Compressing objects:  63% (21/33)   Compressing objects:  66% (22/33)   Compressing objects:  69% (23/33)   Compressing objects:  72% (24/33)   Compressing objects:  75% (25/33)   Compressing objects:  78% (26/33)   Compressing objects:  81% (27/33)   Compressing objects:  84% (28/33)   Compressing objects:  87% (29/33)   Compressing objects:  90% (30/33)   Compressing objects:  93% (31/33)   Compressing objects:  96% (32/33)   Compressing objects: 100% (33/33)   Compressing objects: 100% (33/33), done.
-Writing objects:   2% (1/39)   Writing objects:   5% (2/39)   Writing objects:   7% (3/39)   Writing objects:  10% (4/39)   Writing objects:  12% (5/39)   Writing objects:  15% (6/39)   Writing objects:  17% (7/39)   Writing objects:  20% (8/39)   Writing objects:  23% (9/39)   Writing objects:  25% (10/39)   Writing objects:  28% (11/39)   Writing objects:  30% (12/39)   Writing objects:  33% (13/39)   Writing objects:  35% (14/39)   Writing objects:  38% (15/39)   Writing objects:  41% (16/39)   Writing objects:  43% (17/39)   Writing objects:  46% (18/39)   Writing objects:  48% (19/39)   Writing objects:  51% (20/39)   Writing objects:  53% (21/39)   Writing objects:  56% (22/39)   Writing objects:  58% (23/39)   Writing objects:  61% (24/39)   Writing objects:  64% (25/39)   Writing objects:  69% (27/39)   Writing objects:  71% (28/39)   Writing objects:  74% (29/39)   Writing objects:  76% (30/39)   Writing objects:  79% (31/39)   Writing objects:  82% (32/39)   Writing objects:  84% (33/39)   Writing objects:  87% (34/39)   Writing objects:  89% (35/39)   Writing objects:  92% (36/39)   Writing objects:  94% (37/39)   Writing objects:  97% (38/39)   Writing objects: 100% (39/39)   Writing objects: 100% (39/39), 549.69 KiB | 1.37 MiB/s, done.
-Total 39 (delta 23), reused 0 (delta 0)
-remote: Resolving deltas:   0% (0/23)   [Kremote: Resolving deltas:   4% (1/23)   [Kremote: Resolving deltas:   8% (2/23)   [Kremote: Resolving deltas:  21% (5/23)   [Kremote: Resolving deltas:  26% (6/23)   [Kremote: Resolving deltas:  34% (8/23)   [Kremote: Resolving deltas:  39% (9/23)   [Kremote: Resolving deltas:  43% (10/23)   [Kremote: Resolving deltas:  52% (12/23)   [Kremote: Resolving deltas:  56% (13/23)   [Kremote: Resolving deltas:  65% (15/23)   [Kremote: Resolving deltas:  69% (16/23)   [Kremote: Resolving deltas:  78% (18/23)   [Kremote: Resolving deltas:  82% (19/23)   [Kremote: Resolving deltas:  86% (20/23)   [Kremote: Resolving deltas:  91% (21/23)   [Kremote: Resolving deltas: 100% (23/23)   [Kremote: Resolving deltas: 100% (23/23), completed with 14 local objects.[K
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
-   ac4c836..dad8b18  master -> master
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
-	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commiot[K[Kt -m ""t"r"y" "t"o" "e"m"b"e"d" "a" "p"d"f" "i"n" "m"d"[C
-[master cf350de] try to embed a pdf in md
- 3 files changed, 33 insertions(+), 5 deletions(-)
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-Counting objects: 12, done.
-Delta compression using up to 8 threads.
-Compressing objects:  11% (1/9)   Compressing objects:  22% (2/9)   Compressing objects:  33% (3/9)   Compressing objects:  44% (4/9)   Compressing objects:  55% (5/9)   Compressing objects:  66% (6/9)   Compressing objects:  77% (7/9)   Compressing objects:  88% (8/9)   Compressing objects: 100% (9/9)   Compressing objects: 100% (9/9), done.
-Writing objects:   8% (1/12)   Writing objects:  16% (2/12)   Writing objects:  25% (3/12)   Writing objects:  33% (4/12)   Writing objects:  41% (5/12)   Writing objects:  50% (6/12)   Writing objects:  58% (7/12)   Writing objects:  66% (8/12)   Writing objects:  75% (9/12)   Writing objects:  83% (10/12)   Writing objects:  91% (11/12)   Writing objects: 100% (12/12)   Writing objects: 100% (12/12), 1.69 KiB | 1.69 MiB/s, done.
-Total 12 (delta 7), reused 0 (delta 0)
-remote: Resolving deltas:   0% (0/7)   [Kremote: Resolving deltas:  14% (1/7)   [Kremote: Resolving deltas:  28% (2/7)   [Kremote: Resolving deltas:  42% (3/7)   remote: Resolving deltas:  57% (4/7)   [Kremote: Resolving deltas:  71% (5/7)   [Kremote: Resolving deltas:  85% (6/7)   [Kremote: Resolving deltas: 100% (7/7)   [Kremote: Resolving deltas: 100% (7/7), completed with 7 local objects.[K
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
-   dad8b18..cf350de  master -> master
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
-[K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commiot [K[K[Kt[Kt -m ""l"a"s"t" "c"h"a"n"g"e"s"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"p"r"o"b"l"e"m"s" "e"m"e"[1P"b"e"d"d"i"n"g" "p"d"f"'"s" "n"o"t" "s"o"l"v"e" [A]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cd""
-[master 08903b7] problems embedding pdf's not solved
- 13 files changed, 48 insertions(+), 16 deletions(-)
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/31d41b37-5443-442a-bcba-d62207b7cd0a.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/3eae8dc0-cbef-47d8-89a8-4fb9cb05eb14.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/8d954703-1c72-4855-bd5f-c96d0513cc23.snapshot
- create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/e361143e-5061-40b4-a0f3-0bbd5e37e34b.snapshot
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
- ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git o[Kpull
-Username for 'https://github.zhaw.ch': egel
-Password for 'https://egel@github.zhaw.ch': 
-remote: Enumerating objects: 34, done.[K
-remote: Counting objects:   2% (1/34)   [Kremote: Counting objects:   5% (2/34)   [Kremote: Counting objects:   8% (3/34)   [Kremote: Counting objects:  11% (4/34)   [Kremote: Counting objects:  14% (5/34)   [Kremote: Counting objects:  17% (6/34)   [Kremote: Counting objects:  20% (7/34)   [Kremote: Counting objects:  23% (8/34)   [Kremote: Counting objects:  26% (9/34)   [Kremote: Counting objects:  29% (10/34)   [Kremote: Counting objects:  32% (11/34)   [Kremote: Counting objects:  35% (12/34)   [Kremote: Counting objects:  38% (13/34)   [Kremote: Counting objects:  41% (14/34)   [Kremote: Counting objects:  44% (15/34)   [Kremote: Counting objects:  47% (16/34)   [Kremote: Counting objects:  50% (17/34)   [Kremote: Counting objects:  52% (18/34)   [Kremote: Counting objects:  55% (19/34)   [Kremote: Counting objects:  58% (20/34)   [Kremote: Counting objects:  61% (21/34)   [Kremote: Counting objects:  64% (22/34)   [Kremote: Counting objects:  67% (23/34)   [Kremote: Counting objects:  70% (24/34)   [Kremote: Counting objects:  73% (25/34)   [Kremote: Counting objects:  76% (26/34)   [Kremote: Counting objects:  79% (27/34)   [Kremote: Counting objects:  82% (28/34)   [Kremote: Counting objects:  85% (29/34)   [Kremote: Counting objects:  88% (30/34)   [Kremote: Counting objects:  91% (31/34)   [Kremote: Counting objects:  94% (32/34)   [Kremote: Counting objects:  97% (33/34)   [Kremote: Counting objects: 100% (34/34)   [Kremote: Counting objects: 100% (34/34), done.[K
-remote: Compressing objects:   4% (1/24)   [Kremote: Compressing objects:   8% (2/24)   [Kremote: Compressing objects:  12% (3/24)   [Kremote: Compressing objects:  16% (4/24)   [Kremote: Compressing objects:  20% (5/24)   [Kremote: Compressing objects:  25% (6/24)   [Kremote: Compressing objects:  29% (7/24)   [Kremote: Compressing objects:  33% (8/24)   [Kremote: Compressing objects:  37% (9/24)   [Kremote: Compressing objects:  41% (10/24)   [Kremote: Compressing objects:  45% (11/24)   [Kremote: Compressing objects:  50% (12/24)   [Kremote: Compressing objects:  54% (13/24)   [Kremote: Compressing objects:  58% (14/24)   [Kremote: Compressing objects:  62% (15/24)   [Kremote: Compressing objects:  66% (16/24)   [Kremote: Compressing objects:  70% (17/24)   [Kremote: Compressing objects:  75% (18/24)   [Kremote: Compressing objects:  79% (19/24)   [Kremote: Compressing objects:  83% (20/24)   [Kremote: Compressing objects:  87% (21/24)   [Kremote: Compressing objects:  91% (22/24)   [Kremote: Compressing objects:  95% (23/24)   [Kremote: Compressing objects: 100% (24/24)   [Kremote: Compressing objects: 100% (24/24), done.[K
-remote: Total 24 (delta 16), reused 0 (delta 0), pack-reused 0[K
-Unpacking objects:   4% (1/24)   Unpacking objects:   8% (2/24)   Unpacking objects:  12% (3/24)   Unpacking objects:  16% (4/24)   Unpacking objects:  20% (5/24)   Unpacking objects:  25% (6/24)   Unpacking objects:  29% (7/24)   Unpacking objects:  33% (8/24)   Unpacking objects:  37% (9/24)   Unpacking objects:  41% (10/24)   Unpacking objects:  45% (11/24)   Unpacking objects:  50% (12/24)   Unpacking objects:  54% (13/24)   Unpacking objects:  58% (14/24)   Unpacking objects:  62% (15/24)   Unpacking objects:  66% (16/24)   Unpacking objects:  70% (17/24)   Unpacking objects:  75% (18/24)   Unpacking objects:  79% (19/24)   Unpacking objects:  83% (20/24)   Unpacking objects:  87% (21/24)   Unpacking objects:  91% (22/24)   Unpacking objects:  95% (23/24)   Unpacking objects: 100% (24/24)   Unpacking objects: 100% (24/24), done.
-From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
-   cf350de..fc32d6d  master     -> origin/master
-hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
- 15_Statistik3/solution_stat3.1.Rmd  |  6 [32m++[m[31m-[m
- 16_Statistik4/Abstract.Rmd          |  3 [32m+[m[31m-[m
- 16_Statistik4/solution_stat4.1n.Rmd | 18 [32m+++[m[31m----[m
- 17_Statistik5/Abstract.Rmd          |  4 [32m+[m[31m-[m
- 17_Statistik5/Demoskript.Rmd        | 72 [32m++++[m[31m------------------------[m
- 18_Statistik6/Abstract.Rmd          |  4 [32m+[m[31m-[m
- 6 files changed, 29 insertions(+), 78 deletions(-)
-]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
