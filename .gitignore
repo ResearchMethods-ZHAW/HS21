@@ -12,3 +12,10 @@ rsconnect
 _main.pdf
 *.html
 /99_Book
+.bash_history
+.bash_logout
+.bashrc
+.gitconfig
+.profile
+.travis.yml
+.viminfo
