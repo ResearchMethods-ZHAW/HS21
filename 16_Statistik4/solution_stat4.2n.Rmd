@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, mes
 
 ## Musterlösung Aufgabe 4.2N: Multiple logistische Regression
 
+[Demoscript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.2N_v.01.R)
+
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
 - Laden Sie den Datensatz isolation.csv. Dieser enthält für 50 Inseln die Information, ob
@@ -46,7 +48,7 @@ Redundanz dagegen vermieden werden.
 (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
 ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
 
-### Übung 4.2 - Multiple logistische Regression
+### Übung 4.2 - Multiple logistische Regression**
 
 ```{r}
 islands <-read.csv("16_Statistik4/data/isolation.csv")

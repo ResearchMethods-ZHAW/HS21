@@ -13,6 +13,8 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 ## Musterlösung Aufgabe 4.1: Nicht-lineare Regression
 
+[Demoscript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.1_v.02.R)
+
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
 - Laden Sie den Datensatz Curonia_spit.xlsx. Dieser enthält gemittelte            
