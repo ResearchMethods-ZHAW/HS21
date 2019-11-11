@@ -4,7 +4,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 ## Statistik 5 - Demoskript 
 
-[Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.02.R)
+[Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.03.R)
 **Datensatz [spf.csv](17_Statistik5/data/spf.csv)**
 **Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)**
 
