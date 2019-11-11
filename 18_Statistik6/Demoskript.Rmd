@@ -139,47 +139,48 @@ arrows(0,0,x[sel.sp],y[sel.sp],length=0.08)
 text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 
 
-#CA
-
-library(vegan)
-
-o.ca<-cca(sveg^0.5)
+**CA**
+ca<-cca(sveg^0.5)
 #Arten (o) und Communities (+) plotten
-plot(o.ca)
+plot(ca)
 
 #Nur Arten plotten
-x<-o.ca$CA$u[,1];y<-o.ca$CA$u[,2]
+x<-ca$CA$u[,1];y<-ca$CA$u[,2]
 plot(x,y)
+plot(ca, display = c("species"),type = c("points"))#alternative
+
 
 #Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
-o.ca$CA$eig[1:2]/sum(o.ca$CA$eig)
+ca$CA$eig[1:2]/sum(ca$CA$eig)
 
 
-#DCA
+**DCA**
+o.dca <- decorana(sveg,mk=10)
+plot(o.dca$rproj, asp=1)
 
-#o.dca <- decorana(sveg,mk=10)
-#plot(o.dca$rproj, asp=1)
+o.dca2 <- decorana(sveg,mk=100)
+plot(o.dca2$rproj, asp=1)
 
-#o.dca2 <- decorana(sveg,mk=100)
-#plot(o.dca2$rproj, asp=1)
-
-#NMDS
-
+**NMDS**
 #Distanzmatrix als Start erzeugen
-c
 mde <-vegdist(sveg,method="euclidean")
-
+mde
+mde <-vegdist(sveg,method="bray")#Alternative mit einem für Vegetationsdaten üblichen Dissimilarity index
+mde
 
 #Zwei verschiedene NMDS-Methoden
+if(!require(MASS)){install.packages("MASS")}
 library(MASS)
 set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
-o.imds<-isoMDS(mde,k=2)
+imds<-isoMDS(mde,k=2)
 set.seed(1)
-o.mmds<-metaMDS(mde,k=2)
-plot(o.imds$points)
-plot(o.mmds$points)
+mmds<-metaMDS(mde,k=2)
 
-#Stress = S = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
-stressplot(o.imds,mde)
-stressplot(o.mmds,mde)
+plot(imds$points)
+plot(mmds$points)
+
+#Stress = S² = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
+stressplot(imds,mde)
+stressplot(mmds,mde)
+
 ```
