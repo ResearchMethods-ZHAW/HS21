@@ -22,8 +22,6 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 if(!require(labdsv)){install.packages("labdsv")}
 library(labdsv)
 #Für Ordinationen benötigen wir Matrizen, nicht Data.frames
-if(!require(vegan)){install.packages("vegan")}
-library("vegan")
 
 #Generieren von Daten
 raw<-matrix(c(1,2,2.5,2.5,1,0.5,0,1,2,4,3,1),nrow=6)
@@ -79,6 +77,8 @@ plot(pca.2)
 biplot(pca.2)
 
 #mit vegan
+if(!require(vegan)){install.packages("vegan")}
+library("vegan")
 pca.1 <- rda(raw, scale=FALSE) #Die Funktion rda führt ein PCA aus an wenn nicht Umwelt und Artdaten definiert werden
 summary(pca.1,axes=0)
 biplot(pca.1, scaling=2)
