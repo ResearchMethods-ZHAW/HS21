@@ -1000,3 +1000,377 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"[1P"i"n" "g"r"a"m"m"a"r"s"
+[master 92e5734] changes in grammars
+ 37 files changed, 1327 insertions(+), 3920 deletions(-)
+ rewrite .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84 (78%)
+ rewrite .rstudio/sessions/active/session-2fb301fd/console06/INDEX001 (70%)
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/0c085169-28a9-489e-9471-d459654d70eb.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/1bc6f149-d1bf-4861-a06c-0f0ffd915d62.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/32999472-e3f0-402b-aee5-8d52440a3088.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/3cf6a56d-669b-4c80-88b8-057ad5fd3380.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/4893f765-2582-464a-8400-b02612218d15.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/4a389850-b2a6-48e5-881d-bf82862919ae.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/52c051c2-ae64-42ba-81f2-03f2619cc729.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/5996c56d-6132-40a2-883b-361d49302e01.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/88434ac3-69d0-40fd-b6a5-7d749afa37fe.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/d04b8564-da95-4812-af85-9e52e5d22b2e.snapshot
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/C19612EB
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/console06/INDEX001
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/INDEX
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/graphics-r3/empty.png
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/created
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/last-used
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/r-version-label
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/properites/save_prompt_required
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/rmd-outputs
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/session-persistent-state
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/console_actions
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/environment
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/history
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/options
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/search_path/package_paths
+ delete mode 100755 .rstudio/sessions/active/session-a54d4ffe/suspended-session-data/settings
+ create mode 100644 .rstudio/sessions/session-locks/3c286bd3/3c286bd3
+ rewrite .viminfo (65%)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git s[Kpush
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 29, done.
+Delta compression using up to 8 threads.
+Compressing objects:   4% (1/24)   Compressing objects:   8% (2/24)   Compressing objects:  12% (3/24)   Compressing objects:  16% (4/24)   Compressing objects:  20% (5/24)   Compressing objects:  25% (6/24)   Compressing objects:  29% (7/24)   Compressing objects:  33% (8/24)   Compressing objects:  37% (9/24)   Compressing objects:  41% (10/24)   Compressing objects:  45% (11/24)   Compressing objects:  50% (12/24)   Compressing objects:  54% (13/24)   Compressing objects:  58% (14/24)   Compressing objects:  62% (15/24)   Compressing objects:  66% (16/24)   Compressing objects:  70% (17/24)   Compressing objects:  75% (18/24)   Compressing objects:  79% (19/24)   Compressing objects:  83% (20/24)   Compressing objects:  87% (21/24)   Compressing objects:  91% (22/24)   Compressing objects:  95% (23/24)   Compressing objects: 100% (24/24)   Compressing objects: 100% (24/24), done.
+Writing objects:   3% (1/29)   Writing objects:   6% (2/29)   Writing objects:  10% (3/29)   Writing objects:  13% (4/29)   Writing objects:  17% (5/29)   Writing objects:  20% (6/29)   Writing objects:  24% (7/29)   Writing objects:  27% (8/29)   Writing objects:  31% (9/29)   Writing objects:  34% (10/29)   Writing objects:  37% (11/29)   Writing objects:  41% (12/29)   Writing objects:  44% (13/29)   Writing objects:  48% (14/29)   Writing objects:  55% (16/29)   Writing objects:  58% (17/29)   Writing objects:  62% (18/29)   Writing objects:  65% (19/29)   Writing objects:  68% (20/29)   Writing objects:  72% (21/29)   Writing objects:  75% (22/29)   Writing objects:  79% (23/29)   Writing objects:  82% (24/29)   Writing objects:  86% (25/29)   Writing objects:  89% (26/29)   Writing objects:  93% (27/29)   Writing objects:  96% (28/29)   Writing objects: 100% (29/29)   Writing objects: 100% (29/29), 383.43 KiB | 2.32 MiB/s, done.
+Total 29 (delta 17), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/17)   [Kremote: Resolving deltas:  11% (2/17)   [Kremote: Resolving deltas:  17% (3/17)   [Kremote: Resolving deltas:  23% (4/17)   [Kremote: Resolving deltas:  29% (5/17)   [Kremote: Resolving deltas:  35% (6/17)   [Kremote: Resolving deltas:  41% (7/17)   [Kremote: Resolving deltas:  47% (8/17)   [Kremote: Resolving deltas:  52% (9/17)   [Kremote: Resolving deltas:  58% (10/17)   [Kremote: Resolving deltas:  64% (11/17)   [Kremote: Resolving deltas:  70% (12/17)   [Kremote: Resolving deltas:  76% (13/17)   [Kremote: Resolving deltas:  82% (14/17)   [Kremote: Resolving deltas:  88% (15/17)   [Kremote: Resolving deltas:  94% (16/17)   [Kremote: Resolving deltas: 100% (17/17)   [Kremote: Resolving deltas: 100% (17/17), completed with 15 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   16807d2..92e5734  master -> master
+groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git a[Kadd -A]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 34, done.[K
+remote: Counting objects:   3% (1/28)   [Kremote: Counting objects:   7% (2/28)   [Kremote: Counting objects:  10% (3/28)   [Kremote: Counting objects:  14% (4/28)   [Kremote: Counting objects:  17% (5/28)   [Kremote: Counting objects:  21% (6/28)   [Kremote: Counting objects:  25% (7/28)   [Kremote: Counting objects:  28% (8/28)   [Kremote: Counting objects:  32% (9/28)   [Kremote: Counting objects:  35% (10/28)   [Kremote: Counting objects:  39% (11/28)   [Kremote: Counting objects:  42% (12/28)   [Kremote: Counting objects:  46% (13/28)   [Kremote: Counting objects:  50% (14/28)   [Kremote: Counting objects:  53% (15/28)   [Kremote: Counting objects:  57% (16/28)   [Kremote: Counting objects:  60% (17/28)   [Kremote: Counting objects:  64% (18/28)   [Kremote: Counting objects:  67% (19/28)   [Kremote: Counting objects:  71% (20/28)   [Kremote: Counting objects:  75% (21/28)   [Kremote: Counting objects:  78% (22/28)   [Kremote: Counting objects:  82% (23/28)   [Kremote: Counting objects:  85% (24/28)   [Kremote: Counting objects:  89% (25/28)   [Kremote: Counting objects:  92% (26/28)   [Kremote: Counting objects:  96% (27/28)   [Kremote: Counting objects: 100% (28/28)   [Kremote: Counting objects: 100% (28/28), done.[K
+remote: Compressing objects:  20% (1/5)   [Kremote: Compressing objects:  40% (2/5)   [Kremote: Compressing objects:  60% (3/5)   [Kremote: Compressing objects:  80% (4/5)   [Kremote: Compressing objects: 100% (5/5)   [Kremote: Compressing objects: 100% (5/5), done.[K
+remote: Total 16 (delta 11), reused 16 (delta 11), pack-reused 0[K
+Unpacking objects:   6% (1/16)   Unpacking objects:  12% (2/16)   Unpacking objects:  18% (3/16)   Unpacking objects:  25% (4/16)   Unpacking objects:  31% (5/16)   Unpacking objects:  37% (6/16)   Unpacking objects:  43% (7/16)   Unpacking objects:  50% (8/16)   Unpacking objects:  56% (9/16)   Unpacking objects:  62% (10/16)   Unpacking objects:  68% (11/16)   Unpacking objects:  75% (12/16)   Unpacking objects:  81% (13/16)   Unpacking objects:  87% (14/16)   Unpacking objects:  93% (15/16)   Unpacking objects: 100% (16/16)   Unpacking objects: 100% (16/16), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   92e5734..8683d61  master     -> origin/master
+CONFLICT (rename/rename): Rename "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd"->"17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd" in branch "HEAD" rename "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd"->"17_Statistik_Konsolidierung1/Abstract.Rmd" in "8683d6149db990246fa415ff1ea3912e7637744a"
+Automatic merge failed; fix conflicts and then commit the result.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ ^C
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rm "\"17_Statistik_Konsolidierung1" /ablauf_[C[K[K[K[K[K[K[K[K[K[K[K1/abl[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K\"17_Statistik_Konsolidierung1" [1@/[1P[1@\[1@a[1@b[1@l[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P [1P[1P [1P[1P [C 1 7 _Statistik _ K o n solidierung1/ a b l auf_inhalt_190823_egel.Rmd [1@"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C" 
+17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd: needs merge
+rm '17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd'
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1@-[1P
+bash: git-rm: command not found
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git-rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1@ [1P[C[1@ 
+unknown option: -rm
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git -rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" [1P[1P[1@ 
+fatal: pathspec '17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd' did not match any files
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git statz[Kus
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+	[32mmodified:   17_Statistik_Konsolidierung1/assigment_konstat1.Rmd[m
+	[32mmodified:   17_Statistik_Konsolidierung1/open_datasets.Rmd[m
+	[32mmodified:   99_Book/index.html[m
+	[32mmodified:   99_Book/search_index.json[m
+	[32mmodified:   _bookdown.yml[m
+	[32mmodified:   plot1_solution2.3s.pdf[m
+	[32mmodified:   plot2_solution2.3s.pdf[m
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	[31mboth added:      17_Statistik_Konsolidierung1/Abstract.Rmd[m
+	[31madded by us:     17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/002a1a7c-e6af-45a8-8261-06257949a76c.snapshot[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~HEAD[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git stats[Kus
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+	[32mmodified:   17_Statistik_Konsolidierung1/assigment_konstat1.Rmd[m
+	[32mmodified:   17_Statistik_Konsolidierung1/open_datasets.Rmd[m
+	[32mmodified:   99_Book/index.html[m
+	[32mmodified:   99_Book/search_index.json[m
+	[32mmodified:   _bookdown.yml[m
+	[32mmodified:   plot1_solution2.3s.pdf[m
+	[32mmodified:   plot2_solution2.3s.pdf[m
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	[31mboth added:      17_Statistik_Konsolidierung1/Abstract.Rmd[m
+	[31madded by us:     17_Statistik_Konsolidierung1/archiv/ablauf_inhalt_190823_egel.Rmd[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84.env[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/002a1a7c-e6af-45a8-8261-06257949a76c.snapshot[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a[m
+	[31m17_Statistik_Konsolidierung1/Abstract.Rmd~HEAD[m
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status[K[K[K[K[K[K[K[K[Kgit pull
+error: Pulling is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it rm --cached
+bash: it: command not found
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ it rm --cached[1@g
+usage: git rm [<options>] [--] <file>...
+
+    -n, --dry-run         dry run
+    -q, --quiet           do not list removed files
+    --cached              only remove from the index
+    -f, --force           override the up-to-date check
+    -r                    allow recursive removal
+    --ignore-unmatch      exit with a zero status even if nothing matched
+
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ itt a[K[K[K[K[Kgit add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add[C .
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit ""l"a"s"t" "c"h"a"n"g"e"s"
+fatal: cannot do a partial commit during a merge.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit "last changes"[C[1@ [1@-[1@m
+[master 2bef144] last changes
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ g[Kgit statz[Kus
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git s   groups: cannot find name for group ID 10000
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gigi[K[Kt status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .bash_history[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/session-persistent-state[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/suspended-session-data/options[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git clean -n
+Would remove .rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git p[Kpush
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 43, done.
+Delta compression using up to 8 threads.
+Compressing objects:   2% (1/37)   Compressing objects:   5% (2/37)   Compressing objects:   8% (3/37)   Compressing objects:  10% (4/37)   Compressing objects:  13% (5/37)   Compressing objects:  16% (6/37)   Compressing objects:  18% (7/37)   Compressing objects:  21% (8/37)   Compressing objects:  24% (9/37)   Compressing objects:  27% (10/37)   Compressing objects:  29% (11/37)   Compressing objects:  32% (12/37)   Compressing objects:  35% (13/37)   Compressing objects:  37% (14/37)   Compressing objects:  40% (15/37)   Compressing objects:  43% (16/37)   Compressing objects:  45% (17/37)   Compressing objects:  48% (18/37)   Compressing objects:  51% (19/37)   Compressing objects:  54% (20/37)   Compressing objects:  56% (21/37)   Compressing objects:  59% (22/37)   Compressing objects:  62% (23/37)   Compressing objects:  64% (24/37)   Compressing objects:  67% (25/37)   Compressing objects:  70% (26/37)   Compressing objects:  72% (27/37)   Compressing objects:  75% (28/37)   Compressing objects:  78% (29/37)   Compressing objects:  81% (30/37)   Compressing objects:  83% (31/37)   Compressing objects:  86% (32/37)   Compressing objects:  89% (33/37)   Compressing objects:  91% (34/37)   Compressing objects:  94% (35/37)   Compressing objects:  97% (36/37)   Compressing objects: 100% (37/37)   Compressing objects: 100% (37/37), done.
+Writing objects:   2% (1/43)   Writing objects:   4% (2/43)   Writing objects:   6% (3/43)   Writing objects:   9% (4/43)   Writing objects:  11% (5/43)   Writing objects:  13% (6/43)   Writing objects:  16% (7/43)   Writing objects:  18% (8/43)   Writing objects:  20% (9/43)   Writing objects:  23% (10/43)   Writing objects:  25% (11/43)   Writing objects:  27% (12/43)   Writing objects:  30% (13/43)   Writing objects:  32% (14/43)   Writing objects:  34% (15/43)   Writing objects:  37% (16/43)   Writing objects:  39% (17/43)   Writing objects:  41% (18/43)   Writing objects:  44% (19/43)   Writing objects:  46% (20/43)   Writing objects:  48% (21/43)   Writing objects:  51% (22/43)   Writing objects:  53% (23/43)   Writing objects:  55% (24/43)   Writing objects:  58% (25/43)   Writing objects:  60% (26/43)   Writing objects:  62% (27/43)   Writing objects:  65% (28/43)   Writing objects:  67% (29/43)   Writing objects:  69% (30/43)   Writing objects:  72% (31/43)   Writing objects:  74% (32/43)   Writing objects:  76% (33/43)   Writing objects:  79% (34/43)   Writing objects:  81% (35/43)   Writing objects:  83% (36/43)   Writing objects:  86% (37/43)   Writing objects:  88% (38/43)   Writing objects:  90% (39/43)   Writing objects:  93% (40/43)   Writing objects:  95% (41/43)   Writing objects:  97% (42/43)   Writing objects: 100% (43/43)   Writing objects: 100% (43/43), 792.39 KiB | 1.73 MiB/s, done.
+Total 43 (delta 24), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/24)   [Kremote: Resolving deltas:   4% (1/24)   [Kremote: Resolving deltas:   8% (2/24)   [Kremote: Resolving deltas:  12% (3/24)   [Kremote: Resolving deltas:  16% (4/24)   [Kremote: Resolving deltas:  25% (6/24)   [Kremote: Resolving deltas:  29% (7/24)   [Kremote: Resolving deltas:  33% (8/24)   [Kremote: Resolving deltas:  41% (10/24)   [Kremote: Resolving deltas:  50% (12/24)   [Kremote: Resolving deltas:  54% (13/24)   [Kremote: Resolving deltas:  58% (14/24)   [Kremote: Resolving deltas:  66% (16/24)   [Kremote: Resolving deltas:  70% (17/24)   [Kremote: Resolving deltas:  75% (18/24)   [Kremote: Resolving deltas:  79% (19/24)   [Kremote: Resolving deltas:  83% (20/24)   [Kremote: Resolving deltas:  87% (21/24)   [Kremote: Resolving deltas:  91% (22/24)   [Kremote: Resolving deltas:  95% (23/24)   [Kremote: Resolving deltas: 100% (24/24)   [Kremote: Resolving deltas: 100% (24/24), completed with 18 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   8683d61..2bef144  master -> master
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt[K git add -A
+git: 'git' is not a git command. See 'git --help'.
+
+The most similar command is
+	init
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git git add -A[1P[1P[1P
+bash: gitt: command not found
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ gitt add -A[1P
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s" "i"n" "k"o"n"s"o"l"o"[1P"i"d"i"e"r"u"n"g"[C
+[master 87d4187] changes in konsolidierung
+ 12 files changed, 91 insertions(+), 25 deletions(-)
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/0ef8c6d8-bc20-49b0-89c1-5ae03639bea3.snapshot
+ rename 17_Statistik_Konsolidierung1/{Abstract.Rmd~HEAD => Abstract.Rmd} (68%)
+ delete mode 100755 17_Statistik_Konsolidierung1/Abstract.Rmd~8683d6149db990246fa415ff1ea3912e7637744a
+ rename "17_Statistik_Konsolidierung1/Statistikbl\303\266cke 2019_\303\234bersicht_Konsolidierung.pdf" => 17_Statistik_Konsolidierung1/statistikbloecke_2019_konsolidierung.pdf (100%)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit[K[K[K[K[K[K[K push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git pull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 7, done.[K
+remote: Counting objects:  14% (1/7)   [Kremote: Counting objects:  28% (2/7)   [Kremote: Counting objects:  42% (3/7)   [Kremote: Counting objects:  57% (4/7)   [Kremote: Counting objects:  71% (5/7)   [Kremote: Counting objects:  85% (6/7)   [Kremote: Counting objects: 100% (7/7)   [Kremote: Counting objects: 100% (7/7), done.[K
+remote: Compressing objects:  25% (1/4)   [Kremote: Compressing objects:  50% (2/4)   [Kremote: Compressing objects:  75% (3/4)   [Kremote: Compressing objects: 100% (4/4)   [Kremote: Compressing objects: 100% (4/4), done.[K
+remote: Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects:  25% (1/4)   Unpacking objects:  50% (2/4)   Unpacking objects:  75% (3/4)   Unpacking objects: 100% (4/4)   Unpacking objects: 100% (4/4), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   2bef144..ac4c836  master     -> origin/master
+error: addinfo_cache failed for path '17_Statistik_Konsolidierung1/Abstract.Rmd'
+hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
+ 16_Statistik4/Demoskript.Rmd | 15 [32m++++++++[m[31m-------[m
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/INDEX001[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+	[31mmodified:   .viminfo[m
+	[31mmodified:   17_Statistik_Konsolidierung1/Abstract.Rmd[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit [K[K[K[K[K[K[Kadd -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commit -m ""c"h"a"n"g"e"s"i" "[1P"[1P" "i"n" "k"o"n"d"[1P"s"o"l"i"d"i"e"r"u"n"g"[C
+[master dad8b18] changes in konsolidierung
+ 5 files changed, 116 insertions(+), 56 deletions(-)
+ rewrite .rstudio/sessions/active/session-2fb301fd/console06/INDEX001 (70%)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 39, done.
+Delta compression using up to 8 threads.
+Compressing objects:   3% (1/33)   Compressing objects:   6% (2/33)   Compressing objects:   9% (3/33)   Compressing objects:  12% (4/33)   Compressing objects:  15% (5/33)   Compressing objects:  18% (6/33)   Compressing objects:  21% (7/33)   Compressing objects:  24% (8/33)   Compressing objects:  27% (9/33)   Compressing objects:  30% (10/33)   Compressing objects:  33% (11/33)   Compressing objects:  36% (12/33)   Compressing objects:  39% (13/33)   Compressing objects:  42% (14/33)   Compressing objects:  45% (15/33)   Compressing objects:  48% (16/33)   Compressing objects:  51% (17/33)   Compressing objects:  54% (18/33)   Compressing objects:  57% (19/33)   Compressing objects:  60% (20/33)   Compressing objects:  63% (21/33)   Compressing objects:  66% (22/33)   Compressing objects:  69% (23/33)   Compressing objects:  72% (24/33)   Compressing objects:  75% (25/33)   Compressing objects:  78% (26/33)   Compressing objects:  81% (27/33)   Compressing objects:  84% (28/33)   Compressing objects:  87% (29/33)   Compressing objects:  90% (30/33)   Compressing objects:  93% (31/33)   Compressing objects:  96% (32/33)   Compressing objects: 100% (33/33)   Compressing objects: 100% (33/33), done.
+Writing objects:   2% (1/39)   Writing objects:   5% (2/39)   Writing objects:   7% (3/39)   Writing objects:  10% (4/39)   Writing objects:  12% (5/39)   Writing objects:  15% (6/39)   Writing objects:  17% (7/39)   Writing objects:  20% (8/39)   Writing objects:  23% (9/39)   Writing objects:  25% (10/39)   Writing objects:  28% (11/39)   Writing objects:  30% (12/39)   Writing objects:  33% (13/39)   Writing objects:  35% (14/39)   Writing objects:  38% (15/39)   Writing objects:  41% (16/39)   Writing objects:  43% (17/39)   Writing objects:  46% (18/39)   Writing objects:  48% (19/39)   Writing objects:  51% (20/39)   Writing objects:  53% (21/39)   Writing objects:  56% (22/39)   Writing objects:  58% (23/39)   Writing objects:  61% (24/39)   Writing objects:  64% (25/39)   Writing objects:  69% (27/39)   Writing objects:  71% (28/39)   Writing objects:  74% (29/39)   Writing objects:  76% (30/39)   Writing objects:  79% (31/39)   Writing objects:  82% (32/39)   Writing objects:  84% (33/39)   Writing objects:  87% (34/39)   Writing objects:  89% (35/39)   Writing objects:  92% (36/39)   Writing objects:  94% (37/39)   Writing objects:  97% (38/39)   Writing objects: 100% (39/39)   Writing objects: 100% (39/39), 549.69 KiB | 1.37 MiB/s, done.
+Total 39 (delta 23), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/23)   [Kremote: Resolving deltas:   4% (1/23)   [Kremote: Resolving deltas:   8% (2/23)   [Kremote: Resolving deltas:  21% (5/23)   [Kremote: Resolving deltas:  26% (6/23)   [Kremote: Resolving deltas:  34% (8/23)   [Kremote: Resolving deltas:  39% (9/23)   [Kremote: Resolving deltas:  43% (10/23)   [Kremote: Resolving deltas:  52% (12/23)   [Kremote: Resolving deltas:  56% (13/23)   [Kremote: Resolving deltas:  65% (15/23)   [Kremote: Resolving deltas:  69% (16/23)   [Kremote: Resolving deltas:  78% (18/23)   [Kremote: Resolving deltas:  82% (19/23)   [Kremote: Resolving deltas:  86% (20/23)   [Kremote: Resolving deltas:  91% (21/23)   [Kremote: Resolving deltas: 100% (23/23)   [Kremote: Resolving deltas: 100% (23/23), completed with 14 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   ac4c836..dad8b18  master -> master
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/console06/EC59FB84[m
+	[31mmodified:   .rstudio/sessions/active/session-2fb301fd/properites/last-used[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commiot[K[Kt -m ""t"r"y" "t"o" "e"m"b"e"d" "a" "p"d"f" "i"n" "m"d"[C
+[master cf350de] try to embed a pdf in md
+ 3 files changed, 33 insertions(+), 5 deletions(-)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+Counting objects: 12, done.
+Delta compression using up to 8 threads.
+Compressing objects:  11% (1/9)   Compressing objects:  22% (2/9)   Compressing objects:  33% (3/9)   Compressing objects:  44% (4/9)   Compressing objects:  55% (5/9)   Compressing objects:  66% (6/9)   Compressing objects:  77% (7/9)   Compressing objects:  88% (8/9)   Compressing objects: 100% (9/9)   Compressing objects: 100% (9/9), done.
+Writing objects:   8% (1/12)   Writing objects:  16% (2/12)   Writing objects:  25% (3/12)   Writing objects:  33% (4/12)   Writing objects:  41% (5/12)   Writing objects:  50% (6/12)   Writing objects:  58% (7/12)   Writing objects:  66% (8/12)   Writing objects:  75% (9/12)   Writing objects:  83% (10/12)   Writing objects:  91% (11/12)   Writing objects: 100% (12/12)   Writing objects: 100% (12/12), 1.69 KiB | 1.69 MiB/s, done.
+Total 12 (delta 7), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/7)   [Kremote: Resolving deltas:  14% (1/7)   [Kremote: Resolving deltas:  28% (2/7)   [Kremote: Resolving deltas:  42% (3/7)   remote: Resolving deltas:  57% (4/7)   [Kremote: Resolving deltas:  71% (5/7)   [Kremote: Resolving deltas:  85% (6/7)   [Kremote: Resolving deltas: 100% (7/7)   [Kremote: Resolving deltas: 100% (7/7), completed with 7 local objects.[K
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+   dad8b18..cf350de  master -> master
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ groups: cannot find name for group ID 10000
+[K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git commiot [K[K[Kt[Kt -m ""l"a"s"t" "c"h"a"n"g"e"s"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"p"r"o"b"l"e"m"s" "e"m"e"[1P"b"e"d"d"i"n"g" "p"d"f"'"s" "n"o"t" "s"o"l"v"e" [A]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cd""
+[master 08903b7] problems embedding pdf's not solved
+ 13 files changed, 48 insertions(+), 16 deletions(-)
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/31d41b37-5443-442a-bcba-d62207b7cd0a.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/3eae8dc0-cbef-47d8-89a8-4fb9cb05eb14.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/8d954703-1c72-4855-bd5f-c96d0513cc23.snapshot
+ create mode 100644 .rstudio/sessions/active/session-2fb301fd/graphics-r3/e361143e-5061-40b4-a0f3-0bbd5e37e34b.snapshot
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git push
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+To https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ [K]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git o[Kpull
+Username for 'https://github.zhaw.ch': egel
+Password for 'https://egel@github.zhaw.ch': 
+remote: Enumerating objects: 34, done.[K
+remote: Counting objects:   2% (1/34)   [Kremote: Counting objects:   5% (2/34)   [Kremote: Counting objects:   8% (3/34)   [Kremote: Counting objects:  11% (4/34)   [Kremote: Counting objects:  14% (5/34)   [Kremote: Counting objects:  17% (6/34)   [Kremote: Counting objects:  20% (7/34)   [Kremote: Counting objects:  23% (8/34)   [Kremote: Counting objects:  26% (9/34)   [Kremote: Counting objects:  29% (10/34)   [Kremote: Counting objects:  32% (11/34)   [Kremote: Counting objects:  35% (12/34)   [Kremote: Counting objects:  38% (13/34)   [Kremote: Counting objects:  41% (14/34)   [Kremote: Counting objects:  44% (15/34)   [Kremote: Counting objects:  47% (16/34)   [Kremote: Counting objects:  50% (17/34)   [Kremote: Counting objects:  52% (18/34)   [Kremote: Counting objects:  55% (19/34)   [Kremote: Counting objects:  58% (20/34)   [Kremote: Counting objects:  61% (21/34)   [Kremote: Counting objects:  64% (22/34)   [Kremote: Counting objects:  67% (23/34)   [Kremote: Counting objects:  70% (24/34)   [Kremote: Counting objects:  73% (25/34)   [Kremote: Counting objects:  76% (26/34)   [Kremote: Counting objects:  79% (27/34)   [Kremote: Counting objects:  82% (28/34)   [Kremote: Counting objects:  85% (29/34)   [Kremote: Counting objects:  88% (30/34)   [Kremote: Counting objects:  91% (31/34)   [Kremote: Counting objects:  94% (32/34)   [Kremote: Counting objects:  97% (33/34)   [Kremote: Counting objects: 100% (34/34)   [Kremote: Counting objects: 100% (34/34), done.[K
+remote: Compressing objects:   4% (1/24)   [Kremote: Compressing objects:   8% (2/24)   [Kremote: Compressing objects:  12% (3/24)   [Kremote: Compressing objects:  16% (4/24)   [Kremote: Compressing objects:  20% (5/24)   [Kremote: Compressing objects:  25% (6/24)   [Kremote: Compressing objects:  29% (7/24)   [Kremote: Compressing objects:  33% (8/24)   [Kremote: Compressing objects:  37% (9/24)   [Kremote: Compressing objects:  41% (10/24)   [Kremote: Compressing objects:  45% (11/24)   [Kremote: Compressing objects:  50% (12/24)   [Kremote: Compressing objects:  54% (13/24)   [Kremote: Compressing objects:  58% (14/24)   [Kremote: Compressing objects:  62% (15/24)   [Kremote: Compressing objects:  66% (16/24)   [Kremote: Compressing objects:  70% (17/24)   [Kremote: Compressing objects:  75% (18/24)   [Kremote: Compressing objects:  79% (19/24)   [Kremote: Compressing objects:  83% (20/24)   [Kremote: Compressing objects:  87% (21/24)   [Kremote: Compressing objects:  91% (22/24)   [Kremote: Compressing objects:  95% (23/24)   [Kremote: Compressing objects: 100% (24/24)   [Kremote: Compressing objects: 100% (24/24), done.[K
+remote: Total 24 (delta 16), reused 0 (delta 0), pack-reused 0[K
+Unpacking objects:   4% (1/24)   Unpacking objects:   8% (2/24)   Unpacking objects:  12% (3/24)   Unpacking objects:  16% (4/24)   Unpacking objects:  20% (5/24)   Unpacking objects:  25% (6/24)   Unpacking objects:  29% (7/24)   Unpacking objects:  33% (8/24)   Unpacking objects:  37% (9/24)   Unpacking objects:  41% (10/24)   Unpacking objects:  45% (11/24)   Unpacking objects:  50% (12/24)   Unpacking objects:  54% (13/24)   Unpacking objects:  58% (14/24)   Unpacking objects:  62% (15/24)   Unpacking objects:  66% (16/24)   Unpacking objects:  70% (17/24)   Unpacking objects:  75% (18/24)   Unpacking objects:  79% (19/24)   Unpacking objects:  83% (20/24)   Unpacking objects:  87% (21/24)   Unpacking objects:  91% (22/24)   Unpacking objects:  95% (23/24)   Unpacking objects: 100% (24/24)   Unpacking objects: 100% (24/24), done.
+From https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS19
+   cf350de..fc32d6d  master     -> origin/master
+hint: Waiting for your editor to close the file... [?2004h[23;0;0t[KMerge made by the 'recursive' strategy.
+ 15_Statistik3/solution_stat3.1.Rmd  |  6 [32m++[m[31m-[m
+ 16_Statistik4/Abstract.Rmd          |  3 [32m+[m[31m-[m
+ 16_Statistik4/solution_stat4.1n.Rmd | 18 [32m+++[m[31m----[m
+ 17_Statistik5/Abstract.Rmd          |  4 [32m+[m[31m-[m
+ 17_Statistik5/Demoskript.Rmd        | 72 [32m++++[m[31m------------------------[m
+ 18_Statistik6/Abstract.Rmd          |  4 [32m+[m[31m-[m
+ 6 files changed, 29 insertions(+), 78 deletions(-)
+]0;/home/./staff/egel/unix]0;egel@svma-s-01171: ~[01;32megel@svma-s-01171[00m:[01;34m~[00m$ git add -A

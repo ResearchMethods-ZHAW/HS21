@@ -218,3 +218,52 @@ git commit -m "changes in assigments"
 git push
 git status
 git pull
+git status
+gut pull
+git pull
+git stash
+git pull
+git status
+git commit -a
+git commit -m "change some grammars"
+git push
+git status
+git add -A
+git commit -m "changes in grammars"
+git push
+git add -A
+git commit -m "chanegs in konsolidierung stat"
+git push
+git status
+git pull
+git stash 
+git pull
+git rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" 
+git-rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" 
+git -rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" 
+git rm "17_Statistik_Konsolidierung1/ablauf_inhalt_190823_egel.Rmd" 
+git status
+git pull
+it rm --cached
+git rm --cached
+git add
+git add .
+git commit "last changes"
+git commit -m "last changes"
+git status
+git clean -n
+git push
+git git add -A
+gitt add -A
+git add -A
+git commit -m "changes in konsolidierung"
+git push
+git pull
+git status
+git add -A
+git commit -m "changes in konsolidierung"
+git push
+git status
+git add -A
+git commit -m "try to embed a pdf in md"
+git push

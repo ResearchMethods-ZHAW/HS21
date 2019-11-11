@@ -70,6 +70,10 @@ rmd_files: [
  #"16_Statistik4/Demo_C_SplitPlotANOVA.Rmd",
  #"16_Statistik4/Uebung.Rmd",
  #"16_Statistik4/Uebung_loesung.Rmd",
+ 
+ "17_Statistik5/Abstract.Rmd",
+ "17_Statistik5/Demoskript.Rmd",
+ "17_Statistik5/assigment_stat5.Rmd",
 
      "17_Statistik_Konsolidierung1/Abstract.Rmd",
     #"17_Statistik5/Demoskript.Rmd",

@@ -54,7 +54,7 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
 
 ```{r}
-SAR<-read.csv("16_Statistik4/data/Curonian_Spit.csv",sep=";")
+SAR<-read.delim("16_Statistik4/data/Curonian_Spit.csv",sep=";")
 str(SAR)
 summary(SAR)
 attach(SAR)
@@ -95,12 +95,12 @@ summary(logarithmic.model)
 _Im Folgenden habe ich ein paar unterschiedliche Sättigungsfunktionen mit verschiedenen Einstellungen durchprobiert, um zu zeigen, was alles passieren kann…_
 
 ```{r}
-micmen.model<-nls(Species.richness~SSmicmen(Area, Vm, K))
-summary(micmen.model)
+micmen.1<-nls(Species.richness~SSmicmen(Area, Vm, K))
+summary(micmen.1)
 
 #Dasselbe selbst definiert (mit default-Startwerten)
-micmen.model2<-nls(Species.richness~Vm*Area/(K+Area))
-summary(micmen.model2)
+micmen.2<-nls(Species.richness~Vm*Area/(K+Area))
+summary(micmen.2)
 ```
 
 Hier ist das Ergebnis deutlich verschieden, ein Phänomen, das einem bei nicht-linearen
@@ -135,8 +135,8 @@ library(AICcmodavg)
 cand.models<-list()
 cand.models[[1]]<-power.model
 cand.models[[2]]<-logarithmic.model
-cand.models[[3]]<-micmen.model
-cand.models[[4]]<-micmen.model2
+cand.models[[3]]<-micmen.1
+cand.models[[4]]<-micmen.2
 cand.models[[5]]<-asym.model
 
 Modnames<-c("Power","Logarithmic","Michaelis-Menten (SS)","Michaelis-Menten","Asymptotic through origin")
@@ -165,7 +165,7 @@ lines(xv,yv,lwd=2,col="red")
 
 #Im Weiteren habe ich noch eine Sättigungsfunktion (Michaelis-Menten mit Selbststarter) zum Vergleich hinzugeplottet
 
-yv2<-predict(micmen.model,list(Area=xv))
+yv2<-predict(micmen.1,list(Area=xv))
 lines(xv,yv2,lwd=2,col="blue")
 ```
 Man erkennt, dass die Sättigungsfunktion offensichtlich den tatsächlichen Kurvenverlauf sehr
@@ -180,7 +180,7 @@ plot(log10(Area),log10(Species.richness),pch=16,xlab="logA",ylab="log (S)")
 xv<-seq(0,1000,by=0.0001)
 yv<-predict(power.model,list(Area=xv))
 lines(log10(xv),log10(yv),lwd=2,col="red")
-yv2<-predict(micmen.model,list(Area=xv))
+yv2<-predict(micmen.1,list(Area=xv))
 lines(log10(xv),log10(yv2),lwd=2,col="blue")
 ```
 

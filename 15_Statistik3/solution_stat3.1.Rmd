@@ -52,9 +52,11 @@ Vorgehen dokumentieren.
       
 **Loesung Übung 3.1: Multiple Regression**
 
+Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen so ab, dass sie noch eindeutig, aber nicht unnötig lang sind, etwa indem man die Einheiten wegstreicht
+
 ```{r}
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
-ukraine <-read.csv("15_Statistik3/data/Ukraine_bearbeitet.csv",sep=";")
+ukraine <-read.delim("15_Statistik3/data/Ukraine_bearbeitet.csv",sep=";")
 attach(ukraine)
 
 ukraine
@@ -93,6 +95,7 @@ herauszufinden, was das Problem ist, geben wir ein:
 
 ```{r}
 summary(ukraine$Sand)
+ukraine[!complete.cases(ukraine), ] # Zeigt zeilen mit NAs ein
 ```
 Da gibt es offensichtlich je ein NA in jeder dieser Zeilen. Jetzt können wir entscheiden,
 entweder auf die drei Variablen oder auf die eine Beobachtung zu verzichten. Da wir eh schon
@@ -148,6 +151,7 @@ Parametern). Diese Lösung stelle ich im Folgenden vor:
 
 ```{r}
 #Multimodel inference
+if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
 options(na.action="na.fail")
 allmodels<-dredge(global.model)
