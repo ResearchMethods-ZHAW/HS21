@@ -187,25 +187,3 @@ lines(log10(xv),log10(yv2),lwd=2,col="blue")
 ```
 
 Auch hier sieht man, dass die rote Kurve zwar nicht perfekt, aber doch viel besser als die blaue Kurve ist.
-
-**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
-
-**Methoden**
-**Es wurden Pflanzenartenzahlen der Pflanzengesellschaft Lolio-Cynosuretum im Nationalpark Kurische Nehrung auf verschieden grossen, geschachtelten Flächen erhoben. Eine solche nested-plot-Serie bestand aus 16 Erhebungen auf Flächen von 0.0001 m² bis 900 m². Die Werte von acht untersuchten nested-plot Serien wurden für die weiteren Analysen gemittelt.**
-
-**Mittels nicht-linearer Regression (Funktion nls in R) wurde ermittelt, welche Funktion die Artenzahlzunahme mit der Flächengrösse am besten beschreibt. Verglichen wurden vier Modelle mit je zwei Funktionsparametern (Potenzfunktion, logarithmische Funktion, Michaelis-Menten-Funktion, asymptotische Funktion durch den Ursprung; Tab. 1). Die Modelle wurden anschliessend mittels AICc verglichen und ihre Validität visuell in den Residualplots begutachtet.**
-
-![](16_Statistik4/data/tab1_4.1.png)
-
-**Ergebnisse**
-
-**Unter den verglichenen fünf Modellen (vier Funktionen, darunter zwei Variaten von Michaelis-Menten mit unterschiedlichen Startwerten) war die Potenzfunktion mit einem Akaike weight von 0.98 klar die beste (Tab. 2, Abb. 1). Die Logarithmusfunktion als zweitbeste Funktion war mit einem Delta-AICc von 7.68 (Akaike weight = 0.02) schon weit abgeschlagen und die drei Modelle mit einem modellierten oberen Grenzwert statistisch bedeutungslos (Delta-AICc > 33) (Tab. 2).**
-
-![](16_Statistik4/data/abb1.png)
-
-
-**Abb. 1: Modellierte Artenzahl-Areal-Beziehungen für die nested-plot-Serie aus dem Nationalpark Kurische Nehrung. Die Potenzfunktion (rot) gab den Zusammenhang am besten wider (Akaike weight = 0.98), selbst die relativ beste der drei Sättigungsmodelle, die Michaelis-Menten-Funktion (mit Selbststart; blau), zeigte starke Abweichungen (Akaike weight < 0.01); der vorhergesagte Sättigungswert lag weit unter dem empirischen höchsten Wert.**
-
-**Tab. 2. Modellgüte und Funktionsparameter der fünf verglichenen Modelle. A = Fläche in m²,S = Artenreichtum.**
-
-![](16_Statistik4/data/tab2.png)
