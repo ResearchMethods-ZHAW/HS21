@@ -159,11 +159,11 @@ ca$CA$eig[1:2]/sum(ca$CA$eig)
 
 
 **DCA**
-o.dca <- decorana(sveg,mk=10)
-plot(o.dca$rproj, asp=1)
+dca <- decorana(sveg,mk=10)
+plot(dca$rproj, asp=1)
 
-o.dca2 <- decorana(sveg,mk=100)
-plot(o.dca2$rproj, asp=1)
+dca2 <- decorana(sveg,mk=100)
+plot(dca2$rproj, asp=1)
 
 **NMDS**
 #Distanzmatrix als Start erzeugen
