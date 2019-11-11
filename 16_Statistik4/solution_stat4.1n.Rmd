@@ -68,6 +68,8 @@ Plots mit der Fläche ansteigt.
 
 ```{r}
 #Potenzfunktion selbst definiert
+if(!require(nlstools)){install.packages("nlstools")}
+library(nlstools)
 #power.model<-nls(Species.richness~c*Area^z)
 #summary(power.model)
 ```
