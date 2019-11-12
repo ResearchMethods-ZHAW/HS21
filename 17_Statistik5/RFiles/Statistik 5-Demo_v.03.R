@@ -28,7 +28,6 @@ summary(spf.lme.2)
 
 # GLMM --------------------------------------------------------------------
 #  Based on Zuur et al. (2009), Kapitel 13
-
 DeerEcervi <- read.delim("DeerEcervi.txt")
 
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
@@ -63,14 +62,14 @@ summary(DE.PQL)
 
 g <- 0.8883697 + 0.0378608 * DeerEcervi$CLength
 p.averageFarm1<-exp(g)/(1+exp(g))
-I1<-order(DeerEcervi$CLength)              #Avoid spaghetti plot
+I<-order(DeerEcervi$CLength)              #Avoid spaghetti plot
 plot(DeerEcervi$CLength,DeerEcervi$Ecervi.01,xlab="Length",
      ylab="Probability of presence of E. cervi L1")
-lines(DeerEcervi$CLength[I1],p.averageFarm1[I],lwd=3)
+lines(DeerEcervi$CLength[I],p.averageFarm1[I],lwd=3)
 p.Upp<-exp(g+1.96*1.462108)/(1+exp(g+1.96*1.462108))
 p.Low<-exp(g-1.96*1.462108)/(1+exp(g-1.96*1.462108))
-lines(DeerEcervi$CLength[I1],p.Upp[I1])
-lines(DeerEcervi$CLength[I1],p.Low[I1])
+lines(DeerEcervi$CLength[I],p.Upp[I])
+lines(DeerEcervi$CLength[I],p.Low[I])
 
 
 if(!require(lme4)){install.packages("lme4")}
