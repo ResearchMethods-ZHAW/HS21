@@ -144,4 +144,8 @@ summary(glmq.orig.2)
 Parameterschätzung bleiben gleich, aber Signifikanzen sind niedriger als beim GLM ohne Overdispersion.
 
 plot(glmq.orig.2)
+
+Sieht gut aus, wir hätten hier also unser finales Modell.
+
+Im Vergleich der beiden Vorgehensweisen (PC-Achsen vs. Umweltdaten direkt) scheint in diesem Fall die direkte Modellierung der Umweltachsen informativer: Man kommt mit zwei Prädiktoren aus, die jeweils direkt für eine der Hauptvariablen stehen – Meereshöhe und Phosphor – zugleich aber jeweils eine grössere Gruppe von Variablen mit hohen Korrelationen inkludieren, im ersten Fall Variablen, die sich im Flusslauf von oben nach unten systematisch ändern, im zweiten Masse der Nährstoffbelastung des Gewässers. Bei der PCA-Lösung kamen drei signifikante Komponenten heraus, die allerdings nicht so leicht zu interpretieren sind. Dies insbesondere, weil in diesem Fall auf der Ebene PC2 vs. PC1 die Mehrzahl der Umweltparameter ungefähr in 45-Grad-Winkeln angeordnet sind. Im allgemeinen Fall kann aber die Nutzung von PC-Achsen durchaus eine gute Lösung sein.
 ```
