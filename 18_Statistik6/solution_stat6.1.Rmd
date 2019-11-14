@@ -7,6 +7,8 @@ output:
   pdf_document: default
 ---
 
+[R-Skript als Download]
+
 ## Musterlöseung Aufgabe 6.1: PCA
 
 
