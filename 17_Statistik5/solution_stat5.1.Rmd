@@ -88,7 +88,7 @@ den zunächst irrigation und dann density geschachtelt sind (die unterste Ebene 
 man nicht mehr angeben, da diese in der nächsthöheren nicht repliziert ist).
 
 (Übrigens: das simple 3-faktorielle ANOVA-Modell
-model2<-aov(yield~irrigation*density*fertilizer würde unterstellen, dass alle 72 subplot
+aov(yield~irrigation*density*fertilizer,data=splityield) würde unterstellen, dass alle 72 subplot
 unabhängig von allen anderen angeordnet sind, also nicht in Blöcken. Man kann ausprobieren,
 wie sich das Ergebnis mit dieser Einstellung unterscheidet)
 
@@ -101,6 +101,7 @@ fach Interaktion. Keinen p-Wert gibt es dagegen für block, da dieser als „ran
 spezifiziert wurde.
 Signifikant sind für sich genommen irrigation und fertilizer sowie die Interaktionen
 irrigation:density und irrigation:fertilizer.
+
 Jetzt muss man nur noch herausfinden, wie irrigation und fertilizer wirken und wie die
 Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:
 
