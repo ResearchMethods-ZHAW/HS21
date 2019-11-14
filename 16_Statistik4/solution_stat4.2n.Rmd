@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, mes
 
 ## Musterlösung Aufgabe 4.2N: Multiple logistische Regression
 
-[Demoscript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.2N_v.01.R)
+[R-Skript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.2N_v.01.R)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 

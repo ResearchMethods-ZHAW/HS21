@@ -37,7 +37,7 @@
       (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter
       Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
-[Demoscript als Download](17_Statistik5/RFiles/Loesung_Uebung_5.1_v.02.R)
+[R-Skript als Download](17_Statistik5/RFiles/Loesung_Uebung_5.1_v.02.R)
 
       
 
