@@ -6,9 +6,9 @@ setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc
 
 
 # #Interpretation von Ordinationen ----------------------------------------
-#Wildi pp. 96 et seq.)
+# Wildi pp. 96 et seq.)
 
-#Plot species
+#Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
 ca<-cca(sveg^0.5)
@@ -144,7 +144,7 @@ spe.hel <- decostand(spe, "hellinger")
 spe.hel
 
 
-# Redundancy analysis (RDA) =======================================
+# Redundancy analysis (RDA) -----------------------------------------------
 
 ## RDA of the Hellinger-transformed fish species data, constrained
 ## by all the environmental variables contained in env3
@@ -261,4 +261,3 @@ dev.new(title = "Variation partitioning - all variables", noRStudioGD = TRUE)
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      Xnames = c("Chemistry", "Physiography"), 
      id.size = 0.7)
-
