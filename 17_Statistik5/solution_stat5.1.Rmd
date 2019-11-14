@@ -40,8 +40,7 @@
 
 **kommentierter Lösungsweg**
 ```{r}
-splityield <-read.csv("17_Statistik5/data/splityield.csv")
-attach(splityield)
+splityield <-read.delim("splityield.csv", sep=",")
 
 #Checken der eingelesenen Daten
 splityield
@@ -58,11 +57,11 @@ korrekt als kategoriale Variablen (factors) kodiert sind
 
 ```{r}
 #Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
-boxplot(yield)
-boxplot(yield~fertilizer)
-boxplot(yield~irrigation)
-boxplot(yield~density)
-boxplot(yield~irrigation*density*fertilizer)
+boxplot(splityield$yield)
+boxplot(yield~fertilizer, data=splityield)
+boxplot(yield~irrigation, data=splityield)
+boxplot(yield~density, data=splityield)
+boxplot(yield~irrigation*density*fertilizer,data=splityield)
 ```
 Die Boxplots sind generell hinreichend symmetrisch, so dass man davon ausgehen kann, dass
 keine problematische Abweichung von der Normalverteilung vorliegt. Die Varianzhomogenität
@@ -77,8 +76,8 @@ grossen Mittelwerten aufgetreten wären, hätten wir eine log- oder Wurzeltransf
 yield in Betracht ziehen müssen).
 
 ```{r}
-boxplot(log10(yield)~irrigation*density*fertilizer) #bringt keine Verbesserung
-model<-aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density))
+boxplot(log10(yield)~irrigation*density*fertilizer,data=splityield) #bringt keine Verbesserung
+aov.1<-aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density),data=splityield)
 ```
 
 Das schwierigste an der Analyse ist hier die Definition des Splitt-Plot ANOVA-Modells. Hier
@@ -94,7 +93,7 @@ unabhängig von allen anderen angeordnet sind, also nicht in Blöcken. Man kann 
 wie sich das Ergebnis mit dieser Einstellung unterscheidet)
 
 ```{r}
-summary(model)
+summary(aov.1)
 ```
 
 Wir bekommen p-Werte für die drei Einzeltreatments, die drei 2-fach-Interaktionen und die 3-
@@ -107,38 +106,9 @@ Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:
 
 ```{r}
 #Visualisierung der Ergebnisse
-boxplot(yield~fertilizer)
-boxplot(yield~irrigation)
+boxplot(yield~fertilizer,data=splityield)
+boxplot(yield~irrigation,data=splityield)
 
-interaction.plot(fertilizer,irrigation,yield)
-
-interaction.plot(density,irrigation,yield)
+interaction.plot(splityield$fertilizer,splityield$irrigation,splityield$yield)
+interaction.plot(splityield$density,splityield$irrigation,splityield$yield)
 ```
-
-
-**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
-
-**Methoden**
-
-
-**Es wurde der Ertrag einer Kulturpflanze in Abhängigkeit von zwei Bewässerungsmethoden (ja/nein), zwei Saatdichten (niedrig/mittel/hoch) und drei Düngevarianten (N/P/NP) untersucht. Das Experiment wurde in vollkommen balanciertem split-plot-Design auf vier zufällig ausgewählten Blöcken durchgeführt. Innerhalb der Blöcke waren die Bewässerungsvarianten, Saatdichten und Düngevarianten sukzessive geschachtelt.**
-
-**Die 3-fach ANOVA wurde mit dem Befehl aov in R analysiert, wobei folgende Fehlerstruktur angenommen wurde: block/irrigation/density**
-
-**Ergebnisse**
-
-**Es zeigte sich, dass von den Einzelfaktoren sowohl Düngung (p < 0.001) als auch Bewässerung (p = 0.025) signifikanten Einfluss auf den Ertrag haben, die Saatdichte dagegen nicht (p = 0.053). Bewässerung hat dabei den Ertrag um ca. 20 % erhöht (Abb. 1), während NPDüngung einen etwas höheren Ertrag erbrachte als die Düngung mit jeweils nur einem der Elemente (Abb. 2). Zudem waren die Interaktionen Bewässerung x Düngung (p = 0.008; Abb.3) und Bewässerung x Saatdichte (p = 0.016; Abb. 4) signifikant, nicht jedoch Düngung x Saatdichte (p = 0.484) und die Dreifachinteraktion (p = 0.681). Düngung hatte nur auf bewässerten Flächen einen nennenswerten Einfluss auf den Ertrag (Abb. 3). Nur auf bewässerten Flächen stieg der Ertrag mit der Saatdichte kontinuierlich an, während er auf unbewässerten Flächen bei mittlerer Saatdichte am höchsten war (Abb. 4).**
-
-![**Abb. 1: Einfluss der Bewässerung auf den Ertrag.**](17_Statistik5/data/Abb1_5.1.png)
-
-
-
-![**Abb. 2:  Einfluss der Düngung auf den Ertrag.**](17_Statistik5/data/Abb2_5.1.png)
-
-
-
-![**Abb. 3:  Interaktion der Treatments Düngung und Bewässerung.**](17_Statistik5/data/Abb3_5.1.png)
-
-
-
-![**Abb. 4: Interaktion der Treatments Saatdichte und Bewässerung.**](17_Statistik5/data/Abb4_5.1.png)
