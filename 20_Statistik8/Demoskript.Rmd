@@ -295,6 +295,8 @@ rownames(sil) <- row.names(spe)
 plot(sil,main = "Silhouette plot - Chord - Ward", cex.names = 0.8,col = 2:(k + 1),nmax = 100)
 
 # Reorder clusters
+if(!require(gclus)){install.packages("gclus")}
+install.packages("gclus")
 spe.chwo <- reorder.hclust(spe.ch.ward, spe.ch)
 
 # Plot reordered dendrogram with group labels
@@ -316,12 +318,12 @@ rect.hclust(spe.chwo, k = k)
 #   k = nb.clusters,
 #   title = paste("Reordered dendrogram from",deparse(tree$call),
 #   sep="\n"))
-source("hcoplot.R")
+source("20_Statistik8/hcoplot.R")
 hcoplot(spe.ch.ward, spe.ch, lab = rownames(spe), k = 4)
 
 # Plot the Ward clusters on a map of the Doubs River
 # (see Chapter 2)
-source("drawmap.R")
+source("20_Statistik8/drawmap.R")
 drawmap(xy = spa,clusters = spech.ward.g, main = "Four Ward clusters along the Doubs River")
 
 
