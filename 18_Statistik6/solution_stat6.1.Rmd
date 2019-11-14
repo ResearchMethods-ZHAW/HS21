@@ -15,94 +15,92 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 ```
 
 ```{r}
-#Mit Beispieldaten aus Wildi (2013)
+load("Doubs.RData")
 
-library(dave)
-sveg
-str(sveg)
-summary(sveg)
-names(sveg)
+summary(env)
+summary(spe)
 
-#PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
-o.pca<-pca(sveg^0.25,cor=T)
+if(!require(vegan)){install.packages("vegan")}
+library("vegan")
 
-#Koordinaten im Ordinationsraum
-o.pca$scores
+env.pca <- rda(env, scale=TRUE)
+env.pca
+summary(env.pca,axes=0)
+summary(env.pca)
+screeplot(env.pca, bstick=TRUE, npcs=length(env.pca$CA$eig))
 
-#Korrelationen der Variablen mit den Ordinationsachsen
-o.pca$loadings
+par(mfrow=c(2,2))
+biplot(env.pca, scaling=1)
+biplot(env.pca, choices=c(1,3),scaling=1)
+biplot(env.pca, choices=c(1,4),scaling=1)
 
-#Erklärte Varianz der Achsen
-E<-o.pca$sdev^2/o.pca$totdev*100
-E
-E[1:5]
+scores<-scores(env.pca,choices=c(1:4),display=c("sites"))
+scores
 
-#PCA-Plot der Lage der Beobachtungen im Ordinationsraum
-plot(o.pca$scores[,1],o.pca$scores[,2],type="n", asp=1, xlab="PC1", ylab="PC2")
-points(o.pca$scores[,1],o.pca$scores[,2],pch=18)
+#Berechnung der Artenzahl mittels specnumber; Artenzahl und Scores werden zum Dataframe für die Regressionsanalyse hinzugefügt
+doubs <- data.frame(env, scores, species_richness=specnumber(spe))
+doubs
+str(doubs)
 
-plot(o.pca$scores[,1],o.pca$scores[,3],type="n", asp=1, xlab="PC1", ylab="PC3")
-points(o.pca$scores[,1],o.pca$scores[,3],pch=18)
+##Lösung mit lm (alternativ ginge Poisson-glm) und frequentist approach (alternativ ginge Multimodelinference mit AICc)
+lm.pc.0 <- lm(species_richness ~ PC1+PC2+PC3+PC4, data = doubs)
+summary(lm.pc.0)
 
-#Subjektive Auswahl von Arten zur Darstellung
-sel.sp <- c(3,11,23,39,46,72,77,96)
-snames <- names(sveg[,sel.sp])
-snames
+#Modellvereinfachung: PC4 ist nicht signifikant und wird entfernt
+lm.pc.1 <- lm(species_richness ~ PC1+PC2+PC3, data = doubs)
+summary(lm.pc.1) #jetzt sind alle Achsen signifikant und werden in das minimal adäquate Modell aufgenommen
 
-#PCA-Plot der Korrelationen der Variablen (hier Arten) mit den Achsen (h)
-x <- o.pca$loadings[,1]
-y<-o.pca$loadings[,2]
-plot(x,y,type="n",asp=1)
-arrows(0,0,x[sel.sp],y[sel.sp],length=0.08)
-text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
+#Modelldiagnostik/Modellvalidierung
+par(mfrow=c(2,2))
+plot(lm.pc.1) 
 
-#Erklärte Varianz der Achsen in Prozent (sdev ist die Wurzel daraus)
-E<-o.pca$sdev^2/o.pca$totdev*100
-E
-E[1:5]
-
-#CA
-
-library(vegan)
-
-o.ca<-cca(sveg^0.5)
-#Arten (o) und Communities (+) plotten
-plot(o.ca)
-
-#Nur Arten plotten
-x<-o.ca$CA$u[,1];y<-o.ca$CA$u[,2]
-plot(x,y)
-
-#Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
-o.ca$CA$eig[1:2]/sum(o.ca$CA$eig)
-
-#DCA
-
-o.dca <- decorana(sveg,mk=10)
-plot(o.dca$rproj, asp=1)
-
-o.dca2 <- decorana(sveg,mk=100)
-plot(o.dca2$rproj, asp=1)
-
-#NMDS
-
-#Distanzmatrix als Start erzeugen
-c
-mde <-vegdist(sveg,method="euclidean")
+#Alternativ mit glm
+glm.pc.0 <- glm(species_richness ~ PC1+PC2+PC3+PC4, family = "poisson", data = doubs)
+summary(glm.pc.0)
+glm.pc.1 <- glm(species_richness ~ PC1+PC2+PC3, family = "poisson", data = doubs)
+summary(glm.pc.1)
+plot(glm.pc.1) #sieht nicht besser aus als LM, die Normalverteilung ist sogar schlechter
 
 
-#Zwei verschiedene NMDS-Methoden
-library(MASS)
-set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
-o.imds<-isoMDS(mde,k=2)
-set.seed(1)
-o.mmds<-metaMDS(mde,k=2)
+###Zum Vergleich die Modellierung mit den Originaldaten
 
-plot(o.imds$points)
-plot(o.mmds$points)
+#Korrelationen zwischen Prädiktoren
+cor <- cor(doubs[,1:11])
+cor[abs(cor)<.7] <-0
+cor #
 
-#Stress = S = Abweichung der zweidimensionalen NMDS-Lösng von der originalen Distanzmatrix
-stressplot(o.imds,mde)
-stressplot(o.mmds,mde)
+#Globalmodell (als hinreichend unabhängige Variablen werden ele, slo, pH und pho aufgenommen)
+lm.orig.0 <- lm(species_richness ~ ele+slo+pH+pho, data =doubs)
+summary(lm.orig.0)
 
+#Modellvereinfachung: slo als am wenigsten signifikante Variable gestrichen
+lm.orig.1 <- lm(species_richness ~ ele+pH+pho, data =doubs)
+summary(lm.orig.1)
+
+#Modellvereinfachung: pH ist immer noch nicht signifikant und wird gestrichen
+lm.orig.2 <- lm(species_richness ~ ele+pho, data =doubs)
+summary(lm.orig.2)
+
+#Modelldiagnostik
+par(mfrow=c(2,2))
+plot(lm.orig.2) #nicht so gut, besonders die Bananenform in der linken obereren Abbildung
+
+#Versuch mit glm
+glm.orig.0 <- glm(species_richness ~ ele+pho+pH+slo, family = "poisson", data =doubs)
+summary(glm.orig.0)
+
+glm.orig.1 <- glm(species_richness ~ ele+pho+slo, family = "poisson", data =doubs)
+summary(glm.orig.1)
+
+glm.orig.2 <- glm(species_richness ~ ele+pho, family = "poisson", data =doubs)
+summary(glm.orig.2)
+plot(glm.orig.2)
+
+if(!require(AER)){install.packages("AER")}
+library(AER)
+dispersiontest(glm.orig.2) #signifikante Überdispersion
+
+glmq.orig.2 <- glm(species_richness ~ ele+pho, family = "quasipoisson", data =doubs)
+summary(glmq.orig.2)
+plot(glmq.orig.2)
 ```
