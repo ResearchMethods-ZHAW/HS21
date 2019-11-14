@@ -289,6 +289,8 @@ rownames(sil) <- row.names(spe)
 plot(sil,main = "Silhouette plot - Chord - Ward", cex.names = 0.8,col = 2:(k + 1),nmax = 100)
 
 # Reorder clusters
+if(!require(gclus)){install.packages("gclus")}
+install.packages("gclus")
 spe.chwo <- reorder.hclust(spe.ch.ward, spe.ch)
 
 # Plot reordered dendrogram with group labels
