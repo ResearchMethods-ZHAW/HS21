@@ -7,18 +7,19 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 **Ordinationen II**
 **(c) Juergen Dengler**
 
-[Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.03.R)
+[Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.04.R)
 
 
 ```{r eval=FALSE}
 #Interpretation von Ordinationen (Wildi pp. 96 et seq.)
+# Wildi pp. 96 et seq.)
 
-#Plot species
+#Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
 ca<-cca(sveg^0.5)
 
-#Plot selected species
+#Plot mit ausgewählten Arten
 sel.spec<-c(3,11,23,31,39,46,72,77,96)
 snames<-names(sveg[,sel.spec])
 snames
@@ -29,36 +30,39 @@ points(sx,sy,pch=16)
 snames <- make.cepnames(snames)
 text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 
-#Plot post-hoc fitted environmental variables
+# Plotte post-hoc gefittete Umweltvariablen
 sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
 ev <-envfit(ca,ssit[,sel.sites])
-#plot(o.ca$CA$u, asp=1) # würde neuer leerer Plot erstellen
 plot(ev,add=T,cex=0.8)
 
-
-#Plot response surfaces to CA
+#Plot "response surfaces" in der CA
 plot(ca$CA$u, asp=1)
 ordisurf(ca,ssit$pH.peat,add=T)
 
 plot(ca$CA$u, asp=1)
 ordisurf(ca,ssit$Waterlev.av,add=T,col="blue")
 
-#The same with DCA (does not work because detrending destroys distance matrix)
+#Das gleiche für die DCA (geht nicht, da das "detrending" die Distanzmatrix zerstört)
 dca <- decorana(sveg,mk=10)
 plot(dca$rproj, asp=1)
 ordisurf(dca,ssit$pH.peat,add=T)
 ordisurf(dca,ssit$Waterlev.av,add=T,col="blue")
 
-#The same with NMDS
+#Das gleiche mit NMDS
 mde <-vegdist(sveg,method="euclidean")
 mmds<-metaMDS(mde,k=2)
-plot(mmds$points)
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
 imds<-isoMDS(mde,k=2)
-mmds<-metaMDS(mde,k=2)
+
+plot(mmds$points)
+ordisurf(mmds,ssit$pH.peat,add=T)
+ordisurf(mmds,ssit$Waterlev.av,add=T,col="blue")
+
+plot(imds$points)
 ordisurf(imds,ssit$pH.peat,add=T)
 ordisurf(imds,ssit$Waterlev.av,add=T,col="blue")
+
 
 # Constrained ordination
 
@@ -84,12 +88,11 @@ tot <- cca$tot.chi
 constr <- cca$CCA$tot.chi
 constr/tot
 
+
 ## Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
 
-# Load the Doubs data. The file Doubs.Rdata is assumed to be in 
-# the working directory
+# Doubs Datensatz in den workspace laden
 load("Doubs.RData")  
-# Remove empty site 8
 spe
 env
 spa
@@ -102,7 +105,7 @@ spe <- spe[-8, ]
 env <- env[-8, ]
 spa <- spa[-8, ]
 
-# Maps of four fish species
+# Karten für 4 Fischarten
 dev.new(title = "Four fish species", noRStudioGD = TRUE)
 par(mfrow = c(2, 2))
 plot(spa, asp = 1, col = "brown", cex = spe$Satr, xlab = "x (km)", ylab = "y (km)", main = "Brown trout")
@@ -146,8 +149,7 @@ library(vegan)
 spe.hel <- decostand(spe, "hellinger")
 spe.hel
 
-# Redundancy analysis (RDA) =======================================
-
+# Redundancy analysis (RDA)
 ## RDA of the Hellinger-transformed fish species data, constrained
 ## by all the environmental variables contained in env3
 (spe.rda <- rda(spe.hel ~ ., env3)) # Observe the shortcut formula
@@ -175,6 +177,7 @@ spe.sc2 <- scores(spe.rda, choices = 1:2, display = "sp")
 arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92,length = 0,lty = 1,col = "red")
 text(-0.82, 0.55, "b", cex = 1.5)
 
+
 ## Triplots of the rda results (wa scores)
 ## Site scores as weighted averages (vegan's default)
 # Scaling 1 :  distance triplot
@@ -193,7 +196,7 @@ sel.sp <- which(spe.good[, 2] >= 0.6)
 sel.sp
 
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
-source("19_Statistik7/triplot.rda.R")
+source("triplot.rda.R")
 dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
 
 par(mfrow = c(1,2))
