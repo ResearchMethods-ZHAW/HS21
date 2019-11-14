@@ -15,7 +15,7 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 ```
 
 ```{r}
-load("Doubs.RData")
+load("18_Statistik6/Doubs.RData")
 
 summary(env)
 summary(spe)
