@@ -2,6 +2,8 @@
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
+[Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.03.R)
+
 
 ## Statistik 7 - Demoskript
 **Ordinationen II
@@ -191,7 +193,7 @@ sel.sp <- which(spe.good[, 2] >= 0.6)
 sel.sp
 
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
-source("17_Statistik7/triplot.rda.R")
+source("19_Statistik7/triplot.rda.R")
 dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
 
 par(mfrow = c(1,2))
