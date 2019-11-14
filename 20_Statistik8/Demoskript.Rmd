@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 
 **(c) Juergen Dengler**
 
-[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.02.R)
+[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.03.R)
 
 ```{r eval=FALSE}
 ## k-means clustering
@@ -77,6 +77,9 @@ plot(spe.ch.UPGMA, labels = rownames(spe), main = "Chord - UPGMA")
 spe.ch.centroid <- hclust(spe.ch, method = "centroid")
 plot(spe.ch.centroid, labels = rownames(spe),  main = "Chord - Centroid")
 
+# Compute Ward's minimum variance clustering
+spe.ch.ward <-hclust(spe.ch, method = "ward.D2")
+plot(spe.ch.ward, labels = rownames(spe),  main = "Chord - Ward")
 
 # Compute beta-flexible clustering using cluster::agnes()
 # beta = -0.1
@@ -297,7 +300,7 @@ plot(sil,main = "Silhouette plot - Chord - Ward", cex.names = 0.8,col = 2:(k + 1
 
 # Reorder clusters
 if(!require(gclus)){install.packages("gclus")}
-install.packages("gclus")
+library("gclus")
 spe.chwo <- reorder.hclust(spe.ch.ward, spe.ch)
 
 # Plot reordered dendrogram with group labels
