@@ -3,56 +3,66 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
 
-## Statistik 7 - Demoskript
-
-**(c) Juergen Dengler, 05.11.2018**
+## Statistik 7 - Demoskript extended
+**Ordinationen II
+**(c) Juergen Dengler
 
 
 ```{r}
 #Interpretation von Ordinationen (Wildi pp. 96 et seq.)
 
-#Plot species
+#Plot Arten
+if(!require(dave)){install.packages("dave")}
 library(dave)
-o.ca<-cca(sveg^0.5)
+ca<-cca(sveg^0.5)
 
-#Plot selected species
+#Plot mit ausgewählten Arten
 sel.spec<-c(3,11,23,31,39,46,72,77,96)
 snames<-names(sveg[,sel.spec])
 snames
-sx <- o.ca$CA$v[sel.spec,1]
-sy <- o.ca$CA$v[sel.spec,2]
-plot(o.ca$CA$u, asp=1)
+sx <- ca$CA$v[sel.spec,1]
+sy <- ca$CA$v[sel.spec,2]
+plot(ca$CA$u, asp=1)
 points(sx,sy,pch=16)
 snames <- make.cepnames(snames)
 text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 
-#Plot post-hoc fitted environmental variables
+# Plotte post-hoc gefittete Umweltvariablen
 sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
-o.ev <-envfit(o.ca,ssit[,sel.sites])
-plot(o.ca$CA$u, asp=1)
-plot(o.ev,add=T,cex=0.8)
+ev <-envfit(ca,ssit[,sel.sites])
+plot(ev,add=T,cex=0.8)
 
-#Plot response surfaces to CA
-plot(o.ca$CA$u, asp=1)
-ordisurf(o.ca,ssit$pH.peat,add=T)
+#Plot "response surfaces" in der CA
+plot(ca$CA$u, asp=1)
+ordisurf(ca,ssit$pH.peat,add=T)
 
-plot(o.ca$CA$u, asp=1)
-ordisurf(o.ca,ssit$Waterlev.av,add=T,col="blue")
+plot(ca$CA$u, asp=1)
+ordisurf(ca,ssit$Waterlev.av,add=T,col="blue")
 
-#The same with DCA (does not work because detrending destroys distance matrix)
-o.dca <- decorana(sveg,mk=10)
-plot(o.dca$rproj, asp=1)
-ordisurf(o.dca,ssit$pH.peat,add=T)
-ordisurf(o.dca,ssit$Waterlev.av,add=T,col="blue")
+#Das gleiche für die DCA (geht nicht, da das "detrending" die Distanzmatrix zerstört)
+dca <- decorana(sveg,mk=10)
+plot(dca$rproj, asp=1)
+ordisurf(dca,ssit$pH.peat,add=T)
+ordisurf(dca,ssit$Waterlev.av,add=T,col="blue")
 
-#The same with NMDS
+#Das gleiche mit NMDS
 mde <-vegdist(sveg,method="euclidean")
-o.mmds<-metaMDS(mde,k=2)
-plot(o.mmds$points)
-#ordisurf(o.imds,ssit$pH.peat,add=T)
-#ordisurf(o.imds,ssit$Waterlev.av,add=T,col="blue")
+mmds<-metaMDS(mde,k=2)
+if(!require(MASS)){install.packages("MASS")}
+library(MASS)
+imds<-isoMDS(mde,k=2)
 
-# Constrained ordination
+plot(mmds$points)
+ordisurf(mmds,ssit$pH.peat,add=T)
+ordisurf(mmds,ssit$Waterlev.av,add=T,col="blue")
+
+plot(imds$points)
+ordisurf(imds,ssit$pH.peat,add=T)
+ordisurf(imds,ssit$Waterlev.av,add=T,col="blue")
+
+
+# Constrained ordination --------------------------------------------------
+
 
 #5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
 ssit
@@ -60,74 +70,49 @@ summary(ssit)
 s5<-c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")
 ssit5<-ssit[s5]
 
+data(sveg)
+summary(sveg)
+
 #RDA = constrained PCA
-o.rda <-rda(sveg~.,data=ssit5)
-plot(o.rda)
+rda <-rda(sveg,ssit5)
+plot(rda)
 
 #CCA = constrained CA
-o.cca <-cca(sveg~.,data=ssit5)
-plot(o.cca)
+cca <-cca(sveg,ssit5)
+plot(cca)
 
 #Unconstrained and constrained variance
-tot <- o.cca$tot.chi
-constr <- o.cca$CCA$tot.chi
+tot <- cca$tot.chi
+constr <- cca$CCA$tot.chi
 constr/tot
+
 
 ## Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
 
-# Load the Doubs data. The file Doubs.Rdata is assumed to be in 
-# the working directory
+# Doubs Datensatz in den workspace laden
 load("Doubs.RData")  
-# Remove empty site 8
 spe
 env
 spa
 summary(spe)
 summary(env)
 summary(spa)
+
 # Entfernen der Untersuchungsfläche ohne Arten
 spe <- spe[-8, ]
 env <- env[-8, ]
 spa <- spa[-8, ]
 
-# Maps of four fish species
+# Karten für 4 Fischarten
 dev.new(title = "Four fish species", noRStudioGD = TRUE)
 par(mfrow = c(2, 2))
-plot(spa, 
-     asp = 1, 
-     col = "brown", 
-     cex = spe$Satr, 
-     xlab = "x (km)", 
-     ylab = "y (km)", 
-     main = "Brown trout"
-)
+plot(spa, asp = 1, col = "brown", cex = spe$Satr, xlab = "x (km)", ylab = "y (km)", main = "Brown trout")
 lines(spa, col = "light blue")
-plot(spa, 
-     asp = 1, 
-     col = "brown", 
-     cex = spe$Thth, 
-     xlab = "x (km)", 
-     ylab = "y (km)", 
-     main = "Grayling"
-)
+plot(spa, asp = 1, col = "brown", cex = spe$Thth, xlab = "x (km)", ylab = "y (km)", main = "Grayling")
 lines(spa, col = "light blue")
-plot(spa, 
-     asp = 1, 
-     col = "brown", 
-     cex = spe$Alal, 
-     xlab = "x (km)", 
-     ylab = "y (km)", 
-     main = "Bleak"
-)
+plot(spa, asp = 1, col = "brown", cex = spe$Alal, xlab = "x (km)", ylab = "y (km)", main = "Bleak")
 lines(spa, col = "light blue")
-plot(spa, 
-     asp = 1, 
-     col = "brown", 
-     cex = spe$Titi, 
-     xlab = "x (km)", 
-     ylab = "y (km)", 
-     main = "Tench"
-)
+plot(spa, asp = 1, col = "brown", cex = spe$Titi, xlab = "x (km)", ylab = "y (km)", main = "Tench")
 lines(spa, col = "light blue")
 
 # Set aside the variable 'dfs' (distance from the source) for 
@@ -142,9 +127,9 @@ slo2 <- rep(".very_steep", nrow(env))
 slo2[env$slo <= quantile(env$slo)[4]] <- ".steep"
 slo2[env$slo <= quantile(env$slo)[3]] <- ".moderate"
 slo2[env$slo <= quantile(env$slo)[2]] <- ".low"
-slo2 <- factor(slo2, 
-               levels = c(".low", ".moderate", ".steep", ".very_steep"))
+slo2 <- factor(slo2, levels = c(".low", ".moderate", ".steep", ".very_steep"))
 table(slo2)
+
 # Create an env3 data frame with slope as a qualitative variable
 env3 <- env2
 env3$slo <- slo2
@@ -178,115 +163,47 @@ coef(spe.rda)
 
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
-dev.new(
-  title = "RDA scaling 1 and 2 + lc",
-  width = 6,
-  height = 12,
-  noRStudioGD = TRUE
-)
-par(mfrow = c(1, 1))
-plot(spe.rda,
-     scaling = 1,
-     display = c("sp", "lc", "cn"),
-     main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores"
-)
-spe.sc1 <- 
-  scores(spe.rda, 
-         choices = 1:2, 
-         scaling = 1, 
-         display = "sp"
-  )
-arrows(0, 0, 
-       spe.sc1[, 1] * 0.92,
-       spe.sc1[, 2] * 0.92,
-       length = 0, 
-       lty = 1, 
-       col = "red"
-)
+dev.new(title = "RDA scaling 1 and 2 + lc", width = 12, height = 6, noRStudioGD = TRUE)
+par(mfrow = c(1, 2))
+# Scaling 1
+plot(spe.rda,scaling = 1,display = c("sp", "lc", "cn"),main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores")
+spe.sc1 <- scores(spe.rda, choices = 1:2, scaling = 1, display = "sp")
+arrows(0, 0, spe.sc1[, 1] * 0.92,spe.sc1[, 2] * 0.92,length = 0, lty = 1, col = "red")
 text(-0.75, 0.7, "a", cex = 1.5)
-
 # Scaling 2
-plot(spe.rda, 
-     display = c("sp", "lc", "cn"), 
-     main = "Triplot RDA spe.hel ~ env3 - scaling 2 - lc scores"
-)
-spe.sc2 <- 
-  scores(spe.rda, 
-         choices = 1:2, 
-         display = "sp"
-  )
-arrows(0, 0, 
-       spe.sc2[, 1] * 0.92, 
-       spe.sc2[, 2] * 0.92,
-       length = 0,
-       lty = 1,
-       col = "red"
-)
+plot(spe.rda, display = c("sp", "lc", "cn"), main = "Triplot RDA spe.hel ~ env3 - scaling 2 - lc scores")
+spe.sc2 <- scores(spe.rda, choices = 1:2, display = "sp")
+arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92,length = 0,lty = 1,col = "red")
 text(-0.82, 0.55, "b", cex = 1.5)
+
 
 ## Triplots of the rda results (wa scores)
 ## Site scores as weighted averages (vegan's default)
 # Scaling 1 :  distance triplot
-dev.new(title = "RDA scaling 1 + wa", noRStudioGD = TRUE)
-plot(spe.rda, 
-     scaling = 1, 
-     main = "Triplot RDA spe.hel ~ env3 - scaling 1 - wa scores"
-)
-arrows(0, 0, 
-       spe.sc1[, 1] * 0.92, 
-       spe.sc1[, 2] * 0.92, 
-       length = 0, 
-       lty = 1, 
-       col = "red"
-)
-
+dev.new(title = "RDA plot", width = 12, height = 6, noRStudioGD = TRUE)
+par(mfrow = c(1,2))
+plot(spe.rda, scaling = 1, main = "Triplot RDA spe.hel ~ env3 - scaling 1 - wa scores")
+arrows(0, 0, spe.sc1[, 1] * 0.92, spe.sc1[, 2] * 0.92, length = 0, lty = 1, col = "red")
 # Scaling 2 (default) :  correlation triplot
-dev.new(title = "RDA scaling 2 + wa", noRStudioGD = TRUE)
-plot(spe.rda, 
-     main = "Triplot RDA spe.hel ~ env3 - scaling 2 - wa scores")
-arrows(0, 0, 
-       spe.sc2[, 1] * 0.92, 
-       spe.sc2[, 2] * 0.92, 
-       length = 0, 
-       lty = 1, 
-       col = "red"
-)
+plot(spe.rda, main = "Triplot RDA spe.hel ~ env3 - scaling 2 - wa scores")
+arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92, length = 0, lty = 1, col = "red")
 
 # Select species with goodness-of-fit at least 0.6 in the 
 # ordination plane formed by axes 1 and 2
 spe.good <- goodness(spe.rda)
 sel.sp <- which(spe.good[, 2] >= 0.6)
 sel.sp
+
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
 source("triplot.rda.R")
-dev.new(
-  title = "RDA plot with triplot.rda",
-  width = 6,
-  height = 12,
-  noRStudioGD = TRUE
-)
-par(mfrow = c(1, 1))
-triplot.rda(spe.rda, 
-            site.sc = "lc", 
-            scaling = 1, 
-            cex.char2 = 0.7, 
-            pos.env = 3, 
-            pos.centr = 1, 
-            mult.arrow = 1.1, 
-            mar.percent = 0.05, 
-            select.spe = sel.sp
-)
+dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
+
+par(mfrow = c(1,2))
+triplot.rda(spe.rda, site.sc = "lc", scaling = 1, cex.char2 = 0.7, pos.env = 3, 
+            pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
 text(-0.92, 0.72, "a", cex = 2)
-triplot.rda(spe.rda, 
-            site.sc = "lc", 
-            scaling = 2, 
-            cex.char2 = 0.7, 
-            pos.env = 3, 
-            pos.centr = 1, 
-            mult.arrow = 1.1, 
-            mar.percent = 0.05, 
-            select.spe = sel.sp
-)
+triplot.rda(spe.rda, site.sc = "lc", scaling = 2, cex.char2 = 0.7, pos.env = 3, 
+            pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
 text(-2.82, 2, "b", cex = 2)
 
 # Global test of the RDA result
@@ -304,9 +221,8 @@ summary(spechem.physio)
 
 # Formula interface; X and W variables must be in the same 
 # data frame
-(spechem.physio2 <- 
-    rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod 
-        + Condition(ele + slo + dis), data = env2))
+(spechem.physio2 <- rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod 
+                        + Condition(ele + slo + dis), data = env2))
 
 # Test of the partial RDA, using the results with the formula 
 # interface to allow the tests of the axes to be run
@@ -316,31 +232,17 @@ anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 # Partial RDA triplots (with fitted site scores) 
 # with function triplot.rda
 # Scaling 1
-dev.new(
-  title = "Partial RDA",
-  width = 6,
-  height = 12,
-  noRStudioGD = TRUE
-)
-par(mfrow = c(1, 1))
-triplot.rda(spechem.physio, 
-            site.sc = "lc", 
-            scaling = 1, 
-            cex.char2 = 0.8, 
-            pos.env = 3, 
-            mar.percent = 0
-)
+dev.new(title = "Partial RDA",width = 12, height = 6, noRStudioGD = TRUE)
+par(mfrow = c(1, 2))
+triplot.rda(spechem.physio, site.sc = "lc", scaling = 1, 
+            cex.char2 = 0.8, pos.env = 3, mar.percent = 0)
 text(-0.58, 0.64, "a", cex = 2)
+
 # Scaling 2
-triplot.rda(spechem.physio, 
-            site.sc = "lc", 
-            scaling = 2, 
-            cex.char2 = 0.8, 
-            pos.env = 3, 
-            mult.spe = 1.1, 
-            mar.percent = 0.04
-)
+triplot.rda(spechem.physio, site.sc = "lc", scaling = 2, cex.char2 = 0.8, 
+            pos.env = 3, mult.spe = 1.1, mar.percent = 0.04)
 text(-3.34, 3.64, "b", cex = 2)
+
 
 #########################################
 ###---ab hier im Kurs nicht gezeigt---###
@@ -349,18 +251,20 @@ text(-3.34, 3.64, "b", cex = 2)
 # First RDA of this Chapter: all environmental variables
 # except dfs
 vif.cca(spe.rda)
-# Partial RDA – physiographic variables only
-vif.cca(spechem.physio)
+# Partial RDA physiographic variables only
+spechem.physio<-rda(spe.hel, envchem, envtopo)
+vif.cca(spechem.physio) 
 
 ## Forward selection of explanatory variables
-
 # RDA with all explanatory variables except dfs
 spe.rda.all <- rda(spe.hel ~ ., data = env2)
 # Global adjusted R^2
 (R2a.all <- RsquareAdj(spe.rda.all)$adj.r.squared)
 
 # Forward selection using forward.sel()
-#forward.sel(spe.hel, env2, adjR2thresh = R2a.all)
+if(!require(adespatial)){install.packages("adespatial")}
+library(adespatial)
+forward.sel(spe.hel, env2, adjR2thresh = R2a.all)
 
 # Forward selection using vegan's ordistep()
 # This function allows the use of factors. 
@@ -375,8 +279,7 @@ RsquareAdj(step.forward)
 
 # Backward elimination using vegan's ordistep()
 step.backward <-
-  ordistep(spe.rda.all,
-           permutations = how(nperm = 499))
+  ordistep(spe.rda.all, permutations = how(nperm = 499))
 # With redundant argument direction = "backward":
 # step.backward <-
 #  ordistep(spe.rda.all,
@@ -426,7 +329,6 @@ step.p.forward <-
 
 
 ## Parsimonious RDA
-
 (spe.rda.pars <- rda(spe.hel ~ ele + oxy + bod, data = env2))
 anova(spe.rda.pars, permutations = how(nperm = 999))
 anova(spe.rda.pars, permutations = how(nperm = 999), by = "axis")
@@ -436,32 +338,27 @@ vif.cca(spe.rda.all)
 vif.cca(spe.rda.pars)
 
 # Triplots of the parsimonious RDA (with fitted site scores)
-dev.new(
-  title = "Parsimonious RDA scaling 1", 
-  width = 7, 
-  height = 12, 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Parsimonious RDA scaling 1", width = 7, height = 12, noRStudioGD = TRUE)
 par(mfrow = c(2, 1))
 # Scaling 1
 triplot.rda(spe.rda.pars, 
-            site.sc = "lc", 
-            scaling = 1, 
-            cex.char2 = 0.8, 
-            pos.env = 2, 
-            mult.spe = 0.9, 
-            mult.arrow = 0.92, 
-            mar.percent = 0.01
-)
+     site.sc = "lc", 
+     scaling = 1, 
+     cex.char2 = 0.8, 
+     pos.env = 2, 
+     mult.spe = 0.9, 
+     mult.arrow = 0.92, 
+     mar.percent = 0.01)
+
 # Scaling 2
 triplot.rda(spe.rda.pars, 
-            site.sc = "lc", 
-            scaling = 2, 
-            cex.char2 = 0.8, 
-            pos.env = 2, 
-            mult.spe = 1.1, 
-            mar.percent = -0.02
-)
+     site.sc = "lc", 
+     scaling = 2, 
+     cex.char2 = 0.8, 
+     pos.env = 2, 
+     mult.spe = 1.1, 
+mar.percent = -0.02)
+
 
 ## Environmental reconstruction (calibration) with RDA
 
@@ -487,16 +384,9 @@ env2[22:24, c(1, 9, 10)]
 ###---bis hier im Kurs nicht gezeigt---###
 ##########################################
 
-
-## Variation partitioning with two sets of explanatory variables
-
 # Explanation of fraction labels (two, three and four explanatory 
 # matrices) with optional colours
-dev.new(
-  title = "Symbols of variation partitioning fractions", 
-  width = 6, 
-  height = 2.3, noRStudioGD = TRUE
-)
+dev.new(title = "Symbols of variation partitioning fractions", width = 6, height = 2.3, noRStudioGD = TRUE)
 par(mfrow = c(1, 3), mar = c(1, 1, 1, 1))
 showvarparts(2, bg = c("red", "blue"))
 showvarparts(3, bg = c("red", "blue", "yellow"))
@@ -507,12 +397,11 @@ showvarparts(4, bg = c("red", "blue", "yellow", "green"))
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
 
 # Plot of the partitioning results
-dev.new(title = "Variation partitioning - all variables", 
-        noRStudioGD = TRUE)
+par(mfrow = c(1, 1))
+dev.new(title = "Variation partitioning - all variables", noRStudioGD = TRUE)
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      Xnames = c("Chemistry", "Physiography"), 
-     id.size = 0.7
-)
+     id.size = 0.7)
 
 #########################################
 ###---ab hier im Kurs nicht gezeigt---###
@@ -522,20 +411,20 @@ plot(spe.part.all, digits = 2, bg = c("red", "blue"),
 # Separate forward selection in each subset of environmental 
 # variables
 spe.chem <- rda(spe.hel, envchem)
-#R2a.all.chem <- RsquareAdj(spe.chem)$adj.r.squared
-#forward.sel(spe.hel, 
- #           envchem, 
-  #          adjR2thresh = R2a.all.chem, 
-   #         nperm = 9999
-#)
+R2a.all.chem <- RsquareAdj(spe.chem)$adj.r.squared
+forward.sel(spe.hel, 
+            envchem, 
+            adjR2thresh = R2a.all.chem, 
+            nperm = 9999
+)
 
-#spe.topo <- rda(spe.hel, envtopo)
-#R2a.all.topo <- RsquareAdj(spe.topo)$adj.r.squared
-#forward.sel(spe.hel, 
- #           envtopo, 
-  #          adjR2thresh = R2a.all.topo, 
-   #         nperm = 9999
-#)
+spe.topo <- rda(spe.hel, envtopo)
+R2a.all.topo <- RsquareAdj(spe.topo)$adj.r.squared
+forward.sel(spe.hel, 
+            envtopo, 
+            adjR2thresh = R2a.all.topo, 
+            nperm = 9999
+)
 
 # Parsimonious subsets of explanatory variables, based on forward 
 # selections
@@ -546,16 +435,10 @@ envtopo.pars <- envtopo[, c(1, 2)]
 
 # Variation partitioning
 (spe.part <- varpart(spe.hel, envchem.pars, envtopo.pars))
-dev.new(
-  title = "Variation partitioning - parsimonious subsets", 
-  noRStudioGD = TRUE
-)
-plot(spe.part, 
-     digits = 2, 
-     bg = c("red", "blue"), 
+dev.new(title = "Variation partitioning - parsimonious subsets", noRStudioGD = TRUE)
+plot(spe.part, digits = 2,  bg = c("red", "blue"), 
      Xnames = c("Chemistry", "Physiography"), 
-     id.size = 0.7
-)
+     id.size = 0.7)
 
 # Tests of all testable fractions
 # Test of fraction [a+b]
@@ -571,18 +454,15 @@ anova(rda(spe.hel, envchem.pars, envtopo.pars),
 )
 # Test of fraction [c]
 anova(rda(spe.hel, envtopo.pars, envchem.pars), 
-      permutations = how(nperm = 999)
-)
+      permutations = how(nperm = 999))
 
 
 ## 3. Variation partitioning without the 'nit' variable
 envchem.pars2 <- envchem[, c(6, 7)]
 (spe.part2 <- varpart(spe.hel, envchem.pars2, envtopo.pars))
-dev.new(
-  title = "Variation partitioning - parsimonious subset 2", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Variation partitioning - parsimonious subset 2", noRStudioGD = TRUE)
 plot(spe.part2, digits = 2)
+
 
 ## Two-way MANOVA by RDA
 
@@ -673,17 +553,13 @@ factor.pH.rda <-
       ele.pH.helm[, c(1:2, 5:8)]) 
 anova(factor.pH.rda, 
       permutations = how(nperm = 999), 
-      strata = ele.fac
-)
+      strata = ele.fac)
 
 # RDA with the significant factor ele
 ele.rda.out <- rda(spe.hel[1:27, ]~ ., as.data.frame(ele.fac))
 # Triplot with "wa" sites related to factor centroids, and species 
 # arrows
-dev.new(
-  title = "Multivariate ANOVA - elevation", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Multivariate ANOVA - elevation", noRStudioGD = TRUE)
 plot(ele.rda.out, 
      scaling = 1, 
      display = "wa", 
@@ -720,6 +596,7 @@ adonis2(spe.hel[1:27, ] ~ ele.fac * pH.fac,
         by = "term"
 )
 
+
 ## RDA with a single second degree explanatory variable
 
 # Create a matrix of dfs and its orthogonal second degree term 
@@ -729,17 +606,14 @@ colnames(dfs.df) <- c("dfs", "dfs2")
 # Verify that the polynomial terms are orthogonal
 cor(dfs.df)
 # Find out if both variables are significant
-#forward.sel(spe.hel, dfs.df)
+forward.sel(spe.hel, dfs.df)
 
 # RDA and test
 spe.dfs.rda <- rda(spe.hel ~ ., as.data.frame(dfs.df))
 anova(spe.dfs.rda)
 
 # Triplot using "lc" (model) site scores and scaling 2
-dev.new(
-  title = "RDA w. 2nd-degree variable - scaling 2", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "RDA w. 2nd-degree variable - scaling 2", noRStudioGD = TRUE)
 triplot.rda(spe.dfs.rda, 
             site.sc = "lc", 
             scaling = 2, 
@@ -747,16 +621,13 @@ triplot.rda(spe.dfs.rda,
             pos.env = 1, 
             mult.arrow = 0.9, 
             move.origin = c(-0.25, 0), 
-            mar.percent = 0
-)
-
-
+            mar.percent = 0)
 
 
 
 ## Polynomial RDA, second degree, with forward selection
+source ('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/scripts/NumEcolR2/polyvars.R')
 ## among all environmental variables
-
 env.square <- polyvars(env2, degr = 2)
 names(env.square)
 spe.envsq.rda <- rda(spe.hel ~ ., env.square)
@@ -772,10 +643,7 @@ RsquareAdj(spe.envsq.fwd.rda)
 summary(spe.envsq.fwd.rda)
 
 # Triplot using lc (model) site scores and scaling 2
-dev.new(
-  title = "RDA w. 2nd-order variables - scaling 2", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "RDA w. 2nd-order variables - scaling 2", noRStudioGD = TRUE)
 triplot.rda(spe.envsq.fwd.rda, 
             site.sc = "lc", 
             scaling = 2, 
@@ -783,8 +651,8 @@ triplot.rda(spe.envsq.fwd.rda,
             pos.env = 1, 
             mult.arrow = 0.9, 
             mult.spe = 0.9,
-            mar.percent = 0
-)
+            mar.percent = 0)
+
 
 ## Distance-based redundancy analysis (db-RDA) :  square-rooted
 ## percentage difference response matrix and 'ele' factor with 
@@ -799,9 +667,9 @@ colnames(ele.pH.helm) <-
 # NOT data.frame
 covariables <- ele.pH.helm[, 3:8]
 
-# Compute the dissimilarity response matrix with vegan’s vegdist()
+# Compute the dissimilarity response matrix with vegans vegdist()
 spe.bray27 <- vegdist(spe[1:27, ], "bray")
-# … or with function dist.ldc() of adespatial
+# or with function dist.ldc() of adespatial
 spe.bray27 <- dist.ldc(spe[1:27, ], "percentdiff")
 
 # 1. dbrda() on the square-rooted dissimilarity matrix
@@ -821,10 +689,6 @@ bray.env.cap <-
 anova(bray.env.cap, permutations = how(nperm = 999))
 # Plot with "wa" scores to see dispersion of sites around the 
 # factor levels
-dev.new(
-  title = "db-RDA - wa - scaling 1", 
-  noRStudioGD = TRUE
-)
 triplot.rda(bray.env.cap, site.sc = "wa", scaling = 1)
 
 # The results of the two analyses are slightly different because
@@ -850,6 +714,8 @@ anova(bray.env.capscale, permutations = how(nperm = 999))
 
 # 2. PCoA with Lingoes (1971) correction
 #    Explicit steps
+if(!require(ape)){install.packages("ape")}
+library(ape)
 spe.bray27.lin <- pcoa(spe.bray27, correction = "lingoes") 
 spe.bray27.lingoes <- spe.bray27.lin$vectors.cor 
 # Test of the factor ele. Factor pH and interaction, Helmert-coded,
@@ -861,11 +727,8 @@ spe.L.ele.dbrda <-
 anova(spe.L.ele.dbrda, permutations = how(nperm = 999))
 
 # Same by staying in {vegan} and using wcmdscale() : 
-
 spe.lingoes2 <- wcmdscale(spe.bray27, add = "lingoes") 
-anova(
-  rda(spe.lingoes2 ~ ele.pH.helm[, 1:2] + Condition(covariables))
-)
+anova(rda(spe.lingoes2 ~ ele.pH.helm[, 1:2] + Condition(covariables)))
 
 ### END NOT IN THE BOOK ###
 
@@ -1006,12 +869,7 @@ summary(spe.cca)	# Scaling 2 (default)
 RsquareAdj(spe.cca)
 
 ## CCA triplots (using lc site scores)
-dev.new(
-  title = "CCA triplot - lc scores", 
-  width = 6, 
-  height = 12, 
-  noRStudioGD = TRUE
-)
+dev.new(title = "CCA triplot - lc scores", width = 6, height = 12, noRStudioGD = TRUE)
 par(mfrow = c(2, 1))
 # Scaling 1: species scores scaled to the relative eigenvalues, 
 # sites are weighted averages of the species
@@ -1028,12 +886,7 @@ plot(spe.cca,
      main = "Triplot CCA spe ~ env3 - scaling 2")
 text(-2.3, 2.6, "b", cex = 1.5)
 
-dev.new(
-  title = "CCA biplot - without species", 
-  width = 9, 
-  height = 5, 
-  noRStudioGD = TRUE
-)
+dev.new(title = "CCA biplot - without species", width = 9, height = 5, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 # CCA scaling 1 biplot without species (using lc site scores)
 plot(spe.cca, 
@@ -1068,7 +921,7 @@ cca.step.forward <-
 spe.cca.pars <- cca(spe ~ ele + oxy + bod, data = env3)
 anova(spe.cca.pars, permutations = how(nperm = 999))
 anova(spe.cca.pars, permutations = how(nperm = 999), by = "axis")
-# R-square – like statistics
+# R-square like statistics
 RsquareAdj(spe.cca.pars)
 # Compare variance inflation factors
 vif.cca(spe.cca)
@@ -1114,10 +967,10 @@ varpart.cca <- function(Y, X, W)
 }
 
 # -----------------------------------------------------------------
-
-
 ## Three-dimensional interactive ordination plots
 ## (requires vegan3d package)
+if(!require(vegan3d)){install.packages("vegan3d")}
+library(vegan3d)
 
 # Plot of the sites only (wa scores)
 ordirgl(spe.cca.pars, type = "t", scaling = 1)
@@ -1157,8 +1010,7 @@ ordirgl(spe.cca.pars,
         col = gs + 1)
 
 
-
-# Linear discriminant analysis (LDA) ==============================
+## Linear discriminant analysis (LDA)
 
 # Ward clustering result of Hellinger-transformed species data, 
 # cut into 4 groups
@@ -1185,7 +1037,7 @@ permutest(env.MHV2)
 # Preliminary test :  do the means of the explanatory variable 
 # differ among groups?
 # Compute Wilk'S lambda test
-# First way: with function Wilks.test() of package rrcov, χ2 test
+# First way: with function Wilks.test() of package rrcov, Ï2 test
 Wilks.test(env.pars3, gr)
 # Second way: with function manova() of stats, which uses
 #             an F-test approximation
@@ -1254,16 +1106,15 @@ spe.lda2$svd^2
 diag(prop.table(spe.table2, 1))
 
 # Plot the LDA results using the homemade function plot.lda()
-dev.new(
-  title = "Discriminant analysis", 
-  noRStudioGD = TRUE
-)
+source('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/scripts/NumEcolR2/plot.lda.R')
+if(!require(ellipse)){install.packages("ellipse")}
+library(ellipse)
+dev.new(title = "Discriminant analysis", noRStudioGD = TRUE)
 plot.lda(lda.out = spe.lda2, 
          groups = gr, 
          plot.sites = 2, 
          plot.centroids = 1, 
-         mul.coef = 2.35
-)
+         mul.coef = 2.35)
 
 # LDA with jackknife-based classification (i.e., leave-one-out 
 # cross-validation)
@@ -1299,7 +1150,7 @@ stand.lda <- lda(grY ~ ., data = X.sc)
 
 
 
-# Principal response curves (PRC) =================================
+## Principal response curves (PRC)
 
 # Code from the prc() help file, with additional comments
 # Chlorpyrifos experiment and experimental design :  Pesticide
@@ -1329,7 +1180,7 @@ summary(mod)   # Results formatted as PRC
 # (log-transformed) abundances are reported
 logabu <- colSums(pyrifos)
 dev.new(title = "PRC", noRStudioGD = TRUE)
-plot(mod, select = logabu > 200)
+plot(mod, select = logabu > 200,main = "PRC")
 
 # Statistical test
 # Ditches are randomized, we have a time series, and are only
@@ -1339,9 +1190,9 @@ ctrl <-
       within = Within(type = "series"), nperm = 999)
 anova(mod, permutations = ctrl, first = TRUE)
 
-
-
-# Predictive co-correspondence analysis (CoCA) ====================
+## Predictive co-correspondence analysis (CoCA)
+if(!require(cocorresp)){install.packages("cocorresp")}
+library(cocorresp)
 
 data(bryophyte)
 data(vascular)
@@ -1374,19 +1225,14 @@ load.plant <- carp.pred$loadings$X
 # Printing options:
 ?plot.predcoca  
 
-dev.new(
-  title = "Predictive co-correspondence analysis (CoCA)", 
-  width = 12, 
-  height = 6, 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Predictive co-correspondence analysis (CoCA)", width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 plot(carp.pred, 
      type = "none", 
      main = "Bryophytes", 
      xlim = c(-2, 3), 
-     ylim = c(-3, 2)
-)
+     ylim = c(-3, 2))
+
 points(carp.scores$sites$X, pch = 16, cex = 0.5)
 text(load.bryo, 
      labels = rownames(load.bryo), 
@@ -1412,7 +1258,7 @@ detach("package:cocorresp", unload = TRUE)
 unloadNamespace("cocorresp")
 
 
-# Canonical correlation analysis (CCorA) ==========================
+## Canonical correlation analysis (CCorA)
 
 # Preparation of data (transformations to make variable 
 # distributions approximately symmetrical)
@@ -1433,20 +1279,15 @@ chem.topo.ccora <-
         stand.X = TRUE, 
         permutations = how(nperm = 999))
 chem.topo.ccora
-
-dev.new(
-  title = "Canonical correlation analysis (CCorA)", 
-  width = 9, 
-  height = 6, 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Canonical correlation analysis (CCorA)", width = 9, height = 6, noRStudioGD = TRUE)
 biplot(chem.topo.ccora, plot.type = "biplot")
 
 
-
-# Co-inertia analysis =============================================
-
+## Co-inertia analysis
 # PCA on both matrices using ade4 functions
+if(!require(ade4)){install.packages("ade4")}
+library(ade4)
+
 dudi.chem <- dudi.pca(envchem2, 
                       scale = TRUE, 
                       scannf = FALSE)
@@ -1474,7 +1315,7 @@ randtest(coia.chem.topo, nrepet = 999)
 
 # Plot results
 dev.new(title = "Co-inertia analysis", noRStudioGD = TRUE)
-plot(coia.chem.topo)
+plot(coia.chem.topo, main = "Co-inertia analysis")
 
 
 # Multiple factor analysis (MFA) ==================================
@@ -1490,6 +1331,9 @@ dim(tab3)
 # Close the previous graphic windows
 graphics.off()
 # Compute the MFA without multiple plots
+if(!require(FactoMineR)){install.packages("FactoMineR")}
+library(FactoMineR)
+
 t3.mfa <- MFA(
   tab3,
   group = grn,
@@ -1508,13 +1352,13 @@ plot(t3.mfa,
      choix = "axes",
      habillage = "group",
      shadowtext = TRUE)
-dev.new(title = "Sites", noRStudioGD = TRUE)
+dev.new(title = "Quantitative variables", noRStudioGD = TRUE)
 plot(
   t3.mfa,
   choix = "ind",
   partial = "all",
   habillage = "group")
-dev.new(title = "Quantitative variables", noRStudioGD = TRUE)
+dev.new(title = "Sites", noRStudioGD = TRUE)
 plot(t3.mfa,
      choix = "var",
      habillage = "group",
@@ -1534,10 +1378,8 @@ round(rvp[-4, -4], 6)
 # Eigenvalues, scree plot and broken stick model
 ev <- t3.mfa$eig[, 1]
 names(ev) <- paste("MFA", 1 : length(ev))
-dev.new(
-  title = "MFA eigenvalues and broken stick model", 
-  noRStudioGD = TRUE
-)
+source('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/scripts/NumEcolR2/screestick.R')
+dev.new(title = "MFA eigenvalues and broken stick model", noRStudioGD = TRUE)
 screestick(ev, las = 2)
 
 # Alternative to the standard, automatic MFA plots : 
@@ -1547,10 +1389,7 @@ screestick(ev, las = 2)
 aa <- dimdesc(t3.mfa, axes = 1:2, proba = 0.0001)
 
 # Plot
-dev.new(
-  title = "MFA :  correlations among significant variables", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "MFA :  correlations among significant variables", noRStudioGD = TRUE)
 varsig <- 
   t3.mfa$quanti.var$cor[unique(c(rownames(aa$Dim.1$quanti), 
                                  rownames(aa$Dim.2$quanti))), ]
@@ -1583,8 +1422,7 @@ for (v in 1 : nrow(varsig))
 
 
 
-# RLQ and fourth-corner analyses ==================================
-
+## RLQ and fourth-corner analyses
 data(aravo)
 dim(aravo$spe)
 dim(aravo$traits)
@@ -1605,10 +1443,7 @@ rlq.aravo <- rlq(
   dudiL = afcL.aravo, 
   dudiQ = acpQ.aravo,
   scannf = FALSE)
-dev.new(
-  title = "RLQ", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "RLQ", noRStudioGD = TRUE)
 plot(rlq.aravo)
 # Traits by environment crossed table
 rlq.aravo$tab
@@ -1616,36 +1451,16 @@ rlq.aravo$tab
 
 # Since the plots are crowded, one can plot them one by one 
 # in large graphical windows.
-
 dev.new(title = "RLQ - site (L) scores", noRStudioGD = TRUE)
-s.label(rlq.aravo$lR, 
-        plabels.boxes.draw = FALSE, 
-        ppoints.alpha = 0,
-        psub.text = "a",
-        psub.cex = 2, 
-        psub.position = "topleft"
-)
+s.label(rlq.aravo$lR,  plabels.boxes.draw = FALSE,  ppoints.alpha = 0, psub.text = "a", psub.cex = 2,  psub.position = "topleft")
+
 dev.new(title = "RLQ - species abundances", noRStudioGD = TRUE)
-s.label(rlq.aravo$lQ, 
-        plabels.boxes.draw = FALSE, 
-        ppoints.alpha = 0,
-        psub.text = "b",
-        psub.cex = 2, 
-        psub.position = "topleft"
-)
-dev.new(title = "RLQ - environmental variables", 
-        noRStudioGD = TRUE)
-s.arrow(rlq.aravo$l1,
-        psub.text = "c",
-        psub.cex = 2, 
-        psub.position = "topleft"
-)
+s.label(rlq.aravo$lQ,  plabels.boxes.draw = FALSE,   ppoints.alpha = 0,  psub.text = "b", psub.cex = 2,  psub.position = "topleft")
+
+dev.new(title = "RLQ - environmental variables", noRStudioGD = TRUE)
+s.arrow(rlq.aravo$l1, psub.text = "c", psub.cex = 2, psub.position = "topleft")
 dev.new(title = "RLQ - species traits", noRStudioGD = TRUE)
-s.arrow(rlq.aravo$c1,
-        psub.text = "d",
-        psub.cex = 2, 
-        psub.position = "topleft"
-)
+s.arrow(rlq.aravo$c1,psub.text = "d",psub.cex = 2, psub.position = "topleft")
 
 # Global test
 randtest(rlq.aravo, nrepet = 999, modeltype = 6)
@@ -1660,32 +1475,30 @@ fourth.aravo <- fourthcorner(
   p.adjust.method.D = "none", 
   nrepet = 49999)
 # Correction for multiple testing, here using FDR
+if(!require(ade4)){install.packages("ade4")}
+library(ade4)
 fourth.aravo.adj <- p.adjust.4thcorner(
   fourth.aravo,
   p.adjust.method.G = "fdr", 
   p.adjust.method.D = "fdr", 
   p.adjust.D = "global") 
+
 # Plot significant associations
 dev.new(title = "Fourth-corner analysis", noRStudioGD = TRUE)
 plot(fourth.aravo.adj, alpha = 0.05, stat = "D2")
 
 # Biplot combining RLQ and fourth-corner results
-dev.new(
-  title = "Combining RLQ and Fourth-corner results", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Combining RLQ and Fourth-corner results", noRStudioGD = TRUE)
 plot(fourth.aravo.adj, 
      x.rlq = rlq.aravo, 
      alpha = 0.05, 
      stat = "D2", 
-     type = "biplot"
-)
+     type = "biplot")
 
 
 ###################################################################
 
 # RLQ and fourth-corner analyses (Doubs data) ######
-
 summary(fishtraits)
 rownames(fishtraits)
 names(spe)
@@ -1708,12 +1521,7 @@ rlq.doubs <- rlq(
   dudiL = afcL.doubs, 
   dudiQ = acpQ.doubs,
   scannf = FALSE)
-dev.new(
-  title = "RLQ",
-  width = 12,
-  height = 7,
-  noRStudioGD = TRUE
-)
+dev.new(title = "RLQ",width = 12,height = 7,noRStudioGD = TRUE)
 plot(rlq.doubs)
 # Traits by environment crossed table
 rlq.doubs$tab
@@ -1721,36 +1529,30 @@ rlq.doubs$tab
 
 # Since the plots are crowded, one can plot them one by one 
 # in large graphical windows:
-
 dev.new(title = "RLQ - site (L) scores", noRStudioGD = TRUE)
 s.label(rlq.doubs$lR, 
         plabels.boxes.draw = FALSE, 
         ppoints.alpha = 0,
         psub.text = "a",
         psub.cex = 2, 
-        psub.position = "topleft"
-)
+        psub.position = "topleft")
 dev.new(title = "RLQ - species abundances", noRStudioGD = TRUE)
 s.label(rlq.doubs$lQ, 
         plabels.boxes.draw = FALSE, 
         ppoints.alpha = 0,
         psub.text = "b",
         psub.cex = 2, 
-        psub.position = "topleft"
-)
-dev.new(title = "RLQ - environmental variables", 
-        noRStudioGD = TRUE)
+        psub.position = "topleft")
+dev.new(title = "RLQ - environmental variables", noRStudioGD = TRUE)
 s.arrow(rlq.doubs$l1,
         psub.text = "c",
         psub.cex = 2, 
-        psub.position = "topleft"
-)
+        psub.position = "topleft")
 dev.new(title = "RLQ - species traits", noRStudioGD = TRUE)
 s.arrow(rlq.doubs$c1,
         psub.text = "d",
         psub.cex = 2, 
-        psub.position = "topleft"
-)
+        psub.position = "topleft")
 
 # Global test
 randtest(rlq.doubs, nrepet = 999, modeltype = 6)
@@ -1796,21 +1598,16 @@ plot(fourth.doubs2, stat = "D2")
 plot(fourth.doubs2, stat = "G")
 
 # Biplot combining RLQ and fourth-corner results
-dev.new(
-  title = "Combining RLQ and Fourth-corner results", 
-  noRStudioGD = TRUE
-)
+dev.new(title = "Combining RLQ and Fourth-corner results", noRStudioGD = TRUE)
 plot(fourth.doubs.adj, 
      x.rlq = rlq.doubs, 
      alpha = 0.05, 
      stat = "D2", 
-     type = "biplot"
-)
+     type = "biplot")
 
 plot(fourth.doubs2,
      x.rlq = rlq.doubs,
      alpha = 0.05,
      stat = "D2",
-     type = "biplot"
-)
+     type = "biplot")
 ```
