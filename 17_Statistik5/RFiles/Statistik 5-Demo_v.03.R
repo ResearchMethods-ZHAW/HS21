@@ -1,12 +1,10 @@
 ### Research Methods Statistik-Vorlesung 2018, Tag 5
-### (c) Jürgen Dengler
+### (c) JÃ¼rgen Dengler
 
 
 # Split-plot ANOVA --------------------------------------------------------
 # Based on Logan (2010), Chapter 14
-setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
-
-spf<-read.delim("spf.csv", sep = ",") 
+spf<-read.delim("17_Statistik5/data/spf.csv", sep = ",")
 spf.aov<-aov(Y~A*C+Error(B),spf)
 summary(spf.aov)
 
@@ -32,19 +30,19 @@ DeerEcervi <- read.delim("DeerEcervi.txt")
 
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
 
-#Anzahl Larven hier in Presence/Absence übersetzt
+#Anzahl Larven hier in Presence/Absence Ã¼bersetzt
 DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0]<-1
 DeerEcervi$fSex <- factor(DeerEcervi$Sex)
 
-#Hirschlänge hier standardisiert, sonst würde der Achsenabschnitt im Modell für
-#einen Hirsch der Länge 0 modelliert, was schlecht interpretierbar ist, 
-#jetzt ist der Achsenabschnitt für einen durschnittlich langen Hirsch
+#HirschlÃ¤nge hier standardisiert, sonst wÃ¼rde der Achsenabschnitt im Modell fÃ¼r
+#einen Hirsch der LÃ¤nge 0 modelliert, was schlecht interpretierbar ist, 
+#jetzt ist der Achsenabschnitt fÃ¼r einen durschnittlich langen Hirsch
 DeerEcervi$CLength <- DeerEcervi$Length - mean(DeerEcervi$Length)
 DeerEcervi$fFarm <- factor(DeerEcervi$Farm)
 
 
-#Zunächst als GLM
-#Interaktionen mit fFarm nicht berücksichtigt, da zu viele Freiheitsgrade verbraucht würden
+#ZunÃ¤chst als GLM
+#Interaktionen mit fFarm nicht berÃ¼cksichtigt, da zu viele Freiheitsgrade verbraucht wÃ¼rden
 DE.glm<-glm(Ecervi.01 ~ CLength * fSex+fFarm, data = DeerEcervi,
             family = binomial)
 drop1(DE.glm, test = "Chi")
