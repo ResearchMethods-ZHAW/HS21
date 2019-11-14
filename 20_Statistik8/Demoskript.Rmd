@@ -2,6 +2,7 @@
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
+[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.02.R)
 
 ## Statistik 8 - Demoskript
 
@@ -181,7 +182,7 @@ abline(0, 1)
 lines(lowess(spe.ch, spe.ch.ward.coph), col = "red")
 
 
-# Optimal number of clusters ----------------------------------------------
+### Optimal number of clusters
 ## Select a dendrogram (Ward/chord) and apply three criteria
 ## to choose the optimal number of clusters
 
@@ -283,7 +284,7 @@ points(k.best,max(ng),pch = 16,col = "red",cex = 1.5)
 text(28, 0.98, "b", cex = 1.8)
 
 
-# Final dendrogram with the selected clusters -----------------------------
+### Final dendrogram with the selected clusters
 # Choose the number of clusters
 k <- 4
 # Silhouette plot of the final partition
@@ -324,7 +325,7 @@ source("drawmap.R")
 drawmap(xy = spa,clusters = spech.ward.g, main = "Four Ward clusters along the Doubs River")
 
 
-# Miscellaneous graphical outputs -----------------------------------------
+### Miscellaneous graphical outputs
 # Heat map of the dissimilarity matrix ordered with the dendrogram
 heatmap(as.matrix(spe.ch),Rowv =NULL , symm = TRUE,margin = c(3, 3))
 
