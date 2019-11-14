@@ -7,7 +7,8 @@ output:
   pdf_document: default
 ---
 
-[R-Skript als Download]
+[R-Skript als Download](18_Statistik6/RFiles/Loesung_Uebung_6.1_v.03.R)
+
 
 ## Musterlöseung Aufgabe 6.1: PCA
 
@@ -18,7 +19,6 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 ```{r}
 load("18_Statistik6/Doubs.RData")
-
 summary(env)
 summary(spe)
 
