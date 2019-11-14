@@ -1,9 +1,8 @@
 ### MSc. Research Methods
 ### Statistik HS 2019
-### Übung 6.1 - PCA
-### - Jürgen Dengler -
+### Ãœbung 6.1 - PCA
+### - JÃ¼rgen Dengler -
 
-setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
 load("Doubs.RData")
 
 summary(env)
@@ -26,18 +25,18 @@ biplot(env.pca, choices=c(1,4),scaling=1)
 scores<-scores(env.pca,choices=c(1:4),display=c("sites"))
 scores
 
-#Berechnung der Artenzahl mittels specnumber; Artenzahl und Scores werden zum Dataframe für die Regressionsanalyse hinzugefügt
+#Berechnung der Artenzahl mittels specnumber; Artenzahl und Scores werden zum Dataframe fÃ¼r die Regressionsanalyse hinzugefÃ¼gt
 doubs <- data.frame(env, scores, species_richness=specnumber(spe))
 doubs
 str(doubs)
 
-##Lösung mit lm (alternativ ginge Poisson-glm) und frequentist approach (alternativ ginge Multimodelinference mit AICc)
+##LÃ¶sung mit lm (alternativ ginge Poisson-glm) und frequentist approach (alternativ ginge Multimodelinference mit AICc)
 lm.pc.0 <- lm(species_richness ~ PC1+PC2+PC3+PC4, data = doubs)
 summary(lm.pc.0)
 
 #Modellvereinfachung: PC4 ist nicht signifikant und wird entfernt
 lm.pc.1 <- lm(species_richness ~ PC1+PC2+PC3, data = doubs)
-summary(lm.pc.1) #jetzt sind alle Achsen signifikant und werden in das minimal adäquate Modell aufgenommen
+summary(lm.pc.1) #jetzt sind alle Achsen signifikant und werden in das minimal adÃ¤quate Modell aufgenommen
 
 #Modelldiagnostik/Modellvalidierung
 par(mfrow=c(2,2))
@@ -53,12 +52,12 @@ plot(glm.pc.1) #sieht nicht besser aus als LM, die Normalverteilung ist sogar sc
 
 ###Zum Vergleich die Modellierung mit den Originaldaten
 
-#Korrelationen zwischen Prädiktoren
+#Korrelationen zwischen PrÃ¤diktoren
 cor <- cor(doubs[,1:11])
 cor[abs(cor)<.7] <-0
 cor #
 
-#Globalmodell (als hinreichend unabhängige Variablen werden ele, slo, pH und pho aufgenommen)
+#Globalmodell (als hinreichend unabhÃ¤ngige Variablen werden ele, slo, pH und pho aufgenommen)
 lm.orig.0 <- lm(species_richness ~ ele+slo+pH+pho, data =doubs)
 summary(lm.orig.0)
 
@@ -87,7 +86,7 @@ plot(glm.orig.2)
 
 if(!require(AER)){install.packages("AER")}
 library(AER)
-dispersiontest(glm.orig.2) #signifikante Überdispersion
+dispersiontest(glm.orig.2) #signifikante Ãœberdispersion
 
 glmq.orig.2 <- glm(species_richness ~ ele+pho, family = "quasipoisson", data =doubs)
 summary(glmq.orig.2)
