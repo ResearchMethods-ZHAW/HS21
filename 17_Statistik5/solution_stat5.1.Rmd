@@ -43,7 +43,7 @@
 
 **kommentierter Lösungsweg**
 ```{r}
-splityield <-read.delim("splityield.csv", sep=",")
+splityield <-read.delim("17_Statistik5/data/splityield.csv", sep=",")
 
 #Checken der eingelesenen Daten
 splityield

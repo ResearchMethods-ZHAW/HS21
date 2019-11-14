@@ -2,15 +2,16 @@
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
-[Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.03.R)
-
 
 ## Statistik 7 - Demoskript
-**Ordinationen II
-**(c) Juergen Dengler
+
+[Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.03.R)
+
+- **Ordinationen II
+- **(c) Juergen Dengler
 
 
-```{r}
+```{r eval=FALSE}
 #Interpretation von Ordinationen (Wildi pp. 96 et seq.)
 
 #Plot species

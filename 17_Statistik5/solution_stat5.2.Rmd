@@ -69,7 +69,7 @@ tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se, UL = fixef(mod0) 
 tab2 <- exp(tab1)
 ```
 
-`r emo::ji("smile")`
+
 
 <!-- ******* -->
 <!-- ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch -->

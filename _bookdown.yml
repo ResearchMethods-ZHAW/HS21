@@ -74,6 +74,8 @@ rmd_files: [
  "17_Statistik5/Abstract.Rmd",
  "17_Statistik5/Demoskript.Rmd",
  "17_Statistik5/assigment_stat5.Rmd",
+ "17_Statistik5/solution_stat5.1.Rmd",
+ "17_Statistik5/solution_stat5.2.Rmd",
 
      "17_Statistik_Konsolidierung1/Abstract.Rmd",
     #"17_Statistik5/Demoskript.Rmd",
@@ -86,13 +88,15 @@ rmd_files: [
    "18_Statistik6/assigment_stat6.Rmd",
    #"18_Statistik6/Musterloesung_Statistik_6.1.Rmd",
    
-   #"19_Statistik7/Abstract.Rmd",
-   #"19_Statistik7/Demoskript.Rmd",
+    "19_Statistik7/Abstract.Rmd",
+    "19_Statistik7/Demoskript.Rmd",
+    "19_Statistik7/assigment_stat7.Rmd",
    #"19_Statistik7/Uebungen.Rmd",
    #"19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
-   #"20_Statistik8/Abstract.Rmd",
-  #"20_Statistik8/Demoskript.Rmd",
-   #"20_Statistik8/Uebungen.Rmd",
+   
+    "20_Statistik8/Abstract.Rmd",
+    "20_Statistik8/Demoskript.Rmd",
+    "20_Statistik8/assigment_stat8.Rmd",
 #  "20_Statistik8/Musterloesung_Statistik_8.1.Rmd",
 
 #  "00_Admin/references.Rmd"
