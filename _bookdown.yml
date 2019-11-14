@@ -81,9 +81,9 @@ rmd_files: [
    #"17_Statistik5/Musterloesung_Statistik_5.1.Rmd",
    
   
-  #"18_Statistik6/Abstract.Rmd",
-   #"18_Statistik6/Demoskript.Rmd",
-   #"18_Statistik6/assigment_stat6.Rmd",
+   "18_Statistik6/Abstract.Rmd",
+   "18_Statistik6/Demoskript.Rmd",
+   "18_Statistik6/assigment_stat6.Rmd",
    #"18_Statistik6/Musterloesung_Statistik_6.1.Rmd",
    
    #"19_Statistik7/Abstract.Rmd",

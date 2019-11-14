@@ -1,12 +1,9 @@
-<<<<<<< HEAD:18_Statistik6/Uebungen.Rmd
 ## Statistik 6: Übungen
-=======
-## Übung 6
->>>>>>> 789f5b7272e61dd1b1105af875d95f91afb6a3fd:18_Statistik6/assigment_stat6.Rmd
 
-### Übung 6.1: PCA (naturwissenschaftlich)
+**Übung 6.1: PCA (naturwissenschaftlich)**
 
 **Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
+
 Lädt den Datensatz Doubs.RData mit dem folgenden Befehl ins R:
 load("Doubs.RData")
 

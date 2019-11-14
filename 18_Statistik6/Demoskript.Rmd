@@ -10,10 +10,11 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 ## Statistik 6 - Demoskript
 
-[Demoscript als Download](17_Statistik5/Statistik 6-Demo_v.03.R)
+[Demoscript als Download](18_Statistik6/Statistik 6-Demo_v.03.R)
 
 
-# Ordinationen I
+**-- Ordinationen I --**
+
 **(c) Juergen Dengler**
 
 
@@ -143,7 +144,7 @@ arrows(0,0,x[sel.sp],y[sel.sp],length=0.08)
 text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 
 
-**CA**
+#--CA--#
 ca<-cca(sveg^0.5)
 #Arten (o) und Communities (+) plotten
 plot(ca)
@@ -158,14 +159,14 @@ plot(ca, display = c("species"),type = c("points"))#alternative
 ca$CA$eig[1:2]/sum(ca$CA$eig)
 
 
-**DCA**
+#--DCA--#
 dca <- decorana(sveg,mk=10)
 plot(dca$rproj, asp=1)
 
 dca2 <- decorana(sveg,mk=100)
 plot(dca2$rproj, asp=1)
 
-**NMDS**
+#--NMDS--#
 #Distanzmatrix als Start erzeugen
 mde <-vegdist(sveg,method="euclidean")
 mde
