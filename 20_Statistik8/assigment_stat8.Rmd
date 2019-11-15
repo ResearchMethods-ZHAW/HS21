@@ -2,7 +2,7 @@
 
 ### Übung 8.1: Clusteranalyse (sozioökonomisch)
 
-**Datensatz [crime2.csv](20_Statistik8/data/crime2.csv)**</font>
+**Datensatz [crime2.csv](20_Statistik8/crime2.csv)**</font>
 
 <font color="blue">Raten von 7 Kriminalitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA</font>
 
