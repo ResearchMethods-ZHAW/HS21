@@ -8,7 +8,7 @@
 [Demoscript als Download](16_Statistik4/RFiles/Demo_Tests.R)
 
 ```{r}
-##von LMs zu GLMs
+ __von LMs zu GLMs __
 
 temp<-c(10,12,16,20,24,25,30,33,37)
 besucher<-c(40,12,50,500,400,900,1500,900,2000)
@@ -70,7 +70,7 @@ lines(xv,exp(yv3),lwd=3,col="green")
 
 
 ```{r}
-##Logistische Regression
+ __Logistische Regression__
 
 bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
                     "bathing"=c(0,0,0,0,0,1,0,0,1,0,1,1,1,1,1))
@@ -113,7 +113,7 @@ lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
 ```
 
 ```{r}
-##Nicht-lineare Regression
+ __Nicht-lineare Regression __
 
 if(!require(AICcmodavg)){install.packages("AICcmodavg")}
 if(!require(nlstools)){install.packages("nlstools")}
@@ -177,7 +177,7 @@ Modnames <- c("Power", "Logistic")
 aictab(cand.set = cand.models, modnames = Modnames)
 
 
-##Smoother
+ __Smoother__
 
 attach(loyn)
 log_AREA<-log10(AREA)       
@@ -187,7 +187,7 @@ lines(lowess(log_AREA,ABUND,f=0.5),lwd=2,col="blue")
 lines(lowess(log_AREA,ABUND,f=1),lwd=2,col="green")
 
 
-#GAMs
+ __GAMs __
 
 if(!require(mgcv)){install.packages("mgcv")}
 library(mgcv)
@@ -203,5 +203,4 @@ lines(xv,yv,lwd=2,col="red")
 
 AICc(gam.1)
 summary(gam.1)
-
 ```
