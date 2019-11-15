@@ -7,9 +7,10 @@
 
 [Demoscript als Download](16_Statistik4/RFiles/Demo_Tests.R)
 
-```{r}
- __von LMs zu GLMs__
 
+__von LMs zu GLMs__
+
+```{r}
 temp<-c(10,12,16,20,24,25,30,33,37)
 besucher<-c(40,12,50,500,400,900,1500,900,2000)
 strand<-data.frame("Temperatur"=temp,"Besucher"=besucher)
@@ -68,10 +69,9 @@ lines(xv,exp(yv3),lwd=3,col="green")
 ```
 
 
-
-```{r}
  __Logistische Regression__
 
+```{r}
 bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
                     "bathing"=c(0,0,0,0,0,1,0,0,1,0,1,1,1,1,1))
 plot(bathing~temperature, data=bathing)
@@ -112,9 +112,9 @@ lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
 lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
 ```
 
-```{r}
  __Nicht-lineare Regression __
 
+```{r}
 if(!require(AICcmodavg)){install.packages("AICcmodavg")}
 if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
@@ -175,20 +175,22 @@ cand.models[[2]]<-logistic.model
 Modnames <- c("Power", "Logistic")
 
 aictab(cand.set = cand.models, modnames = Modnames)
-
+```
 
  __Smoother__
 
+```{r}
 attach(loyn)
 log_AREA<-log10(AREA)       
 plot(ABUND~log_AREA)
 lines(lowess(log_AREA,ABUND,f=0.25),lwd=2,col="red")
 lines(lowess(log_AREA,ABUND,f=0.5),lwd=2,col="blue")
 lines(lowess(log_AREA,ABUND,f=1),lwd=2,col="green")
-
+```
 
  __GAMs__
 
+```{r}
 if(!require(mgcv)){install.packages("mgcv")}
 library(mgcv)
 
