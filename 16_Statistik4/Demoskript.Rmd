@@ -8,7 +8,7 @@
 [Demoscript als Download](16_Statistik4/RFiles/Demo_Tests.R)
 
 ```{r}
- __von LMs zu GLMs __
+ __von LMs zu GLMs__
 
 temp<-c(10,12,16,20,24,25,30,33,37)
 besucher<-c(40,12,50,500,400,900,1500,900,2000)
@@ -187,7 +187,7 @@ lines(lowess(log_AREA,ABUND,f=0.5),lwd=2,col="blue")
 lines(lowess(log_AREA,ABUND,f=1),lwd=2,col="green")
 
 
- __GAMs __
+ __GAMs__
 
 if(!require(mgcv)){install.packages("mgcv")}
 library(mgcv)
