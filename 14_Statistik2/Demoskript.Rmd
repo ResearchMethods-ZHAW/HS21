@@ -26,9 +26,8 @@ summary(aov(size~cultivar,data=blume))
 summary.lm(aov(size~cultivar,data=blume))
 ```
 
-chmod 600 ~/.ssh/id_rsa
 __Echte ANOVA__
-git 
+
 ```{r}
 c<-c(30,19,31,23,18,25,26,24,17,20)
 
