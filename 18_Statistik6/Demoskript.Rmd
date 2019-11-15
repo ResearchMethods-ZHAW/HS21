@@ -14,11 +14,10 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 
 **-- Ordinationen I --**
-
 **(c) Juergen Dengler**
 
 
-**PCA**
+__PCA__
 ```{r, message=FALSE}
 if(!require(labdsv)){install.packages("labdsv")}
 library(labdsv)
@@ -142,9 +141,11 @@ y<-scores[,2]
 plot(x,y,type="n",asp=1)
 arrows(0,0,x[sel.sp],y[sel.sp],length=0.08)
 text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
+```
 
 
-#--CA--#
+__CA__
+```{r, message=FALSE}
 ca<-cca(sveg^0.5)
 #Arten (o) und Communities (+) plotten
 plot(ca)
@@ -157,16 +158,19 @@ plot(ca, display = c("species"),type = c("points"))#alternative
 
 #Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
 ca$CA$eig[1:2]/sum(ca$CA$eig)
+```
 
-
-#--DCA--#
+__DCA__
+```{r, message=FALSE}
 dca <- decorana(sveg,mk=10)
 plot(dca$rproj, asp=1)
 
 dca2 <- decorana(sveg,mk=100)
 plot(dca2$rproj, asp=1)
+```
 
-#--NMDS--#
+__NMDS__
+```{r, message=FALSE}
 #Distanzmatrix als Start erzeugen
 mde <-vegdist(sveg,method="euclidean")
 mde
@@ -187,5 +191,4 @@ plot(mmds$points)
 #Stress = S² = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
 stressplot(imds,mde)
 stressplot(mmds,mde)
-
 ```
