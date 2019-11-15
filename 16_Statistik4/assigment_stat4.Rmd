@@ -8,7 +8,7 @@ Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
 geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf
 Flächengrössen (Area) von 0.0001 bis 900 m².
 
-**Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function,**</font>$S=$c$A^{n}$<font color="blue">**), die logarithmische Funktion (logarithmic function,**</font>$S$=$b_{0}$$+$$b_{1}$$\log_{10}$A<font color="blue">**)und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
+**Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function, die logarithmische Funktion (logarithmic function,und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
 
 
 ### Übung 4.2N: Multiple logistische Regression (naturwissenschaftlich)
@@ -35,7 +35,4 @@ Führt mit dem Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) eine 
 - Eruiert den Modellfit und die Modellgenauigkeit
 - Für Motivierte: Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus (vgl. )
 - Stellt eure Ergebnisse dann angemessen dar (Text und/oder Tabelle).
-
-
-
 
