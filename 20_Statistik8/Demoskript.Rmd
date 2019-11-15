@@ -5,10 +5,11 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 
 
 ## Statistik 8 - Demoskript
-
+**Cluster-Analysen**
 **(c) Juergen Dengler**
 
-[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.03.R)
+**[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.03.R)**
+**Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
 
 ```{r eval=FALSE}
 ## k-means clustering
