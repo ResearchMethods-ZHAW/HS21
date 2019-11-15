@@ -3,6 +3,8 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 ## Statistik 5 - Demoskript 
+**Von linearen Modellen zu GLMMs**
+**(c) Juergen Dengler**
 
 
 [Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.03.R)
@@ -10,11 +12,8 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 - **Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)**
 
 
-*_(c) Juergen Dengler, 11.11.2019_*
-
-**Split-plot ANOVA**
-
-_Based on Logan (2010), Chapter 14_
+ __Split-plot ANOVA__
+Based on Logan (2010), Chapter 14
 
 ```{r eval=FALSE}
 spf<-read.delim("17_Statistik5/data/spf.csv", sep = ",")
@@ -35,10 +34,12 @@ anova(spf.lme.2)
 
 summary(spf.lme.1)
 summary(spf.lme.2)
+```
 
-## GLMM
-#  Based on Zuur et al. (2009), chapter 13
+ __GLMM__
+Based on Zuur et al. (2009), chapter 13
 
+```{r eval=FALSE}
 DeerEcervi <- read.table("17_Statistik5/data/DeerEcervi.txt", header=TRUE, dec=".")
 
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
@@ -60,8 +61,11 @@ DE.glm<-glm(Ecervi.01 ~ CLength * fSex+fFarm, data = DeerEcervi,
 drop1(DE.glm, test = "Chi")
 summary(DE.glm)
 anova(DE.glm)
+```
 
-# GLMM
+ __GLMM__
+ 
+ ```{r eval=FALSE}
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
 DE.PQL<-glmmPQL(Ecervi.01 ~ CLength * fSex,
@@ -91,5 +95,4 @@ library(glmmML)
 DE.glmmML<-glmmML(Ecervi.01 ~ CLength * fSex,
                   cluster = fFarm,family=binomial, data = DeerEcervi)
 summary(DE.glmmML)
-
 ```
