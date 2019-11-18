@@ -12,9 +12,7 @@ output:
 
 [R-Skript als Download](18_Statistik6/RFiles/Loesung_Uebung_6.1_v.03.R)
 
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")
-
+```{r eval=FALSE}
 load("18_Statistik6/Doubs.RData")
 summary(env)
 summary(spe)
@@ -52,9 +50,9 @@ Die Bedeutung der Achsen (benötigt man später für die Interpretation!) findet
 ```{r include=FALSE}
 
 par(mfrow=c(2,2))
-#biplot(env.pca, scaling=1)
-#biplot(env.pca, choices=c(1,3),scaling=1)
-#biplot(env.pca, choices=c(1,4),scaling=1)
+biplot(env.pca, scaling=1)
+biplot(env.pca, choices=c(1,3),scaling=1)
+biplot(env.pca, choices=c(1,4),scaling=1)
 
 ```
 

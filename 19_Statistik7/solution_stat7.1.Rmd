@@ -24,7 +24,7 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 ### Übung 7.1 - RDA -- Lösung
 
-```{r}
+```{r eval=FALSE}
 # Load the Moordatensatz data.
 library(dave)
 sveg
@@ -38,7 +38,7 @@ env2 <- ssit[, -c(19,20)]
 ```
 Betrachtung der Daten zeigt, dass die Koordinaten in Spalten 19 und 20 sind, die daraufhin entfernt werden.
 
-```{r}
+```{r eval=FALSE}
 # Create two subsets of explanatory variables
 # Physiography (upstream-downstream gradient)
 
@@ -57,7 +57,7 @@ spe.hel
 Vorstehend wurden die Variablen in die zwei Gruppen Chemistry und Physiography aufgteilt. Die Hellilnger-Transformation wird gemeinhin empfohlen (wobei dahingestellt sei, ob sie auch bei presence-absence-Daten nötig ist).
 Die weiteren Analysen führen wir mit der default-Einstellung „Scaling 2“ durch. (Je nach Bedarf bzw. persönlichen Vorlieben könnte auch Scaling 1 genommen werden).
 
-```{r}
+```{r eval=FALSE}
 ## RDA of the Hellinger-transformed mire species data, constrained
 ## by all the environmental variables contained in env2
 (spe.rda <- rda(spe.hel ~ ., env2)) # Observe the shortcut formula
@@ -74,7 +74,7 @@ coef(spe.rda)
 Man erhält R²adj. = 0.376
 Jetzt kann man den Triplot erstellen
 
-```{r}
+```{r eval=FALSE}
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
 #dev.new(
@@ -127,7 +127,7 @@ text(-0.82, 0.55, "b", cex = 1.5)
 
 Auswahl der höchstkorrelierten Arten (Grenzwert kann subjektiv nach Bedarf gesetzt werden, hier 0.5).
 
-```{r}
+```{r eval=FALSE}
 # Select species with goodness-of-fit at least 0.6 in the 
 # ordination plane formed by axes 1 and 2
 spe.good <- goodness(spe.rda)
@@ -178,7 +178,7 @@ Visualisierung von RDA 3 vs. RDA 1 machen.
 
 **Varianzpartitionierung**
 
-```{r}
+```{r eval=FALSE}
 ## 1. Variation partitioning with all explanatory variables
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
 # Plot of the partitioning results
