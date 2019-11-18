@@ -28,7 +28,7 @@ erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Clu
 ### Übung 8.1 - Clusteranalysen -- Lösung
 
 ```{r}
-crime <-read.csv("20_Statistik8/crime.csv",sep=",")
+crime <-read.csv("crime2.csv",sep=";")
 crime
 ```
 
