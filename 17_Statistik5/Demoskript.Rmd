@@ -8,8 +8,8 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 
 - [Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.03.R)
-- **Datensatz [spf.csv](17_Statistik5/data/spf.csv)**
-- **Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)**
+- Datensatz [spf.csv](17_Statistik5/data/spf.csv)
+- Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)
 
 
  __Split-plot ANOVA__
