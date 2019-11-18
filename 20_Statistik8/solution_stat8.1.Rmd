@@ -171,27 +171,3 @@ mtext(letters$mcletters$Letters, at=1:4)
 
 Die Boxplots erlauben jetzt auch eine Beurteilung der Modelldiagnostik: sind die Residuen hinreichen normalverteilt (symmetrisch) und sind die Varianzen zwischen den Kategorien einigermassen ähnlich. Mit der Symmetrie/Normalverteilung sieht es OK aus. Die Varianzhomogenität ist nicht optimal – meist deutlich grössere Varianz bei höheren Mittelwerten. Eine log-Transformation hätte das verbessert und könnte hier gut begründet werden. Da die p-Werte sehr niedrig waren und die Varianzheterogenität noch nicht extrem war, habe ich aber von einer Transformation abgesehen, da jede Transformation die Interpretation der Ergebnisse erschwert. Jetzt muss man nur noch herausfinden, welche Bundesstaaten überhaupt zu welchem der vier
 Cluster gehören, sonst ist das ganze schöne Ergebnis nutzlos. Z. B. kann man in R auf den Dataframe clicken und ihn nach cluster sortieren.
-
-**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
-
-**Methoden**
-
-**In den USA wurden die Kriminalitätsraten für 7 Verbrechenstypen (Murder, Rape, Robbery, Assault, Burglary, Theft, Vehicle) pro 100000 Einwohner in den 50 Bundesstaaten ermittelt. Zur Klärung der Frage, welche Bundesstaaten sich in ihrer Kriminalitätsstruktur ähneln, wurden eine divisive und eine agglomerative Clusteranalyse durchgeführt. Als divisives Verfahren wurde k-means Clustering nach vorheriger z-Transformation (Mittelwert = 0; Standardabweichung = 1) der Verbrechensraten durchgeführt. Die beste Lösung mit maximal 6 Gruppen wurde nach dem SSI-Kriterium bestimmt. Als agglomeratives Verfahren fand Ward’s Minimum Variance-Clustering statt. Hier wurde die optimale Clusterzahl mit dem Silhouette-Plot ermittelt.**
-
-**Anschliessend wurde die Cluster der optimale Clusterlösung im Falle von k-means-Clustering mittels Varianzanalysen bezüglich Unterschieden in den Raten der 7 Verbrechenstypen verglichen. Signifikante Unterschiede wurden mittels Tukey’s post-hoc Test im package multcomp ermittelt und in Boxplots visualisiert. Da die visuelle Inspektion der Boxplots keine gravierenden Abweichungen von Normalverteilung und Varianzhomogenität der Residuen erbrachte, wurde auf eine Transformation der Daten verzichtet.**
-
-**Ergebnisse**
-
-**Die agglomerative Clusteranalyse mit Wards Minimum Variance Clustering erbrachte 2 Cluster als optimale Lösung (Abb. 1).**
-
-![**Abb. 1:** Agglomerative Clusterung der Verbrechensstrukturen in den 50 Bundesstaaten der USA basierend auf Inzidenzraten von 7 Verbrechenskategorien mittels Ward’s Minium Variance Clusterung. Die Kürzel stehen für die Bundesstaaten](20_Statistik8/Abb1_8.1.png)
-
-
-**Die k-mean-Clusteranalyse (für 2 bis 6 Cluster) erbrachte 4 Cluster als optimale Lösung gemäss SSI (Tab. 1).** 
-
-![**Tab. 1:** Zugehörigkeit der 50 Bundesstaaten zu den 4 mittels k-means-Clusterung unterschiedenen Gruppen](20_Statistik8/Tab1_8.1.png)
-
-
-**Die 4 k-means-Cluster wurden im Folgenden auf Unterschiede bei den 7 Verbrechenskategorien getestet. Es bestanden durchweg signifikante Unterschiede (ANOVA; p < 0.001; Abb. 2). Cluster 1 zeichnet sich für sechs der sieben Kriminalitätsarten durch niedrigste Werte aus, nur bei Diebstahl sind sie mittelhoch. Cluster 3 hat ebenfalls besonders niedrige Kriminalitätsraten in sechs Kategorien, nur bei Morden liegt dieses Cluster im Mittelfeld. Cluster 4 liegt bei allen Kriminalitätsarten im Mittelfeld und Cluster 2 hat in allen sieben Kategorien besonders hohe Raten.**
-
-![**Abb. 3:** Vergleich der vier mittels k-means-Clustering abgeleiteten Gruppen von Bundesstaaten bezüglich ihrerKriminalitätsraten (pro 100000 Einwohner und Jahr)in sieben Kategorien. Die Kleinbuchstaben bezeichnen homogene Gruppen gemäss Tukey’s post-hoc-Test.](20_Statistik8/Abb3_8.1.png)

@@ -8,13 +8,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 
-## Statistik 6 - Demoskript
+## Statistik 6 - Demoskript ## 
+**Ordinationen I**
+**(c) Juergen Dengler**
+
 
 [Demoscript als Download](18_Statistik6/Statistik 6-Demo_v.03.R)
-
-
-**-- Ordinationen I --**
-**(c) Juergen Dengler**
 
 
 __PCA__
