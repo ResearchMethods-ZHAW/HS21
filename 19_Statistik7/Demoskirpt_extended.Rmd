@@ -7,6 +7,10 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 **Ordinationen II
 **(c) Juergen Dengler
 
+[Demoscript als Download](19_Statistik7/Statistik 7-Demo_extended_v02.R)
+**Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
+**Funktion [triplot.rda.R](19_Statistik7/triplot.rda.R)**
+
 
 ```{r eval=FALSE}
 #Interpretation von Ordinationen (Wildi pp. 96 et seq.)

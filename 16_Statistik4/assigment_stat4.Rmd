@@ -35,4 +35,3 @@ Führt mit dem Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) eine 
 - Eruiert den Modellfit und die Modellgenauigkeit
 - Für Motivierte: Berechnet eine Konfusionsmatrix und zieht euer Fazit daraus (vgl. )
 - Stellt eure Ergebnisse dann angemessen dar (Text und/oder Tabelle).
-
