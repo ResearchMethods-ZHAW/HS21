@@ -1,6 +1,6 @@
 ### Research Methods Statistik 8
 ### Cluster-Analysen
-### (c) Jürgen Dengler
+### (c) JÃ¼rgen Dengler
 
 
 # k-means clustering ------------------------------------------------------
@@ -32,7 +32,7 @@ plot(KM.cascade, sortg = TRUE)
 
 # Agglomarative Clusteranalyse --------------------------------------------
 #mit Daten und Skripten aus Borcard
-setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
+setwd("20_Statistik8")
 load("Doubs.Rdata")
 
 # Remove empty site 8
