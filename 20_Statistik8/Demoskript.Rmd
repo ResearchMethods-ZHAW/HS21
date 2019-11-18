@@ -56,7 +56,7 @@ spa <- spa[-8, ]
 latlong <- latlong[-8, ]
 ```
 
-__Compute and plot dendrograms__
+__Dendogramme berechnen und ploten__
 ```{r eval=FALSE}
 ## Hierarchical agglomerative clustering of the species abundance 
 
@@ -116,6 +116,7 @@ plot(spe.ch.ward, labels = rownames(spe), main = "Chord - Ward")
 
 
 __Cophenetic correlations__
+
 ```{r eval=FALSE}
 # Single linkage clustering
 spe.ch.single.coph <- cophenetic(spe.ch.single)
@@ -198,7 +199,7 @@ lines(lowess(spe.ch, spe.ch.ward.coph), col = "red")
 ```
 
 
-__Optimal number of clusters__
+__Optimale Anzahl Cluster__
 ```{r eval=FALSE}
 ## Select a dendrogram (Ward/chord) and apply three criteria
 ## to choose the optimal number of clusters
