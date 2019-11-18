@@ -1,12 +1,3 @@
----
-title: "MSc. Research Methods - Statistikteil Lösungen 2019"
-author: "Juergen Dengler"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
----
-
 
 ## Musterlöseung Aufgabe 6.1: PCA
 
@@ -47,7 +38,7 @@ screeplot(env.pca, bstick=TRUE, npcs=length(env.pca$CA$eig))
 - Da die Relevanz für das Datenmuster in den Umweltdaten nicht notwendig die Relevanz für die Erklärung der Artenzahlen ist,    nehmen wir ins globale Modell grosszügig die ersten vier Achsen rein (PC1-PC4)
 Die Bedeutung der Achsen (benötigt man später für die Interpretation!) findet man in den “species scores” (da so, wie wir die PCA hier gerechnet haben, die Umweltdaten die Arten sind. Zusätzlich oder alternative kann man sich die ersten vier Achsen auch visualisieren, indem man PC2 vs. PC1 (ohne choices), PC3 vs. PC1 oder PC4 vs. PC1 plottet.
 
-```{r include=FALSE}
+```{r eval=FALSE}
 
 par(mfrow=c(2,2))
 biplot(env.pca, scaling=1)
@@ -61,7 +52,7 @@ biplot(env.pca, choices=c(1,4),scaling=1)
 -	PC3 steht v.a. für pH (positiv) und slo (negativ)
 - PC4 steht v.a. für pH (negativ) und slo (negativ)
 
-```{r,include=FALSE}
+```{r eval=FALSE}
 #Wir extrahieren nun die ersten vier PC-Scores aller Aufnahmeflächen
 
 scores<-scores(env.pca,choices=c(1:4),display=c("sites"))
@@ -88,7 +79,7 @@ plot(lm.pc.1)
 Nicht besonders toll, ginge aber gerade noch. Da wir aber ohnehin Zähldaten haben, können wir es mit einem Poisson-GLM versuchen
 
 #Alternativ mit glm
-```{r include=FALSE}
+```{r eval=FALSE}
 glm.pc.0 <- glm(species_richness ~ PC1+PC2+PC3+PC4, family = "poisson", data = doubs)
 summary(glm.pc.0)
 glm.pc.1 <- glm(species_richness ~ PC1+PC2+PC3, family = "poisson", data = doubs)
@@ -101,7 +92,7 @@ LM oder GLM sind für die Analyse möglich, Modellwahl nach Gusto. Man muss jetz
 
 **Zum Vergleich die Modellierung mit den Originaldaten**
 
-```{r include=FALSE}
+```{r eval=FALSE}
 #Korrelationen zwischen Prädiktoren
 cor <- cor(doubs[,1:11])
 cor[abs(cor)<.7] <-0

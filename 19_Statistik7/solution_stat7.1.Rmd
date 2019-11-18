@@ -1,21 +1,9 @@
----
-title: "MSc. Research Methods - Statistikteil Lösungen 2019"
-author: "Juergen Dengler"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
----
-
-```{r,include=FALSE}
-knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")
-```
-[R-Skript als Download](19_Statistik7/RFiles/Loesung_Uebung_7.1_v.02.R)
-
 
 ## Musterlösung Aufgabe 7.1: RDA
 
-**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+- [R-Skript als Download](19_Statistik7/RFiles/Loesung_Uebung_7.1_v.02.R)
+
+- **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
 - Ladet die library dave, welche den Moordatensatz enthält. sveg beinhaltet presenceabsence-Daten  aller untersuchten Arten in den Plots; ssit beinhaltet 18 metrische Umweltdaten sowie Koordinaten der Plots
 - **Führt eine RDA und eine Varianzpartizionierung in die Variablengruppen Physiographie**  (Waterlev.max, Waterlev.av, Waterlev.min, log.peat.lev, log
@@ -25,14 +13,10 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 ### Übung 7.1 - RDA -- Lösung
 
-<<<<<<< HEAD
 ```{r eval=FALSE}
 # Load the Moordatensatz data.
-=======
 __Moordatensatz laden__ 
-```{r}
 if(!require(dave)){install.packages("dave")}
->>>>>>> ece44ad2ab44581c700d0525d0cf612910c83c1d
 library(dave)
 data(sveg)
 data(ssit)
@@ -45,16 +29,10 @@ env2 <- ssit[, -c(19,20)]
 ```
 Betrachtung der Daten zeigt, dass die Koordinaten in Spalten 19 und 20 sind, die daraufhin entfernt werden.
 
-<<<<<<< HEAD
 ```{r eval=FALSE}
-# Create two subsets of explanatory variables
-# Physiography (upstream-downstream gradient)
 
-=======
-```{r}
 # Generiere zwei subset der erklärenden Variablen
 # Physiografie (upstream-downstream-Gradient)
->>>>>>> ece44ad2ab44581c700d0525d0cf612910c83c1d
 envtopo <- env2[, c(11 : 15)]
 names(envtopo)
 # Chemie
@@ -66,20 +44,20 @@ library(vegan)
 spe.hel <- decostand(sveg, "hellinger")
 spe.hel
 ```
+
 Vorstehend wurden die Variablen in die zwei Gruppen Chemistry und Physiography aufgteilt. Die Hellilnger-Transformation wird gemeinhin empfohlen (wobei dahingestellt sei, ob sie auch bei presence-absence-Daten nötig ist).
 Die weiteren Analysen führen wir mit der default-Einstellung „Scaling 2“ durch. (Je nach Bedarf bzw. persönlichen Vorlieben könnte auch Scaling 1 genommen werden).
 
-<<<<<<< HEAD
+
 ```{r eval=FALSE}
 ## RDA of the Hellinger-transformed mire species data, constrained
 ## by all the environmental variables contained in env2
-=======
+
 
 __Redundancy analysis (RDA)__
-```{r}
+
 ## RDA der Hellinger-transformireten Moorarten-Daten, constrained
 ## mit allen Umweltvarialben die in env2 enthalten sind
->>>>>>> ece44ad2ab44581c700d0525d0cf612910c83c1d
 (spe.rda <- rda(spe.hel ~ ., env2)) # Observe the shortcut formula
 
 summary(spe.rda)	# Skalierung 2 (default)
@@ -95,12 +73,7 @@ coef(spe.rda)
 Man erhält R²adj. = 0.376
 Jetzt kann man den Triplot erstellen
 
-<<<<<<< HEAD
 ```{r eval=FALSE}
-=======
-```{r}
-
->>>>>>> ece44ad2ab44581c700d0525d0cf612910c83c1d
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
 
@@ -158,10 +131,11 @@ anova(spe.rda, by = "axis", permutations = how(nperm = 999))
 Die ersten drei RDA-Achsen sind also signifikant. Man könnte also auch noch eine
 Visualisierung von RDA 3 vs. RDA 1 machen.
 
-**Partielle RDA**
-# Simple syntax; X and W may be in separate tables of quantitative 
-# variables
-```{r}
+- **Partielle RDA**
+- **Simple syntax; X and W may be in separate tables of quantitative** 
+- **variables**
+
+```{r eval=FALSE}
 spechem.physio <- rda(spe.hel, envchem, envtopo)
 summary(spechem.physio)
 
