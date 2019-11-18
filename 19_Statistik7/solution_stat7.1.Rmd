@@ -10,6 +10,8 @@ output:
 ```{r,include=FALSE}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")
 ```
+[R-Skript als Download](19_Statistik7/RFiles/Loesung_Uebung_7.1_v.02.R)
+
 
 ## Musterlösung Aufgabe 7.1: RDA
 
