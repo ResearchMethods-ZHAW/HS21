@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 **(c) Juergen Dengler**
 
 
-[Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.03.R)
+- [Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.03.R)
 - **Datensatz [spf.csv](17_Statistik5/data/spf.csv)**
 - **Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)**
 
@@ -65,7 +65,7 @@ anova(DE.glm)
 
  __GLMM__
  
- ```{r eval=FALSE}
+```{r eval=FALSE}
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
 DE.PQL<-glmmPQL(Ecervi.01 ~ CLength * fSex,

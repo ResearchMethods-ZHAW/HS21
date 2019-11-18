@@ -4,12 +4,13 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 ```
 
 ## Statistik 7 - Demoskript
-**Ordinationen II**
-**(c) Juergen Dengler**
 
-[Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.04.R)
-**Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
-**Funktion [triplot.rda.R](19_Statistik7/triplot.rda.R)**
+- **Ordinationen II**
+- **(c) Juergen Dengler**
+
+- [Demoscript als Download](19_Statistik7/Statistik 7-Demo_v.04.R)
+- **Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
+- **Funktion [triplot.rda.R](19_Statistik7/triplot.rda.R)**
 
 
 __Interpretation von Ordinationen (Wildi pp. 96 et seq.)__
@@ -67,6 +68,7 @@ ordisurf(imds,ssit$Waterlev.av,add=T,col="blue")
 
 
 __Constrained ordination__
+```{r eval=FALSE}
 #5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
 ssit
 summary(ssit)

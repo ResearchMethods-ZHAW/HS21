@@ -3,15 +3,14 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
 
-
 ## Statistik 8 - Demoskript
-**Cluster-Analysen**
-**(c) Juergen Dengler**
+- **Cluster-Analysen**
+- **(c) Juergen Dengler**
 
-**[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.03.R)**
-**Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
-**Funktion drawmap.R [drawmap.R](20_Statistik8/drawmap.R)**
-**Funktion hcoplot.R [hcoplot.R](20_Statistik8/hcoplot.R)**
+- **[Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.03.R)**
+- **Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
+- **Funktion drawmap.R [drawmap.R](20_Statistik8/drawmap.R)**
+- **Funktion hcoplot.R [hcoplot.R](20_Statistik8/hcoplot.R)**
 
 
 __k-means clustering__
