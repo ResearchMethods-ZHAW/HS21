@@ -3,6 +3,7 @@
 ### Übung 8.1: Clusteranalyse (sozioökonomisch)
 
 Datensatz [crime2.csv](20_Statistik8/crime2.csv)
+[R-Skript als Download](Loesung_Uebung_8.1_v.02.R)
 
 Raten von 7 Kriminalitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA
 
