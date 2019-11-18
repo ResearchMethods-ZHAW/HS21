@@ -7,7 +7,6 @@ output:
   pdf_document: default
 ---
 
-
 ```{r,include=FALSE}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")
 ```
@@ -24,44 +23,46 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 ### Übung 7.1 - RDA -- Lösung
 
+__Moordatensatz laden__ 
 ```{r}
-# Load the Moordatensatz data.
+if(!require(dave)){install.packages("dave")}
 library(dave)
-sveg
-ssit
+data(sveg)
+data(ssit)
 summary(sveg)
 summary(ssit)
 str(ssit)
 
-# Remove x.axis and y.axis from ssit data frame
+# x.axis and y.axis vom data frame data frame ssit entfernen
 env2 <- ssit[, -c(19,20)]
 ```
 Betrachtung der Daten zeigt, dass die Koordinaten in Spalten 19 und 20 sind, die daraufhin entfernt werden.
 
 ```{r}
-# Create two subsets of explanatory variables
-# Physiography (upstream-downstream gradient)
-
+# Generiere zwei subset der erklärenden Variablen
+# Physiografie (upstream-downstream-Gradient)
 envtopo <- env2[, c(11 : 15)]
 names(envtopo)
-
-# Chemistry
+# Chemie
 envchem <- env2[, c(1:10,16:18)]
 names(envchem)
+
 # Hellinger-transform the species dataset
 library(vegan)
 spe.hel <- decostand(sveg, "hellinger")
 spe.hel
 ```
-
 Vorstehend wurden die Variablen in die zwei Gruppen Chemistry und Physiography aufgteilt. Die Hellilnger-Transformation wird gemeinhin empfohlen (wobei dahingestellt sei, ob sie auch bei presence-absence-Daten nötig ist).
 Die weiteren Analysen führen wir mit der default-Einstellung „Scaling 2“ durch. (Je nach Bedarf bzw. persönlichen Vorlieben könnte auch Scaling 1 genommen werden).
 
+
+__Redundancy analysis (RDA)__
 ```{r}
-## RDA of the Hellinger-transformed mire species data, constrained
-## by all the environmental variables contained in env2
+## RDA der Hellinger-transformireten Moorarten-Daten, constrained
+## mit allen Umweltvarialben die in env2 enthalten sind
 (spe.rda <- rda(spe.hel ~ ., env2)) # Observe the shortcut formula
-summary(spe.rda) # Scaling 2 (default)
+
+summary(spe.rda)	# Skalierung 2 (default)
 
 # Canonical coefficients from the rda object
 coef(spe.rda)
@@ -75,53 +76,31 @@ Man erhält R²adj. = 0.376
 Jetzt kann man den Triplot erstellen
 
 ```{r}
+
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
-#dev.new(
-#  title = "RDA scaling 1 and 2 + lc",
-#  width = 6,
-#  height = 12,
-#  noRStudioGD = TRUE
-#)
-par(mfrow = c(1, 1))
-plot(spe.rda,
-     scaling = 1,
-     display = c("sp", "lc", "cn"),
-     main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores"
-)
-spe.sc1 <- 
-  scores(spe.rda, 
-         choices = 1:2, 
-         scaling = 1, 
-         display = "sp"
-  )
-arrows(0, 0, 
-       spe.sc1[, 1] * 0.92,
-       spe.sc1[, 2] * 0.92,
-       length = 0, 
-       lty = 1, 
-       col = "red"
-)
+
+dev.new(title = "RDA scaling 1 and 2 + lc",width = 15,height = 6,noRStudioGD = TRUE)
+par(mfrow = c(1, 2))
+
+plot(spe.rda,scaling = 1,display = c("sp", "lc", "cn"),
+     main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores")
+
+spe.sc1 <- scores(spe.rda, choices = 1:2, scaling = 1, display = "sp")
+
+arrows(0, 0, spe.sc1[, 1] * 0.92,spe.sc1[, 2] * 0.92,length = 0, 
+       lty = 1, col = "red")
+       
 text(-0.75, 0.7, "a", cex = 1.5)
 
-
 # Scaling 2
-plot(spe.rda,
- display = c("sp", "lc", "cn"),
- main = "Triplot RDA spe.hel ~ env3 - scaling 2 - lc scores"
-)
-spe.sc2 <-
- scores(spe.rda,
- choices = 1:2,
- display = "sp"
- )
-arrows(0, 0,
- spe.sc2[, 1] * 0.92,
- spe.sc2[, 2] * 0.92,
- length = 0,
- lty = 1,
- col = "red"
-)
+plot(spe.rda, display = c("sp", "lc", "cn"), 
+     main = "Triplot RDA spe.hel ~ env2 - scaling 2 - lc scores")
+
+spe.sc2 <- scores(spe.rda, choices = 1:2, display = "sp")
+
+arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92,length = 0,
+       lty = 1,col = "red")
 text(-0.82, 0.55, "b", cex = 1.5)
 ```
 
@@ -133,37 +112,19 @@ Auswahl der höchstkorrelierten Arten (Grenzwert kann subjektiv nach Bedarf gese
 spe.good <- goodness(spe.rda)
 sel.sp <- which(spe.good[, 2] >= 0.6)
 sel.sp
+
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
 source("19_Statistik7/triplot.rda.R")
-#dev.new(
-#  title = "RDA plot with triplot.rda",
-#  width = 6,
-#  height = 12,
-#  noRStudioGD = TRUE
-#)
-par(mfrow = c(1, 1))
-triplot.rda(spe.rda, 
-            site.sc = "lc", 
-            scaling = 1, 
-            cex.char2 = 0.7, 
-            pos.env = 3, 
-            pos.centr = 1, 
-            mult.arrow = 1.1, 
-            mar.percent = 0.05, 
-            select.spe = sel.sp
-)
+source("triplot.rda.R")
+
+dev.new(title = "RDA plot with triplot.rda",width = 14,height = 6, noRStudioGD = TRUE)
+par(mfrow = c(1, 2))
+triplot.rda(spe.rda, site.sc = "lc", scaling = 1, cex.char2 = 0.7, pos.env = 3, 
+            pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
 text(-0.92, 0.72, "a", cex = 2)
-triplot.rda(spe.rda, 
-            site.sc = "lc", 
-            scaling = 2, 
-            cex.char2 = 0.7, 
-            pos.env = 3, 
-            pos.centr = 1, 
-            mult.arrow = 1.1, 
-            mar.percent = 0.05, 
-            select.spe = sel.sp
-)
-#text(-2.82, 2, "b", cex = 2)
+
+triplot.rda(spe.rda, site.sc = "lc", scaling = 2, cex.char2 = 0.7, pos.env = 3, 
+            pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
 
 # Global test of the RDA result
 anova(spe.rda, permutations = how(nperm = 999))
@@ -174,42 +135,52 @@ anova(spe.rda, by = "axis", permutations = how(nperm = 999))
 Die ersten drei RDA-Achsen sind also signifikant. Man könnte also auch noch eine
 Visualisierung von RDA 3 vs. RDA 1 machen.
 
-**Partielle RDA: ist im R-Script, wird hier aber nicht weiter behandelt.**
+**Partielle RDA**
+# Simple syntax; X and W may be in separate tables of quantitative 
+# variables
+```{r}
+spechem.physio <- rda(spe.hel, envchem, envtopo)
+summary(spechem.physio)
 
-**Varianzpartitionierung**
+# Formula interface; X and W variables must be in the same 
+# data frame
+(spechem.physio2 <- 
+    rda(spe.hel ~ pH.peat + log.ash.perc + Ca_peat +Mg_peat + Na_peat
+       + K_peat + Acidity.peat + CEC.peat + Base.sat.perc + P.peat
+       + pH.water + log.cond.water + log.Ca.water
+       + Condition(Waterlev.max + Waterlev.av + Waterlev.min + log.peat.lev
+       + log.slope.deg), data = env2))
+
+# Test of the partial RDA, using the results with the formula 
+# interface to allow the tests of the axes to be run
+anova(spechem.physio2, permutations = how(nperm = 999))
+anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
+
+# Partial RDA triplots (with fitted site scores) 
+# with function triplot.rda
+# Scaling 1
+dev.new(title = "Partial RDA",width = 14,height = 6,noRStudioGD = TRUE)
+par(mfrow = c(1, 2))
+triplot.rda(spechem.physio, site.sc = "lc", scaling = 1, 
+            cex.char2 = 0.8, pos.env = 3, mar.percent = 0)
+text(-0.58, 0.64, "a", cex = 2)
+
+# Scaling 2
+triplot.rda(spechem.physio, site.sc = "lc", scaling = 2, 
+            cex.char2 = 0.8, pos.env = 3, mult.spe = 1.1, mar.percent = 0.04)
+text(-3.34, 3.64, "b", cex = 2)
+```
+
+__Varianzpartitionierung__
 
 ```{r}
 ## 1. Variation partitioning with all explanatory variables
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
+
 # Plot of the partitioning results
-#dev.new(title = "Variation partitioning - all variables", 
-# noRStudioGD = TRUE)
+dev.new(title = "Variation partitioning",width = 7,height = 7,noRStudioGD = TRUE)
+
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
- Xnames = c("Chemistry", "Physiography"),
- id.size = 0.7)
+     Xnames = c("Chemistry", "Physiography"), id.size = 0.7)
 ```
 Die durch die erhobenen Umweltvariablen insgesamt erklärte Varianz (37.6%, s.o.) entfällt zu 19.4% auf chemische Variablen, 3.6% auf physiographische Variablen und zu 14.6% auf gemeinsame Erklärung.
-
-
-**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
-
-**Methoden**
-
-**In 63 Plots eines Moores wurden die Artenzusammensetzung der Vegetation mit (Presenceabsence) und 18 metrische Umweltvariablen erhoben (Tab. 1).**
-
-![**Tab. 1:** Übersicht der 18 Umweltvariablen, die in jedem Plot erhoben wurden und ihrer Zugehörigkeit zu den Variablengruppen „Chemie“ und „Physiographie“.](tab1_7.1.png)
-
-
-**Mittels RDA als „constrained ordination“ wurde anschliessend ermittelt, ob und wie die erhobenen Umweltvariablen, die Artverteilungsmuster erklären. Ein Triplot wurde verwendet, um die Beziehungen zwischen Plots, Arten und Umweltvariablen zu visualisieren.Abschliessend wurde die erklärte Varianz mittels Varianzpartitionierung in die Variablengruppen Physiographie und Chemie aufgeteilt.**
-
-**Ergebnisse**
-
-**In der RDA konnten die 20 erhobenen Umweltvariablen zusammen knapp 40% der Varianz in den Artvorkommen erklären (R²adj. = 0.376). Dabei waren die ersten drei RDA-Achsen signifikant. Die Varianzpartizionierung (Abb. 1). zeigte, dass dabei die chemischen Variablen alleine und in Kombination mit den physiographischen Variablen weitaus bedeutsamer waren als physiographische Variablen alleine.**
-
-![**Abb. 1:** Venn-Diagramm zur Varianzpartitionierung in die Variablengruppen Chemie und Physiographie.](19_Statistik7/abb1_7.1.png)
-
-**Das Ordinationsdiagramm (Abb. 2) der ersten beiden RDA-Achsen zeigt, dass der Hauptgradient (1. Hauptachse) im Wesentlichen ein Aziditätsgradient mit den sauren Plots ganz links und denjenigen mit hohem pH, hohem Ca-Gehalten in Torf und Wasser sowie hoher Basensättigung rechts ist. Die zweite Hauptachste steht für einen Gradienten von unten trocken (mittlere, minimale und maximale Grundwasserstände weit unter Flur) bis oben nass. Die bezeichnensten Arten des Hauptgradienten sind die Säurezeiger Vaccinium oxycoccos und Sphagnum magellanicum links und die Basenzeiger Carex davalliana und Carex pulicaris rechts.**
-
-![**Abb. 2:** Triplot der RDA des Moordatensatzes. Schwarz sind die Aufnahmepunkte, blau die Umweltfaktoren und rot die Arten mit einer Modellgüte von mindestens 0.5. Das Ordinationsdiagramm wurde mit Scaling 2 und wa (weighted averages) als Gewichtungsfaktoren erstellt.](19_Statistik7/abb2_7.1.png)
-
-![**Abb. 3:** Vergleich der vier mittels k-means-Clustering abgeleiteten Gruppen von Bundesstaaten bezüglich ihrerKriminalitätsraten (pro 100000 Einwohner und Jahr)in sieben Kategorien. Die Kleinbuchstaben bezeichnen homogene Gruppen gemäss Tukey’s post-hoc-Test.](19_Statistik7/abb3_7.1.png)
