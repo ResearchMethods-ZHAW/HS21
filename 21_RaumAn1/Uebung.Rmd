@@ -1,0 +1,259 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE) 
+```
+
+
+
+
+## Übung
+
+Um in R mit räumlichen Daten zu arbeiten existieren eine vielzahl von Libraries, die ihrerseits wiederum auf weiteren Libraries basieren (Stichwort `dependencies`). 
+
+- Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Notfällen auf andere Libraries zurück greifen
+- Für *Rasterdaten* exisitert das Packages `raster`
+
+Für die Integration von Vektor und Rasterdaten existiert die Library `starts`: *S*patio*t*emporal *A*rrays for *R*aster and *V*ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Libraries (installiere die fehlenden Packages mit `install.package("packagename")`).
+ 
+```{r warning=FALSE, echo = TRUE}
+library(sf)
+library(tidyverse)
+library(scales)
+library(stars)
+```
+
+
+### Daten runterladen und importieren
+
+Lade als erstes die Datensätze unter folgenden Links runter und importiere sie mit dem Befehl `st_read()` in R:
+
+  - [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
+  - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
+  - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
+  - [gemeinden.gpkg](21_RaumAn1/data/gemeinden.gpkg)
+  
+Es handelt sich um Geodatensätze im Geopackage ("\*.gpkg") format. Dieses Format stellt eine alternative zu den bekannteren "Shapefiles" dar und sind etwas leichter zu handhaben, da sie nicht gezipped werden müssen. 
+
+```{r, echo = TRUE}
+
+wasser <- st_read("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
+
+kantone <- st_read("21_RaumAn1/data/kantone.gpkg")
+bezirke <- st_read("21_RaumAn1/data/bezirke.gpkg") 
+gemeinden <- st_read("21_RaumAn1/data/gemeinden.gpkg") 
+```
+
+
+Schaut euch die importierten Datensätze an, nutzt dafür `View()`, `str()`, `class()`.
+
+
+### Daten Visualisieren
+
+Wir hatten anfangs erwähnt, dass Geodaten in `sf` und `raster` sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren lassen. Das merkt man als erstes, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()`.
+
+```{r echo = TRUE, fig.cap="X/Y-Kooridnaten liegen im Bereich 2.6 Mio / 1.3 Mio"}
+ggplot(bezirke) + 
+  geom_sf()
+```
+
+```{r echo = TRUE, fig.cap="X/Y-Koordinaten liegen im Bereich 6 - 11 (x-Achse), respektive 46-47"}
+ggplot(wasser) + 
+  geom_sf()
+```
+
+
+### Koordinatensysteme *zuweisen*
+
+In den obigen beiden Visualisieren fallen verschiedene Sachen auf: 
+
+- die X/Y Achsen weisen zwei ganz unterschiedlichen Zahlenbereiche auf
+- der Umriss der Schweiz scheint in der zweiten Grafik "gestaucht" zu sein
+
+Dies hat damit zu tun, dass die beiden Datensätze in unterschiedlichen Koordinatensystemen erfasst wurden. Koordinatensysteme werden mit CRS (*C*oordinate *R*eference *S*ystem) abgekürzt. Mit `st_crs()` könnnen normalerweise die zugewiesenen Koordinatensysteme abgefragt werden.
+
+```{r, echo = TRUE}
+st_crs(wasser)
+st_crs(bezirke)
+```
+
+Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man bei schweizer Datensätze eine der drei folgenden Koordinatensysteme an:
+
+- [CH1903 LV03](https://epsg.io/21781): das alte Koordinatenystem der schweiz
+- [CH1903+ LV95](https://epsg.io/2056): das neue Koordinatensystem der Schweiz
+- [WGS84](https://epsg.io/4326): ein häufig genutztes Weltumspannendes Koordinatensystem
+
+
+Wenn man sich auf [epsg.io/map](https://epsg.io/map#srs=4326&x=8.407288&y=46.773731&z=9&layer=streets) die Schweiz anschaut, kann man die Koordinaten (des Fadenkreuzes) in verschiedenen Koordinatensystem betrachten. Wenn man diese mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `wasser` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code zu.
+
+```{r, echo = TRUE}
+wasser <- st_set_crs(wasser, 4326)
+bezirke <- st_set_crs(bezirke, 2056)
+
+st_crs(wasser)
+```
+
+Weise auch für die anderen Datensätze (`kantone`, `gemeinden`) das *korrekte* Koordinatensytem zu.
+
+
+```{r}
+kantone <- st_set_crs(kantone, 2056)
+gemeinden <- st_set_crs(gemeinden, 2056)
+
+```
+
+### Übung 1: Koordinatensyteme *transformieren*
+
+In der vorherigen Übung haben wir das bestehende Kooridnatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten so verändert, dass sie ins neue Koordinatensytem passen. Aus praktischen Gründen wollen wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Dies können wir durch die Funktion `st_transform()` durchführen. 
+
+Vor der Transformation (betrachte die Spalte `geom`): 
+
+```{r, echo = TRUE}
+wasser
+```
+
+
+```{r}
+wasser <- st_transform(wasser, 2056)
+```
+
+
+Nach der Transformation (betrachte die Spalte `geom`):
+
+```{r, echo = TRUE}
+wasser
+```
+
+
+Transformiere den Datensatz `wasser` in CH1903+ LV95.
+
+### Aufgabe 2: einfache Karten
+
+Visualisiere die Geodaten räumlich mit `ggplot` und `geom_sf()`. Überlagere zwei Datensätze indem du einen weiteren Layer mit `geom_sf(data = deindatnesatz)` hinzufügst.
+
+
+```{r}
+ggplot(kantone) + 
+  geom_sf(aes(fill = NAME), colour = "white") + 
+  theme(legend.position = "none")
+```
+
+Vielleicht fällt dir auf, dass nun alle `ggplots` die Achsen im Koordinatensystem WGS84 markiert sind. Daran ist `coord_sf()` schuld, welches per Default immer WGS84 als Koordinatensystem wählt und alle Layers "on-the-fly" in dieses Koordinatensystem Transformiert. Wenn das stört, kann man `coord_sf(datum =2056)` in einem weiteren Layer spezifizieren.
+
+```{r}
+ggplot(kantone) + 
+  geom_sf(colour = "white") + 
+  geom_sf(data = wasser) + 
+  theme(legend.position = "none") +
+  coord_sf(datum = 2056)
+
+```
+
+
+### Join by bezirk
+
+
+```{r}
+wasser_bezirk <- st_join(bezirke,wasser) %>%
+  st_set_geometry(NULL) %>%
+  group_by(id) %>%
+  summarise(wasser = mean(wasser, na.rm = TRUE))
+  
+
+bezirke_wasser <- left_join(bezirke,wasser_bezirk, by = "id")
+
+ggplot(kantone) +
+  geom_sf(fill = "grey") + 
+  geom_sf(data = bezirke_wasser, aes(fill = wasser),na.rm = FALSE) +
+  scale_fill_viridis_c(limits = c(-100,-100),oob = squish) 
+```
+
+### Join by Canton
+
+
+```{r}
+
+wasser_kanton <- st_join(wasser, kantone) %>%
+  st_set_geometry(NULL) %>%
+  group_by(kantonsnum) %>%
+  summarise(wasser = mean(wasser, na.rm = TRUE))
+  
+
+kantone_wasser <- left_join(kantone,wasser_kanton, by = "kantonsnum")
+
+ggplot(kantone_wasser) +
+  geom_sf(aes(fill = wasser),na.rm = FALSE) +
+  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
+  coord_sf2056()
+
+# Join by custom aggregation 0
+hex <- st_make_grid(kantone,cellsize = 10000, square = FALSE) %>%
+  st_sf() %>%
+  mutate(id = row_number())
+
+
+hex <- st_join(hex,wasser) %>%
+  group_by(id) %>%
+  summarise(wasser = mean(wasser,na.rm = TRUE))
+
+p0 <- ggplot() +
+  geom_sf(data = schweiz) +
+  geom_sf(data = hex, aes(fill = wasser),alpha = 0.5) +
+  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
+  coord_sf2056()
+
+
+p0
+```
+
+
+### Join by custom aggregation 2: 20 km Hexagon
+
+
+```{r}
+hex <- st_make_grid(kantone,cellsize = 20000, square = FALSE) %>%
+  st_sf() %>%
+  mutate(id = row_number())
+
+
+hex <- st_join(hex,wasser) %>%
+  group_by(id) %>%
+  summarise(wasser = mean(wasser,na.rm = TRUE))
+
+p1 <- ggplot() +
+  geom_sf(data = schweiz) +
+  geom_sf(data = hex, aes(fill = wasser),alpha = 0.5) +
+  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
+  coord_sf2056()
+
+
+p1
+```
+
+
+### Join by custom aggregation 1: 50 km Hexagon
+
+```{r}
+
+hex <- st_make_grid(kantone,cellsize = 50000, square = FALSE) %>%
+  st_sf() %>%
+  mutate(id = row_number())
+
+
+hex <- st_join(hex,wasser) %>%
+  group_by(id) %>%
+  summarise(wasser = mean(wasser,na.rm = TRUE))
+
+p2 <- ggplot() +
+  geom_sf(data = schweiz) +
+  geom_sf(data = hex, aes(fill = wasser),alpha = 0.5) +
+  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
+  coord_sf2056()
+
+
+p2
+```
+
+```{r}
+plot_grid(p0+theme(legend.position = "none"),p1+theme(legend.position = "none"),p2+theme(legend.position = "none"), nrow = 1)
+```
+
+
