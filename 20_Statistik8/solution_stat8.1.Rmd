@@ -7,6 +7,7 @@ output:
   pdf_document: default
 ---
 
+- [R-Skript als Download](Loesung_Uebung_8.1_v.02.R)
 
 ```{r,include=FALSE}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "hide")
