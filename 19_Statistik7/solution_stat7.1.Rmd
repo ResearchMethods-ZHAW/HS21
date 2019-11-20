@@ -1,7 +1,7 @@
 
 ## Musterlösung Aufgabe 7.1: RDA
 
-- [R-Skript als Download](19_Statistik7/RFiles/Loesung_Uebung_7.1_v.02.R)
+- [R-Skript als Download](19_Statistik7/RFiles/Loesung_Uebung_7.1_v.03.R)
 
 - **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
@@ -29,7 +29,7 @@ env2 <- ssit[, -c(19,20)]
 ```
 Betrachtung der Daten zeigt, dass die Koordinaten in Spalten 19 und 20 sind, die daraufhin entfernt werden.
 
-```{r eval=FALSE}
+```{r}
 
 # Generiere zwei subset der erklärenden Variablen
 # Physiografie (upstream-downstream-Gradient)
@@ -76,29 +76,34 @@ Jetzt kann man den Triplot erstellen
 ```{r eval=FALSE}
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
-
 dev.new(title = "RDA scaling 1 and 2 + lc",width = 15,height = 6,noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 
-plot(spe.rda,scaling = 1,display = c("sp", "lc", "cn"),
-     main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores")
-
-spe.sc1 <- scores(spe.rda, choices = 1:2, scaling = 1, display = "sp")
-
-arrows(0, 0, spe.sc1[, 1] * 0.92,spe.sc1[, 2] * 0.92,length = 0, 
-       lty = 1, col = "red")
-       
-text(-0.75, 0.7, "a", cex = 1.5)
-
-# Scaling 2
+# 1 und 2 Achse
 plot(spe.rda, display = c("sp", "lc", "cn"), 
      main = "Triplot RDA spe.hel ~ env2 - scaling 2 - lc scores")
-
 spe.sc2 <- scores(spe.rda, choices = 1:2, display = "sp")
-
 arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92,length = 0,
        lty = 1,col = "red")
 text(-0.82, 0.55, "b", cex = 1.5)
+
+#1 und 3 Achse
+plot(spe.rda, display = c("sp", "lc", "cn"), choices = c(1,3),
+     main = "Triplot RDA spe.hel ~ env2 - scaling 2 - lc scores")
+spe.sc2 <- scores(spe.rda, choices =c(1,3), display = "sp")
+arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92,length = 0,
+       lty = 1,col = "red")
+text(-0.82, 0.55, "b", cex = 1.5)
+
+
+## Triplots of the rda results (wa scores)
+## Site scores as weighted averages (vegan's default)
+# Scaling 1 :  distance triplot
+dev.new(title = "RDA scaling 2 + wa",width = 7,height = 6,noRStudioGD = TRUE)
+
+# Scaling 2 (default) :  correlation triplot
+plot(spe.rda, main = "Triplot RDA spe.hel ~ env3 - scaling 2 - wa scores")
+arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92, length = 0, lty = 1, col
 ```
 
 Auswahl der höchstkorrelierten Arten (Grenzwert kann subjektiv nach Bedarf gesetzt werden, hier 0.5).
@@ -110,21 +115,23 @@ spe.good <- goodness(spe.rda)
 sel.sp <- which(spe.good[, 2] >= 0.6)
 sel.sp
 
-# Triplots with homemade function triplot.rda(), scalings 1 and 2
+# Triplots with homemade function triplot.rda()
 source("19_Statistik7/triplot.rda.R")
 
-dev.new(title = "RDA plot with triplot.rda",width = 14,height = 6, noRStudioGD = TRUE)
-par(mfrow = c(1, 2))
-triplot.rda(spe.rda, site.sc = "lc", scaling = 1, cex.char2 = 0.7, pos.env = 3, 
-            pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
-text(-0.92, 0.72, "a", cex = 2)
+# Triplots with homemade function triplot.rda(), scaling 2
+setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
+source("triplot.rda.R")
 
-triplot.rda(spe.rda, site.sc = "lc", scaling = 2, cex.char2 = 0.7, pos.env = 3, 
+dev.new(title = "RDA plot with triplot.rda",width = 7,height = 6, noRStudioGD = TRUE)
+
+triplot.rda(spe.rda, site.sc = "lc", cex.char2 = 0.7, pos.env = 3, 
             pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
+
 
 # Global test of the RDA result
 anova(spe.rda, permutations = how(nperm = 999))
 # Tests of all canonical axes
+anova(spe.rda, permutations = how(nperm = 999))
 anova(spe.rda, by = "axis", permutations = how(nperm = 999))
 ```
 
@@ -155,14 +162,8 @@ anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 
 # Partial RDA triplots (with fitted site scores) 
 # with function triplot.rda
-# Scaling 1
-dev.new(title = "Partial RDA",width = 14,height = 6,noRStudioGD = TRUE)
-par(mfrow = c(1, 2))
-triplot.rda(spechem.physio, site.sc = "lc", scaling = 1, 
-            cex.char2 = 0.8, pos.env = 3, mar.percent = 0)
-text(-0.58, 0.64, "a", cex = 2)
+dev.new(title = "Partial RDA",width = 7,height = 6,noRStudioGD = TRUE)
 
-# Scaling 2
 triplot.rda(spechem.physio, site.sc = "lc", scaling = 2, 
             cex.char2 = 0.8, pos.env = 3, mult.spe = 1.1, mar.percent = 0.04)
 text(-3.34, 3.64, "b", cex = 2)
