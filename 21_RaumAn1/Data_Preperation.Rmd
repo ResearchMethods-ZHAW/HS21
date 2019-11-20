@@ -143,7 +143,7 @@ ggplot() +
 
 
 bezirke_noholes <- rbind(dplyr::select(bezirke,NAME,OBJEKTART),dplyr::select(no_bezirk, NAME,OBJEKTART)) %>%
-  mutate(id = sample(1:nrow(.),nrow(.)))
+  mutate(OBJECTID = sample(1:nrow(.),nrow(.)))
 
 ggplot(bezirke_noholes) + geom_sf(aes(fill = OBJEKTART)) 
 
@@ -200,4 +200,25 @@ st_write(kantone,"21_RaumAn1/data/kantone.gpkg",delete_dsn = TRUE)
 ```{r}
 
 ```
+
+
+
+## Bodeneignungskarte
+
+```{r}
+bodeneignung <- st_read("21_RaumAn1/data_raw/bodeneignungskarte_polygon/Bodeneignungskarte_Bodeneignungskarte_polygon.shp")
+```
+
+
+```{r}
+bodeneignung %>%
+  group_by(SKELETT) %>%
+  summarise() %>%
+  st_cast("POLYGON") %>%
+  ungroup() %>%
+  st_set_crs(NA_crs_) %>%
+  mutate(SKELETT = na_if(SKELETT, -9999)) %>%
+  st_write("21_RaumAn1/data/bodeneignung_skelett.gpkg",delete_dsn = TRUE)
+```
+
 

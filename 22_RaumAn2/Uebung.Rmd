@@ -1,0 +1,111 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warnings = FALSE) 
+```
+
+## Übung
+
+Beginne damit, die Kantonsgrenzen von letzter Woche sowie einen neuen Datensatz `rotmilan` zu importieren. Lade vorher aber die notwendigen Libraries und setze anschliessend das Korrekte CRS.
+
+- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
+- [rotmilan.gpkg](21_RaumAn1/data/kantone.gpkg)
+
+
+```{r}
+library(sf)
+library(tidyverse)
+library(lubridate)
+library(cowplot)
+library(stars)
+
+kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+rotmilan <- read_sf("22_RaumAn2/data/rotmilan.gpkg")
+
+kantone <- st_set_crs(kantone,2056)
+rotmilan <- st_set_crs(rotmilan, 2056)
+```
+
+
+```{r}
+st_kde <- function(points,cellsize, bandwith, extent = NULL){
+  require(MASS)
+  require(raster)
+  require(sf)
+  if(is.null(extent)){
+    extent_vec <- st_bbox(points)[c(1,3,2,4)]
+  } else{
+    extent_vec <- st_bbox(extent)[c(1,3,2,4)]
+  }
+  
+  n_y <- ceiling((extent_vec[4]-extent_vec[3])/cellsize)
+  n_x <- ceiling((extent_vec[2]-extent_vec[1])/cellsize)
+  
+  extent_vec[2] <- extent_vec[1]+(n_x*cellsize)-cellsize
+  extent_vec[4] <- extent_vec[3]+(n_y*cellsize)-cellsize
+
+  coords <- st_coordinates(points)
+  matrix <- kde2d(coords[,1],coords[,2],h = bandwith,n = c(n_x,n_y),lims = extent_vec)
+  raster(matrix)
+}
+
+```
+
+### Aufgabe x: Milan importieren
+```{r}
+rotmilan$year <- year(rotmilan$timestamp)
+
+
+ggplot(kantone) + 
+  geom_sf() + 
+  geom_sf(data = rotmilan) +
+  theme_void() 
+
+ggplot(kantone) + 
+  geom_sf() + 
+  geom_sf(data = rotmilan) +
+  theme_void()+
+  facet_wrap(~year)
+```
+
+
+### Aufgabe x: Dichteverteilung der Punkte mit KDE
+
+```{r}
+rotmilan_kde <- st_kde(rotmilan,cellsize = 1000,bandwith = 10000,kantone)
+
+
+ggplot() + 
+  geom_stars(data = st_as_stars(rotmilan_kde)) +
+  geom_sf(data = kantone, fill = NA) +
+  scale_fill_viridis_c(limits = c(5e-11,NA),na.value = NA) +
+  theme_void() +
+  theme(legend.position = "none")
+
+```
+
+
+### Aufgabe x: Dichteverteilung nach Jahr
+
+
+```{r}
+
+rotmilan_kdes <- rotmilan %>%
+  split(.$year) %>%
+  map(~st_kde(.x,cellsize = 1000,bandwith = 10000,kantone))
+
+
+plts <- imap(rotmilan_kdes,function(x,y){
+  ggplot() + 
+  geom_stars(data = st_as_stars(x)) +
+  geom_sf(data = kantone, fill = NA) +
+  scale_fill_viridis_c(limits = c(5e-11,NA),na.value = NA) +
+  theme_void()+
+  labs(tag = y) +
+  theme(legend.position = "none")
+})
+
+cowplot::plot_grid(plotlist = plts)
+
+
+```
+
+

@@ -1,0 +1,42 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Points for PPP
+
+```{r}
+
+library(move)
+
+logi <- movebankLogin("rata","{@CA;Lk^")
+
+study672882373 <- getMovebankData(672882373, login = logi)
+
+kantone <- st_set_crs(kantone, 2056)
+processed672882373 <- study672882373 %>%
+  as_tibble()%>%
+  st_as_sf(coords = c("location_long","location_lat")) %>%
+  st_set_crs(4326) %>%
+  mutate(timestamp = as.POSIXct(timestamp)) %>%
+  dplyr::select(timestamp)
+
+spatial_sel672882373 <- processed672882373 %>%
+  st_transform(2056) %>%
+  filter(st_within(., st_union(kantone),sparse = FALSE))
+
+
+ggplot(kantone) + geom_sf() + geom_sf(data = processed2, aes(colour = timestamp))
+
+ggplot(spatial_sel672882373) + geom_histogram(aes(timestamp))
+
+
+st_write(spatial_sel672882373, "22_RaumAn2/data/rotmilan.gpkg")
+
+
+```
+

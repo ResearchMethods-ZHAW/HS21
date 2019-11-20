@@ -17,51 +17,56 @@ Für die Integration von Vektor und Rasterdaten existiert die Library `starts`: 
 ```{r warning=FALSE, echo = TRUE}
 library(sf)
 library(tidyverse)
-library(scales)
 library(stars)
+library(raster)
 ```
 
 
-### Daten runterladen und importieren
+### Aufgabe 1: Daten runterladen und importieren
 
-Lade als erstes die Datensätze unter folgenden Links runter und importiere sie mit dem Befehl `st_read()` in R:
+Lade als erstes die Datensätze unter folgenden Links runter und importiere sie mit dem Befehl `read_sf()` in R:
 
   - [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
   - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
   - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
   - [gemeinden.gpkg](21_RaumAn1/data/gemeinden.gpkg)
+  - [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg)
   
 Es handelt sich um Geodatensätze im Geopackage ("\*.gpkg") format. Dieses Format stellt eine alternative zu den bekannteren "Shapefiles" dar und sind etwas leichter zu handhaben, da sie nicht gezipped werden müssen. 
 
 ```{r, echo = TRUE}
 
-wasser <- st_read("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
+wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
 
-kantone <- st_read("21_RaumAn1/data/kantone.gpkg")
-bezirke <- st_read("21_RaumAn1/data/bezirke.gpkg") 
-gemeinden <- st_read("21_RaumAn1/data/gemeinden.gpkg") 
+kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+bezirke <- read_sf("21_RaumAn1/data/bezirke.gpkg") 
+gemeinden <- read_sf("21_RaumAn1/data/gemeinden.gpkg")
+skelettgehalt <- read_sf("21_RaumAn1/data/bodeneignung_skelett.gpkg")
+
 ```
 
 
 Schaut euch die importierten Datensätze an, nutzt dafür `View()`, `str()`, `class()`.
 
 
-### Daten Visualisieren
+### Aufgabe 2: Daten Visualisieren
 
-Wir hatten anfangs erwähnt, dass Geodaten in `sf` und `raster` sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren lassen. Das merkt man als erstes, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()`.
+Wir hatten anfangs erwähnt, dass Geodaten mit `sf` und `raster` sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren lassen. Das merkt man als erstes, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()` Vektordaten zu plotten.
 
-```{r echo = TRUE, fig.cap="X/Y-Kooridnaten liegen im Bereich 2.6 Mio / 1.3 Mio"}
+```{r echo = TRUE}
 ggplot(bezirke) + 
-  geom_sf()
+  geom_sf() +
+  labs(caption = "X/Y-Kooridnaten liegen im Bereich 2.6 Mio (x-Achse) bzw. 1.3 Mio (y-Achse)")
 ```
 
-```{r echo = TRUE, fig.cap="X/Y-Koordinaten liegen im Bereich 6 - 11 (x-Achse), respektive 46-47"}
+```{r echo = TRUE}
 ggplot(wasser) + 
-  geom_sf()
+  geom_sf() +
+  labs(caption = "X/Y-Koordinaten liegen im Bereich 6 - 11 (x-Achse), respektive 46-47 (y-Achse)")
 ```
 
 
-### Koordinatensysteme *zuweisen*
+### Aufgabe 3 Koordinatensysteme *zuweisen*
 
 In den obigen beiden Visualisieren fallen verschiedene Sachen auf: 
 
@@ -75,14 +80,22 @@ st_crs(wasser)
 st_crs(bezirke)
 ```
 
-Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man bei schweizer Datensätze eine der drei folgenden Koordinatensysteme an:
+Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man hierzulande bei Geodatensätzen eine der drei folgenden Koordinatensysteme an:
 
 - [CH1903 LV03](https://epsg.io/21781): das alte Koordinatenystem der schweiz
 - [CH1903+ LV95](https://epsg.io/2056): das neue Koordinatensystem der Schweiz
 - [WGS84](https://epsg.io/4326): ein häufig genutztes Weltumspannendes Koordinatensystem
 
+Nun gilt es, anhand der Koordinaten die in der Spalte `geomery` ersichtlich sind das korrekte Koordinatensystem zu erraten. Wenn man sich auf [epsg.io/map](https://epsg.io/map#srs=4326&x=8.407288&y=46.773731&z=9&layer=streets) die Schweiz anschaut, kann man die Koordinaten in verschiedenen Koordinatensystem betrachten. 
 
-Wenn man sich auf [epsg.io/map](https://epsg.io/map#srs=4326&x=8.407288&y=46.773731&z=9&layer=streets) die Schweiz anschaut, kann man die Koordinaten (des Fadenkreuzes) in verschiedenen Koordinatensystem betrachten. Wenn man diese mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `wasser` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code zu.
+![Koordinanten (des Fadenkreuzes) werden im ausgewählten Koordinatensystem dargestellt](koordinatenpaar.jpg)
+
+![Das Koordinatensystem, in welchem die Koordinaten dargestellt werden sollen, kann mit "Change" angepasst werden](koordinatensystem.jpg)
+
+![Für Enthusiasten: Schaut euch die schweiz in verschiedenen Koordinatensystemen an, in dem ihr auf "Reproject Map" klickt](reproject.jpg)
+
+
+Wenn man diese mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `wasser` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
 
 ```{r, echo = TRUE}
 wasser <- st_set_crs(wasser, 4326)
@@ -91,20 +104,23 @@ bezirke <- st_set_crs(bezirke, 2056)
 st_crs(wasser)
 ```
 
-Weise auch für die anderen Datensätze (`kantone`, `gemeinden`) das *korrekte* Koordinatensytem zu.
+Weise auch für die anderen Datensätze (`kantone`, `gemeinden`, `skelettgehalt`) das *korrekte* Koordinatensytem zu.
 
 
 ```{r}
 kantone <- st_set_crs(kantone, 2056)
 gemeinden <- st_set_crs(gemeinden, 2056)
-
+skelettgehalt <- st_set_crs(skelettgehalt, 2056)
 ```
 
-### Übung 1: Koordinatensyteme *transformieren*
 
-In der vorherigen Übung haben wir das bestehende Kooridnatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten so verändert, dass sie ins neue Koordinatensytem passen. Aus praktischen Gründen wollen wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Dies können wir durch die Funktion `st_transform()` durchführen. 
 
-Vor der Transformation (betrachte die Spalte `geom`): 
+
+### Aufgabe 4: Koordinatensyteme *transformieren*
+
+In der vorherigen Übung haben wir das bestehende Kooridnatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten in das neue Koordinatensystem umgerechnet und somit manipuliert. Aus praktischen Gründen wollen wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Transformiere den Datensatz `wasser` mit `st_transform()`in CH1903+ LV95, nutze dafür den korrgekten EPSG-Code.
+
+Vor der Transformation (betrachte die Spalte `geom` sowie die Attribute `epsg (SRID)` und `proj4string`): 
 
 ```{r, echo = TRUE}
 wasser
@@ -123,137 +139,238 @@ wasser
 ```
 
 
-Transformiere den Datensatz `wasser` in CH1903+ LV95.
+### Aufgabe 5: 
 
-### Aufgabe 2: einfache Karten
+Wir wollen nun wissen, ob die Wasserverfügbarkeit im Boden vom Skelettgehalt abhängig ist. Dazu nutzen wir die GIS-Technik *Spatial Join*, die in der Vorlesung beschrieben wurde. In `sf` können wir Spatial Joins mit der Funktion `st_join` durchführen, dabei gibt es nur `left` sowie `inner`-Joins. So müssen die Punkte "Links", also an erste Stelle aufgeführt werden, da wir ja Attribute *an* die Punkte anheften wollen.
 
-Visualisiere die Geodaten räumlich mit `ggplot` und `geom_sf()`. Überlagere zwei Datensätze indem du einen weiteren Layer mit `geom_sf(data = deindatnesatz)` hinzufügst.
-
-
-```{r}
-ggplot(kantone) + 
-  geom_sf(aes(fill = NAME), colour = "white") + 
-  theme(legend.position = "none")
-```
-
-Vielleicht fällt dir auf, dass nun alle `ggplots` die Achsen im Koordinatensystem WGS84 markiert sind. Daran ist `coord_sf()` schuld, welches per Default immer WGS84 als Koordinatensystem wählt und alle Layers "on-the-fly" in dieses Koordinatensystem Transformiert. Wenn das stört, kann man `coord_sf(datum =2056)` in einem weiteren Layer spezifizieren.
-
-```{r}
-ggplot(kantone) + 
-  geom_sf(colour = "white") + 
-  geom_sf(data = wasser) + 
-  theme(legend.position = "none") +
-  coord_sf(datum = 2056)
+```{r, echo = TRUE}
+wasser_skelett <- st_join(wasser,skelettgehalt)
+wasser_skelett
 
 ```
 
-
-### Join by bezirk
-
+Führe den obigen Spatial Join aus und erstelle anschliessend einen Boxplot pro Skelett. Für `ggplot` boxplots ist es sinnvoll, denn Skelettgehalt vorgängig von `numeric` in `factor` zu konverieren.
 
 ```{r}
-wasser_bezirk <- st_join(bezirke,wasser) %>%
+
+wasser_skelett %>%
+  mutate(SKELETT = factor(SKELETT)) %>%
+  ggplot() +  
+  geom_boxplot(aes(SKELETT,wasserverfuegbarkeit))
+```
+
+
+
+### Aufgabe 6: Spatial Join mit Flächen
+
+
+In der letzten aufgabe haben wir für jede Probe aus `wasser` den Skelettgehalt des darunterliegenden Polygons ermittelt. Für Proben, die gerade an der Grenze zu einem Polygon mit einem anderen Skelettgehalt liegen ist dieser Wert aber nicht sehr aussagekräftig. Da wäre es wichtiger zu wissen, wie hoch der *mittlere* oder *mediane* Skelettgehalt in einem bestimmten Umkreis (z.B. 2 km) um die Probe ist. In den kommenden Teilaufgaben lösen wir diese Herausforderung.
+
+#### Teilaufgabe A: Punkte mit Puffer versehen
+
+Dafür müssen wir die Punkte mit einem Buffer versehen, dies erreichen wir mit `st_buffer()`. Erstelle einen Datensatz `wasser_2km` wo jeder Punkt um 2'000 m gepuffert wurde. Visualisiere diesen Datensatz. Beachte, dass es sich nun nicht mehr um Punkte, sondern um Flächen handelt (`POLYGON`)
+
+```{r}
+wasser_2km <- st_buffer(wasser,2000)
+```
+
+```{r, echo = TRUE}
+ggplot(wasser_2km) + geom_sf(fill = "blue")
+```
+
+Hinweis: Sofern der CRS von einem Datensatz bekannt ist, werden die Achsen in in `ggplot` in WGS84 dargestellt. Wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
+
+
+#### Teilaufgabe B: Polygon in Raster konvertieren
+
+Um Flächen miteinander zu Verrechnen ("Was ist der mittlere Skelettgehalt im Umkreis von 2km?") ist es einfnacher, wenn der Skelettgehalt-Datensatz aus einem Raster-Datenstz besteht. Hierzu brauchen wir die Funktion `fasterize()` aus der gleichnamigen Library. Installiere diese Library (wenn nötig) und importiere sie in die aktuelle Session mit `library(fasterize)`.
+
+In einem ersten Schritt müssen wir eine Raster-Vorlage erstellen welche dazu dient, die räumliche Ausdehnung und die auflösung (Zellengrösse) des resultierenden Datensatzes festzulegen. 
+
+
+```{r, echo = TRUE}
+library(fasterize)
+
+raster_template <- raster(extent(skelettgehalt), resolution = 1000)
+```
+
+Danach wird mit `fasterize` das Polygon in ein Raster konvertiert. Mit `field = ` kann festgelegt werden, aus welcher Spalte die Werte des Output Datensatzes entnommen werden sollten.
+
+```{r, echo = TRUE}
+skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
+
+ggplot() + geom_stars(data = st_as_stars(skelett_raster))
+
+```
+
+#### Teilaufgabe B: Rasterwerte extrahieren
+
+Mit `raster::extract()` könnnen nun die Rasterwerte aus dem Rasterdatensatz extrahiert werden. In `fun = ` kann festgelegt werden, ob und mit welcher Funktion die vielen Rasterzellen pro Polygon aggregiert werden sollen. Bei uns passt entweder `median` oder `mean`.
+
+
+```{r, echo = TRUE}
+wasser$skelett_median <- raster::extract(skelett_raster,wasser_2km,fun = median)
+
+```
+
+
+
+### Aufgabe 7: Spatial Join mit Kantone, Bezirke, Gemeinden
+
+Nun wollen wir für verschiedenen politischen Einheiten (Kantonen, Bezirke, Gemeinde) die Wasserverfügbarkeit aggregieren. Dafür gehen wir wie folgt vor:
+
+1. Pro Punkt ermitteln, in welcher Gemeinde er liegt (`st_join()`)
+2. Resultierenden Datensatz (aus 1.) in eine `data.frame` konvertieren und nach Gemeinde gruppieren (`group_by()`)
+3. Gruppierter Datensatz (aus 2.) verwenden um mittelwert der Wasserverfügbarkeit aller Punkte *pro Gemeinde* ermitteln (`summarise()`)
+4. Resultierender Datensatz (aus 3.) mit Gemeinde verbinden (`left_join()`)
+5. Resultat (aus 4.) visualisieren.
+
+Tip für Schrit 2: Um zu Prüfen, ob sich eine Spalte für `group_by()` eignet (sie sollte ja pro Geometrie eindeutig sein), kannst du `anyDuplicated()` *vor* dem "Join" verwenden.
+
+- 
+
+```{r}
+
+anyDuplicated(kantone$OBJECTID)
+
+st_join(wasser,kantone) %>%
   st_set_geometry(NULL) %>%
-  group_by(id) %>%
-  summarise(wasser = mean(wasser, na.rm = TRUE))
-  
-
-bezirke_wasser <- left_join(bezirke,wasser_bezirk, by = "id")
-
-ggplot(kantone) +
-  geom_sf(fill = "grey") + 
-  geom_sf(data = bezirke_wasser, aes(fill = wasser),na.rm = FALSE) +
-  scale_fill_viridis_c(limits = c(-100,-100),oob = squish) 
-```
-
-### Join by Canton
+  group_by(OBJECTID) %>%
+  summarise(wasserverfuegbarkeit = mean(wasserverfuegbarkeit, na.rm = TRUE)) %>%
+  left_join(kantone, ., by = "OBJECTID") %>%
+  ggplot() + 
+  geom_sf(aes(fill = wasserverfuegbarkeit)) + 
+  geom_sf(data = wasser,size = 0.1) +  
+  labs(title = "Mittlere Wasserverfügbarkeit im Boden", subtitle = "pro Kanton", fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal") 
 
 
-```{r}
-
-wasser_kanton <- st_join(wasser, kantone) %>%
+st_join(wasser,bezirke) %>%
   st_set_geometry(NULL) %>%
-  group_by(kantonsnum) %>%
-  summarise(wasser = mean(wasser, na.rm = TRUE))
-  
-
-kantone_wasser <- left_join(kantone,wasser_kanton, by = "kantonsnum")
-
-ggplot(kantone_wasser) +
-  geom_sf(aes(fill = wasser),na.rm = FALSE) +
-  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
-  coord_sf2056()
-
-# Join by custom aggregation 0
-hex <- st_make_grid(kantone,cellsize = 10000, square = FALSE) %>%
-  st_sf() %>%
-  mutate(id = row_number())
+  group_by(OBJECTID) %>%
+  summarise(wasserverfuegbarkeit = mean(wasserverfuegbarkeit, na.rm = TRUE)) %>%
+  left_join(bezirke, ., by = "OBJECTID") %>%
+  ggplot() + 
+  geom_sf(aes(fill = wasserverfuegbarkeit)) + 
+  geom_sf(data = wasser,size = 0.1) +
+  labs(title = "Mittlere Wasserverfügbarkeit im Boden", subtitle = "pro Gemeinde", fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal") 
 
 
-hex <- st_join(hex,wasser) %>%
-  group_by(id) %>%
-  summarise(wasser = mean(wasser,na.rm = TRUE))
 
-p0 <- ggplot() +
-  geom_sf(data = schweiz) +
-  geom_sf(data = hex, aes(fill = wasser),alpha = 0.5) +
-  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
-  coord_sf2056()
+st_join(wasser,gemeinden) %>%
+  st_set_geometry(NULL) %>%
+  group_by(OBJECTID) %>%
+  summarise(wasserverfuegbarkeit = mean(wasserverfuegbarkeit, na.rm = TRUE)) %>%
+  left_join(gemeinden, ., by = "OBJECTID") %>%
+  ggplot() + 
+  geom_sf(aes(fill = wasserverfuegbarkeit)) + 
+  geom_sf(data = wasser,size = 0.1) +
+  labs(title = "Mittlere Wasserverfügbarkeit im Boden", subtitle = "pro Gemeinde", fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal") 
 
-
-p0
 ```
 
 
-### Join by custom aggregation 2: 20 km Hexagon
+
+### Aufgabe 8 (für Ambitionierte)
+
+Politische Grenzen sind für die meisten natürlichen Phänomene irrelevant. Man kan deshalb auch eine regelmässige Kachelung des Untersuchungsgebietes vornehmen. Daür kann man mit `st_make_grid()` ein Kachelung für das Gewählte Untersuchungsgebiet (`x = `) in einer bestimmten Grösse (`cellsize = `)  als Quadrate (`square = TRUE`) oder Hexagons (`square = FALSE`) durchführen. 
 
 
 ```{r}
 hex <- st_make_grid(kantone,cellsize = 20000, square = FALSE) %>%
   st_sf() %>%
-  mutate(id = row_number())
-
-
-hex <- st_join(hex,wasser) %>%
+  mutate(id = row_number()) %>%
+  st_join(wasser) %>%
   group_by(id) %>%
-  summarise(wasser = mean(wasser,na.rm = TRUE))
+  summarise(wasserverfuegbarkeit = mean(wasserverfuegbarkeit,na.rm = TRUE)) %>%
+  st_intersection(st_union(kantone))
 
-p1 <- ggplot() +
-  geom_sf(data = schweiz) +
-  geom_sf(data = hex, aes(fill = wasser),alpha = 0.5) +
-  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
-  coord_sf2056()
+ggplot() +
+  geom_sf(data = hex, aes(fill = wasserverfuegbarkeit), colour = "grey") +
+  labs(title = "Mittlere Wasserverfügbarkeit im Boden", subtitle = "20km Hexagon", fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal") 
 
 
-p1
 ```
 
 
-### Join by custom aggregation 1: 50 km Hexagon
+
+## Rauswerfen?
+
+### Räumliche Joins (Spatialjoin)
+
+Änlich wie bei Attribut Joins, die ihr in Preprocessing 1 & 2 kennengelernt habt (`left_join()`, `inner_join()`, `outer_jooin()`), gibt es auch räumliche Joins. Stellt euch folgendes beispiel vor:
+
+Ihr habt 4 Quadrate und 10 Punkte. Punkte können, aber müssen nicht in den Quadraten liegen. 
 
 ```{r}
 
-hex <- st_make_grid(kantone,cellsize = 50000, square = FALSE) %>%
-  st_sf() %>%
-  mutate(id = row_number())
+quadrate <-st_make_grid(kantone,cellsize = 200000) %>%
+  st_as_sf() %>%
+  mutate(id = LETTERS[row_number()])
 
 
-hex <- st_join(hex,wasser) %>%
+set.seed(10)
+punkte <- st_sample(st_buffer(quadrate,100000),10) %>% st_as_sf() %>% mutate(value = rnorm(nrow(.)))
+
+
+ggplot(quadrate) + geom_sf() + geom_sf_label(aes(label = id)) + geom_sf(data = punkte,inherit.aes = FALSE, aes(colour = value)) + theme_void()
+
+
+```
+
+Jetzt gibt es verschiedene Fragen, die ihr an die räumliche Beziehung dieser beiden Datensätze stellen könnt:
+
+1. wie viele Punkte liegen in jedem Quadrat? <!-- oder: Was ist der Mittelwert aller Punkte pro Quadrat? -->
+2. in welchem Quadrat liegt jeder Punkt? <!-- oder in wie vielen Quadraten liegt jeder Punkt? -->
+
+Die Fragen klingen ähnlich, haben jeweils aber einen andere Sichtweise auf die Daten: Im ersten Fall liegt der Fokus auf den *Quadraten* und im zweiten Fall auf den *Punkten*. Mit anderen Worten: Im ersten Fall liefert die Antwort auf die Frage Quadrate zurück, im zweiten Fall Punkte. Der Datensatz, der im Fokus liegt wird auf der *linken* Seite der Funktion aufgeführt und es wird immer von einem `left_join` (oder `inner_join`) ausgegangen. 
+
+
+Für die erste Frage "wie viele Punkte liegen in jedem Quadrat?" beginnen wir mit einem `join` auf `quadrate`:
+
+```{r, echo = TRUE}
+quadrate_punkte <- st_join(quadrate,punkte) 
+quadrate_punkte
+```
+
+Was nun auffällt, ist das sich die Anzahl der Quadrate verändert hat. Jedes Quadrat wurde pro darin liegenden Punkt repliziert. Um nun die Anzahl Punkte *pro Quadrat* zu ermitteln nutzen wir den bekannten Split-Apply-Combine-Ansatz mit `group_by()` und `summarise()`. Wir gruppieren mit `id`, welche jedes Quadrat eindeutig bezeichnet, und brauchen summarise um die Anzahl punkte zu zählen.
+
+```{r, echo = TRUE}
+quadrate_punkte <- quadrate_punkte%>%
   group_by(id) %>%
-  summarise(wasser = mean(wasser,na.rm = TRUE))
+  summarise(Anzahl_Punkte = sum(!is.na(value)))
 
-p2 <- ggplot() +
-  geom_sf(data = schweiz) +
-  geom_sf(data = hex, aes(fill = wasser),alpha = 0.5) +
-  scale_fill_viridis_c(limits = c(-100,100),oob = squish) +
-  coord_sf2056()
-
-
-p2
+quadrate_punkte
 ```
 
-```{r}
-plot_grid(p0+theme(legend.position = "none"),p1+theme(legend.position = "none"),p2+theme(legend.position = "none"), nrow = 1)
+
+```{r, fig.cap="Spatial Join mit Anzahl Punkte pro Quadrat. Gewisse Quadrate haben keine Punkte, gewisse Punkte werden zu keinem Quadrat gezählt."}
+ggplot(quadrate_punkte) + 
+  geom_sf(aes(fill = factor(Anzahl_Punkte))) + 
+  scale_fill_viridis_d() +
+  labs(fill = "Anzahl Punkte") +
+  geom_sf_label(aes(label = id)) + 
+  geom_sf(data = punkte) + 
+  theme_void()
 ```
 
+
+Für die Umgekehrte Frage drehen wir die Argumente in `st_join()` einfach um. Da in unserem Fall jeder Punk in höchstens einem Quadrat liegen kann, braucht es hierfür kein `group_by()` und `summarise()`.
+
+
+```{r, echo = TRUE}
+st_join(punkte,quadrate)
+```
+
+Tipps für Fortgeschrittene:
+
+- um einen `inner_join` statt einen `left_join` durchzuführen, setzt man `left = FALSE`
+- es gibt verschiedene räumliche Beziehungen, die man prüfen kann. Standartmässig wird `intersetct`geprüft. Dabei gibt es noch weitere räumlichhen Beziehungen, wie zum Beispiel `touches` , `crosses`, `covers`, `within_distance` und viele weitere. Siehe dazu `?st_join` sowie `?st_intersects`.
 
