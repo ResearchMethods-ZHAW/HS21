@@ -29,7 +29,7 @@ env2 <- ssit[, -c(19,20)]
 ```
 Betrachtung der Daten zeigt, dass die Koordinaten in Spalten 19 und 20 sind, die daraufhin entfernt werden.
 
-```{r}
+```{r eval=FALSE}
 
 # Generiere zwei subset der erklärenden Variablen
 # Physiografie (upstream-downstream-Gradient)
