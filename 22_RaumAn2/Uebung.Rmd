@@ -19,15 +19,24 @@ library(lubridate)
 library(cowplot)
 library(stars)
 
+
 kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
 rotmilan <- read_sf("22_RaumAn2/data/rotmilan.gpkg")
 
+
+
 kantone <- st_set_crs(kantone,2056)
 rotmilan <- st_set_crs(rotmilan, 2056)
+
+
+
 ```
 
 
 ```{r}
+
+as(rotmilan,"Spatial")
+
 st_kde <- function(points,cellsize, bandwith, extent = NULL){
   require(MASS)
   require(raster)
