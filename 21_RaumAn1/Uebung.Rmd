@@ -32,7 +32,7 @@ Lade zunächst die Datensätze unter folgenden Links herunter und importiere sie
 - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg) Ein Datensatz der Swisstopo ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
 - [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg): Ein Datensatz der WSL ([weiteren Informationen](https://www.wsl.ch/de/ueber-die-wsl/programme-und-initiativen/abgeschlossene-programme-und-grossprojekte/wuk.html))
   
-Es handelt sich um Geodatensätze im Geopackage ("\*.gpkg") format. Dieses Format stellt eine alternative zu den bekannteren "Shapefiles" dar und sind etwas leichter zu handhaben, da sie nicht gezipped werden müssen. 
+Es handelt sich um Geodatensätze im Format Geopackage ("\*.gpkg"). Dieses Format stellt eine Alternative zum bekannteren Format "Shapefiles" dar und ist etwas leichter zu behandeln, da es nicht komprimiert (d.h. gezipped) werden muss. 
 
 ```{r, echo = TRUE}
 
@@ -46,17 +46,17 @@ skelettgehalt <- read_sf("21_RaumAn1/data/bodeneignung_skelett.gpkg")
 ```
 
 
-Schaut euch die importierten Datensätze an, nutzt dafür `View()`, `str()`, `class()`.
+Schau Dir die importierten Datensätze an, nutzt dafür `View()`, `str()`, `class()`. Studiere ausserdem die weiteren Informationen zu den Datensätzen.
 
 
 ### Aufgabe 2: Daten Visualisieren
 
-Wir hatten anfangs erwähnt, dass Geodaten mit `sf` und `raster` sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren lassen. Das merkt man als erstes, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()` Vektordaten zu plotten.
+Wir hatten anfangs erwähnt, dass Geodaten mit `sf` und `raster` sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren lassen. Das merkt man schnell, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()` Vektordaten direkt und sehr einfach zu plotten. Führe die angegebenen R-Befehle aus und studiere die entstehenden Plots. Welche Unterschiede findest Du? Wie erklärst Du diese Unterschiede?
 
 ```{r echo = TRUE}
 ggplot(bezirke) + 
   geom_sf() +
-  labs(caption = "X/Y-Kooridnaten liegen im Bereich 2.6 Mio (x-Achse) bzw. 1.3 Mio (y-Achse)")
+  labs(caption = "X/Y-Kooridnaten liegen im Bereich 2'600'000 (x-Achse) bzw. 1'300'000 (y-Achse)")
 ```
 
 ```{r echo = TRUE}
@@ -70,34 +70,34 @@ ggplot(wasser) +
 
 ### Aufgabe 3 Koordinatensysteme *zuweisen*
 
-In den obigen beiden Visualisieren fallen verschiedene Sachen auf: 
+In den obigen beiden obigen sehr einfachen Kartogrammen fallen verschiedene Dinge auf: 
 
-- die X/Y Achsen weisen zwei ganz unterschiedlichen Zahlenbereiche auf
-- der Umriss der Schweiz scheint in der zweiten Grafik "gestaucht" zu sein
+- die X/Y Achsen weisen zwei ganz unterschiedlichen Zahlenbereiche auf, und
+- der Umriss der Schweiz scheint in der zweiten Grafik "gestaucht" zu sein.
 
-Dies hat damit zu tun, dass die beiden Datensätze in unterschiedlichen Koordinatensystemen erfasst wurden. Koordinatensysteme werden mit CRS (*C*oordinate *R*eference *S*ystem) abgekürzt. Mit `st_crs()` könnnen normalerweise die zugewiesenen Koordinatensysteme abgefragt werden.
+Dies hat natürlich damit zu tun, dass die beiden Datensätze in unterschiedlichen Koordinatensystemen erfasst wurden. Koordinatensysteme werden mit CRS (*C*oordinate *R*eference *S*ystem) abgekürzt. Mit `st_crs()` könnnen normalerweise die zugewiesenen Koordinatensysteme abgefragt werden.
 
 ```{r, echo = TRUE}
 st_crs(wasser)
 st_crs(bezirke)
 ```
 
-Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man hierzulande bei Geodatensätzen eine der drei folgenden Koordinatensysteme an:
+Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man hierzulande bei Geodatensätzen eines der drei folgenden Koordinatensysteme an:
 
-- [CH1903 LV03](https://epsg.io/21781): das alte Koordinatenystem der schweiz
+- [CH1903 LV03](https://epsg.io/21781): das alte Koordinatenystem der Schweiz
 - [CH1903+ LV95](https://epsg.io/2056): das neue Koordinatensystem der Schweiz
-- [WGS84](https://epsg.io/4326): ein häufig genutztes Weltumspannendes Koordinatensystem
+- [WGS84](https://epsg.io/4326): ein häufig genutztes weltumspannendes Koordinatensystem
 
-Nun gilt es, anhand der Koordinaten die in der Spalte `geomery` ersichtlich sind das korrekte Koordinatensystem zu erraten. Wenn man sich auf [epsg.io/map](https://epsg.io/map#srs=4326&x=8.407288&y=46.773731&z=9&layer=streets) die Schweiz anschaut, kann man die Koordinaten in verschiedenen Koordinatensystem betrachten. 
+Nun gilt es, anhand der Koordinaten die in der Spalte `geometry` ersichtlich sind das korrekte Koordinatensystem zu erraten. Wenn man sich auf [epsg.io/map](https://epsg.io/map#srs=4326&x=8.407288&y=46.773731&z=9&layer=streets) die Schweiz anschaut, kann man die Koordinaten in verschiedenen Koordinatensystem betrachten. 
 
 ![Koordinanten (des Fadenkreuzes) werden im ausgewählten Koordinatensystem dargestellt](koordinatenpaar.jpg)
 
 ![Das Koordinatensystem, in welchem die Koordinaten dargestellt werden sollen, kann mit "Change" angepasst werden](koordinatensystem.jpg)
 
-![Für Enthusiasten: Schaut euch die schweiz in verschiedenen Koordinatensystemen an, in dem ihr auf "Reproject Map" klickt](reproject.jpg)
+![Für Enthusiasten: Schau Dir die Schweiz in verschiedenen Koordinatensystemen an, in dem Du auf "Reproject Map" klickst](reproject.jpg)
 
 
-Wenn man diese mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `wasser` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
+Wenn man diese Koordinaten mit den unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `wasser` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
 
 ```{r, echo = TRUE}
 wasser <- st_set_crs(wasser, 4326)
@@ -115,9 +115,9 @@ gemeinden <- st_set_crs(gemeinden, 2056)
 skelettgehalt <- st_set_crs(skelettgehalt, 2056)
 ```
 
-Jetzt wo das CRS der Datensätze bekannt ist, können diese in einem gemeinsamen Plot visualisiert werden, `ggplot` kümmert sich darum die unterschiedlichen Koordinatensysteme zu vereinheitlichen. Probier das aus, indem du `kantone` und `wasser` in einem `ggplot` komobinierst.
+Jetzt wo das CRS der Datensätze bekannt ist, können diese in einem gemeinsamen Plot visualisiert werden, `ggplot` kümmert sich darum die unterschiedlichen Koordinatensysteme zu vereinheitlichen. Probier das aus, indem du `kantone` und `wasser` in einem `ggplot` kombinierst.
 
-Die Achsen werden dann immer in WGS84 beschriftet, wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
+Die Achsen werden dann immer in WGS84 beschriftet. Wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
 
 ```{r}
 ggplot() + 

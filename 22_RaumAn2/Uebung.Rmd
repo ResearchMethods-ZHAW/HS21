@@ -2,7 +2,143 @@
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warnings = FALSE) 
 ```
 
-## Übung
+## Übung A: Interpolationen
+
+Daten importieren, CRS zuweisen
+
+- [luftqualitaet.gpkg](22_RaumAn2/data/luftqualitaet.gpkg) Luftqualitätsmessungen, NO2, [weitere Infos](https://opendata.swiss/en/dataset/luftqualitaet)
+- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg): Ein Datensatz der Swisstopo ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
+
+
+```{r, echo = TRUE}
+library(gstat)
+library(sf)
+library(tidyverse)
+library(lubridate)
+library(cowplot)
+library(stars)
+
+luftqualitaet <- read_sf("22_RaumAn2/data/luftqualitaet.gpkg")
+kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+
+
+luftqualitaet <- st_set_crs(luftqualitaet,2056)
+kantone <- st_set_crs(kantone, 2056)
+```
+
+
+
+### Aufgabe X: Räumliche Interpolation mit IDW
+
+Die Library `spatstat` bietet verschiedene Möglicheiten, Datenpunkte zu interpolieren. Das Schema ist dabei immer gleich: man erstellt zuerst einen Punktdatensatz, für um diejenigen Orte bestimmen, wo man gerne Messert hätte. Wenn man 
+
+```{r, echo = TRUE}
+samples <- st_sample(kantone,size = 2000,type = "regular")
+
+samples <- st_set_crs(samples, 2056)
+
+luftqualitaet_idw <- gstat::idw(formula = value~1,
+                                locations = luftqualitaet,
+                                newdata = samples,
+                                nmax = 10, 
+                                idp = 1)
+
+ggplot(luftqualitaet) +
+  geom_sf(aes(colour = value)) +
+  geom_sf(data = luftqualitaet_idw, aes(colour = var1.pred)) +
+  scale_colour_viridis_c()
+```
+
+In unserem Fall machte es mehr Sinn, die Datenpunkte als `raster` darzustellen. Dafür machen wir nicht extra einen `RasterLayer` wie letzte Woche, sondern ergänzen den Datensatz `luftqualitaet_idw` mit X/Y Koordinaten *in spalten* und übergeben dies `ggplot` mit `geom_rater()`.
+
+
+```{r, echo = TRUE}
+
+luftqualitaet_idw <- luftqualitaet_idw %>%
+  st_coordinates(luftqualitaet_idw) %>%
+  cbind(luftqualitaet_idw)
+
+luftqualitaet_idw
+
+ggplot(data = luftqualitaet_idw, aes(X,Y, fill = var1.pred)) + 
+  geom_tile() +
+  coord_equal() +
+  scale_fill_viridis_c()
+
+```
+
+
+<!-- todo: hier noch verschiedene varianten mit maxdist, blocksize usw. testen. -->
+
+```{r}
+luftqualitaet_idw <- gstat::idw(formula = value~1,
+                                locations = luftqualitaet,
+                                newdata = samples,
+                                nmax = 10, 
+                                idp = 2)
+
+luftqualitaet_idw %>%
+  st_coordinates(luftqualitaet_idw) %>%
+  cbind(luftqualitaet_idw) %>%
+  ggplot(aes(X,Y, fill = var1.pred)) + 
+  geom_tile() +
+  coord_equal() +
+  scale_fill_viridis_c()
+  
+```
+
+
+### Interpolation mit Nearest Neighbour
+
+Eine Möglichkeit zu Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben eine solche Thiessenpolygone zurück gibt. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz ein Voronoidiagramm erstellen. Das macht bei uns wenig sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `rotmilan` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` objekt konvertieren, wo alle Punkte in einer Zeile zusammengefasst sind. 
+
+```{r, echo = TRUE}
+
+luftqualitaet_union <- st_union(luftqualitaet)
+
+thiessenpolygone <- st_voronoi(luftqualitaet_union)
+
+thiessenpolygone <- st_set_crs(thiessenpolygone, 2056)
+
+ggplot() + 
+  geom_sf(data = kantone) +
+  geom_sf(data = thiessenpolygone, fill = NA)
+
+```
+
+`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte:
+
+1. wie vorher müssen wir die einzelnen Kantonspolyonge miteinander verschmelzen. Dies erreichen wir mit `st_union()` und speichern den Output als `schweiz`, das das Resultat ein einzelnes Polygon der Schweizer Grenze darstellt.
+2. für die Thiessenpolygone machen wir genau das Umgekehrte: `st_voronoi()` lieferte ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
+
+```{r, echo = TRUE}
+schweiz <- st_union(kantone)
+thiessenpolygone <- st_cast(thiessenpolygone)
+
+thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
+
+ggplot() + 
+  geom_sf(data = kantone) +
+  geom_sf(data = thiessenpolygone_clip, fill = NA)
+
+```
+
+jetzt müssen wir nur noch den jeweiligen Wert für jedes Polygon ermitteln. Dies erreichen wir wieder durch `st_join`. Auch hier ist noch ein *kleiner* Vorbereitungsschritt nötig: wir konvertieren das `sfc` objekt (nur Geometrien) in ein `sf` objekt (Geometrien mit Attributtabelle).
+
+```{r, echo = TRUE}
+
+thiessenpolygone_clip <- st_as_sf(thiessenpolygone_clip)
+thiessenpolygone_clip <- st_join(thiessenpolygone_clip,luftqualitaet)
+
+ggplot() + 
+  geom_sf(data = kantone) +
+  geom_sf(data = thiessenpolygone_clip, aes(fill = value)) +
+  scale_fill_viridis_c() +
+  theme_void()
+```
+
+
+## Übung B: Dichteverteilung
 
 Beginne damit, die Kantonsgrenzen von letzter Woche sowie einen neuen Datensatz `rotmilan` zu importieren. Lade vorher aber die notwendigen Libraries und setze anschliessend das Korrekte CRS.
 
@@ -13,14 +149,9 @@ Der Datensatz `rotmilan` stammt aus einem grösseren Forschungsprojekt der Vogel
 
 
 ```{r}
-library(sf)
-library(tidyverse)
-library(lubridate)
-library(cowplot)
-library(stars)
 
 
-kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+
 rotmilan <- read_sf("22_RaumAn2/data/rotmilan.gpkg")
 
 
@@ -33,12 +164,8 @@ rotmilan <- st_set_crs(rotmilan, 2056)
 ```
 
 
-```{r}
-
-as(rotmilan,"Spatial")
 
 
-```
 
 ### Aufgabe x: Rotmilan Bewegungsdaten visualisieren
 
@@ -52,70 +179,11 @@ ggplot(kantone) +
 ```
 
 
-### Aufgabe x: Thiessen Polygone
-
-In einer ersten annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, wie viele Punkte dort liegen. Es gibt hier verschiedene Möglichkeiten, die Punktdichte klarer zu Visualisieren. Eine Möglichkeit bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. 
-
-![](https://de.wikipedia.org/wiki/Voronoi-Diagramm#/media/Datei:Voronoi_growth_euclidean.gif)
-
-`sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben eine solche Thiessenpolygone zurück gibt. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz ein Voronoidiagramm erstellen. Das macht bei uns wenig sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `rotmilan` mit `st_union()` von einem `POINT` in ein `MULTIPOIN` objekt konvertieren, wo alle Punkte in einer Zeile zusammengefasst sind. 
-
-```{r, echo = TRUE}
-
-thiessenpolygone <- rotmilan %>%
-  st_union() %>%
-  st_voronoi()
-
-
-
-ggplot() + 
-  geom_sf(data = kantone) + 
-  geom_sf(data = thiessenpolygone, fill = NA) + 
-  geom_sf(data = rotmilan) +
-  theme_void()
-
-
-```
-
-`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte,
-
-- wie vorher müssen wir die einzelnen Kantonspolyonge miteinander verschmelzen. Dies erreichen wir mit `st_union()` und speichern den Output als `schweiz`, das das Resultat ein einzelnes Polygon der Schweizer Grenze darstellt.
-- für die Thiessenpolygone machen wir genau das Umgekehrte: `st_voronoi()` lieferte ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
-
-
-
-
-```{r, echo = TRUE}
-schweiz <- st_union(kantone)
-
-
-thiessenpolygone
-
-thiessenpolygone <- st_cast(thiessenpolygone)
-
-thiessenpolygone
-
-# Dieser Schritt kann eine Weile dauern
-thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
-
-```
-
-
-Wenn wir jetzt die Thiessenpolygone (ohne Punkte) darstellen wird deutlicher, wie die Dichteverteilung im innern des Clusters aussieht. 
-
-```{r}
-
-ggplot() + 
-  geom_sf(data = schweiz) + 
-  geom_sf(data = thiessenpolygone_clip) + 
-  theme_void()
-
-```
 
 
 ### Aufgabe x: Kernel Density Estimation
 
-Eine andere, unter biologen sehr beliebte Methode ist die Dichteverteilung mit einer Kernel Density Estimation. Homeranges werden oft mit KDE95 und Core Areas mit KDE50 definiert. Kernel Density Estimations werden in vielen Bereichen angewendet um Kurven zu Glätten (?), meist sind sie ein- und nicht zweidimensional.
+In einer ersten annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, wie viele Punkte dort liegen. Es gibt hier verschiedene Möglichkeiten, die Punktdichte klarer zu Visualisieren. Eine unter biologen sehr beliebte Methode ist die Dichteverteilung mit einer Kernel Density Estimation. Homeranges werden oft mit KDE95 und Core Areas mit KDE50 definiert. Kernel Density Estimations werden in vielen Bereichen angewendet um Kurven zu Glätten (?), meist sind sie ein- und nicht zweidimensional.
 
 Leider existiert in `sf` noch keine `st_kde()` Funktion. Damit wir dieses Verfahren aber dennoch auf unsere Rotmilan-Daten anwenden können, haben wir eine eigene KDE-Funktion erstellt die wir euch zur Verfügung stellen. Die Funktion beruht auf den Libraries `MASS`, `raster` und `sf`, und `stars`. Die letzen drei solltet ihr bereits installiert haben, überprüft, ob `MASS` ebenfalls schon installiert ist und holt dies bei bedarf nach. Im Anschluss könnt ihr die nachstehende Funktion einlesen:
 
@@ -172,81 +240,85 @@ ggplot() +
   theme(legend.position = "none")
 ```
 
-Die Kernel Density estimation ist nun sehr stark von den tiefen Werten dominiert, da die Dichte in den meisten Zellen unseres Untersuchungsgebiets nahe bei Null liegt. Das sieht man auch sehr deutlich, wenn wir die Rasterzellenwerte als Boxplot oder Histogramm darstellen. Wir können die tiefen Werte ausblednen, indem wir nur die höchsten 5% der Werte 
+Die Kernel Density estimation ist nun sehr stark von den tiefen Werten dominiert, da die Dichte in den meisten Zellen unseres Untersuchungsgebiets nahe bei Null liegt. Das sieht man auch sehr deutlich, wenn wir die Rasterzellenwerte als Boxplot oder Histogramm darstellen. 
 
 
 ```{r}
-
-q95 <- raster::quantile(rotmilan_kde,probs = 0.95)
-
 par(mfrow = c(1,2))
 hist(rotmilan_kde)
-abline(v = q95)
 boxplot(rotmilan_kde)
-abline(h = q95)
 ```
 
-```{r}
-```
-
+Wir können die tiefen Werte ausblednen, indem wir nur die höchsten 5% der Werte darstellen dafür berechnen wir mit `raster::quantile` die 95. Perzentile aller Rasterzellen und nutzen dies um die Farbskale in `ggplot` zu limitieren. Zusätzlich hilft eine logarithmische Transformation der KDE-Werte die Farbskala etwas sichtbarer zu machen.
 
 ```{r}
+q95 <- raster::quantile(rotmilan_kde,probs = 0.95)
+
 ggplot() + 
-  geom_stars(data = st_as_stars(rotmilan_kde)) +
   geom_sf(data = kantone, fill = NA) +
-  scale_fill_viridis_c(limits = c(q95,NA),na.value = NA) +
+  geom_stars(data = st_as_stars(rotmilan_kde),alpha = 0.8) +
+  scale_fill_viridis_c(trans = "log10",limits = c(q95,NA),na.value = NA) +
   theme_void() +
-  theme(legend.position = "none")
+  labs(fill = "KDE",title = "Dichteverteilung von Bewegungsdaten eines Rotmilans",subtitle = "Jahre 2017-2019") +
+  theme(legend.position = "top", legend.direction = "horizontal")
 ```
 
 
 
-
-```{r}
-ggplot(kantone) + 
-  geom_sf() + 
-  geom_sf(data = rotmilan, aes(colour = factor(year(timestamp))),show.legend = 'point') +
-  labs(colour = "Jahr")+
-  theme_void()
-```
+### Aufgabe x: Thiessen Polygone
 
 
-```{r}
-rotmilan$year <- year(rotmilan$timestamp)
+<!-- raus nehmen?? -->
 
-ggplot(kantone) + 
-  geom_sf() + 
+```{r, echo = TRUE}
+
+thiessenpolygone <- rotmilan %>%
+  st_union() %>%
+  st_voronoi()
+
+
+
+ggplot() + 
+  geom_sf(data = kantone) + 
+  geom_sf(data = thiessenpolygone, fill = NA) + 
   geom_sf(data = rotmilan) +
-  theme_void()+
-  facet_wrap(~year)
+  theme_void()
+
+
 ```
 
 
 
 
-### Aufgabe x: Dichteverteilung nach Jahr
 
+
+```{r, echo = TRUE}
+schweiz <- st_union(kantone)
+
+
+thiessenpolygone
+
+thiessenpolygone <- st_cast(thiessenpolygone)
+
+thiessenpolygone
+
+# Dieser Schritt kann eine Weile dauern
+thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
+
+```
+
+
+Wenn wir jetzt die Thiessenpolygone (ohne Punkte) darstellen wird deutlicher, wie die Dichteverteilung im innern des Clusters aussieht. 
 
 ```{r}
 
-rotmilan_kdes <- rotmilan %>%
-  split(.$year) %>%
-  map(~st_kde(.x,cellsize = 1000,bandwith = 10000,kantone))
-
-
-plts <- imap(rotmilan_kdes,function(x,y){
-  ggplot() + 
-  geom_stars(data = st_as_stars(x)) +
-  geom_sf(data = kantone, fill = NA) +
-  scale_fill_viridis_c(limits = c(5e-11,NA),na.value = NA) +
-  theme_void()+
-  labs(tag = y) +
-  theme(legend.position = "none")
-})
-
-cowplot::plot_grid(plotlist = plts)
-
+ggplot() + 
+  geom_sf(data = schweiz) + 
+  geom_sf(data = thiessenpolygone_clip) + 
+  theme_void()
 
 ```
+
+
 
 
