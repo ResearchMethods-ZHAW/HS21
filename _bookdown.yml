@@ -100,6 +100,9 @@ rmd_files: [
     "20_Statistik8/Demoskript.Rmd",
     "20_Statistik8/assigment_stat8.Rmd",
     "20_Statistik8/solution_stat8.1.Rmd",
+    
+    "21_RaumAn1/Abstract.Rmd",
+    "21_RaumAn1/Uebung.Rmd",
 
 #  "00_Admin/references.Rmd"
   ]

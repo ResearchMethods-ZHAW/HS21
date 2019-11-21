@@ -1,7 +1,7 @@
 
 ## Musterlösung Aufgabe 8.1: Clusteranalysen
 
-- [R-Skript als Download](Loesung_Uebung_8.1_v.02.R)
+- [R-Skript als Download](20_Statistik8/Loesung_Uebung_8.1.R)
 
 - **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
