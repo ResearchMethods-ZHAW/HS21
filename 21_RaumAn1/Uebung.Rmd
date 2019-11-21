@@ -26,11 +26,11 @@ library(raster)
 
 Lade als erstes die Datensätze unter folgenden Links runter und importiere sie mit dem Befehl `read_sf()` in R:
 
-  - [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
-  - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
-  - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
-  - [gemeinden.gpkg](21_RaumAn1/data/gemeinden.gpkg)
-  - [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg)
+- [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
+- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
+- [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
+- [gemeinden.gpkg](21_RaumAn1/data/gemeinden.gpkg)
+- [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg)
   
 Es handelt sich um Geodatensätze im Geopackage ("\*.gpkg") format. Dieses Format stellt eine alternative zu den bekannteren "Shapefiles" dar und sind etwas leichter zu handhaben, da sie nicht gezipped werden müssen. 
 
@@ -199,7 +199,9 @@ Danach wird mit `fasterize` das Polygon in ein Raster konvertiert. Mit `field = 
 ```{r, echo = TRUE}
 skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
 
-ggplot() + geom_stars(data = st_as_stars(skelett_raster))
+ggplot() + 
+  geom_stars(data = st_as_stars(skelett_raster)) + 
+  coord_equal()
 
 ```
 
@@ -209,8 +211,15 @@ Mit `raster::extract()` könnnen nun die Rasterwerte aus dem Rasterdatensatz ext
 
 
 ```{r, echo = TRUE}
-wasser$skelett_median <- raster::extract(skelett_raster,wasser_2km,fun = median)
+wasser$skelett_median <- raster::extract(skelett_raster,wasser_2km,fun = median)[,1]
 
+```
+
+```{r}
+wasser %>%
+  mutate(skelett_median = factor(skelett_median)) %>%
+  ggplot() +  
+  geom_boxplot(aes(skelett_median,wasserverfuegbarkeit))
 ```
 
 
