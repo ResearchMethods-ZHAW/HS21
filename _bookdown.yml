@@ -99,7 +99,7 @@ rmd_files: [
     "20_Statistik8/Abstract.Rmd",
     "20_Statistik8/Demoskript.Rmd",
     "20_Statistik8/assigment_stat8.Rmd",
-#  "20_Statistik8/Musterloesung_Statistik_8.1.Rmd",
+    "20_Statistik8/solution_stat8.1.Rmd",
 
 #  "00_Admin/references.Rmd"
   ]
