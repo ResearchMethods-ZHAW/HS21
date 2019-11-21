@@ -7,9 +7,12 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 
 ## Übung
 
-Um in R mit räumlichen Daten zu arbeiten existieren eine vielzahl von Libraries, die ihrerseits wiederum auf weiteren Libraries basieren (Stichwort `dependencies`). 
 
-- Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Notfällen auf andere Libraries zurück greifen
+### Vorbereitung
+
+Es gibt bereits eine Vielzahl von Libraries um in R mit räumlichen Daten zu arbeiten, die ihrerseits wiederum auf weiteren Libraries basieren (Stichwort `dependencies`). 
+
+- Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Libraries zurück greifen.
 - Für *Rasterdaten* exisitert das Packages `raster`
 
 Für die Integration von Vektor und Rasterdaten existiert die Library `starts`: *S*patio*t*emporal *A*rrays for *R*aster and *V*ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Libraries (installiere die fehlenden Packages mit `install.package("packagename")`).
@@ -24,13 +27,12 @@ library(raster)
 
 ### Aufgabe 1: Daten runterladen und importieren
 
-Lade als erstes die Datensätze unter folgenden Links runter und importiere sie mit dem Befehl `read_sf()` in R:
+Lade zunächst die Datensätze unter folgenden Links herunter und importiere sie mit dem Befehl `read_sf()` in R:
 
-- [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
-- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
-- [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
-- [gemeinden.gpkg](21_RaumAn1/data/gemeinden.gpkg)
-- [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg)
+- [bodeneignung_skelett.gpkg](21_RaumAn1/data/skelettgehalt_proben.gpkg) Datensatz abgeleitt des Bundesamt für Landwirtschaft ([weitere Informationen](https://www.blw.admin.ch/blw/de/home/politik/datenmanagement/geografisches-informationssystem-gis/download-geodaten.html))
+- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg): Ein Datensatz der Swisstopo ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
+- [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg) Ein Datensatz der Swisstopo ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
+- [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg): Ein Datensatz der WSL ([weiteren Informationen](https://www.wsl.ch/de/ueber-die-wsl/programme-und-initiativen/abgeschlossene-programme-und-grossprojekte/wuk.html))
   
 Es handelt sich um Geodatensätze im Geopackage ("\*.gpkg") format. Dieses Format stellt eine alternative zu den bekannteren "Shapefiles" dar und sind etwas leichter zu handhaben, da sie nicht gezipped werden müssen. 
 
@@ -64,6 +66,8 @@ ggplot(wasser) +
   geom_sf() +
   labs(caption = "X/Y-Koordinaten liegen im Bereich 6 - 11 (x-Achse), respektive 46-47 (y-Achse)")
 ```
+
+
 
 
 ### Aufgabe 3 Koordinatensysteme *zuweisen*
@@ -113,12 +117,23 @@ gemeinden <- st_set_crs(gemeinden, 2056)
 skelettgehalt <- st_set_crs(skelettgehalt, 2056)
 ```
 
+Jetzt wo das CRS der Datensätze bekannt ist, können diese in einem gemeinsamen Plot visualisiert werden, `ggplot` kümmert sich darum die unterschiedlichen Koordinatensysteme zu vereinheitlichen. Probier das aus, indem du `kantone` und `wasser` in einem `ggplot` komobinierst.
+
+Die Achsen werden dann immer in WGS84 beschriftet, wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
+
+```{r}
+ggplot() + 
+  geom_sf(data = kantone) +
+  geom_sf(data = wasser)
+```
+
 
 
 
 ### Aufgabe 4: Koordinatensyteme *transformieren*
 
-In der vorherigen Übung haben wir das bestehende Kooridnatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten in das neue Koordinatensystem umgerechnet und somit manipuliert. Aus praktischen Gründen wollen wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Transformiere den Datensatz `wasser` mit `st_transform()`in CH1903+ LV95, nutze dafür den korrgekten EPSG-Code.
+In der vorherigen Übung haben wir das bestehende Kooridnatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten in das neue Koordinatensystem umgerechnet und somit manipuliert. Aus praktischen Gründen wollen <!-- Was sind diese Gründe? genauer erläutern? -->
+wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Transformiere den Datensatz `wasser` mit `st_transform()`in CH1903+ LV95, nutze dafür den korrgekten EPSG-Code.
 
 Vor der Transformation (betrachte die Spalte `geom` sowie die Attribute `epsg (SRID)` und `proj4string`): 
 
@@ -178,7 +193,6 @@ wasser_2km <- st_buffer(wasser,2000)
 ggplot(wasser_2km) + geom_sf(fill = "blue")
 ```
 
-Hinweis: Sofern der CRS von einem Datensatz bekannt ist, werden die Achsen in in `ggplot` in WGS84 dargestellt. Wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
 
 
 #### Teilaufgabe B: Polygon in Raster konvertieren
@@ -199,29 +213,37 @@ Danach wird mit `fasterize` das Polygon in ein Raster konvertiert. Mit `field = 
 ```{r, echo = TRUE}
 skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
 
-ggplot() + 
-  geom_stars(data = st_as_stars(skelett_raster)) + 
-  coord_equal()
+ggplot() + geom_stars(data = st_as_stars(skelett_raster))
 
 ```
 
 #### Teilaufgabe B: Rasterwerte extrahieren
 
-Mit `raster::extract()` könnnen nun die Rasterwerte aus dem Rasterdatensatz extrahiert werden. In `fun = ` kann festgelegt werden, ob und mit welcher Funktion die vielen Rasterzellen pro Polygon aggregiert werden sollen. Bei uns passt entweder `median` oder `mean`.
-
-
-```{r, echo = TRUE}
-wasser$skelett_median <- raster::extract(skelett_raster,wasser_2km,fun = median)[,1]
-
-```
+Mit `raster::extract()` könnnen nun die Rasterwerte aus dem Rasterdatensatz extrahiert werden. In `fun = ` kann festgelegt werden, ob und mit welcher Funktion die vielen Rasterzellen pro Polygon aggregiert werden sollen. Wir möchten nur den häufigsten Wert zurück erhalten, sprich den [Modus](https://de.wikipedia.org/wiki/Modus_(Statistik)) dafür gibt es in `R` leider keine eingebaute Funktion, weshalb wir unsere eigene basteln müssen:
 
 ```{r}
-wasser %>%
-  mutate(skelett_median = factor(skelett_median)) %>%
-  ggplot() +  
-  geom_boxplot(aes(skelett_median,wasserverfuegbarkeit))
+mode <- function(x,na.rm = FALSE) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
 ```
 
+Nun können wir mit `raster::extract()` den Modus in jedem Polygon berechnen.
+
+```{r, echo = TRUE}
+
+
+wasser_skelett$skelett_mode <- extract(skelett_raster,wasser_2km,fun = mode)[,1]
+
+
+```
+
+Nun könnnen wir Prüfen, wie oft die beiden Join-Varianten übereinstimmen:
+
+```{r}
+ggplot(wasser_skelett) + geom_bar(aes(skelett_mode)) + facet_wrap(~SKELETT)
+
+```
 
 
 ### Aufgabe 7: Spatial Join mit Kantone, Bezirke, Gemeinden
@@ -309,77 +331,4 @@ ggplot() +
 ```
 
 
-
-## Rauswerfen?
-
-### Räumliche Joins (Spatialjoin)
-
-Änlich wie bei Attribut Joins, die ihr in Preprocessing 1 & 2 kennengelernt habt (`left_join()`, `inner_join()`, `outer_jooin()`), gibt es auch räumliche Joins. Stellt euch folgendes beispiel vor:
-
-Ihr habt 4 Quadrate und 10 Punkte. Punkte können, aber müssen nicht in den Quadraten liegen. 
-
-```{r}
-
-quadrate <-st_make_grid(kantone,cellsize = 200000) %>%
-  st_as_sf() %>%
-  mutate(id = LETTERS[row_number()])
-
-
-set.seed(10)
-punkte <- st_sample(st_buffer(quadrate,100000),10) %>% st_as_sf() %>% mutate(value = rnorm(nrow(.)))
-
-
-ggplot(quadrate) + geom_sf() + geom_sf_label(aes(label = id)) + geom_sf(data = punkte,inherit.aes = FALSE, aes(colour = value)) + theme_void()
-
-
-```
-
-Jetzt gibt es verschiedene Fragen, die ihr an die räumliche Beziehung dieser beiden Datensätze stellen könnt:
-
-1. wie viele Punkte liegen in jedem Quadrat? <!-- oder: Was ist der Mittelwert aller Punkte pro Quadrat? -->
-2. in welchem Quadrat liegt jeder Punkt? <!-- oder in wie vielen Quadraten liegt jeder Punkt? -->
-
-Die Fragen klingen ähnlich, haben jeweils aber einen andere Sichtweise auf die Daten: Im ersten Fall liegt der Fokus auf den *Quadraten* und im zweiten Fall auf den *Punkten*. Mit anderen Worten: Im ersten Fall liefert die Antwort auf die Frage Quadrate zurück, im zweiten Fall Punkte. Der Datensatz, der im Fokus liegt wird auf der *linken* Seite der Funktion aufgeführt und es wird immer von einem `left_join` (oder `inner_join`) ausgegangen. 
-
-
-Für die erste Frage "wie viele Punkte liegen in jedem Quadrat?" beginnen wir mit einem `join` auf `quadrate`:
-
-```{r, echo = TRUE}
-quadrate_punkte <- st_join(quadrate,punkte) 
-quadrate_punkte
-```
-
-Was nun auffällt, ist das sich die Anzahl der Quadrate verändert hat. Jedes Quadrat wurde pro darin liegenden Punkt repliziert. Um nun die Anzahl Punkte *pro Quadrat* zu ermitteln nutzen wir den bekannten Split-Apply-Combine-Ansatz mit `group_by()` und `summarise()`. Wir gruppieren mit `id`, welche jedes Quadrat eindeutig bezeichnet, und brauchen summarise um die Anzahl punkte zu zählen.
-
-```{r, echo = TRUE}
-quadrate_punkte <- quadrate_punkte%>%
-  group_by(id) %>%
-  summarise(Anzahl_Punkte = sum(!is.na(value)))
-
-quadrate_punkte
-```
-
-
-```{r, fig.cap="Spatial Join mit Anzahl Punkte pro Quadrat. Gewisse Quadrate haben keine Punkte, gewisse Punkte werden zu keinem Quadrat gezählt."}
-ggplot(quadrate_punkte) + 
-  geom_sf(aes(fill = factor(Anzahl_Punkte))) + 
-  scale_fill_viridis_d() +
-  labs(fill = "Anzahl Punkte") +
-  geom_sf_label(aes(label = id)) + 
-  geom_sf(data = punkte) + 
-  theme_void()
-```
-
-
-Für die Umgekehrte Frage drehen wir die Argumente in `st_join()` einfach um. Da in unserem Fall jeder Punk in höchstens einem Quadrat liegen kann, braucht es hierfür kein `group_by()` und `summarise()`.
-
-
-```{r, echo = TRUE}
-st_join(punkte,quadrate)
-```
-
-Tipps für Fortgeschrittene:
-
-- um einen `inner_join` statt einen `left_join` durchzuführen, setzt man `left = FALSE`
-- es gibt verschiedene räumliche Beziehungen, die man prüfen kann. Standartmässig wird `intersetct`geprüft. Dabei gibt es noch weitere räumlichhen Beziehungen, wie zum Beispiel `touches` , `crosses`, `covers`, `within_distance` und viele weitere. Siehe dazu `?st_join` sowie `?st_intersects`.
 

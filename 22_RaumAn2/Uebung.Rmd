@@ -37,10 +37,94 @@ rotmilan <- st_set_crs(rotmilan, 2056)
 
 as(rotmilan,"Spatial")
 
+
+```
+
+### Aufgabe x: Rotmilan Bewegungsdaten visualisieren
+
+Eine der ersten Fragen die bei solchen Bewegungsstudien gestellt werden lautet: *Wo haltet sich das Tier hauptsächlich auf?* Um diese Frage zu Beantworten kann man als erstes einfach die Datenpunkte in einer einfachen Karte Visualisieren.
+
+```{r}
+ggplot(kantone) + 
+  geom_sf() + 
+  geom_sf(data = rotmilan) +
+  theme_void()
+```
+
+
+### Aufgabe x: Thiessen Polygone
+
+In einer ersten annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, wie viele Punkte dort liegen. Es gibt hier verschiedene Möglichkeiten, die Punktdichte klarer zu Visualisieren. Eine Möglichkeit bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. 
+
+![](https://de.wikipedia.org/wiki/Voronoi-Diagramm#/media/Datei:Voronoi_growth_euclidean.gif)
+
+`sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben eine solche Thiessenpolygone zurück gibt. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz ein Voronoidiagramm erstellen. Das macht bei uns wenig sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `rotmilan` mit `st_union()` von einem `POINT` in ein `MULTIPOIN` objekt konvertieren, wo alle Punkte in einer Zeile zusammengefasst sind. 
+
+```{r, echo = TRUE}
+
+thiessenpolygone <- rotmilan %>%
+  st_union() %>%
+  st_voronoi()
+
+
+
+ggplot() + 
+  geom_sf(data = kantone) + 
+  geom_sf(data = thiessenpolygone, fill = NA) + 
+  geom_sf(data = rotmilan) +
+  theme_void()
+
+
+```
+
+`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte,
+
+- wie vorher müssen wir die einzelnen Kantonspolyonge miteinander verschmelzen. Dies erreichen wir mit `st_union()` und speichern den Output als `schweiz`, das das Resultat ein einzelnes Polygon der Schweizer Grenze darstellt.
+- für die Thiessenpolygone machen wir genau das Umgekehrte: `st_voronoi()` lieferte ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
+
+
+
+
+```{r, echo = TRUE}
+schweiz <- st_union(kantone)
+
+
+thiessenpolygone
+
+thiessenpolygone <- st_cast(thiessenpolygone)
+
+thiessenpolygone
+
+# Dieser Schritt kann eine Weile dauern
+thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
+
+```
+
+
+Wenn wir jetzt die Thiessenpolygone (ohne Punkte) darstellen wird deutlicher, wie die Dichteverteilung im innern des Clusters aussieht. 
+
+```{r}
+
+ggplot() + 
+  geom_sf(data = schweiz) + 
+  geom_sf(data = thiessenpolygone_clip) + 
+  theme_void()
+
+```
+
+
+### Aufgabe x: Kernel Density Estimation
+
+Eine andere, unter biologen sehr beliebte Methode ist die Dichteverteilung mit einer Kernel Density Estimation. Homeranges werden oft mit KDE95 und Core Areas mit KDE50 definiert. Kernel Density Estimations werden in vielen Bereichen angewendet um Kurven zu Glätten (?), meist sind sie ein- und nicht zweidimensional.
+
+Leider existiert in `sf` noch keine `st_kde()` Funktion. Damit wir dieses Verfahren aber dennoch auf unsere Rotmilan-Daten anwenden können, haben wir eine eigene KDE-Funktion erstellt die wir euch zur Verfügung stellen. Die Funktion beruht auf den Libraries `MASS`, `raster` und `sf`, und `stars`. Die letzen drei solltet ihr bereits installiert haben, überprüft, ob `MASS` ebenfalls schon installiert ist und holt dies bei bedarf nach. Im Anschluss könnt ihr die nachstehende Funktion einlesen:
+
+```{r}
 st_kde <- function(points,cellsize, bandwith, extent = NULL){
   require(MASS)
   require(raster)
   require(sf)
+  require(stars)
   if(is.null(extent)){
     extent_vec <- st_bbox(points)[c(1,3,2,4)]
   } else{
@@ -57,21 +141,65 @@ st_kde <- function(points,cellsize, bandwith, extent = NULL){
   matrix <- kde2d(coords[,1],coords[,2],h = bandwith,n = c(n_x,n_y),lims = extent_vec)
   raster(matrix)
 }
-
 ```
 
-### Aufgabe x: Rotmilan Bewegungsdaten visualisieren
 
-Eine der ersten Fragen die bei solchen Bewegungsstudien gestellt werden lautet: *Wo haltet sich das Tier hauptsächlich auf?* Um diese Frage zu Beantworten kann man als erstes einfach die Datenpunkte in einer einfachen Karte Visualisieren.
+Die Parameter der Funktion sollten relativ klar sein:
+
+- points: Ein Punktdatensatz aus der Class `sf`
+- cellsize: Die Zellgrösse des output-Rasters
+- bandwith: Der Suchradius für die Dichteberechnung
+- extent (optional): Der Perimeter, in dem die Dichteverteilung berechnet werden soll. Wenn kein Perimeter angegeben wird, wird die "bounding box" von `points` genutzt.
+
+Wenn wir nun mit `st_kde()` die Dichteverteilung berechnen, erhalten wir einen Raseterdatensatz zurück der sich mit `base::plot()` schnell visualisieren lässt.
 
 ```{r}
-ggplot(kantone) + 
-  geom_sf() + 
-  geom_sf(data = rotmilan) +
-  theme_void()
+rotmilan_kde <- st_kde(rotmilan,cellsize = 1000,bandwith = 10000,schweiz)
+
+rotmilan_kde
+
+plot(rotmilan_kde)
 ```
 
-In einer ersten annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, 
+Um den raster Datensatz in `ggplot()` to integrieren müssen wir ihn zu einerm `stars` objekt konvertieren und können danach `geom_stars()` verwenden.
+
+```{r}
+ggplot() + 
+  geom_stars(data = st_as_stars(rotmilan_kde)) +
+  geom_sf(data = kantone, fill = NA) +
+  scale_fill_viridis_c() +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+Die Kernel Density estimation ist nun sehr stark von den tiefen Werten dominiert, da die Dichte in den meisten Zellen unseres Untersuchungsgebiets nahe bei Null liegt. Das sieht man auch sehr deutlich, wenn wir die Rasterzellenwerte als Boxplot oder Histogramm darstellen. Wir können die tiefen Werte ausblednen, indem wir nur die höchsten 5% der Werte 
+
+
+```{r}
+
+q95 <- raster::quantile(rotmilan_kde,probs = 0.95)
+
+par(mfrow = c(1,2))
+hist(rotmilan_kde)
+abline(v = q95)
+boxplot(rotmilan_kde)
+abline(h = q95)
+```
+
+```{r}
+```
+
+
+```{r}
+ggplot() + 
+  geom_stars(data = st_as_stars(rotmilan_kde)) +
+  geom_sf(data = kantone, fill = NA) +
+  scale_fill_viridis_c(limits = c(q95,NA),na.value = NA) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+
 
 
 ```{r}
@@ -94,20 +222,6 @@ ggplot(kantone) +
 ```
 
 
-### Aufgabe x: Dichteverteilung der Punkte mit KDE
-
-```{r}
-rotmilan_kde <- st_kde(rotmilan,cellsize = 1000,bandwith = 10000,kantone)
-
-
-ggplot() + 
-  geom_stars(data = st_as_stars(rotmilan_kde)) +
-  geom_sf(data = kantone, fill = NA) +
-  scale_fill_viridis_c(limits = c(5e-11,NA),na.value = NA) +
-  theme_void() +
-  theme(legend.position = "none")
-
-```
 
 
 ### Aufgabe x: Dichteverteilung nach Jahr
