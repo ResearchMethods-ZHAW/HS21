@@ -184,6 +184,18 @@ st_write(gemeinden,"21_RaumAn1/data/gemeinden.gpkg",delete_dsn = TRUE)
 
 ### Prepare "Kantone"
 
+
+```{r}
+kantone_abk <- read_delim("21_RaumAn1/data_raw/kantone.csv",";",col_names = c("Abk","Name","Nummer"), locale = locale(encoding = "Windows-1252")) %>%
+  dplyr::select(-Name)
+
+kantone <- kantone %>%
+  mutate(Nummer = as.integer(str_sub(KANTONSNUM,3,4))) %>% 
+  left_join(kantone_abk,by = "Nummer")
+
+```
+
+
 ```{r}
 ggplot(kantone) + geom_sf()
 ```

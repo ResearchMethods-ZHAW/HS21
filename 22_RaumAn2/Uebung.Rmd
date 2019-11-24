@@ -2,13 +2,21 @@
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warnings = FALSE) 
 ```
 
-## Übung A: Interpolationen
 
-Daten importieren, CRS zuweisen
+## Übung Spatial Data Science 2: Interpolationen und Dichteverteilungen
 
-- [luftqualitaet.gpkg](22_RaumAn2/data/luftqualitaet.gpkg) Luftqualitätsmessungen, NO2, [weitere Infos](https://opendata.swiss/en/dataset/luftqualitaet)
+### Themantische Einbettung
+
+In dieser zweiten Übung wirst Du wiederum Geodatensätze verarbeiten und darstellen. Wir starten mit einem Punktdatensatz zu einem Messnetz zur Erhebung der Luftqualität in der Schweiz (NO2 um genau zu sein). Im Gegensatz zum Punktdatensatz zur Wasserverfügbarkeit aus der vorherigen Übung, sind die Messstellen des Messnetztes zur Luftqualität sehr unregelmässig im Raum verteilt. Trotzdem möchten wir versuchen ein kontinuierliches Raster von Luftqualitätswerten für die ganze Schweiz zu interpolieren. Wir starten mit der einfachen Interpolations-Methode Inverse Distance Weighting IDW. Danach wollen wir für den gleichen Datensatz nach dem Ansatz der nächsten Nachbarn die Thiessen Polygone konstruieren. Im zweiten Teil der Übung wollen wir Dichteverteilung untersuchen. Dabei untersuchen wir einen Datensatz zur Verbreitung und Rotmilanen in der Schweiz. Mittels einer Kernel Density Estimation KDE berechnen wir eine kontinuierliche Dichteverteilung, über die wir eine Annäherung an das Habitat des untersuchten Greifvogels berechnen können.
+
+### Vorbereitung
+
+Importiere zunächst die Daten importieren. Weise dann die korrekten Koordinatensysteme zu (CRS zuweisen).
+
+- [luftqualitaet.gpkg](22_RaumAn2/data/luftqualitaet.gpkg) Luftqualitätsmessungen, NO2, ([weitere Informationen](https://opendata.swiss/en/dataset/luftqualitaet))
 - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg): Ein Datensatz der Swisstopo ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
 
+<!-- todo Nils: hier hatte ich immer das Problem, dass gstat nicht vorhanden war, installieren ging nicht, dependency spacetime..... -->
 
 ```{r, echo = TRUE}
 library(gstat)
@@ -28,9 +36,9 @@ kantone <- st_set_crs(kantone, 2056)
 
 
 
-### Aufgabe X: Räumliche Interpolation mit IDW
+### Aufgabe 1: Räumliche Interpolation mit IDW
 
-Die Library `spatstat` bietet verschiedene Möglicheiten, Datenpunkte zu interpolieren. Das Schema ist dabei immer gleich: man erstellt zuerst einen Punktdatensatz, für um diejenigen Orte bestimmen, wo man gerne Messert hätte. Wenn man 
+Die Library `spatstat` bietet verschiedene Möglicheiten, Datenpunkte zu interpolieren. Das Schema ist dabei immer gleich: man erstellt zuerst einen Punktdatensatz, um diejenigen Orte zu bestimmen, für die man gerne Messwerte hätte. Wenn man...??? 
 
 ```{r, echo = TRUE}
 samples <- st_sample(kantone,size = 2000,type = "regular")
@@ -48,6 +56,8 @@ ggplot(luftqualitaet) +
   geom_sf(data = luftqualitaet_idw, aes(colour = var1.pred)) +
   scale_colour_viridis_c()
 ```
+
+<!-- todo Nils: Hast Du also eine IDW-Version gefunden, welche nmax angeben kann? Geht auch rmax? Und, macht das Ding irgendwie nur Punkte? Das versteh ich noch nicht -->
 
 In unserem Fall machte es mehr Sinn, die Datenpunkte als `raster` darzustellen. Dafür machen wir nicht extra einen `RasterLayer` wie letzte Woche, sondern ergänzen den Datensatz `luftqualitaet_idw` mit X/Y Koordinaten *in spalten* und übergeben dies `ggplot` mit `geom_rater()`.
 
@@ -88,9 +98,9 @@ luftqualitaet_idw %>%
 ```
 
 
-### Interpolation mit Nearest Neighbour
+### Aufgabe 2: Interpolation mit Nearest Neighbour / Thiessen Polygone
 
-Eine Möglichkeit zu Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben eine solche Thiessenpolygone zurück gibt. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz ein Voronoidiagramm erstellen. Das macht bei uns wenig sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `rotmilan` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` objekt konvertieren, wo alle Punkte in einer Zeile zusammengefasst sind. 
+Eine weitere einfache Möglichkeit zur Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben um die Punkte die Thiessenpolygone konstruiert. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz, ein Voronoidiagramm. Das macht bei uns wenig Sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `rotmilan` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` Objekt konvertieren, wo alle Punkte in einer Zeile zusammengefasst sind.
 
 ```{r, echo = TRUE}
 
@@ -106,10 +116,10 @@ ggplot() +
 
 ```
 
-`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte:
+`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Dies ist allerdings eine schöne Illustration der Randeffekte von Thiessenpolygonen, die zum Rand hin wo es immer weniger Punkte hat, sehr gross werden können. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte:
 
-1. wie vorher müssen wir die einzelnen Kantonspolyonge miteinander verschmelzen. Dies erreichen wir mit `st_union()` und speichern den Output als `schweiz`, das das Resultat ein einzelnes Polygon der Schweizer Grenze darstellt.
-2. für die Thiessenpolygone machen wir genau das Umgekehrte: `st_voronoi()` lieferte ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
+1. wie vorher müssen wir die einzelnen Kantons-Polygone miteinander verschmelzen. Dies erreichen wir mit `st_union()` und speichern den Output als `schweiz`, was als Resultat ein einzelnes Polygon der Schweizergrenze retourniert.
+2. für die Thiessen-Polygone machen wir genau das Umgekehrte: `st_voronoi()` lieferte ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
 
 ```{r, echo = TRUE}
 schweiz <- st_union(kantone)
@@ -123,7 +133,7 @@ ggplot() +
 
 ```
 
-jetzt müssen wir nur noch den jeweiligen Wert für jedes Polygon ermitteln. Dies erreichen wir wieder durch `st_join`. Auch hier ist noch ein *kleiner* Vorbereitungsschritt nötig: wir konvertieren das `sfc` objekt (nur Geometrien) in ein `sf` objekt (Geometrien mit Attributtabelle).
+Jetzt müssen wir nur noch den jeweiligen Wert für jedes Polygon ermitteln. Dies erreichen wir wieder durch `st_join`. Auch hier ist noch ein *kleiner* Vorbereitungsschritt nötig: Wir konvertieren das `sfc` objekt (nur Geometrien) in ein `sf` objekt (Geometrien mit Attributtabelle).
 
 ```{r, echo = TRUE}
 
@@ -138,14 +148,14 @@ ggplot() +
 ```
 
 
-## Übung B: Dichteverteilung
+### Aufgabe 3: Rotmilan Bewegungsdaten vorbereiten
 
-Beginne damit, die Kantonsgrenzen von letzter Woche sowie einen neuen Datensatz `rotmilan` zu importieren. Lade vorher aber die notwendigen Libraries und setze anschliessend das Korrekte CRS.
+Beginne damit, die Kantonsgrenzen von letzer Woche sowie einen neuen Datensatz `rotmilan` zu importieren. Lade vorher aber die notwendigen Libraries und setze anschliessend das korrekte Koordinatensystem (CRS).
 
 - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
 - [rotmilan.gpkg](21_RaumAn1/data/kantone.gpkg)
 
-Der Datensatz `rotmilan` stammt aus einem grösseren Forschungsprojekt der Vogelwarte Sempbach [Mechanismen der Populationsdynamik beim Rotmilan](https://www.vogelwarte.ch/de/projekte/oekologische-forschung/mechanismen-der-populationsdynamik-beim-rotmilan). Der Datensatz wurde über die Plattform [movebank](http://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page%3Dsearch_map_linked%2CindividualIds%3D676571254%2Clat%3D44.465151013519666%2Clon%3D9.096679687499508%2Cz%3D5) zur Verfügung gestellt. Es handelt sich dabei um ein einzelndes Individuum, welches seit 2017 mit einem Sender versehen ist und über ganz Mitteleuropa zieht. Wir arbeiten in dieser Übung nur mit denjenigen Datenpunkten, die in der Schweiz erfasst wurden. Wer den ganzen Datensatz analysieren möchte, kann sich diesen über den Movebank-Link runterladen.
+Der Datensatz `rotmilan` stammt aus einem grösseren Forschungsprojekt der Vogelwarte Sempbach [Mechanismen der Populationsdynamik beim Rotmilan](https://www.vogelwarte.ch/de/projekte/oekologische-forschung/mechanismen-der-populationsdynamik-beim-rotmilan). Der Datensatz wurde über die Plattform [movebank](http://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page%3Dsearch_map_linked%2CindividualIds%3D676571254%2Clat%3D44.465151013519666%2Clon%3D9.096679687499508%2Cz%3D5) zur Verfügung gestellt. Es handelt sich dabei um ein einzelnes Individuum, welches seit 2017 mit einem Sender versehen ist und über ganz Mitteleuropa zieht. Wir arbeiten in dieser Übung nur mit denjenigen Datenpunkten, die in der Schweiz erfasst wurden. Wer den ganzen Datensatz analysieren möchte, kann sich diesen über den Movebank-Link runterladen.
 
 
 ```{r}
@@ -167,9 +177,9 @@ rotmilan <- st_set_crs(rotmilan, 2056)
 
 
 
-### Aufgabe x: Rotmilan Bewegungsdaten visualisieren
+### Aufgabe 4: Rotmilan Bewegungsdaten visualisieren
 
-Eine der ersten Fragen die bei solchen Bewegungsstudien gestellt werden lautet: *Wo haltet sich das Tier hauptsächlich auf?* Um diese Frage zu Beantworten kann man als erstes einfach die Datenpunkte in einer einfachen Karte Visualisieren.
+Eine der ersten Fragen, die bei solchen Bewegungsstudien gestellt wird, lautet: *Wo hält sich das Tier hauptsächlich auf?* Um diese Frage zu beantworten, kann man als erstes einfach die Datenpunkte in einer einfachen Karte visualisieren.
 
 ```{r}
 ggplot(kantone) + 
@@ -181,11 +191,11 @@ ggplot(kantone) +
 
 
 
-### Aufgabe x: Kernel Density Estimation
+### Aufgabe 5: Kernel Density Estimation berechnen
 
-In einer ersten annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, wie viele Punkte dort liegen. Es gibt hier verschiedene Möglichkeiten, die Punktdichte klarer zu Visualisieren. Eine unter biologen sehr beliebte Methode ist die Dichteverteilung mit einer Kernel Density Estimation. Homeranges werden oft mit KDE95 und Core Areas mit KDE50 definiert. Kernel Density Estimations werden in vielen Bereichen angewendet um Kurven zu Glätten (?), meist sind sie ein- und nicht zweidimensional.
+In einer ersten Annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "Overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, wie viele Punkte dort effektiv liegen und ggf. übereinander liegen. Es gibt hier verschiedene Möglichkeiten, die Punktdichte klarer zu visualisieren. Eine unter Biologen sehr beliebte Methode ist die Dichteverteilung mit einer Kernel Density Estimation (KDE). Dies v.a. darum, weil mit KDE das Habitat (Streifgebiet) eines Tieres abgeschätzt werden kann. Homeranges werden oft mit KDE95 und Core Areas mit KDE50 definiert. Kernel Density Estimations werden in vielen Bereichen angewendet, um Kurven zu Glätten (?), meist sind sie ein- und nicht zweidimensional.
 
-Leider existiert in `sf` noch keine `st_kde()` Funktion. Damit wir dieses Verfahren aber dennoch auf unsere Rotmilan-Daten anwenden können, haben wir eine eigene KDE-Funktion erstellt die wir euch zur Verfügung stellen. Die Funktion beruht auf den Libraries `MASS`, `raster` und `sf`, und `stars`. Die letzen drei solltet ihr bereits installiert haben, überprüft, ob `MASS` ebenfalls schon installiert ist und holt dies bei bedarf nach. Im Anschluss könnt ihr die nachstehende Funktion einlesen:
+Leider existiert in `sf` noch keine `st_kde()` Funktion. Damit wir dieses Verfahren aber dennoch auf unsere Rotmilan-Daten anwenden können, haben wir eine eigene KDE-Funktion erstellt, die wir Euch zur Verfügung stellen. Die Funktion beruht auf den Libraries `MASS`, `raster` und `sf`, und `stars`. Die letzen drei solltet ihr bereits installiert haben, überprüft, ob `MASS` ebenfalls schon installiert ist und holt dies bei Bedarf nach. Im Anschluss könnt Ihr die nachstehende Funktion einlesen:
 
 ```{r}
 st_kde <- function(points,cellsize, bandwith, extent = NULL){
@@ -229,7 +239,7 @@ rotmilan_kde
 plot(rotmilan_kde)
 ```
 
-Um den raster Datensatz in `ggplot()` to integrieren müssen wir ihn zu einerm `stars` objekt konvertieren und können danach `geom_stars()` verwenden.
+Um den Raster-Datensatz in `ggplot()` zu integrieren, müssen wir ihn zu einem `stars`-Objekt konvertieren und können danach `geom_stars()` verwenden.
 
 ```{r}
 ggplot() + 
@@ -240,7 +250,7 @@ ggplot() +
   theme(legend.position = "none")
 ```
 
-Die Kernel Density estimation ist nun sehr stark von den tiefen Werten dominiert, da die Dichte in den meisten Zellen unseres Untersuchungsgebiets nahe bei Null liegt. Das sieht man auch sehr deutlich, wenn wir die Rasterzellenwerte als Boxplot oder Histogramm darstellen. 
+Die Kernel Density Estimation ist nun sehr stark von den tiefen Werten dominiert, da die Dichte in den meisten Zellen unseres Untersuchungsgebiets nahe bei Null liegt. Das sieht man auch sehr deutlich, wenn wir die Rasterzellenwerte als Boxplot oder Histogramm darstellen. 
 
 
 ```{r}
@@ -249,7 +259,7 @@ hist(rotmilan_kde)
 boxplot(rotmilan_kde)
 ```
 
-Wir können die tiefen Werte ausblednen, indem wir nur die höchsten 5% der Werte darstellen dafür berechnen wir mit `raster::quantile` die 95. Perzentile aller Rasterzellen und nutzen dies um die Farbskale in `ggplot` zu limitieren. Zusätzlich hilft eine logarithmische Transformation der KDE-Werte die Farbskala etwas sichtbarer zu machen.
+Wir können die tiefen Werte ausblenden, indem wir nur die höchsten 5% der Werte darstellen. Dafür berechnen wir mit `raster::quantile` die 95. Perzentile aller Rasterzellen und nutzen dies um die Farbskala in `ggplot` zu limitieren. Zusätzlich hilft eine logarithmische Transformation der KDE-Werte, die Farbskala etwas sichtbarer zu machen.
 
 ```{r}
 q95 <- raster::quantile(rotmilan_kde,probs = 0.95)
@@ -265,8 +275,9 @@ ggplot() +
 
 
 
-### Aufgabe x: Thiessen Polygone
+### Aufgabe 6: Dichteverteilung mit Thiessen Polygonen
 
+Thiessen Polygone bieten eine spannende alternative Variante um Unterschiede in der Dichteverteilung von Punktdatensätzen zu visualisieren. Warum? Wir wollen dies nun ausprobieren und konstruieren zum Schluss die Thiessenpolygone für die Rotmilan-Daten für das Untersuchungsgebiet Schweiz.
 
 <!-- raus nehmen?? -->
 
