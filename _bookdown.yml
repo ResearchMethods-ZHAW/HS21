@@ -77,7 +77,7 @@ rmd_files: [
  "17_Statistik5/solution_stat5.1.Rmd",
  "17_Statistik5/solution_stat5.2.Rmd",
 
-     "17_Statistik_Konsolidierung1/Abstract.Rmd",
+    "17_Statistik_Konsolidierung1/Abstract.Rmd",
     #"17_Statistik5/Demoskript.Rmd",
     "17_Statistik_Konsolidierung1/assigment_konstat1.Rmd",
    #"17_Statistik5/Musterloesung_Statistik_5.1.Rmd",

@@ -1,9 +1,9 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE) 
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup") 
 ```
 
 
-## Übung Spatial Data Science 1: Spatial Join, Puffer und MAUP
+## Übung: Spatial Join, Puffer und MAUP
 
 
 ### Themantische Einbettung
@@ -17,7 +17,7 @@ Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbe
 - Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
 - Für *Rasterdaten* exisitert das Package `raster`
 
-Für die Integration von Vektor und Rasterdaten existiert das Package `starts`: **S**patio**t**emporal **A**rrays for **R*aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
+Für die Integration von Vektor und Rasterdaten existiert das Package `starts`: **S**patio**t**emporal **A**rrays for **R**aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
  
 ```{r warning=FALSE, echo = TRUE}
 library(sf)
@@ -94,11 +94,13 @@ Nun gilt es, anhand der Koordinaten die in der Spalte `geometry` ersichtlich sin
 
 **Bedienungshinweise**:
 
-![Koordinanten (des Fadenkreuzes) werden im ausgewählten Koordinatensystem dargestellt](koordinatenpaar.jpg)
+![Koordinanten (des Fadenkreuzes) werden im ausgewählten Koordinatensystem dargestellt](21_RaumAn1/koordinatenpaar.jpg)
 
-![Das Koordinatensystem, in welchem die Koordinaten dargestellt werden sollen, kann mit "Change" angepasst werden](koordinatensystem.jpg)
 
-![Für Enthusiasten: Schau Dir die Schweiz in verschiedenen Koordinatensystemen an, in dem Du auf "Reproject Map" klickst](reproject.jpg)
+
+![Das Koordinatensystem, in welchem die Koordinaten dargestellt werden sollen, kann mit "Change" angepasst werden](21_RaumAn1/koordinatensystem.jpg)
+
+![Für Enthusiasten: Schau Dir die Schweiz in verschiedenen Koordinatensystemen an, in dem Du auf "Reproject Map" klickst](21_RaumAn1/reproject.jpg)
 
 
 Wenn man diese Koordinaten mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `wasser` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
