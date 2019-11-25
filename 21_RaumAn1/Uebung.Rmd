@@ -17,7 +17,7 @@ Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbe
 - Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
 - Für *Rasterdaten* exisitert das Package `raster`
 
-Für die Integration von Vektor und Rasterdaten existiert das Package `starts`: **S**patio**t**emporal **A**rrays for **R**aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
+Für die Integration von Vektor und Rasterdaten existiert das Package `stars`: **S**patio**t**emporal **A**rrays for **R**aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
  
 ```{r warning=FALSE, echo = TRUE}
 library(sf)
@@ -31,7 +31,7 @@ library(raster)
 
 Lade zunächst die Datensätze unter folgenden Links herunter und importiere sie mit dem Befehl `read_sf()` in R:
 
-- [bodeneignung_skelett.gpkg](21_RaumAn1/data/skelettgehalt_proben.gpkg): Datensatz des Bundesamt für Landwirtschaft, modifiziert ([weitere Informationen](https://www.blw.admin.ch/blw/de/home/politik/datenmanagement/geografisches-informationssystem-gis/download-geodaten.html))
+- [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg): Datensatz des Bundesamt für Landwirtschaft, modifiziert ([weitere Informationen](https://www.blw.admin.ch/blw/de/home/politik/datenmanagement/geografisches-informationssystem-gis/download-geodaten.html))
 - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg): Ein Datensatz der Swisstopo, modifiziert ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
 - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg): Ein Datensatz der Swisstopo, modifiziert ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
 - [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg): Ein Datensatz der WSL, modifiziert ([weiteren Informationen](https://www.wsl.ch/de/ueber-die-wsl/programme-und-initiativen/abgeschlossene-programme-und-grossprojekte/wuk.html))
