@@ -1,22 +1,20 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warnings = FALSE) 
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.height = 5, fig.width = 7) 
 ```
 
+## Themantische Einbettung und Vorbereitung
 
-## Übung Spatial Data Science 2: Interpolationen und Dichteverteilungen
 
-### Themantische Einbettung
+In dieser zweiten Übung wirst Du wiederum Geodatensätze verarbeiten und darstellen. Wir starten mit einem Punktdatensatz zu einem Messnetz zur Erhebung der Luftqualität in der Schweiz (Stickstoffdioxid NO2 um genau zu sein). Im Gegensatz zum Punktdatensatz zur Wasserverfügbarkeit aus der vorherigen Übung, sind die Messstellen des Messnetztes zur Luftqualität sehr unregelmässig im Raum verteilt. Trotzdem möchten wir versuchen ein kontinuierliches Raster von Luftqualitätswerten für die ganze Schweiz zu interpolieren. Wir starten mit der einfachen Interpolations-Methode Inverse Distance Weighting IDW. Danach wollen wir für den gleichen Datensatz nach dem Ansatz der nächsten Nachbarn die Thiessen Polygone konstruieren. Im zweiten Teil der Übung wollen wir Dichteverteilung untersuchen. Dabei untersuchen wir einen Datensatz zur Verbreitung von Rotmilanen in der Schweiz. Mittels einer Kernel Density Estimation (KDE) berechnen wir eine kontinuierliche Dichteverteilung, über die wir eine Annäherung an das Habitat des untersuchten Greifvogels berechnen können. Bevor wir aber starten, schauen wir uns die Punktdatensätze genauer an indem wir die G-Function berechnen und plotten.
 
-In dieser zweiten Übung wirst Du wiederum Geodatensätze verarbeiten und darstellen. Wir starten mit einem Punktdatensatz zu einem Messnetz zur Erhebung der Luftqualität in der Schweiz (NO2 um genau zu sein). Im Gegensatz zum Punktdatensatz zur Wasserverfügbarkeit aus der vorherigen Übung, sind die Messstellen des Messnetztes zur Luftqualität sehr unregelmässig im Raum verteilt. Trotzdem möchten wir versuchen ein kontinuierliches Raster von Luftqualitätswerten für die ganze Schweiz zu interpolieren. Wir starten mit der einfachen Interpolations-Methode Inverse Distance Weighting IDW. Danach wollen wir für den gleichen Datensatz nach dem Ansatz der nächsten Nachbarn die Thiessen Polygone konstruieren. Im zweiten Teil der Übung wollen wir Dichteverteilung untersuchen. Dabei untersuchen wir einen Datensatz zur Verbreitung und Rotmilanen in der Schweiz. Mittels einer Kernel Density Estimation KDE berechnen wir eine kontinuierliche Dichteverteilung, über die wir eine Annäherung an das Habitat des untersuchten Greifvogels berechnen können.
-
-### Vorbereitung
-
-Importiere zunächst die Daten importieren. Weise dann die korrekten Koordinatensysteme zu (CRS zuweisen).
+Importiere zunächst die Daten. Weise dann die korrekten Koordinatensysteme zu (CRS zuweisen).
 
 - [luftqualitaet.gpkg](22_RaumAn2/data/luftqualitaet.gpkg) Luftqualitätsmessungen, NO2, ([weitere Informationen](https://opendata.swiss/en/dataset/luftqualitaet))
 - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg): Ein Datensatz der Swisstopo ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
+- [rotmilan.gpkg](21_RaumAn1/data/kantone.gpkg) Sichtungen eines Rotmilan
 
-<!-- todo Nils: hier hatte ich immer das Problem, dass gstat nicht vorhanden war, installieren ging nicht, dependency spacetime..... -->
+Der Datensatz `rotmilan.gpkg` stammt aus einem grösseren Forschungsprojekt der Vogelwarte Sempbach [Mechanismen der Populationsdynamik beim Rotmilan](https://www.vogelwarte.ch/de/projekte/oekologische-forschung/mechanismen-der-populationsdynamik-beim-rotmilan). Der Datensatz wurde über die Plattform [movebank](http://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page%3Dsearch_map_linked%2CindividualIds%3D676571254%2Clat%3D44.465151013519666%2Clon%3D9.096679687499508%2Cz%3D5) zur Verfügung gestellt. Es handelt sich dabei um ein einzelnes Individuum, welches seit 2017 mit einem Sender versehen ist und über ganz Mitteleuropa zieht. Wir arbeiten in dieser Übung nur mit denjenigen Datenpunkten, die in der Schweiz erfasst wurden. Wer den ganzen Datensatz analysieren möchte, kann sich diesen über den Movebank-Link runterladen.
+
 
 ```{r, echo = TRUE}
 library(gstat)
@@ -28,79 +26,242 @@ library(stars)
 
 luftqualitaet <- read_sf("22_RaumAn2/data/luftqualitaet.gpkg")
 kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+rotmilan <- read_sf("22_RaumAn2/data/rotmilan.gpkg")
 
 
 luftqualitaet <- st_set_crs(luftqualitaet,2056)
 kantone <- st_set_crs(kantone, 2056)
+rotmilan <- st_set_crs(rotmilan, 2056)
+
+
+
+
 ```
 
 
 
-### Aufgabe 1: Räumliche Interpolation mit IDW
 
-Die Library `spatstat` bietet verschiedene Möglicheiten, Datenpunkte zu interpolieren. Das Schema ist dabei immer gleich: man erstellt zuerst einen Punktdatensatz, um diejenigen Orte zu bestimmen, für die man gerne Messwerte hätte. Wenn man...??? 
+## Übung A: Analyse von Punktverteilungen
+
+### Aufgabe 1: G-Function
+
+Als erstes berechnen wir die G-Function für die Rotmilanpositionen wie auch für die Luftqualitätsmessungen NO2:
+
+**Schritt 1:** Da es sich beim Rotmilan um relativ viele Datenpunkte handelt, nehmen wir mit `st_sample()` ein subset aus dem Datensatz. Dies verkürzt die Rechenzeit substantiell und verändert die Resultate kaum.
 
 ```{r, echo = TRUE}
-samples <- st_sample(kantone,size = 2000,type = "regular")
-
-samples <- st_set_crs(samples, 2056)
-
-luftqualitaet_idw <- gstat::idw(formula = value~1,
-                                locations = luftqualitaet,
-                                newdata = samples,
-                                nmax = 10, 
-                                idp = 1)
-
-ggplot(luftqualitaet) +
-  geom_sf(aes(colour = value)) +
-  geom_sf(data = luftqualitaet_idw, aes(colour = var1.pred)) +
-  scale_colour_viridis_c()
+rotmilan_sample <- sample_n(rotmilan,1000)
 ```
 
-<!-- todo Nils: Hast Du also eine IDW-Version gefunden, welche nmax angeben kann? Geht auch rmax? Und, macht das Ding irgendwie nur Punkte? Das versteh ich noch nicht -->
-
-In unserem Fall machte es mehr Sinn, die Datenpunkte als `raster` darzustellen. Dafür machen wir nicht extra einen `RasterLayer` wie letzte Woche, sondern ergänzen den Datensatz `luftqualitaet_idw` mit X/Y Koordinaten *in spalten* und übergeben dies `ggplot` mit `geom_rater()`.
-
+**Schritt 2:** Mit `st_distance()` können Distanzen zwischen zwei `sf` Datensätze berechnet werden. Wird nur ein Datensatz angegeben, wird eine Kreuzmatrix erstellt wo die Distanzen zwischen allen Features zu allen anderen Features dargestellt werden. Wir nützen diese Funktion zur Berechnung der nächsten Nachbarn.
 
 ```{r, echo = TRUE}
+rotmilan_distanzmatrix <- st_distance(rotmilan_sample)
 
-luftqualitaet_idw <- luftqualitaet_idw %>%
-  st_coordinates(luftqualitaet_idw) %>%
-  cbind(luftqualitaet_idw)
-
-luftqualitaet_idw
-
-ggplot(data = luftqualitaet_idw, aes(X,Y, fill = var1.pred)) + 
-  geom_tile() +
-  coord_equal() +
-  scale_fill_viridis_c()
-
+# zeige die ersten 6 Zeilen und Spalten der Matrix
+rotmilan_distanzmatrix[1:6,1:6] 
 ```
 
 
-<!-- todo: hier noch verschiedene varianten mit maxdist, blocksize usw. testen. -->
+**Schritt 3:** Nun wollen wir wissen, wie gross die kürzeste Distanz von jedem Punkt zu seinem nächsten Nachbarn beträgt. Sprich, was ist die kürzeste Distanz pro Zeile? Zuerst aber müssen wir die diagonalen Werte noch entfernen, denn diese stellen ja jeweils die Distanz zu sich selber dar und sind immer `0`. Danach kann mit `apply()` eine Funktion (`FUN = min` für die Funktion `min()`) über die Zeilen (`MARGIN = 1`) einer Matrix (`X = rotmilan_distanzmatrix`) gerechnet werden. Das Resultat ist ein Vektor mit gleich vielen Werten wie Zeilen in der Matrix. Zusätzlich müssen wir noch `na.rm = TRUE` setzen, damit `NA` Werte von der Berechnung ausgeschlossen werden.
+
+```{r, echo = TRUE}
+diag(rotmilan_distanzmatrix) <- NA # entfernt alle diagonalen Werte
+
+rotmilan_mindist <- apply(rotmilan_distanzmatrix,1,min, na.rm = TRUE)
+```
+
+Nun wollen wir die kummulierte Häufigkeit der Werte in einer Verteilungsfunktion (engl: [Empirical Cumulative Distribution Function, ECDF](https://en.wikipedia.org/wiki/Empirical_distribution_function)) darstellen. Dafür müssen wir den Vektor zuerst noch in einen Dataframe packen, damit `ggplot` damit klar kommt:
+
+```{r, echo = TRUE}
+rotmilan_mindist_df <- data.frame(distanzen = rotmilan_mindist)
+
+ggplot() + geom_step(data = rotmilan_mindist_df, aes(distanzen),stat = "ecdf")
+```
+
+Führe nun die gleichen Schritte mit `luftqualitaet` durch und vergleiche die ECDF-Plots. Hinweis: `st_sample()` ist bei `luftqualitaet` nicht nötig, da es sich hier um einen kleineren Datensatz handelt.
 
 ```{r}
-luftqualitaet_idw <- gstat::idw(formula = value~1,
-                                locations = luftqualitaet,
-                                newdata = samples,
-                                nmax = 10, 
-                                idp = 2)
+luftqualitaet_distanzmatrix <- st_distance(luftqualitaet)
 
-luftqualitaet_idw %>%
-  st_coordinates(luftqualitaet_idw) %>%
-  cbind(luftqualitaet_idw) %>%
-  ggplot(aes(X,Y, fill = var1.pred)) + 
-  geom_tile() +
-  coord_equal() +
-  scale_fill_viridis_c()
-  
+diag(luftqualitaet_distanzmatrix) <- NA
+
+luftqualitaet_mindist <- apply(luftqualitaet_distanzmatrix,1,min,na.rm = TRUE)
+
+luftqualitaet_mindist_df <- data.frame(distanzen = luftqualitaet_mindist, data = "luftqualitaet")
+
+rotmilan_mindist_df$data <- "rotmilan"
+
+mindist_df <- rbind(luftqualitaet_mindist_df,rotmilan_mindist_df)
+
+ggplot() + 
+  geom_step(data = mindist_df, aes(distanzen, colour = data),stat = "ecdf") +
+  labs(colour = "Datensatz")
 ```
 
 
-### Aufgabe 2: Interpolation mit Nearest Neighbour / Thiessen Polygone
 
-Eine weitere einfache Möglichkeit zur Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben um die Punkte die Thiessenpolygone konstruiert. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz, ein Voronoidiagramm. Das macht bei uns wenig Sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `rotmilan` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` Objekt konvertieren, wo alle Punkte in einer Zeile zusammengefasst sind.
+
+
+
+## Übung B: Räumliche Interpolation
+
+### Aufgabe 2: Räumliche Interpolation mit IDW
+
+Die Library `gstat` bietet verschiedene Möglichkeiten, Datenpunkte zu interpolieren, unter anderem auch den **IDW**. Leider ist das Package *noch* nicht so benutzerfreundlich wie `sf`: Das Package wird aber aktuell überarbeitet und in mittlerer Zukunft sollte es ebenso einfach  zugänglich sein. Damit Ihr Euch nicht mit den Eigenheiten dieser Library umschlagen müsst, haben wir eine Function vorbereitet, die Euch die Verwendung der IDW-Interpolation erleichtern soll.
+
+Wir nehmen Euch damit etwas Komplexität weg und liefern Euch ein pfannenfertiges Werkzeug. Das hat auch Nachteile und wir ermutigen alle, die dafür Kapazität haben, unsere Function eingehend zu studieren und allenfalls ganz auf die Function zu verzichten und stattdessen direkt `gstat` zu verwenden. Egal für welche Variante Ihr Euch entscheidet, installiert vorgängig die Library `gstat`.
+
+
+```{r, echo = TRUE}
+my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp = 2, extent = NULL){
+  require(gstat)
+  require(sf)
+  require(raster)
+  if(is.null(extent)){
+    extent <- groundtruth
+  }
+  
+  samples <- st_make_grid(extent,cellsize,what = "centers") %>% st_as_sf()
+  my_formula <- formula(paste(column,"~1"))
+  idw_sf <- gstat::idw(formula = my_formula,groundtruth,newdata = samples,nmin = 1, maxdist = maxdist, idp = idp)
+  
+  idw_matrix <- cbind(st_coordinates(idw_sf),idw_sf$var1.pred)
+  
+  
+  ras <- raster::rasterFromXYZ(idw_matrix)
+  
+  mask(ras,st_as_sf(st_zm(extent)))
+}
+```
+
+
+Nun könnt Ihr mit `my_idw()` den Datensatz `luftqualitaet` folgendermassen interpolieren. 
+```{r, echo = TRUE}
+my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 1000)
+
+```
+
+Folgende Parameter stehen Euch zur Verfügung:
+
+- Notwendige Parameter:
+  - `groundtruth`: Punktdatensatz mit den Messwerten (`sf`-Objekt)
+  - `column`: Name der Spalte mit den Messwerten (in Anführungs- und Schlusszeichen)
+  - `cellsize`: Zellgrösse des output Rasters
+
+- Optionale Parameter
+  - `nmax`: Maximale Anzahl Punkte, die für die Interpolation berücksichtigt werden sollen. Default: `Inf` (alle Werte im gegebenen Suchradius)
+  - `maxdist`: Suchradius, welcher für die Interpolation verwendet werden soll. Default `Inf` (alle Werte bis `nmax`)
+  - `idp`: **I**nverse **D**istance **P**ower: die Potenz, mit der der Nenner gesteigert werden soll. Default: `2`. Werte werden im Kehrwert des Quadrates gewichtet: $\frac{1}{dist^{idp}}$.
+  - `extent`: Gebiet, für welches die Interpolation durchgeführt werden soll. Default `NULL` (die Ausdehnung von `groundtruth`). Wenn `extent` ein Polygon ist, wird die Interpolation für dieses Gebiet "geclipped"
+
+
+Rechnet so den IDW für die Luftqualitätsmessungen mit verschiedenen Parametern und visualisiert jeweils die Resultate.
+
+```{r}
+
+
+nmax = Inf
+maxdist = 40000
+idp = 2
+
+idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
+
+luftqualitaet_extreme <- luftqualitaet %>%
+  arrange(value) %>%
+  slice(c(1:5,(n()-4):n()))
+
+ggplot() +
+  geom_stars(data = st_as_stars(idw)) +
+  ggrepel::geom_text_repel(
+    data = luftqualitaet_extreme,
+    aes(label = value, geometry = geom),
+    stat = "sf_coordinates",
+    min.segment.length = 0
+  ) +
+  scale_fill_viridis_c(na.value = NA) +
+  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
+       fill = "μg/m3",
+       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
+  ) +
+  theme_void() +
+  coord_equal()
+
+
+nmax = 50
+maxdist = Inf
+idp = 1
+
+idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
+
+ggplot() +
+  geom_stars(data = st_as_stars(idw)) +
+  ggrepel::geom_text_repel(
+    data = luftqualitaet,
+    aes(label = value, geometry = geom),
+    stat = "sf_coordinates",
+    min.segment.length = 0
+  ) +
+  scale_fill_viridis_c(na.value = NA) +
+  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
+       fill = "μg/m3",
+       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
+  ) +
+  theme_void()+
+  coord_equal()
+
+
+nmax = 50
+maxdist = Inf
+idp = 2
+
+idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
+
+ggplot() +
+  geom_stars(data = st_as_stars(idw)) +
+  ggrepel::geom_text_repel(
+    data = luftqualitaet,
+    aes(label = value, geometry = geom),
+    stat = "sf_coordinates",
+    min.segment.length = 0
+  ) +
+  scale_fill_viridis_c(na.value = NA) +
+  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
+       fill = "μg/m3",
+       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
+  ) +
+  theme_void()+
+  coord_equal()
+
+
+nmax = 50
+maxdist = Inf
+idp = 3
+
+idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
+
+ggplot() +
+  geom_stars(data = st_as_stars(idw)) +
+  ggrepel::geom_text_repel(
+    data = luftqualitaet,
+    aes(label = value, geometry = geom),
+    stat = "sf_coordinates",
+    min.segment.length = 0
+  ) +
+  scale_fill_viridis_c(na.value = NA) +
+  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
+       fill = "μg/m3",
+       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
+  ) +
+  theme_void()
+
+```
+
+
+
+### Aufgabe 3: Interpolation mit Nearest Neighbour / Thiessen Polygone
+
+Eine weitere einfache Möglichkeit zur Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben um die Punkte die Thiessenpolygone konstruiert. Dazu braucht es lediglich einen kleinen Vorprozessierungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz, ein Voronoidiagramm. Das macht bei uns wenig Sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `luftqualitaet` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` Objekt konvertieren, in welchem alle Punkte in einer Zeile zusammengefasst sind.
 
 ```{r, echo = TRUE}
 
@@ -116,10 +277,10 @@ ggplot() +
 
 ```
 
-`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Dies ist allerdings eine schöne Illustration der Randeffekte von Thiessenpolygonen, die zum Rand hin wo es immer weniger Punkte hat, sehr gross werden können. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte:
+`st_voronoi` hat die Thiessenpolygone etwas weiter gezogen als wir sie wollen. Dies ist allerdings eine schöne Illustration der Randeffekte von Thiessenpolygonen, die zum Rand hin (wo es immer weniger Punkte hat) sehr gross werden können. Wir können die Polygone auf die Ausdehnung der Schweiz mit `st_intersection()` clippen. Auch hier braucht es zwei kleine Vorprozessierungsschritte:
 
-1. wie vorher müssen wir die einzelnen Kantons-Polygone miteinander verschmelzen. Dies erreichen wir mit `st_union()` und speichern den Output als `schweiz`, was als Resultat ein einzelnes Polygon der Schweizergrenze retourniert.
-2. für die Thiessen-Polygone machen wir genau das Umgekehrte: `st_voronoi()` lieferte ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
+1. wie vorher müssen wir die einzelnen Kantons-Polygone miteinander verschmelzen. Dies erreichen wir mit `st_union()`. Wir speichern den Output als `schweiz`, was als Resultat ein einzelnes Polygon der Schweizergrenze retourniert.
+2. für die Thiessen-Polygone machen wir genau das Umgekehrte: `st_voronoi()` liefert ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
 
 ```{r, echo = TRUE}
 schweiz <- st_union(kantone)
@@ -133,7 +294,7 @@ ggplot() +
 
 ```
 
-Jetzt müssen wir nur noch den jeweiligen Wert für jedes Polygon ermitteln. Dies erreichen wir wieder durch `st_join`. Auch hier ist noch ein *kleiner* Vorbereitungsschritt nötig: Wir konvertieren das `sfc` objekt (nur Geometrien) in ein `sf` objekt (Geometrien mit Attributtabelle).
+Jetzt müssen wir nur noch den jeweiligen Wert für jedes Polygon ermitteln. Dies erreichen wir wieder durch `st_join`. Auch hier ist noch ein *kleiner* Vorbereitungsschritt nötig: Wir konvertieren das `sfc` Objekt (nur Geometrien) in ein `sf` Objekt (Geometrien mit Attributtabelle).
 
 ```{r, echo = TRUE}
 
@@ -147,39 +308,12 @@ ggplot() +
   theme_void()
 ```
 
-
-### Aufgabe 3: Rotmilan Bewegungsdaten vorbereiten
-
-Beginne damit, die Kantonsgrenzen von letzer Woche sowie einen neuen Datensatz `rotmilan` zu importieren. Lade vorher aber die notwendigen Libraries und setze anschliessend das korrekte Koordinatensystem (CRS).
-
-- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
-- [rotmilan.gpkg](21_RaumAn1/data/kantone.gpkg)
-
-Der Datensatz `rotmilan` stammt aus einem grösseren Forschungsprojekt der Vogelwarte Sempbach [Mechanismen der Populationsdynamik beim Rotmilan](https://www.vogelwarte.ch/de/projekte/oekologische-forschung/mechanismen-der-populationsdynamik-beim-rotmilan). Der Datensatz wurde über die Plattform [movebank](http://www.movebank.org/panel_embedded_movebank_webapp?gwt_fragment=page%3Dsearch_map_linked%2CindividualIds%3D676571254%2Clat%3D44.465151013519666%2Clon%3D9.096679687499508%2Cz%3D5) zur Verfügung gestellt. Es handelt sich dabei um ein einzelnes Individuum, welches seit 2017 mit einem Sender versehen ist und über ganz Mitteleuropa zieht. Wir arbeiten in dieser Übung nur mit denjenigen Datenpunkten, die in der Schweiz erfasst wurden. Wer den ganzen Datensatz analysieren möchte, kann sich diesen über den Movebank-Link runterladen.
-
-
-```{r}
-
-
-
-rotmilan <- read_sf("22_RaumAn2/data/rotmilan.gpkg")
-
-
-
-kantone <- st_set_crs(kantone,2056)
-rotmilan <- st_set_crs(rotmilan, 2056)
-
-
-
-```
-
-
-
+## Übung C: Dichteverteilungen
 
 
 ### Aufgabe 4: Rotmilan Bewegungsdaten visualisieren
 
-Eine der ersten Fragen, die bei solchen Bewegungsstudien gestellt wird, lautet: *Wo hält sich das Tier hauptsächlich auf?* Um diese Frage zu beantworten, kann man als erstes einfach die Datenpunkte in einer einfachen Karte visualisieren.
+Die erste Frage, die bei solchen Bewegungsstudien typischerweise gestellt wird, lautet: *Wo hält sich das Tier hauptsächlich auf?* Um diese Frage zu beantworten, kann man als erstes einfach die Datenpunkte in einer einfachen Karte visualisieren.
 
 ```{r}
 ggplot(kantone) + 
@@ -195,10 +329,10 @@ ggplot(kantone) +
 
 In einer ersten Annnäherung funktioniert dies, doch wir sehen hier ein klassisches Problem des "Overplotting". Das heisst, dass wir durch die Überlagerung vieler Punkte in den dichten Regionen nicht abschätzen können, wie viele Punkte dort effektiv liegen und ggf. übereinander liegen. Es gibt hier verschiedene Möglichkeiten, die Punktdichte klarer zu visualisieren. Eine unter Biologen sehr beliebte Methode ist die Dichteverteilung mit einer Kernel Density Estimation (KDE). Dies v.a. darum, weil mit KDE das Habitat (Streifgebiet) eines Tieres abgeschätzt werden kann. Homeranges werden oft mit KDE95 und Core Areas mit KDE50 definiert. Kernel Density Estimations werden in vielen Bereichen angewendet, um Kurven zu Glätten (?), meist sind sie ein- und nicht zweidimensional.
 
-Leider existiert in `sf` noch keine `st_kde()` Funktion. Damit wir dieses Verfahren aber dennoch auf unsere Rotmilan-Daten anwenden können, haben wir eine eigene KDE-Funktion erstellt, die wir Euch zur Verfügung stellen. Die Funktion beruht auf den Libraries `MASS`, `raster` und `sf`, und `stars`. Die letzen drei solltet ihr bereits installiert haben, überprüft, ob `MASS` ebenfalls schon installiert ist und holt dies bei Bedarf nach. Im Anschluss könnt Ihr die nachstehende Funktion einlesen:
+Auch in diesem Fall sind die verfügbaren KDE-Funktionen etwas kompliziert in der Handhabung. Damit wir dieses Verfahren aber dennoch auf unsere Rotmilan-Daten anwenden können, haben wir eine eigene KDE-Funktion erstellt, die wir Euch zur Verfügung stellen. Die Funktion beruht auf den Libraries `MASS`, `raster`, `sf` und `stars`. Die letzen drei solltet Ihr bereits installiert haben. Überprüft nun, ob `MASS` ebenfalls schon installiert ist und holt dies bei Bedarf nach. Im Anschluss könnt Ihr die nachstehende Funktion einlesen:
 
 ```{r}
-st_kde <- function(points,cellsize, bandwith, extent = NULL){
+my_kde <- function(points,cellsize, bandwith, extent = NULL){
   require(MASS)
   require(raster)
   require(sf)
@@ -224,15 +358,15 @@ st_kde <- function(points,cellsize, bandwith, extent = NULL){
 
 Die Parameter der Funktion sollten relativ klar sein:
 
-- points: Ein Punktdatensatz aus der Class `sf`
-- cellsize: Die Zellgrösse des output-Rasters
-- bandwith: Der Suchradius für die Dichteberechnung
-- extent (optional): Der Perimeter, in dem die Dichteverteilung berechnet werden soll. Wenn kein Perimeter angegeben wird, wird die "bounding box" von `points` genutzt.
+- `points`: Ein Punktdatensatz aus der Class `sf`
+- `cellsize`: Die Zellgrösse des output-Rasters
+- `bandwith`: Der Suchradius für die Dichteberechnung
+- `extent` (optional): Der Perimeter, in dem die Dichteverteilung berechnet werden soll. Wenn kein Perimeter angegeben wird, wird die "bounding box" von `points` genutzt.
 
-Wenn wir nun mit `st_kde()` die Dichteverteilung berechnen, erhalten wir einen Raseterdatensatz zurück der sich mit `base::plot()` schnell visualisieren lässt.
+Wenn wir nun mit `my_kde()` die Dichteverteilung berechnen, erhalten wir einen Raseterdatensatz zurück, der sich mit `base::plot()` schnell visualisieren lässt.
 
 ```{r}
-rotmilan_kde <- st_kde(rotmilan,cellsize = 1000,bandwith = 10000,schweiz)
+rotmilan_kde <- my_kde(rotmilan,cellsize = 1000,bandwith = 10000, extent = schweiz)
 
 rotmilan_kde
 
@@ -277,7 +411,9 @@ ggplot() +
 
 ### Aufgabe 6: Dichteverteilung mit Thiessen Polygonen
 
-Thiessen Polygone bieten eine spannende alternative Variante um Unterschiede in der Dichteverteilung von Punktdatensätzen zu visualisieren. Warum? Wir wollen dies nun ausprobieren und konstruieren zum Schluss die Thiessenpolygone für die Rotmilan-Daten für das Untersuchungsgebiet Schweiz.
+Thiessen Polygone bieten eine spannende Alternative um Unterschiede in der Dichteverteilung von Punktdatensätzen zu visualisieren. 
+<!-- Warum?  -->
+Wir wollen dies nun ausprobieren und konstruieren zum Schluss die Thiessenpolygone für die Rotmilan-Daten für das Untersuchungsgebiet Schweiz.
 
 <!-- raus nehmen?? -->
 
@@ -319,7 +455,7 @@ thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
 ```
 
 
-Wenn wir jetzt die Thiessenpolygone (ohne Punkte) darstellen wird deutlicher, wie die Dichteverteilung im innern des Clusters aussieht. 
+Wenn wir jetzt die Thiessenpolygone (ohne Punkte) darstellen, wird deutlicher, wie die Dichteverteilung im Innern des Clusters aussieht. 
 
 ```{r}
 
@@ -329,6 +465,8 @@ ggplot() +
   theme_void()
 
 ```
+
+
 
 
 
