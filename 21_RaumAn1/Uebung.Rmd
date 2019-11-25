@@ -1,5 +1,5 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup") 
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.height = 7, fig.width = 7) 
 ```
 
 
@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 
 ### Thematische Einbettung
 
-Mit dieser Übung wirst Du Schritt fürfür Schritt an einfache Methoden der Raumanalyse herangeführt. Dies umfasst das Laden und Plotten von Vektor- und Rasterdaten sowie den wichtigen Umgang mit Koordinatensystemen. Darauf folgen einige Übungen zur räumlichen Anreicherung von Punktdaten unter Verwendung des Konzepts des "Spatial Join". Dazu arbeiten wir mit einem Datensatz aus Punktstichproben zur Wasserverfügbarkeit in Schweizer Böden. Es soll untersucht werden, ob ein Zusammenhang besteht zwischen der an den Punkten gemessenen Wasserverfügbarkeit und dem Join-Layer Bodeneignung/Skelettanteil. Im zweiten Teil der Übung wirst Du die Messwerte zur Wasserverfügbarkeit auf unterschiedlichen räumlichen Skalen aggregieren (Kantone, Bezirke und Gemeinden) und prüfen, ob ggf. das Modifiable Areal Unit Problem auftritt. 
+Mit dieser Übung wirst Du Schritt fürfür Schritt an einfache Methoden der Raumanalyse herangeführt. Dies umfasst das Laden und Plotten von Vektor- und Rasterdaten sowie den wichtigen Umgang mit Koordinatensystemen. Darauf folgen einige Übungen zur räumlichen Anreicherung von Punktdaten unter Verwendung des Konzepts des "Spatial Join". Dazu arbeiten wir mit einem Datensatz aus Punktstichproben zur Wasserverfügbarkeit in Schweizer Böden. Es soll untersucht werden, ob ein Zusammenhang besteht zwischen der an den Punkten gemessenen Wasserverfügbarkeit und dem Join-Layer Bodeneignung/Skelettanteil. Im zweiten Teil der Übung wirst Du die Messwerte zur Wasserverfügbarkeit auf unterschiedlichen räumlichen Skalen aggregieren (Kantone und Bezirke) und prüfen, ob ggf. das Modifiable Areal Unit Problem auftritt. 
 
 ### Vorbereitung
 
@@ -44,7 +44,6 @@ Es handelt sich um Geodatensätze im Format Geopackage ("\*.gpkg"), eine alterna
 wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
 kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
 bezirke <- read_sf("21_RaumAn1/data/bezirke.gpkg") 
-gemeinden <- read_sf("21_RaumAn1/data/gemeinden.gpkg")
 skelettgehalt <- read_sf("21_RaumAn1/data/bodeneignung_skelett.gpkg")
 
 ```
@@ -113,12 +112,11 @@ bezirke <- st_set_crs(bezirke, 2056)
 st_crs(wasser)
 ```
 
-Weise auch für die anderen Datensätze (`kantone`, `gemeinden`, `skelettgehalt`) das *korrekte* Koordinatensytem zu.
+Weise auch für die anderen Datensätze (`kantone` und `skelettgehalt`) das *korrekte* Koordinatensytem zu.
 
 
 ```{r, warning=FALSE}
 kantone <- st_set_crs(kantone, 2056)
-gemeinden <- st_set_crs(gemeinden, 2056)
 skelettgehalt <- st_set_crs(skelettgehalt, 2056)
 ```
 
@@ -223,7 +221,7 @@ skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
 
 ggplot() + 
   geom_stars(data = st_as_stars(skelett_raster)) +
-  coord_equal()
+  coord_equal() # geom_stars() ist (noch) nicht so clever wie geom_sf() das CRS wird nicht berücksichtigt
 ```
 
 #### Teilaufgabe C: Rasterwerte extrahieren
@@ -254,9 +252,9 @@ ggplot(wasser_skelett) +
 ```
 
 
-### Aufgabe 7: Spatial Join mit Kantone, Bezirke, Gemeinden
+### Aufgabe 7: Spatial Join mit Kantone, Bezirke
 
-Zum Abschluss der Übung wenden wir uns nun noch der Aggregationsabhängigkeit von Geodaten zu. Dazu wollen wir die Daten zur Wasserverfügbarkeit auf verschiedenen Massstäben aggregieren. Als Aggregationseinheiten verwenden wir die politische Gliederung der Schweit - Kantone, Bezirke und Gemeinden. Die Frage stellt sich, ob die Daten ev. das MAUP illustrieren.
+Zum Abschluss der Übung wenden wir uns nun noch der Aggregationsabhängigkeit von Geodaten zu. Dazu wollen wir die Daten zur Wasserverfügbarkeit auf verschiedenen Massstäben aggregieren. Als Aggregationseinheiten verwenden wir zwei politische Gliederungen der Schweit - Kantone und Bezirke. Die Frage stellt sich, ob die Daten ev. das MAUP illustrieren.
 
 Hier könnten wir wir nochmals `st_join()` verwenden, aber da wir diesmal Polygone im Fokus haben (Bezirke, Kantone) und mehrere Punkte in einem Polygon vorkommen können, ist dieser Weg etwas umständlich. Wir nutzen deshalb die Funktion `aggregate()`, und spezifizieren `x = wasser`, `by = kantone` und `FUN = mean`.
 
