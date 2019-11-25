@@ -1,5 +1,9 @@
 ```{r setup, include=FALSE}
+<<<<<<< HEAD
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
+=======
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.height = 7, fig.width = 7) 
+>>>>>>> a119314be6ec26844de3fea87183ecf1392ca6ce
 ```
 
 
@@ -8,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 
 ### Thematische Einbettung
 
-Mit dieser Übung wirst Du Schritt fürfür Schritt an einfache Methoden der Raumanalyse herangeführt. Dies umfasst das Laden und Plotten von Vektor- und Rasterdaten sowie den wichtigen Umgang mit Koordinatensystemen. Darauf folgen einige Übungen zur räumlichen Anreicherung von Punktdaten unter Verwendung des Konzepts des "Spatial Join". Dazu arbeiten wir mit einem Datensatz aus Punktstichproben zur Wasserverfügbarkeit in Schweizer Böden. Es soll untersucht werden, ob ein Zusammenhang besteht zwischen der an den Punkten gemessenen Wasserverfügbarkeit und dem Join-Layer Bodeneignung/Skelettanteil. Im zweiten Teil der Übung wirst Du die Messwerte zur Wasserverfügbarkeit auf unterschiedlichen räumlichen Skalen aggregieren (Kantone, Bezirke und Gemeinden) und prüfen, ob ggf. das Modifiable Areal Unit Problem auftritt. 
+Mit dieser Übung wirst Du Schritt fürfür Schritt an einfache Methoden der Raumanalyse herangeführt. Dies umfasst das Laden und Plotten von Vektor- und Rasterdaten sowie den wichtigen Umgang mit Koordinatensystemen. Darauf folgen einige Übungen zur räumlichen Anreicherung von Punktdaten unter Verwendung des Konzepts des "Spatial Join". Dazu arbeiten wir mit einem Datensatz aus Punktstichproben zur Wasserverfügbarkeit in Schweizer Böden. Es soll untersucht werden, ob ein Zusammenhang besteht zwischen der an den Punkten gemessenen Wasserverfügbarkeit und dem Join-Layer Bodeneignung/Skelettanteil. Im zweiten Teil der Übung wirst Du die Messwerte zur Wasserverfügbarkeit auf unterschiedlichen räumlichen Skalen aggregieren (Kantone und Bezirke) und prüfen, ob ggf. das Modifiable Areal Unit Problem auftritt. 
 
 ### Vorbereitung
 
@@ -17,7 +21,7 @@ Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbe
 - Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
 - Für *Rasterdaten* exisitert das Package `raster`
 
-Für die Integration von Vektor und Rasterdaten existiert das Package `starts`: **S**patio**t**emporal **A**rrays for **R**aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
+Für die Integration von Vektor und Rasterdaten existiert das Package `stars`: **S**patio**t**emporal **A**rrays for **R**aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
  
 ```{r warning=FALSE, echo = TRUE}
 library(sf)
@@ -31,7 +35,7 @@ library(raster)
 
 Lade zunächst die Datensätze unter folgenden Links herunter und importiere sie mit dem Befehl `read_sf()` in R:
 
-- [bodeneignung_skelett.gpkg](21_RaumAn1/data/skelettgehalt_proben.gpkg): Datensatz des Bundesamt für Landwirtschaft, modifiziert ([weitere Informationen](https://www.blw.admin.ch/blw/de/home/politik/datenmanagement/geografisches-informationssystem-gis/download-geodaten.html))
+- [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg): Datensatz des Bundesamt für Landwirtschaft, modifiziert ([weitere Informationen](https://www.blw.admin.ch/blw/de/home/politik/datenmanagement/geografisches-informationssystem-gis/download-geodaten.html))
 - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg): Ein Datensatz der Swisstopo, modifiziert ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
 - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg): Ein Datensatz der Swisstopo, modifiziert ([weitere Informationen](https://shop.swisstopo.admin.ch/de/products/landscape/boundaries3D))
 - [wasserverfuegbarkeit_boden.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg): Ein Datensatz der WSL, modifiziert ([weiteren Informationen](https://www.wsl.ch/de/ueber-die-wsl/programme-und-initiativen/abgeschlossene-programme-und-grossprojekte/wuk.html))
@@ -44,7 +48,6 @@ Es handelt sich um Geodatensätze im Format Geopackage ("\*.gpkg"), eine alterna
 wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
 kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
 bezirke <- read_sf("21_RaumAn1/data/bezirke.gpkg") 
-gemeinden <- read_sf("21_RaumAn1/data/gemeinden.gpkg")
 skelettgehalt <- read_sf("21_RaumAn1/data/bodeneignung_skelett.gpkg")
 
 ```
@@ -113,12 +116,11 @@ bezirke <- st_set_crs(bezirke, 2056)
 st_crs(wasser)
 ```
 
-Weise auch für die anderen Datensätze (`kantone`, `gemeinden`, `skelettgehalt`) das *korrekte* Koordinatensytem zu.
+Weise auch für die anderen Datensätze (`kantone` und `skelettgehalt`) das *korrekte* Koordinatensytem zu.
 
 
 ```{r, warning=FALSE}
 kantone <- st_set_crs(kantone, 2056)
-gemeinden <- st_set_crs(gemeinden, 2056)
 skelettgehalt <- st_set_crs(skelettgehalt, 2056)
 ```
 
@@ -223,7 +225,7 @@ skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
 
 ggplot() + 
   geom_stars(data = st_as_stars(skelett_raster)) +
-  coord_equal()
+  coord_equal() # geom_stars() ist (noch) nicht so clever wie geom_sf() das CRS wird nicht berücksichtigt
 ```
 
 #### Teilaufgabe C: Rasterwerte extrahieren
@@ -254,9 +256,9 @@ ggplot(wasser_skelett) +
 ```
 
 
-### Aufgabe 7: Spatial Join mit Kantone, Bezirke, Gemeinden
+### Aufgabe 7: Spatial Join mit Kantone, Bezirke
 
-Zum Abschluss der Übung wenden wir uns nun noch der Aggregationsabhängigkeit von Geodaten zu. Dazu wollen wir die Daten zur Wasserverfügbarkeit auf verschiedenen Massstäben aggregieren. Als Aggregationseinheiten verwenden wir die politische Gliederung der Schweit - Kantone, Bezirke und Gemeinden. Die Frage stellt sich, ob die Daten ev. das MAUP illustrieren.
+Zum Abschluss der Übung wenden wir uns nun noch der Aggregationsabhängigkeit von Geodaten zu. Dazu wollen wir die Daten zur Wasserverfügbarkeit auf verschiedenen Massstäben aggregieren. Als Aggregationseinheiten verwenden wir zwei politische Gliederungen der Schweit - Kantone und Bezirke. Die Frage stellt sich, ob die Daten ev. das MAUP illustrieren.
 
 Hier könnten wir wir nochmals `st_join()` verwenden, aber da wir diesmal Polygone im Fokus haben (Bezirke, Kantone) und mehrere Punkte in einem Polygon vorkommen können, ist dieser Weg etwas umständlich. Wir nutzen deshalb die Funktion `aggregate()`, und spezifizieren `x = wasser`, `by = kantone` und `FUN = mean`.
 
