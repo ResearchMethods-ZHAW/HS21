@@ -103,6 +103,9 @@ rmd_files: [
     
     "21_RaumAn1/Abstract.Rmd",
     "21_RaumAn1/Uebung.Rmd",
+    
+    "22_RaumAn2/Abstract.Rmd",
+    "22_RaumAn2/Uebung.Rmd",
 
 #  "00_Admin/references.Rmd"
   ]
