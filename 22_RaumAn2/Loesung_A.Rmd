@@ -1,0 +1,6 @@
+## Übung A -- Lösung
+
+[R-Script als Download](22_RaumAn2/RFiles/Uebung_A.R)
+
+```{r code=readLines('22_RaumAn2/RFiles/Uebung_A.R'), echo=T, eval=F}
+```

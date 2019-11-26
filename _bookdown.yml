@@ -1,8 +1,8 @@
 #book_filename: "ResearchMethods"
 rmd_files: [
   "index.Rmd",
-
-   "09_PrePro1/Abstract.Rmd",
+  
+  "09_PrePro1/Abstract.Rmd",
     "09_PrePro1/Demo_Datentypen.Rmd",
     "09_PrePro1/Uebung_A.Rmd",
     "09_PrePro1/Uebung_A_loesung.Rmd",
@@ -100,12 +100,21 @@ rmd_files: [
     "20_Statistik8/Demoskript.Rmd",
     "20_Statistik8/assigment_stat8.Rmd",
     "20_Statistik8/solution_stat8.1.Rmd",
+  
+
+   
     
     "21_RaumAn1/Abstract.Rmd",
     "21_RaumAn1/Uebung.Rmd",
+    "21_RaumAn1/Loesung.Rmd",
     
     "22_RaumAn2/Abstract.Rmd",
-    "22_RaumAn2/Uebung.Rmd",
+    "22_RaumAn2/Uebung_A.Rmd",
+    "22_RaumAn2/Loesung_A.Rmd",
+    "22_RaumAn2/Uebung_B.Rmd",
+    "22_RaumAn2/Loesung_B.Rmd",
+    "22_RaumAn2/Uebung_C.Rmd",
+    "22_RaumAn2/Loesung_C.Rmd",
 
 #  "00_Admin/references.Rmd"
   ]

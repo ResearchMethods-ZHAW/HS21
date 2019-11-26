@@ -1,4 +1,4 @@
-```{r setup, include=FALSE}
+```{r, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
 ```
 
@@ -29,6 +29,10 @@ library(raster)
 
 ### Aufgabe 1: Daten runterladen und importieren
 
+```{r}
+## -- Aufgabe 1: Daten runterladen und importieren -- ##
+```
+
 Lade zunächst die Datensätze unter folgenden Links herunter und importiere sie mit dem Befehl `read_sf()` in R:
 
 - [bodeneignung_skelett.gpkg](21_RaumAn1/data/bodeneignung_skelett.gpkg): Datensatz des Bundesamt für Landwirtschaft, modifiziert ([weitere Informationen](https://www.blw.admin.ch/blw/de/home/politik/datenmanagement/geografisches-informationssystem-gis/download-geodaten.html))
@@ -54,6 +58,10 @@ Schau Dir die importierten Datensätze an, nutzt dafür `View()`, `str()`, `clas
 
 ### Aufgabe 2: Daten Visualisieren
 
+```{r}
+## -- Aufgabe 2: Daten Visualisieren -- ##
+```
+
 Wir hatten anfangs erwähnt, dass Geodaten mit `sf` und `raster` sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren lassen. Das merkt man schnell, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()` Vektordaten direkt und sehr einfach zu plotten. Führe die angegebenen R-Befehle aus und studiere die entstehenden Plots. Welche Unterschiede findest Du? Wie erklärst Du diese Unterschiede?
 
 ```{r echo = TRUE}
@@ -70,6 +78,11 @@ ggplot(wasser) +
 
 
 ### Aufgabe 3 Koordinatensysteme *zuweisen*
+
+```{r}
+## -- Aufgabe 3 Koordinatensysteme zuweisen -- ##
+```
+
 
 In den obigen beiden sehr einfachen Kartogrammen fallen verschiedene Dinge auf: 
 
@@ -135,6 +148,10 @@ ggplot() +
 
 ### Aufgabe 4: Koordinatensyteme *transformieren*
 
+```{r}
+## -- Aufgabe 4: Koordinatensyteme transformieren -- ##
+```
+
 In der vorherigen Übung haben wir das bestehende Koordinatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten in das neue Koordinatensystem umgerechnet und somit manipuliert. Aus praktischen Gründen wollen <!-- Was sind diese Gründe? genauer erläutern? -->
 wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Transformiere den Datensatz `wasser` mit `st_transform()`in CH1903+ LV95, nutze dafür den korrekten EPSG-Code.
 
@@ -157,7 +174,11 @@ wasser
 ```
 
 
-### Aufgabe 5: 
+### Aufgabe 5:
+
+```{r}
+## -- Aufgabe 5 -- ##
+```
 
 Wir wollen nun wissen, ob die Wasserverfügbarkeit im Boden mit dem Skelettgehalt zusammen hängt. Dazu nutzen wir die GIS-Technik *Spatial Join*, die in der Vorlesung beschrieben wurde. In `sf` können wir Spatial Joins mit der Funktion `st_join` durchführen, dabei gibt es nur `left` sowie `inner`-Joins (vgl. PrePro 1 & 2). So müssen die Punkte "Links", also an erste Stelle aufgeführt werden, da wir ja Attribute *an* die Punkte anheften wollen.
 
@@ -182,6 +203,10 @@ wasser_skelett %>%
 
 
 ### Aufgabe 6: Spatial Join mit Flächen
+
+```{r}
+## -- Aufgabe 6: Spatial Join mit Flächen -- ##
+```
 
 In der letzten Aufgabe haben wir für jede Probe aus `wasser` den Skelettgehalt des darunterliegenden Polygons ermittelt. Für Proben, die gerade an der Grenze zu einem Polygon mit einem anderen Skelettgehalt liegen ist dieser Wert aber nicht sehr aussagekräftig. 
 
@@ -254,6 +279,11 @@ ggplot(wasser_skelett) +
 
 ### Aufgabe 7: Spatial Join mit Kantone, Bezirke
 
+
+```{r}
+## -- Aufgabe 7: Spatial Join mit Kantone, Bezirke -- ##
+```
+
 Zum Abschluss der Übung wenden wir uns nun noch der Aggregationsabhängigkeit von Geodaten zu. Dazu wollen wir die Daten zur Wasserverfügbarkeit auf verschiedenen Massstäben aggregieren. Als Aggregationseinheiten verwenden wir zwei politische Gliederungen der Schweit - Kantone und Bezirke. Die Frage stellt sich, ob die Daten ev. das MAUP illustrieren.
 
 Hier könnten wir wir nochmals `st_join()` verwenden, aber da wir diesmal Polygone im Fokus haben (Bezirke, Kantone) und mehrere Punkte in einem Polygon vorkommen können, ist dieser Weg etwas umständlich. Wir nutzen deshalb die Funktion `aggregate()`, und spezifizieren `x = wasser`, `by = kantone` und `FUN = mean`.
@@ -295,6 +325,11 @@ aggregate(wasser, bezirke, mean) %>%
 
 
 ### Aufgabe 8 (für Ambitionierte)
+
+
+```{r}
+## -- Aufgabe 8 (für Ambitionierte) -- ##
+```
 
 Politische Grenzen sind für die meisten natürlichen Phänomene irrelevant. Wir könnten deshalb auch eine regelmässige Kachelung (sog. Tesselierung) des Untersuchungsgebietes vornehmen. Dafür könnten wir mit `st_make_grid()` eine Kachelung für das gewählte Untersuchungsgebiet (`x = `) in einer bestimmten Grösse (`cellsize = `)  als Quadrate (`square = TRUE`) oder sogar mit hübschen Hexagonen (`square = FALSE`) durchführen. Probier's aus!
 

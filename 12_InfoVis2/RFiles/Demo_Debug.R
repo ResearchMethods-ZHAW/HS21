@@ -1,3 +1,4 @@
+
 library(tidyverse)
 library(lubridate)
 
@@ -22,17 +23,17 @@ wetter_fil <- wetter %>%
 
 
 
-ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
+ ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_point() +
-  geom_line() +
-  labs(x = "Woche",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "Januar 2000") +  
-  scale_y_continuous(limit = ("-30","30"")) +
-  scale_x_datetime(date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "KW%W") +
-  facet_wrap(~stn,ncol = 3) +
-  theme(legend.position="none")
+   geom_line() +
+   labs(x = "Woche",
+        y = "Temperatur in Grad C°", 
+        title = "Temperaturdaten Schweiz",
+      subtitle = "Januar 2000") 
+  #scale_y_continuous(limit = c("-30","30")) 
+  #scale_x_datetime(date_breaks = "1 week", date_minor_breaks = "1 day", date_labels = "KW%W") +
+  #facet_wrap(~stn,ncol = 3) +
+  #theme(legend.position="none")
 
 
 
