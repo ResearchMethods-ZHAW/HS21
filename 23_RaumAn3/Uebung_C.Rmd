@@ -5,12 +5,12 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 ## Übung C (Optional): Abstimmungsdaten
 
 
-Datensatz importieren und libraries laden:
+Datensatz importieren und Libraries laden:
 
 - [zweitwohnungen_gemeinden.gpkg](23_RaumAn3/data_raw/zweitwohnung_gemeinden.gpkg)
 
 
-```{r}
+```{r, echo = TRUE}
 library(sf)
 library(tidyverse)
 
