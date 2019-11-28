@@ -24,7 +24,7 @@
 <meta name="author" content="Juergen Dengler" />
 
 
-<meta name="date" content="2019-11-26" />
+<meta name="date" content="2019-11-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,6 +57,15 @@
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -356,6 +365,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.6.3" data-path="16-6-ubung-c-dichteverteilungen.html"><a href="16-6-ubung-c-dichteverteilungen.html#aufgabe-6-dichteverteilung-mit-thiessen-polygonen"><i class="fa fa-check"></i><b>16.6.3</b> Aufgabe 6: Dichteverteilung mit Thiessen Polygonen</a></li>
 </ul></li>
 <li class="chapter" data-level="16.7" data-path="16-7-ubung-c-losung.html"><a href="16-7-ubung-c-losung.html"><i class="fa fa-check"></i><b>16.7</b> Übung C – Lösung</a></li>
+<li class="chapter" data-level="16.8" data-path="16-8-thematische-einbettung-und-vorbereitung-1.html"><a href="16-8-thematische-einbettung-und-vorbereitung-1.html"><i class="fa fa-check"></i><b>16.8</b> Thematische Einbettung und Vorbereitung</a></li>
+<li class="chapter" data-level="16.9" data-path="16-9-ubung-a-morans-i.html"><a href="16-9-ubung-a-morans-i.html"><i class="fa fa-check"></i><b>16.9</b> Übung A: Morans I</a><ul>
+<li class="chapter" data-level="16.9.1" data-path="16-9-ubung-a-morans-i.html"><a href="16-9-ubung-a-morans-i.html#aufgabe-1-herleitung-der-formel"><i class="fa fa-check"></i><b>16.9.1</b> Aufgabe 1: Herleitung der Formel</a></li>
+<li class="chapter" data-level="16.9.2" data-path="16-9-ubung-a-morans-i.html"><a href="16-9-ubung-a-morans-i.html#aufgabe-2-morans-i-fur-kantone-berechnen"><i class="fa fa-check"></i><b>16.9.2</b> Aufgabe 2: Morans I für Kantone berechnen</a></li>
+</ul></li>
+<li class="chapter" data-level="16.10" data-path="16-10-ubung-b-weitere-mapping-libraries.html"><a href="16-10-ubung-b-weitere-mapping-libraries.html"><i class="fa fa-check"></i><b>16.10</b> Übung B: Weitere “mapping” Libraries</a><ul>
+<li class="chapter" data-level="16.10.1" data-path="16-10-ubung-b-weitere-mapping-libraries.html"><a href="16-10-ubung-b-weitere-mapping-libraries.html#aufgabe-1-interaktive-karten-mit-plotly"><i class="fa fa-check"></i><b>16.10.1</b> Aufgabe 1: Interaktive Karten mit Plotly</a></li>
+<li class="chapter" data-level="16.10.2" data-path="16-10-ubung-b-weitere-mapping-libraries.html"><a href="16-10-ubung-b-weitere-mapping-libraries.html#aufgabe-2-hintergrundkarten-mit-tmap"><i class="fa fa-check"></i><b>16.10.2</b> Aufgabe 2: Hintergrundkarten mit <code>tmap</code></a></li>
+</ul></li>
+<li class="chapter" data-level="16.11" data-path="16-11-ubung-c-optional-abstimmungsdaten.html"><a href="16-11-ubung-c-optional-abstimmungsdaten.html"><i class="fa fa-check"></i><b>16.11</b> Übung C (Optional): Abstimmungsdaten</a><ul>
+<li class="chapter" data-level="16.11.1" data-path="16-11-ubung-c-optional-abstimmungsdaten.html"><a href="16-11-ubung-c-optional-abstimmungsdaten.html#aufgabe-1-morans-i-auf-gemeindeebene"><i class="fa fa-check"></i><b>16.11.1</b> Aufgabe 1: Morans I auf Gemeindeebene</a></li>
+<li class="chapter" data-level="16.11.2" data-path="16-11-ubung-c-optional-abstimmungsdaten.html"><a href="16-11-ubung-c-optional-abstimmungsdaten.html#aufgabe-2-morans-i-auf-kantonsebene"><i class="fa fa-check"></i><b>16.11.2</b> Aufgabe 2: Morans I auf Kantonsebene</a></li>
+<li class="chapter" data-level="16.11.3" data-path="16-11-ubung-c-optional-abstimmungsdaten.html"><a href="16-11-ubung-c-optional-abstimmungsdaten.html#aufgabe-3-bivariate-plot-mit-biscale"><i class="fa fa-check"></i><b>16.11.3</b> Aufgabe 3: Bivariate Plot mit <code>biscale</code></a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -377,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Research Methods</h1>
 <p class="author"><em>Juergen Dengler</em></p>
-<p class="date"><em>2019-11-26</em></p>
+<p class="date"><em>2019-11-28</em></p>
 </div>
 <div id="einleitung" class="section level1">
 <h1><span class="header-section-number">Kapitel 1</span> Einleitung</h1>

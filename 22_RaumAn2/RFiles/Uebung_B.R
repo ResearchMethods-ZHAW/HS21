@@ -37,7 +37,7 @@ my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp =
   ras <- raster::rasterFromXYZ(idw_matrix)
   
   if(all(grepl("polygon",st_geometry_type(extent),ignore.case = TRUE))){
-    ras <- mask(ras,st_as_sf(st_zm(extent)))
+    ras <- raster::mask(ras,st_as_sf(st_zm(extent)))
   }
   ras
 }

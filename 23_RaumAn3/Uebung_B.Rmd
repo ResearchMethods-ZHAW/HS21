@@ -12,9 +12,16 @@ Speichere dazu den letzten Plot in einer Variabel (z.B: `p_kantone <- ggplot(was
 ```{r}
 library(sf)
 library(tidyverse)
+library(ggplot2)
+library(plotly)
+        
 kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
 
 kantone <- st_set_crs(kantone, 2056)
+wasser <- wasser %>%
+  st_set_crs(4326) %>%
+  st_transform(2056)
 
 wasser_kantone <- aggregate(wasser,kantone, mean)
 ```

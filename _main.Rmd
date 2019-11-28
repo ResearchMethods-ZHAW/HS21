@@ -10333,7 +10333,7 @@ my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp =
   ras <- raster::rasterFromXYZ(idw_matrix)
   
   if(all(grepl("polygon",st_geometry_type(extent),ignore.case = TRUE))){
-    ras <- mask(ras,st_as_sf(st_zm(extent)))
+    ras <- raster::mask(ras,st_as_sf(st_zm(extent)))
   }
   ras
 }
@@ -10770,4 +10770,510 @@ rm(list = ls())
 ```
 
 <!--chapter:end:22_RaumAn2/Loesung_C.Rmd-->
+
+```{r, include=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
+```
+
+## Thematische Einbettung und Vorbereitung
+
+
+Heute berechnen wir Morans $I$ auf verschiedenen Datensätzen und vergleichen die Resultate. Dafür nutzen wir keine Funktion aus einem Package, sondern erarbeiten uns alles selber, basierend auf der Formel von Morans $I$: 
+
+$$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+
+Diese sieht sehr beeindruckend aus, aber wenn wir die Formel in ihre Einzelbestandteile aufteilen sehen wir, dass diese in sich gar nicht so komplex sind.
+
+Als erster Schritt müssen wir die notwendigen Libraries und Geodaten Laden:
+
+- [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
+- [wasserverfuegbarkeit_bode.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
+
+```{r, echo = TRUE}
+library(tidyverse)
+library(sf)
+
+bezirke <- read_sf("21_RaumAn1/data/bezirke.gpkg")
+
+wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
+
+wasser <- wasser %>%
+  st_set_crs(4326) %>%
+  st_transform(2056)
+
+bezirke <- st_set_crs(bezirke, 2056)
+
+
+
+
+```
+
+Nun können wir die mittlere Wasserverfügbarkeit pro Bezirk berechnen. Visualisiert dies in einem ersten Schritt und notiert euch, was für einen Wert ihr von Morans $I$ erwartet (eher -1 oder eher 1 oder nahe 0?). Der Plot muss nicht genau so aussehen wie der unsere.
+
+```{r, echo = TRUE}
+wasser_bezirke <- aggregate(wasser,bezirke, mean)
+```
+
+```{r}
+ ggplot(wasser_bezirke) +
+  geom_sf(aes(fill = wasserverfuegbarkeit), colour = "white",lwd = 0.2) +
+  scale_fill_viridis_c() +
+  labs(title = "Mittlere Wasserverfügbarkeit",subtitle = "nach Bezirk",fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal")
+```
+
+## Übung A: Morans I
+
+
+### Aufgabe 1: Herleitung der Formel
+
+Wir widmen uns der Berechnung von Morans $I$ und packen dafür die Formel Schritt für Schritt aus und zerteilen so ein komplexes Problem in relativ simple Einzelteile. Dabei beginnen wir mit dem ersten Bruch und berechnen uns zuerst den Zähler, dann dem Nenner. So können wir den Bruch auflösen und uns dem zweiten Bruch zuwenden:
+
+
+$$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+
+
+#### Bruch 1
+
+Widmen wir uns dem erste Bruch:
+
+$$\frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2}$$ 
+
+
+##### Zähler (von Bruch 1)
+
+Beginnen wir mit dem Zähler, $n$. Dies ist lediglich die Anzahl Messwerte in unserem Datensatz, also die Anzahl Bezirke. 
+
+```{r, echo = TRUE}
+n <- nrow(wasser_bezirke)
+n
+```
+
+##### Nenner (von Bruch 1)
+
+Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich wie die Berechnung der Varianz: 
+
+Summiere bei allen Messwerten (von $i = 1$ bis $n$) folgendes: Das Quadrat von der Differenz aus jedem Messwert und dem Durchschnitt aller Messwerte.
+
+
+Also berechnen wir zuerst diese Differenzwerte (Messwert minus Mittelwert):
+```{r, echo = TRUE}
+# Die Werte aller Bezirke:
+y <- wasser_bezirke$wasserverfuegbarkeit
+
+# Der Durchschnittswert aller Bezirke
+ybar <- mean(y, na.rm = TRUE)
+
+# von jedem Wert den Durchschnittswert abziehen:
+dy <- y - ybar
+```
+
+Nun quadrieren wir diese Werte:
+
+```{r, echo = TRUE}
+dy_2 <- dy^2
+```
+
+und ziehen daraus die Summe:
+
+```{r, echo = TRUE}
+dy_sum <- sum(dy_2, na.rm = TRUE)
+```
+
+
+##### Zähler durch Nenner dividieren (Bruch 1)
+
+
+Um den ersten Bruch zu Lösen müssen wir nun noch die Anzahl werte durch `dy_sum` teilen.
+
+```{r, echo = TRUE}
+vr <- n/dy_sum
+```
+
+
+#### Bruch 2
+
+Nun zum zweiten Teil des Bruches 
+
+$$\frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+
+Hier hat es jeweils zwei Summenzeichen nacheinander mit unterschiedlichen Laufvariablen ($i$ und $j$). Dies bedeutet dass wir mit Kreuzmatrizen arbeiten, da wir alle Messwerte mit allen anderen Messwerten vergleichen ($w_{ij}$ ist die erste Kreuzmatrix, $(y_i - \bar{y})(y_j - \bar{y})$ ist die zweite Kreuzmatrix). 
+
+##### Zähler (Bruch 2)
+
+Der erste Begriff, $w_{ij}$, sind die räumlichen Gewichte aller Bezirke. Sind die Bezirke benachbart, dann gilt ein Gewicht von 1. Sind sie nicht benachbart, gilt ein Gewicht von 0.
+
+Wie wir "benachbart" definieren ist noch offen. 
+
+- Sie müssen sich berühren (dürfen sich aber nicht überlappen): `st_touches()`
+- Sie müssen innerhalb einer bestimmten Distanz zueinander liegen: `st_is_within_distance()`
+- Sie müssen sich überlappen: `st_overlaps()`
+
+Egal für welche Variante ihr euch entscheidet, setzt `sparse = FASE` damit eine Kreuzmatrix erstellt wird.
+
+```{r, echo = TRUE}
+w <- st_touches(wasser_bezirke, sparse = FALSE)
+
+w[1:6, 1:6]
+```
+
+(Lasst euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`)
+
+Wir sehen hier, dass der erste Bezirk im Datensatz (Zeile 1), den 3. und 4. Bezirk im Datensatz berührt. Er berührt aber den 2., 5. und 6. Bezirk *nicht*. Ob dies stimmt können wir einfach nachprüfen:
+
+```{r}
+wasser_bezirke %>%
+  rowid_to_column() %>% # erstellt eine Spalte rowid mit der Position
+  head(6) %>%
+  ggplot() + 
+  geom_sf(aes(fill = factor(rowid))) + 
+  geom_sf_text(aes(label = rowid)) + 
+  labs(title = "Welche Bezirke berühren Bezirk Nr. 1?") +
+  theme_void() + 
+  theme(legend.position = "none")
+```
+
+
+Der nächste Teil,  $(y_i - \bar{y})$ kennen wir schon vom ersten Bruch und haben wir auch bereits gelöst. Wie eingangs erwähnt müssen wir durch das $(y_j - \bar{y})$ diesmal *das Produkt aller Wertekombinationen* berechnen. Dies erreichen wir mit der Funktion `tcrossprod()`:
+
+```{r, echo = TRUE}
+pm <- tcrossprod(dy)
+pm[1:6,1:6]
+
+```
+
+Nun multiplizieren wir die Werte mit den Gewichten $w$, damit wir nur noch die Werte von den Bezirken haben, die benachbart sind (und eliminieren nicht-benachbarte Werte).
+
+```{r, echo = TRUE}
+pmw <- pm * w
+w[1:6,1:6]
+pmw[1:6,1:6]
+```
+
+Den Zähler des ersten Bruches haben wir errechnet, nachdem wir die Summe der gewichten Werten gebildet haben:
+```{r, echo = TRUE}
+spmw <- sum(pmw, na.rm = TRUE)
+spmw
+```
+
+
+##### Nenner (Bruch 2)
+
+Für den Nenner des zweiten Bruches müssen wir nur noch die die Gewichte summieren. Sprich: wie viele Bezirke sind benachbart?
+
+```{r, echo = TRUE}
+smw <- sum(w, na.rm = TRUE)
+```
+
+
+##### Auflösung (Bruch 2)
+
+So können wir den zweiten Bruch auflösen:
+```{r, echo = TRUE}
+sw  <- spmw / smw
+```
+
+
+#### Brüche Multiplizieren
+
+Der allerletzte Schritt besteht darin, die Werte aus den Brüchen miteinander zu multiplizieren.
+
+```{r, echo = TRUE}
+MI <- vr * sw
+MI
+```
+
+
+
+### Aufgabe 2: Morans I für Kantone berechnen
+
+
+Nun wollen wir die Wasserverfügbarkeitswerte auf der Ebene der Kantone aggregieren und untersuchen, ob und wie sich Morans $I$ verändert. Importiere dafür den Datensatz "kantone.gpkg" aus RaumAn1 (s.u.), allenfalls musst du das CRS noch setzen. Aggregiere Wasserqualitätswerte auf ebene der Kantone, visualisiere diese anschliessend und berechne danach Morans $I$. 
+
+- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
+
+```{r}
+kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+
+kantone <- st_set_crs(kantone, 2056)
+
+wasser_kantone <- aggregate(wasser,kantone, mean)
+```
+
+```{r}
+morans_i <- function(sf_object,col) {
+  require(sf)
+  n <- nrow(sf_object)
+  y <- unlist(st_set_geometry(sf_object,NULL)[,col],use.names = FALSE)
+  ybar <- mean(y, na.rm = TRUE)
+  dy <- y - ybar
+  dy_sum <- sum(dy^2, na.rm = TRUE)
+  vr <- n/dy_sum
+  w <- st_touches(sf_object,sparse = FALSE)
+  pm <- tcrossprod(dy)
+  pmw <- pm * w
+  spmw <- sum(pmw, na.rm = TRUE)
+  smw <- sum(w, na.rm = TRUE)
+  sw  <- spmw / smw
+  MI <- vr * sw
+  MI
+}
+```
+
+
+```{r}
+morans_i <- function(sf_object,col) {
+  require(sf)
+  n <- nrow(sf_object)
+  y <- unlist(st_set_geometry(sf_object,NULL)[,col],use.names = FALSE)
+  ybar <- mean(y, na.rm = TRUE)
+  dy <- y - ybar
+  dy_sum <- sum(dy^2, na.rm = TRUE)
+  vr <- n/dy_sum
+  w <- st_touches(sf_object,sparse = FALSE)
+  pm <- tcrossprod(dy)
+  pmw <- pm * w
+  spmw <- sum(pmw, na.rm = TRUE)
+  smw <- sum(w, na.rm = TRUE)
+  sw  <- spmw / smw
+  MI <- vr * sw
+  MI
+}
+
+MI_kantone <-  morans_i(wasser_kantone,"wasserverfuegbarkeit")
+
+```
+
+
+```{r}
+ ggplot(wasser_kantone) +
+  geom_sf(aes(fill = wasserverfuegbarkeit), colour = "white",lwd = 0.2) +
+  scale_fill_viridis_c() +
+  labs(title = "Mittlere Wasserverfügbarkeit nach Kantone",subtitle = paste("Morans I:",formatC(MI_kantone,digits = 2,flag = "+")),fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal") 
+```
+
+
+```{r include=FALSE, cache=FALSE}
+
+
+
+
+
+# detach packages
+packages = sapply(sessionInfo()$otherPkgs, function(x) x$Package)
+packages = packages[packages != "bookdown"]
+packages = sapply(packages, function(p) paste0("package:", p))
+lapply(packages, detach, character.only = TRUE, unload = TRUE)
+# clear environment
+rm(list = ls())
+```
+
+<!--chapter:end:23_RaumAn3/Uebung_A.Rmd-->
+
+
+
+## Übung B: Weitere "mapping" Libraries  
+
+
+### Aufgabe 1: Interaktive Karten mit Plotly
+
+Was bei `ggplot` oftmals fehlt ist die Möglichkeit, mit der Karte zu interagieren: Zum Beispiel rein- und raus Zoomen sowie Werte einzelner Messpunkte anzeigen. Eine sehr einfache Möglichkeit dies zu erreichen ist mit der Library `plotly`. Die Funktion `ggplotly()` verwandelt einen `ggplot`-Plot automatisch in einen interaktiven Plot um.
+
+Speichere dazu den letzten Plot in einer Variabel (z.B: `p_kantone <- ggplot(wasser_kantone) + geom_sf()...`). Installiere `plotly` und lade die Library. Wende nun `ggplotly` auf `p_kantone` an.
+
+```{r}
+library(sf)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+        
+kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
+
+kantone <- st_set_crs(kantone, 2056)
+wasser <- wasser %>%
+  st_set_crs(4326) %>%
+  st_transform(2056)
+
+wasser_kantone <- aggregate(wasser,kantone, mean)
+```
+
+
+```{r, echo = TRUE}
+
+p_kantone <- ggplot(wasser_kantone) +
+  geom_sf(aes(fill = wasserverfuegbarkeit), colour = "white",lwd = 0.2) +
+  scale_fill_viridis_c() +
+  labs(title = "Mittlere Wasserverfügbarkeit nach Kantone",fill = "") +
+  theme_void()
+
+ggplotly(p_kantone)
+```
+
+
+
+### Aufgabe 2: Hintergrundkarten mit `tmap`
+
+Was bei sowohl bei `ggplot` wie auch bei `plolty` fehlt, ist eine Hintergrundkarte. Diese Funktionalität wird von `tmap` zur Verfügung gestellt. Auf den erste Blick erscheint `tmap` nicht viel anders zu sein als `ggplot`: Der Syntax ist sehr ähnlich und auch output ist vergleichbar.
+
+```{r, echo = TRUE}
+library(tmap)
+tm_shape(wasser_kantone) + tm_polygons(col = "wasserverfuegbarkeit", alpha = 0.3,palette = "viridis",midpoint = NA)
+```
+
+Setzt man jedoch `tmap_mode()` zu `view`, wird statt einer statischen Karte eine interaktive Karte mit Basemap generiert. 
+```{r, echo = TRUE}
+tmap_mode("view")
+
+tm_shape(wasser_kantone) + tm_polygons(col = "wasserverfuegbarkeit", alpha = 0.3,palette = "viridis",midpoint = NA)
+```
+
+```{r include=FALSE, cache=FALSE}
+
+
+
+
+
+# detach packages
+packages = sapply(sessionInfo()$otherPkgs, function(x) x$Package)
+packages = packages[packages != "bookdown"]
+packages = sapply(packages, function(p) paste0("package:", p))
+lapply(packages, detach, character.only = TRUE, unload = TRUE)
+# clear environment
+rm(list = ls())
+```
+
+<!--chapter:end:23_RaumAn3/Uebung_B.Rmd-->
+
+```{r, include=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
+```
+
+## Übung C (Optional): Abstimmungsdaten
+
+
+Datensatz importieren und libraries laden:
+
+- [zweitwohnungen_gemeinden.gpkg](23_RaumAn3/data_raw/zweitwohnung_gemeinden.gpkg)
+
+
+```{r}
+library(sf)
+library(tidyverse)
+
+gemeinden_zweitwohnung <- read_sf("23_RaumAn3/data_raw/zweitwohnung_gemeinden.gpkg")
+```
+
+
+Morans $I$ können wir auch als Funktion aufbereiten:
+
+
+```{r, echo = TRUE}
+morans_i <- function(sf_object,col) {
+  require(sf)
+  n <- nrow(sf_object)
+  y <- unlist(st_set_geometry(sf_object,NULL)[,col],use.names = FALSE)
+  ybar <- mean(y, na.rm = TRUE)
+  dy <- y - ybar
+  dy_sum <- sum(dy^2, na.rm = TRUE)
+  vr <- n/dy_sum
+  w <- st_touches(sf_object,sparse = FALSE)
+  pm <- tcrossprod(dy)
+  pmw <- pm * w
+  spmw <- sum(pmw, na.rm = TRUE)
+  smw <- sum(w, na.rm = TRUE)
+  sw  <- spmw / smw
+  MI <- vr * sw
+  MI
+}
+```
+
+
+
+### Aufgabe 1: Morans I auf Gemeindeebene
+
+```{r, echo = TRUE}
+MI_zweitw_gemeinde <- morans_i(gemeinden_zweitwohnung,"ja_in_percent")
+
+ggplot() + 
+  geom_sf(data = gemeinden_zweitwohnung, aes(fill = ja_in_percent), colour = "grey",lwd = 0.1) + 
+  labs(fill = "Ja Anteil (%)", title = "Zweitwohnungsinitiative, Gemeindeebene", subtitle = paste("Morans I",formatC(MI_zweitw_gemeinde,2,flag = "+"))) +
+  scale_fill_gradient2(low = "#2c7bb6",mid = "#ffffbf",high = "#d7191c",midpoint = 50,breaks = c(0,25,50,75,100),limits = c(0,100)) +
+  theme_void()
+```
+
+
+### Aufgabe 2: Morans I auf Kantonsebene
+
+Mit der Spalte `kanton` können wir die Gemeinde Resultate auf Kantonsebene aggregieren (mit `group_by()` und `summarise()`). Tipp: Nutze `weighted.mean()`:
+
+```{r}
+kantone_zweitwohnung <- gemeinden_zweitwohnung %>%
+  group_by(kanton) %>%
+  summarise(
+    ja_in_percent = weighted.mean(ja_in_percent,gultige_stimmzettel,na.rm = TRUE)
+    )
+
+MI_zweitw_kanton <- morans_i(kantone_zweitwohnung,"ja_in_percent")
+
+ggplot() + 
+  geom_sf(data = kantone_zweitwohnung, aes(fill = ja_in_percent), colour = "grey",lwd = 0.2) + 
+  labs(fill = "Ja Anteil (%)", title = "Zweitwohnungsinitiative, Kantonsebene", subtitle = paste("Morans I",formatC(MI_zweitw_kanton,2,flag = "+"))) +
+  scale_fill_gradient2(low = "#2c7bb6",mid = "#ffffbf",high = "#d7191c",midpoint = 50,breaks = c(0,25,50,75,100),limits = c(0,100)) +
+  theme_void()
+```
+
+
+### Aufgabe 3: Bivariate Plot mit `biscale`
+
+Allenfalls ist es noch wichtig zu wissen, welche Bedeutung der Abstimmung in den einzelnen Gemeinden zugesprochen wurde. Also wie "laut" war das *Nein* bzw. das *Ja*. Dies können wir mit der Stimmbeteiligung ausdrücken. Um zwei Variablen gleichzeitig zu Visualisieren (z.B. Ja-Anteil *und* Stimmbeteiligung) gibt es die Möglichkeit einer bivariaten Farbskala. Diese wurde mit der Library `biscale` in `ggplot` implementiert.
+
+```{r, echo = TRUE}
+library(biscale)
+library(cowplot)
+
+data <- gemeinden_zweitwohnung %>%
+  filter(!is.na(ja_in_percent), !is.na(beteiligung_in_percent)) %>%
+  bi_class(x = ja_in_percent, y = beteiligung_in_percent, style = "equal", dim = 3)
+
+map <- ggplot() +
+  geom_sf(data = data, mapping = aes(fill = bi_class), color = "white", size = 0.1, show.legend = FALSE) +
+  bi_scale_fill(pal = "DkBlue", dim = 3) +
+  labs(
+    title = "",
+    caption = "Ja Anteil und Stimmbeteiligung (jeweils in %) auf der Gemeindeebene"
+  ) +
+  bi_theme()
+
+legend <- bi_legend(pal = "DkBlue",
+                    dim = 3,
+                    xlab = "%-Ja Anteil ",
+                    ylab = "%-Beteiligung ",
+                    size = 8)
+finalPlot <- ggdraw() +
+  draw_plot(map, 0, 0, 1, 1) +
+  draw_plot(legend, 0.1, .65, 0.2, 0.2)
+
+finalPlot
+```
+
+```{r include=FALSE, cache=FALSE}
+
+
+
+
+
+# detach packages
+packages = sapply(sessionInfo()$otherPkgs, function(x) x$Package)
+packages = packages[packages != "bookdown"]
+packages = sapply(packages, function(p) paste0("package:", p))
+lapply(packages, detach, character.only = TRUE, unload = TRUE)
+# clear environment
+rm(list = ls())
+```
+
+<!--chapter:end:23_RaumAn3/Uebung_C.Rmd-->
 

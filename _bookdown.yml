@@ -100,9 +100,6 @@ rmd_files: [
     "20_Statistik8/Demoskript.Rmd",
     "20_Statistik8/assigment_stat8.Rmd",
     "20_Statistik8/solution_stat8.1.Rmd",
-  
-
-   
     
     "21_RaumAn1/Abstract.Rmd",
     "21_RaumAn1/Uebung.Rmd",
@@ -115,6 +112,11 @@ rmd_files: [
     "22_RaumAn2/Loesung_B.Rmd",
     "22_RaumAn2/Uebung_C.Rmd",
     "22_RaumAn2/Loesung_C.Rmd",
+    
+    "23_RaumAn3/Uebung_A.Rmd",
+    "23_RaumAn3/Uebung_B.Rmd",
+    "23_RaumAn3/Uebung_C.Rmd",
+    
 
 #  "00_Admin/references.Rmd"
   ]
