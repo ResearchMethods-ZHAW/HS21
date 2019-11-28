@@ -113,6 +113,7 @@ rmd_files: [
     "22_RaumAn2/Uebung_C.Rmd",
     "22_RaumAn2/Loesung_C.Rmd",
     
+    "23_RaumAn3/Abstract.Rmd",
     "23_RaumAn3/Uebung_A.Rmd",
     "23_RaumAn3/Uebung_B.Rmd",
     "23_RaumAn3/Uebung_C.Rmd",

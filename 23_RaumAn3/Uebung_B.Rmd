@@ -9,7 +9,7 @@ Was bei `ggplot` oftmals fehlt ist die Möglichkeit, mit der Karte zu interagier
 
 Speichere dazu den letzten Plot in einer Variabel (z.B: `p_kantone <- ggplot(wasser_kantone) + geom_sf()...`). Installiere `plotly` und lade die Library. Wende nun `ggplotly` auf `p_kantone` an.
 
-```{r}
+```{r, echo=TRUE}
 library(sf)
 library(tidyverse)
 library(ggplot2)
