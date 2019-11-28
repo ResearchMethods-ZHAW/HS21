@@ -7,16 +7,13 @@ library(maptools)
 library(ggplot2)
 library(dplyr)
 
-luftQual <- st_read("data/Luftqualitaet_2015_NO2.shp") # Luftqualität in der Schweiz
-kantone <- st_read("data/KANTONSGEBIET.shp") # Kantone (first aggregation level)
-bezirke <- st_read("data/BEZIRKSGEBIET.shp") # Bezirksgebiet (second aggregation level)
+luftQual <- st_read("22_RaumAn2/data/luftqualitaet.gpkg") # Luftqualität in der Schweiz
+kantone <- st_read("21_RaumAn1/data/kantone.gpkg") # Kantone (first aggregation level)
+bezirke <- st_read("21_RaumAn1/data/bezirke.gpkg") # Bezirksgebiet (second aggregation level)
 
-# -- transform to CH1903+LV95 -- 
-luftQual <- st_transform(luftQual, crs = 2056)
-kantone <- st_transform(kantone, crs = 2056) %>%
-  st_zm(kantone) # remove z information
-bezirke <- st_transform(bezirke, crs = 2056) %>%
-  st_zm(bezirke) # remove z information
+luftQual <- st_set_crs(luftQual,2056)
+kantone <- st_set_crs(kantone,2056)
+bezirke <- st_set_crs(bezirke,2056)
 
 
 # Join by Canton
@@ -24,15 +21,17 @@ bezirke <- st_transform(bezirke, crs = 2056) %>%
 luftQual_kanton <- st_join(luftQual, kantone)
 
 kantone_union <- kantone %>%
-  group_by(kantonsnum) %>%
+  group_by(NAME) %>%
   summarise()
 
 luftQual_kanton_mean <- luftQual_kanton %>%
-  group_by(kantonsnum) %>%
+  group_by(NAME) %>%
   summarise(mean_value = mean(value))
 
 # spatial join cantons and NO2 
 kantone_Moran <- st_join(kantone_union, luftQual_kanton_mean)
+
+mornans_i(kantone_Moran,"mean_value")
 
 # convert to spatial object
 kantone_Moran <- as(kantone_luftqual, "Spatial")
