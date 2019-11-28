@@ -1,0 +1,285 @@
+```{r, include=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
+```
+
+## Thematische Einbettung und Vorbereitung
+
+
+Heute berechnen wir Morans $I$ auf verschiedenen Datensätzen und vergleichen die Resultate. Dafür nutzen wir keine Funktion aus einem Package, sondern erarbeiten uns alles selber, basierend auf der Formel von Morans $I$: 
+
+$$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+
+Diese sieht sehr beeindruckend aus, aber wenn wir die Formel in ihre Einzelbestandteile aufteilen sehen wir, dass diese in sich gar nicht so komplex sind.
+
+Als erster Schritt müssen wir die notwendigen Libraries und Geodaten Laden:
+
+- [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
+- [wasserverfuegbarkeit_bode.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
+
+```{r, echo = TRUE}
+library(tidyverse)
+library(sf)
+
+bezirke <- read_sf("21_RaumAn1/data/bezirke.gpkg")
+
+wasser <- read_sf("21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg")
+
+wasser <- wasser %>%
+  st_set_crs(4326) %>%
+  st_transform(2056)
+
+bezirke <- st_set_crs(bezirke, 2056)
+
+
+
+
+```
+
+Nun können wir die mittlere Wasserverfügbarkeit pro Bezirk berechnen. Visualisiert dies in einem ersten Schritt und notiert euch, was für einen Wert ihr von Morans $I$ erwartet (eher -1 oder eher 1 oder nahe 0?). Der Plot muss nicht genau so aussehen wie der unsere.
+
+```{r, echo = TRUE}
+wasser_bezirke <- aggregate(wasser,bezirke, mean)
+```
+
+```{r}
+ ggplot(wasser_bezirke) +
+  geom_sf(aes(fill = wasserverfuegbarkeit), colour = "white",lwd = 0.2) +
+  scale_fill_viridis_c() +
+  labs(title = "Mittlere Wasserverfügbarkeit",subtitle = "nach Bezirk",fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal")
+```
+
+## Übung A: Morans I
+
+
+### Aufgabe 1: Herleitung der Formel
+
+Wir widmen uns der Berechnung von Morans $I$ und packen dafür die Formel Schritt für Schritt aus und zerteilen so ein komplexes Problem in relativ simple Einzelteile. Dabei beginnen wir mit dem ersten Bruch und berechnen uns zuerst den Zähler, dann dem Nenner. So können wir den Bruch auflösen und uns dem zweiten Bruch zuwenden:
+
+
+$$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+
+
+#### Bruch 1
+
+Widmen wir uns dem erste Bruch:
+
+$$\frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2}$$ 
+
+
+##### Zähler (von Bruch 1)
+
+Beginnen wir mit dem Zähler, $n$. Dies ist lediglich die Anzahl Messwerte in unserem Datensatz, also die Anzahl Bezirke. 
+
+```{r, echo = TRUE}
+n <- nrow(wasser_bezirke)
+n
+```
+
+##### Nenner (von Bruch 1)
+
+Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich wie die Berechnung der Varianz: 
+
+Summiere bei allen Messwerten (von $i = 1$ bis $n$) folgendes: Das Quadrat von der Differenz aus jedem Messwert und dem Durchschnitt aller Messwerte.
+
+
+Also berechnen wir zuerst diese Differenzwerte (Messwert minus Mittelwert):
+```{r, echo = TRUE}
+# Die Werte aller Bezirke:
+y <- wasser_bezirke$wasserverfuegbarkeit
+
+# Der Durchschnittswert aller Bezirke
+ybar <- mean(y, na.rm = TRUE)
+
+# von jedem Wert den Durchschnittswert abziehen:
+dy <- y - ybar
+```
+
+Nun quadrieren wir diese Werte:
+
+```{r, echo = TRUE}
+dy_2 <- dy^2
+```
+
+und ziehen daraus die Summe:
+
+```{r, echo = TRUE}
+dy_sum <- sum(dy_2, na.rm = TRUE)
+```
+
+
+##### Zähler durch Nenner dividieren (Bruch 1)
+
+
+Um den ersten Bruch zu Lösen müssen wir nun noch die Anzahl werte durch `dy_sum` teilen.
+
+```{r, echo = TRUE}
+vr <- n/dy_sum
+```
+
+
+#### Bruch 2
+
+Nun zum zweiten Teil des Bruches 
+
+$$\frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+
+Hier hat es jeweils zwei Summenzeichen nacheinander mit unterschiedlichen Laufvariablen ($i$ und $j$). Dies bedeutet dass wir mit Kreuzmatrizen arbeiten, da wir alle Messwerte mit allen anderen Messwerten vergleichen ($w_{ij}$ ist die erste Kreuzmatrix, $(y_i - \bar{y})(y_j - \bar{y})$ ist die zweite Kreuzmatrix). 
+
+##### Zähler (Bruch 2)
+
+Der erste Begriff, $w_{ij}$, sind die räumlichen Gewichte aller Bezirke. Sind die Bezirke benachbart, dann gilt ein Gewicht von 1. Sind sie nicht benachbart, gilt ein Gewicht von 0.
+
+Wie wir "benachbart" definieren ist noch offen. 
+
+- Sie müssen sich berühren (dürfen sich aber nicht überlappen): `st_touches()`
+- Sie müssen innerhalb einer bestimmten Distanz zueinander liegen: `st_is_within_distance()`
+- Sie müssen sich überlappen: `st_overlaps()`
+
+Egal für welche Variante ihr euch entscheidet, setzt `sparse = FASE` damit eine Kreuzmatrix erstellt wird.
+
+```{r, echo = TRUE}
+w <- st_touches(wasser_bezirke, sparse = FALSE)
+
+w[1:6, 1:6]
+```
+
+(Lasst euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`)
+
+Wir sehen hier, dass der erste Bezirk im Datensatz (Zeile 1), den 3. und 4. Bezirk im Datensatz berührt. Er berührt aber den 2., 5. und 6. Bezirk *nicht*. Ob dies stimmt können wir einfach nachprüfen:
+
+```{r}
+wasser_bezirke %>%
+  rowid_to_column() %>% # erstellt eine Spalte rowid mit der Position
+  head(6) %>%
+  ggplot() + 
+  geom_sf(aes(fill = factor(rowid))) + 
+  geom_sf_text(aes(label = rowid)) + 
+  labs(title = "Welche Bezirke berühren Bezirk Nr. 1?") +
+  theme_void() + 
+  theme(legend.position = "none")
+```
+
+
+Der nächste Teil,  $(y_i - \bar{y})$ kennen wir schon vom ersten Bruch und haben wir auch bereits gelöst. Wie eingangs erwähnt müssen wir durch das $(y_j - \bar{y})$ diesmal *das Produkt aller Wertekombinationen* berechnen. Dies erreichen wir mit der Funktion `tcrossprod()`:
+
+```{r, echo = TRUE}
+pm <- tcrossprod(dy)
+pm[1:6,1:6]
+
+```
+
+Nun multiplizieren wir die Werte mit den Gewichten $w$, damit wir nur noch die Werte von den Bezirken haben, die benachbart sind (und eliminieren nicht-benachbarte Werte).
+
+```{r, echo = TRUE}
+pmw <- pm * w
+w[1:6,1:6]
+pmw[1:6,1:6]
+```
+
+Den Zähler des ersten Bruches haben wir errechnet, nachdem wir die Summe der gewichten Werten gebildet haben:
+```{r, echo = TRUE}
+spmw <- sum(pmw, na.rm = TRUE)
+spmw
+```
+
+
+##### Nenner (Bruch 2)
+
+Für den Nenner des zweiten Bruches müssen wir nur noch die die Gewichte summieren. Sprich: wie viele Bezirke sind benachbart?
+
+```{r, echo = TRUE}
+smw <- sum(w, na.rm = TRUE)
+```
+
+
+##### Auflösung (Bruch 2)
+
+So können wir den zweiten Bruch auflösen:
+```{r, echo = TRUE}
+sw  <- spmw / smw
+```
+
+
+#### Brüche Multiplizieren
+
+Der allerletzte Schritt besteht darin, die Werte aus den Brüchen miteinander zu multiplizieren.
+
+```{r, echo = TRUE}
+MI <- vr * sw
+MI
+```
+
+
+
+### Aufgabe 2: Morans I für Kantone berechnen
+
+
+Nun wollen wir die Wasserverfügbarkeitswerte auf der Ebene der Kantone aggregieren und untersuchen, ob und wie sich Morans $I$ verändert. Importiere dafür den Datensatz "kantone.gpkg" aus RaumAn1 (s.u.), allenfalls musst du das CRS noch setzen. Aggregiere Wasserqualitätswerte auf ebene der Kantone, visualisiere diese anschliessend und berechne danach Morans $I$. 
+
+- [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
+
+```{r}
+kantone <- read_sf("21_RaumAn1/data/kantone.gpkg")
+
+kantone <- st_set_crs(kantone, 2056)
+
+wasser_kantone <- aggregate(wasser,kantone, mean)
+```
+
+```{r}
+morans_i <- function(sf_object,col) {
+  require(sf)
+  n <- nrow(sf_object)
+  y <- unlist(st_set_geometry(sf_object,NULL)[,col],use.names = FALSE)
+  ybar <- mean(y, na.rm = TRUE)
+  dy <- y - ybar
+  dy_sum <- sum(dy^2, na.rm = TRUE)
+  vr <- n/dy_sum
+  w <- st_touches(sf_object,sparse = FALSE)
+  pm <- tcrossprod(dy)
+  pmw <- pm * w
+  spmw <- sum(pmw, na.rm = TRUE)
+  smw <- sum(w, na.rm = TRUE)
+  sw  <- spmw / smw
+  MI <- vr * sw
+  MI
+}
+```
+
+
+```{r}
+morans_i <- function(sf_object,col) {
+  require(sf)
+  n <- nrow(sf_object)
+  y <- unlist(st_set_geometry(sf_object,NULL)[,col],use.names = FALSE)
+  ybar <- mean(y, na.rm = TRUE)
+  dy <- y - ybar
+  dy_sum <- sum(dy^2, na.rm = TRUE)
+  vr <- n/dy_sum
+  w <- st_touches(sf_object,sparse = FALSE)
+  pm <- tcrossprod(dy)
+  pmw <- pm * w
+  spmw <- sum(pmw, na.rm = TRUE)
+  smw <- sum(w, na.rm = TRUE)
+  sw  <- spmw / smw
+  MI <- vr * sw
+  MI
+}
+
+MI_kantone <-  morans_i(wasser_kantone,"wasserverfuegbarkeit")
+
+```
+
+
+```{r}
+ ggplot(wasser_kantone) +
+  geom_sf(aes(fill = wasserverfuegbarkeit), colour = "white",lwd = 0.2) +
+  scale_fill_viridis_c() +
+  labs(title = "Mittlere Wasserverfügbarkeit nach Kantone",subtitle = paste("Morans I:",formatC(MI_kantone,digits = 2,flag = "+")),fill = "") +
+  theme_void() +
+  theme(legend.position = "bottom",legend.direction = "horizontal") 
+```
+
+
