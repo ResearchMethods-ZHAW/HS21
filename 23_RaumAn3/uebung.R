@@ -35,7 +35,7 @@ luftQual_kanton_mean <- luftQual_kanton %>%
 kantone_Moran <- st_join(kantone_union, luftQual_kanton_mean)
 
 # convert to spatial object
-kantone_Moran <- as(kantone_Moran, "Spatial")
+kantone_Moran <- as(kantone_luftqual, "Spatial")
 
 # getting the centroids of the polygons
 xy <- coordinates(kantone_Moran)
