@@ -58,7 +58,7 @@ ggplot() +
 
 ### Aufgabe 2: Morans I auf Kantonsebene
 
-Mit der Spalte `kanton` können wir die geminde Resultate auf Kantonsebene aggregieren (mit `group_by()` und `summarise()`). Tipp: Nutze `weighted.mean()`:
+Mit der Spalte `kanton` können wir die Gemeinde Resultate auf Kantonsebene aggregieren (mit `group_by()` und `summarise()`). Tipp: Nutze `weighted.mean()`:
 
 ```{r}
 kantone_zweitwohnung <- gemeinden_zweitwohnung %>%
