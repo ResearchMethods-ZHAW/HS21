@@ -61,14 +61,14 @@ In der ersten Übung wollen wir Moran's $I$ für eine gegebene Choroplethenkarte
 $$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
 
 
-#### Bruch 1
+**Bruch 1**
 
 Widmen wir uns dem erste Bruch:
 
 $$\frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2}$$ 
 
 
-##### Zähler (von Bruch 1)
+**_Zähler (von Bruch 1)_**
 
 Beginnen wir mit dem Zähler, $n$. Dies ist lediglich die Anzahl Messwerte in unserem Datensatz, also die Anzahl Bezirke. 
 
@@ -77,7 +77,7 @@ n <- nrow(wasser_bezirke)
 n
 ```
 
-##### Nenner (von Bruch 1)
+**_Nenner (von Bruch 1)_**
 
 Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich der Berechnung der Varianz: 
 
@@ -109,7 +109,7 @@ dy_sum <- sum(dy_2, na.rm = TRUE)
 ```
 
 
-##### Zähler durch Nenner dividieren (Bruch 1)
+**_Zähler durch Nenner dividieren (Bruch 1)_**
 
 
 Beschliessen wir die Bearbeitung des ersten Bruchs indem wir den Zähler durch den Nennen dividieren:  `n` durch `dy_sum`.
@@ -119,7 +119,7 @@ vr <- n/dy_sum
 ```
 
 
-#### Bruch 2
+**Bruch 2**
 
 Wenden wir uns nun also dem Bruches der Formel zu. 
 
@@ -127,7 +127,7 @@ $$\frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=
 
 Hier berechnen wir die Summe aller Gewichte sowie die gewichteten Covarianzen. Wir betrachten immer Messwertpaare, sprich paarweise Vergleiche zweier Raumeinheiten (hier Bezirke). Deshalb haben die zwei Summenzeichen die beiden unterschiedlichen Laufvariablen ($i$ und $j$). Solche paarweise Vergleiche von Werten mit allen anderen Werten können wir elegant mit Kreuzmatrizen abbilden. In der Kreuzmatrix vergleichen wir jeden Messwert mit allen anderen Messwerten. Dabei gibt es zwei Kreuzmatrizen: ($w_{ij}$ ist die erste Kreuzmatrix, $(y_i - \bar{y})(y_j - \bar{y})$ ist die zweite Kreuzmatrix). 
 
-##### Zähler (Bruch 2)
+**_Zähler (Bruch 2)_**
 
 Der erste Term, $w_{ij}$, beschreibt die räumlichen Gewichte aller Bezirke. Sind die Bezirke benachbart, dann gilt ein Gewicht von 1,  sind sie nicht benachbart, gilt ein Gewicht von 0. Dies entspricht dem Schalter aus der Vorlesung.
 
@@ -187,7 +187,7 @@ spmw
 ```
 
 
-##### Nenner (Bruch 2)
+**_Nenner (Bruch 2)_**
 
 Für den Nenner des zweiten Teils der Formal (des zweiten Bruchs) müssen wir nun nur noch alle Gewichte summieren. Diese Summer entspricht der Anzahl effektiv benachbarter Bezirke und kann Anzahl der $TRUE$-Werte in $w$ bestimmt werden. 
 
@@ -196,7 +196,7 @@ smw <- sum(w, na.rm = TRUE)
 ```
 
 
-##### Auflösung (Bruch 2)
+**Auflösung (Bruch 2)**
 
 So können wir den zweiten Bruch auflösen und berechnen:
 ```{r, echo = TRUE}
@@ -204,7 +204,7 @@ sw  <- spmw / smw
 ```
 
 
-#### Brüche Multiplizieren
+**Brüche Multiplizieren**
 
 Der allerletzte Schritt besteht darin, die Werte aus den beiden Brüchen miteinander zu multiplizieren.
 
