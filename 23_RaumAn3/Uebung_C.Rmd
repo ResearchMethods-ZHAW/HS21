@@ -79,7 +79,7 @@ ggplot() +
 
 ### Aufgabe 3: Bivariate Plot mit `biscale`
 
-Allenfalls ist es noch wichtig zu wissen, welche Bedeutung der Abstimmung in den einzelnen Gemeinden zugesprochen wurde. Also wie "laut" war das *Nein* bzw. das *Ja*. Dies können wir mit der Stimmbeteiligung ausdrücken. Um zwei Variablen gleichzeitig zu Visualisieren (z.B. Ja-Anteil *und* Stimmbeteiligung) gibt es die Möglichkeit einer bivariaten Farbskala. Diese wurde mit der Library `biscale` in `ggplot` implementiert.
+Allenfalls ist es noch wichtig zu wissen, welche Bedeutung der Abstimmung in den einzelnen Gemeinden zugesprochen wurde. Also wie "laut" war das *Nein* bzw. das *Ja*. Dies können wir mit der Stimmbeteiligung ausdrücken. Um zwei Variablen gleichzeitig zu visualisieren (z.B. Ja-Anteil *und* Stimmbeteiligung) gibt es die Möglichkeit einer bivariaten Farbskala. Diese wurde mit der Library `biscale` in `ggplot` implementiert.
 
 ```{r, echo = TRUE}
 library(biscale)

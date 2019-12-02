@@ -5,13 +5,13 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 ## Thematische Einbettung und Vorbereitung
 
 
-Heute berechnen wir Morans $I$ auf verschiedenen Datensätzen und vergleichen die Resultate. Dafür nutzen wir keine Funktion aus einem Package, sondern erarbeiten uns alles selber, basierend auf der Formel von Morans $I$: 
+Heute berechnen wir Moran's $I$ auf verschiedenen Datensätzen und vergleichen die Resultate. Dafür nutzen wir keine Funktion aus einem Package, sondern erarbeiten uns alles selber, basierend auf der Formel von Moran's $I$: 
 
 $$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
 
-Diese sieht sehr beeindruckend aus, aber wenn wir die Formel in ihre Einzelbestandteile aufteilen sehen wir, dass diese in sich gar nicht so komplex sind.
+Diese sieht sehr beeindruckend aus, aber wenn wir die Formel in ihre Einzelbestandteile aufteilen, sehen wir, dass diese in sich gar nicht so komplex sind.
 
-Als erster Schritt müssen wir die notwendigen Libraries und Geodaten Laden:
+Als erster Schritt müssen wir die notwendigen Libraries und Geodaten laden:
 
 - [bezirke.gpkg](21_RaumAn1/data/bezirke.gpkg)
 - [wasserverfuegbarkeit_bode.gpkg](21_RaumAn1/data/wasserverfuegbarkeit_boden.gpkg)
@@ -35,7 +35,7 @@ bezirke <- st_set_crs(bezirke, 2056)
 
 ```
 
-Nun können wir die mittlere Wasserverfügbarkeit pro Bezirk berechnen. Visualisiert dies in einem ersten Schritt und notiert euch, was für einen Wert ihr von Morans $I$ erwartet (eher -1 oder eher 1 oder nahe 0?). Der Plot muss nicht genau so aussehen wie der unsere.
+Nun können wir die mittlere Wasserverfügbarkeit pro Bezirk berechnen. Visualisiert dies in einem ersten Schritt und notiert Euch, was für einen Wert Ihr von Moran's $I$ erwartet (eher -1 oder eher 1 oder nahe bei 0?). Der Plot muss nicht genau so aussehen wie der unsere.
 
 ```{r, echo = TRUE}
 wasser_bezirke <- aggregate(wasser,bezirke, mean)
@@ -50,12 +50,12 @@ wasser_bezirke <- aggregate(wasser,bezirke, mean)
   theme(legend.position = "bottom",legend.direction = "horizontal")
 ```
 
-## Übung A: Morans I
+## Übung A: Moran's I
 
 
 ### Aufgabe 1: Herleitung der Formel
 
-Wir widmen uns der Berechnung von Morans $I$ und packen dafür die Formel Schritt für Schritt aus und zerteilen so ein komplexes Problem in relativ simple Einzelteile. Dabei beginnen wir mit dem ersten Bruch und berechnen uns zuerst den Zähler, dann dem Nenner. So können wir den Bruch auflösen und uns dem zweiten Bruch zuwenden:
+In der ersten Übung wollen wir Moran's $I$ für eine gegebene Choroplethenkarte nachrechnen. Dazu nehmen wir die Formel für Moran's $I$ und zerlegen sie in Einzelteile, die wir dann Schritt für Schritt für unsere Daten berechnen. So teilen wir ein vermeintlich komplexes Problem in überschaubare Einzelteile. Dieses Vorgehen illustriert ausserdem sehr schön ein generelles (Spatial) Data Science Prinzip. Divide and Conquer - Teile und Herrsche: Teile ein komplexes Probelm in kleinere, beherrschbare Unterprobleme. Wir beginnen mit dem ersten Bruch und berechnen dabei zuerst den Zähler, dann dem Nenner. So können wir den Bruch auflösen und uns danach dem zweiten Bruch zuwenden:
 
 
 $$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
@@ -79,9 +79,9 @@ n
 
 ##### Nenner (von Bruch 1)
 
-Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich wie die Berechnung der Varianz: 
+Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich der Berechnung der Varianz: 
 
-Summiere bei allen Messwerten (von $i = 1$ bis $n$) folgendes: Das Quadrat von der Differenz aus jedem Messwert und dem Durchschnitt aller Messwerte.
+Summiere für alle Messwerte (von $i = 1$ bis $n$) das Quadrat der Differenz zwischen dem jeweiligen Messwert und dem Durchschnitt aller Messwerte.
 
 
 Also berechnen wir zuerst diese Differenzwerte (Messwert minus Mittelwert):
@@ -96,13 +96,13 @@ ybar <- mean(y, na.rm = TRUE)
 dy <- y - ybar
 ```
 
-Nun quadrieren wir diese Werte:
+Welche dieser Zwischenresultate sind Einzelwerte und welche Vektoren? Nun quadrieren wir die Differenzen:
 
 ```{r, echo = TRUE}
 dy_2 <- dy^2
 ```
 
-und ziehen daraus die Summe:
+und summieren die Differenzen:
 
 ```{r, echo = TRUE}
 dy_sum <- sum(dy_2, na.rm = TRUE)
@@ -112,7 +112,7 @@ dy_sum <- sum(dy_2, na.rm = TRUE)
 ##### Zähler durch Nenner dividieren (Bruch 1)
 
 
-Um den ersten Bruch zu Lösen müssen wir nun noch die Anzahl werte durch `dy_sum` teilen.
+Beschliessen wir die Bearbeitung des ersten Bruchs indem wir den Zähler durch den Nennen dividieren:  `n` durch `dy_sum`.
 
 ```{r, echo = TRUE}
 vr <- n/dy_sum
@@ -121,23 +121,23 @@ vr <- n/dy_sum
 
 #### Bruch 2
 
-Nun zum zweiten Teil des Bruches 
+Wenden wir uns nun also dem Bruches der Formel zu. 
 
 $$\frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
 
-Hier hat es jeweils zwei Summenzeichen nacheinander mit unterschiedlichen Laufvariablen ($i$ und $j$). Dies bedeutet dass wir mit Kreuzmatrizen arbeiten, da wir alle Messwerte mit allen anderen Messwerten vergleichen ($w_{ij}$ ist die erste Kreuzmatrix, $(y_i - \bar{y})(y_j - \bar{y})$ ist die zweite Kreuzmatrix). 
+Hier berechnen wir die Summe aller Gewichte sowie die gewichteten Covarianzen. Wir betrachten immer Messwertpaare, sprich paarweise Vergleiche zweier Raumeinheiten (hier Bezirke). Deshalb haben die zwei Summenzeichen die beiden unterschiedlichen Laufvariablen ($i$ und $j$). Solche paarweise Vergleiche von Werten mit allen anderen Werten können wir elegant mit Kreuzmatrizen abbilden. In der Kreuzmatrix vergleichen wir jeden Messwert mit allen anderen Messwerten. Dabei gibt es zwei Kreuzmatrizen: ($w_{ij}$ ist die erste Kreuzmatrix, $(y_i - \bar{y})(y_j - \bar{y})$ ist die zweite Kreuzmatrix). 
 
 ##### Zähler (Bruch 2)
 
-Der erste Begriff, $w_{ij}$, sind die räumlichen Gewichte aller Bezirke. Sind die Bezirke benachbart, dann gilt ein Gewicht von 1. Sind sie nicht benachbart, gilt ein Gewicht von 0.
+Der erste Term, $w_{ij}$, beschreibt die räumlichen Gewichte aller Bezirke. Sind die Bezirke benachbart, dann gilt ein Gewicht von 1,  sind sie nicht benachbart, gilt ein Gewicht von 0. Dies entspricht dem Schalter aus der Vorlesung.
 
 Wie wir "benachbart" definieren ist noch offen. 
 
-- Sie müssen sich berühren (dürfen sich aber nicht überlappen): `st_touches()`
-- Sie müssen innerhalb einer bestimmten Distanz zueinander liegen: `st_is_within_distance()`
-- Sie müssen sich überlappen: `st_overlaps()`
+- Die Bezirke müssen sich berühren (dürfen sich aber nicht überlappen): `st_touches()`
+- Die Bezirke müssen innerhalb einer bestimmten Distanz zueinander liegen: `st_is_within_distance()`
+- Die Bezirke müssen überlappen: `st_overlaps()`
 
-Egal für welche Variante ihr euch entscheidet, setzt `sparse = FASE` damit eine Kreuzmatrix erstellt wird.
+Egal für welche Variante Ihr Euch entscheidet, setzt `sparse = FALSE` damit eine Kreuzmatrix erstellt wird.
 
 ```{r, echo = TRUE}
 w <- st_touches(wasser_bezirke, sparse = FALSE)
@@ -145,9 +145,11 @@ w <- st_touches(wasser_bezirke, sparse = FALSE)
 w[1:6, 1:6]
 ```
 
-(Lasst euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`)
+(Lasst Euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`)
 
 Wir sehen hier, dass der erste Bezirk im Datensatz (Zeile 1), den 3. und 4. Bezirk im Datensatz berührt. Er berührt aber den 2., 5. und 6. Bezirk *nicht*. Ob dies stimmt können wir einfach nachprüfen:
+
+## to do: Könnten wir die Bezirke in einer Hintergrundkarte einbetten? So sieht's etwas nackt und orientierungslos aus.
 
 ```{r}
 wasser_bezirke %>%
@@ -162,7 +164,7 @@ wasser_bezirke %>%
 ```
 
 
-Der nächste Teil,  $(y_i - \bar{y})$ kennen wir schon vom ersten Bruch und haben wir auch bereits gelöst. Wie eingangs erwähnt müssen wir durch das $(y_j - \bar{y})$ diesmal *das Produkt aller Wertekombinationen* berechnen. Dies erreichen wir mit der Funktion `tcrossprod()`:
+Der nächste Teil sollte Euch nun bekannt vorkommen. Die Differenz aller Werte vom Mittelwert aller Werte $(y_i - \bar{y})$ kennen wir schon vom ersten Bruch und haben wir auch bereits gelöst. Nun gilt es paarweise das Produkt der Abweichungen vom Mittelwert (die Covarianz) zu berechnen $(y_i - \bar{y})(y_j - \bar{y})$.  DAzu müssen wir *das Produkt aller Wertekombinationen* berechnen. Dies erreichen wir mit der Funktion `tcrossprod()`:
 
 ```{r, echo = TRUE}
 pm <- tcrossprod(dy)
@@ -170,7 +172,7 @@ pm[1:6,1:6]
 
 ```
 
-Nun multiplizieren wir die Werte mit den Gewichten $w$, damit wir nur noch die Werte von den Bezirken haben, die benachbart sind (und eliminieren nicht-benachbarte Werte).
+Nun multiplizieren wir die Covarianzen mit den Gewichten $w$ (Schalter), damit wir nur noch die Werte von den Bezirken haben, die auch effektiv benachbart sind (und eliminieren nicht-benachbarte Werte). Beachtet dass wir hier nun eine Matrix mit einer Matrix multiplizieren.
 
 ```{r, echo = TRUE}
 pmw <- pm * w
@@ -178,7 +180,7 @@ w[1:6,1:6]
 pmw[1:6,1:6]
 ```
 
-Den Zähler des ersten Bruches haben wir errechnet, nachdem wir die Summe der gewichten Werten gebildet haben:
+Den Zähler des ersten Bruches können wir nun fertig berechnen, indem wir die Summe aller gewichten (sprich eingeschalteten) Werten bilden:
 ```{r, echo = TRUE}
 spmw <- sum(pmw, na.rm = TRUE)
 spmw
@@ -187,7 +189,7 @@ spmw
 
 ##### Nenner (Bruch 2)
 
-Für den Nenner des zweiten Bruches müssen wir nur noch die die Gewichte summieren. Sprich: wie viele Bezirke sind benachbart?
+Für den Nenner des zweiten Teils der Formal (des zweiten Bruchs) müssen wir nun nur noch alle Gewichte summieren. Diese Summer entspricht der Anzahl effektiv benachbarter Bezirke und kann Anzahl der $TRUE$-Werte in $w$ bestimmt werden. 
 
 ```{r, echo = TRUE}
 smw <- sum(w, na.rm = TRUE)
@@ -196,7 +198,7 @@ smw <- sum(w, na.rm = TRUE)
 
 ##### Auflösung (Bruch 2)
 
-So können wir den zweiten Bruch auflösen:
+So können wir den zweiten Bruch auflösen und berechnen:
 ```{r, echo = TRUE}
 sw  <- spmw / smw
 ```
@@ -204,7 +206,7 @@ sw  <- spmw / smw
 
 #### Brüche Multiplizieren
 
-Der allerletzte Schritt besteht darin, die Werte aus den Brüchen miteinander zu multiplizieren.
+Der allerletzte Schritt besteht darin, die Werte aus den beiden Brüchen miteinander zu multiplizieren.
 
 ```{r, echo = TRUE}
 MI <- vr * sw
@@ -216,7 +218,7 @@ MI
 ### Aufgabe 2: Morans I für Kantone berechnen
 
 
-Nun wollen wir die Wasserverfügbarkeitswerte auf der Ebene der Kantone aggregieren und untersuchen, ob und wie sich Morans $I$ verändert. Importiere dafür den Datensatz "kantone.gpkg" aus RaumAn1 (s.u.), allenfalls musst du das CRS noch setzen. Aggregiere Wasserqualitätswerte auf ebene der Kantone, visualisiere diese anschliessend und berechne danach Morans $I$. 
+Nun wollen wir die Wasserverfügbarkeitswerte auf der Ebene der Kantone aggregieren und untersuchen, ob und wie sich Morans $I$ verändert. Importiere dafür den Datensatz "kantone.gpkg" aus RaumAn1 (s.u.), allenfalls musst du das CRS noch setzen. Aggregiere Wasserqualitätswerte auf Ebene der Kantone, visualisiere diese anschliessend und berechne danach wieder Moran's $I$ wie eben demonstriert. 
 
 - [kantone.gpkg](21_RaumAn1/data/kantone.gpkg)
 
