@@ -147,17 +147,59 @@ w[1:6, 1:6]
 
 (Lasst Euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`)
 
-Wir sehen hier, dass der erste Bezirk im Datensatz (Zeile 1), den 3. und 4. Bezirk im Datensatz berührt. Er berührt aber den 2., 5. und 6. Bezirk *nicht*. Ob dies stimmt können wir einfach nachprüfen:
-
-## to do: Könnten wir die Bezirke in einer Hintergrundkarte einbetten? So sieht's etwas nackt und orientierungslos aus.
 
 ```{r}
-wasser_bezirke %>%
+my_connections <- function(sf_object,relationship_matrix){
+  require(sf)
+  require(purrr)
+  centeroids <- sf::st_centroid(st_geometry(sf_object))
+  
+  mycrs <- st_crs(sf_object)
+
+  relationship_transpose <- which(relationship_matrix,arr.ind = TRUE)
+  
+  from <- centeroids[relationship_transpose[,1]]
+  to <- centeroids[relationship_transpose[,2]]
+  
+  connection <- purrr::map2(from,to, ~sf::st_linestring(c(.x,.y))) %>%
+    st_sfc() %>%
+    st_set_crs(mycrs)
+}
+```
+
+
+```{r}
+benachbart <- my_connections(wasser_bezirke,w)
+
+ggplot(wasser_bezirke) + 
+  geom_sf() + 
+  geom_sf(data = benachbart) +
+  theme_void()
+
+```
+
+
+Wir sehen hier, dass der erste Bezirk im Datensatz (Zeile 1), den 3. und 4. Bezirk im Datensatz berührt. Er berührt aber den 2., 5. und 6. Bezirk *nicht*. Ob dies stimmt können wir einfach nachprüfen:
+
+
+
+```{r, echo = TRUE}
+# nur die ersten 6 Geometrien auswählen
+wasser_select <- wasser_bezirke %>%
   rowid_to_column() %>% # erstellt eine Spalte rowid mit der Position
-  head(6) %>%
-  ggplot() + 
-  geom_sf(aes(fill = factor(rowid))) + 
-  geom_sf_text(aes(label = rowid)) + 
+  head(6)
+
+# alle anderen Bezirke auf die BoundingBox clippen 
+# (um als Hintergrundkarte zu dienen)
+wasser_selectst_bg <- wasser_select %>%
+  st_bbox() %>%
+  st_as_sfc() %>%
+  st_intersection(wasser_bezirke)
+
+ggplot() + 
+  geom_sf(data = wasser_selectst_bg) +
+  geom_sf(data = wasser_select, aes(fill = factor(rowid))) + 
+  geom_sf_text(data = wasser_select, aes(label = rowid)) + 
   labs(title = "Welche Bezirke berühren Bezirk Nr. 1?") +
   theme_void() + 
   theme(legend.position = "none")
