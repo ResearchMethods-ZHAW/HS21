@@ -145,10 +145,10 @@ w <- st_touches(wasser_bezirke, sparse = FALSE)
 w[1:6, 1:6]
 ```
 
-(Lasst Euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`)
+(Lasst Euch nicht davon beirren, dass wir nun `TRUE` und `FALSE` statt `1` und `0` haben. In R sind `TRUE` und `1` äquivalent, sowie auch `FALSE` und `0`). Um zu visualisieren, *welche* Bezirke einander berühren, könnt ihr folgende Funktion anwenden:
 
 
-```{r}
+```{r, echo = TRUE}
 my_connections <- function(sf_object,relationship_matrix){
   require(sf)
   require(purrr)
@@ -167,14 +167,16 @@ my_connections <- function(sf_object,relationship_matrix){
 }
 ```
 
+An erster Stelle kommt euer `sf` Objekt (`wasser_bezirke`) und an zweiter Stelle die eben erstelle Matrix (`w`).
 
-```{r}
+```{r, echo = TRUE}
 benachbart <- my_connections(wasser_bezirke,w)
 
 ggplot(wasser_bezirke) + 
   geom_sf() + 
   geom_sf(data = benachbart) +
-  theme_void()
+  theme_void() +
+  labs(title = "Benachbarte Bezirke sind mit einer Linie verbunden")
 
 ```
 
