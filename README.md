@@ -3,5 +3,54 @@ Das Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für p
 
 Auf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.
 
-# Unterrichtsunterlagen_HS20-
+
+
+## How to work on this repo:
+
+### Step 1: Initialize the new reposoritory
+
+When the semster starts, make a clone of last years repo:
+
+- On Github: creata a new repo in the Organisation "ModulResearchMethods" (don't initialize a readme)
+- On your harddrive
+  - `git init` in a local, empty directory
+  - `git remote add lastyear git@github.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HSXX.git` (last year's repo)
+  - `git remote add thisyear git@github.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HSXY.git` (this year's repo)
+  - `git pull lastyear master`
+  - `git push thisyear master`
+
+### Step 2: Fork the repo to your own account
+
+On github: click on the "fork" button to get a copy of the repo on your own user account
+On your harddrive:
+  - `git init` in a local, empty directory
+  - `git remote add myfork git@github.zhaw.ch:username/Unterrichtsunterlagen_HSXY.git`
+  - `git pull myfork master`
+
+
+### Step 3: Make locoal changes to your repo
+
+- Work on your files as you would normally. 
+- Make commits from time to time.
+  - `git add -A` (stages all changes)
+  - `git commit -m "the changes you made" (commits all changes)
+-  Push them to **your copy of the repo** (`myfork`) from time to time
+  - `git push myfork master`
+  
+### Step 4: Send the changes to the main document
+
+Once you have changes that should be included in the main document, you have to send a "pull request" so that the maintainer of the repo pulls your changes. This is done on github.zhaw.ch
+
+
+#### Step 5: Pull the latest changes from the main document
+
+If other people have worked on the document, it is important that you allways have the latest version (to avoid conflicts).
+
+In your lokal git-repo:
+- `git remote add thisyear git@github.zhaw.ch:ModulResearchMethods/Unterrichtsunterlagen_HSXY.git `
+- `git pull thisyear master`
+
+
+Repeat steps 4 and 5 while you are working on the document.
+
 
