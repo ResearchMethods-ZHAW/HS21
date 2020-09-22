@@ -53,7 +53,7 @@ On your harddrive:
 Once you have changes that should be included in the main document, you have to send a "pull request" so that the maintainer of the repo pulls your changes. This is done on github.zhaw.ch
 
 
-#### Step 5: Pull the latest changes from the main document
+### Step 5: Pull the latest changes from the main document
 
 If other people have worked on the document, it is important that you allways have the latest version (to avoid conflicts).
 
@@ -66,6 +66,6 @@ In your local git-repo:
 - with the RStudio Git-GUI:
   - tbd
 
-Repeat steps 4 and 5 while you are working on the document.
+### Repeat steps 4 and 5 while you are working on the document.
 
 
