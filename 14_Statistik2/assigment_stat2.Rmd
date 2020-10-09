@@ -44,7 +44,7 @@ Hinweise für die Analysen:
 - Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
 werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit grep()).
 - Danach muss der Datensatz gruppiert und zusammengefasst werden.
-- Unbekannte Menü-Inhalte können vernachlässigt werden.
+- Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
 - Führt anschliessend Post-hoc-Vergleiche durch.
 - Fasst die Ergebnisse in einem Satz zusammen.
@@ -65,17 +65,14 @@ beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen.
 
 **ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
 
-Können die Unterschiede in den verkauften Gerichten (Buffet, Fleisch oder
-Vegetarisch) durch die beiden Bedingungen (Basis- oder Interventionswochen) erklärt werden?
+In der Mensa gibt es zwei unterschiedliche Preisniveaus bzgl. den Gerichten: eine preisgünstigere Menülinie ("World" & "Favorite") und eine teuere Menülinie ("Kitchen").
+Gibt es Unterschiede zwischen dem Kauf von preisgünstigeren resp. teureren Menülinien betreffend Menüinhalt & Hochschulzugehörigkeit?
 
 Hinweise für die Analysen:
 
-- Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst,
-dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
-werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte
-durchführen (z. B. mit grep()).
+- Fasst die zwei günstigeren Menülinien "Favorite" & "World" zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit str_replace() oder sub()).
 - Danach muss der Datensatz gruppiert und zusammengefasst werden.
-- Unbekannte Menü-Inhalte können vernachlässigt werden.
+- Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls
 auch nicht-parametrische Analysen zulässig?
 - Führt anschliessend Post-hoc-Vergleiche durch.
