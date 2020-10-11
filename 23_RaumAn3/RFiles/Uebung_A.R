@@ -46,15 +46,51 @@ w <- st_touches(wasser_bezirke, sparse = FALSE)
 
 w[1:6, 1:6]
 
-wasser_bezirke %>%
+# nur die ersten 6 Geometrien auswählen
+wasser_select <- wasser_bezirke %>%
   rowid_to_column() %>% # erstellt eine Spalte rowid mit der Position
-  head(6) %>%
-  ggplot() + 
-  geom_sf(aes(fill = factor(rowid))) + 
-  geom_sf_text(aes(label = rowid)) + 
+  head(6)
+
+# alle anderen Bezirke auf die BoundingBox clippen 
+# (um als Hintergrundkarte zu dienen)
+wasser_selectst_bg <- wasser_select %>%
+  st_bbox() %>%
+  st_as_sfc() %>%
+  st_intersection(wasser_bezirke)
+
+ggplot() + 
+  geom_sf(data = wasser_selectst_bg) +
+  geom_sf(data = wasser_select, aes(fill = factor(rowid))) + 
+  geom_sf_text(data = wasser_select, aes(label = rowid)) + 
   labs(title = "Welche Bezirke berühren Bezirk Nr. 1?") +
   theme_void() + 
   theme(legend.position = "none")
+
+my_connections <- function(sf_object,relationship_matrix){
+  require(sf)
+  require(purrr)
+  centeroids <- sf::st_centroid(st_geometry(sf_object))
+  
+  mycrs <- st_crs(sf_object)
+
+  relationship_transpose <- which(relationship_matrix,arr.ind = TRUE)
+  
+  from <- centeroids[relationship_transpose[,1]]
+  to <- centeroids[relationship_transpose[,2]]
+  
+  connection <- purrr::map2(from,to, ~sf::st_linestring(c(.x,.y))) %>%
+    st_sfc() %>%
+    st_set_crs(mycrs)
+}
+
+benachbart <- my_connections(wasser_bezirke,w)
+
+ggplot(wasser_bezirke) + 
+  geom_sf() + 
+  geom_sf(data = benachbart) +
+  theme_void() +
+  labs(title = "Benachbarte Bezirke sind mit einer Linie verbunden")
+
 
 pm <- tcrossprod(dy)
 pm[1:6,1:6]

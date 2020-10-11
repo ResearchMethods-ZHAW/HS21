@@ -3,7 +3,7 @@ library(knitr)
 knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
 ```
 
-## Ergänzungen zu PrePro 1
+## Ergaenzungen zu PrePro 1
 
 ### Integer mit "L"
 
