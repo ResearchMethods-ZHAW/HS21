@@ -10,7 +10,6 @@ rmd_files: [
     "09_PrePro1/Uebung_B_loesung.Rmd",
   
      "10_PrePro2/Abstract.Rmd",
-     "10_PrePro2/Nachtrag.Rmd",
      "10_PrePro2/Demo_Tidyverse.Rmd",
      "10_PrePro2/Uebung_A.Rmd",
      #"10_PrePro2/Uebung_A_loesung.Rmd",
