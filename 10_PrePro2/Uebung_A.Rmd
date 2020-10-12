@@ -75,7 +75,9 @@ Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. i
 
 # Lösung Aufgabe 4
 
-wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";", locale = locale(encoding = "UTF-8"))
+wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",
+                             delim = ";", 
+                             locale = locale(encoding = "UTF-8"))
 
 ```
 
