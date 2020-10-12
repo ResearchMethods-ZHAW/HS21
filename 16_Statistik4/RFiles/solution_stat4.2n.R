@@ -1,27 +1,20 @@
-## ------------------------------------------------------------------------
 islands <-read.csv("16_Statistik4/data/isolation.csv")
 islands
 str(islands)
 summary(islands)
 
-
-## ------------------------------------------------------------------------
 attach(islands)
 #Explorative Datenanalyse
 boxplot(area)
 
 boxplot(isolation)
 
-
-## ------------------------------------------------------------------------
 #Definition der unterschiedlichen Modelle
 model.mult <- glm(incidence~area*isolation,binomial)
 model.add <- glm(incidence~area+isolation,binomial)
 model.area <- glm(incidence~area,binomial)
 model.isolation <- glm(incidence~isolation,binomial)
 
-
-## ------------------------------------------------------------------------
 #Modellergebnisse
 summary(model.mult)
 summary(model.add)
@@ -29,17 +22,11 @@ summary(model.add)
 summary(model.area)
 summary(model.isolation)
 
-
-## ------------------------------------------------------------------------
 anova(model.mult,model.add,test="Chi")
 
-
-## ------------------------------------------------------------------------
 anova(model.add,model.area,test="Chi")
 anova(model.add,model.isolation,test="Chi")
 
-
-## ------------------------------------------------------------------------
 library(AICcmodavg)
 cand.models<-list()
 cand.models[[1]]<-model.mult
@@ -51,8 +38,6 @@ Modnames<-c("Area * Isolation","Area +
 Isolation","Area","Isolation")
 aictab(cand.set=cand.models,modnames=Modnames)
 
-
-## ------------------------------------------------------------------------
 #Modelldiagnostik für das gewählte Modell (wenn nicht signifikant,dann OK)
 1 - pchisq(model.add$deviance,model.add$df.resid)
 
@@ -62,8 +47,6 @@ aictab(cand.set=cand.models,modnames=Modnames)
 library(car)
 crPlots(model.add,ask=F)
 
-
-## ------------------------------------------------------------------------
 #Modellgüte (pseudo-R²)
 1 - (model.add$dev / model.add$null)
 
@@ -81,8 +64,6 @@ exp(model.add$coef[3])
 
 #< 1, d. h. Vorkommenswahrscheinlichkeit sinkt mit zunehmender Isolation.
 
-
-## ------------------------------------------------------------------------
 #Ergebnisplots
 #Da es keine signifikante Interaktion gibt, kann man die separaten Darstellungen der beiden Einzelbeziehungen nehmen.
 
@@ -106,4 +87,3 @@ plot(incidence~isolation,data=islands,xlab="Entfernung vom Festland
 type="l",lty=2)
  lines(model.predict2$fit-model.predict2$se.fit ~ xs,
 type="l",lty=2)
-

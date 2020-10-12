@@ -12,9 +12,9 @@ rmd_files: [
      "10_PrePro2/Abstract.Rmd",
      "10_PrePro2/Demo_Tidyverse.Rmd",
      "10_PrePro2/Uebung_A.Rmd",
-     #"10_PrePro2/Uebung_A_loesung.Rmd",
+     "10_PrePro2/Uebung_A_loesung.Rmd",
      "10_PrePro2/Uebung_B.Rmd",
-     #"10_PrePro2/Uebung_B_loesung.Rmd",
+     "10_PrePro2/Uebung_B_loesung.Rmd",
 
       # "11_InfoVis1/Abstract.Rmd",
       #"11_InfoVis1/Demo_EDA.Rmd",

@@ -1,4 +1,3 @@
-## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE-----------
 
 library(tidyverse)
 library(ggfortify) # zur Testung der Voraussetzungen
@@ -20,8 +19,6 @@ mytheme <-
 
 
 
-
-## ------------------------------------------------------------------------
 # klone den originaler Datensatz
 df <- nova 
 
@@ -48,7 +45,7 @@ model2 <- aov(tot_sold ~ label_content * condit, data = df_)
 
 autoplot(model2) + mytheme  # Inspektion der Modellvoraussetzungen sehen nicht schlecht aus => einzig Normalverteilung Q-Q Plot nicht optimal (vgl. Statistik 2: Folie 42)
 
-summary.lm(model2)
+summary(model2)
 
 # Alternativ gibt es zwei Möglichkeiten:
 #1) Transformation der Daten,
@@ -61,25 +58,25 @@ model4 <- kruskal.test(df_$tot_sold ~ inter_action)
 
 # in einem nächsten Schritt könnt ihr mit Post-hoc Tests diese Unterschiede genauer betrachten
 # es gibt die Möglichkeit mit dunnTest (mit Package FSA)
+# mehr Infos hier: https://rcompanion.org/rcompanion/d_06.html
 library(FSA)
-dunnTest(df_$tot_sold, df_$condit, method="bh") 
+dunn <- dunnTest(tot_sold ~ inter_action, data = df_, method="bh") # zur Info: dunnTest kann nur mit Faktoren umgehen
+dunn
 
-# Korrektur für Mehrfachvergleiche (vgl. https://mgimond.github.io/Stats-in-R/ANOVA.html#4_identifying_which_levels_are_different)
+# Infos zu Korrektur für Mehrfachvergleiche (vgl. https://mgimond.github.io/Stats-in-R/ANOVA.html#4_identifying_which_levels_are_different)
 
 
 
-## ---- eval=FALSE---------------------------------------------------------
+
 ## # Post-hoc Vergleiche
 ## TukeyHSD(model2) # nimmt aber an, dass Residuen normalverteilt sind
 ## 
-## #Alternativ
+## # Alternativ
 ## library(DescTools)
 ## PostHocTest(model2, method = "scheffe") # sehr konservativ und auch für ungleiche Gruppengrössen geeignet
 ## 
 ## 
 
-
-## ---- echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."----
 
 # zeigt die Ergebnisse anhand eines Boxplots
 library(multcomp)
@@ -101,8 +98,6 @@ ggsave("plot1_solution2.3s.pdf",
        device = cairo_pdf)
 
 
-
-## ----echo=F, fig.cap="Abbildung2. Wöchentliche Verkaufszahlen aggregiert für die drei Menü-Inhalte."----
 # eine weitere Möglichkeit die Ergebnisse darzustellen
 m_sell <- na.omit(df_) %>% group_by(condit,label_content) %>% summarise(val = mean(tot_sold)) # berechne die durchschnittlichen Verkaufszahlen pro Bedingung
 
@@ -118,5 +113,4 @@ ggsave("plot2_solution2.3s.pdf",
        height = 8,
        width = 9,
        device = cairo_pdf)
-
 
