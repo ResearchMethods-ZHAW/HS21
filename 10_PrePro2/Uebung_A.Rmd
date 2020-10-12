@@ -7,7 +7,7 @@ select <- dplyr::select
 
 ```
 
-## Übung A
+## Uebung A
 
 
 ```{r,message=F}
