@@ -32,18 +32,13 @@ sensor3 <- read_delim("10_PrePro2/data/sensor3.csv",";")
 
 ### Aufgabe 2
 
-Erstelle aus den 3 Dataframes eine einzige Dataframe, die folgendermassen aussieht:
-
-```{r,  echo = F, eval = T, purl=F}
-knitr::kable(sensor_all)
-```
-
-Dafür musst du: 
+Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Dafür musst du: 
 
 1. jedem Dataframe eine neue Spalte "Sensor" hinzufügen wo der jeweilige Sensor vermerkt ist
 2. die drei Dataframes zu **einer** mittels `rbind()` zusammenführen
 3. die Spalte `Datetime` in ein `POSIXct`-Format konvertiren (das ursprüngliche Format lautet:`DDMMYYYY_HHMM`)
 4. die Tabelle von long zu wide mittels `pivot_wider` überführen
+
 
 
 
@@ -64,6 +59,15 @@ sensor_all <- sensor_all %>%
   pivot_wider(names_from = sensor, values_from = Temp)
 
 ```
+
+
+```{r,  echo = F, eval = T, purl=F}
+knitr::kable(sensor_all)
+```
+
+
+
+
 
 
 
@@ -104,28 +108,20 @@ sensor_fail$Temp[sensor_fail$SensorStatus == 0] <- NA
 ### Aufgabe 4
 
 
-Warum spielt das es eine Rolle, ob `0` oder `NA` erfasst wird? Vergleiche dazu die Mittlere Temperatur / Feuchtigkeit vor und nach der Korrektur. 
+Warum spielt das es eine Rolle, ob `0` oder `NA` erfasst wird? Berechne die Mittlere der Temperatur / Feuchtigkeit nach der Korrektur. 
 
 ```{r}
 
 # Lösung Aufgabe 4
 
-# Mittelwerte der unkorrigierten Sensordaten (`NA` als `0`)
-mean(sensor_fail$Temp)
-mean(sensor_fail$`Hum_%`)
+# Mittelwerte der korrigierten Sensordaten: mit na.rm = TRUE werden NA-Werte aus der Berechnung entfernt. 
+# Ansonsten würden sie als 0 in die Berechnung einfliessen und diese verfälschen.
+mean(sensor_fail$Temp, na.rm = TRUE)
+mean(sensor_fail$`Hum_%`, na.rm = TRUE)
 
 ```
 
 
-
-```{r}
-# Mittelwerte der korrigierten Sensordaten (`NA` als `NA`). Hier müssen wir die Option 
-# `na.rm = T` (Remove NA = T) wählen, denn `mean()` (und ähnliche Funktionen) retourieren 
-# immer `NA`, sobald ein **einzelner** Wert in der Reihe `NA`ist.
-mean(sensor_fail_corr$Temp, na.rm = T)
-mean(sensor_fail_corr$Humidity, na.rm = T)
-
-```
 
 
 

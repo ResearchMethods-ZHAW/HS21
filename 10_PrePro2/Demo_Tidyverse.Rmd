@@ -187,7 +187,7 @@ wetter_sry %>%
   pivot_longer(c(temp_max,temp_min,temp_mean))
 ```
 
-Im Befehl `gather()` müssen wir festlegen, welche Spalten zusammengefasst werden sollen (hier: `temp_max`,`temp_min`,`temp_mean`). Alternativ (und in diesem Fall auch einfacher), können wir angeben, welche Spalten wir *nicht* zusammenfassen wollen:
+Im Befehl `pivot_longer()` müssen wir festlegen, welche Spalten zusammengefasst werden sollen (hier: `temp_max`,`temp_min`,`temp_mean`). Alternativ (und in diesem Fall auch einfacher), können wir angeben, welche Spalten wir *nicht* zusammenfassen wollen:
 
 ```{r}
 wetter_sry %>%
@@ -220,15 +220,6 @@ nrow(wetter_sry)
 nrow(wetter_sry_long)
 ```
 
-
-Statt die Variablen (Spalten) zu benennen, die zusammengefasst werden sollten, wäre es in unserem Fall einfacher, die Variablen (Spalten) zu benennen die *nicht* zusammengefasst werden sollen (`kw`):
-
-```{r,}
-wetter_sry_long <- wetter_sry %>%
-  gather(Key, Value, -kw)
-```
-
-Nun können wir den obigen Plot viel einfacher erstellen:
 
 ```{r}
 ggplot(wetter_sry_long, aes(kw,Messwert, colour = Messtyp)) +

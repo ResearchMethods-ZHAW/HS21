@@ -190,7 +190,7 @@ Tipps:
 # Lösung Aufgabe 6
 
 # mit readr
-parse_datetime(as.character(wetter$time[1:10]), format = "%Y%m%d%H")
+parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
 
 
 # mit as.POSIXct()
