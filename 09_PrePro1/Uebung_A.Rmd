@@ -58,7 +58,7 @@ Tidyverse liefert viele Funktionen, für die es in der normalen R-Umgebung ("bas
 - `read_*` statt `read.*`
 - `parse_datetime` statt `as.POSIXct()`
 
-Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas restriktiver.
+Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas restriktiver. Wir verwenden oft Tidyverse Funktionen, ihr könnt aber selber entscheiden welche Version ihr benutzt.
 
 ### Aufgabe 1
 
