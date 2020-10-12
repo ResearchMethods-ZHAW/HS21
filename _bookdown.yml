@@ -3,7 +3,7 @@ rmd_files: [
   "index.Rmd",
   
   "09_PrePro1/Abstract.Rmd",
-    "09_PrePro1/Demo_Datentypen.Rmd",
+   "09_PrePro1/Demo_Datentypen.Rmd",
     "09_PrePro1/Uebung_A.Rmd",
     "09_PrePro1/Uebung_A_loesung.Rmd",
     "09_PrePro1/Uebung_B.Rmd",
@@ -99,15 +99,6 @@ rmd_files: [
     #"20_Statistik8/Demoskript.Rmd",
     #"20_Statistik8/assigment_stat8.Rmd",
     #"20_Statistik8/solution_stat8.1.Rmd",
-=======
->>>>>>> 3edef53ad3f9a52815ced4d5c6ac9478d56b4cad
-    
-    "10_PrePro2/Abstract.Rmd",
-    "10_PrePro2/Demo_Tidyverse.Rmd",
-    "10_PrePro2/Uebung_A.Rmd",
-    "10_PrePro2/Uebung_A_loesung.Rmd",
-    "10_PrePro2/Uebung_B.Rmd",
-    "10_PrePro2/Uebung_B_loesung.Rmd",
 
  #    "11_InfoVis1/Abstract.Rmd",
  #    "11_InfoVis1/Demo_EDA.Rmd",
