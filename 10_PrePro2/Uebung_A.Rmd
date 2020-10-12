@@ -57,8 +57,7 @@ wetter <- wetter %>%
 
 # Lösung Aufgabe 3
 
-wetter_spread <- spread(wetter, stn,tre200h0)
-
+wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
 
 ```
 
@@ -96,14 +95,12 @@ koordinaten <- str_split_fixed(wetter_legende$Koordinaten, "/", 2)
 
 colnames(koordinaten) <- c("x","y")
 
-wetter_legende <- cbind(wetter_legende,koordinaten)
+cbind(wetter_legende,koordinaten)
 
 
 
 # Variante mit tidyr::separate
 # ich lösche die Spalten wieder, damit ich die tidyr lösung zeigen kann
-wetter_legende$x <- NULL 
-wetter_legende$y <- NULL
 
 wetter_legende <- wetter_legende %>%
   separate(Koordinaten,c("x","y"),"/")

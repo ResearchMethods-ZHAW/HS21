@@ -240,7 +240,7 @@ Beachtet, dass wir gegenüber dem letzten Plot `colour` nun *innerhalb* von `aes
 
 #### Lang -> breit
 
-Um unsere *lange* Tabelle wieder zurück in eine *breite* zu überführen, brauchen wir lediglich einen Befehl (`pivot_wider`):
+Das Gegenstück zu `pivot_longer` ist `pivot_wider`. Mit dieser Funktion können wir eine *lange* Tabelle in eine *breite* überführen. Dazu müssen wir in `names_from` angeben, aus welcher Spalte die neuen Spaltennamen erstellt werden sollen (`names_from`) und aus welcher Spalte die Werte entstammen sollen (`values_from`):
 
 ```{r}
 wetter_sry_long %>%
