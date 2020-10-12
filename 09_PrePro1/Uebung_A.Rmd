@@ -6,6 +6,21 @@ knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE, warning = F)
 
 ## Übung A
 
+### Arbeiten mit RStudio "Project"
+
+Wir empfehlen die Verwendung von "Projects" innerhalb von RStudio. RStudio legt für jedes Projekt dann einen Ordner an, in welches die Projekt-Datei abgelegt wird (Dateiendung .Rproj). Sollen innerhalb des Projekts dann R-Skripts geladen oder erzeugt werden, werden diese dann auch im angelegten Ordner abgelegt. Mehr zu RStudio Projects findet ihr  [hier](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
+
+
+Das Verwenden von Projects bringt verschiedene Vorteile, wie zum Beispiel:
+
+- Festlegen der Working Directory ohne die Verwendung des expliziten Pfades (`setwd()`). Das ist sinnvoll, da sich dieser Pfad ändern kann (Zusammenarbeit mit anderen Usern, Ausführung des Scripts zu einem späteren Zeitpunkt) 
+- Automatisches Zwischenspeichern geöffneter Scripts und Wiederherstellung der geöffneten Scripts bei der nächsten Session
+- Festlegen verschiedener projektspezifischer Optionen
+- Verwendung von Versionsverwaltungssystemen (git oder SVN)
+
+
+### Arbeiten mit Libraries / Packages
+
 R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal installieren.
 
 ```
@@ -14,7 +29,7 @@ install.packages("tidyverse")
 
 Um ein `package` in R verwenden zu können, gibt es zwei Möglichkeiten: 
 
-- entweder man lädt es zu Beginn der R-session mittles `library()`. 
+- entweder man lädt es zu Beginn der R-session mittles `library(tidyverse)` (ohne Anführungs- und Schlusszeichen). 
 - oder man ruft eine `function` mit vorangestelltem Packetname sowie zwei Doppelpunkten auf. `dplyr::filter()` ruft die Funktion `filter()` des Packets `dplyr` auf. 
 
 Letztere Notation ist vor allem dann sinnvoll, wenn sich zwei unterschiedliche Funktionen mit dem gleichen namen in verschiedenen pacakges existieren. `filter()` existiert als Funktion einersits im package `dplyr` sowie in  `stats`. Dieses Phänomen nennt man "masking". 
@@ -34,6 +49,16 @@ library(lubridate)
 # das package lubridate nicht berücksichtigt
 ```
 
+
+<!-- Aus oben beschriebenen Grund ist es auch problematisch, dass `data.frame()` sowie alle `read.*` Funktionen (`read.table`, `read.csv` etc) immer davon ausgehen, dass `strings` als `factors` interpretiert werden sollten. Es gibt in Base R einige Funktionen, welche Annahmen treffen die problematisch sein können. Ein weiteres Beispiel ist die Annahme der Zeitzone und Verwendung von Sommerzeit bei `as.POSIXct()`. -->
+
+Tidyverse liefert viele Funktionen, für die es in der normalen R-Umgebung ("base R") keine wirkliche Alternative gibt. Andere Funktionen sind alternativen zu Base-R Funktionen:
+
+- `data_frame()` statt `data.frame()` 
+- `read_*` statt `read.*`
+- `parse_datetime` statt `as.POSIXct()`
+
+Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas restriktiver.
 
 ### Aufgabe 1
 
