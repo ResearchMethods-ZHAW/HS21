@@ -6,7 +6,7 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 
 ```
 
-## Übung
+## Uebung
 
 In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic ([blog.tagesanzeiger.ch](https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich)) zu rekonstruieren. Freundlicherweise hat Herr Kovic meist die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. 
 
