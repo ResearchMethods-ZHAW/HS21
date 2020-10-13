@@ -46,8 +46,13 @@ wetter_fil <- wetter %>%
   filter(year == 2000 & month == 1)
 ```
 
+Um in "base-R" einen Scatterplot zu erstellen wo Datum der Temperatur gegenübersteht, gehen wir wie folgt vor:
 
-Ein ggplot wird durch den Befehl `ggplot()` initiiert. Hier wird einerseits der Datensatz festgelegt, auf dem der Plot beruht (`data = `), sowie die Variablen innerhalb des Datensatzes, die Einfluss auf den Plot ausüben (`mapping = aes()`). 
+```{r}
+plot(wetter_fil$time, wetter_fil$tre200h0)
+```
+
+In `ggplot` sieht das etwas anders und auf den ersten Blick etwas komplizierter aus: Ein ggplot wird durch den Befehl `ggplot()` initiiert. Hier wird einerseits der Datensatz festgelegt, auf dem der Plot beruht (`data = `), sowie die Variablen innerhalb des Datensatzes, die Einfluss auf den Plot ausüben (`mapping = aes()`). 
 
 Weiter braucht es *mindestens* ein "Layer" der beschreibt, wie die Daten dargestellt werden sollen (z.B. `geom_point()`).
 
