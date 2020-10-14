@@ -39,10 +39,7 @@ people <- data.frame(
 
 
 # build a scatterplot for a first inspection
-ggplot(people, aes(x=age, y=height)) + 
-  geom_point() + 
-  scale_y_continuous(limits=c(0.75, 2.0)) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=20,face="bold"))
+ggplot(people, aes(x=age, y=height)) + geom_point() + scale_y_continuous(limits=c(0.75, 2.0))
 
 # Go to help page: http://docs.ggplot2.org/current/ -> Search for icon of fit-line
 # http://docs.ggplot2.org/current/geom_smooth.html
@@ -51,8 +48,7 @@ ggplot(people, aes(x=age, y=height)) +
 ggplot(people, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="loess", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  geom_smooth(method="loess", fill='lightblue', size=0.5, alpha=0.5)
 
 ?stem
 
@@ -64,19 +60,16 @@ stem(people$height, scale=2)
 summary(people$age)
 boxplot(people$age)
 
-boxplot(people$age)
 
 summary(people$height)
 boxplot(people$height)
 
-boxplot(people$height)
+# boxplot(people$height) why twice the same
 
 
 # explore data with a histgram
 ggplot(people, aes(x=age)) + 
-  geom_histogram(stat="bin", fill='green', binwidth=20) + 
-  theme_bw() + labs(x = '\nage', y = 'count\n') +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) 
+  geom_histogram(stat="bin", fill='green', binwidth=20)  
 
 density(x = people$height)
 
@@ -93,7 +86,6 @@ ggplot(people, aes(x=age, y=height)) +
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
   geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) +
   scale_x_log10()
 
 # logarithmic axis: show multiplicative factors, e.g. log2
@@ -101,63 +93,54 @@ ggplot(people, aes(x=age, y=height)) +
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
   geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) +
   scale_x_continuous(trans = log2_trans(),
                    breaks = trans_breaks("log2", function(x) 2^x),
                    labels = trans_format("log2", math_format(2^.x)))
 
 
 # outliers: Remove very small and very old people
-peopleTemp <- subset(people, ID != 27) # Diese Person war zu klein.
-peopleClean <- subset(peopleTemp, age < 100) # Fehler in der Erhebung des Alters
+peopleTemp <- filter(people, ID != 27) # Diese Person war zu klein.
+peopleClean <- filter(peopleTemp, age < 100) # Fehler in der Erhebung des Alters
 
-# re-explore cleaned data with a histgram
+# re-explore cleaned data with a histogram
 ggplot(peopleClean, aes(x=age)) + 
-  geom_histogram(stat="bin", fill='#6baed6', binwidth=10) + 
-  theme_bw() + labs(x = '\nage', y = 'count\n') +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  geom_histogram(stat="bin", fill='#6baed6', binwidth=10)
 
 ggplot(peopleClean, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5)
 
 # with custom binwidth
 ggplot(peopleClean, aes(x=age)) + 
   geom_histogram(stat="bin", fill='#6baed6', binwidth=10) + 
-  theme_bw() + labs(x = '\nAlter', y = 'Anzahl\n')
+  theme_bw() # specifying the theme
 
 
 
 # quadratic axis
 ggplot(peopleClean, aes(x=age, y=height)) + 
   geom_point() + scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) +
-  scale_x_sqrt()
+  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) + scale_x_sqrt()
 
 
 
 
-# subset "teenies": No trend
-kids <- subset(peopleClean, age < 15)
+# filter "teenies": No trend
+kids <- filter(peopleClean, age < 15)
 
 ggplot(kids, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5)
 
-
-# subset "teenies": No trend
-oldies <- subset(peopleClean, age > 55)
+# filter "teenies": No trend
+oldies <- filter(peopleClean, age > 55)
 
 ggplot(oldies, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold"))
+  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5)
 
 
 # Onwards towards multidimensional data

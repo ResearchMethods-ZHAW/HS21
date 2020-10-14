@@ -1,4 +1,4 @@
-## Lösung
+## Loesung
 
 [RCode als Download](11_InfoVis1/RFiles/Uebung.R)
 
