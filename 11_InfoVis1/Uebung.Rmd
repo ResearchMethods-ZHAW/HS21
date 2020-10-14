@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 
 ## Übung
 
-In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic ([blog.tagesanzeiger.ch](https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich)) zu rekonstruieren. Freundlicherweise hat Herr Kovic meist die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. 
+In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic ([blog.tagesanzeiger.ch](https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich)) zu rekonstruieren. Schau dir die Grafiken in dem Blogpost durch. Freundlicherweise hat Herr Kovic meist die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. 
 
 Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind meine eigenen Rekonstruktionen. Importiere als erstes den Datensatz [initiative_masseneinwanderung_kanton.csv](11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv) (auf der Blog-Seite erhältlich).
 
@@ -18,6 +18,7 @@ Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind
 library(tidyverse)
 library(ggplot2)
 library(stringr)
+library(janitor) # um die Spaltennamen zu säubern
 
 ```
 
@@ -32,8 +33,9 @@ library(stringr)
 # werden.
 ```
 
-```{r}
-kanton <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv",",",locale = locale(encoding = "UTF-8"))
+```{r, echo = TRUE}
+kanton <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv",",",locale = locale(encoding = "UTF-8")) %>%
+  janitor::clean_names() # säubert die Spaltennamen
 ```
 
 
@@ -42,9 +44,11 @@ kanton <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv"
 
 Rekonstruiere [Grafik 1](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-2.png) von Kovic. Erstelle dazu einen Scatterplot wo der Ausländeranteil der Kantone dem Ja-Anteil gegenüber gestellt wird. Speichere den Plot einer Variabel `plot1`.
 
+- nutze `ggplot(kanton, aes(auslanderanteil, ja_anteil))` um den ggplot zu initiieren.Füge danach ein einen Punkte Layer hinzu (`geom_point()`)
 - nutze `coord_fixed()` um die beiden Achsen in ein fixes Verhältnis zu setzen (1:1).
-- setze die Achsen Start- und Endwerte mittels `lims()` oder `scale_y_continuous`bzw. `scale_x_continuous`.
-- Optional: Setze analog Kovic die `breaks` (`0.0`, `0.1`...`0.7`) manuell
+- Optional: 
+  - setze die Achsen Start- und Endwerte mittels `lims()` oder `scale_y_continuous`bzw. `scale_x_continuous`.
+  - Setze analog Kovic die `breaks` (`0.0`, `0.1`...`0.7`) manuell
 
 Rekonstruktion:
 
@@ -52,16 +56,7 @@ Rekonstruktion:
 
 # Lösung zu Aufgabe 1
 
-# da die Spalten in Kovic's Daten Umlaute und Sonderzeichen enthalten, müssen diese in R mit Graviszeichen 
-# angesprochen werden. Dieses Zeichen wirder Schweizer Tastatur [1]  mit 
-# Shitft + Gravis (Links von der Backspace taste) + Leerschlag erstellt
-# [1] https://de.wikipedia.org/wiki/Tastaturbelegung#Schweiz
-
-
-# Alternativ können die Spalten im Originalfile oder mit dplyr::rename() umbenannt werden
-
-
-plot1 <- ggplot(kanton, aes(`Ausländeranteil`, `Ja-Anteil`)) +
+plot1 <- ggplot(kanton, aes(auslanderanteil, ja_anteil)) +
   geom_point() +
   coord_fixed(1) +
   scale_y_continuous(breaks = c(0,0.1,0.3,0.5,0.7),limits =  c(0,0.7)) +
@@ -91,7 +86,8 @@ plot1 +
 Importiere die Gemeindedaten [initiative_masseneinwanderung_gemeinde.csv](11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv):
 
 ```{r, echo = T}
-gemeinde <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv",",",locale = locale(encoding = "UTF-8"))
+gemeinde <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv",",",locale = locale(encoding = "UTF-8")) %>%
+  janitor::clean_names() # säubert die Spaltennamen
 ```
 
 
@@ -100,7 +96,7 @@ Rekonstruiere [Grafik 3](https://blog.tagesanzeiger.ch/datenblog/wp-content/uplo
 ```{r}
 # Lösung zu Aufgabe 3
 
-plot2 <- ggplot(gemeinde, aes(`Anteil Ausl`, `Anteil Ja`)) +
+plot2 <- ggplot(gemeinde, aes(anteil_ausl, anteil_ja)) +
   geom_point() +
   labs(x = "Ausländeranteil",y = "Anteil Ja-Stimmen") +
   coord_fixed(1) +
@@ -180,7 +176,7 @@ plot4 +
 ```
 
 
-### Aufgabe 9 (Fortgeschritten)
+### Aufgabe 9 (Optional, fortgeschritten)
 
 Rekonstruiere die [Korrelationstabelle](https://tagi_dwpro.s3.amazonaws.com/UMvkt/2/fs.html).
 
@@ -198,8 +194,8 @@ Hinweis: aus bisher unerklärlichen Gründen weiche gewisse meiner Werte leicht 
 korr_tab <- gemeinde %>%
   group_by(Kanton) %>%
   summarise(
-    Korr.Koeffizient = cor.test(`Anteil Ja`,`Anteil Ausl`,method = "pearson")$estimate,
-    Signifikanz_val = cor.test(`Anteil Ja`,`Anteil Ausl`,method = "pearson")$p.value,
+    Korr.Koeffizient = cor.test(anteil_ja,anteil_ausl,method = "pearson")$estimate,
+    Signifikanz_val = cor.test(anteil_ja,anteil_ausl,method = "pearson")$p.value,
     Signifikanz = ifelse(Signifikanz_val < 0.001,"***",ifelse(Signifikanz_val<0.01,"**",ifelse(Signifikanz_val<0.05,"*","-")))
   ) %>%
   select(-Signifikanz_val)
