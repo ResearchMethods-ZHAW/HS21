@@ -25,6 +25,9 @@ wetter <- wetter %>%
 wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
 
 
+# Hier ein Ausschnitt der df, wie es aussehen sollte:
+wetter_wide[1:5, 1:7]
+
 
 # Lösung Aufgabe 4
 

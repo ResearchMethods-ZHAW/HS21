@@ -22,12 +22,12 @@ rmd_files: [
      "11_InfoVis1/Uebung.Rmd",
      "11_InfoVis1/Uebung_loesung.Rmd",
   
-   #"12_InfoVis2/Abstract.Rmd",
-   #"12_InfoVis2/Demo_Debug.Rmd",
-    #"12_InfoVis2/Uebung_A.Rmd",
-  #"12_InfoVis2/Uebung_A_loesung.Rmd",
-   # "12_InfoVis2/Uebung_B.Rmd",
-  #"12_InfoVis2/Uebung_B_loesung.Rmd",
+    "12_InfoVis2/Abstract.Rmd",
+    "12_InfoVis2/Demo_Debug.Rmd",
+    "12_InfoVis2/Uebung_A.Rmd",
+    "12_InfoVis2/Uebung_A_loesung.Rmd",
+    "12_InfoVis2/Uebung_B.Rmd",
+    "12_InfoVis2/Uebung_B_loesung.Rmd",
 
    #"13_Statistik1/Abstract.Rmd",
    #"13_Statistik1/Demo_Tests.Rmd",

@@ -127,7 +127,7 @@ Rekonstruiere [Grafik 5](https://blog.tagesanzeiger.ch/datenblog/wp-content/uplo
 # Lösung zu Aufgabe 5
 
 plot3 <- plot2 +
-  facet_wrap(~Kanton)
+  facet_wrap(~kanton)
 plot3
 ```
 
@@ -158,7 +158,7 @@ Rekonstruktion:
 # Lösung zu Aufgabe 7
 
 plot4 <- plot2 +
-  facet_wrap(~Quantile)
+  facet_wrap(~quantile)
 plot4
 ```
 
@@ -192,7 +192,7 @@ Hinweis: aus bisher unerklärlichen Gründen weiche gewisse meiner Werte leicht 
 # Lösung zu Aufgabe 9
 
 korr_tab <- gemeinde %>%
-  group_by(Kanton) %>%
+  group_by(kanton) %>%
   summarise(
     Korr.Koeffizient = cor.test(anteil_ja,anteil_ausl,method = "pearson")$estimate,
     Signifikanz_val = cor.test(anteil_ja,anteil_ausl,method = "pearson")$p.value,

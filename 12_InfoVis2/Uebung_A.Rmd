@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = F,include = T,message = F, warning = F, collapse=TR
 
 
 
-## Übung A
+## Uebung A
 
 ```{r, message = F, echo = T}
 library(tidyverse)

@@ -2,6 +2,7 @@
 library(tidyverse)
 library(ggplot2)
 library(stringr)
+library(janitor) # um die Spaltennamen zu säubern
 
 
 ## # Es kann sein, dass man die Codierung des Files spezifizieren muss. Mit `readr::read_delim()`
@@ -12,21 +13,13 @@ library(stringr)
 ## # oder "Notepad++", Mac: "TextEdit")  und mit einer neuen Codierung (z.B. `UTF-8`) abgespeichert
 ## # werden.
 
-kanton <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv",",",locale = locale(encoding = "UTF-8"))
+kanton <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_kanton.csv",",",locale = locale(encoding = "UTF-8")) %>%
+  janitor::clean_names() # säubert die Spaltennamen
 
 
 # Lösung zu Aufgabe 1
 
-# da die Spalten in Kovic's Daten Umlaute und Sonderzeichen enthalten, müssen diese in R mit Graviszeichen 
-# angesprochen werden. Dieses Zeichen wirder Schweizer Tastatur [1]  mit 
-# Shitft + Gravis (Links von der Backspace taste) + Leerschlag erstellt
-# [1] https://de.wikipedia.org/wiki/Tastaturbelegung#Schweiz
-
-
-# Alternativ können die Spalten im Originalfile oder mit dplyr::rename() umbenannt werden
-
-
-plot1 <- ggplot(kanton, aes(`Ausländeranteil`, `Ja-Anteil`)) +
+plot1 <- ggplot(kanton, aes(auslanderanteil, ja_anteil)) +
   geom_point() +
   coord_fixed(1) +
   scale_y_continuous(breaks = c(0,0.1,0.3,0.5,0.7),limits =  c(0,0.7)) +
@@ -40,11 +33,12 @@ plot1
 plot1 +
   geom_smooth()
 
-gemeinde <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv",",",locale = locale(encoding = "UTF-8"))
+gemeinde <- read_delim("11_InfoVis1/data/initiative_masseneinwanderung_gemeinde.csv",",",locale = locale(encoding = "UTF-8")) %>%
+  janitor::clean_names() # säubert die Spaltennamen
 
 # Lösung zu Aufgabe 3
 
-plot2 <- ggplot(gemeinde, aes(`Anteil Ausl`, `Anteil Ja`)) +
+plot2 <- ggplot(gemeinde, aes(anteil_ausl, anteil_ja)) +
   geom_point() +
   labs(x = "Ausländeranteil",y = "Anteil Ja-Stimmen") +
   coord_fixed(1) +
@@ -61,7 +55,7 @@ plot2 +
 # Lösung zu Aufgabe 5
 
 plot3 <- plot2 +
-  facet_wrap(~Kanton)
+  facet_wrap(~kanton)
 plot3
 
 
@@ -74,7 +68,7 @@ plot3 +
 # Lösung zu Aufgabe 7
 
 plot4 <- plot2 +
-  facet_wrap(~Quantile)
+  facet_wrap(~quantile)
 plot4
 
 
@@ -87,10 +81,10 @@ plot4 +
 # Lösung zu Aufgabe 9
 
 korr_tab <- gemeinde %>%
-  group_by(Kanton) %>%
+  group_by(kanton) %>%
   summarise(
-    Korr.Koeffizient = cor.test(`Anteil Ja`,`Anteil Ausl`,method = "pearson")$estimate,
-    Signifikanz_val = cor.test(`Anteil Ja`,`Anteil Ausl`,method = "pearson")$p.value,
+    Korr.Koeffizient = cor.test(anteil_ja,anteil_ausl,method = "pearson")$estimate,
+    Signifikanz_val = cor.test(anteil_ja,anteil_ausl,method = "pearson")$p.value,
     Signifikanz = ifelse(Signifikanz_val < 0.001,"***",ifelse(Signifikanz_val<0.01,"**",ifelse(Signifikanz_val<0.05,"*","-")))
   ) %>%
   select(-Signifikanz_val)
