@@ -51,7 +51,7 @@ wetter <- wetter %>%
 
 ### Aufgabe 3
 
-Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`key`), gefüllt mit den Temperaturwerten (`value`).  Speichere diese Tabelle in einer neuen Variabel.
+Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
 
 ```{r}
 
@@ -61,6 +61,10 @@ wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
 
 ```
 
+```{r, echo = TRUE}
+# Hier ein Ausschnitt der df, wie es aussehen sollte:
+wetter_wide[1:5, 1:7]
+```
 
 
 ### Aufgabe 4

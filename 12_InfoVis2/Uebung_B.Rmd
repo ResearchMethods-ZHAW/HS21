@@ -14,7 +14,7 @@ default_error <- "In der PDF Version kann die interaktive Grafik bis auf weitere
 
 ```
 
-## Übung B
+## Übung B (Optional)
 
 In dieser Übung bauen wir einige etwas unübliche Plots aus der Vorlesung nach. Dafür verwenden wir Datensätze, die in R bereits integriert sind. Eine Liste dieser Datensätze findet man [hier](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) oder mit der Hilfe `?datasets`.
 

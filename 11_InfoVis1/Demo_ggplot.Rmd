@@ -46,19 +46,26 @@ wetter_fil <- wetter %>%
   filter(year == 2000 & month == 1)
 ```
 
+Um in "base-R" einen Scatterplot zu erstellen wo Datum der Temperatur gegenübersteht, gehen wir wie folgt vor:
 
-Ein ggplot wird durch den Befehl `ggplot()` initiiert. Hier wird einerseits der Datensatz festgelegt, auf dem der Plot beruht (`data = `), sowie die Variablen innerhalb des Datensatzes, die Einfluss auf den Plot ausüben (`mapping = aes()`). 
+```{r}
+plot(wetter_fil$time, wetter_fil$tre200h0)
+```
 
-Weiter braucht es *mindestens* ein "Layer" der beschreibt, wie die Daten dargestellt werden sollen (z.B. `geom_point()`).
-
-Anders als bei "Piping" (`%>%`) wird ein Layer mit `+` hinzugefügt.
+In `ggplot` sieht das etwas anders und auf den ersten Blick etwas komplizierter aus: Ein ggplot wird durch den Befehl `ggplot()` initiiert. Hier wird einerseits der Datensatz festgelegt, auf dem der Plot beruht (`data = `), sowie die Variablen innerhalb des Datensatzes, die Einfluss auf den Plot ausüben (`mapping = aes()`). 
 
 ```{r}
 # Datensatz: "wetter_fil" | Beeinflussende Variabeln: "time" und "tre200h0"
+ggplot(data = wetter_fil, mapping = aes(time,tre200h0))             
+```
+
+Weiter braucht es *mindestens* ein "Layer" der beschreibt, wie die Daten dargestellt werden sollen (z.B. `geom_point()`).
+Anders als bei "Piping" (`%>%`) wird ein Layer mit `+` hinzugefügt.
+
+```{r}
 ggplot(data = wetter_fil, mapping = aes(time,tre200h0)) +
   # Layer: "geom_point" entspricht Punkten in einem Scatterplot 
-  geom_point()                                                 
-
+  geom_point()                                    
 ```
 
 
@@ -99,9 +106,6 @@ ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
 ```
 
 Man kann auch Einfluss auf die x-/y-Achsen nehmen. Dabei muss man zuerst festlegen, was für ein Achsentyp der Plot hat (vorher hat `ggplot` eine Annahme auf der Basis der Daten getroffen). 
-
-
-
 
 Bei unserer y-Achse handelt es sich um numerische Daten, `ggplot` nennt diese: `scale_y_continuous()`. Unter [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/reference/#section-scales) findet man noch andere x/y-Achsentypen (`scale_x_irgenwas` bzw. `scale_y_irgendwas`).
 
@@ -244,8 +248,4 @@ p <- p +
 p
 ```
 
-### Quellen
-
-```{r code=readLines('00_Admin/get_chapter_references.R'), echo=F, eval=T,purl = F, results="asis"}
-```
 
