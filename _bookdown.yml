@@ -23,7 +23,7 @@ rmd_files: [
      "11_InfoVis1/Uebung_loesung.Rmd",
   
     "12_InfoVis2/Abstract.Rmd",
-    "12_InfoVis2/Demo_Debug.Rmd",
+    #"12_InfoVis2/Demo_Debug.Rmd",
     "12_InfoVis2/Uebung_A.Rmd",
     "12_InfoVis2/Uebung_A_loesung.Rmd",
     "12_InfoVis2/Uebung_B.Rmd",
