@@ -122,7 +122,7 @@ p
 
 ### Aufgabe 5 (optional, fortgeschritten)
 
-Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). Aktualisiere `p` an dieser Stelle noch nicht.
+Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). Speichere den plot in `p2`.
 
 ```{r, message=F}
 
