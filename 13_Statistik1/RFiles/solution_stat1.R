@@ -1,4 +1,3 @@
-## ------------------------------------------------------------------------
 # Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
 
 # berücksichtigt nur vegetarische und fleischhaltige Menüs
@@ -37,8 +36,6 @@ chi_sq
 #Fisher's Test 
 fisher.test(observed)
 
-
-## ---- echo=F-------------------------------------------------------------
 library(reshape2)
 table <- as.data.frame(observed) %>%
   mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq) * 100, 1)) %>% 
@@ -47,8 +44,6 @@ table <- as.data.frame(observed) %>%
 knitr::kable(table, caption = "Tabelle 1 \n Verkaufszahlen des Menüinhalts nach Geschlecht")
 
 
-
-## ------------------------------------------------------------------------
 # bereitet eure Daten auf
 # gruppiert die Variablen und fasst sie 
 # nach Geschlecht und Hochschulzugehörigkeit zusammen 
@@ -70,8 +65,6 @@ chi_sq <- chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct) # es werden zwei 
 chi_sq
 
 
-
-## ---- echo=F-------------------------------------------------------------
 table <- df_t %>% 
   rename(Hochschulzugehörigkeit = member, `Anzahl Population` = gesamtheit, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = gesamtheit_pct, `Anteil Stichprobe (%)` = stichprobe_pct) %>%
   dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>% 
@@ -79,8 +72,6 @@ table <- df_t %>%
 knitr::kable(table, caption = "Tabelle 2 \nAnzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
 
 
-
-## ------------------------------------------------------------------------
 # Gemäss Aufgabenstellung müsset die Daten zuerst nach Kalenderwochen "week" und Bedingungen "condition" zusammengefasst werden
 
 df <- nova %>%
@@ -97,8 +88,6 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
 
 
 
-## ------------------------------------------------------------------------
-
 # führt einen t-Tests durch; 
 # es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen unabhängig sind
 
@@ -106,5 +95,4 @@ t_test <- t.test(tot_sold~condit, data=df)
 
 t.test(df[df$condit == "Basis", ]$tot_sold, 
                  df[df$condit == "Intervention", ]$tot_sold) #alternative Formulierung
-
 

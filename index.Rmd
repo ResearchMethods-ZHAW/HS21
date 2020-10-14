@@ -59,7 +59,7 @@ keywords <- c("ResearchMethods","_Rcode","99_","index","Archive","Admin","main",
 
 rmds <- list.files(pattern = ".Rmd",recursive = T)
 
-rmds <- rmds[grepl("Prepro|InfoVis|RaumAn",rmds)]
+rmds <- rmds[grepl("PrePro|InfoVis|RaumAn",rmds)]
 
 rmds <- grepl_loop(rmds,keywords)
 

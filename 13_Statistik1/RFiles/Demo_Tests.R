@@ -1,16 +1,8 @@
-## Research Methods Statistik 1
-
-
-# Chi-Quadrat-Test & Fisher Test -----------------------------------------
-
 qchisq(0.95,1)
 count<-matrix(c(38,14,11,51),nrow=2)
 count
 chisq.test(count)
 fisher.test(count)
-
-
-# t-Test ------------------------------------------------------------------
 
 a<-c(20,19,25,10,8,15,13,18,11,14)
 b<-c(12,15,16,7,8,10,12,11,13,10)
@@ -19,64 +11,59 @@ blume
 summary(blume)
 boxplot(blume$a,blume$b)
 boxplot(blume)
-
 hist(blume$a)
 hist(blume$b)
-
 t.test(blume$a,blume$b) #zweiseitig
 t.test(blume$a,blume$b, alternative="greater") #einseitig
 t.test(blume$a,blume$b, alternative="less") #einseitig
 t.test(blume$a,blume$b, var.equal=T) #Varianzen gleich, klassischer t-Test
-t.test(blume$a,blume$b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht definiert wird, wird ein Welch's t-Test ausgeführt. 
+t.test(blume$a,blume$b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgefÃ¼hrt. 
 t.test(blume$a,blume$b, paired=T) #gepaarter t-Test 
 t.test(blume$a,blume$b, paired=T,alternative="greater") #gepaarter t-Test 
-
 shapiro.test(blume$b)
-
 var.test(blume$a,blume$b)
 if(!require(car)){install.packages("car")} # installiert das Zusatzpacket car (wenn nicht bereits installiert)
 library(car)
 leveneTest(blume$a,blume$b,center=mean)
-
 wilcox.test(blume$a,blume$b)
 
-
-# Das gleiche mit einem "long table"
 cultivar<-c(rep("a",10),rep("b",10))
 size<-c(a,b)
 blume.long<-data.frame(cultivar,size)
 
-rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
+rm(size) #Befehl rm entfernt die nicht mehr benÃ¶titgten Objekte aus dem Workspace
 rm(cultivar)
+
+
+rm(size) #Befehl rm entfernt die nicht mehr benÃ¶titgten Objekte aus dem Workspace
+rm(cultivar)
+
 
 #Das gleiche in einer Zeile
 blume.long<-data.frame(cultivar=c(rep("a",10),rep("b",10)),size=c(a,b))
-
 summary(blume.long)             
 head(blume.long)
 
 boxplot(size~cultivar, data=blume.long)
 
+
+boxplot(size~cultivar, data=blume.long)
+
+
 t.test(size~cultivar, blume.long, var.equal=T)
 t.test(size~cultivar, blume.long, var.equal=F)
 
 
-# Base R vs. ggplot2 ------------------------------------------------------
-
 library(tidyverse)
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()+theme_classic()
-
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
 theme(axis.line = element_line(size=1))+theme(axis.title = element_text(size=14))+
 theme(axis.text = element_text(size=14))
-
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
   theme(axis.line = element_line(size=1), axis.ticks = element_line(size=1), 
        axis.text = element_text(size = 20), axis.title = element_text(size = 20))
 
-
-#Definieren von mytheme mit allen gewünschten Settings, das man zu Beginn einer Sitzung einmal laden und dann immer wieder ausführen kann (statt des langen Codes)
 mytheme <- theme_classic() + 
   theme(axis.line = element_line(color = "black", size=1), 
         axis.text = element_text(size = 20, color = "black"), 
@@ -88,7 +75,7 @@ ggplot(blume.long, aes(cultivar,size)) +
   geom_boxplot(size=1) +
   mytheme
 
-t_test<-t.test(size~cultivar, blume.long)
+t_test <- t.test(size~cultivar, blume.long)
 
 ggplot(blume.long, aes(cultivar,size)) + 
   geom_boxplot(size=1) + 
@@ -99,3 +86,4 @@ ggplot (blume.long, aes(cultivar,size)) +
   geom_boxplot(size=1) + 
   mytheme +
   labs(x="Cultivar",y="Size (cm)")
+

@@ -1,4 +1,3 @@
-## ------------------------------------------------------------------------
 
 kormoran <-read.delim("14_Statistik2/data/kormoran.csv",sep = ";")
 
@@ -87,11 +86,8 @@ mtext(letters$mcletters$Letters,at=c(1:4))
 #Jetzt brauchen wir noch die Mittelwerte bzw. Effektgroessen
 
 #Für den Ergebnistext brauchen wir auch noch Angaben zu den Effektgrössen. Hier sind zwei Möglichkeiten, um an sie zu gelangen.
+aggregate(Tauchzeit~Jahreszeit, FUN=mean)
+aggregate(Tauchzeit~Unterart, FUN=mean)
 
 summary(lm(Tauchzeit~Jahreszeit))
 summary(lm(Tauchzeit~Unterart))
-
-aggregate(kormoran[,1],list(Unterart),mean)
-aggregate(kormoran[,1],list(Jahreszeit),mean)
-
-
