@@ -83,15 +83,14 @@ ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
 __Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!) __
 
 ```{r}
-shapiro.test(size[cultivar == "a"])
-
-var.test(size[cultivar == "a"],size[cultivar == "b"])
+shapiro.test(blume2$size[blume2$cultivar == "a"])
+var.test(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"])
 
 if(!require(car)){install.packages("car")}
 library(car)
-leveneTest(size[cultivar == "a"],size[cultivar == "b"],center=mean)
+leveneTest(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"],center=mean)
 
-wilcox.test(size[cultivar == "a"],size[cultivar == "b"])
+wilcox.test(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"])
 ```
 
 
@@ -125,7 +124,6 @@ oneway.test(data=blume2, size~cultivar, var.equal=F)
 __2-faktorielle ANOVA__
 
 ```{r}
-
 d<-c(10,12,11,13,10,25,12,30,26,13)
 e<-c(15,13,18,11,14,25,39,38,28,24)
 f<-c(10,12,11,13,10,9,2,4,7,13)
