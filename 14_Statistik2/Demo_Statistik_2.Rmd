@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 
-## Demoskript
+## Demo: Statistik 2
 
 [Demoscript als Download](14_Statistik2/RFiles/Statistik_2_Demo_v.05.R)
 
