@@ -32,6 +32,7 @@ __Echte ANOVA__
 c<-c(30,19,31,23,18,25,26,24,17,20)
 
 blume2<-data.frame(cultivar=c(rep("a",10),rep("b",10),rep("c",10)),size=c(a,b,c))
+blume2$cultivar<-as.factor(blume2$cultivar)
 
 summary(blume2)             
 head(blume2)
@@ -82,7 +83,6 @@ ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
 __Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!) __
 
 ```{r}
-attach(blume2)
 shapiro.test(size[cultivar == "a"])
 
 var.test(size[cultivar == "a"],size[cultivar == "b"])
@@ -92,8 +92,6 @@ library(car)
 leveneTest(size[cultivar == "a"],size[cultivar == "b"],center=mean)
 
 wilcox.test(size[cultivar == "a"],size[cultivar == "b"])
-
-detach(blume2)
 ```
 
 
