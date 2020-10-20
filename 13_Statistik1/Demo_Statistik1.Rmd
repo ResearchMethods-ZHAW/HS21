@@ -6,7 +6,7 @@ library(knitr)
 
 ## Demo: Statistik 1
 
-[Demoscript als Download](13_Statistik1/RFiles/Statistik_1_Demo_v.05.R.R)
+[Demoscript als Download](13_Statistik1/RFiles/Statistik_1_Demo_v.05.R)
 
 ### Chi-Quadrat-Test & Fishers Test
 
