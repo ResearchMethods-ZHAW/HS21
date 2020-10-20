@@ -6,7 +6,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 ## Demoskript
 
-[Demoscript als Download](14_Statistik2/RFiles/Demo_Tests.R)
+[Demoscript als Download](14_Statistik2/RFiles/Statistik_2_Demo_v.05.R)
 
  __t-test als ANOVA__ 
 
