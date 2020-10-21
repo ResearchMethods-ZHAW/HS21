@@ -7,11 +7,10 @@
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
-library(ggfortify) # zur Testung der Voraussetzungen
 
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -36,7 +35,7 @@ df <- nova
 df %<>% # schaut euch das Package "magrittr" an
   mutate(article_description = str_replace(article_description, "Local ", "")) %>% # ersetze Local mit einem leeren String
   filter(article_description != "Buffet") %>% # lasse Buffet Gerichte weg
-  mutate(article_description = str_replace_all(article_description, "F|W", "Fav_World")) #  fasse die zwei Menülinien "World & Favorite" zusammen
+  mutate(article_description = str_replace_all(article_description, "Favorite|World", "Fav_World")) #  fasse die zwei Menülinien "World & Favorite" zusammen
 
 # gruppiere Daten nach Menülinie, Geschlecht und Hochschulzugehörigkeit
 ttt<-df %>%
@@ -45,7 +44,7 @@ ttt<-df %>%
     drop_na()  # lasst die unbekannten Menü-Inhalte weg
 
 # überprüft die Voraussetzungen für eine ANOVA
-# Schaut euch die Verteilungen der Mittelwerte der Kriteriumsvariable an
+# Schaut euch die Verteilungen der Mittelwerte der Responsevariable an
 # Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4, Folie 17)
 df %>% 
   split(.$article_description) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
@@ -58,9 +57,9 @@ ggplot(df, aes(x = interaction(article_description, member), y= tot_sold)) +
   stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
   geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
   labs(x = "\nMenülinie nach Hochschulzugehörigkeit", y = "Anzahl verkaufte Gerichte\n") + 
-  scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "K.Mitarbeitende", "Fav_World.Studierende", "K.Studierende"),
-                   breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "K.Mitarbeitende",  "K.Studierende"),
-                   labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "K\nMitarbeitende",  "K\nStudierende")) +
+  scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "Kitchen.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Studierende"),
+                   breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Mitarbeitende",  "Kitchen.Studierende"),
+                   labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "Kitchen\nMitarbeitende",  "Kitchen\nStudierende")) +
   mytheme # wie sind die Voraussetzungen erfüllt?
 
 
@@ -112,7 +111,7 @@ model_welch
 
 **Methode**
 
-Ziel war es die Unterschiede zwischen den preisgünstigeren und teureren Menülinien und der Hochschulzugehörigkeit herauszufinden: Hierfür wurde eine ANOVA mit Interaktion gerechnet, da wir eine (quasi)-metrische Kriteriumsvariable und zwei Prädiktorvariablen (Menülinie und Hochschulzugehörigkeit) haben. Die Voraussetzungen für eine ANOVA waren im ersten Model verletzt, insbesondere die der Varianzheterogenität: Deshalb wurde eine log-Transformation der Kriteriumsvariable vorgenommen und die Varianzanalyse erneut gerechnet. Anschliessend wurden noch post-hoc Einzelvergleiche nach Tukey durchgeführt.
+Ziel war es die Unterschiede zwischen den preisgünstigeren und teureren Menülinien und der Hochschulzugehörigkeit herauszufinden: Hierfür wurde eine ANOVA mit Interaktion gerechnet, da wir eine (quasi)-metrische Responsevariable und zwei Prädiktorvariablen (Menülinie und Hochschulzugehörigkeit) haben. Die Voraussetzungen für eine ANOVA waren im ersten Model verletzt, insbesondere die der Varianzheterogenität: Deshalb wurde eine log-Transformation der Responsevariable vorgenommen und die Varianzanalyse erneut gerechnet. Anschliessend wurden noch post-hoc Einzelvergleiche nach Tukey durchgeführt.
 
 
 *******
@@ -135,9 +134,9 @@ ggplot(df, aes(x = interaction(article_description, member), y= tot_sold)) +
   stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
   geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
   labs(x = "\nMenülinie nach Hochschulzugehörigkeit", y = "Anzahl verkaufte Gerichte\n") + 
-  scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "K.Mitarbeitende", "Fav_World.Studierende", "K.Studierende"),
-                   breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "K.Mitarbeitende",  "K.Studierende"),
-                   labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "K\nMitarbeitende",  "K\nStudierende")) +
+  scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "Kitchen.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Studierende"),
+                   breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Mitarbeitende",  "Kitchen.Studierende"),
+                   labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "Kitchen\nMitarbeitende",  "Kitchen\nStudierende")) +
   annotate("text", x = 1:4, y = 90, label = letters$mcletters$Letters, size = 8) +
   mytheme 
 
@@ -150,7 +149,7 @@ ggsave("plot1_solution2.3s.pdf",
 
 
 
-```{r, eval=FALSE,echo=F, fig.cap="Wahl von preisgünstigeren bzw. teureren Gerichten nach Hochschulzugehörigkeit und Geschlecht"}
+```{r, eval=FALSE, echo=F, fig.cap="Wahl von preisgünstigeren bzw. teureren Gerichten nach Hochschulzugehörigkeit und Geschlecht"}
 # alternative Ergebnisdarstellung anhand Balkendiagramme, macht irgendwie nicht so sinn => effekt kann nicht aufgezeigt werden
 
 df_plot <- nova %>%

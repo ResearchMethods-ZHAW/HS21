@@ -71,7 +71,7 @@ Gibt es Unterschiede zwischen dem Kauf von preisgünstigeren resp. teureren Men�
 Hinweise für die Analysen:
 
 - Fasst die zwei günstigeren Menülinien "Favorite" & "World" zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit str_replace() oder sub()).
-- Danach muss der Datensatz gruppiert und zusammengefasst werden.
+- Danach muss der Datensatz gruppiert (nach Menülinie & Hochschulzugehörigkeit) und zusammengefasst werden.
 - Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls
 auch nicht-parametrische Analysen zulässig?
