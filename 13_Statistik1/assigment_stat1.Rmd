@@ -3,7 +3,7 @@
 
 ###	Übung 1.1: Assoziationstest
 
-Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test mit Daten die selber erhoben wurden oder dem NOVANIMAL Datensatz.
+Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test mit Daten die selber erhoben wurden oder mit der NOVANIMAL [Gästebefragung](https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1).
 
 
 ###	Übung 1.2: t-Test

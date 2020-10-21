@@ -9,6 +9,7 @@
 library(tidyverse)
 library(data.table)
 library(here)
+library(lubridate)
 
 # lade Daten vom Feldexperiment: Kassendaten
 # für Informationen zu den einzelnen Variablen, siehe 
@@ -43,59 +44,43 @@ mytheme <-
 
 
 ```{r}
-# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
+# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den Datensatz  der Gästebefragung NOVANIMAL und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und dem wahrgenommenen Milchkonsum (viel vs. wenig Milch/-produkte)
 
-# berücksichtigt nur vegetarische und fleischhaltige Menüs
-# 1) alle Buffet-Menüs weglassen, da Buffet nicht fleischhaltigen/vegetarischen Inhalten zugordnet werden kann
-# 2) alle veganen Gerichte zu vegetarische Gerichte umbenennen
-
-# 1)
-nova_2 <- nova %>% 
-  filter(label_content != "Buffet")
-
-# 2) https://stackoverflow.com/questions/19552031/remove-plus-sign-from-string/19552112
-nova_2 <- nova_2 %>%
-  mutate(label_content = sub('Pflanzlich|Pflanzlich[+]', "Vegetarisch", label_content)) # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch": 
-
-# alternativer Lösungsweg
-nova_2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch"
+# die Variable wahrgenommener Milchkonsum muss noch in 2 Kategorien zusammengefasst werden: kleiner vs. grosser Milchkonsum
 
 
-#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
-observed<-table(nova_2$gender, nova_2$label_content) 
-
-
-#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
-#braucht in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
-# unser Vorschlag, nehmt den table Befehl
-# untenstehend der vollständige Code in Tidyverse
-observed_t <- nova_2 %>% 
-  group_by(gender, label_content) %>% 
-  summarise(tot = n()) %>% 
-  ungroup() %>%
-  spread(., key = label_content, value = tot) %>%  #
-  select(-gender) %>%
-  as.matrix()
+# Variable  milk == wahrgenommener Milchkonsum 
+# alles kleiner als 4 (3 inklusive) == kleiner wahrgenommener Milchkonsum, alles grösser als 3 (4 inklusive) == hoher wahrgenommener Milchkonsum
+nova2 <- nova_survey %>% 
+  filter(gender != "x") %>% # x aus der Variable Geschlecht entfernen 
+  mutate(milkcompt = if_else(milk >= 3, "wenig", "viel")) %>% 
+  select(gender, milkcompt) %>% 
+  drop_na() # alle Missings können gestrichen werden
+ 
+    
+# mal anschauen
+table(nova2)
 
 
 #Chi-squared Test
-chi_sq <- chisq.test(observed)
+chi_sq <- chisq.test(nova2$gender, nova2$milkcompt)
 chi_sq
 
 #Fisher's Test 
-fisher.test(observed)
+fisher.test(nova2$gender, nova2$milkcompt)
 ```
 
 ** Ergebnisse **
-Der $\chi^2$-Test sagt uns, dass das Geschlecht und die Kaufentscheidung eines Menüinhalts zusammenhängen. Es gibt signifikante Unterscheide zwischen dem Geschlecht und dem Menüinhalt ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Es sieht so aus, dass Männer rund doppel so viel Fleischgerichte wählen als Frauen (siehe Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und Menüinhalt vorliegt. Um die Unterschiede innerhalb der Gruppen festzustellen bedarf es weiterer Analysen z. B. mit Odds Rations oder einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 2, Folien 3 bis 11).
+Der $\chi^2$-Test sagt uns, dass das Geschlecht und der wahrgenommene Milchkonsum nicht zusammenhängen. Es gibt keine signifikante Unterscheide zwischen dem Geschlecht und dem wahrgenommenen Milchkonsum ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_sq$p.value[[1]]), digits = 3)`. Es sieht so aus, dass Männer leicht mehr angeben weniger Milch zu konsumieren (Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und wahrgenommener Milchkonsum vorliegt. Um die Unterschiede innerhalb der Gruppen (z.B. Geschlecht) festzustellen bedarf es weiterer Analysen z. B. Odds Rations oder einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 3).
 
 ```{r, echo=F}
-library(reshape2)
-table <- as.data.frame(observed) %>%
-  mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq) * 100, 1)) %>% 
-  rename(Geschlecht = Var1, Menüinhalt = Var2, Verkaufszahlen = Freq) %>% 
-  mutate(Geschlecht = recode(Geschlecht, "F" = "Frauen", "M" = "Männer"))
-knitr::kable(table, caption = "Tabelle 1 \n Verkaufszahlen des Menüinhalts nach Geschlecht")
+table <- nova2 %>%
+  group_by(gender, milkcompt) %>% 
+  summarise(tot = n()) %>% 
+  mutate(`wahr. Milchkonsum (%)` = round(tot / sum(tot) * 100, 1)) %>% 
+  rename(Geschlecht = gender, `wahr. Milchkonsum` = milkcompt, `absolute Werte`= tot)
+
+knitr::kable(table, caption = "Tabelle 1 \n Wahrgenommener Milchkonsum nach Geschlecht")
 
 ```
 
