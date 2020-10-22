@@ -1,4 +1,4 @@
-##  Musterlösung Aufgabe 1.1: Assoziationstest
+##  Lösung Aufgabe 1.1
 
 >Download [R-Skript]("13_Statistik1/RFiles/solution_stat1.R")
 
