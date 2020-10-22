@@ -1,6 +1,11 @@
 ## Research Methods Demo Statistik 1
 
 
+# Binomialtest ------------------------------------------------------------
+binom.test(43,100) #In Klammern Ã¼bergibt man die Anzahl der Erfolge und die StichprobengrÃ¶sse
+binom.test(57,100)
+
+
 # Chi-Quadrat-Test & Fisher Test -----------------------------------------
 
 #Ermitteln des kritischen Wertes
@@ -32,7 +37,7 @@ t.test(blume$a,blume$b) #zweiseitig
 t.test(blume$a,blume$b, alternative="greater") #einseitig
 t.test(blume$a,blume$b, alternative="less") #einseitig
 t.test(blume$a,blume$b, var.equal=T) #Varianzen gleich, klassischer t-Test
-t.test(blume$a,blume$b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht definiert wird, wird ein Welch's t-Test ausgeführt. 
+t.test(blume$a,blume$b, var.equal=F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht definiert wird, wird ein Welch's t-Test ausgef?hrt. 
 t.test(blume$a,blume$b, paired=T) #gepaarter t-Test 
 t.test(blume$a,blume$b, paired=T,alternative="greater") #gepaarter t-Test 
 
@@ -51,7 +56,7 @@ cultivar<-c(rep("a",10),rep("b",10))
 size<-c(a,b)
 blume.long<-data.frame(cultivar,size)
 
-rm(size, cultivar) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
+rm(size, cultivar) #Befehl rm entfernt die nicht mehr ben?titgten Objekte aus dem Workspace
 
 #Das gleiche in einer Zeile
 blume.long<-data.frame(cultivar=c(rep("a",10),rep("b",10)),size=c(a,b))
@@ -80,7 +85,7 @@ ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
        axis.text = element_text(size = 20), axis.title = element_text(size = 20))
 
 
-#Definieren von mytheme mit allen gewünschten Settings, das man zu Beginn einer Sitzung einmal laden und dann immer wieder ausführen kann (statt des langen Codes)
+#Definieren von mytheme mit allen gew?nschten Settings, das man zu Beginn einer Sitzung einmal laden und dann immer wieder ausf?hren kann (statt des langen Codes)
 mytheme <- theme_classic() + 
   theme(axis.line = element_line(color = "black", size=1), 
         axis.text = element_text(size = 20, color = "black"), 

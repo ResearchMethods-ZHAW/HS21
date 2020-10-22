@@ -8,6 +8,13 @@ library(knitr)
 
 [Demoscript als Download](13_Statistik1/RFiles/Statistik_1_Demo_v.05.R)
 
+### Binomialtest
+```{r}
+binom.test(43,100) #In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+binom.test(57,100)
+```
+
+
 ### Chi-Quadrat-Test & Fishers Test
 
 Ermitteln des kritischen Wertes
