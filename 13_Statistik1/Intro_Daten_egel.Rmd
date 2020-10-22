@@ -5,33 +5,8 @@ Im Forschungsprojekt NOVANIMAL wird u.a. der Frage nachgegangen, was es braucht,
 
 Dazu wurde u.a. ein Experiment in zwei Hochschulmensen durchgeführt. Forschungsleitend war die Frage, wie die Gäste dazu bewogen werden können, häufiger vegetarische oder vegane Gerichte zu wählen. Konkret wurde untersucht, wie die Gäste auf ein verändertes Menü-Angebot mit einem höheren Anteil an vegetarischen und veganen Gerichten reagieren. Das Experiment fand während 12 Wochen statt und bestand aus zwei Mensazyklen à 6 Wochen. Über den gesamten Untersuchungszeitraum werden insgesamt 90 verschiedene Gerichte angeboten. In den 6 Referenz- bzw. Basiswochen wurden zwei fleisch- oder fischhaltige Menüs und ein vegetarisches Menü angeboten. In den 6 Interventionswochen wurde das Verhältnis umgekehrt und es wurden ein veganes, ein vegetarisches und ein fleisch- oder fischhaltiges Gericht angeboten. Basis- und Interventionsangebote wechselten wöchentlich ab. Während der gesamten 12 Wochen konnten die Gäste jeweils auf ein Buffet ausweichen und ihre Mahlzeit aus warmen und kalten Komponenten selber zusammenstellen. Die Gerichte wurden über drei vorgegebene Menülinien  (F, K, W) randomisiert angeboten.
 
-![Die Abbildung zeigt das Versuchsdesign der ersten 6 Experimentalwochen (Kalenderwoche 40 bis 45).](13_Statistik1/design_experiment.png)
+![Die Abbildung zeigt das Versuchsdesign der ersten 6 Experimentwochen (Kalenderwoche 40 bis 45).](13_Statistik1/design_experiment.png)
 
-Mehr Informationen über das Forschungsprojekt NOVANIMAL findet ihr auf dieser [Webpage](https://www.novanimal.ch)
+Mehr Informationen über das Forschungsprojekt NOVANIMAL findet ihr auf der [Webpage](https://www.novanimal.ch)
 
-
-<!-- @ Egel: Diesen Teil habe ich aus der Aufgabenstellung rausgenommen. Könnnen wir den hier platzieren?  -->
-### Weitere Erläuterungen zum Datensatz
-
-
-
-Der Datensatz beinhaltet knapp 1100 Einträge mit 18 Variablen. Die Daten stammen aus dem Kassensystem des Catering-Unternehmen und stellen eine repräsentative Stichprobe des originalen Datensatzes dar.
-
-Folgende Variablen sind im Datensatz:
-
-
-```{r, echo = F, message=F}
-library(tidyverse)
-
-variablen <- read_delim(here::here("13_Statistik1/novanimal_variabeln.csv"),";")
-
-knitr::kable(variablen)
-  
-```
-
-
-1. Locals (Local F, Local K, Local W) sind nebst den drei "normalen Menü-Linien" zusätzlich angebotene Gerichte
-2. hier werden Gerichte mit Fisch & Geflügel als Fleisch zusammengefasst.
-3. Vegane Gerichte enthalten ausschliesslich pflanzliche Zutaten. Im Exeriment wurde zwischen Gerichte mit pflanzlichen Fleischsubstituten und authentischen, eigenständigen veganen Gerichten unterschieden
-4. Vegetarisch bedeutet ovo-lakto-vegetarisch, d.h. die Gerichte enthalten Eier und/oder Milchprodukte 
 
