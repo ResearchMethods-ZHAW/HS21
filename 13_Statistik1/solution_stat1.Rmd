@@ -13,9 +13,7 @@ library(lubridate)
 
 # lade Daten vom Feldexperiment: Kassendaten
 # für Informationen zu den einzelnen Variablen, siehe 
-nova <- data.table::fread("https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1", sep = ";", encoding = "Latin-1") %>% 
-  mutate(date = as_date(date)) %>%  # ändere das Datumformat
-  as_tibble() # ändere die tabelle in ein Datenframe (sog. tibble)
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv", delim = ";")
 
 
 # lade Daten von der Gästebefragung 2017
