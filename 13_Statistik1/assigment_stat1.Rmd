@@ -3,33 +3,16 @@
 
 ###	Übung 1.1: Assoziationstest
 
-Assoziationstest zweier kategorialer Variablen, Dateneingabe und Durchführung von Chi-Quadrat- sowie Fishers exaktem Test mit Daten die selber erhoben wurden oder dem Novanimal Datensatz.
+Bitte führt einen Assoziationstest zweier kategorialer Variablen (mit je zwei Ausprägungen) mit Chi-Quadrat und Fishers exaktem Test durch. Ihr habt zwei Möglichkeiten: (1) Ihr erhebt dazu selbst die Daten (wozu ihr euch auch in Teams zusammenschliessen könnt). Dabei könnt ihr sowohl Befragungen/Datenerhebung unter Mitstudierenden durchführen (etwa Nutzung Mac/Windows vs. männlich/weiblich) oder Daten zu anderen Objekten erheben. (2) Ihr nehmt zwei kategoriale Variablen aus einem der Novanimal-Datensätze ([Feldexperiment]('13_Statistik/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv') oder [Gästebefragung](https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1)). <br>
+Bitte formuliert in beiden Fällen vor der Datenerhebung/Datenextraktion eine Hypothese, d.h. eine Erwartungshaltung, ob und welche Assoziation vorliegt und wenn ja warum. Bitte beachtet, dass ihr für die Form des Assoziationstests aus dem Kurs zwei binäre Variablen benötigt; wenn ihr also kategoriale Variablen mit mehr als zwei Ausprägungen habt, könnt ihr entweder Ausprägungen sinnvoll zusammenfassen oder seltene Ausprägungen im Test unberücksichtigt lassen.
 
-###	Übung 1.2: $\chi^2$-Test
-
-Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) 
-
-Unterscheidet sich die Stichprobe des NOVANIMAL-Projekts von der gesamten Population bezüglich Geschlecht und Hochschulzugehörigkeit? 
-
-Die Grundgesamtheit setzt sich aus 719 Studentinnen und 816 Studenten, 345 Mitarbeiterinnen und 339 Mitarbeiter. Die gesamte Population umfasst 2219 Personen mit einer aktiven CampusCard.
-
-- Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$)
-- Führt einen $\chi^2$-Test mit dem Datensatz novanimal.csv durch
-- Stellt eure Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle
-
-
-###	Übung 1.3: t-Test
+###	Übung 1.2: t-Test
 
 Werden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?
 
-- Definiert die Null- ($H_0$) und die Alternativhypothese ($H_1$).
-- Führt einen t-Test mit dem Datensatz novanimal.csv durch.
+- Definiere die Null- ($H_0$) und die Alternativhypothese ($H_1$).
+- Führe einen t-Test durch.
 - Welche Form von t-Test musst Du anwenden: einseitig/zweiseitig resp. gepaart/ungepaart?
 - Wie gut sind die Voraussetzungen für einen t-Test erfüllt (z.B. Normalverteilung der Residuen und Varianzhomogenität)?
-- Stell eure Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle 
-- Das gilt für alle Übungen und wird von euch auch an der Prüfung verlangt. Abzugeben sind am Ende 
-  
-  (a) **Ein lauffähiges R-Skript**
-  (b) **begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation)** 
-  (c) **ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit)**
+- Stelle deine Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle 
 

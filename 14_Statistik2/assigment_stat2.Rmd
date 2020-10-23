@@ -1,6 +1,7 @@
 ## Übungen 2
 
-Repetition: Abzugeben sind am Ende
+***
+**Repetition**: Abzugeben sind am Ende
     
     a. lauffähiges R-Skript
     b. begründeter Lösungsweg (Kombination aus R-Code, R Output 
@@ -20,7 +21,10 @@ Repetition: Abzugeben sind am Ende
     
 - Formuliert abschliessend einen **Methoden- und Ergebnisteil** (ggf. incl. adäquaten Abbildungen/Tabellen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (je einen ausformulierten Absatz von ca. 60-100 Worten bzw. 3-8 Sätzen). Alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
 
-### Übung 2.1: Regression (NatWis)
+***
+
+
+### Übung 2.1: Regression
 
 **Regressionsanalyse mit [decay.csv](14_Statistik2/data/decay.csv)**
 
@@ -33,9 +37,9 @@ Der Datensatz beschreibt in einem physikalischen Experiment die Zahl der radioak
 - Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
 
 
-### Übung 2.2: Einfaktorielle ANOVA (SozOek)
+### Übung 2.2: Einfaktorielle ANOVA
 
-**ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
+**ANOVA mit [novanimal.csv](13_Statistik1/data2017_ZHAW_individual_menu_sales_NOVANIMAL.csv)**
 
 Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
 
@@ -44,7 +48,7 @@ Hinweise für die Analysen:
 - Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
 werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit grep()).
 - Danach muss der Datensatz gruppiert und zusammengefasst werden.
-- Unbekannte Menü-Inhalte können vernachlässigt werden.
+- Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
 - Führt anschliessend Post-hoc-Vergleiche durch.
 - Fasst die Ergebnisse in einem Satz zusammen.
@@ -61,21 +65,18 @@ beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen.
 - Stellt eure Ergebnisse dann angemessen dar (Text mit Abbildung und/oder Tabelle).
 - Gibt es eine Interaktion?
 
-### Übung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozOek)
+### Übung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)
 
-**ANOVA mit [novanimal.csv](13_Statistik1/data/novanimal.csv)**
+**ANOVA mit [novanimal.csv](13_Statistik1/data/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv)**
 
-Können die Unterschiede in den verkauften Gerichten (Buffet, Fleisch oder
-Vegetarisch) durch die beiden Bedingungen (Basis- oder Interventionswochen) erklärt werden?
+In der Mensa gibt es zwei unterschiedliche Preisniveaus bzgl. den Gerichten: eine preisgünstigere Menülinie ("World" & "Favorite") und eine teuere Menülinie ("Kitchen").
+Gibt es Unterschiede zwischen dem Kauf von preisgünstigeren resp. teureren Menülinien betreffend Menüinhalt & Hochschulzugehörigkeit?
 
 Hinweise für die Analysen:
 
-- Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst,
-dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
-werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte
-durchführen (z. B. mit grep()).
-- Danach muss der Datensatz gruppiert und zusammengefasst werden.
-- Unbekannte Menü-Inhalte können vernachlässigt werden.
+- Fasst die zwei günstigeren Menülinien "Favorite" & "World" zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit str_replace() oder sub()).
+- Danach muss der Datensatz gruppiert (nach Menülinie & Hochschulzugehörigkeit) und zusammengefasst werden.
+- Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls
 auch nicht-parametrische Analysen zulässig?
 - Führt anschliessend Post-hoc-Vergleiche durch.
