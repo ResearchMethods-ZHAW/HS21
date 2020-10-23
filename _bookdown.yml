@@ -30,13 +30,13 @@ rmd_files: [
     "12_InfoVis2/Uebung_B_loesung.Rmd",
 
    "13_Statistik1/Abstract.Rmd",
-   #"13_Statistik1/Demo_Statistik_1.Rmd",
-   #"13_Statistik1/Intro_Daten_egel.Rmd",
-   #"13_Statistik1/assigment_stat1.Rmd",
+   "13_Statistik1/Demo_Statistik_1.Rmd",
+   "13_Statistik1/Intro_Daten_egel.Rmd",
+   "13_Statistik1/assigment_stat1.Rmd",
    #"13_Statistik1/solution_stat1.Rmd",
 
-   #"14_Statistik2/Abstract.Rmd",
-   #"14_Statistik2/Demo_Statistik_2.Rmd",
+   "14_Statistik2/Abstract.Rmd",
+   "14_Statistik2/Demo_Statistik_2.Rmd",
    #"14_Statistik2/assigment_stat2.Rmd",
    #"14_Statistik2/solution_stat2.1.Rmd",
    #"14_Statistik2/solution_stat2.2.Rmd",
