@@ -7,7 +7,23 @@
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
 
 library(tidyverse)
-nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+library(data.table)
+library(here)
+library(lubridate)
+
+# lade Daten vom Feldexperiment: Kassendaten
+# für Informationen zu den einzelnen Variablen, siehe 
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv", delim = ";")
+
+
+# lade Daten von der Gästebefragung 2017
+# für Informationen zu den einzelnen Variablen, siehe https://zenodo.org/record/3554884/files/2020_ZHAW_vonRickenbach_Variablen_cleaned_recoded_survey_dataset_anonym_NOVANIMAL.pdf?download=1
+nova_survey <- data.table::fread("https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1", sep = ";", encoding = "Latin-1") %>% 
+  mutate(date = as_date(date)) %>% 
+  as_tibble()
+
+#überprüfe die Datenstruktur
+glimpse(nova_survey)
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 
@@ -26,117 +42,50 @@ mytheme <-
 
 
 ```{r}
-# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
+# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den Datensatz  der Gästebefragung NOVANIMAL und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und dem wahrgenommenen Milchkonsum (viel vs. wenig Milch/-produkte)
 
-# berücksichtigt nur vegetarische und fleischhaltige Menüs
-# 1) alle Buffet-Menüs weglassen
-# 2) alle veganen Gerichte zu vegetarische Gerichte umbenennen
-nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
-
-nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "Vegetarisch" # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch"
-
-nova2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch" # alternativer Lösungsweg
-
-nova3<-droplevels(nova2) #entfernt die Kategorien die nicht mehr mehr benutzt werden
-
-#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
-observed<-table(nova2$gender, nova2$label_content) 
+# die Variable wahrgenommener Milchkonsum muss noch in 2 Kategorien zusammengefasst werden: kleiner vs. grosser Milchkonsum
 
 
-#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
-#braucht in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
-# unser Vorschlag, nehmt den table Befehl
-# untenstehend der vollständige Code in Tidyverse
-observed_t <- nova2 %>% 
-  group_by(gender, label_content) %>% 
-  summarise(tot = n()) %>% 
-  ungroup() %>%
-  spread(., key = label_content, value = tot) %>%  #
-  # set_rownames(.$gender) %>% funktioniert leider nicht mehr mit tibble
-  select(-gender) %>%
-  as.matrix()
+# Variable  milk == wahrgenommener Milchkonsum 
+# alles kleiner als 4 (3 inklusive) == kleiner wahrgenommener Milchkonsum, alles grösser als 3 (4 inklusive) == hoher wahrgenommener Milchkonsum
+nova2 <- nova_survey %>% 
+  filter(gender != "x") %>% # x aus der Variable Geschlecht entfernen 
+  mutate(milkcompt = if_else(milk >= 3, "wenig", "viel")) %>% 
+  select(gender, milkcompt) %>% 
+  drop_na() # alle Missings können gestrichen werden
+ 
+    
+# mal anschauen
+table(nova2)
 
 
 #Chi-squared Test
-chi_sq <- chisq.test(observed)
+chi_sq <- chisq.test(nova2$gender, nova2$milkcompt)
 chi_sq
 
 #Fisher's Test 
-fisher.test(observed)
+fisher.test(nova2$gender, nova2$milkcompt)
 ```
 
 ** Ergebnisse **
-Der $\chi^2$-Test sagt uns, dass das Geschlecht und die Kaufentscheidung eines Menüinhalts zusammenhängen. Es gibt signifikante Unterscheide zwischen dem Geschlecht und dem Menüinhalt ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Es sieht so aus, dass Männer rund doppel so viel Fleischgerichte wählen als Frauen (siehe Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und Menüinhalt vorliegt. Um die Unterschiede innerhalb der Gruppen festzustellen bedarf es weiterer Analysen z. B. einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 2, Folien 3 bis 11).
+Der $\chi^2$-Test sagt uns, dass das Geschlecht und der wahrgenommene Milchkonsum nicht zusammenhängen. Es gibt keine signifikante Unterscheide zwischen dem Geschlecht und dem wahrgenommenen Milchkonsum ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_sq$p.value[[1]]), digits = 3)`. Es sieht so aus, dass Männer leicht mehr angeben weniger Milch zu konsumieren (Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und wahrgenommener Milchkonsum vorliegt. Um die Unterschiede innerhalb der Gruppen (z.B. Geschlecht) festzustellen bedarf es weiterer Analysen z. B. Odds Rations oder einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 3).
 
 ```{r, echo=F}
-library(reshape2)
-table <- as.data.frame(observed) %>%
-  mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq) * 100, 1)) %>% 
-  rename(Geschlecht = Var1, Menüinhalt = Var2, Verkaufszahlen = Freq) %>% 
-  mutate(Geschlecht = recode(Geschlecht, "F" = "Frauen", "M" = "Männer"))
-knitr::kable(table, caption = "Tabelle 1 \n Verkaufszahlen des Menüinhalts nach Geschlecht")
+table <- nova2 %>%
+  group_by(gender, milkcompt) %>% 
+  summarise(tot = n()) %>% 
+  mutate(`wahr. Milchkonsum (%)` = round(tot / sum(tot) * 100, 1)) %>% 
+  rename(Geschlecht = gender, `wahr. Milchkonsum` = milkcompt, `absolute Werte`= tot)
+
+knitr::kable(table, caption = "Tabelle 1 \n Wahrgenommener Milchkonsum nach Geschlecht")
 
 ```
 
 
-*******
-
-### Musterlösung Aufgabe 1.2: $\chi^2$-Test
-> Zur eurer Info: dies ist eine spezielle, aber wichtige Anwendung eines $\chi^2$-Tests
-> Meine Empfehlung Kapitel "Single factor classification" von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)
 
 
-** Null- und Alternativhypothese**
-> Beachtet: ungerichtet vs. gerichtete Hypothesen (z. B. Statistik 1, Folie 24)
-> Überblick zu Hypothesentestung dazu: https://www.youtube.com/watch?v=F4c0EjsDvzo 
- 
-$H_0$: Es gibt keine Unterschiede zwischen der Population und der Stichprobe bezüglich Geschlecht und Hochschulzugehörigkeit. 
-\par
-$H_1$: Es gibt Unterschiede zwischen der Population und der Stichprobe bezüglich Geschlecht und Hochschulzugehörigkeit.
-
-```{r}
-# bereitet eure Daten auf
-# gruppiert die Variablen und fasst sie 
-# nach Geschlecht und Hochschulzugehörigkeit zusammen 
-# fügt Information aus der Aufgabenstellung hinzu: absolute Häufigkeiten der Gesamtheit
-# für den Chi-Quardrat-Test ist eine Berechnung der relativen Häufigkeiten nötig
-
-df_t <- group_by(nova, gender, member) %>% 
-  summarise(stichprobe = n()) %>% 
-  ungroup() %>%
-  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), # Achtung: Reihenfolge muss stimmten vgl. canteen_member
-         gesamtheit = c(345, 719, 339, 816), # Achtung: Reihenfolge muss stimmten vgl. oben
-         gesamtheit_pct = gesamtheit / sum(gesamtheit),
-         stichprobe_pct = stichprobe / sum(stichprobe)) # Berechnung der relativen Häufigkeiten
-
-# berechnet den Chi-Quadrat-Test
-
-chi_sq <- chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (stichprobe) und die in der Grundgesamtheit/Population erwarteten Werte (wichtig als relative Häufigkeiten)
-
-chi_sq
-
-```
-
-** Methoden **
-
-Ziel war es die NOVANIMAL Stichprobe gemäss Geschlecht und Hochschulzugehörigkeit in der Grundgesamtheit besser einzuordnen. Die Grundgesamtheit definiert sich durch alle aktiven CampusCards. Dafür ist ein einfaktorieller $\chi^2$-Test notwendig (siehe [Manny Gimond](https://mgimond.github.io/Stats-in-R/ChiSquare_test.html)). Dieser sagt uns nämlich, ob die beobachteten Häufigkeiten/Frequenzen aus unser Stichprobe mit einer definierten erwarteten Häufigkeit/Frequenz (hier der Grundgesamtheit) übereinstimmen. 
-
-** Ergebnisse **
-
-Der $\chi^2$-Test sagt uns, dass die NOVANIMAL-Stichprobe von der Population signifikant unterscheidet ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* > .001). Demnach ist unsere Stichprobe bezüglich den Variablen Geschlecht und Hochschulzugehörigkeit nicht repräsentativ für die Grundgesamtheit. Es scheint, dass die Studentinnen unter- und die Studenten übervertreten sind (siehe Tabelle 2).
-
-```{r, echo=F}
-table <- df_t %>% 
-  rename(Hochschulzugehörigkeit = member, `Anzahl Population` = gesamtheit, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = gesamtheit_pct, `Anteil Stichprobe (%)` = stichprobe_pct) %>%
-  dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>% 
-  mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
-knitr::kable(table, caption = "Tabelle 2 \nAnzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
-
-```
-
-*******
-
-###  Musterlösung Aufgabe 1.3: t-Test
+###  Musterlösung Aufgabe 1.2: t-Test
 > Meine Empfehlung Kapitel 2 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/z_t_tests.html) 
 
 ** Null- und Alternativhypothese **
@@ -177,7 +126,7 @@ t.test(df[df$condit == "Basis", ]$tot_sold,
 
 ** Methoden **
 
-Ziel war es die wöchentlichen Verkaufszahlen zwischen den Interventions- und Basiswochen zu vergleichen. Die Annahme war, dass die wöchentlichen Verkaufszahlen unabhängig sind. Daher können die mittleren Verkaufszahlen pro Woche zwischen den beiden Bedingungen mittels t-Test geprüft werden. Obwohl die visuelle Inspektion keine schwerwiegenden Verletzungen der Modelvoraussetzung zeigte, wurde einen Welch t-Test gerechnet. 
+Ziel war es die aggregierten Verkaufszahlen zwischen den Interventions- und Basiswochen zu vergleichen. Die Annahme war, dass die wöchentlichen Verkaufszahlen unabhängig sind. Daher können die mittleren Verkaufszahlen pro Woche zwischen den beiden Bedingungen mittels t-Test geprüft werden. Obwohl die visuelle Inspektion keine schwerwiegenden Verletzungen der Modelvoraussetzung zeigte, wurde einen Welch t-Test gerechnet. 
 
 ** Ergebnisse **
 
@@ -194,6 +143,3 @@ ggplot(df, aes(x = condit, y= tot_sold)) +
 
 ```
 
-
-<!-- ******* -->
-<!-- ##### letztes Update `r Sys.Date()`, gian-andrea.egeler@zhaw.ch & stefan.widmer@zhaw.ch -->
