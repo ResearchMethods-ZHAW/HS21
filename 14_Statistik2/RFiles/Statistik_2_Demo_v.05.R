@@ -26,7 +26,7 @@ summary(blume2)
 head(blume2)
 
 par(mfrow=c(1,1))
-boxplot (data=blume2, size~cultivar, xlab="Sorte", ylab="Bl?tengr?sse [cm]")
+boxplot(size~cultivar, xlab="Sorte", ylab="Bl?tengr?sse [cm]", data=blume2)
 
 aov(size~cultivar,data=blume2)
 summary(aov(size~cultivar,data=blume2))
