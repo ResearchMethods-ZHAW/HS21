@@ -26,7 +26,7 @@
 
 ### Übung 2.1: Regression
 
-**Regressionsanalyse mit [decay.csv](14_Statistik2/data/SAR.csv)**
+**Regressionsanalyse mit [SAR.csv](14_Statistik2/data/SAR.csv)**
 
 Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in Trockenrasen der Schweiz in Abhängigkeit von der Probeflächengrösse (area, hier in m²). Diese Beziehung bezeichnet man als Artenzahl-Areal-Kurve (Species-area relationship = SAR).
 
