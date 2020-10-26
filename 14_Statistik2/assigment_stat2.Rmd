@@ -1,7 +1,7 @@
 ## Übungen 2
 
 ***
-**Repetition**: Abzugeben sind am Ende
+**Abzugeben sind am Ende**
     
     a. lauffähiges R-Skript
     b. begründeter Lösungsweg (Kombination aus R-Code, R Output 
@@ -26,15 +26,17 @@
 
 ### Übung 2.1: Regression
 
-**Regressionsanalyse mit [decay.csv](14_Statistik2/data/decay.csv)**
+**Regressionsanalyse mit [decay.csv](14_Statistik2/data/SAR.csv)**
 
-Der Datensatz beschreibt in einem physikalischen Experiment die Zahl der radioaktiven Zerfälle pro Minute in Abhängigkeit vom Zeitpunkt (min nach Start des Experimentes).
+Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in Trockenrasen der Schweiz in Abhängigkeit von der Probeflächengrösse (area, hier in m²). Diese Beziehung bezeichnet man als Artenzahl-Areal-Kurve (Species-area relationship = SAR).
 
-- Ladet den Datensatz in R und macht eine explorative Datenanalyse.
-- Wählt unter den schon gelernten Methoden der Regressionsanalyse einadäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.
-- Prüft anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren
-- Stellt die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
-- Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
+-	Ladet den Datensatz in R und macht eine explorative Datenanalyse.
+-	Wählt unter den schon gelernten Methoden der Regressionsanalyse ein adäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.
+-	Prüft anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren
+-	Falls die Modelldiagnostik negativ ausfällt, überlegt, welche Datentransformation helfen könnte, und rechnet neue Modelle mit einer oder ggf. mehreren Datentransformationen, bis ihr eine statistisch zufriedenstellende Lösung gefunden habt.
+-	Stellt die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
+-	Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
+
 
 
 ### Übung 2.2: Einfaktorielle ANOVA
