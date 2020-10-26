@@ -41,7 +41,7 @@ Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in 
 
 ### Übung 2.2: Einfaktorielle ANOVA
 
-**ANOVA mit [novanimal.csv](13_Statistik1/data2017_ZHAW_individual_menu_sales_NOVANIMAL.csv)**
+**ANOVA mit [novanimal.csv](13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv)**
 
 Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
 
