@@ -4,42 +4,42 @@
 
 a<-c(20,19,25,10,8,15,13,18,11,14)
 b<-c(12,15,16,7,8,10,12,11,13,10)
-blume<-data.frame(cultivar=c(rep("a",10),rep("b",10)),size=c(a,b))
+blume<-data.frame(cultivar=c(rep("a",10), rep("b",10)), size=c(a,b))
 
 par(mfrow=c(1,1))
-boxplot (size~cultivar, xlab="Sorte", ylab="Blütengrösse [cm]", data=blume)
+boxplot (size~cultivar, xlab="Sorte", ylab="BlÃ¼tengrÃ¶sse [cm]", data=blume)
 
 t.test(size~cultivar, blume, var.equal=T)
 
 aov(size~cultivar,data=blume)
-summary(aov(size~cultivar,data=blume))
-summary.lm(aov(size~cultivar,data=blume))
+summary(aov(size~cultivar, data=blume))
+summary.lm(aov(size~cultivar, data=blume))
 
 
 # Echte ANOVA -------------------------------------------------------------
 
 c<-c(30,19,31,23,18,25,26,24,17,20)
-blume2<-data.frame(cultivar=c(rep("a",10),rep("b",10),rep("c",10)),size=c(a,b,c))
+blume2<-data.frame(cultivar=c(rep("a",10), rep("b",10), rep("c",10)), size=c(a,b,c))
 blume2$cultivar<-as.factor(blume2$cultivar)
 
 summary(blume2)             
 head(blume2)
 
 par(mfrow=c(1,1))
-boxplot (data=blume2, size~cultivar, xlab="Sorte", ylab="Blütengrösse [cm]")
+boxplot (data=blume2, size~cultivar, xlab="Sorte", ylab="Bl?tengr?sse [cm]")
 
 aov(size~cultivar,data=blume2)
 summary(aov(size~cultivar,data=blume2))
-summary.lm(aov(size~cultivar,data=blume2))
+summary.lm(aov(size~cultivar, data=blume2))
 
-aov.1 <- aov(size~cultivar,data=blume2)
+aov.1 <- aov(size~cultivar, data=blume2)
 summary(aov.1)
 summary.lm(aov.1)
 
 #Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
 aggregate(size~cultivar,blume2, function(x) c(Mean = mean(x), SD = sd(x), Min=min(x), Max=max(x)))
 
-lm.1 <- lm(size~cultivar,data=blume2)
+lm.1 <- lm(size~cultivar, data=blume2)
 summary(lm.1)
 
 #Tukeys Posthoc-Test
@@ -62,22 +62,22 @@ ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
 # Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!)  --------
 
 shapiro.test(blume2$size[blume2$cultivar == "a"])
-var.test(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"])
+var.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"])
 
 if(!require(car)){install.packages("car")}
 library(car)
-leveneTest(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"],center=mean)
+leveneTest(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"], center=mean)
 
-wilcox.test(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"])
+wilcox.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"])
 
 
 #Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA  --------
 
 #Zum Vergleich normale ANOVA noch mal
-summary(aov(size~cultivar,data=blume2))
+summary(aov(size~cultivar, data=blume2))
 
 
-#Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen
+#Bei starken Abweichungen von der Normalverteilung, aber ?hnlichen Varianzen
 
 #Kruskal-Wallis-Test
 kruskal.test(data=blume2, size~cultivar)
@@ -86,7 +86,7 @@ library(FSA)
 dunnTest(data=blume2, size~cultivar, method="bh") #korrigierte p-Werte nach Bejamini-Hochberg
 
 
-#Bei erheblicher Heteroskedastizität, aber relative normal/symmetrisch verteilten Residuen
+#Bei erheblicher Heteroskedastizit?t, aber relative normal/symmetrisch verteilten Residuen
 
 #Welch-Test
 oneway.test(data=blume2, size~cultivar, var.equal=F)
@@ -104,16 +104,16 @@ blume3
 
 boxplot(size~cultivar+house,data=blume3)
 
-summary(aov(size~cultivar+house,data=blume3))
-summary(aov(size~cultivar+house+cultivar:house,data=blume3)) 
-summary(aov(size~cultivar*house,data=blume3)) #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
-summary.lm(aov(size~cultivar+house,data=blume3))
+summary(aov(size~cultivar+house, data=blume3))
+summary(aov(size~cultivar+house+cultivar:house, data=blume3)) 
+summary(aov(size~cultivar*house, data=blume3)) #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
+summary.lm(aov(size~cultivar+house, data=blume3))
 
-interaction.plot(blume3$cultivar,blume3$house,blume3$size)
-interaction.plot(blume3$house,blume3$cultivar,blume3$size)
+interaction.plot(blume3$cultivar, blume3$house, blume3$size)
+interaction.plot(blume3$house, blume3$cultivar, blume3$size)
 
-anova(lm(blume3$size~blume3$cultivar*blume3$house),lm(blume3$size~blume3$cultivar+blume3$house))
-anova(lm(blume3$size~blume3$house),lm(blume3$size~blume3$cultivar*blume3$house))
+anova(lm(blume3$size~blume3$cultivar*blume3$house), lm(blume3$size~blume3$cultivar+blume3$house))
+anova(lm(blume3$size~blume3$house), lm(blume3$size~blume3$cultivar*blume3$house))
 
 
 # Korrelationen -----------------------------------------------------------
