@@ -62,12 +62,12 @@ df %<>%
 #  sieht euch die Verteilung zwischen Mensagänger und Selbstverpfleger an 
 table(df$mensa) # sind nicht gleichmässig verteilt, bei der Vorhersage müssen wir das berücksichtigen
 
-# definiert das logistische Modell und wende es auf den Datensatz an
+# definiert das logistische Modell und wendet es auf den Datensatz an
 
 mod0 <-glm(mensa ~ gender + member + age_groups + meat + umwelteinstellung, data = df, binomial("logit"))
 summary.lm(mod0) # Umwelteinstellung scheint keinen Einfluss auf die Verpflegung zu haben, gegeben die Daten
 
-# neues Modell ohne Alter und Hochschulzugehörigkeit
+# neues Modell ohne Umwelteinstellung
 mod1 <- update(mod0, ~. -umwelteinstellung)
 summary.lm(mod1)
 
@@ -75,7 +75,7 @@ summary.lm(mod1)
 1 - pchisq(mod1$deviance, mod1$df.resid) # Ok
 
 #Modellgüte (pseudo-R²)
-1 - (mod1$dev / mod1$null) # sehr kleines pseudo-R² 
+1 - (mod1$dev / mod1$null) # eher kleines pseudo-R² 
 
 
 # Konfusionsmatrix vom  Datensatz
@@ -91,7 +91,11 @@ dimnames(km) <- list(
   c("Beobachtung Selbstverpf.", "Beobachtung Mensagänger"),
   c("Modell Selbstverpfl.", "Modell Mensagänger"))
 km
-# es scheint, dass das Modell häufig einen alpha Fehler zu machen, d.h. es das Modell hat keine hohe Spezifizität: konkret werden viele Selbstverpfleger als Mensagänger vorhergesagt resp. klassifiziert. Dafür gibt es mehere Gründe: 1) die Kriteriumsvariable ist sehr ungleich verteilt, d.h. es gibt weniger Selbstverpfleger als Mensgänger im Datensatz 2) Overfitting des Modells auf die Daten 3) Falsches Modell
+# es scheint, dass das Modell häufig einen alpha Fehler zu machen, d.h. es das Modell hat keine hohe Spezifizität aufweist: konkret werden viele Selbstverpfleger als Mensagänger vorhergesagt resp. klassifiziert. Dafür gibt es mehere Gründe: 
+#1) die Kriteriumsvariable ist sehr ungleich verteilt, d.h. es gibt weniger Selbstverpfleger als Mensgänger im Datensatz 
+#2) Overfitting des Modells auf die Daten 
+#3) nicht adäquates Modell zB link mit probit zeigt besserer fit
+
 # Achtung Overfitting wurde hier nicht berücksichtigt, in einem Paper müsste hier noch einen Validierungstest gemacht werden z.B. test-train Cross-Validation oder k fold Cross-Validation 
 
 # kalkuliert die Missklassifizierungsrate 
@@ -104,7 +108,7 @@ mf
 
 **Methode**
 
-In der Aufgabe war es das Ziel zu schauen, ob wir einen potenziellen Besuch eines Mensagasts vorhersagen können und zwar in Abhängigkeit von den sozioökonimischen Variablen, wahrgenommene Fleischkonsum und der Umwelteinstellung. Die Kriteriumsvariable "Mensa" weist eine binäre Verteilung auf: Deshalb rechnen wir eine multiple logistische Regression mit den Prädiktoren “Alter”, “Geschlecht”, “Hochschulzugehörigkeit”, "Fleischkonsum" und "Umwelteinstellung. Mehr Informatinen zu den logistischen Regressinen findet ihr im Buch [Introduction in Statistical Learning with R](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf), Kapitel 4.3; passendes Video [hier](https://www.youtube.com/watch?v=31Q5FGRnxt4&list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE&index=2) oder im Skript Kapitel XY.
+In der Aufgabe war es das Ziel zu schauen, ob wir einen potenziellen Besuch eines Mensagasts vorhersagen können und zwar in Abhängigkeit von den sozioökonimischen Variablen, wahrgenommene Fleischkonsum und der Umwelteinstellung. Die Kriteriumsvariable "Mensa" weist eine binäre Verteilung auf: Deshalb rechnen wir eine multiple logistische Regression mit den Prädiktoren “Alter”, “Geschlecht”, “Hochschulzugehörigkeit”, "Fleischkonsum" und "Umwelteinstellung. Mehr Informatinen zu den logistischen Regressinen findet ihr im Buch von Crawley (2015) oder auch im Buch von [Gareth (2016)](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf), Kapitel 4.3; passendes Video [hier](https://www.youtube.com/watch?v=31Q5FGRnxt4&list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE&index=2).
 
 
 
@@ -119,13 +123,13 @@ knitr::kable(km)
 ```
 
 
-Der Output des logistischen Models mit der Linkfunktin "logit" sagt und, dass das Modell nicht gut zu den Daten passt, d.h. mit dem Modell (gegeben die Daten) können wir nur schlecht vorhersagen, ob eine Person zukünftig sich in der Mensa verpflegt oder ihr Mittagessen eher selber mitnimmt. Hinweise dafür geben das kleine pseudo-R2 (14%) als auch die hohe Missklassifizierungsrate (24%): bei genauerer Betrachtung fällt auf, dass das Modell häufig einen alpha-Fehler begeht, d.h. unser Modell sagt zu viele Selbstverpfleger vorher, obwohl diese in Realität Mensagänger sind. 
+Der Output des logistischen Models mit der Linkfunktin "logit" sagt und, dass das Modell nicht gut zu den Daten passt, d.h. mit dem Modell (gegeben die Daten) können wir nur schlecht vorhersagen, ob eine Person zukünftig sich in der Mensa verpflegt oder ihr Mittagessen selber mitnimmt. Hinweise dafür geben das kleine pseudo-R2 (14%) als auch die hohe Missklassifizierungsrate (24%): bei genauerer Betrachtung fällt auf, dass das Modell häufig einen alpha-Fehler begeht, d.h. unser Modell sagt zu viele Selbstverpfleger vorher, obwohl diese in Realität Mensagänger sind. 
 Es gibt verschiedene Gründe für diesen schlechten Modelfit:
 
 * die Kriteriumsvariable ist sehr ungleich verteilt, d.h. es gibt weniger Selbstverpfleger als Mensgänger im Datensatz (26% vs. 74%)
-* die Prädiktorvariablen sind alle entweder kategorial oder ordinal skaliert: dies kann dazu führen, dass das Model keinen guten fit findet 
+* die Prädiktorvariablen sind alle entweder kategorial oder ordinal: dies kann dazu führen, dass das Model keinen guten fit erzielt 
 
-Fazit: Es sollte nach einem weiteren adäquateren Modell gesucht werden: insbesondere ein Modell, welches einen mit ordinalen Prädiktorvariablen umgehen kann z.B. proportionale ordinale logistische Regression (MASS::polr())
+Fazit: Es sollte nach einem weiteren adäquateren Modell gesucht werden: insbesondere ein Modell, welches einen mit ordinalen Prädiktorvariablen umgehen kann z.B. proportionale ordinale logistische Regression (MASS::polr()) oder eine bessere Link-Funktion suchen z.B. probit
 
 
 
