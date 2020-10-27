@@ -168,6 +168,4 @@ ggplot(df, aes(x = g, y = h)) +
     theme_classic()
 
 par(mfrow=c(2,2))
-plot(lm(h~g))
-
 autoplot(lm(h~g))
