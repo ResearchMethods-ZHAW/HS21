@@ -1,4 +1,4 @@
-## Musterlösung Aufgabe 2.2: einfaktorielle ANOVA
+## Musterloesung Aufgabe 2.2: einfaktorielle ANOVA
 
 >Download [R-Skript](14_Statistik2/RFiles/solution_stat2.2.R)
 

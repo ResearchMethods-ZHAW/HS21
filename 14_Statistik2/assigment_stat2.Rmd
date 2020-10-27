@@ -1,4 +1,4 @@
-## Übungen 2
+## Uebungen 2
 
 ***
 **Abzugeben sind am Ende**
@@ -24,7 +24,7 @@
 ***
 
 
-### Übung 2.1: Regression
+### Uebung 2.1: Regression
 
 **Regressionsanalyse mit [SAR.csv](14_Statistik2/data/SAR.csv)**
 
@@ -39,7 +39,7 @@ Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in 
 
 
 
-### Übung 2.2: Einfaktorielle ANOVA
+### Uebung 2.2: Einfaktorielle ANOVA
 
 **ANOVA mit [novanimal.csv](13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv)**
 
@@ -56,7 +56,7 @@ werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführ
 - Fasst die Ergebnisse in einem Satz zusammen.
 
 
-### Übung 2.3N: Mehrfaktorielle ANOVA (NatWis)
+### Uebung 2.3N: Mehrfaktorielle ANOVA (NatWis)
 
 **ANOVA mit [kormoran.csv](14_Statistik2/data/kormoran.csv)**
 
@@ -67,7 +67,7 @@ beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen.
 - Stellt eure Ergebnisse dann angemessen dar (Text mit Abbildung und/oder Tabelle).
 - Gibt es eine Interaktion?
 
-### Übung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)
+### Uebung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)
 
 **ANOVA mit [novanimal.csv](13_Statistik1/data/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv)**
 

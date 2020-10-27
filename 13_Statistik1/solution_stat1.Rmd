@@ -1,4 +1,4 @@
-##  Lösung Aufgabe 1.1
+##  Loesung Aufgabe 1.1
 
 >Download [R-Skript]("13_Statistik1/RFiles/solution_stat1.R")
 
@@ -85,7 +85,7 @@ knitr::kable(table, caption = "Tabelle 1 \n Wahrgenommener Milchkonsum nach Gesc
 
 
 
-###  Musterlösung Aufgabe 1.2: t-Test
+###  Musterloesung Aufgabe 1.2: t-Test
 > Meine Empfehlung Kapitel 2 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/z_t_tests.html) 
 
 ** Null- und Alternativhypothese **

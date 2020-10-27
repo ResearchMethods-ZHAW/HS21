@@ -9,7 +9,7 @@ output:
 ---
 
 
-## Musterlösung Aufgabe 2.1: Regression
+## Musterloesung Aufgabe 2.1: Regression
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.1_v.02.R)
 
