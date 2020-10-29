@@ -1,12 +1,12 @@
-# Research Methods Statistik Tag 3
+# Research Methods Demo Statistik 3
 
 
 # ANCOVA ------------------------------------------------------------------
 # Basierend auf Crawley (2017)
 
 # Experiment zur Fruchtproduktion ("Fruit") von Ipomopsis sp. ("Fruit") in 
-# Abhängigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
-# und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt 
+# Abh?ngigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
+# und korrigiert f?r die Pflanzengr?sse vor der Beweidung (hier ausgedr?ckt 
 # als Durchmesser an der Spitze des Wurzelstock: "Root")
 
 compensation<-read.table("ipomopsis.csv", header=T, sep=",")
