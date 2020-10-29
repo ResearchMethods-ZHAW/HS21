@@ -5,8 +5,8 @@
 # Basierend auf Crawley (2017)
 
 # Experiment zur Fruchtproduktion ("Fruit") von Ipomopsis sp. ("Fruit") in 
-# Abh?ngigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
-# und korrigiert f?r die Pflanzengr?sse vor der Beweidung (hier ausgedr?ckt 
+# Abhängigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
+# und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt 
 # als Durchmesser an der Spitze des Wurzelstock: "Root")
 
 compensation<-read.table("ipomopsis.csv", header=T, sep=",")
@@ -130,11 +130,11 @@ if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
 
 loyn.preds <-with(loyn, data.frame(YR.ISOL, ALT, GRAZE))
-hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
+hier.part(loyn$ABUND,loyn.preds, gof="Rsqu")
 
 
 # Partial regressions -----------------------------------------------------
-avPlots(lm.1,ask=F)
+avPlots(lm.1, ask=F)
 
 
 # Multimodel inference ----------------------------------------------------
@@ -148,6 +148,6 @@ allmodels <- dredge(global.model)
 allmodels
 importance(allmodels)
 
-avgmodel<-model.avg(get.models(dredge(global.model,rank="AICc"), subset=TRUE))
+avgmodel<-model.avg(get.models(dredge(global.model, rank="AICc"), subset=TRUE))
 summary(avgmodel)
 
