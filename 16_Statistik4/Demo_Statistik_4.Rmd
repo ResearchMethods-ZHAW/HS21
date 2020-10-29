@@ -1,7 +1,7 @@
 
 ## Demo: Statistik 4
 
-[Demoscript als Download](16_Statistik4/RFiles/Demo_Tests.R)
+[Demoscript als Download](16_Statistik4/RFiles/Statistik_4_Demo_v.06.R)
 
 
 __von LMs zu GLMs__
@@ -192,9 +192,9 @@ gam.1
 summary(gam.1)
 
 plot(loyn$log_AREA, loyn$ABUND, pch=16)
-xv <- seq(-1,4,by=0.1)
-yv <- predict(gam.1,list(log_AREA=xv))
-lines(xv,yv,lwd=2,col="red")
+xv <- seq(-1,4, by=0.1)
+yv <- predict(gam.1, list(log_AREA=xv))
+lines(xv, yv, lwd=2, col="red")
 
 AICc(gam.1)
 summary(gam.1)

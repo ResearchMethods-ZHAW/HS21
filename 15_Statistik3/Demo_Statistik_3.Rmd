@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 ## Demo: Statistik 3
 
-[Demoscript als Download](15_Statistik3/RFiles/Statistik 3-Demo_v.05.R)
+[Demoscript als Download](15_Statistik3/RFiles/Statistik_3_Demo_v.05.R)
 **Datensatz [ipomopsis.csv](15_Statistik3/data/ipomopsis.csv)**
 **Datensatz [loyn.csv](15_Statistik3/data/loyn.csv)**
 
