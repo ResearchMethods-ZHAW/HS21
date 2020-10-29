@@ -50,15 +50,15 @@ rmd_files: [
    #"14_Statistik2/Uebung_loesung.Rmd",
   
   "15_Statistik3/Abstract.Rmd",
-  #"15_Statistik3/Demoskript.Rmd",
+  "15_Statistik3/Demoskript.Rmd",
   #"15_Statistik3/Uebungen.Rmd",
   #"15_Statistik3/solution_stat3.1.Rmd",
  #"15_Statistik3/Demo_A_MultReg.Rmd",
  #"15_Statistik3/Demo_B_nichtLin.Rmd",
  
 
-  #"16_Statistik4/Abstract.Rmd",
-  #"16_Statistik4/Demoskript.Rmd",
+  "16_Statistik4/Abstract.Rmd",
+  "16_Statistik4/Demoskript.Rmd",
   #"16_Statistik4/assigment_stat4.Rmd",
   #"16_Statistik4/solution_stat4.1n.Rmd",
   #"16_Statistik4/solution_stat4.2n.Rmd",
