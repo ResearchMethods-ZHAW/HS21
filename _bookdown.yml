@@ -49,7 +49,7 @@ rmd_files: [
    #"14_Statistik2/Uebung_B.Rmd",
    #"14_Statistik2/Uebung_loesung.Rmd",
   
-  #"15_Statistik3/Abstract.Rmd",
+  "15_Statistik3/Abstract.Rmd",
   #"15_Statistik3/Demoskript.Rmd",
   #"15_Statistik3/Uebungen.Rmd",
   #"15_Statistik3/solution_stat3.1.Rmd",
