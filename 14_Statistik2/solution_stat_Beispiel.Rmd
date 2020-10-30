@@ -46,7 +46,7 @@ Vorgehen dokumentieren.
       ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
 
-**kommentierter Lösungsweg**
+**kommentierter Loesungsweg**
 
 ```{r}
 decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
