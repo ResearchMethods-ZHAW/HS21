@@ -1,6 +1,6 @@
-## Musterlösung Aufgabe 2.3N: Mehrfaktorielle ANOVA
+## Musterloesung Aufgabe 2.3N: Mehrfaktorielle ANOVA
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_Uebung_2.3N_v.03.R)
+[RCode als Download](14_Statistik2/RFiles/Loesung_2.3N_v.03.R)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -42,8 +42,7 @@ Vorgehen dokumentieren.
 **kommentierter Lösungsweg**
 
 ```{r}
-
-kormoran <-read.delim("14_Statistik2/data/kormoran.csv",sep = ";")
+kormoran <- read.delim("kormoran.csv", sep = ";", stringsAsFactors = T)  #Working directory muss angepasst werden
 
 ## Ueberpruefen, ob Einlesen richtig funktioniert hat und welche Datenstruktur vorliegt
 str(kormoran)
@@ -53,29 +52,27 @@ summary(kormoran)
 #Die adäquate Analyse (1 metrische Abhängige vs. 2 kategoriale Unabhängige) ist damit eine zweifaktorielle ANOVA
 #Die Sortierung der Jahreszeiten (default: alphabetisch) ist inhaltlich aber nicht sinnvoll und sollte angepasst werden.
 
-# Um die Variablen im Dataframe im Folgenden direkt (ohne $ bzw. ohne "data = kormoran") ansprechen zu koennen
-attach(kormoran)
 
 # Umsortieren der Faktoren, damit sie in den Boxplots eine sinnvolle Reihung haben
-Jahreszeit<-factor(Jahreszeit,levels=c("F","S","H","W"))
+levels(kormoran$Jahreszeit) <- c("F","S","H","W")
 
 # Explorative Datenanalyse (zeigt uns die Gesamtverteilung)
-boxplot(Tauchzeit)
+boxplot(kormoran$Tauchzeit)
 
 #Das ist noch OK für parametrische Verfahren (Box ziemlich symmetrisch um Median, Whisker etwas asymmetrisch aber nicht kritisch). Wegen der leichten Asymmetrie (Linksschiefe) könnte man eine log-Transformation ausprobieren.
 
-boxplot(log10(Tauchzeit))
+boxplot(log10(kormoran$Tauchzeit))
 
 #Der Gesamtboxplot für log10 sieht perfekt symmetrisch aus, das spräche also für eine log10-Transformation. De facto kommt es aber nicht auf den Gesamtboxplot an, sondern auf die einzelnen.
 
 # Explorative Datenanalyse (Check auf Normalverteilung der Residuen und Varianzhomogenitaet)
-boxplot(Tauchzeit~Jahreszeit*Unterart)
-boxplot(log10(Tauchzeit)~Jahreszeit*Unterart)
+boxplot(Tauchzeit~Jahreszeit*Unterart, data = kormoran)
+boxplot(log10(Tauchzeit)~Jahreszeit*Unterart, data = kormoran)
 
 #Hier sieht mal die Verteilung für die untransformierten Daten, mal für die transformierten besser aus. Da die Transformation keine klare Verbesserung bringt, bleiben wir im Folgenden bei den untransformierten Daten, da diese leichter (direkter) interpretiert werden können
 
 # Vollständiges Modell mit Interaktion
-aov.1 <- aov(Tauchzeit~Unterart*Jahreszeit)
+aov.1 <- aov(Tauchzeit~Unterart*Jahreszeit, data = kormoran)
 aov.1
 summary(aov.1)
 #p-Wert der Interaktion ist 0.266
@@ -83,14 +80,14 @@ summary(aov.1)
 #Das volle (maximale) Modell zeigt, dass es keine signifikante Interaktion zwischen Jahreszeit und Unterart gibt. Wir können das Modell also vereinfachen, indem wir die Interaktion herausnehmen (+ statt * in der Modellspezifikation)
 
 #Modellvereinfachung
-aov.2 <- aov(Tauchzeit~Unterart+Jahreszeit)
+aov.2 <- aov(Tauchzeit~Unterart+Jahreszeit, data = kormoran)
 aov.2
 summary(aov.2)
 
 #Im so vereinfachten Modell sind alle verbleibenden Terme signifikant, wir sind also beim „minimal adäquaten Modell“ angelangt
 
 #Anderer Weg, um zu pruefen, ob man das komplexere Modell mit Interaktion behalten soll
-anova(aov.1,aov.2)
+anova(aov.1, aov.2)
 #in diesem Fall bekommen wir den gleichen p-Wert wie oben (0.266)
 
 #Modelldiagnostik
@@ -103,7 +100,7 @@ influence.measures(aov.2) # kann man sich zusätzlich zum "plot" ansehen, um her
 #Rechts unten: kein Punkt hat einen problematischen Einfluss (die roten Linien für Cook’s D > 0.5 und > 1 sind noch nicht einmal im Bildausschnitt.
 
 #Alternative mit log10
-aov.3 <-aov(log10(Tauchzeit)~Unterart+Jahreszeit)
+aov.3 <-aov(log10(Tauchzeit)~Unterart+Jahreszeit, data=kormoran)
 aov.3
 summary(aov.3)
 plot(aov.3)
@@ -118,21 +115,20 @@ par(mfrow=c(1,1)) #Zurückschalten auf Einzelplots
 if(!require(multcomp)){install.packages("multcomp")} 
 library(multcomp)
 
-#letters<-cld(glht(aov.2,linfct=mcp(Unterart="Tukey")))
-boxplot(Tauchzeit~Unterart,xlab="Unterart",ylab="Tauchzeit")
-#mtext(letters$mcletters$Letters,at=1:2)
+boxplot(Tauchzeit~Unterart, xlab="Unterart", ylab="Tauchzeit", data=kormoran)
+letters<-cld(glht(aov.2, linfct=mcp(Unterart="Tukey")))
+mtext(letters$mcletters$Letters,at=1:2)
 #genaugenommen braucht man bei nur zwei Kategorien keinen post hoc-Test
 
-letters<-cld(glht(aov.2,linfct=mcp(Jahreszeit="Tukey")))
-boxplot(Tauchzeit~Jahreszeit,xlab="Jahreszeit",ylab="Tauchzeit") #Achsenbeschriftung nicht vergessen!
-mtext(letters$mcletters$Letters,at=c(1:4))
+letters<-cld(glht(aov.2, linfct=mcp(Jahreszeit="Tukey")))
+boxplot(Tauchzeit~Jahreszeit, xlab="Jahreszeit", ylab="Tauchzeit", data=kormoran) #Achsenbeschriftung nicht vergessen!
 
 #Jetzt brauchen wir noch die Mittelwerte bzw. Effektgroessen
 
 #Für den Ergebnistext brauchen wir auch noch Angaben zu den Effektgrössen. Hier sind zwei Möglichkeiten, um an sie zu gelangen.
-aggregate(Tauchzeit~Jahreszeit, FUN=mean)
-aggregate(Tauchzeit~Unterart, FUN=mean)
+aggregate(Tauchzeit~Jahreszeit, FUN=mean, data=kormoran)
+aggregate(Tauchzeit~Unterart, FUN=mean, data=kormoran)
 
-summary(lm(Tauchzeit~Jahreszeit))
-summary(lm(Tauchzeit~Unterart))
+summary(lm(Tauchzeit~Jahreszeit, data=kormoran))
+summary(lm(Tauchzeit~Unterart, data=kormoran))
 ```

@@ -1,7 +1,7 @@
 
 ```{r, include=FALSE, purl=F}
 
-knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
 ```
 
 ## Demo: Statistik 2
