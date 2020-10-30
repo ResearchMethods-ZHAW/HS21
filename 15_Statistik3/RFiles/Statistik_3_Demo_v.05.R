@@ -5,8 +5,8 @@
 # Basierend auf Crawley (2017)
 
 # Experiment zur Fruchtproduktion ("Fruit") von Ipomopsis sp. ("Fruit") in 
-# Abhängigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
-# und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt 
+# Abh?ngigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
+# und korrigiert f?r die Pflanzengr?sse vor der Beweidung (hier ausgedr?ckt 
 # als Durchmesser an der Spitze des Wurzelstock: "Root")
 
 compensation<-read.table("ipomopsis.csv", header=T, sep=",")
@@ -38,20 +38,33 @@ legend("topleft", c("grazed","ungrazed"), col=c("black","red"), pch=16)
 
 
 # Polynomische Regression -------------------------------------------------
+
 e <- c(20,19,25,10,8,15,13,18,11,14,25,39,38,28,24)
 f <- c(12,15,10,7,2,10,12,11,13,10,9,2,4,7,13)
 
-summary(lm(f~e))
+lm.1 <- lm(f~e)
+lm.quad <- lm(f~e+I(e^2))
+
+summary(lm.1)
+summary(lm.quad)
 
 par(mfrow=c(1,1))
-plot(f~e, xlim=c(0,40), ylim=c(0,30))
-abline(lm(f~e))
 
+# 1. lineares Modell
+plot(f~e,xlim=c(0,40), ylim=c(0,20))
+abline(lm(f~e), col="blue")
+
+# 2. quadratisches Modell
+xv <- seq(0,40,0.1)
+plot(f~e,xlim=c(0,40), ylim=c(0,20))
+yv2 <- predict(lm.quad, list(e=xv))
+lines(xv, yv2, col="red")
+
+# Residualplots
 par(mfrow=c(2,2))
 plot(lm(f~e))
 plot(lm(f~e+I(e^2)))
 
-summary(lm(f~e+I(e^2)))
 
 
 # Multiple lineare Regression basierend auf Logan, Beispiel 9A ------------

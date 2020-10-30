@@ -33,7 +33,7 @@ rmd_files: [
    "13_Statistik1/Demo_Statistik_1.Rmd",
    "13_Statistik1/Intro_Daten_egel.Rmd",
    "13_Statistik1/assigment_stat1.Rmd",
-   #"13_Statistik1/solution_stat1.Rmd",
+   "13_Statistik1/solution_stat1.Rmd",
 
    "14_Statistik2/Abstract.Rmd",
    "14_Statistik2/Demo_Statistik_2.Rmd",
