@@ -1,4 +1,4 @@
-## Uebungen 3
+## Uebung 3
 
 ### Aufgabe 3.1: Multiple Regression
 
