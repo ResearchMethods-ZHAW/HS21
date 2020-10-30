@@ -49,7 +49,7 @@ Vorgehen dokumentieren.
 **kommentierter Lösungsweg**
 
 ```{r}
-decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
+decay <- read.delim("data/decay.csv",sep = ",")
 decay
 
 summary(decay)
