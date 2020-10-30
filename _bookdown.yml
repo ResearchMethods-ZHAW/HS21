@@ -38,11 +38,19 @@ rmd_files: [
    "14_Statistik2/Abstract.Rmd",
    "14_Statistik2/Demo_Statistik_2.Rmd",
    "14_Statistik2/assigment_stat2.Rmd",
+<<<<<<< HEAD
    "14_Statistik2/solution_stat_Beispiel.Rmd""
    #"14_Statistik2/solution_stat2.1.Rmd",
    #"14_Statistik2/solution_stat2.2.Rmd",
    #"14_Statistik2/solution_stat2.3n.Rmd",
    #"14_Statistik2/solution_stat2.3s.Rmd",
+=======
+   "14_Statistik2/solution_stat_Beispiel.Rmd",
+   "14_Statistik2/solution_stat2.1.Rmd",
+   "14_Statistik2/solution_stat2.2.Rmd",
+   "14_Statistik2/solution_stat2.3n.Rmd",
+   "14_Statistik2/solution_stat2.3s.Rmd",
+>>>>>>> d5cbd1fcead011700800d32e306ef6163aafed50
    #"14_Statistik2/Uebung_B.Rmd",
    #"14_Statistik2/Uebung_loesung.Rmd",
   

@@ -38,7 +38,7 @@ Vorgehen dokumentieren.
 **Lösungsweg**
 
 ```{r}
-SAR <- read.delim("SAR.csv",sep = ";")
+SAR <- read.delim("14_Statistik2/data/SAR.csv",sep = ";")
 SAR
 ```
 
@@ -65,7 +65,6 @@ Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit ein
 par(mfrow=c(2,2))
 plot(lm.1)
 ```
-
 
 **Ergebnisplot**
 ```{r}
