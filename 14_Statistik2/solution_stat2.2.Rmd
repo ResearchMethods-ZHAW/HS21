@@ -28,16 +28,16 @@ mytheme <-
 
 
 
-```{r}
+```{r, eval=FALSE}
 
 df <- nova # klone den originaler Datensatz
 
 # fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
-df %<>%
+df %>%
   mutate(label_content = sub('Pflanzlich|Pflanzlich[+]', "Vegetarisch", label_content)) 
 
 # gruppiert Daten nach Menü-Inhalt und Woche
-df %<>%
+df %>%
     group_by(label_content, week) %>% 
     summarise(tot_sold = n()) %>%
     drop_na() # lasst die unbekannten Menü-Inhalte weg
@@ -45,7 +45,7 @@ df %<>%
 # überprüft die Voraussetzungen für eine ANOVA
 # Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
 # Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4, Folie 17)
-df  %>% 
+df %>% 
   split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
   purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden (alternative Funktionen sind aggregate oder apply)
 
@@ -74,7 +74,7 @@ plot(model)
 * nicht-parametrischer Test.</span>
 * ein glm Model (general linear model) mit einer poisson/quasipoisson link Funktion zu rechnen (vgl. Statistik 4: Folie X-Y), weitere Infos dazu [Link]( https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/)
 <br>
-```{r}
+```{r, eval=FALSE}
 
 # überprüft die Voraussetzungen des Welch-Tests:
 # Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)

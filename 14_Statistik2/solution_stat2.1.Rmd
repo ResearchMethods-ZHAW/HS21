@@ -58,7 +58,9 @@ plot(richness~area,data=SAR)
 lm.1 <- lm(richness~area,data=SAR)
 summary(lm.1)
 ```
-Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
+Das sieht erst (SAR$area, SAR$richness, xlab="Area [m²]", ylab="Species richness")
+abline(lm(richness~area, data=SAR), col="red") #Alternative 1
+abline(lm.1,col="red") #Alternative 2einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
 
 **Modelldiagnostik**
 ```{r}
@@ -69,9 +71,7 @@ plot(lm.1)
 **Ergebnisplot**
 ```{r}
 par(mfrow=c(1,1))
-plot(SAR$area, SAR$richness, xlab="Area [m²]", ylab="Species richness")
-abline(lm(richness~area, data=SAR), col="red") #Alternative 1
-abline(lm.1,col="red") #Alternative 2
+plot
 ```
 
 
@@ -89,7 +89,7 @@ summary(lm.2)
 ```
 
 
-```{r} 
+```{r, eval = FALSE} 
 lm.2 <- lm(log(amount)~time, data=decay)
 summary(lm.2)
 ```
@@ -137,7 +137,7 @@ summary(model.nls)
 
 
 **Modelldiagnostik**
-```{r}
+```{r, eval = FALSE}
 model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100,b=1)),data=decay)
 summary(model.nls)
 ```
