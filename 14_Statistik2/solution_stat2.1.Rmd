@@ -1,6 +1,6 @@
 ## Musterloesung Aufgabe 2.1: Regression
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_2.1_v.03.R)
+[RCode als Download](14_Statistik2/RFiles/Loesung_2.1_v.04.R)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -125,33 +125,6 @@ summary(lm.3)
 par(mfrow=c(2,2))
 plot(lm.3)
 ```
-das sieht jetzt sehr gut aus, bis auf zwei Ausreisser im QQ-Plot
-
-
-**Lösung C **
-kommt erst in Statistik 4; methodisch beste Lösung; mit Startwerten muss man ggf. ausprobieren)
-
-```{r}
-model.nls<-nls(richness~a*area^b, start=(list(a=100,b=1)), data=SAR)
-summary(model.nls)
-```
-
-
-**Modelldiagnostik**
-```{r}
-model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100,b=1)),data=decay)
-summary(model.nls)
-```
-
-**Modelldiagnostik**
-```{r}
-if(!require(nlstools)){install.packages("nlstools")}
-library(nlstools)
-
-residuals.nls <- nlsResiduals(model.nls)
-plot(residuals.nls)
-```
-
 
 
 **Ergebnisplots**
@@ -161,7 +134,6 @@ xv <- seq(0,100,0.1)
 ```
 
 A. lineares Modell mit log-transformierter Abhaengiger
-
 ```{r}
 plot(SAR$area,SAR$richness)
 yv1a <- 10^predict(lm.2,list(area=xv))
@@ -172,21 +144,15 @@ B. lineares Modell mit log-Transformation beider Variablen
 ```{r}
 plot(SAR$area, SAR$richness)
 yv1b <- predict(lm.3, list(log_area=xv))
-lines(10^xv, 10^yv1b, col="blue")
+lines(10^xv, 10^yv1b, col="green")
 ```
 
-3. nicht-lineares Modell
-```{r}
-plot(SAR$area,SAR$richness)
-yv2 <- predict(model.nls, list(area=xv))
-lines(xv,yv2,col="green")
-```
 
 #Modelle im Vergleich
 ```{r}
 plot(SAR$area,SAR$richness)
-lines(xv, yv1a, col="red")
-lines(10^xv, 10^yv1b, col="blue")
-lines(xv,yv2,col="green")
+abline(lm.1,col="red")
+lines(xv, yv1a, col="blue")
+lines(10^xv, 10^yv1b, col="green")
 ```
 

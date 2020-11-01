@@ -1,5 +1,5 @@
 ---
-title: "MSc. Research Methods - Statistikteil Loesungen Beispiel"
+title: "MSc. Research Methods - Statistikteil Loesung Beispiel"
 author: "Juergen Dengler"
 date: "`r format(Sys.Date(), '%B %Y')`"
 output:
@@ -12,6 +12,7 @@ output:
 ## Musterloesung Beispiel
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)
+[Loesungstext Beispiel](Statistik_Uebungsloesung_Beispiel.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -48,10 +49,11 @@ Vorgehen dokumentieren.
 
 **kommentierter Lösungsweg**
 
-```{r}
+```{r include=FALSE}
 decay <- read.delim("data/decay.csv",sep = ",")
 decay
-
+```
+```{r}
 summary(decay)
 str(decay)
 ```
