@@ -29,16 +29,16 @@ mytheme <-
 
 
 
-```{r, eval=FALSE}
+```{r}
 
 df <- nova # klone den originaler Datensatz
 
 # fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
 df %<>%
-  mutate(label_content = str_replace(label_content, "Geflügel|Fisch", "Fleisch")) %>%  # Geflügel & Fisch zu fleischgerichte zählen
+  mutate(label_content = str_replace(label_content, "Geflügel|Fisch", "Fleisch")) # Geflügel & Fisch zu fleischgerichte zählen
 
 # gruppiert Daten nach Menü-Inhalt und Woche
-df %>%
+df %<>%
     group_by(label_content, week) %>% 
     summarise(tot_sold = n()) %>%
     drop_na() # lasst die unbekannten Menü-Inhalte weg
@@ -76,7 +76,7 @@ plot(model)
 * nicht-parametrischer Test.</span>
 * ein glm Model (general linear model) mit einer poisson/quasipoisson link Funktion (vgl. Skript Statistik 4), weitere Infos dazu [Link]( https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/)
 <br>
-```{r, eval=FALSE}
+```{r}
 
 # überprüft die Voraussetzungen des Welch-Tests:
 # Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)

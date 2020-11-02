@@ -1,4 +1,4 @@
-## Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
+## Musterloesung Aufgabe 2.3S: ANOVA mit Interaktion
 >**Lese-Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
 
 >Download [R-Skript](14_Statistik2/RFiles/solution_stat2.3s.R)
