@@ -12,7 +12,7 @@ output:
 ## Musterloesung Beispiel
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)
-[Loesungstext Beispiel](Statistik_Uebungsloesung_Beispiel.pdf)
+[Loesungstext Beispiel](14_Statistik2/Statistik_Uebungsloesung_Beispiel.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
