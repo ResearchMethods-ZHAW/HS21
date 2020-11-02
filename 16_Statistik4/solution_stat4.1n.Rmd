@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
 ```
 
-## Musterlösung Aufgabe 4.1: Nicht-lineare Regression
+## Musterloesung Aufgabe 4.1: Nicht-lineare Regression
 
 [R-Skript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.1_v.02.R)
 
@@ -49,7 +49,7 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg       (Kombination aus R-Code, R Output und dessen Interpretation) und (c)                  ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
 
 
-### Übung 4.1 - Nicht-lineare Regression -- Lösung
+### Uebung 4.1 - Nicht-lineare Regression -- Loesung
 
 Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
 

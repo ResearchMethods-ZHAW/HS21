@@ -1,6 +1,6 @@
 ## Uebungen 4
 
-### Übung 4.1: Nicht-lineare Regression
+### Uebung 4.1: Nicht-lineare Regression
 
 **Datensatz [Curonian_Spit.xlsx](16_Statistik4/data/Curonian_Spit.xlsx)**
 
@@ -11,7 +11,7 @@ Flächengrössen (Area) von 0.0001 bis 900 m².
 **Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function, die logarithmische Funktion (logarithmic function,und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
 
 
-### Übung 4.2N: Multiple logistische Regression (NatWis)
+### Uebung 4.2N: Multiple logistische Regression (NatWis)
 
 **Datensatz [isolation.csv](16_Statistik4/data/isolation.csv)**
 
@@ -21,7 +21,7 @@ isolation (Entfernung vom Festland in km).
 **Ermittelt das minimal adäquate statistische Modell, das die Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**
 
 
-### Übung 4.2S: Multiple logistische Regression (SozWis)
+### Uebung 4.2S: Multiple logistische Regression (SozWis)
 
 Führt mit dem Datensatz der [Gästebefragung](https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1) eine logistische Regression durch. Kann der Mensabesuch druch die sozioökonomischen Variablen (Alter, Geschlecht, Hochschulzugehörigkeit), wahrgenommener Fleischkonsum und Einstellung zu ?? vorhergesagt werden?
 

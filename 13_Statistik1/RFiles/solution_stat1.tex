@@ -1,32 +1,45 @@
-\documentclass[]{article}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\hypersetup{unicode=true,
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -68,6 +81,14 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -77,55 +98,24 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{}
-    \pretitle{\vspace{\droptitle}}
-  \posttitle{}
-    \author{}
-    \preauthor{}\postauthor{}
-    \date{}
-    \predate{}\postdate{}
-  
+\author{}
+\date{\vspace{-2.5em}}
 
 \begin{document}
 
 \hypertarget{loesung-aufgabe-1.1}{%
 \subsection{Loesung Aufgabe 1.1}\label{loesung-aufgabe-1.1}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{quote}
 Download \href{13_Statistik1/RFiles/solution_stat1.R}{R-Skript}
@@ -135,17 +125,23 @@ Download \href{13_Statistik1/RFiles/solution_stat1.R}{R-Skript}
 Download \href{13_Statistik1/RFiles/solution_stat1.pdf}{PDF}
 \end{quote}
 
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \textbf{kommentierte Musterlösungen}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den Datensatz  der Gästebefragung NOVANIMAL und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und dem wahrgenommenen Milchkonsum (viel vs. wenig Milch/-produkte)}
+\CommentTok{# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den }
+\CommentTok{# Datensatz  der Gästebefragung NOVANIMAL und gehen der folgenden Frage nach: }
+\CommentTok{# Gibt es einen Zusammenhang zwischen Geschlecht und dem wahrgenommenen }
+\CommentTok{# Milchkonsum (viel vs. wenig Milch/-produkte)}
 
 \CommentTok{# die Variable wahrgenommener Milchkonsum muss noch in 2 Kategorien zusammengefasst werden: geringer vs. hoher Milchkonsum}
 
 
 \CommentTok{# Variable  milk == wahrgenommener Milchkonsum }
-\CommentTok{# alles kleiner als 4 (3 inklusive) == geringer wahrgenommener Milchkonsum, alles grösser als 3 (4 inklusive) == hoher wahrgenommener Milchkonsum}
+\CommentTok{# alles kleiner als 4 (3 inklusive) == geringer wahrgenommener Milchkonsum, }
+\CommentTok{#alles grösser als 3 (4 inklusive) == hoher wahrgenommener Milchkonsum}
 \NormalTok{nova2 <-}\StringTok{ }\NormalTok{nova_survey }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(gender }\OperatorTok{!=}\StringTok{ "x"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# x aus der Variable Geschlecht entfernen }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{milkcompt =} \KeywordTok{if_else}\NormalTok{(milk }\OperatorTok{>=}\StringTok{ }\DecValTok{3}\NormalTok{, }\StringTok{"wenig"}\NormalTok{, }\StringTok{"viel"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
@@ -202,22 +198,29 @@ Download \href{13_Statistik1/RFiles/solution_stat1.pdf}{PDF}
 ##   1.221866
 \end{verbatim}
 
-** Ergebnisse ** Der \(\chi^2\)-Test sagt uns, dass das Geschlecht und
-der wahrgenommene Milchkonsum nicht zusammenhängen. Es gibt keine
-signifikante Unterscheide zwischen dem Geschlecht und dem wahrgenommenen
-Milchkonsum (\(\chi^2\)(1) = 0.282, \emph{p} = 0.595. Es sieht so aus,
-dass Männer leicht mehr angeben weniger Milch zu konsumieren (Tabelle
-1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn
-der \(\chi^2\)-Test gibt uns nur an, dass ein signifikanter Unterschied
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Ergebnisse}
+
+Der \(\chi^2\)-Test sagt uns, dass das Geschlecht und der wahrgenommene
+Milchkonsum nicht zusammenhängen. Es gibt keine signifikante
+Unterscheide zwischen dem Geschlecht und dem wahrgenommenen Milchkonsum
+(\(\chi^2\)(1) = 0.282, \emph{p} = 0.595. Es sieht so aus, dass Männer
+leicht mehr angeben weniger Milch zu konsumieren (Tabelle 1). Die
+Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der
+\(\chi^2\)-Test gibt uns nur an, dass ein signifikanter Unterschied
 zwischen Geschlecht und wahrgenommener Milchkonsum vorliegt. Um die
 Unterschiede innerhalb der Gruppen (z.B. Geschlecht) festzustellen
 bedarf es weiterer Analysen z. B. Odds Rations oder einer
 mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe
 Statistik 3).
 
+\begin{verbatim}
+## `summarise()` regrouping output by 'gender' (override with `.groups` argument)
+\end{verbatim}
+
 \begin{longtable}[]{@{}llrr@{}}
-\caption{Tabelle 1 Wahrgenommener Milchkonsum nach
-Geschlecht}\tabularnewline
+\caption{Wahrgenommener Milchkonsum nach Geschlecht}\tabularnewline
 \toprule
 Geschlecht & wahr. Milchkonsum & absolute Werte & wahr. Milchkonsum
 (\%)\tabularnewline
@@ -244,9 +247,9 @@ Meine Empfehlung Kapitel 2 von
 \href{https://mgimond.github.io/Stats-in-R/z_t_tests.html}{Manny Gimond}
 \end{quote}
 
-** Null- und Alternativhypothese ** \textless\textgreater{}\(H_0\): Es
-gibt keine Unterschiede in den Verkaufszahlen zwischen Basis- und
-Interventionswochen. \textless\textgreater{}
+\textbf{Null- und Alternativhypothese} \(H_0\): Es gibt keine
+Unterschiede in den Verkaufszahlen zwischen Basis- und
+Interventionswochen.
 
 \par
 
@@ -255,12 +258,21 @@ Interventionswochen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Gemäss Aufgabenstellung müsset die Daten zuerst nach Kalenderwochen "week" und Bedingungen "condition" zusammengefasst werden}
+\CommentTok{# Gemäss Aufgabenstellung müsset die Daten zuerst nach Kalenderwochen "week" }
+\CommentTok{# und Bedingungen "condition" zusammengefasst werden}
 
 \NormalTok{df <-}\StringTok{ }\NormalTok{nova }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{group_by}\NormalTok{(week, condit) }\OperatorTok{%>%}\StringTok{  }
 \StringTok{    }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{tot_sold =} \KeywordTok{n}\NormalTok{()) }
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## `summarise()` regrouping output by 'week' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{# überprüft die Voraussetzungen für einen t-Test}
 \KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ condit, }\DataTypeTok{y=}\NormalTok{ tot_sold)) }\OperatorTok{+}\StringTok{ }\CommentTok{# achtung 0 Punkt fehlt}
 \StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }
@@ -273,19 +285,23 @@ Interventionswochen.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen ersichtlich (vgl. Skript Statistik 2)}
+\CommentTok{# Auf den ersten Blick scheint es keine starken Abweichungen zu einer }
+\CommentTok{#Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen}
+\CommentTok{# ersichtlich (vgl. Skript Statistik 2)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# führt einen t-Tests durch; }
-\CommentTok{# es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen unabhängig sind}
+\CommentTok{# es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen }
+\CommentTok{# unabhängig sind}
 
 \NormalTok{t_test <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(tot_sold}\OperatorTok{~}\NormalTok{condit, }\DataTypeTok{data=}\NormalTok{df)}
 
+\CommentTok{#alternative Formulierung}
 \KeywordTok{t.test}\NormalTok{(df[df}\OperatorTok{$}\NormalTok{condit }\OperatorTok{==}\StringTok{ "Basis"}\NormalTok{, ]}\OperatorTok{$}\NormalTok{tot_sold, }
-\NormalTok{                 df[df}\OperatorTok{$}\NormalTok{condit }\OperatorTok{==}\StringTok{ "Intervention"}\NormalTok{, ]}\OperatorTok{$}\NormalTok{tot_sold) }\CommentTok{#alternative Formulierung}
+\NormalTok{                 df[df}\OperatorTok{$}\NormalTok{condit }\OperatorTok{==}\StringTok{ "Intervention"}\NormalTok{, ]}\OperatorTok{$}\NormalTok{tot_sold) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -303,7 +319,9 @@ Interventionswochen.
 ##      2203      2187
 \end{verbatim}
 
-** Methoden **
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Methoden}
 
 Ziel war es die aggregierten Verkaufszahlen zwischen den Interventions-
 und Basiswochen zu vergleichen. Die Annahme war, dass die wöchentlichen
@@ -313,7 +331,9 @@ geprüft werden. Obwohl die visuelle Inspektion keine schwerwiegenden
 Verletzungen der Modelvoraussetzung zeigte, wurde einen Welch t-Test
 gerechnet.
 
-** Ergebnisse **
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Ergebnisse}
 
 In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den
 Interventionsowochen (siehe Abbildung 1). Die wöchentlichen
@@ -322,8 +342,7 @@ unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant
 (\emph{t}(10) = 0.272 , \emph{p} = 0.791).
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{solution_stat1_files/figure-latex/unnamed-chunk-6-1} \caption{Abbildung1. Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant.}\label{fig:unnamed-chunk-6}
+\includegraphics[width=0.8\linewidth]{solution_stat1_files/figure-latex/unnamed-chunk-6-1} \caption{Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant.}\label{fig:unnamed-chunk-6}
 \end{figure}
-
 
 \end{document}

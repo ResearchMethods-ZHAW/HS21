@@ -1,32 +1,45 @@
-\documentclass[]{article}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\hypersetup{unicode=true,
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -76,56 +89,25 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{}
-    \pretitle{\vspace{\droptitle}}
-  \posttitle{}
-    \author{}
-    \preauthor{}\postauthor{}
-    \date{}
-    \predate{}\postdate{}
-  
+\author{}
+\date{\vspace{-2.5em}}
 
 \begin{document}
 
 \hypertarget{musterloesung-aufgabe-2.2-einfaktorielle-anova}{%
 \subsection{Musterloesung Aufgabe 2.2: einfaktorielle
 ANOVA}\label{musterloesung-aufgabe-2.2-einfaktorielle-anova}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{quote}
 Download \href{14_Statistik2/RFiles/solution_stat2.2.R}{R-Skript}
@@ -135,6 +117,8 @@ Download \href{14_Statistik2/RFiles/solution_stat2.2.R}{R-Skript}
 Download \href{14_Statistik2/RFiles/solution_stat2.2.pdf}{PDF}
 \end{quote}
 
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \textbf{kommentierter Lösungsweg}
 
 \begin{Shaded}
@@ -143,7 +127,10 @@ Download \href{14_Statistik2/RFiles/solution_stat2.2.pdf}{PDF}
 
 \CommentTok{# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.}
 \NormalTok{df }\OperatorTok{%<>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{label_content =} \KeywordTok{str_replace}\NormalTok{(label_content, }\StringTok{"Geflügel|Fisch"}\NormalTok{, }\StringTok{"Fleisch"}\NormalTok{)) }\CommentTok{# Geflügel & Fisch zu fleischgerichte zählen}
+\StringTok{  }\CommentTok{# Geflügel & Fisch zu fleischgerichte zählen}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{label_content =} \KeywordTok{str_replace}\NormalTok{(label_content, }\StringTok{"Geflügel|Fisch"}\NormalTok{, }\StringTok{"Fleisch"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\CommentTok{# achtung reihenfolge spielt eine rolle, wegen des + (plus)}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{label_content =} \KeywordTok{str_replace}\NormalTok{(label_content, }\StringTok{"Pflanzlich[+]|Pflanzlich"}\NormalTok{, }\StringTok{"Vegetarisch"}\NormalTok{))}
 
 \CommentTok{# gruppiert Daten nach Menü-Inhalt und Woche}
 \NormalTok{df }\OperatorTok{%<>%}
@@ -153,10 +140,11 @@ Download \href{14_Statistik2/RFiles/solution_stat2.2.pdf}{PDF}
 
 \CommentTok{# überprüft die Voraussetzungen für eine ANOVA}
 \CommentTok{# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)}
-\CommentTok{# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4, Folie 17)}
+\CommentTok{# Sind Mittelwerte nahe bei Null? }
+\CommentTok{# Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung }
 \NormalTok{df }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{split}\NormalTok{(.}\OperatorTok{$}\NormalTok{label_content) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# teilt den Datensatz in 3 verschiedene Datensätze auf}
-\StringTok{  }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{psych}\OperatorTok{::}\KeywordTok{describe}\NormalTok{(.}\OperatorTok{$}\NormalTok{tot_sold)) }\CommentTok{# mit map können andere Funktionen auf den Datensatz angewendet werden (alternative Funktionen sind aggregate oder apply)}
+\StringTok{  }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{psych}\OperatorTok{::}\KeywordTok{describe}\NormalTok{(.}\OperatorTok{$}\NormalTok{tot_sold)) }\CommentTok{# mit map können andere Funktionen }
 \end{Highlighting}
 \end{Shaded}
 
@@ -171,27 +159,26 @@ Download \href{14_Statistik2/RFiles/solution_stat2.2.pdf}{PDF}
 ##    vars  n   mean    sd median trimmed   mad min max range skew kurtosis   se
 ## X1    1 12 308.33 23.53    310   307.3 30.39 276 351    75 0.32    -1.25 6.79
 ## 
-## $Pflanzlich
-##    vars n   mean    sd median trimmed   mad min max range skew kurtosis    se
-## X1    1 9 121.33 42.26    115  121.33 22.24  49 185   136 0.13    -0.95 14.09
-## 
-## $`Pflanzlich+`
-##    vars n   mean    sd median trimmed   mad min max range  skew kurtosis    se
-## X1    1 9 220.22 96.84    259  220.22 85.99  45 317   272 -0.49     -1.4 32.28
-## 
 ## $Vegetarisch
-##    vars  n   mean    sd median trimmed   mad min max range  skew kurtosis    se
-## X1    1 12 483.08 66.49    473   484.8 71.91 369 580   211 -0.08    -1.36 19.19
+##    vars  n   mean     sd median trimmed    mad min  max range  skew kurtosis
+## X1    1 12 739.25 213.54    710   741.8 323.95 449 1004   555 -0.01    -1.85
+##       se
+## X1 61.64
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# auf den Datensatz angewendet werden (alternative Funktionen sind aggregate oder apply)}
+
+
 \CommentTok{# Boxplot}
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ label_content, }\DataTypeTok{y=}\NormalTok{ tot_sold)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{stat_boxplot}\NormalTok{(}\DataTypeTok{geom =} \StringTok{"errorbar"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# Achtung: Reihenfolge spielt hier eine Rolle!}
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ label_content, }\DataTypeTok{y=}\NormalTok{ tot_sold)) }\OperatorTok{+}
+\StringTok{  }\CommentTok{# Achtung: Reihenfolge spielt hier eine Rolle!}
+\StringTok{  }\KeywordTok{stat_boxplot}\NormalTok{(}\DataTypeTok{geom =} \StringTok{"errorbar"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{fill=}\StringTok{"white"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{width =} \FloatTok{.5}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Menü-Inhalt"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"Anzahl verkaufte Gerichte pro Woche}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\NormalTok{mytheme }\CommentTok{# achtung erster Hinweis einer Varianzheterogenität, wegen den Hot and Cold Gerichten}
+\StringTok{  }\CommentTok{# achtung erster Hinweis einer Varianzheterogenität, wegen den Hot&Cold Gerichten}
+\StringTok{  }\NormalTok{mytheme }
 \end{Highlighting}
 \end{Shaded}
 
@@ -213,21 +200,19 @@ Download \href{14_Statistik2/RFiles/solution_stat2.2.pdf}{PDF}
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -218.583  -39.938   -1.708   56.917  282.417 
+## -290.250 -135.083    1.667  125.500  282.417 
 ## 
 ## Coefficients:
 ##                           Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                1135.58      31.52   36.03   <2e-16 ***
-## label_contentHot and Cold  -827.25      44.58  -18.56   <2e-16 ***
-## label_contentPflanzlich   -1014.25      48.15  -21.07   <2e-16 ***
-## label_contentPflanzlich+   -915.36      48.15  -19.01   <2e-16 ***
-## label_contentVegetarisch   -652.50      44.58  -14.64   <2e-16 ***
+## (Intercept)                1135.58      48.92  23.211  < 2e-16 ***
+## label_contentHot and Cold  -827.25      69.19 -11.956 1.54e-13 ***
+## label_contentVegetarisch   -396.33      69.19  -5.728 2.15e-06 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 109.2 on 49 degrees of freedom
-## Multiple R-squared:  0.9257, Adjusted R-squared:  0.9196 
-## F-statistic: 152.6 on 4 and 49 DF,  p-value: < 2.2e-16
+## Residual standard error: 169.5 on 33 degrees of freedom
+## Multiple R-squared:  0.8125, Adjusted R-squared:  0.8012 
+## F-statistic: 71.52 on 2 and 33 DF,  p-value: 1.007e-12
 \end{verbatim}
 
 \begin{Shaded}
@@ -240,29 +225,50 @@ Download \href{14_Statistik2/RFiles/solution_stat2.2.pdf}{PDF}
 
 \includegraphics{solution_stat2.2_files/figure-latex/unnamed-chunk-2-2.pdf}
 \\
-{\textbf{Fazit}: Inspektion der Modellvoraussetzung zeigt klare
+\textbf{Fazit}: Inspektion der Modellvoraussetzung zeigt klare
 Verletzungen des Residuelplots (zeigt einen ``Trichter'', siehe Skript
 Statistik 2), somit Voraussetzung der Homoskedastizität verletzt.
-Mögliche nächste Schritte: * Menüinhalt ``Buffet'' aus der Analyse
-ausschliessen, da sowieso kein richtiger Menüinhalt (aber
-Informationsverlust) * Datentransformation * nicht-parametrischer Test.}
-* ein glm Model (general linear model) mit einer poisson/quasipoisson
-link Funktion (vgl. Skript Statistik 4), weitere Infos dazu
-\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/}{Link}
+Mögliche nächste Schritte:
+
+\begin{itemize}
+\tightlist
+\item
+  Menüinhalt ``Buffet'' aus der Analyse ausschliessen, da sowieso kein
+  richtiger Menüinhalt (aber Informationsverlust)
+\item
+  Datentransformation z.B. log-Transformation
+\item
+  nicht-parametrischer Test (Achtung, auch dieser setzt Voraussetzungen
+  voraus)
+\item
+  ein glm Model (general linear model) mit einer poisson/quasipoisson
+  link Funktion (vgl. Skript Statistik 4), weitere Infos dazu
+  \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/}{Link} 
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# überprüft die Voraussetzungen des Welch-Tests:}
-\CommentTok{# Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)}
-\CommentTok{# Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0}
+\CommentTok{# Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der }
+\CommentTok{# Residuen gegeben? (siehe Statistik 2)}
+\CommentTok{# Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt }
+\CommentTok{# einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0}
 \CommentTok{# Daher ziehe ich eine Transformation der AV einem nicht-parametrischen Test vor}
-\CommentTok{# für weitere Infos: https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/}
-\NormalTok{model_log <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(}\KeywordTok{log10}\NormalTok{(tot_sold) }\OperatorTok{~}\StringTok{ }\NormalTok{label_content, }\DataTypeTok{data =}\NormalTok{ df) }\CommentTok{# achtung hier log10, bei Rücktransformation achten}
+\CommentTok{# für weitere Infos: }
+\CommentTok{# https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/}
+
+\CommentTok{# achtung hier log10, bei Rücktransformation achten}
+\NormalTok{model_log <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(}\KeywordTok{log10}\NormalTok{(tot_sold) }\OperatorTok{~}\StringTok{ }\NormalTok{label_content, }\DataTypeTok{data =}\NormalTok{ df) }
 
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
 \KeywordTok{plot}\NormalTok{(model_log) }\CommentTok{# scheint ok zu sein}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## hat values (leverages) are all = 0.08333333
+##  and there are no factor predictors; no plot no. 5
+\end{verbatim}
 
 \includegraphics{solution_stat2.2_files/figure-latex/unnamed-chunk-3-1.pdf}
 
@@ -278,27 +284,25 @@ link Funktion (vgl. Skript Statistik 4), weitere Infos dazu
 ## aov(formula = log10(tot_sold) ~ label_content, data = df)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.62985 -0.05056  0.00234  0.06539  0.21800 
+##       Min        1Q    Median        3Q       Max 
+## -0.198920 -0.059343  0.003477  0.062579  0.150567 
 ## 
 ## Coefficients:
 ##                           Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                3.04908    0.04048  75.321  < 2e-16 ***
-## label_contentHot and Cold -0.56121    0.05725  -9.803 3.88e-13 ***
-## label_contentPflanzlich   -0.99198    0.06184 -16.042  < 2e-16 ***
-## label_contentPflanzlich+  -0.76602    0.06184 -12.388  < 2e-16 ***
-## label_contentVegetarisch  -0.36893    0.05725  -6.444 4.82e-08 ***
+## (Intercept)                3.04908    0.02585 117.942  < 2e-16 ***
+## label_contentHot and Cold -0.56121    0.03656 -15.350  < 2e-16 ***
+## label_contentVegetarisch  -0.19792    0.03656  -5.413 5.45e-06 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1402 on 49 degrees of freedom
-## Multiple R-squared:  0.8629, Adjusted R-squared:  0.8517 
-## F-statistic: 77.12 on 4 and 49 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.08956 on 33 degrees of freedom
+## Multiple R-squared:  0.8802, Adjusted R-squared:  0.8729 
+## F-statistic: 121.2 on 2 and 33 DF,  p-value: 6.238e-16
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{TukeyHSD}\NormalTok{(model_log) }\CommentTok{# (Statistik 2: Folien 9-11)}
+\KeywordTok{TukeyHSD}\NormalTok{(model_log) }\CommentTok{# (Statistik 2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -309,17 +313,10 @@ link Funktion (vgl. Skript Statistik 4), weitere Infos dazu
 ## Fit: aov(formula = log10(tot_sold) ~ label_content, data = df)
 ## 
 ## $label_content
-##                                diff         lwr         upr     p adj
-## Hot and Cold-Fleisch     -0.5612085 -0.72333441 -0.39908256 0.0000000
-## Pflanzlich-Fleisch       -0.9919800 -1.16709603 -0.81686400 0.0000000
-## Pflanzlich+-Fleisch      -0.7660203 -0.94113636 -0.59090433 0.0000000
-## Vegetarisch-Fleisch      -0.3689328 -0.53105876 -0.20680691 0.0000005
-## Pflanzlich-Hot and Cold  -0.4307715 -0.60588755 -0.25565551 0.0000001
-## Pflanzlich+-Hot and Cold -0.2048119 -0.37992788 -0.02969584 0.0143708
-## Vegetarisch-Hot and Cold  0.1922757  0.03014972  0.35440158 0.0126407
-## Pflanzlich+-Pflanzlich    0.2259597  0.03875277  0.41316657 0.0107017
-## Vegetarisch-Pflanzlich    0.6230472  0.44793117  0.79816320 0.0000000
-## Vegetarisch-Pflanzlich+   0.3970875  0.22197149  0.57220353 0.0000005
+##                                diff        lwr        upr   p adj
+## Hot and Cold-Fleisch     -0.5612085 -0.6509215 -0.4714955 0.0e+00
+## Vegetarisch-Fleisch      -0.1979175 -0.2876305 -0.1082044 1.6e-05
+## Vegetarisch-Hot and Cold  0.3632910  0.2735780  0.4530041 0.0e+00
 \end{verbatim}
 
 \begin{Shaded}
@@ -357,8 +354,10 @@ link Funktion (vgl. Skript Statistik 4), weitere Infos dazu
 
 \begin{verbatim}
 ## (Intercept) 
-##    114.0523
+##    709.8501
 \end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Methoden}
 
@@ -373,12 +372,12 @@ vorgenommen. Anschliessend wurde erneut eine ANOVA gerechnet und die
 Modelvoraussetzungen visuell inspiziert: Homoskedastizität und
 Normalverteilung der Residuen sind gegeben.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Ergebnisse}
 
 Die Menüinhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in
-den wöchentlichen Verkaufszahlen signifikant (F(2,15) = 77.12, p
+den wöchentlichen Verkaufszahlen signifikant (F(2,15) = 121.22, p
 \textless{} .001). Die Abbildung 1 zeigt die wöchentlichen
 Verkaufszahlen pro Menüinhalt.
 
@@ -389,6 +388,5 @@ Verkaufszahlen pro Menüinhalt.
 Menüinhalt stark. Das Modell wurde mit den log-tranformierten Daten
 gerechnet.}
 \end{figure}
-
 
 \end{document}

@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
 ```
 
-## Musterlösung Aufgabe 4.2N: Multiple logistische Regression
+## Musterloesung Aufgabe 4.2N: Multiple logistische Regression
 
 [R-Skript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.2N_v.01.R)
 
@@ -48,7 +48,7 @@ Redundanz dagegen vermieden werden.
 (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
 ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
 
-### Übung 4.2 - Multiple logistische Regression**
+### Uebung 4.2 - Multiple logistische Regression
 
 ```{r}
 islands <-read.csv("16_Statistik4/data/isolation.csv")
@@ -199,15 +199,15 @@ type="l",lty=2)
 
 **Methoden**
 
-**Es wurde das Vorkommen (ja/nein) ein Brutvogelart auf 50 Inseln in Abhängigkeit von deren Flächengrösse (in km²) und Entfernung vom Festland (in km) erhoben.**
+Es wurde das Vorkommen (ja/nein) ein Brutvogelart auf 50 Inseln in Abhängigkeit von deren Flächengrösse (in km²) und Entfernung vom Festland (in km) erhoben.**
 
-**Mittels multipler logistischer Regression wurden unterschiedliche Modelle für diese Abhängigkeit berechnet und daraus dann das minimal adäquate Modell mittels AICc ermittelt. Die Adäquanz des gewählten Modells wurde anschliessend mittels G²-Statistik und „component + residual plots“ überprüft und war nicht verletzt.**
+**Mittels multipler logistischer Regression wurden unterschiedliche Modelle für diese Abhängigkeit berechnet und daraus dann das minimal adäquate Modell mittels AICc ermittelt. Die Adäquanz des gewählten Modells wurde anschliessend mittels G²-Statistik und „component + residual plots“ überprüft und war nicht verletzt.
 
 **Ergebnisse**
 
-**Das nach AICc beste Modell enthielt Fläche und Entfernung vom Festland als Parameter, nicht jedoch deren Interaktion. Es wies einen delta-AICc zum Modell mit dem Interaktionsterm von 2.22 sowie 5.97 zum Modell nur mit der Fläche und 19.50 zum Modell nur mit der Entfernung auf. Dabei hatte die Fläche (in km²) einen stark positiven, die Isolation (in km) dagegen einen sehr stark negativen Effekt (Abb. 1). Die Gesamtbeziehung Vorkommenswahrscheinlichkeit = 1 / (1 + exp (–(6.64 + 0.58 * Fläche – 1.37 * Entfernung))) erklärt dabei 58% der Variabilität de Daten.**
+Das nach AICc beste Modell enthielt Fläche und Entfernung vom Festland als Parameter, nicht jedoch deren Interaktion. Es wies einen delta-AICc zum Modell mit dem Interaktionsterm von 2.22 sowie 5.97 zum Modell nur mit der Fläche und 19.50 zum Modell nur mit der Entfernung auf. Dabei hatte die Fläche (in km²) einen stark positiven, die Isolation (in km) dagegen einen sehr stark negativen Effekt (Abb. 1). Die Gesamtbeziehung Vorkommenswahrscheinlichkeit = 1 / (1 + exp (–(6.64 + 0.58 * Fläche – 1.37 * Entfernung))) erklärt dabei 58% der Variabilität de Daten.
 
 ![](16_Statistik4/data/abb1_4.2N.png)
 
 
-**Abb. 1: Modellierte Abhängigkeit der Vorkommenswahrscheinlichkeit der Vogelart auf Inseln von den beiden additiv wirkenden Prädiktoren Fläche und Entfernung. Dargestellt ist die Regressionskurve +/- Standardfehler.**
+Abb. 1: Modellierte Abhängigkeit der Vorkommenswahrscheinlichkeit der Vogelart auf Inseln von den beiden additiv wirkenden Prädiktoren Fläche und Entfernung. Dargestellt ist die Regressionskurve +/- Standardfehler.
