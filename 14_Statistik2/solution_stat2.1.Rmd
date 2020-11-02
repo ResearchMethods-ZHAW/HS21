@@ -37,8 +37,8 @@ Vorgehen dokumentieren.
 
 **Lösungsweg**
 
-```{r include=FALSE}
-SAR <- read.delim("SAR.csv", sep = ";")
+```{r}
+SAR <- read.delim("14_Statistik2/data/SAR.csv",sep = ";")
 SAR
 ```
 
@@ -58,7 +58,9 @@ plot(richness~area,data=SAR)
 lm.1 <- lm(richness~area, data=SAR)
 summary(lm.1)
 ```
-Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
+Das sieht erst (SAR$area, SAR$richness, xlab="Area [m²]", ylab="Species richness")
+abline(lm(richness~area, data=SAR), col="red") #Alternative 1
+abline(lm.1,col="red") #Alternative 2einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
 
 **Modelldiagnostik**
 ```{r}
@@ -66,13 +68,15 @@ par(mfrow=c(2,2))
 plot(lm.1)
 ```
 
-
 **Ergebnisplot**
 ```{r}
 par(mfrow=c(1,1))
+
 plot(SAR$area, SAR$richness, xlab="Area [m²]", ylab="Species richness")
 abline(lm(richness~area, data=SAR), col="red") #Alternative 1
 abline(lm.1, col="red") #Alternative 2
+
+plot
 ```
 
 
@@ -90,7 +94,7 @@ summary(lm.2)
 ```
 
 
-```{r} 
+```{r, eval = FALSE} 
 lm.2 <- lm(log(amount)~time, data=decay)
 summary(lm.2)
 ```
@@ -126,7 +130,32 @@ par(mfrow=c(2,2))
 plot(lm.3)
 ```
 
+das sieht jetzt sehr gut aus, bis auf zwei Ausreisser im QQ-Plot
 
+
+**Lösung C **
+kommt erst in Statistik 4; methodisch beste Lösung; mit Startwerten muss man ggf. ausprobieren)
+
+```{r}
+model.nls<-nls(richness~a*area^b, start=(list(a=100,b=1)), data=SAR)
+summary(model.nls)
+```
+
+
+**Modelldiagnostik**
+```{r, eval = FALSE}
+model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100,b=1)),data=decay)
+summary(model.nls)
+```
+
+**Modelldiagnostik**
+```{r}
+if(!require(nlstools)){install.packages("nlstools")}
+library(nlstools)
+
+residuals.nls <- nlsResiduals(model.nls)
+plot(residuals.nls)
+```
 **Ergebnisplots**
 ```{r}
 par(mfrow=c(1,1))
@@ -148,7 +177,7 @@ lines(10^xv, 10^yv1b, col="green")
 ```
 
 
-#Modelle im Vergleich
+# Modelle im Vergleich
 ```{r}
 plot(SAR$area,SAR$richness)
 abline(lm.1,col="red")

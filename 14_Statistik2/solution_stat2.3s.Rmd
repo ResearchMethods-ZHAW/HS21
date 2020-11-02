@@ -1,4 +1,4 @@
-## Musterlösung Aufgabe 2.3S: ANOVA mit Interaktion
+## Musterloesung Aufgabe 2.3S: ANOVA mit Interaktion
 >**Lese-Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
 
 >Download [R-Skript](14_Statistik2/RFiles/solution_stat2.3s.R)
@@ -10,7 +10,7 @@ library(tidyverse)
 
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-nova <- read_delim("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv", delim = ";")
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -34,12 +34,13 @@ df <- nova
 # Daten vorbereiten
 df %<>% # schaut euch das Package "magrittr" an
   mutate(article_description = str_replace(article_description, "Local ", "")) %>% # ersetze Local mit einem leeren String
-  filter(article_description != "Buffet") %>% # lasse Buffet Gerichte weg
+  filter(article_description != "Hot and Cold") %>% # lasse Buffet Gerichte weg
+  filter(member != "Spezialkarten") %>% # Spezialkarten können vernachlässigt werden
   mutate(article_description = str_replace_all(article_description, "Favorite|World", "Fav_World")) #  fasse die zwei Menülinien "World & Favorite" zusammen
 
 # gruppiere Daten nach Menülinie, Geschlecht und Hochschulzugehörigkeit
-ttt<-df %>%
-    group_by(article_description, member,week) %>% 
+df %<>%
+    group_by(article_description, member, week) %>% 
     summarise(tot_sold = n()) %>%
     drop_na()  # lasst die unbekannten Menü-Inhalte weg
 
@@ -75,10 +76,10 @@ plot(model)
 
 ```
 
-<span style="background-color: #FFFF00"> Fazit: Die Inspektion des Modells zeigt klare Verletzungen sowohl bei der Homoskedastizität (Residuenplot) als auch bei der Normalverteilung der Residuen (Q-Q Plot). Aufgrund der starken Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA mit log-tranformierten Daten. Alternativ wären auch nicht-parametrische Tests (Kruskal-Wallis oder Welch-Test) möglich, sofern die Voraussetzungen dafür erfüllt sind.</span>.
+<span style="background-color: #FFFF00"> Fazit: Die Inspektion des Modells zeigt kleinere Verletzungen bei der Normalverteilung der Residuen (Q-Q Plot). Aufgrund keiner starken Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA ohne log-tranformierten Responsevariablen (AV).</span>.
 
 ```{r}
-# sieht aus, als ob die Voraussetzungen für eine Anova verletzt sind, insbesondere streuuen die Residuen nicht regelmässig um 0, d.h. sie sind nicht unabhängig
+# sieht aus, als ob die Voraussetzungen für eine Anova nur geringfügig verletzt sind
 # mögliche alternativen: 
 # 1. log-transformation um die grossen werte zu minimieren (nur möglich, wenn keine 0 enthalten sind und die Mittelwerte weit von 0 entfernt sind => bei Zähldaten ist dies leider nicht immer gegeben)
 # 2. nicht parametrische Test z.B. Welch-Test, da hohe Varianzheterogenität zwischen den Residuen
@@ -89,29 +90,19 @@ model_log <- aov(log10(tot_sold) ~ article_description * member, data = df)
 
 summary.lm(model_log) # interaktion ist nun nicht mehr signifikant: vgl. nochmals euren Boxplot zu beginn, machen diese Koeffizienten sinn?
 
-# überprüft die Modelvoraussetzungen (Statistik 2: Folien X-Y)
+# überprüft die Modelvoraussetzungen (vgl. Skript Statistik 2)
+# bringt aber keine wesentliche Verbesserung, daher bleibe ich bei den untranfromierten Daten
 par(mfrow = c(2,2))
 plot(model_log)
 
 # post-hov Vergleiche
-TukeyHSD(model_log)
-
-#2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
-# df$inter_action <- interaction(df$article_description, df$member, sep = "") # zuerst Interaktionsterm definineren
-model_welch <- oneway.test(df$tot_sold ~ df$article_description * df$member) 
-model_welch
-
-# für post-hoc Vergleiche, braucht es mehere Schritte, hier findet ihr mehr Informatinen dazu: https://stackoverflow.com/questions/28587498/post-hoc-tests-for-one-way-anova-with-welchs-correction-in-r
-# Infos zu Korrektur für Mehrfachvergleiche (vgl. https://mgimond.github.io/Stats-in-R/ANOVA.html#4_identifying_which_levels_are_different)
-
-##########
-#Unterscheiden sich die zwei Lösungsansätze, wenn ja worin, was sind eure Erkärungen dafür?
+TukeyHSD(model)
 
 ```
 
 **Methode**
 
-Ziel war es die Unterschiede zwischen den preisgünstigeren und teureren Menülinien und der Hochschulzugehörigkeit herauszufinden: Hierfür wurde eine ANOVA mit Interaktion gerechnet, da wir eine (quasi)-metrische Responsevariable und zwei Prädiktorvariablen (Menülinie und Hochschulzugehörigkeit) haben. Die Voraussetzungen für eine ANOVA waren im ersten Model verletzt, insbesondere die der Varianzheterogenität: Deshalb wurde eine log-Transformation der Responsevariable vorgenommen und die Varianzanalyse erneut gerechnet. Anschliessend wurden noch post-hoc Einzelvergleiche nach Tukey durchgeführt.
+Ziel war es die Unterschiede zwischen den preisgünstigeren und teureren Menülinien und der Hochschulzugehörigkeit herauszufinden: Hierfür wurde eine ANOVA mit Interaktion gerechnet, da wir eine (quasi)-metrische Responsevariable und zwei Prädiktorvariablen (Menülinie und Hochschulzugehörigkeit) haben. Die Voraussetzungen für eine ANOVA waren im ersten Model nicht stark verletzt, lediglich die Normalverteilung der Residuen: Deshalb habe wurde auf eine log-Transformation der Responsevariable verzichtet. Anschliessend wurden noch post-hoc Einzelvergleiche nach Tukey durchgeführt.
 
 
 *******
@@ -137,7 +128,7 @@ ggplot(df, aes(x = interaction(article_description, member), y= tot_sold)) +
   scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "Kitchen.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Studierende"),
                    breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Mitarbeitende",  "Kitchen.Studierende"),
                    labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "Kitchen\nMitarbeitende",  "Kitchen\nStudierende")) +
-  annotate("text", x = 1:4, y = 90, label = letters$mcletters$Letters, size = 8) +
+  annotate("text", x = 1:4, y = 1000, label = letters$mcletters$Letters, size = 8) +
   mytheme 
 
 ggsave("plot1_solution2.3s.pdf",
@@ -146,57 +137,3 @@ ggsave("plot1_solution2.3s.pdf",
        device = cairo_pdf)
 
 ``` 
-
-
-
-```{r, eval=FALSE, echo=F, fig.cap="Wahl von preisgünstigeren bzw. teureren Gerichten nach Hochschulzugehörigkeit und Geschlecht"}
-# alternative Ergebnisdarstellung anhand Balkendiagramme, macht irgendwie nicht so sinn => effekt kann nicht aufgezeigt werden
-
-df_plot <- nova %>%
-  mutate(article_description = str_replace(article_description, "Local ", "")) %>% # ersetze Local mit einem leeren String
-  filter(article_description != "Buffet") %>% # lasse Buffet Gerichte weg
-  mutate(article_description = str_replace_all(article_description, "F|W", "Fav_World")) %>% 
-  group_by(member, article_description) %>% 
-  summarise(tot_sold = n()) %>% 
-  mutate(pct = tot_sold / sum(tot_sold)) %>%  # calculate percentage
-  mutate(xlab = paste(article_description, member, sep = "\n"))
-
-# detects dark color: for labelling the bars
-# source: https://stackoverflow.com/questions/49437263/is-there-a-is-light-or-is-dark-color-function-in-r
-isDark <- function(color) {
-    (sum(grDevices::col2rgb(color) *c(299, 587,114))/1000 < 123)
-}
-
-#add colors for the plot
-ColsPerCat = c("K" = "#008099",
-               "Fav_World" = "#99f200"
-               )
-
-# detects dark color
-df_plot$label_color <- as.factor(sapply(unlist(ColsPerCat)[df_plot$article_description], 
-                                    function(color) { if (isDark(color)) 'white' else 'black' })) 
-
-#plot
-p <- ggplot(df_plot, aes(member, tot_sold, fill = factor(article_description, c("K", "Fav_World")), color = label_color)) + 
-        geom_bar(stat = "identity", position = position_stack(), color = NA, width = .6) + # set color NA otherwise error occurs
-        xlab("") +
-        ylab("\nVerkaufte Gerichte in Prozent\n")+
-        guides(fill = guide_legend("", reverse = T, nrow = 1),
-               color = F)+
-        scale_y_continuous(labels=scales::percent) +
-        scale_fill_manual(values = ColsPerCat,
-                          breaks = attributes(ColsPerCat)$name,
-                          labels = c("Kitchen", "Favorite/World", "Hot&Cold (Buffet)"))+
-        scale_color_manual(values = levels(df_2$label_color))+
-        geom_text(aes(label=ifelse(pct < 0.02,"", scales::percent(round(pct,2), accuracy = 1))), size = 12, position = position_stack(vjust = 0.5)) + # omit 0% with ifelse()
-        facet_wrap(~member, ncol = 1, scales = "free")+
-        coord_flip() +
-        mytheme +
-        theme(legend.position = "bottom", strip.background =element_rect(fill="grey95")) 
-
-ggsave("plot2_solution2.3s.pdf",
-       height = 8,
-       width = 9,
-       device = cairo_pdf)
-
-```

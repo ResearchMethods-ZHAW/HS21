@@ -100,7 +100,7 @@ km
 
 
 #Plotting
-xs< - seq(0,30,l=1000)
+xs <- seq(0,30,l=1000)
 model.predict <- predict(glm.1,type="response", se=T, newdata=data.frame(temperature=xs))
 plot(bathing~temperature,data=bathing, xlab="Temperature (°C)",ylab="% Bathing", pch=16, col="red")
 points(model.predict$fit ~ xs, type="l")
@@ -116,7 +116,7 @@ if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
 library(nlstools)
 
-loyn <- read.delim("loyn.csv", sep=",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
+loyn <- read.delim("16_Statistik4/data/loyn.csv", sep=",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
 
 #Selbstdefinierte Funktion, hier Potenzfunktion
 power.model <- nls(ABUND~c*AREA^z, start=(list(c=1,z=0)), data = loyn)
