@@ -111,7 +111,7 @@ par(mfrow=c(1,1))
 plot(y~x, data=test)
 
 lm.0 <- lm(y~1, data=test)
-lm.1 <- lm(y~x)
+lm.1 <- lm(y~x, data=test)
 lm.2 <- lm(y~x+I(x^2), data=test)
 lm.3 <- lm(y~x+I(x^2)+I(x^3), data=test)
 lm.4 <- lm(y~x+I(x^2)+I(x^3)+I(x^4), data=test)
