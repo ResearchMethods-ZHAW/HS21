@@ -161,6 +161,6 @@ allmodels <- dredge(global.model)
 allmodels
 importance(allmodels)
 
-avgmodel<-model.avg(get.models(dredge(global.model, rank="AICc"), subset=TRUE))
+avgmodel <- model.avg(allmodels, subset=TRUE)
 summary(avgmodel)
 
