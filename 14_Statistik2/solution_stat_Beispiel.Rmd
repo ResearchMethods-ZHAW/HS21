@@ -1,18 +1,20 @@
----
-title: "MSc. Research Methods - Statistikteil Loesung Beispiel"
-author: "Juergen Dengler"
-date: "`r format(Sys.Date(), '%B %Y')`"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
----
+
+<!-- # --- -->
+<!-- # title: "MSc. Research Methods - Statistikteil Loesungen Beispiel" -->
+<!-- # author: "Juergen Dengler" -->
+<!-- # date: "`r format(Sys.Date(), '%B %Y')`" -->
+<!-- # output: -->
+<!-- #   pdf_document: default -->
+<!-- #   html_document: -->
+<!-- #     df_print: paged -->
+<!-- # --- -->
+
 
 
 ## Musterloesung Beispiel
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)
-[Loesungstext Beispiel](14_Statistik2/Statistik_Uebungsloesung_Beispiel.pdf)
+[RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  
+[Loesungstext Beispiel](14_Statistik2/Statistik_Übungslösung_Beispiel.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -48,7 +50,7 @@ Vorgehen dokumentieren.
       ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
 
-**kommentierter Lösungsweg**
+**kommentierter Loesungsweg**
 
 ```{r include=FALSE}
 decay <- read.delim("data/decay.csv",sep = ",")

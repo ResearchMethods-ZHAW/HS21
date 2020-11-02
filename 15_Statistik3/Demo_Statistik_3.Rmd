@@ -5,15 +5,15 @@ knitr::opts_chunk$set(echo = TRUE,include = T,collapse=TRUE)
 
 ## Demo: Statistik 3
 
-[Demoscript als Download](15_Statistik3/RFiles/Statistik_3_Demo_v.05.R)
-**Datensatz [ipomopsis.csv](15_Statistik3/data/ipomopsis.csv)**
+[Demoscript als Download](15_Statistik3/RFiles/Statistik_3_Demo_v.05.R)  
+**Datensatz [ipomopsis.csv](15_Statistik3/data/ipomopsis.csv)**  
 **Datensatz [loyn.csv](15_Statistik3/data/loyn.csv)**
 
 **ANCOVA**
 Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
 
-```{r, eval=FALSE}
-compensation <- read.table("data/ipomopsis.csv", header=T, sep=",")
+```{r}
+compensation<-read.table("15_Statistik3/data/ipomopsis.csv", header=T, sep=",")
 ```
 
 ```{r}
@@ -78,7 +78,7 @@ plot(lm.2)
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 
 
 ```{r}
-loyn <- read.table("data/loyn.csv", header=T, sep=",")
+loyn <- read.table("15_Statistik3/data/loyn.csv", header=T, sep=",")
 loyn
 
 summary(loyn)
@@ -104,7 +104,7 @@ library(car)
 
 **Simulation Overfitting**
 
-```{r}
+```{r eval=FALSE}
 test <- data.frame("x"=c(1,2,3,4,5,6),"y"=c(34,21,70,47,23,45))
 
 par(mfrow=c(1,1))

@@ -1,4 +1,4 @@
-##Uebungen 4
+## Uebungen 4
 
 ### Übung 4.1: Nicht-lineare Regression
 
@@ -23,12 +23,12 @@ isolation (Entfernung vom Festland in km).
 
 ### Übung 4.2S: Multiple logistische Regression (SozWis)
 
-Führt mit dem Datensatz der Gästebefragung [novanimal.csv](13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv) eine logistische Regression durch. Kann der Mensabesuch druch die sozioökonomischen Variablen (Alter, Geschlecht, Hochschulzugehörigkeit), wahrgenommener Fleischkonsum und Einstellung zu ?? vorhergesagt werden?
+Führt mit dem Datensatz der [Gästebefragung](https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1) eine logistische Regression durch. Kann der Mensabesuch druch die sozioökonomischen Variablen (Alter, Geschlecht, Hochschulzugehörigkeit), wahrgenommener Fleischkonsum und Einstellung zu ?? vorhergesagt werden?
 
 **Hinweise:**
 
-- Das Item tho_2 (Ich mache  mir allgemein Gedanken über die Folgen meiner Ernährungsgewohnheiten für die Umwelt.) müsst ihr zu einer Dummy-Variable umcodieren: die Antwortkategorien «stimme eher zu» (=3) und «stimme zu» (=4) könnt ihr eine 1 zuweisen. Hinweis dafür könnt ihr die Funktion dpylr::case_when() oder dpylr::if_else() verwenden.
-- Fehlende Werten könnt ihr entweder imputieren (Lösungsweg) oder weglassen
+- Das Item **tho_2** ("Ich mache  mir allgemein Gedanken über die Folgen meiner Ernährungsgewohnheiten für die Umwelt.") müsst ihr in einem ersten Schritt zu einer Dummy-Variable umcodieren: die Antwortkategorien «stimme eher zu» (=3) und «stimme zu» (=4) müsst ihr eine 1 zuweisen, den anderen zwei Kategorien eine 0. Hinweis dafür könnt ihr die Funktion dpylr::case_when() oder dpylr::if_else() verwenden.
+- Fehlende Werten könnt ihr weglassen (z.B. dpylr::drop_na())
 - Definiert das Modell und wendet es auf den Datensatz an
 - Berechnet eine Vorhersage des Modells mit predict()
 - Eruiert den Modellfit und die Modellgenauigkeit
