@@ -145,7 +145,7 @@ lines(10^xv, 10^yv1b, col="green")
 ```
 
 
-# Modelle im Vergleich
+**Modelle im Vergleich**
 ```{r}
 plot(SAR$area,SAR$richness)
 abline(lm.1,col="red")
