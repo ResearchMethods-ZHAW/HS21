@@ -109,7 +109,7 @@ boxplot(log(decay$amount))
 hist(decay$amount)
 hist(log(decay$amount))
 ```
-#Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell
+_Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell_
 
 ```{r} 
 lm.2 <- lm(log(amount)~time, data=decay)
