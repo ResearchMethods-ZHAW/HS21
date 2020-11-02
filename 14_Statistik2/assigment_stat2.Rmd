@@ -48,7 +48,7 @@ Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es 
 Hinweise für die Analysen:
 
 - Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
-werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit grep()).
+werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit stringr::str_replace()).
 - Danach muss der Datensatz gruppiert und zusammengefasst werden.
 - Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
