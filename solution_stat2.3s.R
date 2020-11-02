@@ -1,24 +1,10 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-## Musterloesung Aufgabe 2.3S: ANOVA mit Interaktion
->**Lese-Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
-
->Download [R-Skript](14_Statistik2/RFiles/solution_stat2.3s.R)
-
-<!-- >Download [PDF](14_Statistik2/RFiles/solution_stat2.3s.pdf) -->
-
-**kommentierter Lösungsweg**
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE----
 
 library(tidyverse)
-library(here)
 
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-nova <- read_delim(here::here("13_Statistik1/data/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv"), delim = ";")
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -32,10 +18,9 @@ mytheme <-
     )
 
 
-```
 
 
-```{r}
+## -------------------------------
 # klone den originaler Datensatz
 df <- nova 
 
@@ -82,11 +67,9 @@ par(mfrow = c(2,2)) # alternativ gäbe es die ggfortify::autoplot(model) funktio
 plot(model)
 
 
-```
 
-<span style="background-color: #FFFF00"> Fazit: Die Inspektion des Modells zeigt kleinere Verletzungen bei der Normalverteilung der Residuen (Q-Q Plot). Aufgrund keiner starken Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA ohne log-tranformierten Responsevariablen (AV).</span>.
 
-```{r}
+## -------------------------------
 # sieht aus, als ob die Voraussetzungen für eine Anova nur geringfügig verletzt sind
 # mögliche alternativen: 
 # 1. log-transformation um die grossen werte zu minimieren (nur möglich, wenn keine 0 enthalten sind und die Mittelwerte weit von 0 entfernt sind => bei Zähldaten ist dies leider nicht immer gegeben)
@@ -106,22 +89,9 @@ plot(model_log)
 # post-hov Vergleiche
 TukeyHSD(model)
 
-```
-
-**Methode**
-
-Ziel war es die Unterschiede zwischen den preisgünstigeren und teureren Menülinien und der Hochschulzugehörigkeit herauszufinden: Hierfür wurde eine ANOVA mit Interaktion gerechnet, da wir eine (quasi)-metrische Responsevariable und zwei Prädiktorvariablen (Menülinie und Hochschulzugehörigkeit) haben. Die Voraussetzungen für eine ANOVA waren im ersten Model nicht stark verletzt, lediglich die Normalverteilung der Residuen: Deshalb habe wurde auf eine log-Transformation der Responsevariable verzichtet. Anschliessend wurden noch post-hoc Einzelvergleiche nach Tukey durchgeführt.
 
 
-*******
-
-
-**Ergebnisse**
-
-Die wöchentlichen Verkaufszahlen der Menülinien unterscheiden sich nach Hochschulzugehörigkeit signifikant (F(3,44) = `r round(summary.lm(model_log)[[10]]["value"][[1]], 2)`, p < .001). Inhaltich bedeutet dies, dass Studierende signifikant häufiger die preisgünstigere Menülinie "Favorite & World" als Mitarbeitende kaufen. Entgegen der Annahme gibt es aber keine signifikanten Unterschiede zwischen Studierende und Mitarbeitende bei dem Kauf der teureren Menülinie "Kitchen". Über die möglichen Gründe können nur spekuliert werden, hierfür bedarf es weiteren Analysen z.B. mit dem Prädiktor "Menüinhalt".
-
-
-```{r, echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."}
+## ---- echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."----
 
 # zeigt die Ergebnisse anhand eines Boxplots
 library(multcomp)
@@ -144,4 +114,4 @@ ggsave("plot1_solution2.3s.pdf",
        width = 20,
        device = cairo_pdf)
 
-``` 
+

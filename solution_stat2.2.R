@@ -1,25 +1,12 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-## Musterloesung Aufgabe 2.2: einfaktorielle ANOVA
-
->Download [R-Skript](14_Statistik2/RFiles/solution_stat2.2.R)
-
-<!-- >Download [PDF](14_Statistik2/RFiles/solution_stat2.2.pdf) -->
-
-**kommentierter Lösungsweg**
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE----
 
 library(tidyverse)
 library(ggfortify) # zur Testung der Voraussetzungen
 library(data.table)
 library(magrittr)
-library(here)
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-nova <- read_delim(here::here("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv"), delim = ";")
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -33,11 +20,9 @@ mytheme <-
     )
 
 
-```
 
 
-
-```{r}
+## -------------------------------
 
 df <- nova # klone den originaler Datensatz
 
@@ -76,15 +61,9 @@ summary.lm(model)
 par(mfrow = c(2,2))
 plot(model)
 
-```
-<br>  
-<span style="background-color: #FFFF00">**Fazit**: Inspektion der Modellvoraussetzung zeigt klare Verletzungen des Residuelplots (zeigt einen "Trichter", siehe Skript Statistik 2), somit Voraussetzung der Homoskedastizität verletzt. Mögliche nächste Schritte:
-* Menüinhalt "Buffet" aus der Analyse ausschliessen, da sowieso kein richtiger Menüinhalt (aber Informationsverlust)
-* Datentransformation 
-* nicht-parametrischer Test.</span>
-* ein glm Model (general linear model) mit einer poisson/quasipoisson link Funktion (vgl. Skript Statistik 4), weitere Infos dazu [Link]( https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/)
-<br>
-```{r}
+
+
+## -------------------------------
 
 # überprüft die Voraussetzungen des Welch-Tests:
 # Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)
@@ -110,22 +89,9 @@ TukeyHSD(model_log) # (Statistik 2: Folien 9-11)
 
 # für Vegi
 10^(model_log$coefficients[1] + model_log$coefficients[3])
-```
-
-**Methoden**
-
-Ziel war es, die Unterschiede in den wöchentlichen Verkaufszahlen pro Menüinhalt aufzuzeigen. Da die Responsevariable (Verkaufszahlen) metrisch und die Prädiktorvariable kategorial sind, wurde eine einfaktorielle ANOVA gerechnet. 
-Die visuelle Inspektion des Modells zeigte insbesondere schwere Verletzungen der Homoskedastizität. Der Boxplot bestätigt dieser Befund. 
-Weil die Voraussetzungen schwer verletzt sind, wurde eine log-Transformation der Responsevariable vorgenommen. Anschliessend wurde erneut eine ANOVA gerechnet und die Modelvoraussetzungen visuell inspiziert: Homoskedastizität und Normalverteilung der Residuen sind gegeben.
-
-******
-
-**Ergebnisse**
-
-Die Menüinhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den wöchentlichen Verkaufszahlen signifikant (F(2,15) = `r round(summary.lm(model_log)[[10]]["value"][[1]], 2)`, p < .001). Die Abbildung 1 zeigt die wöchentlichen Verkaufszahlen pro Menüinhalt.
 
 
-```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menüinhalt stark. Das Modell wurde mit den log-tranformierten Daten gerechnet.", tidy=TRUE}
+## ---- echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menüinhalt stark. Das Modell wurde mit den log-tranformierten Daten gerechnet.", tidy=TRUE----
 
 # plottet die originalen Beobachtungen, die nicht tranformierten Daten werden hier aufgezeigt
 # Wichtig: einen Verweis auf die Log-Transformation benötigt es jedoch
@@ -151,5 +117,4 @@ ggplot(df, aes(x = label_content, y= tot_sold)) +
 # https://cran.r-project.org/web/packages/ggsignif/vignettes/intro.html
   
    
-```
 

@@ -1,6 +1,13 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ##  Loesung Aufgabe 1.1
 
 >Download [R-Skript](13_Statistik1/RFiles/solution_stat1.R)
+
+<!-- >Download [PDF](13_Statistik1/RFiles/solution_stat1.pdf) -->
 
 **kommentierte Musterlösungen**
 ```{r, message=T, purl = F, include=FALSE}
