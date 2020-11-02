@@ -1,14 +1,19 @@
 --- 
 title: "Research Methods"
+bibliography:
+- 00_Admin/book.bib
+- 00_Admin/packages.bib
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-#output: bookdown::gitbook
+output:
+  html_document:
+    df_print: paged
 documentclass: book
-bibliography: [00_Admin/book.bib, 00_Admin/packages.bib]
-biblio-style: apalike
 link-citations: yes
-description: "Begleitmaterial zum Modul 'Research Methods' "
+description: 'Begleitmaterial zum Modul ''Research Methods'' '
+site: bookdown::bookdown_site
+biblio-style: apalike
 ---
+
 
 # Einleitung
 
@@ -21,12 +26,14 @@ Auf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungst
 
 
 ```{r, include=F, message=F}
+options(tinytex.verbose = TRUE)
 # Set Root Directory / Working directory to Project folder for all Files (if M-K)
 knitr::opts_knit$set(root.dir = getwd())
 ```
 
 
 ```{r, include=F, message=F}
+options(tinytex.verbose = TRUE)
 
 
 grepl_loop <- function(vector,remove){
@@ -52,7 +59,7 @@ keywords <- c("ResearchMethods","_Rcode","99_","index","Archive","Admin","main",
 
 rmds <- list.files(pattern = ".Rmd",recursive = T)
 
-rmds <- rmds[grepl("Prepro|InfoVis|RaumAn",rmds)]
+rmds <- rmds[grepl("PrePro|InfoVis|RaumAn",rmds)]
 
 rmds <- grepl_loop(rmds,keywords)
 
@@ -75,6 +82,7 @@ for (file in rmds){
 
 
 ```{r include=FALSE, message=F}
+options(tinytex.verbose = TRUE)
 # automatically create a bib database for R packages
 # 2019-08-15 rata: folgender Teil ist auskommentiert, um die Komplexität des ganzen zu verkleinern
 # knitr::write_bib(c(

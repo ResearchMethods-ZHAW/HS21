@@ -1,4 +1,3 @@
-## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE-----------
 
 library(tidyverse)
 library(ggfortify) # zur Testung der Voraussetzungen
@@ -19,8 +18,6 @@ mytheme <-
 
 
 
-
-## ------------------------------------------------------------------------
 
 df <- nova # klone den originaler Datensatz
 
@@ -59,8 +56,6 @@ autoplot(model) + mytheme
 
 
 
-## ------------------------------------------------------------------------
-
 # überprüft die Voraussetzungen des Welch-Tests:
 # Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der Residuen gegeben? (siehe Folien Statistik 2: Folie 18)
 # Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0 (siehe Folien Statistik 2: Folie 42)
@@ -86,9 +81,8 @@ TukeyHSD(model1) # (Statistik 2: Folien 9-11)
 10^(model1$coefficients[1] + model1$coefficients[3])
 
 
-## ---- echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menü-Inhalt stark.", tidy=T----
-
-# plottet die Ergebnisse
+# plottet die Ergebnisse, die nicht tranformierten Daten werden hier aufgezeigt
+# Wichtig: einen Verweis auf die Log-Transformation benötigt es jedoch
 
 # aufbereitung für die Infos der Signifikanzen => Alternative Lösungen findet ihr in der Musterlösung 2.3S
 df1 <- data.frame(a = c(1, 1:3,3), b = c(150, 151, 151, 151, 150)) 
@@ -111,4 +105,3 @@ ggplot(df_, aes(x = label_content, y= tot_sold)) +
 # https://cran.r-project.org/web/packages/ggsignif/vignettes/intro.html
   
    
-

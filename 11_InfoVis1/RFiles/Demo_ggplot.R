@@ -19,11 +19,14 @@ wetter_fil <- wetter %>%
     ) %>%
   filter(year == 2000 & month == 1)
 
+plot(wetter_fil$time, wetter_fil$tre200h0)
+
 # Datensatz: "wetter_fil" | Beeinflussende Variabeln: "time" und "tre200h0"
+ggplot(data = wetter_fil, mapping = aes(time,tre200h0))             
+
 ggplot(data = wetter_fil, mapping = aes(time,tre200h0)) +
   # Layer: "geom_point" entspricht Punkten in einem Scatterplot 
-  geom_point()                                                 
-
+  geom_point()                                    
 
 ## 
 ## ggplot(wetter_fil, aes(time,tre200h0)) +

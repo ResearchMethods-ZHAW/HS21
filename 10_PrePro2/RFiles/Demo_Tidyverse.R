@@ -12,15 +12,15 @@ wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
                   )
 
 
-mean(wetter$tre200h0, na.rm = T) 
+mean(wetter$tre200h0, na.rm = TRUE) 
 
 wetter$year <- year(wetter$time)
 
 wetter <- mutate(wetter,year = year(time))
 
-mean(wetter$tre200h0[wetter$year == 2000], na.rm = T)
+mean(wetter$tre200h0[wetter$year == 2000], na.rm = TRUE)
 
-summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = T))
+summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = TRUE))
 
 ## 
 ## summarise(group_by(wetter,year),temp_mittel = mean(tre200h0))
@@ -38,8 +38,8 @@ wetter %>%                              #1) nimm den Datensatz "wetter"
   mutate(kw = week(time)) %>%       #3) erstelle eine neue Spalte "kw"
   group_by(kw) %>%                      #4) Nutze die neue Spalte um Guppen zu bilden
   summarise(
-    temp_max = max(tre200h0, na.rm = T),#5) Berechne das Maximum 
-    temp_min = min(tre200h0, na.rm = T) #6) Berechne das Minimum
+    temp_max = max(tre200h0, na.rm = TRUE),#5) Berechne das Maximum 
+    temp_min = min(tre200h0, na.rm = TRUE) #6) Berechne das Minimum
     )   
 
 
@@ -63,9 +63,15 @@ ggplot() +
   labs(y = "temp")
 
 
-wetter_sry_long <- wetter_sry %>%
-  gather(Key, Value, c(temp_max,temp_min,temp_mean))
 
+wetter_sry %>%
+  pivot_longer(c(temp_max,temp_min,temp_mean))
+
+wetter_sry %>%
+  pivot_longer(-kw)
+
+wetter_sry_long <- wetter_sry %>%
+  pivot_longer(-kw, names_to = "Messtyp", values_to = "Messwert")
 
 
 
@@ -74,11 +80,8 @@ wetter_sry_long <- wetter_sry %>%
 nrow(wetter_sry)
 nrow(wetter_sry_long)
 
-wetter_sry_long <- wetter_sry %>%
-  gather(Key, Value, -kw)
-
-ggplot(wetter_sry_long, aes(kw,Value, colour = Key)) +
+ggplot(wetter_sry_long, aes(kw,Messwert, colour = Messtyp)) +
   geom_line()
 
 wetter_sry_long %>%
-  spread(Key,Value)
+  pivot_wider(names_from = Messtyp, values_from = Messwert)

@@ -94,6 +94,36 @@ levels(wochentage_fac)
 
 unique(wochentage)
 
+zahlen <- factor(c("null","eins","zwei","drei"))
+
+zahlen
+
+zahlen <- factor(zahlen,ordered = T)
+
+zahlen
+
+zahlen <- factor(zahlen,ordered = T,levels = c("null","eins","zwei","drei","vier"))
+
+zahlen
+
+typeof(zahlen)
+
+is.integer(zahlen)
+
+class(zahlen)
+
+zahlen
+as.integer(zahlen)
+
+zahlen2 <- factor(c("3","2","1","0"))
+
+as.integer(zahlen2)
+
+
+zahlen2 <- factor(c("3","2","1","0"))
+
+as.integer(as.character(zahlen2))
+
 datum <- "2017-10-01 13:45:10"
 
 as.POSIXct(datum)
@@ -103,6 +133,13 @@ datum <- "01.10.2017 13:45"
 
 as.POSIXct(datum,format = "%d.%m.%Y %H:%M")
 
+datum <- as.POSIXct(datum,format = "%d.%m.%Y %H:%M")
+
+
+
+strftime(datum, format = "%m")
+strftime(datum, format = "%b")
+strftime(datum, format = "%B")
 
 df <- data.frame(
   Stadt = c("Zürich","Genf","Basel","Bern","Lausanne"),

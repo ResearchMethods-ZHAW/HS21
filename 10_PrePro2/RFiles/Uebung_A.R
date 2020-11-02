@@ -22,24 +22,38 @@ wetter <- wetter %>%
 
 # Lösung Aufgabe 3
 
-wetter_spread <- spread(wetter, stn,tre200h0)
+wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
 
 
+# Hier ein Ausschnitt der df, wie es aussehen sollte:
+wetter_wide[1:5, 1:7]
 
 
 # Lösung Aufgabe 4
 
-wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";", locale = locale(encoding = "UTF-8"))
+wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",
+                             delim = ";", 
+                             locale = locale(encoding = "UTF-8"))
 
 
 
 # Lösung Aufgabe 5
 
+# Variante mit str_split_fixed()
 koordinaten <- str_split_fixed(wetter_legende$Koordinaten, "/", 2)
 
 colnames(koordinaten) <- c("x","y")
 
-wetter_legende <- cbind(wetter_legende,koordinaten)
+cbind(wetter_legende,koordinaten)
+
+
+
+# Variante mit tidyr::separate
+# ich lösche die Spalten wieder, damit ich die tidyr lösung zeigen kann
+
+wetter_legende <- wetter_legende %>%
+  separate(Koordinaten,c("x","y"),"/")
+
 
 
 # Lösung Aufgabe 6

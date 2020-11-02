@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE)
 
 
 
-## Übung B 
+## Uebung B 
 
 
 
@@ -53,7 +53,7 @@ Schau dir ein paar online Tutorials zu `ggplot2` an (siehe ^[@wickham2017, Kapit
 und reproduziere den obigen Plot mit `ggplot2`
 
 
-```{r}
+```{r, echo = TRUE}
 
 p <- ggplot(wetter_fil, aes(time,tre200h0)) +
   geom_line()

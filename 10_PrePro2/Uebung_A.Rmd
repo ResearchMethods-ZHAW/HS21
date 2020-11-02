@@ -7,7 +7,7 @@ select <- dplyr::select
 
 ```
 
-## Übung A
+## Uebung A
 
 
 ```{r,message=F}
@@ -51,17 +51,20 @@ wetter <- wetter %>%
 
 ### Aufgabe 3
 
-Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`key`), gefüllt mit den Temperaturwerten (`value`).  Speichere diese Tabelle in einer neuen Variabel.
+Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
 
 ```{r}
 
 # Lösung Aufgabe 3
 
-wetter_spread <- spread(wetter, stn,tre200h0)
-
+wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
 
 ```
 
+```{r, echo = TRUE}
+# Hier ein Ausschnitt der df, wie es aussehen sollte:
+wetter_wide[1:5, 1:7]
+```
 
 
 ### Aufgabe 4
@@ -76,7 +79,9 @@ Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. i
 
 # Lösung Aufgabe 4
 
-wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",delim = ";", locale = locale(encoding = "UTF-8"))
+wetter_legende <- read_delim("09_PrePro1/data/order_52252_legend.csv",
+                             delim = ";", 
+                             locale = locale(encoding = "UTF-8"))
 
 ```
 
@@ -96,14 +101,12 @@ koordinaten <- str_split_fixed(wetter_legende$Koordinaten, "/", 2)
 
 colnames(koordinaten) <- c("x","y")
 
-wetter_legende <- cbind(wetter_legende,koordinaten)
+cbind(wetter_legende,koordinaten)
 
 
 
 # Variante mit tidyr::separate
 # ich lösche die Spalten wieder, damit ich die tidyr lösung zeigen kann
-wetter_legende$x <- NULL 
-wetter_legende$y <- NULL
 
 wetter_legende <- wetter_legende %>%
   separate(Koordinaten,c("x","y"),"/")

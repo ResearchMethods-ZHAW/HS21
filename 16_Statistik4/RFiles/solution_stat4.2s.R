@@ -1,4 +1,3 @@
-## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE-----------
 
 library(tidyverse)
 library(ggfortify)
@@ -18,8 +17,6 @@ mytheme <-
     )
 
 
-
-## ------------------------------------------------------------------------
 
 # Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
 df <- nova # kopiert originaler Datensatz
@@ -64,6 +61,5 @@ km
 # kalkuliert die Missklassifizierungsrate 
 mf <- 1-sum(diag(km)/sum(km)) # ist mit knapp 40% eher hoch
 mf
-
 
 

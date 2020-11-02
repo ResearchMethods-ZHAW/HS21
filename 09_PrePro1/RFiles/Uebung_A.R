@@ -10,7 +10,7 @@ library(lubridate)
 
 # Lösung Aufgabe 1
 
-df <- data_frame(
+df <- data.frame(
   Tierart = c("Fuchs","Bär","Hase","Elch"),
   Anzahl = c(2,5,1,3),
   Gewicht = c(4.4, 40.3,1.1,120),
@@ -60,7 +60,7 @@ wetter <- readr::read_table("09_PrePro1/data/order_52252_data.txt")
 # Lösung Aufgabe 6
 
 # mit readr
-parse_datetime(as.character(wetter$time[1:10]), format = "%Y%m%d%H")
+parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
 
 
 # mit as.POSIXct()

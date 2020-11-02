@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = F,include = T,message = F, warning = F, collapse=TR
 
 
 
-## Übung A
+## Uebung A
 
 ```{r, message = F, echo = T}
 library(tidyverse)
@@ -120,9 +120,9 @@ p
 
 
 
-### Aufgabe 5 (für ambitionierte)
+### Aufgabe 5 (optional, fortgeschritten)
 
-Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). Aktualisiere `p` an dieser Stelle noch nicht.
+Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). Speichere den plot in `p2`.
 
 ```{r, message=F}
 
@@ -136,9 +136,9 @@ p +
 ```
 
 
-### Aufgabe 6 (für *noch* ambitioniertere)
+### Aufgabe 6 (optional, fortgeschritten)
 
-Füge dem Plot eine zweite, korrekt ausgerichtete Achse mit Kelvin oder Farenheit hinzu (siehe `sec_axis`). Wenn du es vorherigen Übung schon geschafft hast, setze auch hier die Einheit (`K` rep. `°F`) hinter die Werte auf der Achse. 
+Füge dem Plot eine zweite, korrekt ausgerichtete Achse mit Kelvin oder Farenheit hinzu (siehe `sec_axis`). Wenn du es vorherigen Übung schon geschafft hast, setze auch hier die Einheit (`K` oder `°F`) hinter die Werte auf der Achse. 
 
 $$ K = °C + 273,15$$
 $$°F = °C × \frac{9}{5} + 32$$

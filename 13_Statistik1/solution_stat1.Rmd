@@ -1,4 +1,4 @@
-##  Musterlösung Aufgabe 1.1: Assoziationstest
+##  Loesung Aufgabe 1.1
 
 >Download [R-Skript]("13_Statistik1/RFiles/solution_stat1.R")
 
@@ -69,7 +69,7 @@ fisher.test(nova2$gender, nova2$milkcompt)
 ```
 
 ** Ergebnisse **
-Der $\chi^2$-Test sagt uns, dass das Geschlecht und der wahrgenommene Milchkonsum nicht zusammenhängen. Es gibt keine signifikante Unterscheide zwischen dem Geschlecht und dem wahrgenommenen Milchkonsum ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_sq$p.value[[1]]), digits = 3)`. Es sieht so aus, dass Männer leicht mehr angeben weniger Milch zu konsumieren (Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und wahrgenommener Milchkonsum vorliegt. Um die Unterschiede innerhalb der Gruppen (z.B. Geschlecht) festzustellen bedarf es weiterer Analysen z. B. Odds Rations oder einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 3).
+Der $\chi^2$-Test sagt uns, dass das Geschlecht und der wahrgenommene Milchkonsum nicht zusammenhängen. Es gibt keine signifikante Unterscheide zwischen dem Geschlecht und dem wahrgenommenen Milchkonsum ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_sq$p.value[[1]], digits = 3)`. Es sieht so aus, dass Männer leicht mehr angeben weniger Milch zu konsumieren (Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und wahrgenommener Milchkonsum vorliegt. Um die Unterschiede innerhalb der Gruppen (z.B. Geschlecht) festzustellen bedarf es weiterer Analysen z. B. Odds Rations oder einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 3).
 
 ```{r, echo=F}
 table <- nova2 %>%
@@ -85,7 +85,7 @@ knitr::kable(table, caption = "Tabelle 1 \n Wahrgenommener Milchkonsum nach Gesc
 
 
 
-###  Musterlösung Aufgabe 1.2: t-Test
+###  Musterloesung Aufgabe 1.2: t-Test
 > Meine Empfehlung Kapitel 2 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/z_t_tests.html) 
 
 ** Null- und Alternativhypothese **
