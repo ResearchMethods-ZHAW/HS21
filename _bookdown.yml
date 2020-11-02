@@ -43,9 +43,7 @@ rmd_files: [
    "14_Statistik2/solution_stat2.2.Rmd",
    "14_Statistik2/solution_stat2.3n.Rmd",
    "14_Statistik2/solution_stat2.3s.Rmd",
-   #"14_Statistik2/Uebung_B.Rmd",
-   #"14_Statistik2/Uebung_loesung.Rmd",
-  
+
   
   "15_Statistik3/Abstract.Rmd",
   "15_Statistik3/Demo_Statistik_3.Rmd",
