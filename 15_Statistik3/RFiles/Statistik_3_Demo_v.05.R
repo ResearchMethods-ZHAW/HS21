@@ -9,9 +9,9 @@
 # und korrigiert f?r die Pflanzengr?sse vor der Beweidung (hier ausgedr?ckt 
 # als Durchmesser an der Spitze des Wurzelstock: "Root")
 
-compensation<-read.table("ipomopsis.csv", header=T, sep=",")
+compensation <- read.table("ipomopsis.csv", header=T, sep=",")
 summary(compensation)
-compensation$Grazing<-as.factor(compensation$Grazing)
+compensation$Grazing <- as.factor(compensation$Grazing)
 
 plot(Fruit~Root, data=compensation)
 boxplot(Fruit~Grazing, data=compensation)
@@ -62,9 +62,9 @@ lines(xv, yv2, col="red")
 
 # Residualplots
 par(mfrow=c(2,2))
-plot(lm(f~e))
-plot(lm(f~e+I(e^2)))
-
+par(mfrow=c(2,2))
+plot(lm.1)
+plot(lm.2)
 
 
 # Multiple lineare Regression basierend auf Logan, Beispiel 9A ------------
@@ -100,7 +100,7 @@ par(mfrow=c(1,1))
 plot(y~x, data=test)
 
 lm.0 <- lm(y~1, data=test)
-lm.1 <- lm(y~x)
+lm.1 <- lm(y~x, data=test)
 lm.2 <- lm(y~x+I(x^2), data=test)
 lm.3 <- lm(y~x+I(x^2)+I(x^3), data=test)
 lm.4 <- lm(y~x+I(x^2)+I(x^3)+I(x^4), data=test)
@@ -161,6 +161,6 @@ allmodels <- dredge(global.model)
 allmodels
 importance(allmodels)
 
-avgmodel<-model.avg(get.models(dredge(global.model, rank="AICc"), subset=TRUE))
+avgmodel <- model.avg(allmodels, subset=TRUE)
 summary(avgmodel)
 

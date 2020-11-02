@@ -1,3 +1,4 @@
+
 <!-- # --- -->
 <!-- # title: "MSc. Research Methods - Statistikteil Loesungen Beispiel" -->
 <!-- # author: "Juergen Dengler" -->
@@ -9,14 +10,15 @@
 <!-- # --- -->
 
 
+
 ## Musterloesung Beispiel
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  
 [Loesungstext Beispiel](14_Statistik2/Statistik_Übungslösung_Beispiel.pdf)
 
-
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
+
 
 - Laden Sie den Datensatz decay.csv. Dieser enthält die Zahl radioaktiver Zerfälle pro
 Zeiteinheit (amount) für Zeitpunkte (time) nach dem Start des Experimentes.
@@ -50,10 +52,11 @@ Vorgehen dokumentieren.
 
 **kommentierter Loesungsweg**
 
-```{r}
-decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
+```{r include=FALSE}
+decay <- read.delim("data/decay.csv",sep = ",")
 decay
-
+```
+```{r}
 summary(decay)
 str(decay)
 ```
