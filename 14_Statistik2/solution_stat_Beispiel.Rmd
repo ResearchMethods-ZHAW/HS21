@@ -10,7 +10,6 @@
 <!-- # --- -->
 
 
-
 ## Musterloesung Beispiel
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  

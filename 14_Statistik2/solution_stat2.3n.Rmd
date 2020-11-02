@@ -5,7 +5,6 @@
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
-
 - Laden Sie den Datensatz kormoran.txt mit read.table. Dieser enthält Tauchzeiten
 (hier ohne Einheit) von Kormoranen in Abhängigkeit von Jahreszeit und Unterart.
 Unterarten: Phalacrocorax carbo carbo (C) und Phalacrocorax carbo sinensis (S);
