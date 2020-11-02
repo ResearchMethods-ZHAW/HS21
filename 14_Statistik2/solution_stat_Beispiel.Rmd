@@ -52,7 +52,7 @@ Vorgehen dokumentieren.
 **kommentierter Loesungsweg**
 
 ```{r include=FALSE}
-decay <- read.delim("data/decay.csv",sep = ",")
+decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
 decay
 ```
 ```{r}
