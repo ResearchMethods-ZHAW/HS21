@@ -13,12 +13,12 @@ knitr::opts_chunk$set(echo = TRUE,include = T,collapse=TRUE)
 Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
 
 ```{r, eval=FALSE}
-compensation<-read.table("data/ipomopsis.csv", header=T, sep=",")
+compensation <- read.table("data/ipomopsis.csv", header=T, sep=",")
 ```
 
 ```{r}
 summary(compensation)
-compensation$Grazing<-as.factor(compensation$Grazing)
+compensation$Grazing <- as.factor(compensation$Grazing)
 
 plot(Fruit~Root, data=compensation)
 boxplot(Fruit~Grazing, data=compensation)
@@ -71,8 +71,8 @@ lines(xv, yv2, col="red")
 
 # Residualplots
 par(mfrow=c(2,2))
-plot(lm(f~e))
-plot(lm(f~e+I(e^2)))
+plot(lm.1)
+plot(lm.2)
 ```
 
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 

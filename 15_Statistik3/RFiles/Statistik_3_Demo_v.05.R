@@ -9,9 +9,9 @@
 # und korrigiert f?r die Pflanzengr?sse vor der Beweidung (hier ausgedr?ckt 
 # als Durchmesser an der Spitze des Wurzelstock: "Root")
 
-compensation<-read.table("ipomopsis.csv", header=T, sep=",")
+compensation <- read.table("ipomopsis.csv", header=T, sep=",")
 summary(compensation)
-compensation$Grazing<-as.factor(compensation$Grazing)
+compensation$Grazing <- as.factor(compensation$Grazing)
 
 plot(Fruit~Root, data=compensation)
 boxplot(Fruit~Grazing, data=compensation)
@@ -62,9 +62,9 @@ lines(xv, yv2, col="red")
 
 # Residualplots
 par(mfrow=c(2,2))
-plot(lm(f~e))
-plot(lm(f~e+I(e^2)))
-
+par(mfrow=c(2,2))
+plot(lm.1)
+plot(lm.2)
 
 
 # Multiple lineare Regression basierend auf Logan, Beispiel 9A ------------
