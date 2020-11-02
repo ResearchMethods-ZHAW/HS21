@@ -37,8 +37,8 @@ Vorgehen dokumentieren.
 
 **Lösungsweg**
 
-```{r}
-SAR <- read.delim("SAR.csv",sep = ";")
+```{r include=FALSE}
+SAR <- read.delim("SAR.csv", sep = ";")
 SAR
 ```
 
@@ -55,7 +55,7 @@ plot(richness~area,data=SAR)
 
 **Einfaches lineares Modell**
 ```{r}
-lm.1 <- lm(richness~area,data=SAR)
+lm.1 <- lm(richness~area, data=SAR)
 summary(lm.1)
 ```
 Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
@@ -72,7 +72,7 @@ plot(lm.1)
 par(mfrow=c(1,1))
 plot(SAR$area, SAR$richness, xlab="Area [m²]", ylab="Species richness")
 abline(lm(richness~area, data=SAR), col="red") #Alternative 1
-abline(lm.1,col="red") #Alternative 2
+abline(lm.1, col="red") #Alternative 2
 ```
 
 

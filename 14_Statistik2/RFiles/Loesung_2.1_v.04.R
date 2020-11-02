@@ -2,17 +2,17 @@
 ### Musterloesung 2.1 - Regressionsanalyse
 ### - Jürgen Dengler, 25.10.2020
 
-SAR <- read.delim("SAR.csv",sep = ";")
+SAR <- read.delim("SAR.csv", sep = ";")
 SAR
 
 # Explorative Datenanalyse
 summary(SAR)
 boxplot(SAR$area)
 boxplot(SAR$richness)
-plot(richness~area,data=SAR)
+plot(richness~area, data=SAR)
 
 # Einfaches lineares Modell
-lm.1 <- lm(richness~area,data=SAR)
+lm.1 <- lm(richness~area, data=SAR)
 summary(lm.1)
  
 # Modelldiagnostik
@@ -66,7 +66,7 @@ xv <- seq(0,100,0.1)
 
 # A. lineares Modell mit log-transformierter Abh?ngiger
 plot(SAR$area,SAR$richness)
-yv1a<-10^predict(lm.2,list(area=xv))
+yv1a<-10^predict(lm.2, list(area=xv))
 lines(xv, yv1a, col="red")
 
 # B. lineares Modell mit log-Transformation beider Variablen
@@ -76,6 +76,6 @@ lines(10^xv, 10^yv1b, col="green")
 
 #Modelle im Vergleich
 plot(SAR$area,SAR$richness)
-abline(lm.1,col="red")
+abline(lm.1, col="red")
 lines(xv, yv1a, col="blue")
 lines(10^xv, 10^yv1b, col="green")

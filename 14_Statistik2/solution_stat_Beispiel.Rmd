@@ -17,6 +17,7 @@ output:
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
 
+
 - Laden Sie den Datensatz decay.csv. Dieser enthält die Zahl radioaktiver Zerfälle pro
 Zeiteinheit (amount) für Zeitpunkte (time) nach dem Start des Experimentes.
 - **Ermitteln Sie ein statistisches Modell, dass die Zerfallshäufigkeit in Abhängigkeit
