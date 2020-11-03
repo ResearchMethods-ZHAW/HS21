@@ -13,7 +13,7 @@
 ## Musterloesung Beispiel
 
 [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  
-[Loesungstext Beispiel](14_Statistik2/Statistik_Uebungsloesung_Beispiel.pdf)
+[Loesungstext Beispiel](14_Statistik2/Statistik_Loesung_Beispiel_v.02.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -52,7 +52,7 @@ Vorgehen dokumentieren.
 **kommentierter Loesungsweg**
 
 ```{r include=FALSE}
-decay <- read.delim("data/decay.csv",sep = ",")
+decay <- read.delim("14_Statistik2/data/decay.csv",sep = ",")
 decay
 ```
 ```{r}
@@ -109,7 +109,7 @@ boxplot(log(decay$amount))
 hist(decay$amount)
 hist(log(decay$amount))
 ```
-#Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell
+_Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell_
 
 ```{r} 
 lm.2 <- lm(log(amount)~time, data=decay)

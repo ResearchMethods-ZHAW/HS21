@@ -13,12 +13,11 @@ Flächengrössen (Area) von 0.0001 bis 900 m².
 
 ### Uebung 4.2N: Multiple logistische Regression (NatWis)
 
-**Datensatz [isolation.csv](16_Statistik4/data/isolation.csv)**
+**Datensatz [isolation.csv](16_Statistik4/data/polis.csv)**
 
-Dieser enthält für 50 Inseln die Information, ob eine bestimmte Vogelart dort vorkommt (incidence = 1) oder nicht vorkommt (incidence = 0). Für jede der Inseln sind zudem zwei Umweltvariablen angegeben: area (Fläche in km²) und
-isolation (Entfernung vom Festland in km).
+Der Datensatz polis.csv beschreibt für 19 Inseln im Golf von Kalifornien, ob Eidechsen der Gattung Uta vorkommen (presence/absence: PA) in Abhängigkeit von der Form der Inseln (Verhältnis Umfang zu Fläche: RATIO). 
 
-**Ermittelt das minimal adäquate statistische Modell, das die Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**
+**Bitte prüft mit einer logistischen Regression, ob und ggf. wie die Inselform die Präsenz der Eidechsen beinflusst**
 
 
 ### Uebung 4.2S: Multiple logistische Regression (SozWis)
