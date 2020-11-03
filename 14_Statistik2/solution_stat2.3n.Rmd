@@ -1,6 +1,7 @@
 ## Musterloesung Aufgabe 2.3N: Mehrfaktorielle ANOVA
 
-[RCode als Download](14_Statistik2/RFiles/Statistik_Uebung_2.3N_Loesung_v.02.pdf)
+[RCode als Download](14_Statistik2/RFiles/Loesung_2.3N_v.03.R)
+
 [Loesungstext 2.3](14_Statistik2/Statistik_Uebung_2.3N_Loesung_v.02.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein

@@ -13,7 +13,7 @@ Flächengrössen (Area) von 0.0001 bis 900 m².
 
 ### Uebung 4.2N: Multiple logistische Regression (NatWis)
 
-**Datensatz [isolation.csv](16_Statistik4/data/polis.csv)**
+**Datensatz [polis.csv](16_Statistik4/data/polis.csv)**
 
 Der Datensatz polis.csv beschreibt für 19 Inseln im Golf von Kalifornien, ob Eidechsen der Gattung Uta vorkommen (presence/absence: PA) in Abhängigkeit von der Form der Inseln (Verhältnis Umfang zu Fläche: RATIO). 
 
