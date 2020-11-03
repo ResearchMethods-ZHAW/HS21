@@ -92,10 +92,10 @@ plot(model)
 <br>  
 <span style="background-color: #FFFF00">**Fazit**: Inspektion der Modellvoraussetzung zeigt klare Verletzungen des Residuelplots (zeigt einen "Trichter", siehe Skript Statistik 2), somit Voraussetzung der Homoskedastizität verletzt. Mögliche nächste Schritte:
 
-* Menüinhalt "Buffet" aus der Analyse ausschliessen, da sowieso kein richtiger Menüinhalt (aber Informationsverlust)
-* Datentransformation z.B. log-Transformation
-* nicht-parametrischer Test (Achtung, auch dieser setzt Voraussetzungen voraus)
-* ein glm Model (general linear model) mit einer poisson/quasipoisson link Funktion (vgl. Skript Statistik 4), weitere Infos dazu [Link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/)</span>
+- Menüinhalt "Buffet" aus der Analyse ausschliessen, da sowieso kein richtiger Menüinhalt (aber Informationsverlust)
+- Datentransformation z.B. log-Transformation
+- nicht-parametrischer Test (Achtung, auch dieser setzt Voraussetzungen voraus)
+- ein glm Model (general linear model) mit einer poisson/quasipoisson link Funktion (vgl. Skript Statistik 4), weitere Infos dazu [Link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/)</span>
 <br>
 ```{r}
 
