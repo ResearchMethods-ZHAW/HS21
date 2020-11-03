@@ -1,77 +1,42 @@
-# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den novanimal-Datensatz und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und der Wahl des Menüinhalts (vegtarisch vs. fleischhaltig) in der Mensa
+## -----------------------------
+# Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den Datensatz  der Gästebefragung NOVANIMAL und gehen der folgenden Frage nach: Gibt es einen Zusammenhang zwischen Geschlecht und dem wahrgenommenen Milchkonsum (viel vs. wenig Milch/-produkte)
 
-# berücksichtigt nur vegetarische und fleischhaltige Menüs
-# 1) alle Buffet-Menüs weglassen
-# 2) alle veganen Gerichte zu vegetarische Gerichte umbenennen
-nova2<-subset(nova, !(nova$label_content=="Buffet")) #Subset des Datensatzes ohne Buffet (Da Buffet nicht Fleisch/Vegetarisch zugordnet werden kann)
-
-nova2$label_content[nova2$label_content %in% c('Pflanzlich','Pflanzlich+')] <- "Vegetarisch" # Überschreibt das Label "Pflanzlich","Pflanzlich+" mit "Vegetarisch"
-
-nova2$label_content[grep("Pflanzlich+", nova2$label_content)] <- "Vegetarisch" # alternativer Lösungsweg
-
-nova3<-droplevels(nova2) #entfernt die Kategorien die nicht mehr mehr benutzt werden
-
-#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Base R
-observed<-table(nova2$gender, nova2$label_content) 
+# die Variable wahrgenommener Milchkonsum muss noch in 2 Kategorien zusammengefasst werden: geringer vs. hoher Milchkonsum
 
 
-#Anzahl Vegetarische/FleischMenüs pro Geschlecht~Vegetarisch Tidyverse
-#braucht in diesem speziellen Fall viel mehr Code, da der Chi-Quadrat-Test am liebsten Matrizen will
-# unser Vorschlag, nehmt den table Befehl
-# untenstehend der vollständige Code in Tidyverse
-observed_t <- nova2 %>% 
-  group_by(gender, label_content) %>% 
-  summarise(tot = n()) %>% 
-  ungroup() %>%
-  spread(., key = label_content, value = tot) %>%  #
-  # set_rownames(.$gender) %>% funktioniert leider nicht mehr mit tibble
-  select(-gender) %>%
-  as.matrix()
+# Variable  milk == wahrgenommener Milchkonsum 
+# alles kleiner als 4 (3 inklusive) == geringer wahrgenommener Milchkonsum, alles grösser als 3 (4 inklusive) == hoher wahrgenommener Milchkonsum
+nova2 <- nova_survey %>% 
+  filter(gender != "x") %>% # x aus der Variable Geschlecht entfernen 
+  mutate(milkcompt = if_else(milk >= 3, "wenig", "viel")) %>% 
+  select(gender, milkcompt) %>% 
+  drop_na() # alle Missings können gestrichen werden
+ 
+    
+# mal anschauen
+table(nova2)
 
 
 #Chi-squared Test
-chi_sq <- chisq.test(observed)
+chi_sq <- chisq.test(nova2$gender, nova2$milkcompt)
 chi_sq
 
 #Fisher's Test 
-fisher.test(observed)
-
-library(reshape2)
-table <- as.data.frame(observed) %>%
-  mutate(`Verkaufszahlen (%)` = round(Freq / sum(Freq) * 100, 1)) %>% 
-  rename(Geschlecht = Var1, Menüinhalt = Var2, Verkaufszahlen = Freq) %>% 
-  mutate(Geschlecht = recode(Geschlecht, "F" = "Frauen", "M" = "Männer"))
-knitr::kable(table, caption = "Tabelle 1 \n Verkaufszahlen des Menüinhalts nach Geschlecht")
+fisher.test(nova2$gender, nova2$milkcompt)
 
 
-# bereitet eure Daten auf
-# gruppiert die Variablen und fasst sie 
-# nach Geschlecht und Hochschulzugehörigkeit zusammen 
-# fügt Information aus der Aufgabenstellung hinzu: absolute Häufigkeiten der Gesamtheit
-# für den Chi-Quardrat-Test ist eine Berechnung der relativen Häufigkeiten nötig
+## ---- echo=F------------------
+table <- nova2 %>%
+  group_by(gender, milkcompt) %>% 
+  summarise(tot = n()) %>% 
+  mutate(`wahr. Milchkonsum (%)` = round(tot / sum(tot) * 100, 1)) %>% 
+  rename(Geschlecht = gender, `wahr. Milchkonsum` = milkcompt, `absolute Werte`= tot)
 
-df_t <- group_by(nova, gender, member) %>% 
-  summarise(stichprobe = n()) %>% 
-  ungroup() %>%
-  mutate(canteen_member = c("Mitarbeiterinnen", "Studentinnen", "Mitarbeiter", "Studenten"), # Achtung: Reihenfolge muss stimmten vgl. canteen_member
-         gesamtheit = c(345, 719, 339, 816), # Achtung: Reihenfolge muss stimmten vgl. oben
-         gesamtheit_pct = gesamtheit / sum(gesamtheit),
-         stichprobe_pct = stichprobe / sum(stichprobe)) # Berechnung der relativen Häufigkeiten
-
-# berechnet den Chi-Quadrat-Test
-
-chi_sq <- chisq.test(df_t$stichprobe, p = df_t$gesamtheit_pct) # es werden zwei Informationen übergeben, eure beobachteten Werte (stichprobe) und die in der Grundgesamtheit/Population erwarteten Werte (wichtig als relative Häufigkeiten)
-
-chi_sq
+knitr::kable(table, caption = "Tabelle 1 \n Wahrgenommener Milchkonsum nach Geschlecht")
 
 
-table <- df_t %>% 
-  rename(Hochschulzugehörigkeit = member, `Anzahl Population` = gesamtheit, `Anzahl Stichprobe` = stichprobe, `Anteil Population (%)` = gesamtheit_pct, `Anteil Stichprobe (%)` = stichprobe_pct) %>%
-  dplyr::select(Hochschulzugehörigkeit, `Anzahl Population`, `Anteil Population (%)`, `Anzahl Stichprobe`, `Anteil Stichprobe (%)`) %>% 
-  mutate(`Anteil Stichprobe (%)` = round(`Anteil Stichprobe (%)`,2)*100, `Anteil Population (%)` = `Anteil Population (%)`*100)
-knitr::kable(table, caption = "Tabelle 2 \nAnzahl und Anteil Beobachtungen in der Population und in der Stichprobe")
 
-
+## -----------------------------
 # Gemäss Aufgabenstellung müsset die Daten zuerst nach Kalenderwochen "week" und Bedingungen "condition" zusammengefasst werden
 
 df <- nova %>%
@@ -84,9 +49,11 @@ ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
     labs(x="\nBedingungen", y="Durchschnittlich verkaufte Gerichte pro Woche\n") + 
     mytheme
 
-# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen ersichtlich (vgl. Statistik 2, Folien 12-21)
+# Auf den ersten Blick scheint es keine starken Abweichungen zu einer Normalverteilung zu geben resp. es sind keine extremen schiefen Verteilungen ersichtlich (vgl. Skript Statistik 2)
 
 
+
+## -----------------------------
 
 # führt einen t-Tests durch; 
 # es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen unabhängig sind
@@ -95,4 +62,5 @@ t_test <- t.test(tot_sold~condit, data=df)
 
 t.test(df[df$condit == "Basis", ]$tot_sold, 
                  df[df$condit == "Intervention", ]$tot_sold) #alternative Formulierung
+
 
