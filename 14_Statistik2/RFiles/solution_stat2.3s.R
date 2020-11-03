@@ -1,10 +1,10 @@
+## ---- message=FALSE, echo=FALSE, results='hide', warning=FALSE----
 
 library(tidyverse)
-library(ggfortify) # zur Testung der Voraussetzungen
 
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-nova <- read_delim("13_Statistik1/data/novanimal.csv", delim = ";")
+nova <- read_delim("13_Statistik1/data/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -19,77 +19,94 @@ mytheme <-
 
 
 
+
+## -------------------------------
 # klone den originaler Datensatz
 df <- nova 
 
-# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen
-df$label_content[grep("Pflanzlich+",df$label_content)] <- "Vegetarisch" # ersetzt beide Pflanzlich und Pflanzlich+
- 
-# gruppiert Daten gemäss Bedingungen, Menü-Inhalt und Wochen
-df_ <- df %>%
-    group_by(condit, label_content, week) %>%
+# Daten vorbereiten
+df %<>% # schaut euch das Package "magrittr" an
+  mutate(article_description = str_replace(article_description, "Local ", "")) %>% # ersetze Local mit einem leeren String
+  filter(article_description != "Hot and Cold") %>% # lasse Buffet Gerichte weg
+  filter(member != "Spezialkarten") %>% # Spezialkarten können vernachlässigt werden
+  mutate(article_description = str_replace_all(article_description, "Favorite|World", "Fav_World")) #  fasse die zwei Menülinien "World & Favorite" zusammen
+
+# gruppiere Daten nach Menülinie, Geschlecht und Hochschulzugehörigkeit
+df %<>%
+    group_by(article_description, member, week) %>% 
     summarise(tot_sold = n()) %>%
-    drop_na() # lasst die unbekannten Menü-Inhalte weg
+    drop_na()  # lasst die unbekannten Menü-Inhalte weg
+
+# überprüft die Voraussetzungen für eine ANOVA
+# Schaut euch die Verteilungen der Mittelwerte der Responsevariable an
+# Sind Mittelwerte nahe bei Null? Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung (vgl. Statistik 4, Folie 17)
+df %>% 
+  split(.$article_description) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+  purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen auf den Datensatz angewendet werden (alternative Funktionen sind aggregate oder apply)
 
 
-# überprüft Voraussetzungen für eine ANOVA
-# Boxplots zeigt klare Varianzheterogenität
-ggplot(df_, aes(x = interaction(label_content, condit), y = tot_sold)) +
-  stat_boxplot(geom = "errorbar", width = .25) +
-  geom_boxplot(fill="white", size = 1, width = .5) + 
-  labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
-  mytheme
+# visualisiere dir dein Model, was siehst du? sind möglicherweise gewiesse Voraussetzungen verletzt?
+# Boxplot
+ggplot(df, aes(x = interaction(article_description, member), y= tot_sold)) + 
+  stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
+  geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+  labs(x = "\nMenülinie nach Hochschulzugehörigkeit", y = "Anzahl verkaufte Gerichte\n") + 
+  scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "Kitchen.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Studierende"),
+                   breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Mitarbeitende",  "Kitchen.Studierende"),
+                   labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "Kitchen\nMitarbeitende",  "Kitchen\nStudierende")) +
+  mytheme # wie sind die Voraussetzungen erfüllt?
 
-# definiert das Modell mit Interaktion
-model2 <- aov(tot_sold ~ label_content * condit, data = df_)
 
-autoplot(model2) + mytheme  # Inspektion der Modellvoraussetzungen sehen nicht schlecht aus => einzig Normalverteilung Q-Q Plot nicht optimal (vgl. Statistik 2: Folie 42)
+# definiert das Modell (Statistik 2: Folien 4-8)
+model <- aov(tot_sold ~ article_description * member, data = df)
 
-summary(model2)
+summary.lm(model)
 
-# Alternativ gibt es zwei Möglichkeiten:
-#1) Transformation der Daten,
-model3 <- aov(log10(tot_sold) ~ label_content * condit, data = df_)
-autoplot(model3) + mytheme
-
-#2) nicht-parametrischer Test z.B. Kruskal-Wallis-Test (vgl. Statistik 2: Folie 17-18)
-inter_action <- interaction(df_$condit, df_$label_content) # zuerst Interaktionsterm definineren, da kruskal.test nicht mit Interaktionen umgehen kann
-model4 <- kruskal.test(df_$tot_sold ~ inter_action) 
-
-# in einem nächsten Schritt könnt ihr mit Post-hoc Tests diese Unterschiede genauer betrachten
-# es gibt die Möglichkeit mit dunnTest (mit Package FSA)
-# mehr Infos hier: https://rcompanion.org/rcompanion/d_06.html
-library(FSA)
-dunn <- dunnTest(tot_sold ~ inter_action, data = df_, method="bh") # zur Info: dunnTest kann nur mit Faktoren umgehen
-dunn
-
-# Infos zu Korrektur für Mehrfachvergleiche (vgl. https://mgimond.github.io/Stats-in-R/ANOVA.html#4_identifying_which_levels_are_different)
+# überprüft die Modelvoraussetzungen (Statistik 2: Folien X-Y)
+par(mfrow = c(2,2)) # alternativ gäbe es die ggfortify::autoplot(model) funktion
+plot(model)
 
 
 
 
-## # Post-hoc Vergleiche
-## TukeyHSD(model2) # nimmt aber an, dass Residuen normalverteilt sind
-## 
-## # Alternativ
-## library(DescTools)
-## PostHocTest(model2, method = "scheffe") # sehr konservativ und auch für ungleiche Gruppengrössen geeignet
-## 
-## 
+## -------------------------------
+# sieht aus, als ob die Voraussetzungen für eine Anova nur geringfügig verletzt sind
+# mögliche alternativen: 
+# 1. log-transformation um die grossen werte zu minimieren (nur möglich, wenn keine 0 enthalten sind und die Mittelwerte weit von 0 entfernt sind => bei Zähldaten ist dies leider nicht immer gegeben)
+# 2. nicht parametrische Test z.B. Welch-Test, da hohe Varianzheterogenität zwischen den Residuen
 
+
+#1) log-transformation
+model_log <- aov(log10(tot_sold) ~ article_description * member, data = df)
+
+summary.lm(model_log) # interaktion ist nun nicht mehr signifikant: vgl. nochmals euren Boxplot zu beginn, machen diese Koeffizienten sinn?
+
+# überprüft die Modelvoraussetzungen (vgl. Skript Statistik 2)
+# bringt aber keine wesentliche Verbesserung, daher bleibe ich bei den untranfromierten Daten
+par(mfrow = c(2,2))
+plot(model_log)
+
+# post-hov Vergleiche
+TukeyHSD(model)
+
+
+
+## ---- echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."----
 
 # zeigt die Ergebnisse anhand eines Boxplots
 library(multcomp)
-df_$cond_label <- interaction(df_$condit, df_$label_content) # bei Interaktionen gibt es diesen Trick, um bei den multiplen Vergleiche, die richtigen Buchstaben zu bekommen
-model1 <- aov(tot_sold ~ cond_label, data = df_)
+df$cond_label <- interaction(df$article_description, df$member) # bei Interaktionen gibt es diesen Trick, um bei den multiplen Vergleiche, die richtigen Buchstaben zu bekommen
+model1 <- aov(tot_sold ~ cond_label, data = df)
 letters <-cld(glht(model1, linfct=mcp(cond_label="Tukey")))
 
-ggplot(df_, aes(x = cond_label, y= tot_sold)) +
-  stat_boxplot(geom = "errorbar", width = .25) +
-  geom_boxplot(fill="white", color = "black", size = 1) + 
-  labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") +
-  scale_y_continuous(breaks = seq(0, 130,25), limits = c(0, 130)) +
-  annotate("text", x = 1:6, y = 130, label = letters$mcletters$Letters, size = 8) +
+ggplot(df, aes(x = interaction(article_description, member), y= tot_sold)) + 
+  stat_boxplot(geom = "errorbar", width = 0.25) + # Achtung: Reihenfolge spielt hier eine Rolle!
+  geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+  labs(x = "\nMenülinie nach Hochschulzugehörigkeit", y = "Anzahl verkaufte Gerichte\n") + 
+  scale_x_discrete(limits = c("Fav_World.Mitarbeitende", "Kitchen.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Studierende"),
+                   breaks = c("Fav_World.Mitarbeitende", "Fav_World.Studierende", "Kitchen.Mitarbeitende",  "Kitchen.Studierende"),
+                   labels = c("Fav_World\nMitarbeitende", "Fav_World\nStudierende", "Kitchen\nMitarbeitende",  "Kitchen\nStudierende")) +
+  annotate("text", x = 1:4, y = 1000, label = letters$mcletters$Letters, size = 8) +
   mytheme 
 
 ggsave("plot1_solution2.3s.pdf",
@@ -97,20 +114,4 @@ ggsave("plot1_solution2.3s.pdf",
        width = 20,
        device = cairo_pdf)
 
-
-# eine weitere Möglichkeit die Ergebnisse darzustellen
-m_sell <- na.omit(df_) %>% group_by(condit,label_content) %>% summarise(val = mean(tot_sold)) # berechne die durchschnittlichen Verkaufszahlen pro Bedingung
-
-ggplot(df_, aes(x = condit, y = tot_sold, linetype = label_content, shape = label_content)) + 
-    geom_point(data = m_sell, aes(y = val), size = 4) +
-    geom_line(data = m_sell, aes(y = val, group = label_content), size = 2) + 
-    labs(y = "Durchschnittlich verkaufte Gerichte pro Woche", x = "Bedingungen") + 
-    guides(linetype = F, shape = guide_legend(title = "Menü-Inhalt"))+
-    scale_y_continuous(breaks = seq(0,120,20), limits = c(0,120))+
-    mytheme
-
-ggsave("plot2_solution2.3s.pdf",
-       height = 8,
-       width = 9,
-       device = cairo_pdf)
 

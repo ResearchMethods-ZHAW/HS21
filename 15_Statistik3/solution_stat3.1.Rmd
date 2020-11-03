@@ -57,7 +57,13 @@ Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen 
 
 ```{r}
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
-ukraine <- read.delim("15_Statistik3/data/Ukraine_bearbeitet.csv",sep=";")
+ukraine <-read_delim("15_Statistik3/data/Ukraine_bearbeitet.csv", delim=";")
+attach(ukraine)
+
+ukraine
+
+# ukraine <- read.delim("15_Statistik3/data/Ukraine_bearbeitet.csv",sep=";")
+
 str(ukraine)
 summary(ukraine)
 ```
@@ -88,8 +94,7 @@ Korrelationskoeffizienten r, die betragsmässig grösser als 0.7 sind, würde es
 Alternativ hätten wir auch den VIF (Variance Inflation Factor) als Kriterium für den möglichen
 Ausschluss von Variablen aus dem globalen Modell nehmen können.
 Diese initiale Korrelationsanalyse zeigt uns aber, dass unsere Daten noch ein anderes Problem
-haben: für die drei Korngrössenfraktionen des Bodens (Sand, Silt, Clay) stehen lauter NA’s. Um
-herauszufinden, was das Problem ist, geben wir ein:
+haben: für die drei Korngrössenfraktionen des Bodens (Sand, Silt, Clay) stehen lauter NA’s. Um herauszufinden, was das Problem ist, geben wir ein:
 
 ```{r}
 summary(ukraine$Sand)
@@ -98,8 +103,7 @@ ukraine[!complete.cases(ukraine), ] # Zeigt zeilen mit NAs ein
 Da gibt es offensichtlich je ein NA in jeder dieser Zeilen. Jetzt können wir entscheiden,
 entweder auf die drei Variablen oder auf die eine Beobachtung zu verzichten. Da wir eh schon
 eher mehr unabhängige Variablen haben als wir händeln können, entscheide ich pragmatisch
-für ersteres. Wir rechnen die Korrelation also noch einmal ohne diese drei Spalten (es sind die
-Nummern 12:14, wie wir aus der anfänglichen Variablenbetrachtung oben wissen).
+für ersteres. Wir rechnen die Korrelation also noch einmal ohne diese drei Spalten (es sind die Nummern 12:14, wie wir aus der anfänglichen Variablenbetrachtung oben wissen).
 
 ```{r}
 cor <- cor(ukraine[,c(3:11,15:23)])
@@ -108,9 +112,7 @@ cor
 ```
 Wenn man auf cor nun doppel-clickt und es in einem separaten Fenster öffnet, sieht man, wo
 es problematische Korrelationen zwischen Variablenpaaren gibt.
-Es sind dies Altitude vs. Temperature und N.total vs. C.org. Wir müssen aus jedem dieser Paare
-jetzt eine Variable rauswerfen, am besten jene, die weniger gut interpretierbar ist. Ich
-entscheide mich dafür Temperature statt Altitude (weil das der direktere ökologische
+Es sind dies Altitude vs. Temperature und N.total vs. C.org. Wir müssen aus jedem dieser Paare jetzt eine Variable rauswerfen, am besten jene, die weniger gut interpretierbar ist. Ich entscheide mich dafür Temperature statt Altitude (weil das der direktere ökologische
 Wirkfaktor ist) und C.org statt N.total zu behalten (weil es in der Literatur mehr Daten zum
 Humusgehalt als zum N-Gehalt gibt, damit eine bessere Vergleichbarkeit erzielt wird). Die
 Aussagen, die wir für die beibehaltene Variable erzielen, stehen aber +/- auch für die

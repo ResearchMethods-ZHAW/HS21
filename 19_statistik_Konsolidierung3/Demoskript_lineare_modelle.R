@@ -1,0 +1,237 @@
+### Demo lineare Modelle------
+
+# state: november 2020
+# author: gian-andrea egeler
+
+#lade Packages
+library(DescTools)
+library(tidyverse)
+library(ggfortify)
+library(broom)
+
+
+# inspiriert von Simon Jackson: http s://drsimonj.svbtle.com/visualising-residuals
+d <- mtcars %>%  # klone data set
+    slice(-31) # # lösche Maserrati und schaue nochmals Modelfit an
+
+
+###################
+# einfache regression
+##################
+model <- lm(mpg ~ hp, data = d)
+
+###############
+# Modeldiagnostik
+###############
+
+# semi sch?ne Ergebnisse
+autoplot(model) # gitb einige Extremwerte => was tun? (Eingabe/Einlesen ?berpr?fen, Transformation, Extremwerte ausschliessen mit guter Begr?ndung)
+
+
+# erzeuge vorhergesagte werte und residualwerte
+d$predicted <- predict(model)   # bilde neue Variable mit gesch?tzten y-Werten
+d$residuals <- residuals(model)
+
+# schaue es dir an, sieht man gut was die Residuen sind
+d %>% 
+    select(mpg, predicted, residuals) %>%
+    head()
+
+#visualisiere residuen
+ggplot(d, aes(x = hp, y = mpg)) +
+    geom_segment(aes(xend = hp, yend = predicted)) + # verbinde beobachtete werte mit vorausgesagte werte
+    geom_point() + # Plot the actual points
+    geom_point(aes(y = predicted), shape = 1) + # plot gesch?tzten y-Werten
+    # geom_line(aes(y = predicted), color = "lightgrey") # alternativ code
+    geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
+    geom_point(aes(color = abs(residuals))) + # Farbe wird hier zu den redisuen gemapped, abs(residuals) wegen negativen zahlen
+    scale_color_continuous(low = "blue", high = "red") +  # Colors to use here (f?r mehrere farben verwende color_gradient2)
+    guides(color = FALSE) +  # Color legende entfernen
+    theme_bw()
+
+##########
+# plotte ergebnis
+##########
+ggplot(d, aes(x = hp, y = mpg)) +
+    geom_point(size = 4) +
+    geom_point(aes(y = predicted), shape = 1, size = 4) +
+    geom_smooth(method = "lm", se = FALSE, color = "lightgrey") + # plot regression line
+    # geom_line(aes(y = mean(mpg)), color = "blue") +
+    theme_bw()
+
+
+###################
+#multiple regression
+###################
+
+# Select data
+
+d <- mtcars %>% 
+    select(mpg, hp, wt, disp)
+
+################
+# multikollinearit?t ?berpr?fen
+# Korrelation zwischen Pr?diktoren kleiner .7
+cor <- cor(d[, -1])
+cor[abs(cor)<0.7] <- 0  
+cor # disp weglassen, vgl. model2
+
+############
+# Fit the model
+############
+model1 <- lm(mpg ~ hp + wt + disp, data = d) 
+model2 <- lm(mpg ~ hp + wt, data = d)
+model3 <- lm(log10(mpg) ~ hp + wt, data = d)
+
+#############
+# modeldiagnostik
+############
+autoplot(model1)
+autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
+autoplot(model3)
+
+# gebe dir predicted values aus f?r model2 (f?r vorzeigebeispiel einfacher :)
+# gibts unterschidliche varianten die predicted values zu berechnen
+# 1. default funktion predict(model) verwenden
+d$predicted <- predict(model2)
+# 2. datensatz selber zusammenstellen: wichtig, die pr?diktoren m?ssen denselben namen haben wie im Model
+new.data <- tibble(hp = sample(seq(52,335, 1), 32),
+                   wt = sample(seq(1.513, 5.424, 0.01), 32),
+                   disp = sample(seq(71.1, 472.0, .1), 32)) # besser mit Traindata von Beginn an mehr Infos hier: https://www.r-bloggers.com/using-linear-regression-to-predict-energy-output-of-a-power-plant/
+d$predicted_own <- predict(model2, newdata = new.data)
+# 3. train_test_split durchf?hren (empfohlen) muss jedoch von beginn an bereits gemacht werden
+# logik hier: https://towardsdatascience.com/train-test-split-and-cross-validation-in-python-80b61beca4b6 oder https://towardsdatascience.com/6-amateur-mistakes-ive-made-working-with-train-test-splits-916fabb421bb
+# beispiel hier: https://ijlyttle.github.io/model_cv_selection.html
+mtcars$id <- 1:nrow(mtcars) # f?r merging
+train_data <- mtcars %>% dplyr::sample_frac(.75) # f?r das modellfitting
+test_data  <- dplyr::anti_join(mtcars, train_data, by = 'id') # f?r den test mit predict
+d$predicted_test <- predict(model2, newdata = test_data)
+
+# residuen
+d$residuals <- residuals(model2)
+head(d)
+
+# visualisiere residuen mit model2, f?r besseres verst?ndnis
+ggplot(d, aes(x = hp, y = mpg)) +
+    geom_segment(aes(xend = hp, yend = predicted), alpha = .2) +
+    geom_point(aes(color = residuals)) +
+    scale_color_gradient2(low = "blue", mid = "white", high = "red") +
+    guides(color = FALSE) +
+    geom_point(aes(y = predicted), shape = 1) +
+    theme_bw()
+
+
+# mehrere plots der residual-regression
+d %>% 
+    gather(key = "iv", value = "x", -mpg, -predicted, -residuals) %>%  # Get data into shape
+    ggplot(aes(x = x, y = mpg)) +  # Note use of `x` here and next line
+    geom_segment(aes(xend = x, yend = predicted), alpha = .2) +
+    geom_point(aes(color = residuals)) +
+    scale_color_gradient2(low = "blue", mid = "white", high = "red") +
+    guides(color = FALSE) +
+    geom_point(aes(y = predicted), shape = 1) +
+    facet_grid(~ iv, scales = "free_x") +  # Split panels here by `iv`
+    theme_bw()
+
+############
+# Modellvereinfachung
+############
+
+
+# Varianzpartitionierung
+library(hier.part)
+d <- mtcars
+hier.part(d$mpg, d[, -1], gof = "Rsqu")
+
+# alle Modelle miteinander vergleichen mit dredge Befehl
+model2 <- lm(mpg ~ hp + wt + disp, data = d)
+library(MuMIn)
+options(na.action = "na.fail")
+dredge(model2)
+
+#----------------
+# Schnelle variante mit broom
+d <- lm(mpg ~ hp + wt+ disp, data = mtcars) %>% 
+    augment()
+
+head(d)
+
+ggplot(d, aes(x = hp, y = mpg)) +
+    geom_segment(aes(xend = hp, yend = .fitted), alpha = .2) +
+    geom_point(aes(color = .resid)) +
+    scale_color_gradient2(low = "blue", mid = "white", high = "red") +
+    guides(color = FALSE) +
+    geom_point(aes(y = .fitted), shape = 1) +
+    theme_bw()
+
+
+############
+# quasipoisson regression
+############
+glm.poisson <- glm(hp ~ mpg, data = mtcars, family = poisson(link = log))
+
+summary(glm.poisson) # klare overdisperion
+
+# deshalb quasipoisson
+glm.quasipoisson <- glm(hp ~ mpg, data = mtcars, family = quasipoisson(link = log))
+
+summary(glm.quasipoisson)
+
+
+# visualisiere
+ggplot2::ggplot(d, aes(x = mpg, y = hp)) + 
+    geom_point(size = 8) + 
+    geom_smooth(method = "glm", method.args = list(family = "poisson"), se = F, color = "green", size = 2) + 
+    scale_x_continuous(limits = c(0,35)) + 
+    scale_y_continuous(limits = c(0,400)) + 
+    theme_classic()
+
+
+############
+# logistische regression
+############
+
+glm.binar <- glm(vs ~ hp, data = mtcars, family = binomial(link = logit)) 
+
+summary(glm.binar)
+
+
+# visualisiere
+ggplot(d, aes(x = hp, y = vs)) +    
+    geom_point(size = 8) +
+    # geom_point(aes(y = predict(glm.binar)), shape  = 1, size = 6) +
+    guides(color = F) +
+    geom_smooth(method = "glm", method.args = list(family = 'binomial'), se = F, size = 2)
+
+
+#Modeldiagnostik (wenn nicht signifikant, dann OK)
+1 - pchisq(glm.binar$deviance,glm.binar$df.resid)  
+
+
+#Modellgüte (pseudo-R²)
+1 - (glm.binar$dev / glm.binar$null)  
+
+#Steilheit der Beziehung (relative Änderung der odds von x + 1 vs. x)
+exp(glm.binar$coefficients[2])
+
+
+#LD50 (wieso negativ: weil zweiter koeffizient negative steigung hat)
+abs(glm.binar$coefficients[1]/glm.binar$coefficients[2])
+
+
+
+
+###########
+# LOESS & GAM
+###########
+
+ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) + 
+    geom_point(size = 8) + 
+    geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
+    geom_smooth(method = "loess", se = F, color = "red", size = 2) + geom_smooth(method = "glm", size = 2, color = "blue", se = F) + scale_x_continuous(limits = c(0,35)) + 
+    scale_y_continuous(limits = c(0,400)) + 
+    theme_classic()
+
+
+
+

@@ -57,7 +57,8 @@ df %<>%
 df %<>%
     group_by(label_content, week) %>% 
     summarise(tot_sold = n()) %>%
-    drop_na() # lasst die unbekannten Menü-Inhalte weg
+    drop_na() %>% 
+    ungroup() # lasst die unbekannten Menü-Inhalte weg
 
 # überprüft die Voraussetzungen für eine ANOVA
 # Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
@@ -70,7 +71,7 @@ df %>%
 
 
 # Boxplot
-ggplot(df, aes(x = label_content, y= tot_sold)) +
+ggplot(df, aes(x = log10(df$label_content), y= tot_sold)) +
   # Achtung: Reihenfolge spielt hier eine Rolle!
   stat_boxplot(geom = "errorbar", width = 0.25) +
   geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
@@ -78,6 +79,8 @@ ggplot(df, aes(x = label_content, y= tot_sold)) +
   # achtung erster Hinweis einer Varianzheterogenität, wegen den Hot&Cold Gerichten
   mytheme 
 
+
+boxplot(log10(df$tot_sold)~df$label_content)
 
 # definiert das Modell (vgl. Skript Statistik 2)
 model <- aov(tot_sold ~ label_content, data = df)
@@ -110,7 +113,6 @@ plot(model)
 
 # achtung hier log10, bei Rücktransformation achten
 model_log <- aov(log10(tot_sold) ~ label_content, data = df) 
-
 par(mfrow = c(2,2))
 plot(model_log) # scheint ok zu sein
 
@@ -120,14 +122,14 @@ TukeyHSD(model_log) # (Statistik 2)
 
 # Achtung Beta-Werte resp. Koeffinzienten sind nicht direkt interpretierbar
 # sie müssten zuerst wieder zurück transformiert werden, hier ein Beispiel dafür:
-# für Buffet
+# für Fleisch
 10^model_log$coefficients[1]
 
-# für Fleisch
-10^(model_log$coefficients[1] + model_log$coefficients[2])
+# für HOt & COld
+10^(model_log$coefficients[1] - model_log$coefficients[2])
 
 # für Vegi
-10^(model_log$coefficients[1] + model_log$coefficients[3])
+10^(model_log$coefficients[1] - model_log$coefficients[3])
 ```
 
 ******
