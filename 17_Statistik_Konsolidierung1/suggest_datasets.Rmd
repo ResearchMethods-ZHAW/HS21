@@ -1,3 +1,9 @@
+```{r, include=FALSE, purl=F}
+
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+```
+
+
 <span style="color:blue">R data sets</span> 
 
 * chickwts
@@ -8,7 +14,7 @@
 
 <span style="color:blue">Research Methods data sets</span>  
 
-* NOVANIMAL
+* NOVANIMAL (Kassendaten oder Gästebefragung)
 * Ukraine (Demoskript 3)
 * Ipomopsis (Demoskript 3)
 

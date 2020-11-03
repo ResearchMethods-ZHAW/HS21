@@ -2,9 +2,9 @@
 library(tidyverse)
 ```
 
-<!-- ## Verschiedene Datensätze -->
+## Verschiedene Datensätze
 
-<!-- In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen. -->
+In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen.
 
 <span style="color:blue"> R data sets </span> 
 
