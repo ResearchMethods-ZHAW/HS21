@@ -123,7 +123,7 @@ oneway.test(data=blume2, size~cultivar, var.equal=F)
 
 __2-faktorielle ANOVA__
 
-```{r}
+```{r eval=FALSE}
 d<-c(10,12,11,13,10,25,12,30,26,13)
 e<-c(15,13,18,11,14,25,39,38,28,24)
 f<-c(10,12,11,13,10,9,2,4,7,13)
@@ -131,7 +131,8 @@ f<-c(10,12,11,13,10,9,2,4,7,13)
 blume3<-data.frame(cultivar=c(rep("a",20),rep("b",20),rep("c",20)),
                    house=c(rep(c(rep("yes",10),rep("no",10)),3)), size=c(a,b,c,d,e,f))
 blume3
-
+```
+```{r}
 boxplot(size~cultivar+house, data=blume3)
 
 summary(aov(size~cultivar+house, data=blume3))
