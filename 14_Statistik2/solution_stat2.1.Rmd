@@ -5,7 +5,7 @@
 
 **Lösungsweg**
 
-```{r eval=FALSE}
+```{r}
 SAR <- read.delim("14_Statistik2/data/SAR.csv",sep = ";")
 SAR
 ```
@@ -98,13 +98,13 @@ xv <- seq(0, 100, 0.1)
 
 
 **Modelldiagnostik**
-```{r, eval = FALSE}
+```{r, eval=FALSE}
 model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100,b=1)),data=decay)
 summary(model.nls)
 ```
 
 **Modelldiagnostik**
-```{r}
+```{r eval=FALSE, include=FALSE}
 if(!require(nlstools)){install.packages("nlstools")}
 library(nlstools)
 
