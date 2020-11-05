@@ -13,4 +13,4 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
-WebsitePath: C:/Users/bako/Desktop/Kurse/HS20/ReMe_nov/Unterrichtsunterlagen_HS20
+WebsitePath: C:/Users/wids/Desktop/ReME_HS20_Unterlagen_TutoRial
