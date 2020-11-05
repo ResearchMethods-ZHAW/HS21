@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 **(c) Juergen Dengler**
 
 
-- [Demoscript als Download](17_Statistik5/RFiles/Statistik 5-Demo_v.03.R)
+- [Demoscript als Download](17_Statistik5/RFiles/Statistik_5_Demo_v.04.R)
 - Datensatz [spf.csv](17_Statistik5/data/spf.csv)
 - Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)
 
@@ -16,18 +16,17 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Based on Logan (2010), Chapter 14
 
 ```{r}
-spf<-read.delim("17_Statistik5/data/spf.csv", sep = ",")
-spf.aov<-aov(Y~A*C+Error(B),spf)
+spf <- read.delim("spf.csv", sep = ",") 
+spf.aov <- aov(Y~A*C + Error(B), spf)
 summary(spf.aov)
 
-attach(spf)
-interaction.plot(C,A,Y)
+interaction.plot(spf$C, spf$A, spf$Y)
 
 #nun als LMM
 if(!require(nlme)){install.packages("nlme")}
 library(nlme)
-spf.lme.1<-lme(Y~A*C,random = ~C | B, spf)
-spf.lme.2<-lme(Y~A*C,random = ~1 | B, spf)
+spf.lme.1 <- lme(Y~A*C, random = ~C | B, spf)
+spf.lme.2 <- lme(Y~A*C, random = ~1 | B, spf)
 
 anova(spf.lme.1)
 anova(spf.lme.2)
@@ -40,12 +39,12 @@ summary(spf.lme.2)
 Based on Zuur et al. (2009), chapter 13
 
 ```{r}
-DeerEcervi <- read.table("17_Statistik5/data/DeerEcervi.txt", header=TRUE, dec=".")
+DeerEcervi <- read.delim("DeerEcervi.txt", sep = "")
 
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
 
-#Anzahl Larven hier in Presence/Absence uebersetzt
-DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0]<-1
+#Anzahl Larven hier in Presence/Absence übersetzt
+DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0] <- 1
 DeerEcervi$fSex <- factor(DeerEcervi$Sex)
 
 #Hirschlänge hier standardisiert, sonst würde der Achsenabschnitt im Modell für
@@ -54,10 +53,11 @@ DeerEcervi$fSex <- factor(DeerEcervi$Sex)
 DeerEcervi$CLength <- DeerEcervi$Length - mean(DeerEcervi$Length)
 DeerEcervi$fFarm <- factor(DeerEcervi$Farm)
 
+
 #Zunächst als GLM
 #Interaktionen mit fFarm nicht berücksichtigt, da zu viele Freiheitsgrade verbraucht würden
-DE.glm<-glm(Ecervi.01 ~ CLength * fSex+fFarm, data = DeerEcervi,
-            family = binomial)
+DE.glm <- glm(Ecervi.01 ~ CLength * fSex+fFarm, data = DeerEcervi,family = binomial)
+
 drop1(DE.glm, test = "Chi")
 summary(DE.glm)
 anova(DE.glm)
@@ -68,31 +68,31 @@ anova(DE.glm)
 ```{r}
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
-DE.PQL<-glmmPQL(Ecervi.01 ~ CLength * fSex,
+DE.PQL <-glmmPQL(Ecervi.01 ~ CLength * fSex,
                 random = ~ 1 | fFarm, family = binomial, data = DeerEcervi)
 summary(DE.PQL)
 
 
 g <- 0.8883697 + 0.0378608 * DeerEcervi$CLength
-p.averageFarm1<-exp(g)/(1+exp(g))
-I<-order(DeerEcervi$CLength)              #Avoid spaghetti plot
-plot(DeerEcervi$CLength,DeerEcervi$Ecervi.01,xlab="Length",
-     ylab="Probability of presence of E. cervi L1")
-lines(DeerEcervi$CLength[I],p.averageFarm1[I],lwd=3)
-p.Upp<-exp(g+1.96*1.462108)/(1+exp(g+1.96*1.462108))
-p.Low<-exp(g-1.96*1.462108)/(1+exp(g-1.96*1.462108))
-lines(DeerEcervi$CLength[I],p.Upp[I])
-lines(DeerEcervi$CLength[I],p.Low[I])
+p.averageFarm1 <- exp(g)/(1+exp(g))
+I <- order(DeerEcervi$CLength)              #Avoid spaghetti plot
+plot(DeerEcervi$CLength, DeerEcervi$Ecervi.01, xlab="Length",
+     ylab = "Probability of presence of E. cervi L1")
+lines(DeerEcervi$CLength[I], p.averageFarm1[I],lwd=3)
+p.Upp <- exp(g+1.96*1.462108)/(1+exp(g+1.96*1.462108))
+p.Low <- exp(g-1.96*1.462108)/(1+exp(g-1.96*1.462108))
+lines(DeerEcervi$CLength[I], p.Upp[I])
+lines(DeerEcervi$CLength[I], p.Low[I])
+
 
 if(!require(lme4)){install.packages("lme4")}
 library(lme4)
-DE.lme4<-lmer(Ecervi.01 ~ CLength * fSex +(1|fFarm),
-              family = binomial, data = DeerEcervi)
+DE.lme4 <- glmer(Ecervi.01 ~ CLength * fSex +(1|fFarm), family = binomial, data = DeerEcervi)#lmer funktioniert nicht mehr
 summary(DE.lme4)
 
 if(!require(glmmML)){install.packages("glmmML")}
 library(glmmML)
-DE.glmmML<-glmmML(Ecervi.01 ~ CLength * fSex,
-                  cluster = fFarm,family=binomial, data = DeerEcervi)
+DE.glmmML <- glmmML(Ecervi.01 ~ CLength * fSex,
+                  cluster = fFarm, family = binomial, data = DeerEcervi)
 summary(DE.glmmML)
 ```

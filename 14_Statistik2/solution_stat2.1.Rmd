@@ -5,7 +5,7 @@
 
 **Lösungsweg**
 
-```{r}
+```{r eval=FALSE}
 SAR <- read.delim("14_Statistik2/data/SAR.csv",sep = ";")
 SAR
 ```
