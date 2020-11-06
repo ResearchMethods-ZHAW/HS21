@@ -1,11 +1,11 @@
----
-title: "MSc. Research Methods - Statistikteil Loesung Aufgabe 4.2N 2019"
-author: "Juergen Dengler"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
----
+<!-- # --- -->
+<!-- # title: "MSc. Research Methods - Statistikteil Loesung Aufgabe 4.2N 2019" -->
+<!-- # author: "Juergen Dengler" -->
+<!-- # output: -->
+<!-- #   html_document: -->
+<!-- #     df_print: paged -->
+<!-- #   pdf_document: default -->
+<!-- # --- -->
 
 ```{r,include=FALSE, purl=FALSE}
 knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
@@ -20,8 +20,8 @@ knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, mes
 
 ### Uebung 4.2 - Multiple logistische Regression
 
-```{r eval=FALSE}
-polis <- read.csv("polis.csv")
+```{r}
+polis <- read.csv("16_Statistik4/data/polis.csv")
 polis
 
 str(polis)

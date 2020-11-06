@@ -1,11 +1,11 @@
----
-title: "MSc. Research Methods - Statistikteil Loesung Aufgabe 4.1"
-author: "Juergen Dengler"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
----
+<!-- # --- -->
+<!-- # title: "MSc. Research Methods - Statistikteil Loesung Aufgabe 4.1" -->
+<!-- # author: "Juergen Dengler" -->
+<!-- # output: -->
+<!-- #   html_document: -->
+<!-- #     df_print: paged -->
+<!-- #   pdf_document: default -->
+<!-- # --- -->
 
 ```{r}
 knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
@@ -124,10 +124,13 @@ Wenn man sinnvollere Startwerte als die default-Werte (1 für alle Parameter) ei
 #Eine asymptotische Funktion durch den Ursprung (mit implementierter Selbststartfunktion)
 asym.model <- nls(Species.richness~SSasympOrig(Area, Asym, lrc), data = SAR)
 summary(asym.model)
+```
 
+```{r, eval=FALSE}
 logistic.model <- nls(Species.richness~SSlogis(Area, asym, xmid, scal), data = SAR)
 summary(logistic.model)
 ```
+
 <font color="red">**Error in nls(y ~ 1/(1 + exp((xmid - x)/scal)), data = xy, start = list(xmid= aux[1L], : Iterationenzahl überschritt Maximum 50**</font>
 
 Das ist etwas, was einem bei nls immer wieder passieren kann. Die Iteration ist nach der eingestellten max. Iterationszahl noch nicht zu einem Ergebnis konvergiert. Um ein Ergebnis für diese Funktion zu bekommen, müsste man mit den Einstellungen von nls „herumspielen“, etwas bei den Startwerten oder den max. Um das effizient zu machen, braucht man aber etwas Erfahrung Interationszahlen (man kann z. B. manuell die Maximalzahl der Iterationen erhöhen, indem man in den Funktionsaufruf etwa maxiter =100 als zusätzliches Argument reinschreibtn). 

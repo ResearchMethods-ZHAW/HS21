@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Based on Logan (2010), Chapter 14
 
 ```{r}
-spf <- read.delim("spf.csv", sep = ",") 
+spf <- read.delim("17_Statistik5/data/spf.csv", sep = ",") 
 spf.aov <- aov(Y~A*C + Error(B), spf)
 summary(spf.aov)
 
@@ -39,7 +39,7 @@ summary(spf.lme.2)
 Based on Zuur et al. (2009), chapter 13
 
 ```{r}
-DeerEcervi <- read.delim("DeerEcervi.txt", sep = "")
+DeerEcervi <- read.delim("17_Statistik5/data/DeerEcervi.txt", sep = "")
 
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
 

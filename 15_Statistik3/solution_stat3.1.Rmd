@@ -1,10 +1,10 @@
----
-title: "MSc. Research Methods - Statistikteil Lösungen 2019"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
----
+<!-- # --- -->
+<!-- # title: "MSc. Research Methods - Statistikteil Lösungen 2019" -->
+<!-- # output: -->
+<!-- #   html_document: -->
+<!-- #     df_print: paged -->
+<!-- #   pdf_document: default -->
+<!-- # --- -->
 
 ```{r}
 knitr::opts_chunk$set(results = "hide", fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
@@ -56,6 +56,8 @@ Vorgehen dokumentieren.
 Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen so ab, dass sie noch eindeutig, aber nicht unnötig lang sind, etwa indem man die Einheiten wegstreicht
 
 ```{r}
+
+library(readr)
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
 ukraine <-read_delim("15_Statistik3/data/Ukraine_bearbeitet.csv", delim=";")
 attach(ukraine)
@@ -71,9 +73,9 @@ Man erkennt, dass alle Spalten bis auf die erste mit der Plot ID numerisch (num 
 dass die abhängige Variable in Spalte 2 sowie die Prediktorvariablen in den Spalten 3 bis 23
 stehen.
 
-```{r}
+```{r,eval=FALSE}
 #Explorative Datenanalyse der abhängigen Variablen
-boxplot(ukraine$Species.richness)
+boxplot(ukraine$`Species richness`)
 ```
 
 Der Boxplot sieht sehr gut symmetrisch aus. Insofern gibt es keinen Anlass über eine
@@ -141,8 +143,8 @@ der Rechenleistung bringt, hätten wir auch noch darüber nachdenken können, ei
 quadratische Terme oder Interaktionsterme zu berücksichtigen).
 
 ```{r}
-global.model <- lm(Species.richness ~ Inclination+Heat.index+Microrelief+Grazing.intensity+
-                    Litter+Stones.and.rocks+Gravel+Fine.soil+pH+CaCO3+C.org+CN.ratio+Temperature, data = ukraine)
+global.model <- lm(`Species richness` ~ Inclination+`Heat index`+`Microrelief`+`Grazing intensity`+
+                    `Litter`+`Stones and rocks`+ Gravel+`Fine soil`+pH+CaCO3+`C org`+`CN ratio`+Temperature, data = ukraine)
 
 ```
 
@@ -185,7 +187,7 @@ Demnach ist Heat.index die wichtigste Variable (in 100% aller relevanten Modelle
 ferner Litter, CaCO3, CN.ratio und Grazing.intensity in mehr als 50% der relevanten Modelle
 enthalten sind.
 
-```{r}
+```{r,eval=FALSE}
 #Modelaveraging (Achtung: dauert mit 13 Variablen einige Minuten)
 summary(model.avg(allmodels, rank="AICc"), subset=TRUE)
 
@@ -199,7 +201,7 @@ Einheit zunimmt?) ermitteln.
 #Modelldiagnostik nicht vergessen
 par(mfrow=c(2,2))
 plot(global.model)
-plot(lm(Species.richness~Heat.index+Litter+CaCO3+CN.ratio+Grazing.intensity))
+plot(lm(`Species richness`~`Heat index`+Litter+CaCO3+`CN ratio`+ `Grazing intensity`))
 
 summary(global.model)
 ```
