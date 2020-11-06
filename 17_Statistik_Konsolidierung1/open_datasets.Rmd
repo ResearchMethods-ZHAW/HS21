@@ -2,7 +2,7 @@
 library(tidyverse)
 ```
 
-## Verschiedene Datensätze
+## Verschiedene Datensaetze
 
 In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen.
 
