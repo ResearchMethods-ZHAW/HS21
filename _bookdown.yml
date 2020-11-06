@@ -48,26 +48,19 @@ rmd_files: [
   "15_Statistik3/Abstract.Rmd",
   "15_Statistik3/Demo_Statistik_3.Rmd",
   "15_Statistik3/Uebungen_3.Rmd",
-  #"15_Statistik3/solution_stat3.1.Rmd",
- #"15_Statistik3/Demo_A_MultReg.Rmd",
- #"15_Statistik3/Demo_B_nichtLin.Rmd",
+  "15_Statistik3/solution_stat3.1.Rmd",
  
 
   "16_Statistik4/Abstract.Rmd",
   "16_Statistik4/Demo_Statistik_4.Rmd",
   "16_Statistik4/assigment_stat4.Rmd",
-  #"16_Statistik4/solution_stat4.1n.Rmd",
-  #"16_Statistik4/solution_stat4.2n.Rmd",
-  #"16_Statistik4/solution_stat4.2s.Rmd",
-  #"16_Statistik4/Demo_A_LogisticReg.Rmd", 
- #"16_Statistik4/Demo_B_Pseudoreplik.Rmd",
- #"16_Statistik4/Demo_C_SplitPlotANOVA.Rmd",
- #"16_Statistik4/Uebung.Rmd",
- #"16_Statistik4/Uebung_loesung.Rmd",
- 
- #"17_Statistik5/Abstract.Rmd",
- #"17_Statistik5/Demoskript.Rmd",
- #"17_Statistik5/assigment_stat5.Rmd",
+  "16_Statistik4/solution_stat4.1n.Rmd",
+  "16_Statistik4/solution_stat4.2n.Rmd",
+  "16_Statistik4/solution_stat4.2s.Rmd",
+
+ "17_Statistik5/Abstract.Rmd",
+ "17_Statistik5/Demo_Statistik_5.Rmd",
+ "17_Statistik5/assigment_stat5.Rmd",
  #"17_Statistik5/solution_stat5.1.Rmd",
  #"17_Statistik5/solution_stat5.2.Rmd",
 
@@ -77,7 +70,7 @@ rmd_files: [
   #"17_Statistik_Konsolidierung1/open_datasets.Rmd","
    
   
-   #"18_Statistik6/Abstract.Rmd",
+   "18_Statistik6/Abstract.Rmd",
    #"18_Statistik6/Demoskript.Rmd",
    #"18_Statistik6/assigment_stat6.Rmd",
    #"18_Statistik6/solution_stat6.1.Rmd",

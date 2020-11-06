@@ -1,0 +1,213 @@
+<!-- # --- -->
+<!-- # title: "MSc. Research Methods - Statistikteil Lösungen 2019" -->
+<!-- # author: "Juergen Dengler" -->
+<!-- # output: -->
+<!-- #   html_document: -->
+<!-- #     df_print: paged -->
+<!-- #   pdf_document: default -->
+<!-- # --- -->
+
+```{r,include=FALSE, purl=FALSE}
+knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
+```
+
+## Musterloesung Aufgabe 4.2N: Multiple logistische Regression
+
+[R-Skript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.2N_v.01.R)
+
+**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+
+- Laden Sie den Datensatz isolation.csv. Dieser enthält für 50 Inseln die Information, ob
+  eine bestimmte Vogelart dort vorkommt (incidence = 1) oder nicht vorkommt
+  (incidence = 0). Für jede der Inseln sind zudem zwei Umweltvariablen angegeben:
+  area (Fläche in km²) und isolation (Entfernung vom Festland in km).
+- **Ermitteln Sie das minimal adäquate statistische Modell, das die              Vorkommenswahrscheinlichkeit der Vogelart in Abhängigkeit von Flächengrösse und Entfernung beschreibt.**
+- Bitte erklären und begründen Sie die einzelnen Schritte, die Sie unternehmen, um zu
+diesem Ergebnis zu kommen. Dazu erstellen Sie bitte ein Word-Dokument, in das Sie
+Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, Ihre
+Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
+Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+- Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
+und welches die unabängige(n) Variablen
+- Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
+Datentransformationen vorgenommen werden sollten
+- Auswahl und Begründung eines statistischen Verfahrens
+- Bestimmung des vollständigen/maximalen Models
+- Selektion des/der besten Models/Modelle
+- Durchführen der Modelldiagnostik für d
+- Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
+Ergebnisdarstellung benötigt werden
+- Formulieren Sie abschliessend einen Methoden- und Ergebnisteil (ggf. incl.
+adäquaten Abbildungen) zu dieser Untersuchung in der Form einer
+wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je
+einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und
+Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige
+Redundanz dagegen vermieden werden.
+- **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
+(Kombination aus R-Code, R Output und dessen Interpretation) und (c)
+ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+
+### Uebung 4.2 - Multiple logistische Regression
+
+```{r}
+islands <-read.csv("16_Statistik4/data/isolation.csv")
+islands
+str(islands)
+summary(islands)
+```
+
+Man erkennt, dass islands 50 Beobachtungen von drei Parametern enthält, wobei incidence
+nur 0 oder 1 enthält, während area und isolation metrisch sind.
+
+
+```{r}
+attach(islands)
+#Explorative Datenanalyse
+boxplot(area)
+
+boxplot(isolation)
+```
+
+Die Boxplots der beiden unabhängigen Variablen sind sehr symmetrisch, deshalb besteht kein
+Anlass über eine evtl. log-Transformation nachzudenken (Tatsächlich sehen die Boxplots so
+aus, als seien Fläche und Entfernung bereits log-transformiert, obgleich das Buch von Crawley (2015), aus dem dieses Beispiel stammt), behauptet, es seien die untransformierten
+Originaldaten). Achtung: die Voraussetzung der ungefähren Normalverteilung gilt nur für die abhängige Variable, oder noch genauer für deren Residuen nach Berechnung des Models.
+Trotzdem kann u.U. eine Transformation von sehr schief verteilten unabhängigen Variablen
+sinnvoll sein, um die Linearität der Beziehung zu verbessern.
+
+
+```{r}
+#Definition der unterschiedlichen Modelle
+model.mult <- glm(incidence~area*isolation,binomial)
+model.add <- glm(incidence~area+isolation,binomial)
+model.area <- glm(incidence~area,binomial)
+model.isolation <- glm(incidence~isolation,binomial)
+```
+
+Es werden alle vier möglichen Modelle definiert: Mit area, isolation und area:isolationInteraktion (mult), mit area und isolation (add), nur mit area und nur mit isolation.
+
+```{r}
+#Modellergebnisse
+summary(model.mult)
+summary(model.add)
+
+summary(model.area)
+summary(model.isolation)
+```
+
+Um aus diesen vier Modellen, das minimal adäquate Modell herauszufinden, gibt es zwei
+Möglichkeiten: (1) Man nimmt das volle Modell (mult), vereinfacht es schrittweise und
+vergleicht jeweils das komplexere mit dem weniger komplexen Modell mittels ANOVA. (2) Man
+vergleicht alle vier Modelle auf einmal mittel AICc. Man sollte sich für eine der beiden
+Möglichkeiten entscheiden und nicht beide verfolgen. Im Folgenden sind aber beide
+darstestellt.
+
+**_Version (1): Schrittweise Modellvereinfachung mittels ANOVA_**
+
+```{r}
+anova(model.mult,model.add,test="Chi")
+```
+
+Das komplexere Modell mit Interaktionsterm (mult) ist nicht signifikant besser als das Modell, in dem area und isolation additiv enthalten sind (add). Deshalb kann man den Interaktionsterm streichen.
+
+```{r}
+anova(model.add,model.area,test="Chi")
+anova(model.add,model.isolation,test="Chi")
+```
+
+Das additive Modell ist aber signifikant besser als jedes der beiden Modelle mit nur einem Prediktor. Deshalb ist das minimal adäquate Modell incidence ~ area + isolation.
+
+**_Version (2): Modellselektion mittels AICc_**
+
+```{r}
+library(AICcmodavg)
+cand.models<-list()
+cand.models[[1]]<-model.mult
+cand.models[[2]]<-model.add
+cand.models[[3]]<-model.area
+cand.models[[4]]<-model.isolation
+
+Modnames<-c("Area * Isolation","Area +
+Isolation","Area","Isolation")
+aictab(cand.set=cand.models,modnames=Modnames)
+```
+
+Auch mit Modellselektion mittels AICc kommt man zum gleichen Ergebnis. Das minimal
+adäquate Modell ist incidence ~ area + isolation.
+
+```{r}
+#Modelldiagnostik für das gewählte Modell (wenn nicht signifikant,dann OK)
+1 - pchisq(model.add$deviance,model.add$df.resid)
+
+#Nicht signifikant, d. h. kein „lack of fit“.
+
+#Visuelle Inspektion der Linearität
+library(car)
+crPlots(model.add,ask=F)
+```
+
+log odds ratio vs. Prediktorvariablen (area bzw. isolation) ist fast perfekt linear (d. h. grüne Linie liegt fast auf der roten Optimallinie). D. h. auch dieser Sicht ist das Modell korrekt spezifiziert.
+
+```{r}
+#Modellgüte (pseudo-R²)
+1 - (model.add$dev / model.add$null)
+
+# 58% der Vorkommenswahrscheinlichkeit der Vogelart wird durch die beiden gewählten Prediktorvariablen erklärt.
+
+
+#Steilheit der Beziehung (relative Änderung der odds von x + 1 vs.x)
+#area (2. Koeffizient nach dem Achsenabschnitt)
+exp(model.add$coef[2])
+
+#> 1, d. h. Vorkommenswahrscheinlichkeit steigt mit Flächengrösse.
+
+#area (3. Koeffizient nach dem Achsenabschnitt)
+exp(model.add$coef[3])
+
+#< 1, d. h. Vorkommenswahrscheinlichkeit sinkt mit zunehmender Isolation.
+```
+
+```{r}
+#Ergebnisplots
+#Da es keine signifikante Interaktion gibt, kann man die separaten Darstellungen der beiden Einzelbeziehungen nehmen.
+
+xs<-seq(0,10,l=1000)
+model.predict<-
+predict(model.area,type="response",se=T,newdata=data.frame(area=xs))
+plot(incidence~area,data=islands,xlab="Fläche
+(km²)",ylab="Vorkommenswahrscheinlichkeit",pch=16, col="red")
+ points(model.predict$fit ~ xs,type="l")
+ lines(model.predict$fit+model.predict$se.fit ~ xs,
+type="l",lty=2)
+ lines(model.predict$fit-model.predict$se.fit ~ xs,
+type="l",lty=2)
+ 
+ model.predict2<-
+predict(model.isolation,type="response",se=T,newdata=data.frame(isolation=xs))
+plot(incidence~isolation,data=islands,xlab="Entfernung vom Festland
+(km)",ylab="Vorkommenswahrscheinlichkeit",pch=16, col="blue")
+ points(model.predict2$fit ~ xs,type="l")
+ lines(model.predict2$fit+model.predict2$se.fit ~ xs,
+type="l",lty=2)
+ lines(model.predict2$fit-model.predict2$se.fit ~ xs,
+type="l",lty=2)
+```
+
+
+**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)**
+
+**Methoden**
+
+Es wurde das Vorkommen (ja/nein) ein Brutvogelart auf 50 Inseln in Abhängigkeit von deren Flächengrösse (in km²) und Entfernung vom Festland (in km) erhoben.**
+
+**Mittels multipler logistischer Regression wurden unterschiedliche Modelle für diese Abhängigkeit berechnet und daraus dann das minimal adäquate Modell mittels AICc ermittelt. Die Adäquanz des gewählten Modells wurde anschliessend mittels G²-Statistik und „component + residual plots“ überprüft und war nicht verletzt.
+
+**Ergebnisse**
+
+Das nach AICc beste Modell enthielt Fläche und Entfernung vom Festland als Parameter, nicht jedoch deren Interaktion. Es wies einen delta-AICc zum Modell mit dem Interaktionsterm von 2.22 sowie 5.97 zum Modell nur mit der Fläche und 19.50 zum Modell nur mit der Entfernung auf. Dabei hatte die Fläche (in km²) einen stark positiven, die Isolation (in km) dagegen einen sehr stark negativen Effekt (Abb. 1). Die Gesamtbeziehung Vorkommenswahrscheinlichkeit = 1 / (1 + exp (–(6.64 + 0.58 * Fläche – 1.37 * Entfernung))) erklärt dabei 58% der Variabilität de Daten.
+
+![](16_Statistik4/data/abb1_4.2N.png)
+
+
+Abb. 1: Modellierte Abhängigkeit der Vorkommenswahrscheinlichkeit der Vogelart auf Inseln von den beiden additiv wirkenden Prädiktoren Fläche und Entfernung. Dargestellt ist die Regressionskurve +/- Standardfehler.

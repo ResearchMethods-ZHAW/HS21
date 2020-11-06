@@ -1,17 +1,18 @@
----
-title: "MSc. Research Methods - Statistikteil Lösungen 2019"
-output:
-  html_document:
-    df_print: paged
-  pdf_document: default
----
+<!-- # --- -->
+<!-- # title: "MSc. Research Methods - Statistikteil Lösungen 2019" -->
+<!-- # output: -->
+<!-- #   html_document: -->
+<!-- #     df_print: paged -->
+<!-- #   pdf_document: default -->
+<!-- # --- -->
 
 ```{r}
 knitr::opts_chunk$set(results = "hide", fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
 ```
 
-## Musterlösung Aufgabe 3.1: Multiple Regression
-[R-Skript als Download](15_Statistik3/RFiles/Loesung_Uebung_3.1_v.02.R)
+## Musterloesung Aufgabe 3.1: Multiple Regression
+[R-Skript als Download](15_Statistik3/RFiles/Loesung_3.1_v.03.R)
+[Lösungstext als Download](15_Statistik3/Statistik_3.1_Loesung_v.02.pdf)
 
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
@@ -55,11 +56,16 @@ Vorgehen dokumentieren.
 Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen so ab, dass sie noch eindeutig, aber nicht unnötig lang sind, etwa indem man die Einheiten wegstreicht
 
 ```{r}
+
+library(readr)
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
 ukraine <-read_delim("15_Statistik3/data/Ukraine_bearbeitet.csv", delim=";")
 attach(ukraine)
 
 ukraine
+
+# ukraine <- read.delim("15_Statistik3/data/Ukraine_bearbeitet.csv",sep=";")
+
 str(ukraine)
 summary(ukraine)
 ```
@@ -67,9 +73,9 @@ Man erkennt, dass alle Spalten bis auf die erste mit der Plot ID numerisch (num 
 dass die abhängige Variable in Spalte 2 sowie die Prediktorvariablen in den Spalten 3 bis 23
 stehen.
 
-```{r}
+```{r,eval=FALSE}
 #Explorative Datenanalyse der abhängigen Variablen
-boxplot(Species.richness)
+boxplot(ukraine$`Species richness`)
 ```
 
 Der Boxplot sieht sehr gut symmetrisch aus. Insofern gibt es keinen Anlass über eine
@@ -123,6 +129,10 @@ cor <- cor(ukraine[,c(3:11,15:23)])
 cor[abs(cor)<0.6] <- 0
 cor
 ```
+```{r include=FALSE}
+write.table(cor, file="Corrleation.csv", sep=";", dec=".")
+```
+
 Entsprechend „werfen“ wir auch noch die folgenden Variablen „raus“: Temperature.range
 (positiv mit Temperature), Precipitation (negativ mit Temperature) sowie Conductivity (positiv
 mit pH).
@@ -133,9 +143,9 @@ der Rechenleistung bringt, hätten wir auch noch darüber nachdenken können, ei
 quadratische Terme oder Interaktionsterme zu berücksichtigen).
 
 ```{r}
-global.model <- lm (Species.richness ~
-Inclination+Heat.index+Microrelief+Grazing.intensity+Litter+
-Stones.and.rocks+Gravel+Fine.soil+pH+CaCO3+C.org+CN.ratio+Temperature)
+global.model <- lm(`Species richness` ~ Inclination+`Heat index`+`Microrelief`+`Grazing intensity`+
+                    `Litter`+`Stones and rocks`+ Gravel+`Fine soil`+pH+CaCO3+`C org`+`CN ratio`+Temperature, data = ukraine)
+
 ```
 
 Nun gibt es im Prinzip zwei Möglichkeiten, vom globalen (vollen) Modell zu einem minimal
@@ -149,6 +159,7 @@ Parametern). Diese Lösung stelle ich im Folgenden vor:
 #Multimodel inference
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
+
 options(na.action="na.fail")
 allmodels<-dredge(global.model)
 allmodels
@@ -176,10 +187,10 @@ Demnach ist Heat.index die wichtigste Variable (in 100% aller relevanten Modelle
 ferner Litter, CaCO3, CN.ratio und Grazing.intensity in mehr als 50% der relevanten Modelle
 enthalten sind.
 
-```{r}
+```{r,eval=FALSE}
 #Modelaveraging (Achtung: dauert mit 13 Variablen einige Minuten)
-summary(model.avg(get.models(dredge(global.model,rank="AICc"),subset
-=TRUE)))
+summary(model.avg(allmodels, rank="AICc"), subset=TRUE)
+
 ```
 
 Aus dem gemittelten Modell können wir die Richtung der Beziehung (positiv oder negativ) und
@@ -190,54 +201,12 @@ Einheit zunimmt?) ermitteln.
 #Modelldiagnostik nicht vergessen
 par(mfrow=c(2,2))
 plot(global.model)
-plot(lm(Species.richness~Heat.index+Litter+CaCO3+CN.ratio+Grazing.intensity))
+plot(lm(`Species richness`~`Heat index`+Litter+CaCO3+`CN ratio`+ `Grazing intensity`))
+
+summary(global.model)
 ```
 
 Wie immer kommt am Ende die Modelldiagnostik. Wir können uns entweder das globale
 Modell oder das Modell mit den 5 Variablen mit importance > 50% anschauen. Das Bild sieht
 fast identisch aus und zeigt keinerlei problematische Abweichungen, d. h. links oben weder ein
 Keil, noch eine Banane, rechts oben eine nahezu perfekte Gerade. 
-
-**Darstellung der Vorgehensweise und Ergebnisse (in einer wiss. Arbeit)
-Methoden
-Es wurden Pflanzenartenzahlen von Steppenrasen in der Ukraine auf 199 10 m² grossen
-Probeflächen erhoben und zu diesen 23 Umweltvariablen erhoben. Da jeweils ein Messwert
-fehlte, wurden die Bodenvariablen Sand-, Schluff- und Tongehalt von der weiteren
-statistischen Analyse ausgeschlossen. Mittels Pearson’s Korrelationskoeffizient wurde auf
-Abhängigkeiten zwischen den Prädiktorvariablen getestet und aus Paaren mit einer
-Beziehung mit |r| > 0.6 nur jeweils eine Variable beibehalten. Entsprechend wurden die
-hoch mit Jahresmitteltemperatur korrelierten Werte Meereshöhe (negativ),
-Temperaturamplitude (positiv) und Niederschlag (negativ) ausgeschlossen, ferner
-Leitfähigkeit (positiv mit pH) und Stickstoffgehalt (positiv mit organischem
-Kohlenstoffgehalt). Damit umfasste das globale lineare Modell (Funktion lm in R) die in Tab.
-1 aufgeführten Variablen. Quadratische Terme oder Interaktionen zwischen Variablen
-wurden nicht berücksichtigt. Auf ein glm mit Poisson-Regression wurde verzichtet, da eine
-visuelle Inspektion eines Boxplots der Artenzahlen keine relevanten Abweichungen von
-einer Normalverteilung ergab.
-Die Modellauswahl fand mittels Multimodel Inference (dredge-Funktion im MuMIn package
-in R) statt. Die Modellgüte wurde mittels AICc beurteilt. Zur Beurteilung der Bedeutung von
-Variablen wurden Importance Values (Summe der Akaike weights in allen Modellen, die die
-betreffende Variable beinhalten) ausgerechnet. Die Richtung der Beziehung wurde aus der
-Parameterschätzung im globalen Modell bestimmt. Schliesslich wurde ein gemitteltes
-Modell (aller möglichen Modelle, gewichtet nach deren Akaike weights) erstellt, um die
-Effektgrössen zu bestimmen. Die Adäquanz des gewählten Modells wurde in Residualplots
-visuell inspiziert und ergab keine nennenswerten Verletzungen der Voraussetzungen eines
-parametrischen Modells.
-Ergebnisse
-Das beste Modell nach AICc beinhaltete die Variablen CaCO3, CN-Verhältnis,
-Beweidungsintensität, Heat load-Index und Streuauflage. Da sich die nächstbesten Modelle
-aber um weniger als DeltaAICc = 2 unterscheiden, wurden für die Gesamtbeurteilung die
-Importance values sowie die Koeffizienten des über alle 8192 betrachteten Modelle nach
-Akaike weights gemittelten average models herangezogen (Tab. 1). Mit einem Importance
-value von nahezu 100% war der Heat load-Index die wichtigste Einflussgrösse (negativ). Vier
-weitere Umweltvariablen waren ebenfalls in mehr als 50% der statistisch relevanten
-Modelle enthalten (in dieser Reihenfolge):**
-
-**Tab. 1. Ergebnisse der Multimodel Inference. Die Variablen sind nach absteigenden
-Importance values sortiert. Die Parameterschätzung bezieht sich nur auf die Modelle, welche
-die entsprechende Variable beinhalten und ist nach Akaike weights gewichtet. Unter
-„Hochkorrelierte Variablen“ sind jene aufgeführt, die wegen ihres engen Zusammenhangs
-mit der genannten Variablen nicht ins globale Modell aufgenommen wurden.**
-
-![](15_Statistik3/data/tab1_uebungStatistik3.png)
-

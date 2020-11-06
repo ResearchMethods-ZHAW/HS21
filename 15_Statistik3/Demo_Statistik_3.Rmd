@@ -72,7 +72,7 @@ lines(xv, yv2, col="red")
 # Residualplots
 par(mfrow=c(2,2))
 plot(lm.1)
-plot(lm.2)
+#plot(lm.2)
 ```
 
 **Multiple lineare Regression basierend auf Logan, Beispiel 9A** 

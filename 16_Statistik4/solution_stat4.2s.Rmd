@@ -28,6 +28,7 @@ library(lubridate)
 library(ggplot2)
 library(stringr)
 library(tidyr)
+library(readr)
 
 # lade Daten von Zenodo
 # für Informationen zu den einzelnen Variablen, siehe https://zenodo.org/record/3554884/files/2020_ZHAW_vonRickenbach_Variablen_cleaned_recoded_survey_dataset_anonym_NOVANIMAL.pdf?download=1

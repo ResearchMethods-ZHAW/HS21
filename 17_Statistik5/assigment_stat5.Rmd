@@ -1,4 +1,4 @@
-## Übungen 5
+## Uebungen 5
 
 **Übung 5.1: Split-plot ANOVA**
 

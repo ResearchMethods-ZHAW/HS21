@@ -131,7 +131,8 @@ f<-c(10,12,11,13,10,9,2,4,7,13)
 blume3<-data.frame(cultivar=c(rep("a",20),rep("b",20),rep("c",20)),
                    house=c(rep(c(rep("yes",10),rep("no",10)),3)), size=c(a,b,c,d,e,f))
 blume3
-
+```
+```{r}
 boxplot(size~cultivar+house, data=blume3)
 
 summary(aov(size~cultivar+house, data=blume3))
