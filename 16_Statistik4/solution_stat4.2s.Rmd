@@ -17,9 +17,9 @@ output:
 
 *****
 
-
 **kommentierter Lösungsweg**
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
 
 library(dplyr)
 library(readr)
