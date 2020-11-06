@@ -7,6 +7,7 @@ library(lubridate)
 library(ggplot2)
 library(stringr)
 library(tidyr)
+library(readr)
 
 # lade Daten von Zenodo
 # für Informationen zu den einzelnen Variablen, siehe https://zenodo.org/record/3554884/files/2020_ZHAW_vonRickenbach_Variablen_cleaned_recoded_survey_dataset_anonym_NOVANIMAL.pdf?download=1
@@ -81,7 +82,7 @@ summary.lm(mod1)
 1 - pchisq(mod1$deviance, mod1$df.resid) # Ok
 
 #Modellgüte (pseudo-R²)
-1 - (mod1$dev / mod1$null) # eher kleines pseudo-R² 
+1 - (mod1$dev / mod1$null) # eher kleines pseudo-R2
 
 
 # Konfusionsmatrix vom  Datensatz
@@ -134,7 +135,7 @@ km
 # Cross-Validation oder k fold Cross-Validation 
 
 # kalkuliert die Missklassifizierungsrate 
-mf <- 1-sum(diag(km)/sum(km)) # ist mit knapp 23% eher hoch
+mf <- 1-sum(diag(km)/sum(km)) # ist mit knapp 23 %  eher hoch
 mf
 
 
