@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
 ## Musterloesung Aufgabe 4.2S: multiple logistische Regression
 
 *****
@@ -5,9 +11,9 @@
 
 > **Lese-Empfehlung** Kapitel 4 von [Gareth (2016)](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)
 
->Download [R-Skript](16_Statistik/RFiles/solution_stat4.2s.R)
+>Download [R-Skript](16_Statistik4/RFiles/solution_stat4.2s.R)
 
->Download [PDF](16_Statistik1/RFiles/solution_stat4.2s.pdf)
+>Download [PDF](16_Statistik4/RFiles/solution_stat4.2s.pdf)
 
 *****
 
@@ -16,6 +22,7 @@
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(dplyr)
+library(readr)
 library(magrittr)
 library(lubridate)
 library(ggplot2)
@@ -24,8 +31,9 @@ library(tidyr)
 
 # lade Daten von Zenodo
 # für Informationen zu den einzelnen Variablen, siehe https://zenodo.org/record/3554884/files/2020_ZHAW_vonRickenbach_Variablen_cleaned_recoded_survey_dataset_anonym_NOVANIMAL.pdf?download=1
-nova_survey <- nova_survey <- read_delim("https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1", delim = ";",
-                                         locale = locale(encoding = "Latin1")) %>%
+nova_survey <- read_delim("https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1", 
+                          delim = ";",
+                          locale = locale(encoding = "Latin1")) %>%
   mutate(date = as_date(date))
 
 #überprüfe die Datenstruktur
@@ -75,13 +83,15 @@ Amelia::missmap(df)
 df %<>%
   drop_na()
 
-#  sieht euch die Verteilung zwischen Mensagänger und Selbstverpfleger an 
-table(df$mensa) # sind nicht gleichmässig verteilt, bei der Vorhersage müssen wir das berücksichtigen
+#  sieht euch die Verteilung zwischen Mensagänger und Selbstverpfleger an
+# sind nicht gleichmässig verteilt, bei der Vorhersage müssen wir das berücksichtigen
+table(df$mensa) 
 df %>% count(mensa) # alternativ
 
 # definiert das logistische Modell und wendet es auf den Datensatz an
 
-mod0 <-glm(mensa ~ gender + member + age_groups + meat + umwelteinstellung, data = df, binomial("logit"))
+mod0 <-glm(mensa ~ gender + member + age_groups + meat + umwelteinstellung, 
+           data = df, binomial("logit"))
 summary.lm(mod0) # Umwelteinstellung scheint keinen Einfluss auf die 
 # Verpflegung zu haben, gegeben die Daten
 
@@ -93,7 +103,7 @@ summary.lm(mod1)
 1 - pchisq(mod1$deviance, mod1$df.resid) # Ok
 
 #Modellgüte (pseudo-R²)
-1 - (mod1$dev / mod1$null) # eher kleines pseudo-R² 
+1 - (mod1$dev / mod1$null) # eher kleines pseudo-R2
 
 
 # Konfusionsmatrix vom  Datensatz
@@ -133,7 +143,8 @@ km
 
 
 # es scheint, dass das Modell häufig einen alpha Fehler zu machen, d.h. es 
-# das Modell weist keine hohe Spezifizität auf: konkret werden viele Mensagänger als Selbstverpfleger vorhergesagt resp. klassifiziert. Dafür gibt es mehere Gründe: 
+# das Modell weist keine hohe Spezifizität auf: konkret werden viele Mensagänger als 
+# Selbstverpfleger vorhergesagt resp. klassifiziert. Dafür gibt es mehere Gründe: 
 
 #1) die Kriteriumsvariable ist sehr ungleich verteilt, d.h. es gibt weniger
 # Selbstverpfleger als Mensgänger im Datensatz 
@@ -145,7 +156,7 @@ km
 # Cross-Validation oder k fold Cross-Validation 
 
 # kalkuliert die Missklassifizierungsrate 
-mf <- 1-sum(diag(km)/sum(km)) # ist mit knapp 23% eher hoch
+mf <- 1-sum(diag(km)/sum(km)) # ist mit knapp 23 %  eher hoch
 mf
 
 
@@ -157,10 +168,12 @@ km_prop <- prop.table(km,2)
 # specificity = a / (a+c) => ability of a test to correctly 
 # classify an individual as disease-free is called the test′s specificity
 spec = km_prop[1] / (km_prop[1] + km_prop[2])
+spec
 
 # sensitivity = d / (b+d) => Sensitivity is the ability of a 
 # test to correctly classify an individual as ′diseased′
 sens = km_prop[4] / (km_prop[3] + km_prop[4])
+sens
 
 ```
 
@@ -178,7 +191,7 @@ In der Aufgabe war es das Ziel zu schauen, ob wir einen potenziellen Besuch eine
 **Ergebnisse**
 
 
-```{r, fig.cap="Konfusionsmatrix"}
+```{r, message=FALSE, echo=FALSE,fig.cap="Konfusionsmatrix"}
 knitr::kable(km)
 ```
 
@@ -189,43 +202,8 @@ Es gibt verschiedene Gründe für diesen schlechten Modelfit:
 * die Kriteriumsvariable ist sehr ungleich verteilt, d.h. es gibt weniger Selbstverpfleger als Mensgänger im Datensatz (26% vs. 74%)
 * die Prädiktorvariablen sind alle entweder kategorial oder ordinal: dies kann dazu führen, dass das Model keinen guten fit zu den Daten erzielt 
 
-Fazit: Es sollte nach einem weiteren adäquateren Modell gesucht werden: insbesondere ein Modell, welches einen mit ordinalen Prädiktorvariablen umgehen kann 
+**Fazit**: Es sollte nach einem weiteren adäquateren Modell gesucht werden: insbesondere ein Modell, welches einen mit ordinalen Prädiktorvariablen umgehen kann: 
 
-*eine bessere Link-Funktion suchen z.B. probit 
-*[polynomiale Kontraste](https://stats.stackexchange.com/questions/195246/how-to-handle-ordinal-categorical-variable-as-independent-variable)
-*Smooth Splines [hier](https://www.frontiersin.org/articles/10.3389/fams.2017.00015/full)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- eine bessere Link-Funktion für das GLM suchen z.B. probit 
+- [polynomiale Kontraste](https://stats.stackexchange.com/questions/195246/how-to-handle-ordinal-categorical-variable-as-independent-variable)
+- Smooth Splines [hier](https://www.frontiersin.org/articles/10.3389/fams.2017.00015/full)
