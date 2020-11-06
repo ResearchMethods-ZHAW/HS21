@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = T, collapse=TRUE)
 In den vier Blöcken "Konsolidierung Statistik" repetieren die Studierenden wichtige Verfahren der Inferenz-Statistik. Beginnend mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen, wiederholen die Studierende auch die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Weiter geht es mit der Repetition von komplexere Versionen linearer Regressionen und generalized linear models (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Abschliessend bekommen die Studierenden eine Einführung in die Welt der Ordinationen z.B. PCA.
 
 
-Für die nächsten drei gemeinsamen Sitzungen werden wir nochmals folgende Themen aufgreifen: 
+Für die nächsten vier gemeinsamen Sitzungen werden wir nochmals folgende Themen aufgreifen: 
 
 Statistik Konsolidierung 1: Grundlagen der Statistik
 
@@ -17,7 +17,6 @@ Statistik Konsolidierung 1: Grundlagen der Statistik
 *	Genereller Ablauf einer statistischen Analyse
 *	Chi-Quadrat- bzw. Fishers Test (für kategoriale Daten)
 *	t-Test (für metrische Daten)
-*	Organisation der Übungen
 
 Statistik Konsolidierung 2: Einführung in «multivariate» Methoden
 
