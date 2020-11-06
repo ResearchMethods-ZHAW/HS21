@@ -10,7 +10,7 @@
 knitr::opts_chunk$set(results = "hide", fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H')
 ```
 
-## Musterlösung Aufgabe 3.1: Multiple Regression
+## Musterloesung Aufgabe 3.1: Multiple Regression
 [R-Skript als Download](15_Statistik3/RFiles/Loesung_3.1_v.03.R)
 [Lösungstext als Download](15_Statistik3/Statistik_3.1_Loesung_v.02.pdf)
 
