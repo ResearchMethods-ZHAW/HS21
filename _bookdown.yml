@@ -71,8 +71,8 @@ rmd_files: [
    
   
    "18_Statistik6/Abstract.Rmd",
-   #"18_Statistik6/Demoskript.Rmd",
-   #"18_Statistik6/assigment_stat6.Rmd",
+   "18_Statistik6/Demo_Statistik_6.Rmd",
+   "18_Statistik6/assigment_stat6.Rmd",
    #"18_Statistik6/solution_stat6.1.Rmd",
    
    #"18_Statistik_Konsolidierung2/demoskript_orinationen.Rmd",
