@@ -11,7 +11,7 @@ Flächengrössen (Area) von 0.0001 bis 900 m².
 **Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function, die logarithmische Funktion (logarithmic function,und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
 
 
-### Uebung 4.2N: Multiple logistische Regression (NatWis)
+### Uebung 4.2N: Logistische Regression (NatWis)
 
 **Datensatz [polis.csv](16_Statistik4/data/polis.csv)**
 

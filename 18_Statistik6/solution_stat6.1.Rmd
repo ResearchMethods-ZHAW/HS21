@@ -1,7 +1,8 @@
 
 ## Loesung 6.1
 
-[R-Skript als Download](18_Statistik6/RFiles/Loesung_Uebung_6.1_v.04.R)
+[R-Skript als Download](18_Statistik6/RFiles/Loesung_6.1_v.04.R)
+[Loesungstext](Statistik_Loesungstext_6.1.pdf)
 
 ```{r eval=FALSE}
 load("18_Statistik6/Doubs.RData")
