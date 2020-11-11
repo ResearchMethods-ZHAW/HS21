@@ -43,20 +43,25 @@ lm.1 <- lm(size~cultivar, data=blume2)
 summary(lm.1)
 
 #Tukeys Posthoc-Test
-if(!require(multcomp)){install.packages("multcomp")}
-library(multcomp)
+if(!require(agricolae)){install.packages("agricolae")}
+library(agricolae)
 
-summary(glht(aov(size~cultivar, data=blume2),linfct=mcp(cultivar ="Tukey")))
+HSD.test(aov.1, "cultivar", group=FALSE, console=T)
+
 
 #Beispiel Posthoc-Labels in Plot
 aov.2 <- aov(Sepal.Width ~ Species, data=iris)
-letters <- cld(glht(aov.2, linfct=mcp(Species="Tukey")))
+HSD.test(aov.2, "Species", console=T)
 boxplot(Sepal.Width ~ Species, data=iris)
-mtext(letters$mcletters$Letters, at=1:3)
+boxplot(Sepal.Width ~ Species, ylim=c(2,5), data=iris)
+text(1, 4.8, "a")
+text(2, 4.8, "c")
+text(3, 4.8, "b")
+
 
 library(tidyverse)
 ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
-  annotate("text", y = 5, x = 1:3, label = letters$mcletters$Letters)
+  annotate("text", y = 5, x = 1:3, label = c("a","c","b"))
 
 
 # Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!)  --------

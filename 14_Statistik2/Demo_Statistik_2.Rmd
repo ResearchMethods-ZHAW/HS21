@@ -6,7 +6,7 @@ knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
 ## Demo: Statistik 2
 
-[Demoscript als Download](14_Statistik2/RFiles/Statistik_2_Demo_v.05.R)
+[Demoscript als Download](14_Statistik2/RFiles/Statistik_2_Demo_v.06.R)
 
  __t-test als ANOVA__ 
 
@@ -59,24 +59,27 @@ summary(lm.1)
 __Tukeys Posthoc-Test__
 
 ```{r}
-if(!require(multcomp)){install.packages("multcomp")}
-library(multcomp)
-summary(glht(aov(size~cultivar, data=blume2),linfct=mcp(cultivar ="Tukey")))
+if(!require(agricolae)){install.packages("agricolae")}
+library(agricolae)
+
+HSD.test(aov.1, "cultivar", group=FALSE, console=T)
 ```
 
 
 __Beispiel Posthoc-Labels in Plot__
 
 ```{r}
-anova <- aov(Sepal.Width ~ Species, data=iris)
-letters <- cld(glht(anova, linfct=mcp(Species="Tukey")))
+aov.2 <- aov(Sepal.Width ~ Species, data=iris)
+HSD.test(aov.2, "Species", console=T)
 boxplot(Sepal.Width ~ Species, data=iris)
-mtext(letters$mcletters$Letters, at=1:3)
+boxplot(Sepal.Width ~ Species, ylim=c(2,5), data=iris)
+text(1, 4.8, "a")
+text(2, 4.8, "c")
+text(3, 4.8, "b")
 
 library(tidyverse)
 ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
-  annotate("text", y = 5, x = 1:3, label = letters$mcletters$Letters)
-
+  annotate("text", y = 5, x = 1:3, label = c("a","c","b"))
 ```
 
 

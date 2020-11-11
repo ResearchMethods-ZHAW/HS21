@@ -37,13 +37,14 @@
       (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter
       Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
-[R-Skript als Download](17_Statistik5/RFiles/Loesung_Uebung_5.1_v.03.R)
+[R-Skript als Download](17_Statistik5/RFiles/Loesung_5.1_v.03.R)
+[Loesungstext](Statistik_Loesung_5.1_v.02.pdf)
 
       
 
 **kommentierter Lösungsweg**
 ```{r}
-splityield <-read.delim("17_Statistik5/data/splityield.csv", sep=",")
+splityield <- read.delim("17_Statistik5/data/splityield.csv", sep=",", stringsAsFactors = T)
 
 #Checken der eingelesenen Daten
 splityield
@@ -54,7 +55,7 @@ density * fertilizer kommt genau 4x vor (in jedem der vier Blöcke A-D einmal).
 ```{r}
 str(splityield)
 summary(splityield)
-splityield$density<-factor(splityield$density, levels=c("low","medium","high"))
+levels(splityield$density) <- c("low", "medium", "high")
 ```
 Man sieht, dass die Variable yield metrisch ist, während die vier anderen Variablen schon
 korrekt als kategoriale Variablen (factors) kodiert sind
@@ -62,10 +63,10 @@ korrekt als kategoriale Variablen (factors) kodiert sind
 ```{r}
 #Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
 boxplot(splityield$yield)
-boxplot(yield~fertilizer, data=splityield)
-boxplot(yield~irrigation, data=splityield)
-boxplot(yield~density, data=splityield)
-boxplot(yield~irrigation*density*fertilizer,data=splityield)
+boxplot(yield~fertilizer, data = splityield)
+boxplot(yield~irrigation, data = splityield)
+boxplot(yield~density, data = splityield)
+boxplot(yield~irrigation*density*fertilizer, data = splityield)
 ```
 Die Boxplots sind generell hinreichend symmetrisch, so dass man davon ausgehen kann, dass
 keine problematische Abweichung von der Normalverteilung vorliegt. Die Varianzhomogenität
@@ -80,8 +81,8 @@ grossen Mittelwerten aufgetreten wären, hätten wir eine log- oder Wurzeltransf
 yield in Betracht ziehen müssen).
 
 ```{r}
-boxplot(log10(yield)~irrigation*density*fertilizer,data=splityield) #bringt keine Verbesserung
-aov.1<-aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density),data=splityield)
+boxplot(log10(yield)~irrigation*density*fertilizer, data = splityield) #bringt keine Verbesserung
+aov.1 <- aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density), data = splityield)
 ```
 
 Das schwierigste an der Analyse ist hier die Definition des Splitt-Plot ANOVA-Modells. Hier
@@ -109,7 +110,7 @@ irrigation:density und irrigation:fertilizer.
 ```{r}
 # Modelvereinfachung
 aov.2<-aov(yield~irrigation+density+fertilizer+irrigation:density+irrigation:fertilizer+
-             Error(block/irrigation/density),data=splityield)
+             Error(block/irrigation/density), data = splityield)
 summary(aov.2)
 ```
 
@@ -118,9 +119,9 @@ Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:
 
 ```{r}
 #Visualisierung der Ergebnisse
-boxplot(yield~fertilizer,data=splityield)
-boxplot(yield~irrigation,data=splityield)
+boxplot(yield~fertilizer, data = splityield)
+boxplot(yield~irrigation, data = splityield)
 
-interaction.plot(splityield$fertilizer,splityield$irrigation,splityield$yield)
-interaction.plot(splityield$density,splityield$irrigation,splityield$yield)
+interaction.plot(splityield$fertilizer, splityield$irrigation, splityield$yield)
+interaction.plot(splityield$density, splityield$irrigation, splityield$yield)
 ```
