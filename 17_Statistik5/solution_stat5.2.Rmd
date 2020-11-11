@@ -1,4 +1,4 @@
-## Musterlösung Aufgabe 5.2S: GLMM
+## Musterloesung Aufgabe 5.2S: GLMM
 > Meine Leseempfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
 
 > Für Interessierte [hier](https://rpsychologist.com/r-guide-longitudinal-lme-lmer) oder [hier](https://rpubs.com/kaz_yos/glmm1)

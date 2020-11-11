@@ -2,7 +2,7 @@
 rmd_files: [
   "index.Rmd",
   
-  "09_PrePro1/Abstract.Rmd",
+   "09_PrePro1/Abstract.Rmd",
    "09_PrePro1/Demo_Datentypen.Rmd",
     "09_PrePro1/Uebung_A.Rmd",
     "09_PrePro1/Uebung_A_loesung.Rmd",
@@ -57,18 +57,17 @@ rmd_files: [
   "16_Statistik4/solution_stat4.1n.Rmd",
   "16_Statistik4/solution_stat4.2n.Rmd",
   "16_Statistik4/solution_stat4.2s.Rmd",
-
- "17_Statistik5/Abstract.Rmd",
- "17_Statistik5/Demo_Statistik_5.Rmd",
- "17_Statistik5/assigment_stat5.Rmd",
- "17_Statistik5/solution_stat5.1.Rmd",
- "17_Statistik5/solution_stat5.2.Rmd",
+  
+  "17_Statistik5/Abstract.Rmd",
+  "17_Statistik5/Demo_Statistik_5.Rmd",
+  "17_Statistik5/assigment_stat5.Rmd",
+  "17_Statistik5/solution_stat5.1.Rmd",
+  "17_Statistik5/solution_stat5.2.Rmd",
 
   "17_Statistik_Konsolidierung1/overview_konsolidierung.Rmd",
   "17_Statistik_Konsolidierung1/demoskript_assozationen.Rmd",
   "17_Statistik_Konsolidierung1/suggest_datasets.Rmd",
-  "17_Statistik_Konsolidierung1/open_datasets.Rmd",
-   
+  #"17_Statistik_Konsolidierung1/open_datasets.Rmd",
   
    "18_Statistik6/Abstract.Rmd",
    "18_Statistik6/Demo_Statistik_6.Rmd",
@@ -118,6 +117,8 @@ rmd_files: [
     
 
 #  "00_Admin/references.Rmd"
+  
+ 
   ]
 delete_merged_file: TRUE
 output_dir: "99_Book"

@@ -4,7 +4,7 @@
 [R-Skript als Download](18_Statistik6/RFiles/Loesung_6.1_v.04.R)
 [Loesungstext](Statistik_Loesungstext_6.1.pdf)
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 load("18_Statistik6/Doubs.RData")
 summary(env)
 summary(spe)

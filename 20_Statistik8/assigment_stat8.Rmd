@@ -1,6 +1,6 @@
 ## Uebungen 8
 
-### Übung 8.1: Clusteranalyse (sozioökonomisch)
+### Uebung 8.1: Clusteranalyse (sozioökonomisch)
 
 - Datensatz [crime2.csv](20_Statistik8/crime2.csv)
 

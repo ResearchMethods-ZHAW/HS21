@@ -1,4 +1,4 @@
-## Musterlösung Aufgabe 5.1: Split-plot ANOVA
+## Musterloesung Aufgabe 5.1: Split-plot ANOVA
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
