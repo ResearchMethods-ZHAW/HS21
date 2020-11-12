@@ -2,7 +2,7 @@
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
-## Statistik 5 - Demoskript 
+## Demo: Statistik 5
 **Von linearen Modellen zu GLMMs**
 **(c) Juergen Dengler**
 

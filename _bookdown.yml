@@ -83,7 +83,6 @@ rmd_files: [
     ##"19_Statistik7/Demoskirpt_extended.Rmd",
     "19_Statistik7/assigment_stat7.Rmd",
     #"19_Statistik7/solution_stat7.1.Rmd",
-   #"19_Statistik7/Uebungen.Rmd",
    #"19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
    
    
@@ -91,10 +90,9 @@ rmd_files: [
    
    
     "20_Statistik8/Abstract.Rmd",
-    #"20_Statistik8/Demoskript.Rmd",
+    "20_Statistik8//Demo_Statistik_8.Rmd",
     "20_Statistik8/assigment_stat8.Rmd",
     #"20_Statistik8/solution_stat8.1.Rmd",
-
 
 
  #    

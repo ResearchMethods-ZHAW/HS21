@@ -1,102 +1,91 @@
-```{r, include=FALSE, purl=F}
+### Research Methods Statistik 7
+### Ordinationen II
+### (c) Jürgen Dengler
 
-knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
-```
-
-## Statistik 7 - Demoskript extended
-**Ordinationen II
-**(c) Juergen Dengler
-
-[Demoscript als Download](19_Statistik7/Statistik 7-Demo_extended_v02.R)
-**Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)**
-**Funktion [triplot.rda.R](19_Statistik7/triplot.rda.R)**
+setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
 
 
-```{r eval=FALSE}
-#Interpretation von Ordinationen (Wildi pp. 96 et seq.)
+# #Interpretation von Ordinationen ----------------------------------------
+#Wildi pp. 96 et seq.)
 
 #Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
-ca <- cca(sveg^0.5)
+ca<-cca(sveg^0.5)
 
-#Plot mit ausgewÃ¤hlten Arten
+#Plot mit ausgewählten Arten
 sel.spec<-c(3,11,23,31,39,46,72,77,96)
 snames<-names(sveg[,sel.spec])
 snames
-scores <- scores(ca, scaling = "sites")
-sx <- scores[sel.spec, 1]
-sy <- scores[sel.spec, 2]
-plot(ca, display = "sites", type = "point")
-points(sx, sy, pch=16)
+sx <- ca$CA$v[sel.spec,1]
+sy <- ca$CA$v[sel.spec,2]
+plot(ca$CA$u, asp=1)
+points(sx,sy,pch=16)
 snames <- make.cepnames(snames)
-text(sx, sy, snames, pos=c(1,2,1,1,3,2,4,3,1), cex=0.8)
+text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 
 # Plotte post-hoc gefittete Umweltvariablen
 sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
-ev <- envfit(ca, ssit[,sel.sites])
-plot(ev, add=T, cex=0.8)
+ev <-envfit(ca,ssit[,sel.sites])
+plot(ev,add=T,cex=0.8)
 
 #Plot "response surfaces" in der CA
-plot(ca, display = "sites", type = "point")
-ordisurf(ca, ssit$pH.peat, add=T)
+plot(ca$CA$u, asp=1)
+ordisurf(ca,ssit$pH.peat,add=T)
 
-plot(ca, display = "sites", type = "points")
-ordisurf(ca, ssit$Waterlev.av, add=T, col="blue")
+plot(ca$CA$u, asp=1)
+ordisurf(ca,ssit$Waterlev.av,add=T,col="blue")
 
-#Das gleiche fÃ¼r die DCA
-dca <- decorana(sveg)
-plot(dca, display = "sites", type = "points")
-ordisurf(dca, ssit$pH.peat, add=T)
-ordisurf(dca, ssit$Waterlev.av, add=T, col="blue")
+#Das gleiche für die DCA (geht nicht, da das "detrending" die Distanzmatrix zerstört)
+dca <- decorana(sveg,mk=10)
+plot(dca$rproj, asp=1)
+ordisurf(dca,ssit$pH.peat,add=T)
+ordisurf(dca,ssit$Waterlev.av,add=T,col="blue")
 
 #Das gleiche mit NMDS
-mde <- vegdist(sveg,method="euclidean")
-mmds <- metaMDS(mde)
+mde <-vegdist(sveg,method="euclidean")
+mmds<-metaMDS(mde,k=2)
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
-imds <- isoMDS(mde)
+imds<-isoMDS(mde,k=2)
 
 plot(mmds$points)
-ordisurf(mmds, ssit$pH.peat, add=T)
-ordisurf(mmds, ssit$Waterlev.av,add=T, col="blue")
+ordisurf(mmds,ssit$pH.peat,add=T)
+ordisurf(mmds,ssit$Waterlev.av,add=T,col="blue")
 
 plot(imds$points)
-ordisurf(imds, ssit$pH.peat, add=T)
-ordisurf(imds, ssit$Waterlev.av, add=T, col="blue")
-```
+ordisurf(imds,ssit$pH.peat,add=T)
+ordisurf(imds,ssit$Waterlev.av,add=T,col="blue")
 
 
-__Constrained ordination__
-```{r eval=FALSE}
-#5 Umweltvariablen gewÃ¤hlt, durch die die Ordination constrained werden soll
+# Constrained ordination --------------------------------------------------
+
+
+#5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
 ssit
 summary(ssit)
-s5 <- c("pH.peat", "P.peat", "Waterlev.av", "CEC.peat", "Acidity.peat")
-ssit5 <- ssit[s5]
+s5<-c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")
+ssit5<-ssit[s5]
 
 data(sveg)
 summary(sveg)
 
 #RDA = constrained PCA
-rda <- rda(sveg~., ssit5)
+rda <-rda(sveg,ssit5)
 plot(rda)
 
 #CCA = constrained CA
-cca <- cca(sveg~., ssit5)
+cca <-cca(sveg,ssit5)
 plot(cca)
 
 #Unconstrained and constrained variance
 tot <- cca$tot.chi
 constr <- cca$CCA$tot.chi
 constr/tot
-```
 
 
-__Redundancy analysis (RDA)__
 ## Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
-```{r eval=FALSE}
-#Datensatz Doubs
+
 # Doubs Datensatz in den workspace laden
 load("Doubs.RData")  
 spe
@@ -106,12 +95,12 @@ summary(spe)
 summary(env)
 summary(spa)
 
-# Entfernen der UntersuchungsflÃ¤che ohne Arten
+# Entfernen der Untersuchungsfläche ohne Arten
 spe <- spe[-8, ]
 env <- env[-8, ]
 spa <- spa[-8, ]
 
-# Karten fÃ¼r 4 Fischarten
+# Karten für 4 Fischarten
 dev.new(title = "Four fish species", noRStudioGD = TRUE)
 par(mfrow = c(2, 2))
 plot(spa, asp = 1, col = "brown", cex = spe$Satr, xlab = "x (km)", ylab = "y (km)", main = "Brown trout")
@@ -1018,7 +1007,7 @@ ordirgl(spe.cca.pars,
         col = gs + 1)
 
 
-## Linear discriminant analysis (LDA)
+# Linear discriminant analysis (LDA) ==============================
 
 # Ward clustering result of Hellinger-transformed species data, 
 # cut into 4 groups
@@ -1045,7 +1034,7 @@ permutest(env.MHV2)
 # Preliminary test :  do the means of the explanatory variable 
 # differ among groups?
 # Compute Wilk'S lambda test
-# First way: with function Wilks.test() of package rrcov, ÃÂ‡2 test
+# First way: with function Wilks.test() of package rrcov, Ï‡2 test
 Wilks.test(env.pars3, gr)
 # Second way: with function manova() of stats, which uses
 #             an F-test approximation
@@ -1158,7 +1147,7 @@ stand.lda <- lda(grY ~ ., data = X.sc)
 
 
 
-## Principal response curves (PRC)
+# Principal response curves (PRC) =================================
 
 # Code from the prc() help file, with additional comments
 # Chlorpyrifos experiment and experimental design :  Pesticide
@@ -1198,7 +1187,7 @@ ctrl <-
       within = Within(type = "series"), nperm = 999)
 anova(mod, permutations = ctrl, first = TRUE)
 
-## Predictive co-correspondence analysis (CoCA)
+# Predictive co-correspondence analysis (CoCA) ====================
 if(!require(cocorresp)){install.packages("cocorresp")}
 library(cocorresp)
 
@@ -1266,7 +1255,7 @@ detach("package:cocorresp", unload = TRUE)
 unloadNamespace("cocorresp")
 
 
-## Canonical correlation analysis (CCorA)
+# Canonical correlation analysis (CCorA) ==========================
 
 # Preparation of data (transformations to make variable 
 # distributions approximately symmetrical)
@@ -1291,7 +1280,7 @@ dev.new(title = "Canonical correlation analysis (CCorA)", width = 9, height = 6,
 biplot(chem.topo.ccora, plot.type = "biplot")
 
 
-## Co-inertia analysis
+# Co-inertia analysis =============================================
 # PCA on both matrices using ade4 functions
 if(!require(ade4)){install.packages("ade4")}
 library(ade4)
@@ -1430,7 +1419,7 @@ for (v in 1 : nrow(varsig))
 
 
 
-## RLQ and fourth-corner analyses
+# RLQ and fourth-corner analyses ==================================
 data(aravo)
 dim(aravo$spe)
 dim(aravo$traits)
@@ -1618,4 +1607,3 @@ plot(fourth.doubs2,
      alpha = 0.05,
      stat = "D2",
      type = "biplot")
-```

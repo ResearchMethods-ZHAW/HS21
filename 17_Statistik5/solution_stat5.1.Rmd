@@ -38,7 +38,8 @@
       Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
 [R-Skript als Download](17_Statistik5/RFiles/Loesung_5.1_v.03.R)
-[Loesungstext](Statistik_Loesung_5.1_v.02.pdf)
+
+[Loesungstext](17_Statistik5/Statistik_Loesung_5.1_v.02.pdf)
 
       
 
