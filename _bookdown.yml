@@ -88,7 +88,7 @@ rmd_files: [
    #"19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
    
    
-   #"19_Statistik_Konsolidierung3/Demoskript_lineare_modelle.Rmd"
+   "19_Statistik_Konsolidierung3/Demoskript_lineare_modelle.Rmd"
    
    
     #"20_Statistik8/Abstract.Rmd",
@@ -96,7 +96,7 @@ rmd_files: [
     #"20_Statistik8/assigment_stat8.Rmd",
     #"20_Statistik8/solution_stat8.1.Rmd",
 
-
+    "20_Statistik_Konsolidierung4/Demoskript_lineare_modelle_teil2.Rmd"
 
  #    
  #    "21_RaumAn1/Abstract.Rmd",
