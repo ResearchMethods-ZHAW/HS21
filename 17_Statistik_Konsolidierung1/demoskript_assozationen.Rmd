@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
 *****
 
-### Demo fuer Assoziationen------
+**Demo für Assoziationen**
 
 ```{r}
 

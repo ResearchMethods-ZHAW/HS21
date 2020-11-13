@@ -1,9 +1,5 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 ## Musterloesung Aufgabe 5.2S: GLMM
+> Meine Leseempfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
 
 *****
 > Lese-Empfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)

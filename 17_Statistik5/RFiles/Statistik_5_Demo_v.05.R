@@ -1,22 +1,22 @@
 ### Research Methods Demo Statistik 5
 ### Von linearen Modellen zu GLMMs
-### (c) Jürgen Dengler
+### (c) J?rgen Dengler
 
 
 # Split-plot ANOVA --------------------------------------------------------
 # Based on Logan (2010), Chapter 14
 
-spf <- read.delim("spf.csv", sep = ",") 
-spf.aov <- aov(Y~A*C + Error(B), spf)
+spf <- read.delim("spf.csv", sep = ";") 
+spf.aov <- aov(Reaktion~Signal*Messung + Error(VP), data = spf)
 summary(spf.aov)
 
-interaction.plot(spf$C, spf$A, spf$Y)
+interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
 
 #nun als LMM
 if(!require(nlme)){install.packages("nlme")}
 library(nlme)
-spf.lme.1 <- lme(Y~A*C, random = ~C | B, spf)
-spf.lme.2 <- lme(Y~A*C, random = ~1 | B, spf)
+spf.lme.1 <- lme(Reaktion~Signal*Messung, random = ~Messung | VP, data = spf)
+spf.lme.2 <- lme(Reaktion~Signal*Messung, random = ~1 | VP, data = spf)
 
 anova(spf.lme.1)
 anova(spf.lme.2)
@@ -31,20 +31,20 @@ DeerEcervi <- read.delim("DeerEcervi.txt", sep = "")
 
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
 
-#Anzahl Larven hier in Presence/Absence übersetzt
+#Anzahl Larven hier in Presence/Absence ?bersetzt
 DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0] <- 1
-DeerEcervi$fSex <- factor(DeerEcervi$Sex)
+DeerEcervi$fSex <- as.factor(DeerEcervi$Sex)
 
-#Hirschlänge hier standardisiert, sonst würde der Achsenabschnitt im Modell für
-#einen Hirsch der Länge 0 modelliert, was schlecht interpretierbar ist, 
-#jetzt ist der Achsenabschnitt für einen durschnittlich langen Hirsch
+#Hirschl?nge hier standardisiert, sonst w?rde der Achsenabschnitt im Modell f?r
+#einen Hirsch der L?nge 0 modelliert, was schlecht interpretierbar ist, 
+#jetzt ist der Achsenabschnitt f?r einen durschnittlich langen Hirsch
 DeerEcervi$CLength <- DeerEcervi$Length - mean(DeerEcervi$Length)
 DeerEcervi$fFarm <- factor(DeerEcervi$Farm)
 
 
-#Zunächst als GLM
-#Interaktionen mit fFarm nicht berücksichtigt, da zu viele Freiheitsgrade verbraucht würden
-DE.glm <- glm(Ecervi.01 ~ CLength * fSex+fFarm, data = DeerEcervi,family = binomial)
+#Zun?chst als GLM
+#Interaktionen mit fFarm nicht ber?cksichtigt, da zu viele Freiheitsgrade verbraucht w?rden
+DE.glm <- glm(Ecervi.01 ~ CLength * fSex+fFarm, family = binomial, data = DeerEcervi)
 
 drop1(DE.glm, test = "Chi")
 summary(DE.glm)
@@ -73,7 +73,7 @@ lines(DeerEcervi$CLength[I], p.Low[I])
 
 if(!require(lme4)){install.packages("lme4")}
 library(lme4)
-DE.lme4 <- glmer(Ecervi.01 ~ CLength * fSex +(1|fFarm), family = binomial, data = DeerEcervi)#lmer funktioniert nicht mehr
+DE.lme4 <- glmer(Ecervi.01 ~ CLength * fSex +(1|fFarm), family = binomial, data = DeerEcervi)
 summary(DE.lme4)
 
 if(!require(glmmML)){install.packages("glmmML")}

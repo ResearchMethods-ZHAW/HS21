@@ -2,15 +2,15 @@
 
 **Übung 5.1: Split-plot ANOVA**
 
-**Datensatz [splityield.csv](17_Statistik5/data/splityield.csv)**
+**Datensatz splityield.csv[splityield.csv](17_Statistik5/data/splityield.csv)**
 
 Versuch zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei Faktoren Bewässerung (irrigated vs. control), Düngung (N, NP, P) und Aussaatdichten (low, medium, high). Es gab vier ganze Felder (block), die zwei Hälften mit den beiden Bewässerungstreatments, diese wiederum drei Drittel für die drei Saatdichten und diese schliesslich je drei Drittel für die drei Düngertreatments hatten.
-
 
 **Aufgaben**
 
 - **Bestimmt das minimal adäquate Modell**
-- **Stellt die Ergebnisse dar**
+- **Stellt die Ergebnisse da**
+
 
 
 
