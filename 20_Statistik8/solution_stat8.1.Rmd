@@ -1,7 +1,7 @@
 
 ## Musterlösung Aufgabe 8.1: Clusteranalysen
 
-- [R-Skript als Download](20_Statistik8/Loesung_Uebung_8.1.R)
+- [R-Skript als Download](20_Statistik8/Loesung_8.1_v.03.R)
 
 - **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
@@ -18,7 +18,7 @@ erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Clu
 ### Übung 8.1 - Clusteranalysen -- Lösung
 
 ```{r eval=FALSE}
-crime <-read.csv("20_Statistik8/crime2.csv",sep=";")
+crime <- read.csv("20_Statistik8/crime2.csv",sep=";")
 crime
 ```
 
@@ -61,7 +61,7 @@ modelz
 
 #File für ANOVA (Originaldaten der Vorfälle, nicht die ztransformierten)
 crime.KM4 <- data.frame(crime,modelz[1])
-crime.KM4$cluster <-as.factor(crime.KM4$cluster)
+crime.KM4$cluster <- as.factor(crime.KM4$cluster)
 crime.KM4
 str(crime.KM4)
 ```
@@ -144,14 +144,14 @@ Anschliessend kann man die 7 ANOVAs rechnen, die Posthoc-Vergleiche durchführen
 ```{r eval=FALSE}
 library(multcomp)
 par(mfrow=c(2,2))
-ANOVA.Murder <- aov(Murder~cluster,data=crime.KM4)
+ANOVA.Murder <- aov(Murder~cluster, data=crime.KM4)
 summary (ANOVA.Murder)
 letters <- cld(glht(ANOVA.Murder, linfct=mcp(cluster="Tukey")))
 boxplot(Murder~cluster, data=crime.KM4, xlab="Cluster",
 ylab="Murder")
 mtext(letters$mcletters$Letters, at=1:4)
 
-ANOVA.Vehicle <- aov(Vehicle~cluster,data=crime.KM4)
+ANOVA.Vehicle <- aov(Vehicle~cluster, data=crime.KM4)
 summary (ANOVA.Vehicle)
 letters <- cld(glht(ANOVA.Vehicle, linfct=mcp(cluster="Tukey")))
 boxplot(Vehicle~cluster, data=crime.KM4, xlab="Cluster",

@@ -8,7 +8,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 
-## Statistik 6 - Demoskript ## 
+## Demo: Statistik 6
 **Ordinationen I**
 **(c) Juergen Dengler**
 
@@ -123,7 +123,7 @@ x <- pca.5$loadings[,1]
 y <- pca.5$loadings[,2]
 plot(x,y,type="n", asp=1)
 arrows(0,0, x[sel.sp], y[sel.sp], length=0.08)
-text(x[sel.sp], y[sel.sp], snames,pos=1, cex=0.6)
+text(x[sel.sp], y[sel.sp], snames, pos=1, cex=0.6)
 
 
 # Mit vegan

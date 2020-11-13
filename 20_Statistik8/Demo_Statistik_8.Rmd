@@ -3,11 +3,11 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
 
-## Statistik 8 - Demoskript
+#### Demo: Statistik 8
 **Cluster-Analysen**
 **(c) Juergen Dengler**
 
-- [Demoscript als Download](20_Statistik8/Statistik 8-Demo_v.03.R)
+- [Demoscript als Download](20_Statistik8/Statistik_8_Demo_v.04.R)
 - Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)
 - Funktion drawmap.R [drawmap.R](20_Statistik8/drawmap.R)
 - Funktion hcoplot.R [hcoplot.R](20_Statistik8/hcoplot.R)
@@ -19,21 +19,23 @@ __k-means clustering__
 # das Moordatenset aus Wildi...
 if(!require(dave)){install.packages("dave")}
 library(dave)
-pca<-pca(sveg^0.25,cor=T)
+pca <- rda(sveg^0.25, scale=TRUE)
 ca<-cca(sveg^0.5)
 
-kmeans.1 <- kmeans(sveg,4)
+kmeans.1 <- kmeans(sveg, 4)
 kmeans.1
-plot(ca$CA$u, asp=1,col=kmeans.1[[1]])
+plot(ca, type = "n")
+points(ca, display = "sites", col=kmeans.1[[1]])
 
-kmeans.2 <- kmeans(sveg,3)
-plot(pca$scores[,1],pca$scores[,2],type="n", asp=1, xlab="PC1", ylab="PC2")
-points(pca$scores[,1],pca$scores[,2],pch=18,col=kmeans.2[[1]])
-plot(pca$scores[,1],pca$scores[,3],type="n", asp=1, xlab="PC1", ylab="PC3")
-points(pca$scores[,1],pca$scores[,3],pch=18,col=kmeans.2[[1]])
+kmeans.2 <- kmeans(sveg, 3)
+plot(pca, type = "n")
+points(pca, display = "sites", pch=19, col=kmeans.2[[1]])
+
+plot(pca, choices=c(1,3), type = "n")
+points(pca, choices=c(1,3), display = "sites", pch=19, col=kmeans.2[[1]])
 
 # k-means partitioning, 2 to 10 groups
-KM.cascade <-cascadeKM(sveg,  inf.gr = 2, sup.gr = 10, iter = 100,criterion = "ssi")
+KM.cascade <-cascadeKM(sveg,  inf.gr = 2, sup.gr = 10, iter = 100, criterion = "ssi")
 summary(KM.cascade)
 KM.cascade$results
 KM.cascade$partition
@@ -92,11 +94,11 @@ plot(spe.ch.ward, labels = rownames(spe),  main = "Chord - Ward")
 
 # Compute beta-flexible clustering using cluster::agnes()
 # beta = -0.1
-spe.ch.beta1 <- agnes(spe.ch, method = "flexible",par.method = 0.55)
+spe.ch.beta1 <- agnes(spe.ch, method = "flexible", par.method = 0.55)
 # beta = -0.25
 spe.ch.beta2 <- agnes(spe.ch, method = "flexible", par.method = 0.625)
 # beta = -0.5
-spe.ch.beta3 <- agnes(spe.ch, method = "flexible",par.method = 0.75)
+spe.ch.beta3 <- agnes(spe.ch, method = "flexible", par.method = 0.75)
 # Change the class of agnes objects
 class(spe.ch.beta1)
 spe.ch.beta1 <- as.hclust(spe.ch.beta1)
@@ -151,6 +153,7 @@ plot(
 )
 abline(0, 1)
 lines(lowess(spe.ch, spe.ch.single.coph), col = "red")
+
 plot(
   spe.ch,
   spe.ch.comp.coph,
@@ -166,6 +169,7 @@ plot(
 )
 abline(0, 1)
 lines(lowess(spe.ch, spe.ch.comp.coph), col = "red")
+
 plot(
   spe.ch,
   spe.ch.UPGMA.coph,
@@ -181,6 +185,7 @@ plot(
 )
 abline(0, 1)
 lines(lowess(spe.ch, spe.ch.UPGMA.coph), col = "red")
+
 plot(
   spe.ch,
   spe.ch.ward.coph,
@@ -228,7 +233,7 @@ axis(1,k.best,paste("optimum", k.best, sep = "\n"),
   col = "red",
   font = 2,
   col.axis = "red")
-points(k.best,max(Si),pch = 16,col = "red",cex = 1.5)
+points(k.best,max(Si), pch = 16, col = "red",cex = 1.5)
 
 # Optimal number of clusters according to matrix correlation 
 # statistic (Pearson)
@@ -252,13 +257,13 @@ for (i in 2:(nrow(spe) - 1))
 }
 
 k.best <- which.max(kt$r)
-plot(kt$k,kt$r,type = "h",
+plot(kt$k,kt$r, type = "h",
   main = "Matrix correlation-optimal number of clusters",
   xlab = "k (number of clusters)",
   ylab = "Pearson's correlation")
-axis(1,k.best,paste("optimum", k.best, sep = "\n"),
-  col = "red",font = 2,col.axis = "red")
-points(k.best,max(kt$r),pch = 16,col = "red",cex = 1.5)
+axis(1, k.best, paste("optimum", k.best, sep = "\n"),
+  col = "red", font = 2,col.axis = "red")
+points(k.best, max(kt$r), pch = 16,col = "red", cex = 1.5)
 
 # Optimal number of clusters according as per indicator species
 # analysis (IndVal, Dufrene-Legendre; package: labdsv)
@@ -285,7 +290,7 @@ plot(1:nrow(spe),IndVal,
   ylab = "IndVal sum",
   col = col3)
 axis(1,k.best,paste("optimum", k.best, sep = "\n"),
-  col = "red",font = 2,col.axis = "red")
+  col = "red", font = 2, col.axis = "red")
 
 points(which.max(IndVal),max(IndVal),pch = 16,col = "red",cex = 1.5)
 text(28, 15.7, "a", cex = 1.8)
@@ -297,8 +302,8 @@ plot(1:nrow(spe),ng,
   main = "Proportion of clusters with significant indicator species",
   col = col3)
 axis(1,k.best,paste("optimum", k.best, sep = "\n"),
-     col = "red",font = 2,col.axis = "red")
-points(k.best,max(ng),pch = 16,col = "red",cex = 1.5)
+     col = "red", font = 2, col.axis = "red")
+points(k.best,max(ng), pch = 16, col = "red", cex = 1.5)
 text(28, 0.98, "b", cex = 1.8)
 ```
 

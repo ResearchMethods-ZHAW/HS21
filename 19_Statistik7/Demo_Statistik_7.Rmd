@@ -3,13 +3,16 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
 
-## Statistik 7 - Demoskript
+#### Demo: Statistik 7
+
 - **Ordinationen II**
 - **(c) Juergen Dengler**
 
 - [Demoscript als Download](19_Statistik7/Statistik_7_Demo_v.05.R)
 - Datensatz [Doubs.RData](18_Statistik6/Doubs.RData)
 - Funktion [triplot.rda.R](19_Statistik7/triplot.rda.R)
+
+- [Demoskript extended](19_Statistik7/Statistik_7_Demo_extended_v.03.R)
 
 
 __Interpretation von Ordinationen (Wildi pp. 96 et seq.)__
@@ -87,9 +90,11 @@ constr <- cca$CCA$tot.chi
 constr/tot
 ```
 
+__Redundancy analysis (RDA)__
+Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
 
-__Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)__
 ```{r eval=FALSE}
+#Datensatz Doubs
 # Doubs Datensatz in den workspace laden
 load("19_Statistik7/dataDoubs.RData")  
 spe

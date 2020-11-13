@@ -1,7 +1,7 @@
 
 ## Musterlösung Aufgabe 7.1: RDA
 
-- [R-Skript als Download](19_Statistik7/RFiles/Loesung_Uebung_7.1_v.03.R)
+- [R-Skript als Download](19_Statistik7/Loesung_7.1_v.04.R)
 
 - **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 
@@ -13,9 +13,8 @@
 
 ### Übung 7.1 - RDA -- Lösung
 
-```{r eval=FALSE}
-# Load the Moordatensatz data.
 __Moordatensatz laden__ 
+```{r eval=FALSE}
 if(!require(dave)){install.packages("dave")}
 library(dave)
 data(sveg)
@@ -49,12 +48,12 @@ Vorstehend wurden die Variablen in die zwei Gruppen Chemistry und Physiography a
 Die weiteren Analysen führen wir mit der default-Einstellung „Scaling 2“ durch. (Je nach Bedarf bzw. persönlichen Vorlieben könnte auch Scaling 1 genommen werden).
 
 
-```{r eval=FALSE}
 ## RDA of the Hellinger-transformed mire species data, constrained
 ## by all the environmental variables contained in env2
 
 
 __Redundancy analysis (RDA)__
+```{r eval=FALSE}
 
 ## RDA der Hellinger-transformireten Moorarten-Daten, constrained
 ## mit allen Umweltvarialben die in env2 enthalten sind
@@ -118,11 +117,7 @@ sel.sp
 # Triplots with homemade function triplot.rda()
 source("19_Statistik7/triplot.rda.R")
 
-# Triplots with homemade function triplot.rda(), scaling 2
-setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
-source("triplot.rda.R")
-
-dev.new(title = "RDA plot with triplot.rda",width = 7,height = 6, noRStudioGD = TRUE)
+dev.new(title = "RDA plot with triplot.rda", width = 7, height = 6, noRStudioGD = TRUE)
 
 triplot.rda(spe.rda, site.sc = "lc", cex.char2 = 0.7, pos.env = 3, 
             pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
@@ -162,7 +157,7 @@ anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 
 # Partial RDA triplots (with fitted site scores) 
 # with function triplot.rda
-dev.new(title = "Partial RDA",width = 7,height = 6,noRStudioGD = TRUE)
+dev.new(title = "Partial RDA", width = 7, height = 6, noRStudioGD = TRUE)
 
 triplot.rda(spechem.physio, site.sc = "lc", scaling = 2, 
             cex.char2 = 0.8, pos.env = 3, mult.spe = 1.1, mar.percent = 0.04)
