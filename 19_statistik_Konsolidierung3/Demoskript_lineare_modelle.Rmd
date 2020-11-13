@@ -1,4 +1,4 @@
-```{r, include=FALSE, purl=F, message=FALSE}
+```{r message=FALSE, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
@@ -29,7 +29,9 @@ mytheme <-
 
 *****
 
-```{r anova & ancova, message=FALSE}
+```{r anova & ancova, message=FALSE, eval=FALSE}
+
+library(mvtnorm)
 
 d <- mtcars %>% 
     mutate(cyl = as.factor(cyl)) %>% 
@@ -83,8 +85,7 @@ ggplot(d, aes(x = cyl, y = hp)) +
 	stat_boxplot(geom = "errorbar", width = .5) +
   geom_boxplot(size = 1) + 
 	annotate("text", x = 1:3, y = 350, label = letters$mcletters$Letters, size = 7) +
-  labs(x = "Anzahl Zylinder", y = "Pferdestärke") +
-  mytheme
+  labs(x = "Anzahl Zylinder", y = "Pferdestärke")  + mytheme
 
 
 ```

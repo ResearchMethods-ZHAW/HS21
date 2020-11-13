@@ -88,7 +88,7 @@ rmd_files: [
    #"19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
    
    
-   "19_Statistik_Konsolidierung3/Demoskript_lineare_modelle.Rmd"
+   "19_Statistik_Konsolidierung3/Demoskript_lineare_modelle.Rmd",
    
    
     "20_Statistik8/Abstract.Rmd",
@@ -128,4 +128,3 @@ language:
   ui:
     chapter_name: "Kapitel "
 # clean: clean: a vector of files and directories to be cleaned by the clean_book() function.
-    
