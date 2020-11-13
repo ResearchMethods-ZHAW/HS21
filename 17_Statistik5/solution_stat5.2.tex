@@ -1,0 +1,391 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\hypertarget{musterloesung-aufgabe-5.2s-glmm}{%
+\subsection{Musterloesung Aufgabe 5.2S:
+GLMM}\label{musterloesung-aufgabe-5.2s-glmm}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Lese-Empfehlung Kapitel 4.3.1 von
+\href{https://christophm.github.io/interpretable-ml-book/extend-lm.html\#glm}{Christopher
+Molnar}
+\end{quote}
+
+\begin{quote}
+Interessierte
+\href{https://rpsychologist.com/r-guide-longitudinal-lme-lmer}{hier}
+oder \href{https://rpubs.com/kaz_yos/glmm1}{hier}
+\end{quote}
+
+\begin{quote}
+Download \href{17_Statistik5/RFiles/solution_stat5.2.R}{R-Skript}
+\end{quote}
+
+\begin{quote}
+Download \href{17_Statistik5/solution_stat5.2.pdf}{PDF}
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{kommentierter Lösungsweg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\NormalTok{nova }\CommentTok{# kopiert originaler Datensatz}
+
+\CommentTok{# Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0}
+\NormalTok{df }\OperatorTok{%<>%}
+\StringTok{  }\CommentTok{# entfernt Personen die sich ein Buffet Teller gekauft}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(label_content }\OperatorTok{!=}\StringTok{ "Hot and Cold"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\CommentTok{# ihr könnt keine Angabe vernachlässigen, sind (nur) 54 Personen}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(age_group }\OperatorTok{!=}\StringTok{ "keine Angaben"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{label_content =} \KeywordTok{str_replace_all}\NormalTok{(.}\OperatorTok{$}\NormalTok{label_content, }
+                                         \KeywordTok{c}\NormalTok{(}\StringTok{"Fisch|Geflügel"),"}\NormalTok{Fleisch}\StringTok{")) %>%   }
+\StringTok{  mutate(meat = if_else(.$label_content == "}\NormalTok{Fleisch}\StringTok{", 1, 0)) %>%}
+\StringTok{  # setzt andere Reihenfolge für die Hochschulzugehörigkeit, nur für die Interpretation}
+\StringTok{  # nützlich: neu Referenzkategorie Studierende (vorher Mitarbeitende)}
+\StringTok{  mutate(member = factor(.$member, levels = c("}\NormalTok{Studierende}\StringTok{", "}\NormalTok{Mitarbeitende}\StringTok{")))  }
+
+
+\StringTok{# wie viele NA's hat es dirn (uns interessiert v.a. die responsevariable: meat)}
+\StringTok{sum(is.na(df$meat)) #Amelia::missmap(df_)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sieht euch die Verteilung zwischen Fleisch und  kein Fleisch an, }
+\CommentTok{# beide kategorien kommen nicht gleich häufig vor, aber nicht super tragisch}
+\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{meat)) }\CommentTok{# gibt die prozente an}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##         0         1 
+## 0.4782123 0.5217877
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{meat) }\CommentTok{# gibt die absoluten werte an}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    0    1 
+## 8560 9340
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# definiert das logistische Modell mit ccrs als random intercept und }
+\CommentTok{# wendet es auf den Datensatz an}
+
+\KeywordTok{library}\NormalTok{(lme4)}
+\CommentTok{#dauert ein paar sekunden}
+\NormalTok{mod0 <-}\StringTok{ }\KeywordTok{glmer}\NormalTok{(meat }\OperatorTok{~}\StringTok{ }\NormalTok{gender }\OperatorTok{+}\StringTok{ }\NormalTok{member }\OperatorTok{+}\StringTok{ }\NormalTok{age_group }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{|}\NormalTok{ccrs),}
+              \DataTypeTok{data =}\NormalTok{ df, }\KeywordTok{binomial}\NormalTok{(}\StringTok{"logit"}\NormalTok{)) }
+
+\CommentTok{# lasst euch das Modell anzeigen: sieht so aus, als ob v.a. Geschlecht eine }
+\CommentTok{# Rolle spielt}
+\CommentTok{# wahrnmeldung kann vernachlässigt werden (aufgrund der unicode resp. }
+\CommentTok{# umlaute in den variablen)}
+\KeywordTok{summary}\NormalTok{(mod0) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: meat ~ gender + member + age_group + (1 | ccrs)
+##    Data: df
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##  22611.1  22665.6 -11298.5  22597.1    17893 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.9879 -0.8253  0.4831  0.7618  3.2980 
+## 
+## Random effects:
+##  Groups Name        Variance Std.Dev.
+##  ccrs   (Intercept) 1.047    1.023   
+## Number of obs: 17900, groups:  ccrs, 1427
+## 
+## Fixed effects:
+##                            Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                -0.61178    0.07146  -8.561  < 2e-16 ***
+## genderM                     0.85769    0.07384  11.615  < 2e-16 ***
+## memberMitarbeitende         0.14252    0.11044   1.290  0.19690    
+## age_group26 bis 34-jÃ¤hrig -0.23126    0.08914  -2.594  0.00948 ** 
+## age_group35 bis 49-jÃ¤hrig -0.07394    0.13687  -0.540  0.58905    
+## age_group50 bis 64-jÃ¤hrig -0.01069    0.17538  -0.061  0.95138    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in abbreviate(rn, minlength = 11): abbreviate mit nicht-ASCII Zeichen
+## genutzt
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Correlation of Fixed Effects:
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in abbreviate(rn, minlength = 6): abbreviate mit nicht-ASCII Zeichen
+## genutzt
+\end{verbatim}
+
+\begin{verbatim}
+##             (Intr) gendrM mmbrMt a_26b3 a_35b4
+## genderM     -0.658                            
+## mmbrMtrbtnd -0.076  0.029                     
+## ag_26b34-Ã¤ -0.411 -0.025 -0.353              
+## ag_35b49-Ã¤ -0.281  0.041 -0.663  0.467       
+## ag_50b64-Ã¤ -0.208  0.020 -0.598  0.393  0.517
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## erste Interpretation: Geschlecht (Mann) und Alter (junge Personen) scheinen den Fleischkonsum positiv zu beeinflussen + Hochschulzugehörigkeit spielt keien Rolle}
+\CommentTok{# d.h. könnte man vernachlässigen. Ich lasse aus inhaltlichen Gründen aber im Modell drin}
+
+\CommentTok{# Pseudo R^2}
+\KeywordTok{library}\NormalTok{(MuMIn)}
+\KeywordTok{r.squaredGLMM}\NormalTok{(mod0) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 'r.squaredGLMM' now calculates a revised statistic. See the help page.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: The null model is correct only if all variables used by the original
+## model remain unchanged.
+\end{verbatim}
+
+\begin{verbatim}
+##                    R2m       R2c
+## theoretical 0.03760018 0.2699647
+## delta       0.03240612 0.2326719
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# das marginale R^2 (r2m) gibt uns die erklärte Varianz der fixen Effekte: hier 4% (das ist sehr wenig)}
+\CommentTok{# das conditionale R^2 (r2c) gibt uns die erklärte Varianz für das ganze Modell }
+\CommentTok{# (mit fixen und variablen Effekten): hier 27% (ganz ok, aber auch nicht super mega)}
+\CommentTok{# für weitere Informationen: https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html }
+
+\CommentTok{# zusätzliche Informationen, welche für die Interpretation gut sein kann}
+\CommentTok{# berechnet den Standardfehler (mehr infos: https://www.youtube.com/watch?v=r-txC-dpI-E oder hier: https://mgimond.github.io/Stats-in-R/CI.html)}
+\CommentTok{# weitere info: https://stats.stackexchange.com/questions/26650/how-do-i-reference-a-regression-models-coefficients-standard-errors}
+\NormalTok{se <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{diag}\NormalTok{(}\KeywordTok{vcov}\NormalTok{(mod0)))}
+
+\CommentTok{# zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall (KI)}
+\CommentTok{# => Faustregel: falls 0 im KI enthalten ist, dann ist der Unterschied statistisch NICHT signifikant}
+\NormalTok{tab1 <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}\DataTypeTok{Est =} \KeywordTok{fixef}\NormalTok{(mod0), }\DataTypeTok{LL =} \KeywordTok{fixef}\NormalTok{(mod0) }\OperatorTok{-}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{se,}
+              \DataTypeTok{UL =} \KeywordTok{fixef}\NormalTok{(mod0) }\OperatorTok{+}\StringTok{ }\FloatTok{1.96} \OperatorTok{*}\StringTok{ }\NormalTok{se)}
+
+\CommentTok{# erzeugt die Odds Ratios}
+\NormalTok{tab2 <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(tab1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Methoden}
+
+Die Responsevariable ``Fleischkonsum'' ist eine binäre Variable. Demnach
+wird eine multiple logistische Regression mit den Prädiktoren ``Alter
+(Gruppen)'', ``Geschlecht'' und ``Hochschulzugehörigkeit'' gerechnet. Da
+in den Daten gewisse Individuen mehrmals vorkommen, wird das Individuum
+(Variable ccrs) als variabler Effekt in das Modell aufgenommen.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Ergebnisse}
+
+Das Geschlecht und das Alter nehmen einen signifikanten Einfluss auf den
+Fleischkonsum (siehe Table 1): Männer kaufen signifikant häufiger ein
+fleischhaltiges Gericht als Frauen; junge Personen (15 bis 25-jährig)
+kaufen signifikant häufiger ein fleischhaltiges Gericht in der Mensa. Es
+sieht so aus, als ob die Hochschulzugehörigkeit auf den ersten Blick
+keinen Einfluss nimmt. Aber man müsste auch die Interaktion zwischen
+Geschlecht und Hochschulzugehörigkeit berücksichtigen, um ein
+abschliessendes Bild zu bekommen. Das kleine marginale Pseudo-R\^{}2
+zeigt auf, dass es nicht das ``beste'' Modell ist. Insbesondere die
+tiefe Varianzaufklärung für die randomisierte Variable (r2c; ccrs)
+scheint mit (nur) 4\% sehr gering. Das sind Hinweise dafür, dass das
+Modell ggf. noch weitere Ebenen haben könnte (z.B. Standort Mensa).
+
+\begin{longtable}[]{@{}lrrr@{}}
+\caption{Modellschätzer (Coefficients) mit dazugehörigem 95\%
+Konfidenzintervall}\tabularnewline
+\toprule
+& Coefficients & Lower Limit (LL) & Uppewr Limit (UL)\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& Coefficients & Lower Limit (LL) & Uppewr Limit (UL)\tabularnewline
+\midrule
+\endhead
+Intercept & -0.61 & -0.75 & -0.47\tabularnewline
+Männer & 0.86 & 0.71 & 1.00\tabularnewline
+Mitarbeitende & 0.14 & -0.07 & 0.36\tabularnewline
+26 bis 34-jährig & -0.23 & -0.41 & -0.06\tabularnewline
+35 bis 49-jährig & -0.07 & -0.34 & 0.19\tabularnewline
+50 bis 64-jährig & -0.01 & -0.35 & 0.33\tabularnewline
+\bottomrule
+\end{longtable}
+
+Die Chance, dass Männer ein fleischhaltiges Gericht kaufen ist 2.36mal
+(+136\%) höher als bei Frauen (siehe Table 2). Die Chance, dass 26 bis
+34-jährige Personen ein fleischhaltiges Gericht kaufen ist kleiner
+(-21\%) als bei den 15 bis 25-jährigen Personen.
+
+\begin{longtable}[]{@{}lrrr@{}}
+\caption{Odds Ratio (OR) mit dazugehörigem 95\%
+Konfidenzintervall}\tabularnewline
+\toprule
+& OR & Lower Limit (LL) & Uppewr Limit (UL)\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& OR & Lower Limit (LL) & Uppewr Limit (UL)\tabularnewline
+\midrule
+\endhead
+Intercept & 0.54 & 0.47 & 0.62\tabularnewline
+Männer & 2.36 & 2.04 & 2.72\tabularnewline
+Mitarbeitende & 1.15 & 0.93 & 1.43\tabularnewline
+26 bis 34-jährig & 0.79 & 0.67 & 0.95\tabularnewline
+35 bis 49-jährig & 0.93 & 0.71 & 1.21\tabularnewline
+50 bis 64-jährig & 0.99 & 0.70 & 1.40\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{document}
