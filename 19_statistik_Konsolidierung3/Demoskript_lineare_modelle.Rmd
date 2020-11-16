@@ -1,4 +1,4 @@
-```{r, include=FALSE, purl=F, message=FALSE}
+```{r message=FALSE, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
@@ -21,11 +21,13 @@ mytheme <-
 
 ```
 
+
 # Statistik Konsolidierung 3 (16.11.2020)
 
 In Statistik Konsolidierung 3 lernen die Studierenden die Idee, die Voraussetzungen und die praktische Anwendung „einfacher“ linearer Modelle in R. Im Fokus steht die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind.
 
 ## Demo
+
 
 *****
 
@@ -33,12 +35,16 @@ In Statistik Konsolidierung 3 lernen die Studierenden die Idee, die Voraussetzun
 
 *****
 
+
 ```{r anova & ancova, message=FALSE}
 # für mehr infos
 #https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
+
 d <- mtcars %>% 
     mutate(cyl = as.factor(cyl)) %>% 
-    slice(-31)
+    slice(-31) # lösch die 31ste Zeile
+
+#Alternativ ginge auch das
 d[-31,]
 
 # schaue daten zuerst mal an
@@ -89,8 +95,7 @@ ggplot(d, aes(x = cyl, y = hp)) +
 	stat_boxplot(geom = "errorbar", width = .5) +
   geom_boxplot(size = 1) + 
 	annotate("text", x = 1:3, y = 350, label = letters$mcletters$Letters, size = 7) +
-  labs(x = "Anzahl Zylinder", y = "Pferdestärke") +
-  mytheme
+  labs(x = "Anzahl Zylinder", y = "Pferdestärke")  + mytheme
 
 
 ```
@@ -318,6 +323,7 @@ MuMIn::importance(allmodels)
 avgmodel<- MuMIn::model.avg(get.models(allmodels, subset=TRUE))
 summary(avgmodel)
 
+# adäquatest model gemäss multimodel inference
 model_ad <- lm(hp ~ carb + disp + mpg + wt, data = d)
 
 ```

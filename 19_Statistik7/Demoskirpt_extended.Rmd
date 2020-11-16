@@ -18,81 +18,85 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 #Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
-ca<-cca(sveg^0.5)
+ca <- cca(sveg^0.5)
 
 #Plot mit ausgewählten Arten
 sel.spec<-c(3,11,23,31,39,46,72,77,96)
 snames<-names(sveg[,sel.spec])
 snames
-sx <- ca$CA$v[sel.spec,1]
-sy <- ca$CA$v[sel.spec,2]
-plot(ca$CA$u, asp=1)
-points(sx,sy,pch=16)
+scores <- scores(ca, scaling = "sites")
+sx <- scores[sel.spec, 1]
+sy <- scores[sel.spec, 2]
+plot(ca, display = "sites", type = "point")
+points(sx, sy, pch=16)
 snames <- make.cepnames(snames)
-text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
+text(sx, sy, snames, pos=c(1,2,1,1,3,2,4,3,1), cex=0.8)
 
 # Plotte post-hoc gefittete Umweltvariablen
 sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
-ev <-envfit(ca,ssit[,sel.sites])
-plot(ev,add=T,cex=0.8)
+ev <- envfit(ca, ssit[,sel.sites])
+plot(ev, add=T, cex=0.8)
 
 #Plot "response surfaces" in der CA
-plot(ca$CA$u, asp=1)
-ordisurf(ca,ssit$pH.peat,add=T)
+plot(ca, display = "sites", type = "point")
+ordisurf(ca, ssit$pH.peat, add=T)
 
-plot(ca$CA$u, asp=1)
-ordisurf(ca,ssit$Waterlev.av,add=T,col="blue")
+plot(ca, display = "sites", type = "points")
+ordisurf(ca, ssit$Waterlev.av, add=T, col="blue")
 
-#Das gleiche für die DCA (geht nicht, da das "detrending" die Distanzmatrix zerstört)
-dca <- decorana(sveg,mk=10)
-plot(dca$rproj, asp=1)
-ordisurf(dca,ssit$pH.peat,add=T)
-ordisurf(dca,ssit$Waterlev.av,add=T,col="blue")
+#Das gleiche für die DCA
+dca <- decorana(sveg)
+plot(dca, display = "sites", type = "points")
+ordisurf(dca, ssit$pH.peat, add=T)
+ordisurf(dca, ssit$Waterlev.av, add=T, col="blue")
 
 #Das gleiche mit NMDS
-mde <-vegdist(sveg,method="euclidean")
-mmds<-metaMDS(mde,k=2)
+mde <- vegdist(sveg,method="euclidean")
+mmds <- metaMDS(mde)
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
-imds<-isoMDS(mde,k=2)
+imds <- isoMDS(mde)
 
 plot(mmds$points)
-ordisurf(mmds,ssit$pH.peat,add=T)
-ordisurf(mmds,ssit$Waterlev.av,add=T,col="blue")
+ordisurf(mmds, ssit$pH.peat, add=T)
+ordisurf(mmds, ssit$Waterlev.av,add=T, col="blue")
 
 plot(imds$points)
-ordisurf(imds,ssit$pH.peat,add=T)
-ordisurf(imds,ssit$Waterlev.av,add=T,col="blue")
+ordisurf(imds, ssit$pH.peat, add=T)
+ordisurf(imds, ssit$Waterlev.av, add=T, col="blue")
+```
 
 
-# Constrained ordination --------------------------------------------------
-
-
+__Constrained ordination__
+```{r eval=FALSE}
 #5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
 ssit
 summary(ssit)
-s5<-c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")
-ssit5<-ssit[s5]
+s5 <- c("pH.peat", "P.peat", "Waterlev.av", "CEC.peat", "Acidity.peat")
+ssit5 <- ssit[s5]
 
 data(sveg)
 summary(sveg)
 
 #RDA = constrained PCA
-rda <-rda(sveg,ssit5)
+rda <- rda(sveg~., ssit5)
 plot(rda)
 
 #CCA = constrained CA
-cca <-cca(sveg,ssit5)
+cca <- cca(sveg~., ssit5)
 plot(cca)
 
 #Unconstrained and constrained variance
 tot <- cca$tot.chi
 constr <- cca$CCA$tot.chi
 constr/tot
+```
 
 
+__Redundancy analysis (RDA)__
 ## Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
-
+```{r eval=FALSE}
+#Datensatz Doubs
 # Doubs Datensatz in den workspace laden
 load("Doubs.RData")  
 spe

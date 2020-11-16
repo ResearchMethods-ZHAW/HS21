@@ -50,7 +50,7 @@ library(ggbiplot)
 ggbiplot(o.pca,choices = c(1,2))
 
 # nehme noch die autonamen hinzu
-ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) + mytheme # choice gibt die axen an
+ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice gibt die axen an
 
 ```
 
@@ -277,7 +277,7 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
 
 
-```{r NMDS, message=FALSE}
+```{r NMDS, message=FALSE, eval=FALSE}
 #NMDS----------
 
 #Distanzmatrix als Start erzeugen

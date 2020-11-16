@@ -1,9 +1,11 @@
 
-## Musterlöseung Aufgabe 6.1: PCA
+## Loesung 6.1
 
-[R-Skript als Download](18_Statistik6/RFiles/Loesung_Uebung_6.1_v.03.R)
+- [R-Skript als Download](18_Statistik6/Loesung_6.1_v.04.R)
 
-```{r eval=FALSE}
+- [Loesungstext](18_Statistik6/Statistik_Loesungstext_6.1.pdf)
+
+```{r eval=TRUE}
 load("18_Statistik6/Doubs.RData")
 summary(env)
 summary(spe)
@@ -17,12 +19,12 @@ library("vegan")
 
 Die PCA wird im Package vegan mit dem Befehl rda ausgeführt, wobei in diesem scale = TRUE gesetzt warden muss, da die Umweltdaten mit ganz unterschiedlichen Einheiten und Wertebereichen daherkommen
 
-```{r eval=FALSE}
+```{r}
 env.pca <- rda(env, scale=TRUE)
 env.pca
 #In env.pca sieht man, dass es bei 11 Umweltvariablen logischerweise 11 orthogonale Principle Components gibt
 
-summary(env.pca,axes=0)
+summary(env.pca, axes=0)
 
 #Hier sieht man auch die Übersetzung der Eigenvalues in erklärte Varianzen der einzelnen Principle Components
 
@@ -38,12 +40,12 @@ screeplot(env.pca, bstick=TRUE, npcs=length(env.pca$CA$eig))
 - Da die Relevanz für das Datenmuster in den Umweltdaten nicht notwendig die Relevanz für die Erklärung der Artenzahlen ist,    nehmen wir ins globale Modell grosszügig die ersten vier Achsen rein (PC1-PC4)
 Die Bedeutung der Achsen (benötigt man später für die Interpretation!) findet man in den “species scores” (da so, wie wir die PCA hier gerechnet haben, die Umweltdaten die Arten sind. Zusätzlich oder alternative kann man sich die ersten vier Achsen auch visualisieren, indem man PC2 vs. PC1 (ohne choices), PC3 vs. PC1 oder PC4 vs. PC1 plottet.
 
-```{r eval=FALSE}
+```{r}
 
 par(mfrow=c(2,2))
 biplot(env.pca, scaling=1)
-biplot(env.pca, choices=c(1,3),scaling=1)
-biplot(env.pca, choices=c(1,4),scaling=1)
+biplot(env.pca, choices=c(1,3), scaling=1)
+biplot(env.pca, choices=c(1,4), scaling=1)
 
 ```
 
@@ -52,10 +54,10 @@ biplot(env.pca, choices=c(1,4),scaling=1)
 -	PC3 steht v.a. für pH (positiv) und slo (negativ)
 - PC4 steht v.a. für pH (negativ) und slo (negativ)
 
-```{r eval=FALSE}
+```{r}
 #Wir extrahieren nun die ersten vier PC-Scores aller Aufnahmeflächen
 
-scores<-scores(env.pca,choices=c(1:4),display=c("sites"))
+scores <- scores(env.pca,choices=c(1:4), display=c("sites"))
 scores
 
 #Berechnung der Artenzahl mittels specnumber; Artenzahl und Scores werden zum Dataframe für die Regressionsanalyse hinzugefügt
@@ -102,15 +104,15 @@ cor
 #Es zeigt sich, dass es zwei grosse Gruppen von untereinander hochkorrelierten Variablen gibt: zum einen dfs-ele-dis-har-nit, zum anderen pho-nit-amm-oxy-bod, während slo und pH mit jeweils keiner anderen Variablen hochkorreliert sind. Insofern behalten wir eine aus der ersten Gruppe (ele), eine aus der zweiten Gruppe (pho) und die beiden «unabhängigen».
 
 #Globalmodell (als hinreichend unabhängige Variablen werden ele, slo, pH und pho aufgenommen)
-lm.orig.0 <- lm(species_richness ~ ele+slo+pH+pho, data =doubs)
+lm.orig.0 <- lm(species_richness ~ ele+slo+pH+pho, data = doubs)
 summary(lm.orig.0)
 
 #Modellvereinfachung: slo als am wenigsten signifikante Variable gestrichen
-lm.orig.1 <- lm(species_richness ~ ele+pH+pho, data =doubs)
+lm.orig.1 <- lm(species_richness ~ ele+pH+pho, data = doubs)
 summary(lm.orig.1)
 
 #Modellvereinfachung: pH ist immer noch nicht signifikant und wird gestrichen
-lm.orig.2 <- lm(species_richness ~ ele+pho, data =doubs)
+lm.orig.2 <- lm(species_richness ~ ele+pho, data = doubs)
 summary(lm.orig.2)
 
 #Modelldiagnostik
@@ -122,13 +124,13 @@ plot(lm.orig.2) #nicht so gut, besonders die Bananenform in der linken obereren 
 #Da das nicht so gut aussieht, versuchen wir es mit dem theoretisch angemesseneren Modell, einem Poisson-GLM.
 
 #Versuch mit glm
-glm.orig.0 <- glm(species_richness ~ ele+pho+pH+slo, family = "poisson", data =doubs)
+glm.orig.0 <- glm(species_richness ~ ele+pho+pH+slo, family = "poisson", data = doubs)
 summary(glm.orig.0)
 
-glm.orig.1 <- glm(species_richness ~ ele+pho+slo, family = "poisson", data =doubs)
+glm.orig.1 <- glm(species_richness ~ ele+pho+slo, family = "poisson", data = doubs)
 summary(glm.orig.1)
 
-glm.orig.2 <- glm(species_richness ~ ele+pho, family = "poisson", data =doubs)
+glm.orig.2 <- glm(species_richness ~ ele+pho, family = "poisson", data = doubs)
 summary(glm.orig.2)
 plot(glm.orig.2)
 
@@ -140,7 +142,7 @@ dispersiontest(glm.orig.2) #signifikante Überdispersion
 
 #Ja, es gibt signifikante Overdispersion (obwohl der Dispersionparameter sogar unter 2 ist, also nicht extrem). Wir können nun entweder quasipoisson oder negativebinomial nehmen.
 
-glmq.orig.2 <- glm(species_richness ~ ele+pho, family = "quasipoisson", data =doubs)
+glmq.orig.2 <- glm(species_richness ~ ele+pho, family = "quasipoisson", data = doubs)
 summary(glmq.orig.2)
 
 #Parameterschätzung bleiben gleich, aber Signifikanzen sind niedriger als beim GLM ohne Overdispersion.

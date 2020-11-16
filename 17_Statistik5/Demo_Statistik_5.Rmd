@@ -2,12 +2,12 @@
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
-## Statistik 5 - Demoskript 
+## Demo: Statistik 5
 **Von linearen Modellen zu GLMMs**
 **(c) Juergen Dengler**
 
 
-- [Demoscript als Download](17_Statistik5/RFiles/Statistik_5_Demo_v.04.R)
+- [Demoscript als Download](17_Statistik5/RFiles/Statistik_5_Demo_v.05.R)
 - Datensatz [spf.csv](17_Statistik5/data/spf.csv)
 - Datensatz [DeerEcervi.txt](17_Statistik5/data/DeerEcervi.txt)
 
@@ -16,17 +16,17 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 Based on Logan (2010), Chapter 14
 
 ```{r}
-spf <- read.delim("17_Statistik5/data/spf.csv", sep = ",") 
-spf.aov <- aov(Y~A*C + Error(B), spf)
+spf <- read.delim("17_Statistik5/data/spf.csv", sep = ";") 
+spf.aov <- aov(Reaktion~Signal*Messung + Error(VP), data = spf)
 summary(spf.aov)
 
-interaction.plot(spf$C, spf$A, spf$Y)
+interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
 
 #nun als LMM
 if(!require(nlme)){install.packages("nlme")}
 library(nlme)
-spf.lme.1 <- lme(Y~A*C, random = ~C | B, spf)
-spf.lme.2 <- lme(Y~A*C, random = ~1 | B, spf)
+spf.lme.1 <- lme(Reaktion~Signal*Messung, random = ~Messung | VP, data = spf)
+spf.lme.2 <- lme(Reaktion~Signal*Messung, random = ~1 | VP, data = spf)
 
 anova(spf.lme.1)
 anova(spf.lme.2)
@@ -45,7 +45,7 @@ DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
 
 #Anzahl Larven hier in Presence/Absence übersetzt
 DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0] <- 1
-DeerEcervi$fSex <- factor(DeerEcervi$Sex)
+DeerEcervi$fSex <- as.factor(DeerEcervi$Sex)
 
 #Hirschlänge hier standardisiert, sonst würde der Achsenabschnitt im Modell für
 #einen Hirsch der Länge 0 modelliert, was schlecht interpretierbar ist, 
@@ -56,7 +56,7 @@ DeerEcervi$fFarm <- factor(DeerEcervi$Farm)
 
 #Zunächst als GLM
 #Interaktionen mit fFarm nicht berücksichtigt, da zu viele Freiheitsgrade verbraucht würden
-DE.glm <- glm(Ecervi.01 ~ CLength * fSex+fFarm, data = DeerEcervi,family = binomial)
+DE.glm <- glm(Ecervi.01 ~ CLength * fSex+fFarm, family = binomial, data = DeerEcervi)
 
 drop1(DE.glm, test = "Chi")
 summary(DE.glm)
@@ -87,7 +87,7 @@ lines(DeerEcervi$CLength[I], p.Low[I])
 
 if(!require(lme4)){install.packages("lme4")}
 library(lme4)
-DE.lme4 <- glmer(Ecervi.01 ~ CLength * fSex +(1|fFarm), family = binomial, data = DeerEcervi)#lmer funktioniert nicht mehr
+DE.lme4 <- glmer(Ecervi.01 ~ CLength * fSex +(1|fFarm), family = binomial, data = DeerEcervi)
 summary(DE.lme4)
 
 if(!require(glmmML)){install.packages("glmmML")}
