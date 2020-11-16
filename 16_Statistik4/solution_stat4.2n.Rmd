@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, mes
 
 ## Musterloesung Aufgabe 4.2N: Multiple logistische Regression
 
-[R-Skript als Download](16_Statistik4/RFiles/Loesung_Uebung_4.2N_v.01.R)
+[R-Skript als Download](16_Statistik4/RFiles/solution_stat4.2n.R)
 [Loesungstext](16_Statistik4/Statistik_Loesungstext_4.2N.pdf)
 
 
