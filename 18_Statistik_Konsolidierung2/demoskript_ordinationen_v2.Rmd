@@ -6,6 +6,8 @@ knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
 # Statistik Konsolidierung 2 (10.11.2020)
 
+In Statistik Konsolidierung 2 bekommen die Studierenden eine Einführung in das Thema der Ordinationen, eine Technik der deskriptiven Statistik. Diese Methoden visualisiert die Strukturen in multivariaten Datensätzen via Dimensionsreduktion. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich NMDS.
+
 ## Demo: Statistik Konsolidierung 2
 
 *****

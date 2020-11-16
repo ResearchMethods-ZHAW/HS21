@@ -21,7 +21,11 @@ mytheme <-
 
 ```
 
-## Demo: Statistik Konsolidierung 3 (16.11.2020)
+# Statistik Konsolidierung 3 (16.11.2020)
+
+In Statistik Konsolidierung 3 lernen die Studierenden die Idee, die Voraussetzungen und die praktische Anwendung „einfacher“ linearer Modelle in R. Im Fokus steht die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind.
+
+## Demo
 
 *****
 
@@ -30,10 +34,12 @@ mytheme <-
 *****
 
 ```{r anova & ancova, message=FALSE}
-
+# für mehr infos
+#https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
 d <- mtcars %>% 
     mutate(cyl = as.factor(cyl)) %>% 
     slice(-31)
+d[-31,]
 
 # schaue daten zuerst mal an
 #1. Responsevariable
@@ -46,7 +52,7 @@ table(d$cyl) # mögliches probel, da n's unterschiedlich gross
 boxplot(d$hp ~ d$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
 
 # definiere das modell für eine ein-faktorielle anova
-aov.1 <- aov(log10(hp) ~ cyl, data = d)
+aov.1 <- aov(hp ~ cyl, data = d)
 # par(mfrow = c(2,2))
 # plot(aov.1)
 summary.lm(aov.1)
@@ -57,15 +63,15 @@ TukeyHSD(aov.1)
 
 
 # alternativ welch t.test für ungleiche varianzen
-# welch1 <- oneway.test(hp ~ cyl, data = d, var.equal = FALSE)
-# posthocTGH(d$hp, d$cyl, method = "games-howell")
+welch1 <- oneway.test(hp ~ cyl, data = d, var.equal = FALSE)
+posthocTGH(d$hp, d$cyl, method = "games-howell")
 
 # definiere das modell für eine zwei-faktorielle anova
 # achtung reihenfolge ist bei anova wichtig: https://stats.stackexchange.com/questions/212496/why-do-p-values-change-in-significance-when-changing-the-order-of-covariates-in
 # https://stats.stackexchange.com/questions/13241/the-order-of-variables-in-anova-matters-doesnt-it
-aov.2 <- aov(log10(hp) ~ cyl + am, data = d) 
-# par(mfrow = c(2,2))
-# plot(aov.2)
+aov.2 <- aov(log10(hp) ~ cyl * am + wt, data = d) 
+par(mfrow = c(2,2))
+plot(aov.2)
 summary.lm(aov.2)
 
 
@@ -116,13 +122,14 @@ cor(d$mpg, d$hp) # hängen stark zusammen
 # einfache regression
 ##################
 model <- lm(hp ~ mpg, data = d)
+summary.lm(model)
 
 ###############
 # Modeldiagnostik
 ###############
 
 # semi schöne Ergebnisse
-autoplot(model) # gitb einige Extremwerte => was tun? (Eingabe/Einlesen 
+autoplot(model) + mytheme # gitb einige Extremwerte => was tun? (Eingabe/Einlesen 
 #überprüfen, Transformation, Extremwerte nur ausschliessen mit guter Begründung)
 
 
@@ -149,6 +156,8 @@ ggplot(d, aes(x = mpg, y = hp)) +
   geom_point(aes(color = abs(residuals))) + 
   # Colors to use here (für mehrere farben verwende color_gradient2)
   scale_color_continuous(low = "blue", high = "red") +  
+  scale_x_continuous(limits = c(0, 40)) +
+  scale_y_continuous(limits = c(0, 300)) +
   guides(color = FALSE) +  # Color legende entfernen
   mytheme
 
@@ -176,12 +185,13 @@ ggplot(d, aes(x = mpg, y = hp)) +
 
 # Select data
 d <- mtcars %>% 
+    slice(-31) %>% 
     dplyr::select(mpg, hp, wt, disp)
 
 ################
 # multikollinearitüt überprüfen
 # Korrelation zwischen Prädiktoren kleiner .7
-cor <- cor(d[, -1])
+cor <- cor(d[, -2])
 cor[abs(cor)<0.7] <- 0  
 cor # disp weglassen, vgl. model2
 
@@ -215,9 +225,9 @@ d$predicted <- predict(model2)
 # namen haben wie im Model
 # besser mit Traindata von Beginn an mehr Infos hier: https://www.r-bloggers.com/using-linear-regression-to-predict-energy-output-of-a-power-plant/
 
-new.data <- tibble(mpg = sample(seq(15.1,33.9, .3), 32),
-                   wt = sample(seq(1.513, 5.424, 0.01), 32),
-                   disp = sample(seq(71.1, 472.0, .1), 32)) 
+new.data <- tibble(mpg = sample(seq(15.1,33.9, .3), 31),
+                   wt = sample(seq(1.513, 5.424, 0.01), 31),
+                   disp = sample(seq(71.1, 472.0, .1), 31)) 
 d$predicted_own <- predict(model2, newdata = new.data)
 
 # 3. train_test_split durchführen (empfohlen) muss jedoch von beginn an bereits 
@@ -298,7 +308,17 @@ hier.part(d$hp, X, gof = "Rsqu")
 model2 <- lm(hp ~ ., data = d)
 library(MuMIn)
 options(na.action = "na.fail")
-head(dredge(model2), 10)
+allmodels <- dredge(model2)
+head(allmodels)
+
+# Wichtigkeit der Prädiktoren
+MuMIn::importance(allmodels)
+
+# mittleres Model
+avgmodel<- MuMIn::model.avg(get.models(allmodels, subset=TRUE))
+summary(avgmodel)
+
+model_ad <- lm(hp ~ carb + disp + mpg + wt, data = d)
 
 ```
 
