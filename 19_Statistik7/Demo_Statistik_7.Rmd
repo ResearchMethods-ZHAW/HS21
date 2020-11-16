@@ -27,7 +27,7 @@ ca <- cca(sveg^0.5)
 sel.spec<-c(3,11,23,31,39,46,72,77,96)
 snames<-names(sveg[,sel.spec])
 snames
-scores <- scores(ca, scaling = "sites")
+scores <- scores(ca, display = "species", scaling = "sites")
 sx <- scores[sel.spec, 1]
 sy <- scores[sel.spec, 2]
 plot(ca, display = "sites", type = "point")
@@ -161,10 +161,8 @@ summary(spe.rda)	# Scaling 2 (default)
 
 # Canonical coefficients from the rda object
 coef(spe.rda)
-# Unadjusted R^2 retrieved from the rda object
-(R2 <- RsquareAdj(spe.rda)$r.squared)
-# Adjusted R^2 retrieved from the rda object
-(R2adj <- RsquareAdj(spe.rda)$adj.r.squared)
+# Unadjusted R^2 und Adjusted R^2
+(R2 <- RsquareAdj(spe.rda))
 
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables

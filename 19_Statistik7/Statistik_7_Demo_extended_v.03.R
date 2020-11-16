@@ -1,6 +1,6 @@
 ### Research Methods Statistik 7
 ### Ordinationen II
-### (c) Jürgen Dengler
+### (c) J?rgen Dengler
 
 setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc. Research Methods/Statistik Dengler 2019/DataSets")
 
@@ -8,60 +8,62 @@ setwd("S:/pools/n/N-zen_naturmanag_lsfm/FS_Vegetationsanalyse/Lehre (Module)/MSc
 # #Interpretation von Ordinationen ----------------------------------------
 #Wildi pp. 96 et seq.)
 
+
 #Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
-ca<-cca(sveg^0.5)
+ca <- cca(sveg^0.5)
 
-#Plot mit ausgewählten Arten
+#Plot mit ausgewÃ¤hlten Arten
 sel.spec<-c(3,11,23,31,39,46,72,77,96)
 snames<-names(sveg[,sel.spec])
 snames
-sx <- ca$CA$v[sel.spec,1]
-sy <- ca$CA$v[sel.spec,2]
-plot(ca$CA$u, asp=1)
-points(sx,sy,pch=16)
+scores <- scores(ca, display = "species", scaling = "sites")
+sx <- scores[sel.spec, 1]
+sy <- scores[sel.spec, 2]
+plot(ca, display = "sites", type = "point")
+points(sx, sy, pch=16)
 snames <- make.cepnames(snames)
-text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
+text(sx, sy, snames, pos=c(1,2,1,1,3,2,4,3,1), cex=0.8)
 
 # Plotte post-hoc gefittete Umweltvariablen
 sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
-ev <-envfit(ca,ssit[,sel.sites])
-plot(ev,add=T,cex=0.8)
+ev <- envfit(ca, ssit[,sel.sites])
+plot(ev, add=T, cex=0.8)
 
 #Plot "response surfaces" in der CA
-plot(ca$CA$u, asp=1)
-ordisurf(ca,ssit$pH.peat,add=T)
+plot(ca, display = "sites", type = "point")
+ordisurf(ca, ssit$pH.peat, add=T)
 
-plot(ca$CA$u, asp=1)
-ordisurf(ca,ssit$Waterlev.av,add=T,col="blue")
+plot(ca, display = "sites", type = "points")
+ordisurf(ca, ssit$Waterlev.av, add=T, col="blue")
 
-#Das gleiche für die DCA (geht nicht, da das "detrending" die Distanzmatrix zerstört)
-dca <- decorana(sveg,mk=10)
-plot(dca$rproj, asp=1)
-ordisurf(dca,ssit$pH.peat,add=T)
-ordisurf(dca,ssit$Waterlev.av,add=T,col="blue")
+#Das gleiche fÃ¼r die DCA
+dca <- decorana(sveg)
+plot(dca, display = "sites", type = "points")
+ordisurf(dca, ssit$pH.peat, add=T)
+ordisurf(dca, ssit$Waterlev.av, add=T, col="blue")
 
 #Das gleiche mit NMDS
-mde <-vegdist(sveg,method="euclidean")
-mmds<-metaMDS(mde,k=2)
+mde <- vegdist(sveg,method="euclidean")
+mmds <- metaMDS(mde)
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
-imds<-isoMDS(mde,k=2)
+imds <- isoMDS(mde)
 
 plot(mmds$points)
-ordisurf(mmds,ssit$pH.peat,add=T)
-ordisurf(mmds,ssit$Waterlev.av,add=T,col="blue")
+ordisurf(mmds, ssit$pH.peat, add=T)
+ordisurf(mmds, ssit$Waterlev.av,add=T, col="blue")
 
 plot(imds$points)
-ordisurf(imds,ssit$pH.peat,add=T)
-ordisurf(imds,ssit$Waterlev.av,add=T,col="blue")
+ordisurf(imds, ssit$pH.peat, add=T)
+ordisurf(imds, ssit$Waterlev.av, add=T, col="blue")
 
 
 # Constrained ordination --------------------------------------------------
 
 
-#5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
+#5 Umweltvariablen gew?hlt, durch die die Ordination constrained werden soll
 ssit
 summary(ssit)
 s5<-c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")
@@ -95,12 +97,12 @@ summary(spe)
 summary(env)
 summary(spa)
 
-# Entfernen der Untersuchungsfläche ohne Arten
+# Entfernen der Untersuchungsfl?che ohne Arten
 spe <- spe[-8, ]
 env <- env[-8, ]
 spa <- spa[-8, ]
 
-# Karten für 4 Fischarten
+# Karten f?r 4 Fischarten
 dev.new(title = "Four fish species", noRStudioGD = TRUE)
 par(mfrow = c(2, 2))
 plot(spa, asp = 1, col = "brown", cex = spe$Satr, xlab = "x (km)", ylab = "y (km)", main = "Brown trout")
@@ -153,10 +155,8 @@ summary(spe.rda)	# Scaling 2 (default)
 
 # Canonical coefficients from the rda object
 coef(spe.rda)
-# Unadjusted R^2 retrieved from the rda object
-(R2 <- RsquareAdj(spe.rda)$r.squared)
-# Adjusted R^2 retrieved from the rda object
-(R2adj <- RsquareAdj(spe.rda)$adj.r.squared)
+# Unadjusted R^2 und Adjusted R^2
+(R2 <- RsquareAdj(spe.rda))
 
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables

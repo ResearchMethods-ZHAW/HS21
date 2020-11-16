@@ -75,13 +75,13 @@ rmd_files: [
    "18_Statistik6/assigment_stat6.Rmd",
    "18_Statistik6/solution_stat6.1.Rmd",
    
+   
    "18_Statistik_Konsolidierung2/demoskript_ordinationen_v2.Rmd",
   
    
    
     "19_Statistik7/Abstract.Rmd",
     "19_Statistik7/Demo_Statistik_7.Rmd",
-    ##"19_Statistik7/Demoskirpt_extended.Rmd",
     "19_Statistik7/assigment_stat7.Rmd",
     #"19_Statistik7/solution_stat7.1.Rmd",
    #"19_Statistik7/Musterloesung_Statistik_7.1.Rmd",
