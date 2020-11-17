@@ -18,7 +18,11 @@ mytheme <-
 
 ```
 
-## Demo: Statistik Konsolidierung 4 (17.11.2020)
+# Statistik Konsolidierung 4 (17.11.2020)
+
+In Statistik Konsolidierung 4 kennen die Studierende alles Rund um das Thema der lineare Regressionen (inkl. nicht-lineare Regressionen). Die Studierenden bekommen eine Einführung in die generalized linear models (GLMs), eine Methode die einige wesentliche Limitierungen von linearen Modellen überwindenwerden können. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und logistische Regression für ja/nein-Daten anschauen.
+
+## Demo
 
 *****
 
@@ -117,7 +121,17 @@ ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) +
     geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
     geom_smooth(method = "loess", se = F, color = "red", size = 2) + geom_smooth(method = "glm", size = 2, color = "blue", se = F) + scale_x_continuous(limits = c(0,35)) + 
     scale_y_continuous(limits = c(0,400)) + 
-    theme_classic()
+    mytheme
+
+
+ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) + 
+  geom_point(size = 8) + 
+  geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
+    # geom_smooth(method = "loess", se = F, color = "red", size = 2) + 
+  geom_smooth(method = "glm", size = 2, color = "grey", se = F) + 
+  scale_x_continuous(limits = c(0,35)) + 
+  scale_y_continuous(limits = c(0,400)) + 
+  mytheme
 
 
 ```
