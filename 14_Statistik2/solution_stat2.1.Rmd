@@ -1,6 +1,8 @@
 ## Musterloesung Aufgabe 2.1: Regression
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_2.1_v.06.R)
+- [RCode als Download](14_Statistik2/RFiles/Loesung_2.1_v.06.R)
+- [Lösungstext als Download](14_Statistik2/Statistik_Loesung_2.1.pdf)
+
 
 
 **Lösungsweg**
