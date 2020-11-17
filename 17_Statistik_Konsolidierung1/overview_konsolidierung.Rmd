@@ -13,32 +13,32 @@ Für die nächsten vier gemeinsamen Sitzungen werden wir nochmals folgende Theme
 
 Statistik Konsolidierung 1: Grundlagen der Statistik
 
-*	Warum Statistik? Warum mit R?
-*	Genereller Ablauf einer statistischen Analyse
-*	Chi-Quadrat- bzw. Fishers Test (für kategoriale Daten)
+*	Warum Statistik? Warum mit R?  
+*	Genereller Ablauf einer statistischen Analyse  
+*	Chi-Quadrat- bzw. Fishers Test (für kategoriale Daten  
 *	t-Test (für metrische Daten)
 
 Statistik Konsolidierung 2: Einführung in «multivariate» Methoden
 
-*	Einführung in «multivariate» Methoden
-*	Idee von Ordinationen
+*	Einführung in «multivariate» Methoden  
+*	Idee von Ordinationen  
 *	Hauptkomponentenanalyse (PCA)
 
 Statistik Konsolidierung 3: Lineare Modelle I
 
-*	Parametrische vs. nicht-parametrische Verfahren
-*	Varianzanalyse (ANOVA vs. MANOVA vs. ANCOVA)
-*	Lineare Modelle allgemein
-*	Polynomische Regressionen
-*	Multiple lineare Regressionen
+*	Parametrische vs. nicht-parametrische Verfahren  
+*	Varianzanalyse (ANOVA vs. MANOVA vs. ANCOVA)  
+*	Lineare Modelle allgemein  
+*	Polynomische Regressionen  
+*	Multiple lineare Regressionen  
 *	Nicht-lineare Regressionen
 
 Statistik Konsolidierung 4: Lineare Modelle II
 
-*	Von linearen Modellen zu GLMs
-*	Poisson-Regressionen für Zähldaten
-*	Logistische Regressionen für Binärdaten
-*	Glättungsfunktionen und GAMs
+*	Von linearen Modellen zu GLMs  
+*	Poisson-Regressionen für Zähldaten  
+*	Logistische Regressionen für Binärdaten  
+*	Glättungsfunktionen und GAMs  
 *	Gesamtüberblick und Wiederholung
 
 
