@@ -288,7 +288,7 @@ ggplot(wasser_skelett) +
 
 Zum Abschluss der Übung wenden wir uns nun noch der Aggregationsabhängigkeit von Geodaten zu. Dazu wollen wir die Daten zur Wasserverfügbarkeit auf verschiedenen Massstäben aggregieren. Als Aggregationseinheiten verwenden wir zwei politische Gliederungen der Schweit - Kantone und Bezirke. Die Frage stellt sich, ob die Daten ev. das MAUP illustrieren.
 
-Hier könnten wir wir nochmals `st_join()` verwenden, aber da wir diesmal Polygone im Fokus haben (Bezirke, Kantone) und mehrere Punkte in einem Polygon vorkommen können, ist dieser Weg etwas umständlich. Wir nutzen deshalb die Funktion `aggregate()`, und spezifizieren `x = wasser`, `by = kantone` und `FUN = mean`.
+Hier könnten wir nochmals `st_join()` verwenden, aber da wir diesmal Polygone im Fokus haben (Bezirke, Kantone) und mehrere Punkte in einem Polygon vorkommen können, ist dieser Weg etwas umständlich. Wir nutzen deshalb die Funktion `aggregate()`, und spezifizieren `x = wasser`, `by = kantone` und `FUN = mean`.
 
 Hinweis: Das Beschriften der Kantone ist fakultativ und nicht *ganz* trivial.
 

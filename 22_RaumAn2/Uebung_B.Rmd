@@ -1,4 +1,4 @@
-## Uebung B: Räumliche Interpolation
+## Uebung B: Raeumlicheumliche Interpolation
 
 ```{r, echo = TRUE}
 library(gstat)
