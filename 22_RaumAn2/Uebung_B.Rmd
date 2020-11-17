@@ -1,4 +1,4 @@
-## Übung B: Räumliche Interpolation
+## Uebung B: Räumliche Interpolation
 
 ```{r, echo = TRUE}
 library(gstat)
@@ -23,7 +23,7 @@ rotmilan <- st_set_crs(rotmilan, 2056)
 #############################################
 ```
 
-### Aufgabe 2: Räumliche Interpolation mit IDW
+### Aufgabe 2: Raeumliche Interpolation mit IDW
 
 ```{r}
 ## -- Aufgabe 2: Räumliche Interpolation mit IDW -- ##

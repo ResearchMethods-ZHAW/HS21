@@ -1,4 +1,4 @@
-## Übung -- Lösung
+## Uebung -- Loesung
 
 [R-Script als Download](21_RaumAn1/RFiles/Uebung.R)
 

@@ -1,6 +1,6 @@
 
 
-## Übung B: Weitere "mapping" Libraries  
+## Uebung B: Weitere "mapping" Libraries  
 
 
 ### Aufgabe 1: Interaktive Karten mit Plotly

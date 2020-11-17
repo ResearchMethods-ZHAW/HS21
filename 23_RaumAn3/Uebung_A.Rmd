@@ -50,7 +50,7 @@ wasser_bezirke <- aggregate(wasser,bezirke, mean)
   theme(legend.position = "bottom",legend.direction = "horizontal")
 ```
 
-## Übung A: Moran's I
+## Uebung A: Moran's I
 
 
 ### Aufgabe 1: Herleitung der Formel
@@ -260,7 +260,7 @@ MI
 
 
 
-### Aufgabe 2: Morans I für Kantone berechnen
+### Aufgabe 2: Morans I fuer Kantone berechnen
 
 
 Nun wollen wir die Wasserverfügbarkeitswerte auf der Ebene der Kantone aggregieren und untersuchen, ob und wie sich Morans $I$ verändert. Importiere dafür den Datensatz "kantone.gpkg" aus RaumAn1 (s.u.), allenfalls musst du das CRS noch setzen. Aggregiere Wasserqualitätswerte auf Ebene der Kantone, visualisiere diese anschliessend und berechne danach wieder Moran's $I$ wie eben demonstriert. 

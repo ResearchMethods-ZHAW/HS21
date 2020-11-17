@@ -1,4 +1,4 @@
-## Übung C: Dichteverteilungen
+## Uebung C: Dichteverteilungen
 
 ```{r, echo = TRUE}
 library(gstat)

@@ -27,7 +27,7 @@ rotmilan <- st_set_crs(rotmilan, 2056)
 
 
 
-## Übung A: Analyse von Punktverteilungen
+## Uebung A: Analyse von Punktverteilungen
 
 ```{r}
 ###################################################

@@ -2,7 +2,7 @@
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
 ```
 
-## Übung C (Optional): Abstimmungsdaten
+## Uebung C (Optional): Abstimmungsdaten
 
 
 Datensatz importieren und Libraries laden:

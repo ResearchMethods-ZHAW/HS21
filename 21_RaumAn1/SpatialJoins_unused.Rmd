@@ -1,6 +1,6 @@
 ## Rauswerfen?
 
-### Räumliche Joins (Spatialjoin)
+### Raeumliche Joins (Spatialjoin)
 
 Änlich wie bei Attribut Joins, die ihr in Preprocessing 1 & 2 kennengelernt habt (`left_join()`, `inner_join()`, `outer_jooin()`), gibt es auch räumliche Joins. Stellt euch folgendes beispiel vor:
 

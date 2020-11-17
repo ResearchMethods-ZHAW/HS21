@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="2-prepro1-12-10-2020.html"/>
+<link rel="next" href="2-raumanalyse-1-23-11-2020.html"/>
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,6 +59,15 @@
 <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -142,219 +151,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Einleitung</a></li>
-<li class="chapter" data-level="2" data-path="2-prepro1-12-10-2020.html"><a href="2-prepro1-12-10-2020.html"><i class="fa fa-check"></i><b>2</b> PrePro1 (12.10.2020)</a>
+<li class="chapter" data-level="2" data-path="2-raumanalyse-1-23-11-2020.html"><a href="2-raumanalyse-1-23-11-2020.html"><i class="fa fa-check"></i><b>2</b> Raumanalyse 1 (23.11.2020)</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html"><i class="fa fa-check"></i><b>2.1</b> Demo: Datentypen, Tabellen</a>
+<li class="chapter" data-level="2.1" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html"><i class="fa fa-check"></i><b>2.1</b> Uebung: Spatial Join, Puffer und MAUP</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#datentypen"><i class="fa fa-check"></i><b>2.1.1</b> Datentypen</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#data-frames-und-conveniance-variabeln"><i class="fa fa-check"></i><b>2.1.2</b> Data Frames und Conveniance Variabeln</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-demo-datentypen-tabellen.html"><a href="2-1-demo-datentypen-tabellen.html#quellen"><i class="fa fa-check"></i><b>2.1.3</b> Quellen</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#thematische-einbettung"><i class="fa fa-check"></i><b>2.1.1</b> Thematische Einbettung</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#vorbereitung"><i class="fa fa-check"></i><b>2.1.2</b> Vorbereitung</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-1-daten-runterladen-und-importieren"><i class="fa fa-check"></i><b>2.1.3</b> Aufgabe 1: Daten runterladen und importieren</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-2-daten-visualisieren"><i class="fa fa-check"></i><b>2.1.4</b> Aufgabe 2: Daten Visualisieren</a></li>
+<li class="chapter" data-level="2.1.5" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-3-koordinatensysteme-zuweisen"><i class="fa fa-check"></i><b>2.1.5</b> Aufgabe 3 Koordinatensysteme <em>zuweisen</em></a></li>
+<li class="chapter" data-level="2.1.6" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-4-koordinatensyteme-transformieren"><i class="fa fa-check"></i><b>2.1.6</b> Aufgabe 4: Koordinatensyteme <em>transformieren</em></a></li>
+<li class="chapter" data-level="2.1.7" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-5"><i class="fa fa-check"></i><b>2.1.7</b> Aufgabe 5:</a></li>
+<li class="chapter" data-level="2.1.8" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-6-spatial-join-mit-flächen"><i class="fa fa-check"></i><b>2.1.8</b> Aufgabe 6: Spatial Join mit Flächen</a></li>
+<li class="chapter" data-level="2.1.9" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-7-spatial-join-mit-kantone-bezirke"><i class="fa fa-check"></i><b>2.1.9</b> Aufgabe 7: Spatial Join mit Kantone, Bezirke</a></li>
+<li class="chapter" data-level="2.1.10" data-path="2-1-uebung-spatial-join-puffer-und-maup.html"><a href="2-1-uebung-spatial-join-puffer-und-maup.html#aufgabe-8-für-ambitionierte"><i class="fa fa-check"></i><b>2.1.10</b> Aufgabe 8 (für Ambitionierte)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html"><i class="fa fa-check"></i><b>2.2</b> Uebung A</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#arbeiten-mit-rstudio-project"><i class="fa fa-check"></i><b>2.2.1</b> Arbeiten mit RStudio “Project”</a></li>
-<li class="chapter" data-level="2.2.2" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#arbeiten-mit-libraries-packages"><i class="fa fa-check"></i><b>2.2.2</b> Arbeiten mit Libraries / Packages</a></li>
-<li class="chapter" data-level="2.2.3" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-1"><i class="fa fa-check"></i><b>2.2.3</b> Aufgabe 1</a></li>
-<li class="chapter" data-level="2.2.4" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-2"><i class="fa fa-check"></i><b>2.2.4</b> Aufgabe 2</a></li>
-<li class="chapter" data-level="2.2.5" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-3"><i class="fa fa-check"></i><b>2.2.5</b> Aufgabe 3</a></li>
-<li class="chapter" data-level="2.2.6" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-4"><i class="fa fa-check"></i><b>2.2.6</b> Aufgabe 4</a></li>
-<li class="chapter" data-level="2.2.7" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-5"><i class="fa fa-check"></i><b>2.2.7</b> Aufgabe 5</a></li>
-<li class="chapter" data-level="2.2.8" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-6"><i class="fa fa-check"></i><b>2.2.8</b> Aufgabe 6</a></li>
-<li class="chapter" data-level="2.2.9" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-7"><i class="fa fa-check"></i><b>2.2.9</b> Aufgabe 7</a></li>
-<li class="chapter" data-level="2.2.10" data-path="2-2-uebung-a.html"><a href="2-2-uebung-a.html#aufgabe-8"><i class="fa fa-check"></i><b>2.2.10</b> Aufgabe 8</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-uebung-loesung.html"><a href="2-2-uebung-loesung.html"><i class="fa fa-check"></i><b>2.2</b> Uebung – Loesung</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="2-3-uebung-a-loesung.html"><a href="2-3-uebung-a-loesung.html"><i class="fa fa-check"></i><b>2.3</b> Uebung A Loesung</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-uebung-b.html"><a href="2-4-uebung-b.html"><i class="fa fa-check"></i><b>2.4</b> Uebung B</a>
+<li class="chapter" data-level="3" data-path="3-raumanalyse-2-24-11-2020.html"><a href="3-raumanalyse-2-24-11-2020.html"><i class="fa fa-check"></i><b>3</b> Raumanalyse 2 (24.11.2020)</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="2-4-uebung-b.html"><a href="2-4-uebung-b.html#aufgabe-1-1"><i class="fa fa-check"></i><b>2.4.1</b> Aufgabe 1</a></li>
-<li class="chapter" data-level="2.4.2" data-path="2-4-uebung-b.html"><a href="2-4-uebung-b.html#aufgabe-2-1"><i class="fa fa-check"></i><b>2.4.2</b> Aufgabe 2</a></li>
-<li class="chapter" data-level="2.4.3" data-path="2-4-uebung-b.html"><a href="2-4-uebung-b.html#aufgabe-3-1"><i class="fa fa-check"></i><b>2.4.3</b> Aufgabe 3</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="2-5-uebung-b-loesung.html"><a href="2-5-uebung-b-loesung.html"><i class="fa fa-check"></i><b>2.5</b> Uebung B Loesung</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="3-prepro2-13-10-2020.html"><a href="3-prepro2-13-10-2020.html"><i class="fa fa-check"></i><b>3</b> PrePro2 (13.10.2020)</a>
+<li class="chapter" data-level="3.1" data-path="3-1-thematische-einbettung-und-vorbereitung.html"><a href="3-1-thematische-einbettung-und-vorbereitung.html"><i class="fa fa-check"></i><b>3.1</b> Thematische Einbettung und Vorbereitung</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-uebung-a-analyse-von-punktverteilungen.html"><a href="3-2-uebung-a-analyse-von-punktverteilungen.html"><i class="fa fa-check"></i><b>3.2</b> Uebung A: Analyse von Punktverteilungen</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html"><i class="fa fa-check"></i><b>3.1</b> Demo: <code>tidyverse</code></a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#split-apply-combine"><i class="fa fa-check"></i><b>3.1.1</b> Split-Apply-Combine</a></li>
-<li class="chapter" data-level="3.1.2" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#reshaping-data"><i class="fa fa-check"></i><b>3.1.2</b> Reshaping data</a></li>
-<li class="chapter" data-level="3.1.3" data-path="3-1-demo-tidyverse.html"><a href="3-1-demo-tidyverse.html#quellen-1"><i class="fa fa-check"></i><b>3.1.3</b> Quellen</a></li>
+<li class="chapter" data-level="3.2.1" data-path="3-2-uebung-a-analyse-von-punktverteilungen.html"><a href="3-2-uebung-a-analyse-von-punktverteilungen.html#aufgabe-1-g-function"><i class="fa fa-check"></i><b>3.2.1</b> Aufgabe 1: G-Function</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html"><i class="fa fa-check"></i><b>3.2</b> Uebung A</a>
+<li class="chapter" data-level="3.3" data-path="3-3-uebung-a-loesung.html"><a href="3-3-uebung-a-loesung.html"><i class="fa fa-check"></i><b>3.3</b> Uebung A – Loesung</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-uebung-b-räumliche-interpolation.html"><a href="3-4-uebung-b-räumliche-interpolation.html"><i class="fa fa-check"></i><b>3.4</b> Uebung B: Räumliche Interpolation</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-1-2"><i class="fa fa-check"></i><b>3.2.1</b> Aufgabe 1</a></li>
-<li class="chapter" data-level="3.2.2" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-2-2"><i class="fa fa-check"></i><b>3.2.2</b> Aufgabe 2</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-3-2"><i class="fa fa-check"></i><b>3.2.3</b> Aufgabe 3</a></li>
-<li class="chapter" data-level="3.2.4" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-4-1"><i class="fa fa-check"></i><b>3.2.4</b> Aufgabe 4</a></li>
-<li class="chapter" data-level="3.2.5" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-5-1"><i class="fa fa-check"></i><b>3.2.5</b> Aufgabe 5</a></li>
-<li class="chapter" data-level="3.2.6" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-6-1"><i class="fa fa-check"></i><b>3.2.6</b> Aufgabe 6</a></li>
-<li class="chapter" data-level="3.2.7" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-7-1"><i class="fa fa-check"></i><b>3.2.7</b> Aufgabe 7</a></li>
-<li class="chapter" data-level="3.2.8" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-8-1"><i class="fa fa-check"></i><b>3.2.8</b> Aufgabe 8</a></li>
-<li class="chapter" data-level="3.2.9" data-path="3-2-uebung-a-1.html"><a href="3-2-uebung-a-1.html#aufgabe-9"><i class="fa fa-check"></i><b>3.2.9</b> Aufgabe 9</a></li>
+<li class="chapter" data-level="3.4.1" data-path="3-4-uebung-b-räumliche-interpolation.html"><a href="3-4-uebung-b-räumliche-interpolation.html#aufgabe-2-raeumliche-interpolation-mit-idw"><i class="fa fa-check"></i><b>3.4.1</b> Aufgabe 2: Raeumliche Interpolation mit IDW</a></li>
+<li class="chapter" data-level="3.4.2" data-path="3-4-uebung-b-räumliche-interpolation.html"><a href="3-4-uebung-b-räumliche-interpolation.html#aufgabe-3-interpolation-mit-nearest-neighbour-thiessen-polygone"><i class="fa fa-check"></i><b>3.4.2</b> Aufgabe 3: Interpolation mit Nearest Neighbour / Thiessen Polygone</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="3-3-uebung-a-loesung-1.html"><a href="3-3-uebung-a-loesung-1.html"><i class="fa fa-check"></i><b>3.3</b> Uebung A: Loesung</a></li>
-<li class="chapter" data-level="3.4" data-path="3-4-uebung-b-1.html"><a href="3-4-uebung-b-1.html"><i class="fa fa-check"></i><b>3.4</b> Uebung B</a>
+<li class="chapter" data-level="3.5" data-path="3-5-uebung-b-loesung.html"><a href="3-5-uebung-b-loesung.html"><i class="fa fa-check"></i><b>3.5</b> Uebung B – Loesung</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-uebung-c-dichteverteilungen.html"><a href="3-6-uebung-c-dichteverteilungen.html"><i class="fa fa-check"></i><b>3.6</b> Uebung C: Dichteverteilungen</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="3-4-uebung-b-1.html"><a href="3-4-uebung-b-1.html#aufgabe-1-3"><i class="fa fa-check"></i><b>3.4.1</b> Aufgabe 1</a></li>
-<li class="chapter" data-level="3.4.2" data-path="3-4-uebung-b-1.html"><a href="3-4-uebung-b-1.html#aufgabe-2-3"><i class="fa fa-check"></i><b>3.4.2</b> Aufgabe 2</a></li>
-<li class="chapter" data-level="3.4.3" data-path="3-4-uebung-b-1.html"><a href="3-4-uebung-b-1.html#aufgabe-3-3"><i class="fa fa-check"></i><b>3.4.3</b> Aufgabe 3</a></li>
-<li class="chapter" data-level="3.4.4" data-path="3-4-uebung-b-1.html"><a href="3-4-uebung-b-1.html#aufgabe-4-2"><i class="fa fa-check"></i><b>3.4.4</b> Aufgabe 4</a></li>
+<li class="chapter" data-level="3.6.1" data-path="3-6-uebung-c-dichteverteilungen.html"><a href="3-6-uebung-c-dichteverteilungen.html#aufgabe-4-rotmilan-bewegungsdaten-visualisieren"><i class="fa fa-check"></i><b>3.6.1</b> Aufgabe 4: Rotmilan Bewegungsdaten visualisieren</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-uebung-c-dichteverteilungen.html"><a href="3-6-uebung-c-dichteverteilungen.html#aufgabe-5-kernel-density-estimation-berechnen"><i class="fa fa-check"></i><b>3.6.2</b> Aufgabe 5: Kernel Density Estimation berechnen</a></li>
+<li class="chapter" data-level="3.6.3" data-path="3-6-uebung-c-dichteverteilungen.html"><a href="3-6-uebung-c-dichteverteilungen.html#aufgabe-6-dichteverteilung-mit-thiessen-polygonen"><i class="fa fa-check"></i><b>3.6.3</b> Aufgabe 6: Dichteverteilung mit Thiessen Polygonen</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="3-5-uebung-b-loesung-1.html"><a href="3-5-uebung-b-loesung-1.html"><i class="fa fa-check"></i><b>3.5</b> Uebung B: Loesung</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-uebung-c-loesung.html"><a href="3-7-uebung-c-loesung.html"><i class="fa fa-check"></i><b>3.7</b> Uebung C – Loesung</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-infovis1-19-10-2020.html"><a href="4-infovis1-19-10-2020.html"><i class="fa fa-check"></i><b>4</b> InfoVis1 (19.10.2020)</a>
+<li class="chapter" data-level="4" data-path="4-raumanalyse-3-01-12-2020.html"><a href="4-raumanalyse-3-01-12-2020.html"><i class="fa fa-check"></i><b>4</b> Raumanalyse 3 (01.12.2020)</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="4-1-demo-ggplot2.html"><a href="4-1-demo-ggplot2.html"><i class="fa fa-check"></i><b>4.1</b> Demo: <code>ggplot2</code></a></li>
-<li class="chapter" data-level="4.2" data-path="4-2-eda-beispiel-vorlesung.html"><a href="4-2-eda-beispiel-vorlesung.html"><i class="fa fa-check"></i><b>4.2</b> EDA Beispiel Vorlesung</a>
+<li class="chapter" data-level="4.1" data-path="4-1-thematische-einbettung-und-vorbereitung-1.html"><a href="4-1-thematische-einbettung-und-vorbereitung-1.html"><i class="fa fa-check"></i><b>4.1</b> Thematische Einbettung und Vorbereitung</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-uebung-a-morans-i.html"><a href="4-2-uebung-a-morans-i.html"><i class="fa fa-check"></i><b>4.2</b> Uebung A: Moran’s I</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-eda-beispiel-vorlesung.html"><a href="4-2-eda-beispiel-vorlesung.html#quellen-2"><i class="fa fa-check"></i><b>4.2.1</b> Quellen</a></li>
+<li class="chapter" data-level="4.2.1" data-path="4-2-uebung-a-morans-i.html"><a href="4-2-uebung-a-morans-i.html#aufgabe-1-herleitung-der-formel"><i class="fa fa-check"></i><b>4.2.1</b> Aufgabe 1: Herleitung der Formel</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-uebung-a-morans-i.html"><a href="4-2-uebung-a-morans-i.html#aufgabe-2-morans-i-fuer-kantone-berechnen"><i class="fa fa-check"></i><b>4.2.2</b> Aufgabe 2: Morans I fuer Kantone berechnen</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-uebung.html"><a href="4-3-uebung.html"><i class="fa fa-check"></i><b>4.3</b> Uebung</a>
+<li class="chapter" data-level="4.3" data-path="4-3-uebung-b-weitere-mapping-libraries.html"><a href="4-3-uebung-b-weitere-mapping-libraries.html"><i class="fa fa-check"></i><b>4.3</b> Uebung B: Weitere “mapping” Libraries</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-1-4"><i class="fa fa-check"></i><b>4.3.1</b> Aufgabe 1</a></li>
-<li class="chapter" data-level="4.3.2" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-2-4"><i class="fa fa-check"></i><b>4.3.2</b> Aufgabe 2</a></li>
-<li class="chapter" data-level="4.3.3" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-3-4"><i class="fa fa-check"></i><b>4.3.3</b> Aufgabe 3</a></li>
-<li class="chapter" data-level="4.3.4" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-4-3"><i class="fa fa-check"></i><b>4.3.4</b> Aufgabe 4</a></li>
-<li class="chapter" data-level="4.3.5" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-5-2"><i class="fa fa-check"></i><b>4.3.5</b> Aufgabe 5</a></li>
-<li class="chapter" data-level="4.3.6" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-6-2"><i class="fa fa-check"></i><b>4.3.6</b> Aufgabe 6</a></li>
-<li class="chapter" data-level="4.3.7" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-7-2"><i class="fa fa-check"></i><b>4.3.7</b> Aufgabe 7</a></li>
-<li class="chapter" data-level="4.3.8" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-8-2"><i class="fa fa-check"></i><b>4.3.8</b> Aufgabe 8</a></li>
-<li class="chapter" data-level="4.3.9" data-path="4-3-uebung.html"><a href="4-3-uebung.html#aufgabe-9-optional-fortgeschritten"><i class="fa fa-check"></i><b>4.3.9</b> Aufgabe 9 (Optional, fortgeschritten)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="4-3-uebung-b-weitere-mapping-libraries.html"><a href="4-3-uebung-b-weitere-mapping-libraries.html#aufgabe-1-interaktive-karten-mit-plotly"><i class="fa fa-check"></i><b>4.3.1</b> Aufgabe 1: Interaktive Karten mit Plotly</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-uebung-b-weitere-mapping-libraries.html"><a href="4-3-uebung-b-weitere-mapping-libraries.html#aufgabe-2-hintergrundkarten-mit-tmap"><i class="fa fa-check"></i><b>4.3.2</b> Aufgabe 2: Hintergrundkarten mit <code>tmap</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="4-4-loesung.html"><a href="4-4-loesung.html"><i class="fa fa-check"></i><b>4.4</b> Loesung</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="5-infovis2-20-10-2020.html"><a href="5-infovis2-20-10-2020.html"><i class="fa fa-check"></i><b>5</b> InfoVis2 (20.10.2020)</a>
+<li class="chapter" data-level="4.4" data-path="4-4-uebung-c-optional-abstimmungsdaten.html"><a href="4-4-uebung-c-optional-abstimmungsdaten.html"><i class="fa fa-check"></i><b>4.4</b> Uebung C (Optional): Abstimmungsdaten</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html"><i class="fa fa-check"></i><b>5.1</b> Uebung A</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-1-5"><i class="fa fa-check"></i><b>5.1.1</b> Aufgabe 1</a></li>
-<li class="chapter" data-level="5.1.2" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-2-5"><i class="fa fa-check"></i><b>5.1.2</b> Aufgabe 2</a></li>
-<li class="chapter" data-level="5.1.3" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-3-5"><i class="fa fa-check"></i><b>5.1.3</b> Aufgabe 3</a></li>
-<li class="chapter" data-level="5.1.4" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-4-4"><i class="fa fa-check"></i><b>5.1.4</b> Aufgabe 4</a></li>
-<li class="chapter" data-level="5.1.5" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-5-optional-fortgeschritten"><i class="fa fa-check"></i><b>5.1.5</b> Aufgabe 5 (optional, fortgeschritten)</a></li>
-<li class="chapter" data-level="5.1.6" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-6-optional-fortgeschritten"><i class="fa fa-check"></i><b>5.1.6</b> Aufgabe 6 (optional, fortgeschritten)</a></li>
-<li class="chapter" data-level="5.1.7" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-7-3"><i class="fa fa-check"></i><b>5.1.7</b> Aufgabe 7</a></li>
-<li class="chapter" data-level="5.1.8" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-8-3"><i class="fa fa-check"></i><b>5.1.8</b> Aufgabe 8</a></li>
-<li class="chapter" data-level="5.1.9" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-9-1"><i class="fa fa-check"></i><b>5.1.9</b> Aufgabe 9</a></li>
-<li class="chapter" data-level="5.1.10" data-path="5-1-uebung-a-2.html"><a href="5-1-uebung-a-2.html#aufgabe-10"><i class="fa fa-check"></i><b>5.1.10</b> Aufgabe 10</a></li>
+<li class="chapter" data-level="4.4.1" data-path="4-4-uebung-c-optional-abstimmungsdaten.html"><a href="4-4-uebung-c-optional-abstimmungsdaten.html#aufgabe-1-morans-i-auf-gemeindeebene"><i class="fa fa-check"></i><b>4.4.1</b> Aufgabe 1: Morans I auf Gemeindeebene</a></li>
+<li class="chapter" data-level="4.4.2" data-path="4-4-uebung-c-optional-abstimmungsdaten.html"><a href="4-4-uebung-c-optional-abstimmungsdaten.html#aufgabe-2-morans-i-auf-kantonsebene"><i class="fa fa-check"></i><b>4.4.2</b> Aufgabe 2: Morans I auf Kantonsebene</a></li>
+<li class="chapter" data-level="4.4.3" data-path="4-4-uebung-c-optional-abstimmungsdaten.html"><a href="4-4-uebung-c-optional-abstimmungsdaten.html#aufgabe-3-bivariate-plot-mit-biscale"><i class="fa fa-check"></i><b>4.4.3</b> Aufgabe 3: Bivariate Plot mit <code>biscale</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="5-2-uebung-a-loesung-2.html"><a href="5-2-uebung-a-loesung-2.html"><i class="fa fa-check"></i><b>5.2</b> Uebung A: Loesung</a></li>
-<li class="chapter" data-level="5.3" data-path="5-3-uebung-b-optional.html"><a href="5-3-uebung-b-optional.html"><i class="fa fa-check"></i><b>5.3</b> Uebung B (Optional)</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="5-3-uebung-b-optional.html"><a href="5-3-uebung-b-optional.html#aufgabe-1-parallel-coordinate-plots"><i class="fa fa-check"></i><b>5.3.1</b> Aufgabe 1: Parallel coordinate plots</a></li>
-<li class="chapter" data-level="5.3.2" data-path="5-3-uebung-b-optional.html"><a href="5-3-uebung-b-optional.html#aufgabe-2-polar-plot-mit-biber-daten"><i class="fa fa-check"></i><b>5.3.2</b> Aufgabe 2: Polar Plot mit Biber Daten</a></li>
-<li class="chapter" data-level="5.3.3" data-path="5-3-uebung-b-optional.html"><a href="5-3-uebung-b-optional.html#aufgabe-3-polar-plot-mit-passagier-daten"><i class="fa fa-check"></i><b>5.3.3</b> Aufgabe 3: Polar Plot mit Passagier-Daten</a></li>
-<li class="chapter" data-level="5.3.4" data-path="5-3-uebung-b-optional.html"><a href="5-3-uebung-b-optional.html#aufgabe-4-3d-scatterplot"><i class="fa fa-check"></i><b>5.3.4</b> Aufgabe 4: 3D Scatterplot</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="5-4-uebung-b-loesung-2.html"><a href="5-4-uebung-b-loesung-2.html"><i class="fa fa-check"></i><b>5.4</b> Uebung B: Loesung</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="6-statistik-1-26-10-2020.html"><a href="6-statistik-1-26-10-2020.html"><i class="fa fa-check"></i><b>6</b> Statistik 1 (26.10.2020)</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="6-1-demo-statistik-1.html"><a href="6-1-demo-statistik-1.html"><i class="fa fa-check"></i><b>6.1</b> Demo: Statistik 1</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="6-1-demo-statistik-1.html"><a href="6-1-demo-statistik-1.html#binomialtest"><i class="fa fa-check"></i><b>6.1.1</b> Binomialtest</a></li>
-<li class="chapter" data-level="6.1.2" data-path="6-1-demo-statistik-1.html"><a href="6-1-demo-statistik-1.html#chi-quadrat-test-fishers-test"><i class="fa fa-check"></i><b>6.1.2</b> Chi-Quadrat-Test &amp; Fishers Test</a></li>
-<li class="chapter" data-level="6.1.3" data-path="6-1-demo-statistik-1.html"><a href="6-1-demo-statistik-1.html#t-test"><i class="fa fa-check"></i><b>6.1.3</b> t-Test</a></li>
-<li class="chapter" data-level="6.1.4" data-path="6-1-demo-statistik-1.html"><a href="6-1-demo-statistik-1.html#base-r-vs.-ggplot2"><i class="fa fa-check"></i><b>6.1.4</b> Base R vs. ggplot2</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="6-2-beschreibung-forschungsprojekt-novanimal-nfp69.html"><a href="6-2-beschreibung-forschungsprojekt-novanimal-nfp69.html"><i class="fa fa-check"></i><b>6.2</b> Beschreibung Forschungsprojekt NOVANIMAL (NFP69)</a></li>
-<li class="chapter" data-level="6.3" data-path="6-3-uebungen-1.html"><a href="6-3-uebungen-1.html"><i class="fa fa-check"></i><b>6.3</b> Uebungen 1</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="6-3-uebungen-1.html"><a href="6-3-uebungen-1.html#uebung-1.1-assoziationstest"><i class="fa fa-check"></i><b>6.3.1</b> Uebung 1.1: Assoziationstest</a></li>
-<li class="chapter" data-level="6.3.2" data-path="6-3-uebungen-1.html"><a href="6-3-uebungen-1.html#uebung-1.2-t-test"><i class="fa fa-check"></i><b>6.3.2</b> Uebung 1.2: t-Test</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="6-4-loesung-aufgabe-1-1.html"><a href="6-4-loesung-aufgabe-1-1.html"><i class="fa fa-check"></i><b>6.4</b> Loesung Aufgabe 1.1</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="6-4-loesung-aufgabe-1-1.html"><a href="6-4-loesung-aufgabe-1-1.html#musterloesung-aufgabe-1.2-t-test"><i class="fa fa-check"></i><b>6.4.1</b> Musterloesung Aufgabe 1.2: t-Test</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="7-statistik-2-27-10-2020.html"><a href="7-statistik-2-27-10-2020.html"><i class="fa fa-check"></i><b>7</b> Statistik 2 (27.10.2020)</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="7-1-demo-statistik-2.html"><a href="7-1-demo-statistik-2.html"><i class="fa fa-check"></i><b>7.1</b> Demo: Statistik 2</a></li>
-<li class="chapter" data-level="7.2" data-path="7-2-uebungen-2.html"><a href="7-2-uebungen-2.html"><i class="fa fa-check"></i><b>7.2</b> Uebungen 2</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="7-2-uebungen-2.html"><a href="7-2-uebungen-2.html#uebung-2.1-regression"><i class="fa fa-check"></i><b>7.2.1</b> Uebung 2.1: Regression</a></li>
-<li class="chapter" data-level="7.2.2" data-path="7-2-uebungen-2.html"><a href="7-2-uebungen-2.html#uebung-2.2-einfaktorielle-anova"><i class="fa fa-check"></i><b>7.2.2</b> Uebung 2.2: Einfaktorielle ANOVA</a></li>
-<li class="chapter" data-level="7.2.3" data-path="7-2-uebungen-2.html"><a href="7-2-uebungen-2.html#uebung-2.3n-mehrfaktorielle-anova-natwis"><i class="fa fa-check"></i><b>7.2.3</b> Uebung 2.3N: Mehrfaktorielle ANOVA (NatWis)</a></li>
-<li class="chapter" data-level="7.2.4" data-path="7-2-uebungen-2.html"><a href="7-2-uebungen-2.html#uebung-2.3s-mehrfaktorielle-anova-mit-interaktion-sozwis"><i class="fa fa-check"></i><b>7.2.4</b> Uebung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="7-3-musterloesung-beispiel.html"><a href="7-3-musterloesung-beispiel.html"><i class="fa fa-check"></i><b>7.3</b> Musterloesung Beispiel</a></li>
-<li class="chapter" data-level="7.4" data-path="7-4-musterloesung-aufgabe-2-1-regression.html"><a href="7-4-musterloesung-aufgabe-2-1-regression.html"><i class="fa fa-check"></i><b>7.4</b> Musterloesung Aufgabe 2.1: Regression</a></li>
-<li class="chapter" data-level="7.5" data-path="7-5-musterloesung-aufgabe-2-2-einfaktorielle-anova.html"><a href="7-5-musterloesung-aufgabe-2-2-einfaktorielle-anova.html"><i class="fa fa-check"></i><b>7.5</b> Musterloesung Aufgabe 2.2: einfaktorielle ANOVA</a></li>
-<li class="chapter" data-level="7.6" data-path="7-6-musterloesung-aufgabe-2-3n-mehrfaktorielle-anova.html"><a href="7-6-musterloesung-aufgabe-2-3n-mehrfaktorielle-anova.html"><i class="fa fa-check"></i><b>7.6</b> Musterloesung Aufgabe 2.3N: Mehrfaktorielle ANOVA</a></li>
-<li class="chapter" data-level="7.7" data-path="7-7-musterloesung-aufgabe-2-3s-anova-mit-interaktion.html"><a href="7-7-musterloesung-aufgabe-2-3s-anova-mit-interaktion.html"><i class="fa fa-check"></i><b>7.7</b> Musterloesung Aufgabe 2.3S: ANOVA mit Interaktion</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="8-statistik-3-02-11-2020.html"><a href="8-statistik-3-02-11-2020.html"><i class="fa fa-check"></i><b>8</b> Statistik 3 (02.11.2020)</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="8-1-demo-statistik-3.html"><a href="8-1-demo-statistik-3.html"><i class="fa fa-check"></i><b>8.1</b> Demo: Statistik 3</a></li>
-<li class="chapter" data-level="8.2" data-path="8-2-uebung-3.html"><a href="8-2-uebung-3.html"><i class="fa fa-check"></i><b>8.2</b> Uebung 3</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="8-2-uebung-3.html"><a href="8-2-uebung-3.html#aufgabe-3.1-multiple-regression"><i class="fa fa-check"></i><b>8.2.1</b> Aufgabe 3.1: Multiple Regression</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="8-3-musterloesung-aufgabe-3-1-multiple-regression.html"><a href="8-3-musterloesung-aufgabe-3-1-multiple-regression.html"><i class="fa fa-check"></i><b>8.3</b> Musterloesung Aufgabe 3.1: Multiple Regression</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="9-statistik-4-03-11-2020.html"><a href="9-statistik-4-03-11-2020.html"><i class="fa fa-check"></i><b>9</b> Statistik 4 (03.11.2020)</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="9-1-demo-statistik-4.html"><a href="9-1-demo-statistik-4.html"><i class="fa fa-check"></i><b>9.1</b> Demo: Statistik 4</a></li>
-<li class="chapter" data-level="9.2" data-path="9-2-uebungen-4.html"><a href="9-2-uebungen-4.html"><i class="fa fa-check"></i><b>9.2</b> Uebungen 4</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="9-2-uebungen-4.html"><a href="9-2-uebungen-4.html#uebung-4.1-nicht-lineare-regression"><i class="fa fa-check"></i><b>9.2.1</b> Uebung 4.1: Nicht-lineare Regression</a></li>
-<li class="chapter" data-level="9.2.2" data-path="9-2-uebungen-4.html"><a href="9-2-uebungen-4.html#uebung-4.2n-logistische-regression-natwis"><i class="fa fa-check"></i><b>9.2.2</b> Uebung 4.2N: Logistische Regression (NatWis)</a></li>
-<li class="chapter" data-level="9.2.3" data-path="9-2-uebungen-4.html"><a href="9-2-uebungen-4.html#uebung-4.2s-multiple-logistische-regression-sozwis"><i class="fa fa-check"></i><b>9.2.3</b> Uebung 4.2S: Multiple logistische Regression (SozWis)</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="9-3-musterloesung-aufgabe-4-1-nicht-lineare-regression.html"><a href="9-3-musterloesung-aufgabe-4-1-nicht-lineare-regression.html"><i class="fa fa-check"></i><b>9.3</b> Musterloesung Aufgabe 4.1: Nicht-lineare Regression</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="9-3-musterloesung-aufgabe-4-1-nicht-lineare-regression.html"><a href="9-3-musterloesung-aufgabe-4-1-nicht-lineare-regression.html#uebung-4.1---nicht-lineare-regression-loesung"><i class="fa fa-check"></i><b>9.3.1</b> Uebung 4.1 - Nicht-lineare Regression – Loesung</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="9-4-musterloesung-aufgabe-4-2n-multiple-logistische-regression.html"><a href="9-4-musterloesung-aufgabe-4-2n-multiple-logistische-regression.html"><i class="fa fa-check"></i><b>9.4</b> Musterloesung Aufgabe 4.2N: Multiple logistische Regression</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="9-4-musterloesung-aufgabe-4-2n-multiple-logistische-regression.html"><a href="9-4-musterloesung-aufgabe-4-2n-multiple-logistische-regression.html#uebung-4.2---multiple-logistische-regression"><i class="fa fa-check"></i><b>9.4.1</b> Uebung 4.2 - Multiple logistische Regression</a></li>
-</ul></li>
-<li class="chapter" data-level="9.5" data-path="9-5-musterloesung-aufgabe-4-2s-multiple-logistische-regression.html"><a href="9-5-musterloesung-aufgabe-4-2s-multiple-logistische-regression.html"><i class="fa fa-check"></i><b>9.5</b> Musterloesung Aufgabe 4.2S: multiple logistische Regression</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="10-statistik-5-9-11-2020.html"><a href="10-statistik-5-9-11-2020.html"><i class="fa fa-check"></i><b>10</b> Statistik 5 (9.11.2020)</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="10-1-demo-statistik-5.html"><a href="10-1-demo-statistik-5.html"><i class="fa fa-check"></i><b>10.1</b> Demo: Statistik 5</a></li>
-<li class="chapter" data-level="10.2" data-path="10-2-uebungen-5.html"><a href="10-2-uebungen-5.html"><i class="fa fa-check"></i><b>10.2</b> Uebungen 5</a></li>
-<li class="chapter" data-level="10.3" data-path="10-3-musterloesung-aufgabe-5-1-split-plot-anova.html"><a href="10-3-musterloesung-aufgabe-5-1-split-plot-anova.html"><i class="fa fa-check"></i><b>10.3</b> Musterloesung Aufgabe 5.1: Split-plot ANOVA</a></li>
-<li class="chapter" data-level="10.4" data-path="10-4-musterloesung-aufgabe-5-2s-glmm.html"><a href="10-4-musterloesung-aufgabe-5-2s-glmm.html"><i class="fa fa-check"></i><b>10.4</b> Musterloesung Aufgabe 5.2S: GLMM</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="11-konsolidierung-statistik-1-09-11-2020.html"><a href="11-konsolidierung-statistik-1-09-11-2020.html"><i class="fa fa-check"></i><b>11</b> Konsolidierung Statistik 1 (09.11.2020)</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="11-1-demo-statistik-konsolidierung-1.html"><a href="11-1-demo-statistik-konsolidierung-1.html"><i class="fa fa-check"></i><b>11.1</b> Demo: Statistik Konsolidierung 1</a></li>
-<li class="chapter" data-level="11.2" data-path="11-2-vorgeschlagene-datensaetze-zur-repetition-der-uebungen.html"><a href="11-2-vorgeschlagene-datensaetze-zur-repetition-der-uebungen.html"><i class="fa fa-check"></i><b>11.2</b> Vorgeschlagene Datensaetze zur Repetition der Uebungen</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="12-statistik-6-10-11-2020.html"><a href="12-statistik-6-10-11-2020.html"><i class="fa fa-check"></i><b>12</b> Statistik 6 (10.11.2020)</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="12-1-demo-statistik-6.html"><a href="12-1-demo-statistik-6.html"><i class="fa fa-check"></i><b>12.1</b> Demo: Statistik 6</a></li>
-<li class="chapter" data-level="12.2" data-path="12-2-uebung-statistik-6.html"><a href="12-2-uebung-statistik-6.html"><i class="fa fa-check"></i><b>12.2</b> Uebung Statistik 6</a></li>
-<li class="chapter" data-level="12.3" data-path="12-3-loesung-6-1.html"><a href="12-3-loesung-6-1.html"><i class="fa fa-check"></i><b>12.3</b> Loesung 6.1</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="13-statistik-konsolidierung-2-10-11-2020.html"><a href="13-statistik-konsolidierung-2-10-11-2020.html"><i class="fa fa-check"></i><b>13</b> Statistik Konsolidierung 2 (10.11.2020)</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="13-1-demo-statistik-konsolidierung-2.html"><a href="13-1-demo-statistik-konsolidierung-2.html"><i class="fa fa-check"></i><b>13.1</b> Demo: Statistik Konsolidierung 2</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="14-statistik-7-16-11-2020.html"><a href="14-statistik-7-16-11-2020.html"><i class="fa fa-check"></i><b>14</b> Statistik 7 (16.11.2020)</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="14-1-uebung-7.html"><a href="14-1-uebung-7.html"><i class="fa fa-check"></i><b>14.1</b> Uebung 7</a>
-<ul>
-<li class="chapter" data-level="14.1.1" data-path="14-1-uebung-7.html"><a href="14-1-uebung-7.html#übung-7.1-rda-naturwissenschaftlich"><i class="fa fa-check"></i><b>14.1.1</b> Übung 7.1: RDA (naturwissenschaftlich)</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="15-statistik-konsolidierung-3-16-11-2020.html"><a href="15-statistik-konsolidierung-3-16-11-2020.html"><i class="fa fa-check"></i><b>15</b> Statistik Konsolidierung 3 (16.11.2020)</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="15-1-demo.html"><a href="15-1-demo.html"><i class="fa fa-check"></i><b>15.1</b> Demo</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="16-statistik-8-17-11-2020.html"><a href="16-statistik-8-17-11-2020.html"><i class="fa fa-check"></i><b>16</b> Statistik 8 (17.11.2020)</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="16-1-uebungen-8.html"><a href="16-1-uebungen-8.html"><i class="fa fa-check"></i><b>16.1</b> Uebungen 8</a>
-<ul>
-<li class="chapter" data-level="16.1.1" data-path="16-1-uebungen-8.html"><a href="16-1-uebungen-8.html#uebung-8.1-clusteranalyse-sozioökonomisch"><i class="fa fa-check"></i><b>16.1.1</b> Uebung 8.1: Clusteranalyse (sozioökonomisch)</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="17-statistik-konsolidierung-4-17-11-2020.html"><a href="17-statistik-konsolidierung-4-17-11-2020.html"><i class="fa fa-check"></i><b>17</b> Statistik Konsolidierung 4 (17.11.2020)</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="17-1-demo-1.html"><a href="17-1-demo-1.html"><i class="fa fa-check"></i><b>17.1</b> Demo</a></li>
 </ul></li>
 </ul>
 
@@ -389,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="2-prepro1-12-10-2020.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-raumanalyse-1-23-11-2020.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
