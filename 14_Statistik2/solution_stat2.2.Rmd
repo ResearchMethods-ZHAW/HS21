@@ -80,7 +80,7 @@ df %>%
 #   mytheme 
 
 
-boxplot(log10(df$tot_sold)~df$label_content)
+boxplot(df$tot_sold~df$label_content)
 
 # definiert das Modell (vgl. Skript Statistik 2)
 model <- aov(tot_sold ~ label_content, data = df)
@@ -125,11 +125,14 @@ TukeyHSD(model_log) # (Statistik 2)
 # für Fleisch
 10^model_log$coefficients[1]
 
-# für HOt & COld
-10^(model_log$coefficients[1] - model_log$coefficients[2])
+# für HOt & COld, Faktor .27 resp 72%
+10^(model_log$coefficients[1] + model_log$coefficients[2])
 
-# für Vegi
-10^(model_log$coefficients[1] - model_log$coefficients[3])
+# ist equivalent zu
+10^(model_log$coefficients[1]) * 10^(model_log$coefficients[2])
+
+# für Vegi, Faktor .63 resp 36%
+10^(model_log$coefficients[1] + model_log$coefficients[3])
 ```
 
 ******
