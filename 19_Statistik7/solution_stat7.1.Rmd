@@ -1,7 +1,9 @@
 
-## Musterlösung Aufgabe 7.1: RDA
+## Musterloesung Aufgabe 7.1: RDA
 
 - [R-Skript als Download](19_Statistik7/Loesung_7.1_v.04.R)
+- [Loesungstext](19_Statistik7/Statistik_Loesungstext_7.1.pdf)
+
 
 - **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
 

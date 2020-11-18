@@ -1,4 +1,4 @@
-```{r, include=FALSE, purl=F}
+```{r, purl=F}
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
