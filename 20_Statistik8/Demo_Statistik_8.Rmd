@@ -3,7 +3,8 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
 
-#### Demo: Statistik 8
+## Demo: Statistik 8
+
 **Cluster-Analysen**
 **(c) Juergen Dengler**
 

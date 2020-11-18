@@ -1,7 +1,7 @@
 
 ## Uebung 7
 
-### Übung 7.1: RDA (naturwissenschaftlich)
+### Uebung 7.1: RDA (naturwissenschaftlich)
 
 Moordatensatz in **library(dave)** :
 

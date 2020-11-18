@@ -17,7 +17,7 @@ erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Clu
 - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
 
 
-### Übung 8.1 - Clusteranalysen -- Lösung
+### Uebung 8.1 - Clusteranalysen -- Loesung
 
 ```{r eval=FALSE}
 crime <- read.csv("20_Statistik8/crime2.csv",sep=";")

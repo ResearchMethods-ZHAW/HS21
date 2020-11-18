@@ -21,7 +21,6 @@ mytheme <-
 
 ```
 
-
 # Statistik Konsolidierung 3 (16.11.2020)
 
 In Statistik Konsolidierung 3 lernen die Studierenden die Idee, die Voraussetzungen und die praktische Anwendung „einfacher“ linearer Modelle in R. Im Fokus steht die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind.

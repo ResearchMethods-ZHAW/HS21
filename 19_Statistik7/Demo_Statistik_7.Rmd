@@ -3,7 +3,7 @@
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
 ```
 
-#### Demo: Statistik 7
+## Demo: Statistik 7
 
 - **Ordinationen II**
 - **(c) Juergen Dengler**

@@ -1,6 +1,6 @@
 ## Uebungen 5
 
-###Übung 5.1: Split-plot ANOVA
+### Uebung 5.1: Split-plot ANOVA
 
 **Datensatz [splityield.csv](17_Statistik5/data/splityield.csv)**
 
@@ -14,7 +14,7 @@ Versuch zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei Fa
 
 
 
-###Übung 5.2: GLMM
+### Uebung 5.2: GLMM
 
 Führt mit dem Datensatz [novanimal.csv](13_Statistik1/data/novanimal.csv) eine logistische Regression durch, wobei ihr die einzelnen Käufer (single campus_card holder) als weitere randomisierte Variable mitberücksichtigt. Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden? Vergleich die Ergebnisse mit der eurem multiplen logistische Modell von 4.2
 
