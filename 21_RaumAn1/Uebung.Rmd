@@ -2,22 +2,14 @@
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
 ```
 
-
-## Uebung: Spatial Join, Puffer und MAUP
-
-<!-- Für's nächste mal: Hier bessere Gliederung machen: Mehrere Level-2 Headers, theamtische Einbettung und Vorbereitung zusammen nehmen und übergeordnet (analog RaumAn2) -->
-
-
-### Thematische Einbettung
+## Thematische Einbettung und Vorbereitung
 
 Mit dieser Übung wirst Du Schritt für Schritt an einfache Methoden der Raumanalyse herangeführt. Dies umfasst das Laden und Plotten von Vektor- und Rasterdaten sowie den wichtigen Umgang mit Koordinatensystemen. Darauf folgen einige Übungen zur räumlichen Anreicherung von Punktdaten unter Verwendung des Konzepts des "Spatial Join". Dazu arbeiten wir mit einem Datensatz aus Punktstichproben zur Wasserverfügbarkeit in Schweizer Böden. Es soll untersucht werden, ob ein Zusammenhang besteht zwischen der an den Punkten gemessenen Wasserverfügbarkeit und dem Join-Layer Bodeneignung/Skelettanteil. Im zweiten Teil der Übung wirst Du die Messwerte zur Wasserverfügbarkeit auf unterschiedlichen räumlichen Skalen aggregieren (Kantone und Bezirke) und prüfen, ob ggf. das Modifiable Areal Unit Problem auftritt. 
 
-### Vorbereitung
-
 Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbeiten, die ihrerseits wiederum auf weiteren Packages basieren (Stichwort `dependencies`). 
 
-- Für *Vektordaten* dominierte lange das Package `sp`, welches nun aber schrittweise durch `sf` abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
-- Für *Rasterdaten* exisitert das Package `raster`
+- Für *Vektordaten* dominierte lange das Package [`sp`](https://cran.r-project.org/package=sp), welches nun aber schrittweise durch [`sf`](https://r-spatial.github.io/sf/) abgelöst wird. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
+- Für *Rasterdaten* exisitert das Package [`raster`](https://rspatial.org/raster/), welches wiederum durch [`terra`](https://rspatial.org/terra) abgelöst wird. Wir brauchen für diese Übung aber nur `raster`, da `terra` relativ neu ist und noch nicht über alle Funktionen verfügt
 
 Für die Integration von Vektor und Rasterdaten existiert das Package `stars`: **S**patio**t**emporal **A**rrays for **R**aster and **V**ector Datacubes. Diese Tools sind teilweise sehr gut dem Tidyverse-Workflow (`group_by`, `mutate`, `summarise`, `%>%`) integriert. Lade zu beginn die folgenden notwenigen Packages (installiere die fehlenden Packages mit `install.package("packagename")`).
  
@@ -28,6 +20,12 @@ library(stars)
 library(raster)
 ```
 
+
+## Uebung A: Daten importieren und Visualisieren
+
+```{r}
+## -- Uebung A: Daten importieren und Visualisieren -- ##
+```
 
 ### Aufgabe 1: Daten runterladen und importieren
 
@@ -77,6 +75,11 @@ ggplot(wasser) +
 ```
 
 
+## Uebung B: Koordinatensysteme
+
+```{r}
+## -- Uebung B: Koordinatensysteme -- ##
+```
 
 
 ### Aufgabe 3 Koordinatensysteme *zuweisen*
@@ -176,10 +179,17 @@ wasser
 ```
 
 
-### Aufgabe 5:
+## Uebung C: Spatialjoin
 
 ```{r}
-## -- Aufgabe 5 -- ##
+## -- Uebung C: Spatialjoin -- ##
+```
+
+
+### Aufgabe 5: Spatialjoin mit Punkten
+
+```{r}
+## -- Aufgabe 5: Spatialjoin -- ##
 ```
 
 Wir wollen nun wissen, ob die Wasserverfügbarkeit im Boden mit dem Skelettgehalt zusammen hängt. Dazu nutzen wir die GIS-Technik *Spatial Join*, die in der Vorlesung beschrieben wurde. In `sf` können wir Spatial Joins mit der Funktion `st_join` durchführen, dabei gibt es nur `left` sowie `inner`-Joins (vgl. PrePro 1 & 2). So müssen die Punkte "Links", also an erste Stelle aufgeführt werden, da wir ja Attribute *an* die Punkte anheften wollen.
@@ -187,7 +197,6 @@ Wir wollen nun wissen, ob die Wasserverfügbarkeit im Boden mit dem Skelettgehal
 ```{r, echo = FALSE}
 wasser_skelett <- st_join(wasser,skelettgehalt)
 wasser_skelett
-
 ```
 
 Führe den obigen Spatial Join aus und erstelle anschliessend einen Boxplot pro Skelett-Kategorie. Für `ggplot` boxplots ist es sinnvoll, den Skelettgehalt vorgängig von `numeric` in `factor` zu konvertieren (falls Du nicht mehr weisst weshalb, schau nochmals nach in PrePro und InfoVis).
@@ -214,7 +223,7 @@ In der letzten Aufgabe haben wir für jede Probe aus `wasser` den Skelettgehalt 
 
 So könnte es zum Beispiel wichtiger sein zu wissen, was *der dominierende Skelettgehalt innerhalb eines 2 km Radius* um die Probe ist. In den kommenden Teilaufgaben lösen wir diese Herausforderung.
 
-#### Teilaufgabe A: Punkte mit Puffer versehen
+#### Punkte mit Puffer versehen
 
 Dafür müssen wir die Punkte mit einem Puffer versehen. Dies erreichen wir mit `st_buffer()`. Erstelle einen Datensatz `wasser_2km`, in dem jeder Punkt mit 2'000 m gepuffert wurde. Visualisiere dann diesen Datensatz. Beachte, dass es sich nun nicht mehr um Punkte, sondern um Flächen handelt (`POLYGON`).
 
@@ -228,30 +237,30 @@ ggplot(wasser_2km) + geom_sf(fill = "blue")
 
 
 
-#### Teilaufgabe B: Vektordatensatz in Raster konvertieren
+#### Vektordatensatz in Raster konvertieren
 
-Um Flächen miteinander zu verrechnen ("Was ist der dominierende Skelettgehalt im Umkreis von 2km?") ist es einfacher, wenn der Skelettgehalt-Datensatz im Raster-Datenformat daher kommt. Dazu wandeln wir den Vektordatensatz `skelettgehalt` mit einer Vektor-nach-Raster-Konvertierung in den Rasterdatensatz `skelett_raster`. Hierzu brauchen wir die Funktion `fasterize()` (**f**ast **rasterize**) aus der gleichnamigen Library. Installiere diese Library (wenn nötig) und importiere sie in die aktuelle Session mit `library(fasterize)`.
+Um Flächen miteinander zu verrechnen ("Was ist der dominierende Skelettgehalt im Umkreis von 2km?") ist es einfacher, wenn der Skelettgehalt-Datensatz im Raster-Datenformat daher kommt. Dazu wandeln wir den Vektordatensatz `skelettgehalt` mit einer Vektor-nach-Raster-Konvertierung in den Rasterdatensatz `skelett_raster`. Hierzu brauchen wir die Funktion `rasterize()` aus `raster`. 
 
-In einem ersten Schritt müssen wir eine Raster-Vorlage erstellen, welche dazu dient, die räumliche Ausdehnung und die Auflösung (Zellengrösse) des resultierenden Datensatzes festzulegen. 
+In einem ersten Schritt müssen wir eine Raster-Vorlage erstellen, welche dazu dient, die räumliche Ausdehnung, die Auflösung (Zellengrösse) sowie das Koordinatensystem des resultierenden Datensatzes festzulegen. 
 
 
 ```{r, echo = TRUE}
-library(fasterize)
 
-raster_template <- raster(extent(skelettgehalt), resolution = 1000)
+raster_template <- raster(extent(skelettgehalt), crs = st_crs(skelettgehalt)$proj4string, resolution = 1000)
+
 ```
 
-Danach wird mit `fasterize` der Polygon-Datensatz in ein Raster konvertiert. Mit `field = ` kann festgelegt werden, aus welcher Spalte die Werte des Output Datensatzes entnommen werden sollten. GIS-Experten werden sich erinnern, dass im Gegensatz zu Flächen in einem Vektordatensatz, welche viele verschiedene Attributen haben können, ein Raster nur noch ein Attribut (hier `SKELETT`).
+Danach wird mit `rasterize` der Polygon-Datensatz in ein Raster konvertiert. Mit `field = ` kann festgelegt werden, aus welcher Spalte die Werte des Output Datensatzes entnommen werden sollten. GIS-Experten werden sich erinnern, dass im Gegensatz zu Flächen in einem Vektordatensatz, welche viele verschiedene Attributen haben können, ein Raster nur noch ein Attribut (hier `SKELETT`).
 
 ```{r, echo = TRUE}
-skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
+skelett_raster <- rasterize(skelettgehalt,raster_template,field = "SKELETT")
 
 ggplot() + 
   geom_stars(data = st_as_stars(skelett_raster)) +
   coord_equal() # geom_stars() ist (noch) nicht so clever wie geom_sf() das CRS wird nicht berücksichtigt
 ```
 
-#### Teilaufgabe C: Rasterwerte extrahieren
+#### Rasterwerte extrahieren
 
 Mit `raster::extract()` könnnen nun die Rasterwerte aus dem Rasterdatensatz extrahiert werden. In `fun = ` kann festgelegt werden, ob und mit welcher Funktion die vielen Rasterzellen pro Polygon aggregiert werden sollen. Wir möchten nur den häufigsten Wert zurück erhalten, sprich den [Modus](https://de.wikipedia.org/wiki/Modus_(Statistik)) dafür gibt es in `R` leider keine eingebaute Funktion, weshalb wir unsere eigene basteln müssen:
 

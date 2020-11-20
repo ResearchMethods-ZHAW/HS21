@@ -3,6 +3,8 @@ library(tidyverse)
 library(stars)
 library(raster)
 
+## -- Uebung A: Daten importieren und Visualisieren -- ##
+
 ## -- Aufgabe 1: Daten runterladen und importieren -- ##
 
 
@@ -20,6 +22,8 @@ ggplot(bezirke) +
 
 ggplot(wasser) + 
   geom_sf()
+
+## -- Uebung B: Koordinatensysteme -- ##
 
 ## -- Aufgabe 3 Koordinatensysteme zuweisen -- ##
 
@@ -47,11 +51,12 @@ wasser <- st_transform(wasser, 2056)
 
 wasser
 
-## -- Aufgabe 5 -- ##
+## -- Uebung C: Spatialjoin -- ##
+
+## -- Aufgabe 5: Spatialjoin -- ##
 
 wasser_skelett <- st_join(wasser,skelettgehalt)
 wasser_skelett
-
 
 
 wasser_skelett %>%
@@ -65,11 +70,11 @@ wasser_2km <- st_buffer(wasser,2000)
 
 ggplot(wasser_2km) + geom_sf(fill = "blue")
 
-library(fasterize)
 
-raster_template <- raster(extent(skelettgehalt), resolution = 1000)
+raster_template <- raster(extent(skelettgehalt), crs = st_crs(skelettgehalt)$proj4string, resolution = 1000)
 
-skelett_raster <- fasterize(skelettgehalt,raster_template,field = "SKELETT")
+
+skelett_raster <- rasterize(skelettgehalt,raster_template,field = "SKELETT")
 
 ggplot() + 
   geom_stars(data = st_as_stars(skelett_raster)) +
