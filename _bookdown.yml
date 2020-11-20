@@ -83,7 +83,7 @@ rmd_files: [
     "19_Statistik7/Abstract.Rmd",
     "19_Statistik7/Demo_Statistik_7.Rmd",
     "19_Statistik7/assigment_stat7.Rmd",
-    #"19_Statistik7/solution_stat7.1.Rmd",
+    "19_Statistik7/solution_stat7.1.Rmd",
    
    "19_Statistik_Konsolidierung3/Demoskript_lineare_modelle.Rmd",
    
@@ -91,15 +91,15 @@ rmd_files: [
     "20_Statistik8/Abstract.Rmd",
     "20_Statistik8//Demo_Statistik_8.Rmd",
     "20_Statistik8/assigment_stat8.Rmd",
-    #"20_Statistik8/solution_stat8.1.Rmd",
+    "20_Statistik8/solution_stat8.1.Rmd",
 
 
-    "20_Statistik_Konsolidierung4/Demoskript_lineare_modelle_teil2.Rmd"
+    "20_Statistik_Konsolidierung4/Demoskript_lineare_modelle_teil2.Rmd",
 
 
  #    
- #    "21_RaumAn1/Abstract.Rmd",
- #    "21_RaumAn1/Uebung.Rmd",
+    "21_RaumAn1/Abstract.Rmd",
+    "21_RaumAn1/Uebung.Rmd",
  #    "21_RaumAn1/Loesung.Rmd",
  #    
  #    "22_RaumAn2/Abstract.Rmd",
