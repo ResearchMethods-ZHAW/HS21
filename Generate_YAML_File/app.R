@@ -4,6 +4,7 @@ library(yaml)
 library(here)
 
 rmdfiles <- read.csv(here("rmdfiles.csv")) # make this an input (todo)
+names(rmdfiles)[1] <- "Folder"
 
 folders <- unique(rmdfiles$Folder)
 

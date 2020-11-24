@@ -3,6 +3,8 @@ library(tidyverse)
 library(stars)
 library(raster)
 
+## -- Uebung A: Daten importieren und Visualisieren -- ##
+
 ## -- Aufgabe 1: Daten runterladen und importieren -- ##
 
 
@@ -20,6 +22,8 @@ ggplot(bezirke) +
 
 ggplot(wasser) + 
   geom_sf()
+
+## -- Uebung B: Koordinatensysteme -- ##
 
 ## -- Aufgabe 3 Koordinatensysteme zuweisen -- ##
 
@@ -46,6 +50,8 @@ wasser
 wasser <- st_transform(wasser, 2056)
 
 wasser
+
+## -- Uebung C: Spatialjoin -- ##
 
 ## -- Aufgabe 5: Spatialjoin -- ##
 
