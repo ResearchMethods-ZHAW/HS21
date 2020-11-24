@@ -5,9 +5,9 @@ knitr::opts_chunk$set(echo = TRUE,include = T,collapse=TRUE)
 
 ## Demo: Statistik 3
 
-[Demoscript als Download](15_Statistik3/RFiles/Statistik_3_Demo_v.05.R)  
-**Datensatz [ipomopsis.csv](15_Statistik3/data/ipomopsis.csv)**  
-**Datensatz [loyn.csv](15_Statistik3/data/loyn.csv)**
+- [Demoscript als Download](15_Statistik3/RFiles/Statistik_3_Demo_v.05.R)  
+- Datensatz [ipomopsis.csv](15_Statistik3/data/ipomopsis.csv)
+- Datensatz [loyn.csv](15_Statistik3/data/loyn.csv)
 
 **ANCOVA**
 Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
@@ -79,8 +79,11 @@ plot(lm.1)
 
 ```{r}
 loyn <- read.table("15_Statistik3/data/loyn.csv", header=T, sep=",")
+```
+```{r reval=FALSE}
 loyn
-
+```
+```{r}
 summary(loyn)
 
 lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
@@ -168,7 +171,6 @@ avPlots(lm.1, ask=F)
 ```
 
 **Multimodel inference**
-
 ```{r}
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)

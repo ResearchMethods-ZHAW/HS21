@@ -12,8 +12,8 @@
 
 ## Musterloesung Beispiel
 
-[RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  
-[Loesungstext Beispiel](14_Statistik2/Statistik_Loesung_Beispiel_v.02.pdf)
+- [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  
+- [Loesungstext Beispiel](14_Statistik2/Statistik_Loesung_Beispiel_v.02.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**

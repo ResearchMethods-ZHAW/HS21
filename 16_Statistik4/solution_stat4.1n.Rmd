@@ -13,8 +13,8 @@ knitr::opts_chunk$set(fig.width = 20, fig.height = 12, warning = F, message = F,
 
 ## Musterloesung Aufgabe 4.1: Nicht-lineare Regression
 
-[R-Code als Download](16_Statistik4/RFiles/Loesung_4.1_v.03.R)
-[Loesungstext Beispiel](16_Statistik4/Statistik_Loesung_4.1_v.02.pdf)
+- [R-Code als Download](16_Statistik4/RFiles/Loesung_4.1_v.03.R)
+- [Loesungstext Beispiel](16_Statistik4/Statistik_Loesung_4.1_v.02.pdf)
 
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**

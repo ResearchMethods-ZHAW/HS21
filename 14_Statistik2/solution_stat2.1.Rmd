@@ -7,7 +7,7 @@
 
 **Lösungsweg**
 
-```{r}
+```{r eval=FALSE}
 SAR <- read.delim("14_Statistik2/data/SAR.csv",sep = ";")
 SAR
 ```
@@ -18,14 +18,14 @@ SAR
 summary(SAR)
 boxplot(SAR$area) # extrem rechtsschief
 boxplot(SAR$richness) # extrem rechtsschief
-plot(richness~area, data=SAR) # sieht nicht linear aus
+plot(richness~area, data = SAR) # sieht nicht linear aus
 ```
 
 
 
 **Einfaches lineares Modell**
 ```{r}
-lm.1 <- lm(richness~area, data=SAR)
+lm.1 <- lm(richness~area, data = SAR)
 summary(lm.1)
 ```
 
@@ -54,7 +54,7 @@ hist(SAR$richness)
 hist(log10(SAR$richness))
 
 SAR$log_richness <- log10(SAR$richness)
-lm.2 <- lm(log_richness~area, data=SAR)
+lm.2 <- lm(log_richness~area, data = SAR)
 summary(lm.2)
 ```
 
@@ -76,7 +76,7 @@ hist(SAR$area)
 hist(log10(SAR$area))
 
 SAR$log_area <- log10(SAR$area)
-lm.3 <- lm(log_richness~log_area, data=SAR)
+lm.3 <- lm(log_richness~log_area, data = SAR)
 summary(lm.3)
 ```
 
@@ -101,7 +101,7 @@ xv <- seq(0, 100, 0.1)
 
 **Modelldiagnostik**
 ```{r, eval=FALSE}
-model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100,b=1)),data=decay)
+model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100, b=1)), data = decay)
 summary(model.nls)
 ```
 
@@ -123,7 +123,7 @@ xv <- seq(0,100,0.1)
 A. lineares Modell mit log-transformierter Abhaengiger
 ```{r}
 plot(SAR$area,SAR$richness)
-yv1a <- 10^predict(lm.2,list(area=xv))
+yv1a <- 10^predict(lm.2, list(area=xv))
 lines(xv, yv1a, col="blue")
 ```
 
@@ -141,14 +141,14 @@ B. lineares Modell mit log-Transformation beider Variablen (zurücktransformiert
 ```{r}
 plot(SAR$area, SAR$richness, xlab="Fläche [m²]", ylab="Artenreichtum")
 yv1b <- predict(lm.3, list(log_area=xv))
-lines(10^xv, 10^yv1b, col="green")
+lines(10^xv, 10^yv1b, col = "green")
 ```
 
 Modelle im Vergleich
 ```{r}
 plot(SAR$area, SAR$richness)
-abline(lm.1, col="red")
-lines(xv, yv1a, col="blue")
-lines(10^xv, 10^yv1b, col="green")
+abline(lm.1, col = "red")
+lines(xv, yv1a, col = "blue")
+lines(10^xv, 10^yv1b, col = "green")
 ```
 
