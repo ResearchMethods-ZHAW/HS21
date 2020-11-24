@@ -13,7 +13,7 @@
 - Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
 - Während im Text normalerweise die Variablen ausgeschrieben werden solltet, genügt es hier (da ihr die entsprechenden Infos nicht bekommen habt und nur raten könntet), wenn ihr die Abkürzungen aus dem dataframe nehmt.
 
-### Übung 7.1 - RDA -- Lösung
+
 
 __Moordatensatz laden__ 
 ```{r eval=FALSE}
@@ -50,11 +50,10 @@ Vorstehend wurden die Variablen in die zwei Gruppen Chemistry und Physiography a
 Die weiteren Analysen führen wir mit der default-Einstellung „Scaling 2“ durch. (Je nach Bedarf bzw. persönlichen Vorlieben könnte auch Scaling 1 genommen werden).
 
 
-## RDA of the Hellinger-transformed mire species data, constrained
-## by all the environmental variables contained in env2
-
-
 __Redundancy analysis (RDA)__
+
+RDA of the Hellinger-transformed mire species data, constrained by all the environmental variables contained in env2
+
 ```{r eval=FALSE}
 
 ## RDA der Hellinger-transformireten Moorarten-Daten, constrained

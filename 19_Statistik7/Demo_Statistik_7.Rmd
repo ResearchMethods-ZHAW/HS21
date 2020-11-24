@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 
 __Interpretation von Ordinationen (Wildi pp. 96 et seq.)__
 Wildi pp. 96 et seq.)
-```{r eval=FALSE}
+```{r}
 #Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
@@ -66,7 +66,7 @@ ordisurf(imds, ssit$Waterlev.av, add=T, col="blue")
 
 
 __Constrained ordination__
-```{r eval=FALSE}
+```{r}
 #5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
 ssit
 summary(ssit)
