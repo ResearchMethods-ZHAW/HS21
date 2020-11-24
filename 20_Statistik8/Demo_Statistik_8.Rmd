@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 
 __k-means clustering__
 
-```{r}
+```{r, eval=FALSE}
 # das Moordatenset aus Wildi...
 if(!require(dave)){install.packages("dave")}
 library(dave)
@@ -60,7 +60,7 @@ latlong <- latlong[-8, ]
 ```
 
 __Dendogramme berechnen und ploten__
-```{r}
+```{r, eval=FALSE}
 ## Hierarchical agglomerative clustering of the species abundance 
 
 # Compute matrix of chord distance among sites
@@ -120,7 +120,7 @@ plot(spe.ch.ward, labels = rownames(spe), main = "Chord - Ward")
 
 __Cophenetic correlations__
 
-```{r}
+```{r, eval=FALSE}
 # Single linkage clustering
 spe.ch.single.coph <- cophenetic(spe.ch.single)
 cor(spe.ch, spe.ch.single.coph)
@@ -310,7 +310,7 @@ text(28, 0.98, "b", cex = 1.8)
 
 
 __Final dendrogram with the selected clusters__
-```{r}
+```{r, eval=FALSE}
 # Choose the number of clusters
 k <- 4
 # Silhouette plot of the final partition
@@ -354,7 +354,7 @@ drawmap(xy = spa,clusters = spech.ward.g, main = "Four Ward clusters along the D
 ```
 
 __Miscellaneous graphical outputs__
-```{r}
+```{r, eval=FALSE}
 # Heat map of the dissimilarity matrix ordered with the dendrogram
 heatmap(as.matrix(spe.ch),Rowv =NULL , symm = TRUE,margin = c(3, 3))
 
