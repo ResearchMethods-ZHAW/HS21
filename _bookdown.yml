@@ -71,6 +71,7 @@ rmd_files:
 - 20_Statistik_Konsolidierung4/Demoskript_lineare_modelle_teil2.Rmd
 - 21_RaumAn1/Abstract.Rmd
 - 21_RaumAn1/Uebung.Rmd
+- 21_RaumAn1/Loesung.Rmd
 delete_merged_file: yes
 output_dir: 99_Book
 after_chapter_script: 00_Admin/Clear_vars_and_pkgs.R
