@@ -1,11 +1,12 @@
 library(shiny)
+library(shinyWidgets)
 library(DT)
 library(yaml)
 library(here)
 library(diffr)
 library(purrr)
 rmdfiles <- read.csv(here("rmdfiles.csv")) # make this an input (todo)
-names(rmdfiles)[1] <- "Folder"
+# names(rmdfiles)[1] <- "Folder"
 
 
 rmdfiles_list <-rmdfiles %>%
@@ -37,14 +38,23 @@ ui <- fluidPage(
       tabsetPanel(
  
         tabPanel("1. Select Files",
-                 column(6,selectInput("selector", 
-                                      "Choose one or more topics to include",
-                                      names(rmdfiles_list), 
-                                      multiple = TRUE,
-                                      selectize = FALSE,
-                                      selected = names(rmdfiles_list)[1],
-                                      size = length(rmdfiles_list),width = "100%")),
-                 column(6, fluidRow(uiOutput("fileselector")))
+                 column(6,{
+                   selectInput("selector",
+                               "Choose one or more topics to include",
+                               names(rmdfiles_list), 
+                               multiple = TRUE,
+                               selectize = FALSE,
+                               selected = names(rmdfiles_list)[1],
+                               size = length(rmdfiles_list),width = "100%")
+                   },
+                   
+                   ),
+                 column(6, 
+                        switchInput("showall", value = FALSE, 
+                                    onLabel = "display all topics",
+                                    offLabel = "display selected topics",
+                                    size = "mini",width = "100%"),
+                        fluidRow(uiOutput("fileselector")))
                  
         ),
 
@@ -83,16 +93,17 @@ server <- shinyServer(function(input, output, session) {
   folders_reactive_unlist <- reactive({unlist(folders_reactive())})
 
 
-  output$x4 <- renderUI(HTML(c("- ", paste(folders_reactive_unlist(),collapse =  "<br/> - "))))
-  
-  
   output$fileselector <- renderUI({
-    selectInput("fileselector","Remove specific Files from the chosen topic(s)", 
-                choices = folders_reactive(),selected = folders_reactive_unlist(),multiple = TRUE,
-                selectize = FALSE,
-                size = length(folders_reactive_unlist())+length(folders_reactive()),
-                width = "100%")
-    })
+    pickerInput(
+      inputId = "fileselector",
+      label = "Remove specific Files from the chosen topic(s)",
+      choices = if(input$showall){rmdfiles_list}else{folders_reactive()},
+      selected = folders_reactive_unlist(),
+      multiple = TRUE,
+      width = "100%"
+    )
+    
+  })
   
   observeEvent(input$writeyaml,{
     
