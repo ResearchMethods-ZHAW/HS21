@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 
 __Interpretation von Ordinationen (Wildi pp. 96 et seq.)__
 Wildi pp. 96 et seq.)
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)

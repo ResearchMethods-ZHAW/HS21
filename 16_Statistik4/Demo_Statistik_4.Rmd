@@ -11,9 +11,9 @@ temp <- c(10,12,16,20,24,25,30,33,37)
 besucher <- c(40,12,50,500,400,900,1500,900,2000)
 strand <- data.frame("Temperatur"=temp, "Besucher"=besucher)
 
-plot(besucher~temp, data=strand)
+plot(besucher~temp, data = strand)
 
-lm.strand <- lm(Besucher~Temperatur, data=strand)
+lm.strand <- lm(Besucher~Temperatur, data = strand)
 summary(lm.strand)
 
 par(mfrow=c(2,2))
@@ -21,12 +21,12 @@ plot(lm.strand)
 
 par(mfrow=c(1,1))
 xv <- rep(0:40,by=.1)
-yv <- predict(lm.strand, list(Temperatur=xv), data=strand)
+yv <- predict(lm.strand, list(Temperatur=xv), data = strand)
 plot(strand$Temperatur, strand$Besucher, xlim=c(0,40))
 lines(xv, yv, lwd=3, col="blue")
 
-glm.gaussian <- glm(Besucher~Temperatur, family=gaussian, data=strand)
-glm.poisson <- glm(Besucher~Temperatur, family=poisson, data=strand)
+glm.gaussian <- glm(Besucher~Temperatur, family = gaussian, data = strand)
+glm.poisson <- glm(Besucher~Temperatur, family = poisson, data = strand)
 
 summary(glm.gaussian)
 summary(glm.poisson)
@@ -41,7 +41,7 @@ if(!require(AER)){install.packages("AER")}
 library(AER)
 dispersiontest(glm.poisson)
 
-glm.quasi <- glm(Besucher~Temperatur, family=quasipoisson, data=strand)
+glm.quasi <- glm(Besucher~Temperatur, family = quasipoisson, data = strand)
 summary(glm.quasi)
 
 par(mfrow=c(2,2))
@@ -68,11 +68,11 @@ lines(xv, exp(yv3), lwd=3, col="green")
  __Logistische Regression__
 
 ```{r}
-bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
-                    "bathing"=c(0,0,0,0,0,1,0,0,1,0,1,1,1,1,1))
-plot(bathing~temperature, data=bathing)
+bathing <- data.frame("temperature"=c(1, 2, 5, 9, 14, 14, 15, 19, 22, 24, 25, 26, 27, 28, 29),
+                    "bathing"=c(0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1))
+plot(bathing~temperature, data = bathing)
 
-glm.1<-glm(bathing~temperature, family="binomial", data=bathing)
+glm.1<-glm(bathing~temperature, family = "binomial", data = bathing)
 summary(glm.1)
 
 #Modeldiagnostik (wenn nicht signifikant, dann OK)
@@ -102,7 +102,7 @@ km
 #Plotting
 xs <- seq(0,30,l=1000)
 model.predict <- predict(glm.1,type="response", se=T, newdata=data.frame(temperature=xs))
-plot(bathing~temperature,data=bathing, xlab="Temperature (°C)",ylab="% Bathing", pch=16, col="red")
+plot(bathing~temperature,data=bathing, xlab="Temperature (°C)", ylab="% Bathing", pch=16, col="red")
 points(model.predict$fit ~ xs, type="l")
 lines(model.predict$fit+model.predict$se.fit ~ xs, type="l", lty=2)
 lines(model.predict$fit-model.predict$se.fit ~ xs, type="l", lty=2)
@@ -116,7 +116,7 @@ if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
 library(nlstools)
 
-loyn <- read.delim("16_Statistik4/data/loyn.csv", sep=",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
+loyn <- read.delim("16_Statistik4/data/loyn.csv", sep = ",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
 
 #Selbstdefinierte Funktion, hier Potenzfunktion
 power.model <- nls(ABUND~c*AREA^z, start=(list(c=1,z=0)), data = loyn)

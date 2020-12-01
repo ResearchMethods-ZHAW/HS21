@@ -2,13 +2,13 @@
 
 
 # von LMs zu GLMs ---------------------------------------------------------
-temp <- c(10,12,16,20,24,25,30,33,37)
-besucher <- c(40,12,50,500,400,900,1500,900,2000)
+temp <- c(10, 12, 16, 20, 24, 25, 30, 33, 37)
+besucher <- c(40, 12, 50, 500, 400, 900, 1500, 900, 2000)
 strand <- data.frame("Temperatur"=temp, "Besucher"=besucher)
 
-plot(besucher~temp, data=strand)
+plot(besucher~temp, data = strand)
 
-lm.strand <- lm(Besucher~Temperatur, data=strand)
+lm.strand <- lm(Besucher~Temperatur, data = strand)
 summary(lm.strand)
 
 par(mfrow=c(2,2))
@@ -16,27 +16,27 @@ plot(lm.strand)
 
 par(mfrow=c(1,1))
 xv <- rep(0:40,by=.1)
-yv <- predict(lm.strand, list(Temperatur=xv), data=strand)
+yv <- predict(lm.strand, list(Temperatur=xv), data = strand)
 plot(strand$Temperatur, strand$Besucher, xlim=c(0,40))
 lines(xv, yv, lwd=3, col="blue")
 
-glm.gaussian <- glm(Besucher~Temperatur, family=gaussian, data=strand)
-glm.poisson <- glm(Besucher~Temperatur, family=poisson, data=strand)
+glm.gaussian <- glm(Besucher~Temperatur, family = gaussian, data = strand)
+glm.poisson <- glm(Besucher~Temperatur, family = poisson, data = strand)
 
 summary(glm.gaussian)
 summary(glm.poisson)
 
-#Rücktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion da family=possion als Link-Funktion den natürlichen Logarithmus (log) verwendet)
-#Besucher = exp(3.50 + 0.11 Temperatur/°C)
-exp(3.500301) #Anzahl besucher bei 0°C
-exp(3.500301 + 30*0.112817) #Anzahl besucher bei 30°C
+#R?cktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion da family=possion als Link-Funktion den nat?rlichen Logarithmus (log) verwendet)
+#Besucher = exp(3.50 + 0.11 Temperatur/?C)
+exp(3.500301) #Anzahl besucher bei 0?C
+exp(3.500301 + 30*0.112817) #Anzahl besucher bei 30?C
 
 # Test Overdispersion
 if(!require(AER)){install.packages("AER")}
 library(AER)
 dispersiontest(glm.poisson)
 
-glm.quasi <- glm(Besucher~Temperatur, family=quasipoisson, data=strand)
+glm.quasi <- glm(Besucher~Temperatur, family = quasipoisson, data = strand)
 summary(glm.quasi)
 
 par(mfrow=c(2,2))
@@ -59,23 +59,23 @@ lines(xv, exp(yv3), lwd=3, col="green")
 
 
 # Logistische Regression --------------------------------------------------
-bathing<-data.frame("temperature"=c(1,2,5,9,14,14,15,19,22,24,25,26,27,28,29),
-                    "bathing"=c(0,0,0,0,0,1,0,0,1,0,1,1,1,1,1))
+bathing <- data.frame("temperature"=c(1, 2, 5, 9, 14, 14, 15, 19, 22, 24, 25, 26, 27, 28, 29),
+                    "bathing"=c(0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1))
 
 
 
-plot(bathing~temperature, data=bathing)
+plot(bathing~temperature, data = bathing)
 
-glm.1<-glm(bathing~temperature, family="binomial", data=bathing)
+glm.1<-glm(bathing~temperature, family = "binomial", data = bathing)
 summary(glm.1)
 
 #Modeldiagnostik (wenn nicht signifikant, dann OK)
 1 - pchisq(glm.1$deviance,glm.1$df.resid)
 
-#Modellgüte (pseudo-R²)
+#Modellg?te (pseudo-R?)
 1 - (glm.1$dev / glm.1$null)
 
-#Steilheit der Beziehung (relative Änderung der odds bei x + 1 vs. x)
+#Steilheit der Beziehung (relative ?nderung der odds bei x + 1 vs. x)
 exp(glm.1$coefficients[2])
 
 #LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
@@ -93,9 +93,9 @@ km
 
 
 #Plotting
-xs <- seq(0,30,l=1000)
-model.predict <- predict(glm.1, type="response", se=T, newdata=data.frame(temperature=xs))
-plot(bathing~temperature ,xlab="Temperature (°C)", ylab="% Bathing", pch=16, col="red", data=bathing)
+xs <- seq(0, 30, l=1000)
+model.predict <- predict(glm.1, type="response", se = T, newdata = data.frame(temperature=xs))
+plot(bathing~temperature ,xlab="Temperature (?C)", ylab="% Bathing", pch=16, col="red", data = bathing)
 points(model.predict$fit ~ xs,type="l")
 lines(model.predict$fit+model.predict$se.fit ~ xs, type="l", lty=2)
 lines(model.predict$fit-model.predict$se.fit ~ xs, type="l", lty=2)
@@ -107,7 +107,7 @@ if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
 library(nlstools)
 
-loyn <- read.delim("loyn.csv", sep=",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
+loyn <- read.delim("loyn.csv", sep = ",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
 
 #Selbstdefinierte Funktion, hier Potenzfunktion
 power.model <- nls(ABUND~c*AREA^z, start=(list(c=1,z=0)), data = loyn)

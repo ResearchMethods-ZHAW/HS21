@@ -20,7 +20,7 @@ summary.lm(aov(size~cultivar, data = blume))
 
 c <- c(30, 19, 31, 23, 18, 25, 26, 24, 17, 20)
 blume2 <- data.frame(cultivar = c(rep("a", 10), rep("b", 10), rep("c", 10)), size=c(a, b, c))
-blume2$cultivar<-as.factor(blume2$cultivar)
+blume2$cultivar <- as.factor(blume2$cultivar)
 
 summary(blume2)             
 head(blume2)
@@ -39,7 +39,7 @@ summary.lm(aov.1)
 #Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
 aggregate(size~cultivar, blume2, function(x) c(Mean = mean(x), SD = sd(x), Min = min(x), Max = max(x)))
 
-lm.1 <- lm(size~cultivar, data=blume2)
+lm.1 <- lm(size~cultivar, data = blume2)
 summary(lm.1)
 
 #Tukeys Posthoc-Test
@@ -70,9 +70,9 @@ var.test(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"]
 
 if(!require(car)){install.packages("car")}
 library(car)
-leveneTest(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"], center=mean)
+leveneTest(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"], center=mean)
 
-wilcox.test(blume2$size[blume2$cultivar == "a"],blume2$size[blume2$cultivar == "b"])
+wilcox.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"])
 
 
 #Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA  --------

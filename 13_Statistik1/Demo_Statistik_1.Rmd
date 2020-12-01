@@ -35,8 +35,8 @@ fisher.test(count)
 ### t-Test
 
 ```{r}
-a<-c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
-b<-c(12, 15, 16,7, 8, 10, 12, 11, 13, 10)
+a <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
+b <- c(12, 15, 16,7, 8, 10, 12, 11, 13, 10)
 blume<-data.frame(a,b)
 blume
 summary(blume)
@@ -61,15 +61,15 @@ t.test(blume$a, blume$b, alternative = "less") #einseitig
 klassischer t-Test vs. Welch Test
 
 ```{r}
-t.test(blume$a,blume$b, var.equal = T) #Varianzen gleich, klassischer t-Test
-t.test(blume$a,blume$b, var.equal = F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgeführt. 
+t.test(blume$a, blume$b, var.equal = T) #Varianzen gleich, klassischer t-Test
+t.test(blume$a, blume$b, var.equal = F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgeführt. 
 ```
 
 gepaarter t-Test
 
 ```{r}
-t.test(blume$a,blume$b, paired = T)
-t.test(blume$a,blume$b, paired = T, alternative="greater")
+t.test(blume$a, blume$b, paired = T)
+t.test(blume$a, blume$b, paired = T, alternative="greater")
 ```
 
 Wilcoxon-Vorzeichen-Rang-Test
@@ -78,7 +78,7 @@ shapiro.test(blume$b)
 var.test(blume$a, blume$b)
 if(!require(car)){install.packages("car")} # installiert das Zusatzpacket car (wenn nicht bereits installiert)
 library(car)
-leveneTest(blume$a,blume$b, center=mean)
+leveneTest(blume$a, blume$b, center=mean)
 wilcox.test(blume$a, blume$b)
 ```
 
@@ -88,7 +88,7 @@ Das gleiche mit einem “long table”
 ```{r}
 cultivar <- c(rep("a", 10), rep("b", 10))
 size <- c(a,b)
-blume.long <- data.frame(cultivar,size)
+blume.long <- data.frame(cultivar, size)
 
 rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
 rm(cultivar)
@@ -102,7 +102,7 @@ rm(cultivar)
 Das gleiche in einer Zeile
 
 ```{r}
-blume.long <- data.frame(cultivar=c(rep("a",10), rep("b",10)), size=c(a,b))
+blume.long <- data.frame(cultivar=c(rep("a", 10), rep("b", 10)), size=c(a, b))
 summary(blume.long)             
 head(blume.long)
 
