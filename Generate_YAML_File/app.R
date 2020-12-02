@@ -6,7 +6,7 @@ library(here)
 library(diffr)
 library(purrr)
 rmdfiles <- read.csv(here("rmdfiles.csv")) # make this an input (todo)
-# names(rmdfiles)[1] <- "Folder"
+names(rmdfiles)[1] <- "Folder"
 
 
 rmdfiles_list <-rmdfiles %>%
