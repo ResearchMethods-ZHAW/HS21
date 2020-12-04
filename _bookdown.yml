@@ -79,6 +79,10 @@ rmd_files:
 - 22_RaumAn2/Loesung_B.Rmd
 - 22_RaumAn2/Uebung_C.Rmd
 - 22_RaumAn2/Loesung_C.Rmd
+- 23_RaumAn3/Abstract.Rmd
+- 23_RaumAn3/Uebung_A.Rmd
+- 23_RaumAn3/Uebung_B.Rmd
+- 23_RaumAn3/Uebung_C.Rmd
 delete_merged_file: yes
 output_dir: 99_Book
 after_chapter_script: 00_Admin/Clear_vars_and_pkgs.R
