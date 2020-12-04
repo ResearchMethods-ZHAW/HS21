@@ -1,8 +1,4 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
 ```{r, purl=F}
 
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
@@ -162,7 +158,8 @@ summary(eigenvals(ca.1))
 ```
 
  __DCA__
-```{r}
+```{r, eval=FALSE}
+library(vegan)
 dca.1 <- decorana(sveg, mk=10)
 plot(dca.1, display = "sites", type = "point")
 
@@ -171,7 +168,7 @@ plot(dca.2, display = "sites", type = "point")
 ```
 
  __NMDS__
-```{r}
+```{r, eval=FALSE}
 #Distanzmatrix als Start erzeugen
 mde <- vegdist(sveg, method="euclidean")
 mde

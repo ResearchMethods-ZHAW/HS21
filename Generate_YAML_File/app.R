@@ -5,7 +5,7 @@ require(here)
 require(diffr)
 require(purrr)
 rmdfiles <- read.csv(here("rmdfiles.csv")) # make this an input (todo)
-# names(rmdfiles)[1] <- "Folder"
+names(rmdfiles)[1] <- "Folder"
 
 rmdfiles_missing <- rmdfiles[!rmdfiles %>% pmap_lgl(function(Folder, Files){file.exists(here(Folder,Files))}),]
 
