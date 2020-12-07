@@ -4,7 +4,12 @@ require(yaml)
 require(here)
 require(diffr)
 require(purrr)
-rmdfiles <- read.csv(here("rmdfiles.csv")) # make this an input (todo)
+require(DT)
+library(DataEditR)
+library(readr)
+
+
+rmdfiles <- read_csv(here("rmdfiles.csv")) # make this an input (todo)
 names(rmdfiles)[1] <- "Folder"
 
 rmdfiles_missing <- rmdfiles[!rmdfiles %>% pmap_lgl(function(Folder, Files){file.exists(here(Folder,Files))}),]
@@ -23,6 +28,9 @@ rmdfiles_list <-rmdfiles %>%
   })
 
 
+render_dt = function(data, editable = 'cell', server = TRUE, ...) {
+  renderDT(data, selection = 'none', server = server, editable = editable, ...)
+}
 
 
 folders <- unique(rmdfiles$Folder)
@@ -69,15 +77,27 @@ ui <- fluidPage(
       ),
       tabPanel("Help",
                column(5,
-                      helpText("I created this app to simplify the selection and deselection of rmd-files to be included in the '__bookdown.yml'-file. The idea is, that we add ALL the files with their respective folder names in a csv (csvfiles.csv) and then use this file to individually select / deselect files and folders to inlcude"),
-                      helpText("Once the files / folders have been selected, click on 'write to YAML' to export the resulting list into the '__bookdown.yml-file'")
+                      helpText("I created this app to simplify the selection and deselection of rmd-files to be included in the '_bookdown.yml'-file. The idea is, that we add ALL the files with their respective folder names in a csv (csvfiles.csv) and then use this file to individually select / deselect files and folders to inlcude"),
+                      helpText("Once the files / folders have been selected, click on 'write to YAML' to export the resulting list into the '_bookdown.yml'-file")
                ),
       ),
       tabPanel("Sanitize",
+               p("There are two types of Errors that can occur."),
+               p("1. Files that are listed in the csv don't exist in the folder -> 'Missing Files'"),
+               p("2. Files that are in the folder are not listed in the csv. -> 'Unlisted Files'"),
                tabsetPanel(
                  tabPanel("Missing Files",tableOutput("missingdf")),
                  tabPanel("Unlisted Files",tableOutput("unlisteddf"))
                )
+               ),
+      
+      
+      ## E#################################################
+      
+      tabPanel("Edit CSV", 
+               actionButton("updatecsv", "Update CSV"),
+               actionButton("cancelchanges", "Cancel / Reset"),
+               dataEditUI("editcsv")
                )
     )
     
@@ -89,6 +109,19 @@ ui <- fluidPage(
 
 
 server <- shinyServer(function(input, output, session) {
+  
+  
+  
+  
+  data_update <- dataEditServer("editcsv",data = rmdfiles)
+  
+  observeEvent(input$updatecsv, {
+    write_csv(data_update(),here("rmdfiles.csv"))
+  })
+  
+  observeEvent(input$cancelchanges, {
+    session$reload()
+  })
   
   bookdown_yaml <- read_yaml(here("_bookdown.yml"))
   
