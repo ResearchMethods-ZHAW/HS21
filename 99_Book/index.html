@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-12-02" />
+<meta name="date" content="2020-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,6 +59,15 @@
 <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -412,6 +421,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="19.7" data-path="19-7-uebung-c-loesung.html"><a href="19-7-uebung-c-loesung.html"><i class="fa fa-check"></i><b>19.7</b> Uebung C – Loesung</a></li>
 </ul></li>
+<li class="chapter" data-level="20" data-path="20-raumanalyse-3-07-12-2020.html"><a href="20-raumanalyse-3-07-12-2020.html"><i class="fa fa-check"></i><b>20</b> Raumanalyse 3 (07.12.2020)</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="20-1-thematische-einbettung-und-vorbereitung-2.html"><a href="20-1-thematische-einbettung-und-vorbereitung-2.html"><i class="fa fa-check"></i><b>20.1</b> Thematische Einbettung und Vorbereitung</a></li>
+<li class="chapter" data-level="20.2" data-path="20-2-uebung-a-morans-i.html"><a href="20-2-uebung-a-morans-i.html"><i class="fa fa-check"></i><b>20.2</b> Uebung A: Moran’s I</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="20-2-uebung-a-morans-i.html"><a href="20-2-uebung-a-morans-i.html#aufgabe-1-herleitung-der-formel"><i class="fa fa-check"></i><b>20.2.1</b> Aufgabe 1: Herleitung der Formel</a></li>
+<li class="chapter" data-level="20.2.2" data-path="20-2-uebung-a-morans-i.html"><a href="20-2-uebung-a-morans-i.html#aufgabe-2-morans-i-fuer-kantone-berechnen"><i class="fa fa-check"></i><b>20.2.2</b> Aufgabe 2: Morans I fuer Kantone berechnen</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="20-3-uebung-b-weitere-mapping-libraries.html"><a href="20-3-uebung-b-weitere-mapping-libraries.html"><i class="fa fa-check"></i><b>20.3</b> Uebung B: Weitere “mapping” Libraries</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="20-3-uebung-b-weitere-mapping-libraries.html"><a href="20-3-uebung-b-weitere-mapping-libraries.html#aufgabe-1-interaktive-karten-mit-plotly"><i class="fa fa-check"></i><b>20.3.1</b> Aufgabe 1: Interaktive Karten mit Plotly</a></li>
+<li class="chapter" data-level="20.3.2" data-path="20-3-uebung-b-weitere-mapping-libraries.html"><a href="20-3-uebung-b-weitere-mapping-libraries.html#aufgabe-2-hintergrundkarten-mit-tmap"><i class="fa fa-check"></i><b>20.3.2</b> Aufgabe 2: Hintergrundkarten mit <code>tmap</code></a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="20-4-uebung-c-optional-abstimmungsdaten.html"><a href="20-4-uebung-c-optional-abstimmungsdaten.html"><i class="fa fa-check"></i><b>20.4</b> Uebung C (Optional): Abstimmungsdaten</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="20-4-uebung-c-optional-abstimmungsdaten.html"><a href="20-4-uebung-c-optional-abstimmungsdaten.html#aufgabe-1-morans-i-auf-gemeindeebene"><i class="fa fa-check"></i><b>20.4.1</b> Aufgabe 1: Morans I auf Gemeindeebene</a></li>
+<li class="chapter" data-level="20.4.2" data-path="20-4-uebung-c-optional-abstimmungsdaten.html"><a href="20-4-uebung-c-optional-abstimmungsdaten.html#aufgabe-2-morans-i-auf-kantonsebene"><i class="fa fa-check"></i><b>20.4.2</b> Aufgabe 2: Morans I auf Kantonsebene</a></li>
+<li class="chapter" data-level="20.4.3" data-path="20-4-uebung-c-optional-abstimmungsdaten.html"><a href="20-4-uebung-c-optional-abstimmungsdaten.html#aufgabe-3-bivariate-plot-mit-biscale"><i class="fa fa-check"></i><b>20.4.3</b> Aufgabe 3: Bivariate Plot mit <code>biscale</code></a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -431,7 +460,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Research Methods</h1>
-<p class="date"><em>2020-12-02</em></p>
+<p class="date"><em>2020-12-04</em></p>
 </div>
 <div id="einleitung" class="section level1" number="1">
 <h1><span class="header-section-number">Kapitel 1</span> Einleitung</h1>
