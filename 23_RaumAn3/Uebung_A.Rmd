@@ -63,7 +63,7 @@ $$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j
 
 **Bruch 1**
 
-Widmen wir uns dem erste Bruch:
+Widmen wir uns dem ersten Bruch:
 
 $$\frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2}$$ 
 
