@@ -5,8 +5,8 @@ require(here)
 require(diffr)
 require(purrr)
 require(DT)
-library(DataEditR)
-library(readr)
+require(DataEditR)
+require(readr)
 
 
 rmdfiles <- read_csv(here("rmdfiles.csv")) # make this an input (todo)
