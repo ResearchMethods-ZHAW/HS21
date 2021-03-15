@@ -84,7 +84,7 @@ rmd_files:
 - 23_RaumAn3/Uebung_B.Rmd
 - 23_RaumAn3/Uebung_C.Rmd
 delete_merged_file: yes
-output_dir: 99_Book
+output_dir: docs
 after_chapter_script: 00_Admin/Clear_vars_and_pkgs.R
 language:
   ui:
