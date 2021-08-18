@@ -1,0 +1,260 @@
+---
+title: knitr
+output: distill::distill_article
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r, include=F, purl = F}
+library(knitr)
+knitr::opts_chunk$set(echo = F,include = T,message = F, warning = F, collapse=TRUE)
+# knitr::opts_knit$set(root.dir = "12_InfoVis2") 
+
+```
+
+
+
+## Uebung A
+
+```{r, message = F, echo = T}
+library(tidyverse)
+library(lubridate)
+```
+
+
+Laden den `wetter`-Datensatz, bereinige ihn wenn nötig (`NA`-Werte entfernen) und importiere auch den Datensatz `order_52252_legend.csv` und verbinde die Datensätze mit einem join via dem Stationskürzel.
+
+
+
+```{r, echo = T, message = F}
+
+wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+                     col_types = list(
+                       col_character(),    
+                       col_datetime(format = "%Y%m%d%H"),
+                       col_double()
+                       )
+                     )
+
+wetter <- wetter %>%
+  filter(!is.na(stn)) %>%
+  filter(!is.na(time))
+
+station_meta <- read_delim("09_PrePro1/data/order_52252_legend.csv",";")
+
+wetter <- left_join(wetter,station_meta,by = "stn")
+
+```
+
+
+
+
+### Aufgabe 1
+
+Erstelle zwei Hilfsspalten (convenience variables) "Jahr" und "Monat". Filtere auf ein beliebiges Jahr und zwei beliebige Monate. Speichere den gefilterten Datensatz in einer neuen Variablen ab. Verwende diesen Datensatz für alle folgenden Übungen.
+
+```{r}
+
+# Lösung Aufgabe 1
+
+wetter_fil <- wetter %>%
+  mutate(
+    year = year(time),
+    month = month(time)
+  ) %>%
+  filter(year == 2000 & month < 3)
+```
+
+
+### Aufgabe 2
+
+Erstelle ein Scatterplot (`time` vs. `tre200h0`) wobei die Punkte aufgrund ihrer Meereshöhe eingefärbt werden sollen. Tiefe Werte sollen dabei blau eingefärbt werden und hohe Werte rot. Verkleinere die Punkte um übermässiges Überplotten der Punkten zu vermeiden. Weiter sollen im Abstand von zwei Wochen die Kalenderwochen auf der Achse erscheinen. 
+
+Speichere den Plot in einer Variabel `p` ab.
+
+```{r}
+
+# Lösung Aufgabe 2
+
+p <- ggplot(wetter_fil, aes(time,tre200h0, colour = Meereshoehe)) +
+  geom_point(size = 0.5) +
+  labs(x = "Kalenderwoche", y = "Temperatur in ° Celsius") +
+  scale_color_continuous(low = "blue", high = "red") +
+  scale_x_datetime(date_breaks = "2 week", date_labels = "KW%W") 
+
+p 
+
+```
+
+
+
+### Aufgabe 3
+
+Füge am obigen Plot (gespeichert als Variabel `p`) eine schwarze, gestrichelte Trendlinie hinzu und aktualisiere `p` (`p <- p + ...`).
+
+```{r, message=F}
+
+# Lösung Aufgabe 3
+
+p <- p +
+  stat_smooth(colour = "black",lty = 2)
+
+p
+```
+
+
+### Aufgabe 4
+
+Positioniere die Legende oberhalb des Plots und lege sie quer (nutze dazu `theme()` mit `legend.direction` und `legend.position`). Speichere diese Änderungen in `p`.
+
+```{r, message=F}
+
+# Lösung Aufgabe 4
+
+
+p <- p + 
+  theme(legend.direction = "horizontal",legend.position = "top")
+
+p
+    
+```
+
+
+
+### Aufgabe 5 (optional, fortgeschritten)
+
+Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). Speichere den plot in `p2`.
+
+```{r, message=F}
+
+# Lösung Aufgabe 5
+
+p +
+  scale_y_continuous(labels = function(x)paste0(x,"°C")) +
+  labs(x = "Kalenderwoche", y = "Temperatur")
+
+
+```
+
+
+### Aufgabe 6 (optional, fortgeschritten)
+
+Füge dem Plot eine zweite, korrekt ausgerichtete Achse mit Kelvin oder Farenheit hinzu (siehe `sec_axis`). Wenn du es vorherigen Übung schon geschafft hast, setze auch hier die Einheit (`K` oder `°F`) hinter die Werte auf der Achse. 
+
+$$ K = °C + 273,15$$
+$$°F = °C × \frac{9}{5} + 32$$
+
+```{r, message=F}
+# Lösung Aufgabe 6
+
+p <- p +
+  labs(x = "Kalenderwoche", y = "Temperatur") +
+  scale_y_continuous(labels = function(x)paste0(x,"°C"),sec.axis = sec_axis(~.*(9/5)+32,name = "Temperatur",labels = function(x)paste0(x,"° F")))
+
+
+p
+```
+
+
+
+
+### Aufgabe 7
+
+Jetzt verlassen wir den scatterplot und machen einen Boxplot mit den Temperaturdaten. Färbe die Boxplots wieder in Abhängigkeit der Meereshöhe ein. 
+
+- Beachte den Unterschied zwischen `colour =` und `fill =`
+- Beachte den Unterschied zwischen `facet_wrap()` und `facet_grid()`
+- `facet_grid()` braucht übrigens noch einen Punkt (`.`) zur Tilde (`~`). 
+- Beachte den Unterschied zwischen "`.~`" und "`~.`" bei `facet_grid()`
+- verschiebe nach Bedarf die Legende
+
+```{r}
+
+# Lösung Aufgabe 7
+
+wetter_fil <- mutate(wetter_fil,monat = month(time,label = T,abbr = F))
+
+
+ggplot(wetter_fil, aes(stn,tre200h0, fill = Meereshoehe)) +
+  geom_boxplot() +
+  facet_grid(monat~.) +
+  labs(x = "Station", y = "Temperatur") +
+  theme(legend.direction = "horizontal",legend.position = "top")
+
+```
+
+
+### Aufgabe 8
+
+Teile die Stationen in verschiedene Höhenlagen ein (Tieflage [< 450 m], Mittellage [450 - 1000 m] und Hochlage [> 1'000 m]). Vergleiche die Verteilung der Temperaturwerte in den verschiedenen Lagen.  
+
+- Nutze dazu `facet_grid` um die Höhenlage dem Monat gegenüber zu stellen (`Monat~Lage`)
+- Passe `scales =` an damit keine leeren Stellen auf der x-Achse entstehen
+- Optional: Verwende den vollen Stationsnamen anstelle des Kürzels und drehe diese ab damit sie sich gegenseitig nicht überschreiben
+
+```{r, warning=F}
+
+# Lösung Aufgabe 8
+
+wetter_fil$Lage[wetter_fil$Meereshoehe < 450] <- "Tieflage" 
+wetter_fil$Lage[wetter_fil$Meereshoehe >= 450 & wetter_fil$Meereshoehe <1000] <- "Mittellage" 
+wetter_fil$Lage[wetter_fil$Meereshoehe >= 1000] <- "Hochlage" 
+
+
+ggplot(wetter_fil, aes(Name,tre200h0)) +
+  geom_boxplot() +
+  facet_grid(monat~Lage, scales = "free_x") +
+  labs(x = "Lage", y = "Temperatur") +
+  theme(axis.text.x = element_text(angle = 45,hjust = 1))
+
+```
+
+
+
+### Aufgabe 9
+
+
+Als letzter wichtiger Plottyp noch zwei Übungen zum Histogramm. Erstelle ein Histogramm `geom_histogram()` mit den Temperaturwerten. Färbe Säulen aufgrund ihrer Höhenlage ein und die Begrenzungslinie weiss. Setze die Klassenbreite auf 1 Grad.
+
+```{r}
+
+# Lösung Aufgabe 9
+
+
+h <- ggplot(wetter_fil,aes(tre200h0, fill = Lage)) +
+  geom_histogram(binwidth = 1, colour = "white") +
+  labs(x = "Temperatur in °C", y = "Anzahl")
+
+h
+```
+
+
+### Aufgabe 10
+
+Erstelle `facets` aufgrund der Höhenlage. Setze noch eine Vertikale linie beim Nullpunkt und stelle den x-Achsenabschnit symmetrisch ein (z.B -30 bis + 30°C).
+
+```{r}
+
+# Lösung Aufgabe 10
+
+
+h + 
+  geom_vline(xintercept = 0, lty = 2, alpha = 0.5) +
+  facet_wrap(~Lage) +
+  lims(x = c(-30,30)) +
+  theme(legend.position = "none")
+
+```
+
+
+
+
+

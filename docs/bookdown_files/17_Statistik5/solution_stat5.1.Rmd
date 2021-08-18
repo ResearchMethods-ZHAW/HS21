@@ -1,0 +1,128 @@
+## Musterloesung Aufgabe 5.1: Split-plot ANOVA
+
+**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+
+- Ladet den Datensatz splityield.csv. Dieser enthält Versuchsergebnisse eines
+  Experiments zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei
+  Faktoren Bewässerung (irrigated vs. control), Düngung (N, NP, P) und Aussaatdichten
+  (low, medium, high). Es gab vier ganze Felder (block), die zwei Hälften mit den beiden
+  Bewässerungstreatments (irrigation), diese wiederum drei Drittel für die drei
+  Saatdichten (density) und diese schliesslich je drei Drittel für die drei
+  Düngertreatments (fertilizer) hatten.
+- **Ermittelt das minimal adäquate statistische Modell, das den Ernteertrag in
+  Abhängigkeit von den angegebenen Faktoren beschreibt.**
+- Bitte erklärt und begründet die einzelnen Schritte, die ihr unternehmt, um zu diesem
+  Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in das ihr Schritt für
+  Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, eure
+  Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
+  Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
+      und welches die unabängige(n) Variablen
+    - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
+      Datentransformationen vorgenommen werden sollten
+    - Auswahl und Begründung eines statistischen Verfahrens
+    - Bestimmung des vollständigen/maximalen Models
+    - Selektion des/der besten Models/Modelle
+    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss
+    
+         _(Ergebnisdarstellung benötigt werden)_
+         
+    - Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten
+      Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit
+      (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100
+      Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen
+      Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
+    - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
+      (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter
+      Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+      
+      
+- [R-Skript als Download](17_Statistik5/RFiles/Loesung_5.1_v.03.R)
+- [Loesungstext](17_Statistik5/Statistik_Loesung_5.1_v.02.pdf)
+
+      
+
+**kommentierter Lösungsweg**
+```{r}
+splityield <- read.delim("17_Statistik5/data/splityield.csv", sep=",", stringsAsFactors = T)
+
+#Checken der eingelesenen Daten
+splityield
+```
+Man sieht, dass das Design vollkommen balanciert ist, d.h. jede Kombination irrigation *
+density * fertilizer kommt genau 4x vor (in jedem der vier Blöcke A-D einmal).
+
+```{r}
+str(splityield)
+summary(splityield)
+levels(splityield$density) <- c("low", "medium", "high")
+```
+Man sieht, dass die Variable yield metrisch ist, während die vier anderen Variablen schon
+korrekt als kategoriale Variablen (factors) kodiert sind
+
+```{r}
+#Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
+boxplot(splityield$yield)
+boxplot(yield~fertilizer, data = splityield)
+boxplot(yield~irrigation, data = splityield)
+boxplot(yield~density, data = splityield)
+boxplot(yield~irrigation*density*fertilizer, data = splityield)
+```
+Die Boxplots sind generell hinreichend symmetrisch, so dass man davon ausgehen kann, dass
+keine problematische Abweichung von der Normalverteilung vorliegt. Die Varianzhomogenität
+sieht für den Gesamtboxplot sowie für fertilizer und density bestens aus, für irrigation und für
+die 3-fach-Interaktion deuten sich aber gewisse Varianzheterogenitäten an, d. h. die Boxen
+(Interquartil-Spannen) sind deutlich unterschiedlich lang. Da das Design aber vollkommen
+„balanciert“ war, wie wir von oben wissen, sind selbst relativ stark divergierende Varianzen
+nicht besonders problematisch. Der Boxplot der Dreifachinteraktion zeigt zudem, dass
+grössere Varianzen (~Boxen) mal bei kleinen, mal bei grossen Mittelwerten vorkommen,
+womit wir bedenkenlos weitermachen können (Wenn die grossen Varianzen immer bei
+grossen Mittelwerten aufgetreten wären, hätten wir eine log- oder Wurzeltransformation von
+yield in Betracht ziehen müssen).
+
+```{r}
+boxplot(log10(yield)~irrigation*density*fertilizer, data = splityield) #bringt keine Verbesserung
+aov.1 <- aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density), data = splityield)
+```
+
+Das schwierigste an der Analyse ist hier die Definition des Splitt-Plot ANOVA-Modells. Hier
+machen wir es mit der einfachsten Möglichkeit, dem aov-Befehl. Um diesen richtig zu
+spezifieren, muss man verstanden haben, welches der „random“-Faktor war und wie die
+„fixed“ factors ineinander geschachtelt waren. In diesem Fall ist block der random Faktor, in
+den zunächst irrigation und dann density geschachtelt sind (die unterste Ebene fertilizer muss
+man nicht mehr angeben, da diese in der nächsthöheren nicht repliziert ist).
+
+(Übrigens: das simple 3-faktorielle ANOVA-Modell
+aov(yield~irrigation*density*fertilizer,data=splityield) würde unterstellen, dass alle 72 subplot
+unabhängig von allen anderen angeordnet sind, also nicht in Blöcken. Man kann ausprobieren,
+wie sich das Ergebnis mit dieser Einstellung unterscheidet)
+
+```{r}
+summary(aov.1)
+```
+
+Wir bekommen p-Werte für die drei Einzeltreatments, die drei 2-fach-Interaktionen und die 3-
+fach Interaktion. Keinen p-Wert gibt es dagegen für block, da dieser als „random“ Faktor
+spezifiziert wurde.
+Signifikant sind für sich genommen irrigation und fertilizer sowie die Interaktionen
+irrigation:density und irrigation:fertilizer.
+
+```{r}
+# Modelvereinfachung
+aov.2<-aov(yield~irrigation+density+fertilizer+irrigation:density+irrigation:fertilizer+
+             Error(block/irrigation/density), data = splityield)
+summary(aov.2)
+```
+
+Jetzt muss man nur noch herausfinden, wie irrigation und fertilizer wirken und wie die
+Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:
+
+```{r}
+#Visualisierung der Ergebnisse
+boxplot(yield~fertilizer, data = splityield)
+boxplot(yield~irrigation, data = splityield)
+
+interaction.plot(splityield$fertilizer, splityield$irrigation, splityield$yield)
+interaction.plot(splityield$density, splityield$irrigation, splityield$yield)
+```

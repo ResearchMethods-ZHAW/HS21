@@ -1,0 +1,84 @@
+```{r, include=F, purl = F}
+# knitr::opts_knit$set(root.dir = "/home/rata/ResearchMethods/14_Statistik2/") 
+```
+
+
+```{r, message=F, include=F}
+library(tidyverse)
+```
+
+
+#### Beispiel 2: Spearman rank correlation
+
+[Script als Download](14_Statistik2/RFiles/Demo_01_Korr_Reg_Beispiel2.R)
+
+
+Weihnachtsinsel-Krabben aus @logan2010 [S. 186] (Script an Tools/Packages des Moduls Research Methods angepasst)
+
+Green (1997) investigated the correlation between total biomass of red land crabs (*Gecarcoidea natalis*) and the density of their burrows at a number of forested sites (Lower site: LS and Drumsite: DS) on Christmas Island.
+
+##### Step 1
+
+Import the Green (1997) data set [green.csv](14_Statistik2/data/green.csv)
+
+```{r, message = F}
+
+green <- read_csv("14_Statistik2/data/green.csv")
+
+```
+
+
+##### Step 2
+
+Assess linearity and bivariate normality for the two sites separately using a scatterplots with marginal boxplots
+
+```{r, fig.cap="some evidence of non-normality (boxplots not asymmetrical)"}
+
+
+p1 <- green %>%
+  filter(SITE == "LS") %>%
+  ggplot(aes(TOTMASS,BURROWS)) +
+  geom_point() +
+  geom_smooth(se = F)
+
+p2 <- green %>%
+  filter(SITE == "DS") %>%
+  ggplot(aes(TOTMASS,BURROWS)) +
+  geom_point() +
+  geom_smooth(se = F)
+
+ggMarginal(p1, type = "boxplot",size = 15)
+```
+
+```{r}
+ggMarginal(p2, type = "boxplot",size = 15)
+
+```
+
+##### Step 3
+
+Calculate the Spearman’s rank correlation coefficient and test $H_0: \rho = 0$ (that the population correlation coefficient equals zero)
+
+```{r}
+cor.test(~BURROWS + TOTMASS, data = green, subset = SITE == "LS", method="spearman")
+```
+
+Conclusions - reject $H_0$ that population correlation coefficient equals zero, there was a strong positive correlation between crab biomass and burrow density at Low site ($\rho = 0.851$, $S_{10} = 24.57$, $P = 0.0018$).
+
+```{r}
+cor.test(~BURROWS + TOTMASS, data = green, subset = SITE == "DS",method="spearman")
+```
+
+Conclusions - do not reject $H_0$ that population correlation coefficient equals zero, there was no detectable correlation between crab weight and gill weight at Drumsite ($\rho = 0.168$, $S_{10} = 69.92$, $P = 0.692$).
+
+##### Step 4
+
+Summarize findings with scatterplots, including a 95% confidence ellipses for the population bivariate mean center.
+
+
+```{r}
+ggplot(green, aes(BURROWS, TOTMASS)) +
+  geom_point() +
+  stat_ellipse(geom = "path", level = 0.95) +
+  facet_wrap(~SITE)
+```

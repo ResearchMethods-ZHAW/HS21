@@ -1,0 +1,59 @@
+name: "Unterrichtsunterlagen_HS20"
+title: "Modul Research Methods"
+description: |
+  Modul Research Methods
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "InfoVis"
+      menu:
+      - text: "InfoVis1"
+        href: InfoVis1.html
+      - text: "InfoVis2"
+        href: InfoVis2.html
+    - text: "PrePro"
+      menu:
+      - text: "PrePro1"
+        href: PrePro1.html
+      - text: "PrePro2"
+        href: PrePro2.html
+    - text: "RaumAn"
+      menu:
+      - text: "RaumAn1"
+        href: RaumAn1.html
+      - text: "RaumAn2"
+        href: RaumAn2.html
+      - text: "RaumAn3"
+        href: RaumAn3.html
+    - text: "Statistik"
+      menu:
+      - text: "Statistik_Konsolidierung1"
+        href: Statistik_Konsolidierung1.html
+      - text: "Statistik_Konsolidierung2"
+        href: Statistik_Konsolidierung2.html
+      - text: "Statistik_Konsolidierung3"
+        href: Statistik_Konsolidierung3.html
+      - text: "Statistik_Konsolidierung4"
+        href: Statistik_Konsolidierung4.html
+      - text: "Statistik1"
+        href: Statistik1.html
+      - text: "Statistik2"
+        href: Statistik2.html
+      - text: "Statistik3"
+        href: Statistik3.html
+      - text: "Statistik4"
+        href: Statistik4.html
+      - text: "Statistik5"
+        href: Statistik5.html
+      - text: "Statistik6"
+        href: Statistik6.html
+      - text: "Statistik7"
+        href: Statistik7.html
+      - text: "Statistik8"
+        href: Statistik8.html
+output: distill::distill_article
+collections:
+  prepro1: 
+    categories: true

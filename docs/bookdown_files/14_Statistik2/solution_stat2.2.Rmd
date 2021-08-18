@@ -1,0 +1,191 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+## Musterloesung Aufgabe 2.2: einfaktorielle ANOVA
+
+*****
+
+>Download [R-Skript](14_Statistik2/RFiles/solution_stat2.2.R)
+
+>Download [PDF](14_Statistik2/RFiles/solution_stat2.2.pdf)
+
+*****
+
+
+**kommentierter Lösungsweg**
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+
+library(tidyverse)
+library(ggfortify) # zur Testung der Voraussetzungen
+library(data.table)
+library(magrittr)
+library(here)
+
+## ladet die nötigen Packete und die novanimal.csv Datei in R
+nova <- read_delim(here::here("13_Statistik1/data/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv"), delim = ";")
+
+## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 12, color = "black"), 
+    axis.title = element_text(size = 12, color = "black"), 
+    axis.ticks = element_line(size = .75, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
+
+
+```
+
+
+
+```{r, message=FALSE}
+
+df <- nova # klone den originaler Datensatz
+
+# fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen.
+df %<>%
+  # Geflügel & Fisch zu fleischgerichte zählen
+  mutate(label_content = str_replace(label_content, "Geflügel|Fisch", "Fleisch")) %>% 
+  # achtung reihenfolge spielt eine rolle, wegen des + (plus)
+  mutate(label_content = str_replace(label_content, "Pflanzlich[+]|Pflanzlich", "Vegetarisch"))
+
+# gruppiert Daten nach Menü-Inhalt und Woche
+df %<>%
+    group_by(label_content, week) %>% 
+    summarise(tot_sold = n()) %>%
+    drop_na() %>% 
+    ungroup() # lasst die unbekannten Menü-Inhalte weg
+
+# überprüft die Voraussetzungen für eine ANOVA
+# Schaut euch die Verteilungen der Mittelwerte an (plus Standardabweichungen)
+# Sind Mittelwerte nahe bei Null? 
+# Gäbe uns einen weiteren Hinweis auf eine spezielle Binomail-Verteilung 
+df %>% 
+  split(.$label_content) %>% # teilt den Datensatz in 3 verschiedene Datensätze auf
+  purrr::map(~ psych::describe(.$tot_sold)) # mit map können andere Funktionen 
+# auf den Datensatz angewendet werden (alternative Funktionen sind aggregate oder apply)
+
+
+# # Boxplot
+# ggplot(df, aes(x = log10(df$label_content), y= tot_sold)) +
+#   # Achtung: Reihenfolge spielt hier eine Rolle!
+#   stat_boxplot(geom = "errorbar", width = 0.25) +
+#   geom_boxplot(fill="white", color = "black", size = 1, width = .5) +
+#   labs(x = "\nMenü-Inhalt", y = "Anzahl verkaufte Gerichte pro Woche\n") + 
+#   # achtung erster Hinweis einer Varianzheterogenität, wegen den Hot&Cold Gerichten
+#   mytheme 
+
+
+boxplot(df$tot_sold~df$label_content)
+
+# definiert das Modell (vgl. Skript Statistik 2)
+model <- aov(tot_sold ~ label_content, data = df)
+
+summary.lm(model)
+
+# überprüft die Modelvoraussetzungen
+par(mfrow = c(2,2))
+plot(model)
+
+```
+<br>  
+<span style="background-color: #FFFF00">**Fazit**: Inspektion der Modellvoraussetzung zeigt klare Verletzungen des Residuelplots (zeigt einen "Trichter", siehe Skript Statistik 2), somit Voraussetzung der Homoskedastizität verletzt. Mögliche nächste Schritte:
+
+- Menüinhalt "Buffet" aus der Analyse ausschliessen, da sowieso kein richtiger Menüinhalt (aber Informationsverlust)
+- Datentransformation z.B. log-Transformation
+- nicht-parametrischer Test (Achtung, auch dieser setzt Voraussetzungen voraus)
+- ein glm Model (general linear model) mit einer poisson/quasipoisson link Funktion (vgl. Skript Statistik 4), weitere Infos dazu [Link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5869353/)</span>
+<br>
+```{r}
+
+# überprüft die Voraussetzungen des Welch-Tests:
+# Gibt es eine hohe Varianzheterogenität und ist die relative Verteilung der 
+# Residuen gegeben? (siehe Statistik 2)
+# Ja Varianzheterogenität ist gegeben, aber die Verteilung der Residuen folgt 
+# einem "Trichter", also keiner "normalen/symmetrischen" Verteilung um 0
+# Daher ziehe ich eine Transformation der AV einem nicht-parametrischen Test vor
+# für weitere Infos: 
+# https://data.library.virginia.edu/interpreting-log-transformations-in-a-linear-model/
+
+# achtung hier log10, bei Rücktransformation achten
+model_log <- aov(log10(tot_sold) ~ label_content, data = df) 
+par(mfrow = c(2,2))
+plot(model_log) # scheint ok zu sein
+
+summary.lm(model_log) # Referenzkategorie ist der Buffet-Inhalt
+
+TukeyHSD(model_log) # (Statistik 2)
+
+# Achtung Beta-Werte resp. Koeffinzienten sind nicht direkt interpretierbar
+# sie müssten zuerst wieder zurück transformiert werden, hier ein Beispiel dafür:
+# für Fleisch
+10^model_log$coefficients[1]
+
+# für HOt & COld, Faktor .27 resp 72%
+10^(model_log$coefficients[1] + model_log$coefficients[2])
+
+# ist equivalent zu
+10^(model_log$coefficients[1]) * 10^(model_log$coefficients[2])
+
+# für Vegi, Faktor .63 resp 36%
+10^(model_log$coefficients[1] + model_log$coefficients[3])
+```
+
+******
+
+**Methoden**
+
+Ziel war es, die Unterschiede in den wöchentlichen Verkaufszahlen pro Menüinhalt aufzuzeigen. Da die Responsevariable (Verkaufszahlen) metrisch und die Prädiktorvariable kategorial sind, wurde eine einfaktorielle ANOVA gerechnet. 
+Die visuelle Inspektion des Modells zeigte insbesondere schwere Verletzungen der Homoskedastizität. Der Boxplot bestätigt dieser Befund. 
+Weil die Voraussetzungen schwer verletzt sind, wurde eine log-Transformation der Responsevariable vorgenommen. Anschliessend wurde erneut eine ANOVA gerechnet und die Modelvoraussetzungen visuell inspiziert: Homoskedastizität und Normalverteilung der Residuen sind gegeben.
+
+******
+
+**Ergebnisse**
+
+Die Menüinhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den wöchentlichen Verkaufszahlen signifikant (F(2,15) = `r round(summary.lm(model_log)[[10]]["value"][[1]], 2)`, p < .001). Die Abbildung 1 zeigt die wöchentlichen Verkaufszahlen pro Menüinhalt.
+
+
+```{r, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menüinhalt stark. Das Modell wurde mit den log-tranformierten Daten gerechnet.", tidy=TRUE}
+
+# plottet die originalen Beobachtungen, die nicht tranformierten Daten werden 
+# hier aufgezeigt
+# Wichtig: einen Verweis auf die Log-Transformation benötigt es jedoch
+
+# aufbereitung für die Infos der Signifikanzen 
+# => Alternative Lösungen findet ihr in der Musterlösung 2.3S
+
+# Multiplikation nur aus dem Grund, weil ich vorher einen anderen Datensatz hatte
+df1 <- data.frame(a = c(1, 1:3,3), b = c(150, 151, 151, 151, 150)*15) 
+df2 <- data.frame(a = c(1, 1,2, 2), b = c(130, 131, 131, 130)*15)
+df3 <- data.frame(a = c(2, 2, 3, 3), b = c(140, 141, 141, 140)*15)
+
+
+ggplot(df, aes(x = label_content, y= tot_sold)) +
+   stat_boxplot(geom = "errorbar", width = .25) +
+   geom_boxplot(fill="white", color = "black", size = 1, width = .5) + 
+  # aus der Information aus dem Tukey Test von oben: Buffet-Vegetarisch
+   geom_line(data = df1, aes(x = a, y = b)) + annotate("text", x = 2, y = 2320, 
+                                                       label = "***", size = 8) + 
+  # Buffet - Fleisch
+   geom_line(data = df2, aes(x = a, y = b)) + annotate("text", x = 1.5, y = 2020, 
+                                                       label = "***", size = 8) +
+  # Fleisch - Vegetarisch
+   geom_line(data = df3, aes(x = a, y = b)) + annotate("text", x = 2.5, y = 2150, 
+                                                       label = "***", size = 8)+ 
+   expand_limits(y = 0) + # bezieht das 0 bei der y-Achse mit ein
+   labs(x = "\nMenüinhalt", y = "Anzahl verkaufte Gerichte\n pro Woche\n") +
+   mytheme 
+
+# hier ein paar interessante Links zu anderen R-Packages, die es 
+# ermöglichen signifikante Ergebniss in den Plot zu integrieren
+# https://www.r-bloggers.com/add-p-values-and-significance-levels-to-ggplots/
+# https://cran.r-project.org/web/packages/ggsignif/vignettes/intro.html
+  
+   
+```
+

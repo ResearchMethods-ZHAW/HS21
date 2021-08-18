@@ -1,0 +1,16 @@
+---
+title: Loesung
+output: distill::distill_article
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+## Loesung
+
+[RCode als Download](11_InfoVis1/RFiles/Uebung.R)
+
+
+```
+```

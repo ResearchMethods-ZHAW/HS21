@@ -1,0 +1,3 @@
+# Raumanalyse 1 (23.11.2020)
+
+Die erste Übung zur Raumanalyse illustriert das einfache Laden und Anzeigen von Geodaten im Vektor- und Raster-Datenformat. Zusätzlich veranschaulicht die Übung den Umgang mit Koordinatensystemen sowie die Vektor-Raster-Konvertierung. Einfach erste Analysen umfassen den Spatial Join (Annotieren von Punkten mit Attributen von die Punkte einbettenden Vektordaten) sowie Puffer-Operationen. Zum Abschluss thematisiert die Übung die Aggregationsabhängigkeit räumlicher Daten durch die Illustration des Modifiable Areal Unit Problem (MAUP). Inhaltlich orientiert sich die Übung an Bodeneigenschaften für den Untersuchungsraum Schweiz.

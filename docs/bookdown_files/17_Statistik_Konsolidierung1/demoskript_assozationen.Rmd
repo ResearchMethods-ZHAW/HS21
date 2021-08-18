@@ -1,0 +1,141 @@
+```{r, include=FALSE, purl=F}
+
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+```
+
+## Demo: Statistik Konsolidierung 1
+
+*****
+
+>Download [R-Skript](17_Statistik_Konsolidierung1/demoskript_assozationen.R)
+
+*****
+
+**Demo für Assoziationen**
+
+```{r}
+
+# state: november 2020
+# author: gian-andrea egeler
+
+#lade Packages
+library(tidyverse)
+library(magrittr)
+library(here)
+library(lubridate)
+
+#mytheme
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 20, color = "black"), 
+    axis.title = element_text(size = 20, color = "black"), 
+    axis.ticks = element_line(size = 1, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+  )
+
+
+```
+
+
+```{r, message=FALSE}
+#lade dateien
+# mehr info darüber hier: https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html
+mtcars %<>% 
+  as_tibble() %>% # da "nur" data frame kann glimplse nichts damit anfangen 
+  # summary() %>% 
+  mutate(test_test = if_else(.$vs == 0, "normal", "v-type"))
+
+summary(as_tibble(mtcars))
+
+# kline daten
+mtcars %>% 
+  as_tibble() %>% 
+  mutate(vs = if_else(.$vs == 0, "normal", "v-type")) -> df
+
+#assoziation zwischen anzahl zylinder und motorentyp ()
+table(df$vs, df$am) # zur visualisierung: sieht aus, als gäbe es weniger v motoren bei den handgeschalteten
+
+#lass und das überprüfen
+#im wide format
+chi_sq <- chisq.test(df$am, df$vs)
+
+#fisher exakter test
+fisher.test(df$am, df$vs)
+
+```
+
+**titlke**
+
+jsldkfjsldkfj sdjfsldkfj `r chi_sq$p.value`. 
+
+
+```{r}
+
+# t-test zwischen getriebe (v- vs. s-motor) und ps (pferdestärke)
+# visualisierung
+ggplot(df, aes(y = hp, x = vs)) +
+  # stat_boxplot(geom ='errorbar', width = .25) +
+  # geom_boxplot() +
+  geom_violin()
+  labs(x = "\nBauform Motor", y = "Pferdestärke (PS)\n") +
+  mytheme
+       
+boxplot(df$hp~df$vs) # sieht ganz ok aus
+
+# t-test oder auch anova möglich
+ttest <- t.test(df$hp ~ df$vs)
+aov.1 <- aov(df$hp ~ df$vs)
+
+#zeige resultate
+ttest
+summary.lm(aov.1)
+
+```
+
+ 
+```{r dino example, eval=FALSE}
+# für mehr infos here: https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html
+
+
+library(datasauRus)
+if(requireNamespace("dplyr")){
+  suppressPackageStartupMessages(library(dplyr))
+  dt <- datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      mean_x    = mean(x),
+      mean_y    = mean(y),
+      std_dev_x = sd(x),
+      std_dev_y = sd(y),
+      corr_x_y  = cor(x, y)
+    )
+}
+
+# check data structure
+glimpse(dt)
+
+
+# plot two examples  
+if(requireNamespace("ggplot2")){
+  library(ggplot2)
+  
+  dt = filter(datasaurus_dozen, dataset == "dino" | dataset == "slant_up")
+  
+  ggplot(dt, aes(x=x, y=y, colour=dataset))+
+    geom_point()+
+    theme_bw() +
+    theme(legend.position = "none") +
+    facet_wrap(~dataset) +
+    geom_smooth(method = "lm", se = FALSE)
+  
+}
+
+
+
+```
+
+
+
+

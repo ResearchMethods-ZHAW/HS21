@@ -1,0 +1,17 @@
+---
+title: Uebung
+output: distill::distill_article
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+## Uebung A Loesung
+
+[R-Script als Download](09_PrePro1/RFiles/Uebung_A.R)
+
+```
+```
+
+

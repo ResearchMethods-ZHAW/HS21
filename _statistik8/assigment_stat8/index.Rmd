@@ -1,0 +1,30 @@
+---
+title: Uebungen
+output: distill::distill_article
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+## Uebungen 8
+
+### Uebung 8.1: Clusteranalyse (sozioökonomisch)
+
+- Datensatz [crime2.csv](20_Statistik8/crime2.csv)
+
+Raten von 7 Kriminalitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA
+
+**(a)  Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch.**
+
+**(b) Überlegt in beiden Fällen, wie viele Cluster sinnvoll sind** (k-means z. B.visuelle Betrachtung einer PCA, agglomerative Clusteranalyse z. B. SilhouettePlot).
+
+**(c)** Abschliessend entscheidet euch für eine Clusterung und **vergleicht die erhaltenen Cluster bezüglich der Kriminalitätsformen mittels ANOVA und interpretiert die Cluster entsprechend.**
+
+
+**Hinweis:**
+
+Wegen der sehr ungleichen Varianzen muss auf jeden Fall eine Standardisierung stattfinden, damit Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können
+
+
+

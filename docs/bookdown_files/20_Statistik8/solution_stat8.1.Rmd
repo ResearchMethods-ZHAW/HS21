@@ -1,0 +1,165 @@
+
+## Musterloesung Aufgabe 8.1: Clusteranalysen
+
+- [R-Skript als Download](20_Statistik8/Loesung_8.1_v.03.R)
+- [Loesungstext](20_Statistik8/Statistik_Loesungstext_8.1.pdf)
+
+
+- **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+
+- Ladet den Datensatz crime2.csv. Dieser enthält Raten von 7   Kriminatlitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA.
+- Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch. Bitte beachet, dass wegen der sehr ungleichen Varianzen in jedem Fall eine Standardisierung stattfinden muss, damit die Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können.
+- **Überlegt in beiden Fällen, wie viele Cluster sinnvoll sind** (k-means: z. B. visuelle Betrachtung einer PCA, agglomertive Clusteranalyse: z. B. Silhoutte-Plot).
+- Entscheidet euch dann für eine der beiden Clusterungen und vergleicht dann die
+erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Cluster entsprechend.
+- Bitte erklärt und begründet die einzelnen Schritte, die ihr unternehmt, um zu diesem Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in das ihr Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, eure Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere Vorgehen dokumentieren.
+- Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
+- **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+
+
+### Uebung 8.1 - Clusteranalysen -- Loesung
+
+```{r eval=FALSE}
+crime <- read.csv("20_Statistik8/crime2.csv",sep=";")
+crime
+```
+
+Im mitgelieferten R-Skript habe ich die folgenden Analysen zunächst mit untransformierten, dann mit standardisierten Kriminalitätsraten berechnet. Ihr könnt die Ergebnisse vergleichen und seht, dass sie sehr unterschiedlich ausfallen.
+
+```{r eval=FALSE}
+crimez <- crime
+crimez[,c(2:8)] <- lapply(crime[, c(2:8)], scale)
+crimez
+```
+
+„scale“ führt eine Standardisierung (z-Transformation) durch, so dass alle Variablen anschiessen einen Mittelwert von 0 und eine SD von 1 haben, ausgenommen natürlich die 1. Spalte mit den Kürzeln der Bundesstaaten.
+Anschliessend wird das SSI-Kriterium getestet und zwar für Partitionierungen von 2 bis 6 Gruppen (wie viele Gruppen man maximal haben will, muss man pragmatisch nach der jeweiligen Fragestelltung entscheiden).
+
+```{r eval=FALSE}
+library(vegan)
+crimez.KM.cascade <-
+ cascadeKM(
+ crimez[,c(2:8)],
+ inf.gr = 2,
+ sup.gr = 6,
+ iter = 100,
+ criterion = "ssi"
+ )
+summary(crimez.KM.cascade)
+crimez.KM.cascade$results
+crimez.KM.cascade$partition
+
+# k-means visualisation
+library(cclust)
+plot(crimez.KM.cascade, sortg = TRUE)
+```
+
+Nach SSI ist die 4-Gruppenlösung die beste, mit dieser wird also weitergerechnet.
+
+```{r eval=FALSE}
+# 4 Kategorien sind nach SSI offensichtlich besonders gut
+modelz <- kmeans(crimez[,c(2:8)],4)
+modelz
+
+#File für ANOVA (Originaldaten der Vorfälle, nicht die ztransformierten)
+crime.KM4 <- data.frame(crime,modelz[1])
+crime.KM4$cluster <- as.factor(crime.KM4$cluster)
+crime.KM4
+str(crime.KM4)
+```
+
+**Von den agglomerativen Clusterverfahren habe ich mich für Ward’s minimum variance clustering entschieden, da dieses allgemein als besonders geeignet gilt.**
+
+Vor der Berechnung von crime.norm und crime.ch muss man die Spalte mit den
+Bundesstaatenkürzeln entfern.
+
+```{r eval=FALSE}
+#Agglomerative Clusteranalyse
+crime2 <- crime[,-1]
+crime.norm <- decostand(crime2, "normalize")
+crime.ch <- vegdist(crime.norm, "euc")
+# Attach site names to object of class 'dist'
+attr(crime.ch, "Labels") <- crime[,1]
+
+#Ward's minimum variance clustering
+crime.ch.ward <- hclust(crime.ch, method = "ward.D2")
+par(mfrow = c(1, 1))
+plot(crime.ch.ward,
+ labels = crime[,1],
+ main = "Chord - Ward")
+
+# Choose and rename the dendrogram ("hclust" object)
+hc <- crime.ch.ward
+# hc <- spe.ch.beta2
+# hc <- spe.ch.complete
+dev.new(
+ title = "Optimal number of clusters",
+ width = 12,
+ height = 8,
+ noRStudioGD = TRUE
+)
+dev.off()
+par(mfrow = c(1, 2))
+
+
+# Average silhouette widths (Rousseeuw quality index)
+library(cluster)
+Si <- numeric(nrow(crime))
+for (k in 2:(nrow(crime) - 1))
+{
+ sil <- silhouette(cutree(hc, k = k), crime.ch)
+ Si[k] <- summary(sil)$avg.width
+}
+k.best <- which.max(Si)
+plot(
+ 1:nrow(crime),
+ Si,
+ type = "h",
+ main = "Silhouette-optimal number of clusters",
+ xlab = "k (number of clusters)",
+ ylab = "Average silhouette width"
+)
+axis(
+ 1,
+ k.best,
+ paste("optimum", k.best, sep = "\n"),
+ col = "red",
+ font = 2,
+ col.axis = "red"
+)
+points(k.best,
+ max(Si),
+ pch = 16,
+ col = "red",
+ cex = 1.5
+)
+```
+
+Demnach wären beim Ward’s-Clustering nur zwei Gruppen die optimale Lösung.
+
+**Für die Vergleiche der Bundesstaatengruppen habe ich mich im Folgenden für die k-meansClusterung mit 4 Gruppen entschieden.**
+
+Damit die Boxplots und die ANOVA direkt interpretierbar sind, werden für diese, anders als für die Clusterung, die untransformierten Incidenz-Werte verwendet (also crime statt crimez). Die Spalte mit der Clusterzugehörigkeit im Fall von k-means mit 4 Clustern hängt man als Spalte an (Achtung: muss als Faktor definiert werden!).
+
+Anschliessend kann man die 7 ANOVAs rechnen, die Posthoc-Vergleiche durchführen und die zugehörigen Boxplots mit Buchstaben für die homogenen Gruppen erzeugen. Sinnvollerweise gruppiert man die Abbildungen gleich, z. B. je 2 x 2. Das Skript ist hier simple für jede Verbrechensart wiederholt (nur die erste und letzte gezeigt). Erfahrenere R-Nutzer können das Ganze hier natürlich durch eine Schleife abkürzen.
+
+```{r eval=FALSE}
+library(multcomp)
+par(mfrow=c(2,2))
+ANOVA.Murder <- aov(Murder~cluster, data=crime.KM4)
+summary (ANOVA.Murder)
+letters <- cld(glht(ANOVA.Murder, linfct=mcp(cluster="Tukey")))
+boxplot(Murder~cluster, data=crime.KM4, xlab="Cluster",
+ylab="Murder")
+mtext(letters$mcletters$Letters, at=1:4)
+
+ANOVA.Vehicle <- aov(Vehicle~cluster, data=crime.KM4)
+summary (ANOVA.Vehicle)
+letters <- cld(glht(ANOVA.Vehicle, linfct=mcp(cluster="Tukey")))
+boxplot(Vehicle~cluster, data=crime.KM4, xlab="Cluster",
+ylab="Vehicle")
+mtext(letters$mcletters$Letters, at=1:4)
+```
+
+Die Boxplots erlauben jetzt auch eine Beurteilung der Modelldiagnostik: sind die Residuen hinreichen normalverteilt (symmetrisch) und sind die Varianzen zwischen den Kategorien einigermassen ähnlich. Mit der Symmetrie/Normalverteilung sieht es OK aus. Die Varianzhomogenität ist nicht optimal – meist deutlich grössere Varianz bei höheren Mittelwerten. Eine log-Transformation hätte das verbessert und könnte hier gut begründet werden. Da die p-Werte sehr niedrig waren und die Varianzheterogenität noch nicht extrem war, habe ich aber von einer Transformation abgesehen, da jede Transformation die Interpretation der Ergebnisse erschwert. Jetzt muss man nur noch herausfinden, welche Bundesstaaten überhaupt zu welchem der vier
+Cluster gehören, sonst ist das ganze schöne Ergebnis nutzlos. Z. B. kann man in R auf den Dataframe clicken und ihn nach cluster sortieren.
