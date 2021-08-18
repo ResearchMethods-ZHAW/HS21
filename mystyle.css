@@ -1,3 +1,6 @@
+
+/* without this padding, the text added to a listings page is to high */
+
 body.layout-listing p {
   padding-top: 50px
 }
@@ -7,7 +10,7 @@ pre, .sourceCode{
     background-color: aliceblue;
 }
 
-
+/* stylign the footer (_footer.html) */
 .footer div{
   text-align: justify;
 }
@@ -15,4 +18,9 @@ pre, .sourceCode{
 .footer img{
   max-height: 200px; 
   float: right;
+}
+
+/* hides the publish date from the listing, so we can specify the order via that date */
+.publishedDate {
+    visibility: hidden;
 }

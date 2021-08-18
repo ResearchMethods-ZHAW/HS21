@@ -2041,6 +2041,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <style type="text/css">
+
+  /* without this padding, the text added to a listings page is to high */
+
   body.layout-listing p {
     padding-top: 50px
   }
@@ -2050,7 +2053,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       background-color: aliceblue;
   }
 
-
+  /* stylign the footer (_footer.html) */
   .footer div{
     text-align: justify;
   }
@@ -2058,6 +2061,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   .footer img{
     max-height: 200px; 
     float: right;
+  }
+
+  /* hides the publish date from the listing, so we can specify the order via that date */
+  .publishedDate {
+      visibility: hidden;
   }
   </style>
   <!--/radix_placeholder_site_in_header-->
@@ -2080,7 +2088,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
 <span class="logo">
-<img src="zhaw_rgb.png"/>
+<img src="zhaw_sw_neg.png"/>
 </span>
 <a href="index.html" class="title">Modul Research Methods</a>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
@@ -2095,6 +2103,7 @@ Preprocessing
 </button>
 <div class="nav-dropdown-content">
 <a href="PrePro.html">Alles zu Preprocessing</a>
+<hr/>
 <a href="PrePro.html#category:PrePro1">PrePro1</a>
 <a href="PrePro.html#category:PrePro2">PrePro2</a>
 </div>
@@ -2107,6 +2116,7 @@ InforVis
 </button>
 <div class="nav-dropdown-content">
 <a href="InfoVis.html">Alles zu InfoVis</a>
+<hr/>
 <a href="InfoVis.html#category:InfoVis1">InfoVis1</a>
 <a href="InfoVis.html#category:InfoVis2">InfoVis2</a>
 </div>
@@ -2118,19 +2128,25 @@ Statistik
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="Statistik.html">Alles zu Räumliche Statistik</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung1">Statistik_Konsolidierung1</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung2">Statistik_Konsolidierung2</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung3">Statistik_Konsolidierung3</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung4">Statistik_Konsolidierung4</a>
+<a href="Statistik.html">Alles zu Statistik</a>
+<hr/>
+<span class="nav-dropdown-header">Statistik 1 - 4</span>
 <a href="Statistik.html#category:Statistik1">Statistik1</a>
 <a href="Statistik.html#category:Statistik2">Statistik2</a>
 <a href="Statistik.html#category:Statistik3">Statistik3</a>
 <a href="Statistik.html#category:Statistik4">Statistik4</a>
+<hr/>
+<span class="nav-dropdown-header">Statistik 5 - 8</span>
 <a href="Statistik.html#category:Statistik5">Statistik5</a>
 <a href="Statistik.html#category:Statistik6">Statistik6</a>
 <a href="Statistik.html#category:Statistik7">Statistik7</a>
 <a href="Statistik.html#category:Statistik8">Statistik8</a>
+<hr/>
+<span class="nav-dropdown-header">Statistik Konsolidierung 1 - 4</span>
+<a href="Statistik.html#category:Statistik_Konsolidierung1">Statistik_Konsolidierung1</a>
+<a href="Statistik.html#category:Statistik_Konsolidierung2">Statistik_Konsolidierung2</a>
+<a href="Statistik.html#category:Statistik_Konsolidierung3">Statistik_Konsolidierung3</a>
+<a href="Statistik.html#category:Statistik_Konsolidierung4">Statistik_Konsolidierung4</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2141,6 +2157,7 @@ Räumliche Analyse
 </button>
 <div class="nav-dropdown-content">
 <a href="RaumAn.html">Alles zu Räumliche Analyse</a>
+<hr/>
 <a href="RaumAn.html#category:RaumAn1">RaumAn1</a>
 <a href="RaumAn.html#category:RaumAn2">RaumAn2</a>
 <a href="RaumAn.html#category:RaumAn3">RaumAn3</a>
@@ -3019,16 +3036,20 @@ function init_posts_list() {
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="updates-and-corrections">Corrections</h3>
+<p>If you see mistakes or want to suggest changes, please <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21">create an issue</a> on the source repository.</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <div class="distill-site-nav distill-site-footer">
 <div class = "footer">
   <img src="zhaw_lsfm_iunr_weiss.png" alt="ZHAW LSFM Logo"></img>
   
-  <p>These Materials are created by variouse authors for the Course *Research Methods and are licensed under Creative Commons Attribution 4.0 International License.</p> 
+  <p>These Materials are created by variouse authors for the Course Research Methods and are licensed under Creative Commons Attribution 4.0 International License.</p> 
   
-  
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></img></a>
+
 </div>
 </div>
 <!--/radix_placeholder_navigation_after_body-->

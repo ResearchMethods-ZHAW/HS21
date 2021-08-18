@@ -1,5 +1,3 @@
-knitr::purl("index.Rmd", "Demo_Tidyverse.R", documentation = 0)
-
 library(tidyverse)
 
 library(lubridate) 

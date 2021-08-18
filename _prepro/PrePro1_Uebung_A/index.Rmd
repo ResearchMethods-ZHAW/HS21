@@ -6,7 +6,10 @@ output:
 categories:
 - PrePro1
 - PrePro
-
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
 ---
 
 

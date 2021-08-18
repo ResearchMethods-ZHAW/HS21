@@ -1,16 +1,18 @@
 ---
-title: Uebung
+title: Übung B: Räumliche Interpolationen
 output: distill::distill_article
 categories:
-- RaumAn2
+- RaumAn1
 - RaumAn
-
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
 ---
 
 ```{r echo = FALSE}
 knitr::opts_chunk$set(error = TRUE)
 ```
-## Uebung B: Raeumlicheumliche Interpolation
 
 ```{r, echo = TRUE}
 library(gstat)

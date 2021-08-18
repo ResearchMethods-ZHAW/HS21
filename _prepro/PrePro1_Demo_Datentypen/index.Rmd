@@ -3,10 +3,14 @@ title: Demo Datentypen
 output: 
   distill::distill_article:
     toc: true
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
 categories:
 - PrePro1
 - PrePro
-
+creative_commons: CC BY
 ---
 
 

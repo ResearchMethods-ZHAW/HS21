@@ -2041,6 +2041,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <style type="text/css">
+
+  /* without this padding, the text added to a listings page is to high */
+
   body.layout-listing p {
     padding-top: 50px
   }
@@ -2050,7 +2053,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       background-color: aliceblue;
   }
 
-
+  /* stylign the footer (_footer.html) */
   .footer div{
     text-align: justify;
   }
@@ -2058,6 +2061,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   .footer img{
     max-height: 200px; 
     float: right;
+  }
+
+  /* hides the publish date from the listing, so we can specify the order via that date */
+  .publishedDate {
+      visibility: hidden;
   }
   </style>
   <!--/radix_placeholder_site_in_header-->
@@ -2080,7 +2088,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
 <span class="logo">
-<img src="zhaw_rgb.png"/>
+<img src="zhaw_sw_neg.png"/>
 </span>
 <a href="index.html" class="title">Modul Research Methods</a>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
@@ -2095,6 +2103,7 @@ Preprocessing
 </button>
 <div class="nav-dropdown-content">
 <a href="PrePro.html">Alles zu Preprocessing</a>
+<hr/>
 <a href="PrePro.html#category:PrePro1">PrePro1</a>
 <a href="PrePro.html#category:PrePro2">PrePro2</a>
 </div>
@@ -2107,6 +2116,7 @@ InforVis
 </button>
 <div class="nav-dropdown-content">
 <a href="InfoVis.html">Alles zu InfoVis</a>
+<hr/>
 <a href="InfoVis.html#category:InfoVis1">InfoVis1</a>
 <a href="InfoVis.html#category:InfoVis2">InfoVis2</a>
 </div>
@@ -2118,19 +2128,25 @@ Statistik
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="Statistik.html">Alles zu Räumliche Statistik</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung1">Statistik_Konsolidierung1</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung2">Statistik_Konsolidierung2</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung3">Statistik_Konsolidierung3</a>
-<a href="Statistik_Konsolidierung.html#category:Statistik_Konsolidierung4">Statistik_Konsolidierung4</a>
+<a href="Statistik.html">Alles zu Statistik</a>
+<hr/>
+<span class="nav-dropdown-header">Statistik 1 - 4</span>
 <a href="Statistik.html#category:Statistik1">Statistik1</a>
 <a href="Statistik.html#category:Statistik2">Statistik2</a>
 <a href="Statistik.html#category:Statistik3">Statistik3</a>
 <a href="Statistik.html#category:Statistik4">Statistik4</a>
+<hr/>
+<span class="nav-dropdown-header">Statistik 5 - 8</span>
 <a href="Statistik.html#category:Statistik5">Statistik5</a>
 <a href="Statistik.html#category:Statistik6">Statistik6</a>
 <a href="Statistik.html#category:Statistik7">Statistik7</a>
 <a href="Statistik.html#category:Statistik8">Statistik8</a>
+<hr/>
+<span class="nav-dropdown-header">Statistik Konsolidierung 1 - 4</span>
+<a href="Statistik.html#category:Statistik_Konsolidierung1">Statistik_Konsolidierung1</a>
+<a href="Statistik.html#category:Statistik_Konsolidierung2">Statistik_Konsolidierung2</a>
+<a href="Statistik.html#category:Statistik_Konsolidierung3">Statistik_Konsolidierung3</a>
+<a href="Statistik.html#category:Statistik_Konsolidierung4">Statistik_Konsolidierung4</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2141,6 +2157,7 @@ Räumliche Analyse
 </button>
 <div class="nav-dropdown-content">
 <a href="RaumAn.html">Alles zu Räumliche Analyse</a>
+<hr/>
 <a href="RaumAn.html#category:RaumAn1">RaumAn1</a>
 <a href="RaumAn.html#category:RaumAn2">RaumAn2</a>
 <a href="RaumAn.html#category:RaumAn3">RaumAn3</a>
@@ -2288,91 +2305,23 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="RaumAn">RaumAn</h1>
-<a href="rauman/RaumAn1_Abstract/" class="post-preview">
+<a href="rauman/RaumAn1_Einfuehrung/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["RaumAn1","RaumAn"]}</script>
 <div class="metadata">
 <div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
+<div class="dt-authors">
+<div class="dt-author">Patrick Laube</div>
+<div class="dt-author">Nils Ratnaweera</div>
+<div class="dt-author">Nikolaos Bakogiannis</div>
+</div>
 </div>
 <div class="thumbnail">
-<img/>
+<img src="rauman/RaumAn1_Einfuehrung/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>Raumanalyse</h2>
+<h2>Einführung und Übungen A bis C</h2>
 <div class="dt-tags">
 <div class="dt-tag">RaumAn1</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn1_Data_Preperation/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn1","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Generate</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn1</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn1_Loesung/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn1","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn1</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn1_SpatialJoins_unused/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn1","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Rauswerfen</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn1</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn2_Abstract/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn2","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Raumanalyse</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn2</div>
 <div class="dt-tag">RaumAn</div>
 </div>
 <p></p>
@@ -2396,60 +2345,6 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
-<a href="rauman/RaumAn2_Loesung_A/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn2","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn2</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn2_Loesung_B/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn2","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn2</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn2_Loesung_C/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn2","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn2</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
 <a href="rauman/RaumAn2_Uebung_A/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["RaumAn2","RaumAn"]}</script>
 <div class="metadata">
@@ -2457,7 +2352,7 @@ function init_posts_list() {
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img data-src="rauman/RaumAn2_Uebung_A/distill-preview.png"/>
+<img src="rauman/RaumAn2_Uebung_A/distill-preview.png"/>
 </div>
 <div class="description">
 <h2>Thematische</h2>
@@ -2475,7 +2370,7 @@ function init_posts_list() {
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img data-src="rauman/RaumAn2_Uebung_B/distill-preview.png"/>
+<img src="rauman/RaumAn2_Uebung_B/distill-preview.png"/>
 </div>
 <div class="description">
 <h2>Uebung</h2>
@@ -2493,30 +2388,12 @@ function init_posts_list() {
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img data-src="rauman/RaumAn2_Uebung_C/distill-preview.png"/>
+<img src="rauman/RaumAn2_Uebung_C/distill-preview.png"/>
 </div>
 <div class="description">
 <h2>Uebung</h2>
 <div class="dt-tags">
 <div class="dt-tag">RaumAn2</div>
-<div class="dt-tag">RaumAn</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="rauman/RaumAn3_Abstract/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["RaumAn3","RaumAn"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Raumanalyse</h2>
-<div class="dt-tags">
-<div class="dt-tag">RaumAn3</div>
 <div class="dt-tag">RaumAn</div>
 </div>
 <p></p>
@@ -2601,23 +2478,23 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(17)</span>
+<span class="category-count">(9)</span>
 </li>
 <li>
 <a href="#category:RaumAn">RaumAn</a>
-<span class="category-count">(17)</span>
+<span class="category-count">(9)</span>
 </li>
 <li>
 <a href="#category:RaumAn1">RaumAn1</a>
-<span class="category-count">(4)</span>
+<span class="category-count">(1)</span>
 </li>
 <li>
 <a href="#category:RaumAn2">RaumAn2</a>
-<span class="category-count">(8)</span>
+<span class="category-count">(4)</span>
 </li>
 <li>
 <a href="#category:RaumAn3">RaumAn3</a>
-<span class="category-count">(5)</span>
+<span class="category-count">(4)</span>
 </li>
 </ul>
 </div>
@@ -2637,6 +2514,9 @@ function init_posts_list() {
 
 
 <div class="d-article">
+<p>Die erste Übung zur Raumanalyse illustriert das einfache Laden und Anzeigen von Geodaten im Vektor- und Raster-Datenformat. Zusätzlich veranschaulicht die Übung den Umgang mit Koordinatensystemen sowie die Vektor-Raster-Konvertierung. Einfach erste Analysen umfassen den Spatial Join (Annotieren von Punkten mit Attributen von die Punkte einbettenden Vektordaten) sowie Puffer-Operationen. Zum Abschluss thematisiert die Übung die Aggregationsabhängigkeit räumlicher Daten durch die Illustration des Modifiable Areal Unit Problem (MAUP). Inhaltlich orientiert sich die Übung an Bodeneigenschaften für den Untersuchungsraum Schweiz.</p>
+<p>In dieser zweiten Übung wirst Du wiederum Geodatensätze verarbeiten und darstellen. Wir starten mit einem Punktdatensatz zu einem Messnetz zur Erhebung der Luftqualität in der Schweiz (Stickstoffdioxid NO2 um genau zu sein). Im Gegensatz zum Punktdatensatz zur Wasserverfügbarkeit aus der vorherigen Übung, sind die Messstellen des Messnetzes zur Luftqualität sehr unregelmässig im Raum verteilt. Trotzdem möchten wir versuchen ein kontinuierliches Raster von Luftqualitätswerten für die ganze Schweiz zu interpolieren. Wir starten mit der einfachen Interpolations-Methode Inverse Distance Weighting IDW. Danach wollen wir für den gleichen Datensatz nach dem Ansatz der nächsten Nachbarn die Thiessen Polygone konstruieren. Im zweiten Teil der Übung wollen wir Dichteverteilung untersuchen. Dabei untersuchen wir einen Datensatz mit Bewegungsdaten eines Rotmilans in der Schweiz. Mittels einer Kernel Density Estimation (KDE) berechnen wir eine kontinuierliche Dichteverteilung, über die wir eine Annäherung an das Habitat des untersuchten Greifvogels berechnen können. Bevor wir aber starten, schauen wir uns die Punktdatensätze genauer an indem wir die G-Function berechnen und plotten.</p>
+<p>Zum Abschluss des Themenblockes Spatial Data Science berechnen wir mit dem Moran’s I einen Index zur Berechnung der räumlichen Autokorrelation einer Choroplethenkarte. Wir verwenden nochmals die aggregierten Choroplethenkarten zur Wasserverfügbarkeit aus der ersten Übung und schauen uns an, wie stark die Werte für die Kantone und die Bezirke autokorreliert sind. Anstatt einfach eine Funktion zur Berechnung von Moran’s I aufzurufen und diese dann wie eine Black Box anzuwenden, wollen wir Formel für die Berechnung des Index in Ihre Bausteine zerlegen und diese Schritt für Schritt selber nachrechnen. So seht Ihr, wie Moran’s I wirklich funktioniert und könnte dabei erst noch die zuvor gelernten Data Science Techniken repetieren.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2649,16 +2529,20 @@ function init_posts_list() {
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="updates-and-corrections">Corrections</h3>
+<p>If you see mistakes or want to suggest changes, please <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21">create an issue</a> on the source repository.</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <div class="distill-site-nav distill-site-footer">
 <div class = "footer">
   <img src="zhaw_lsfm_iunr_weiss.png" alt="ZHAW LSFM Logo"></img>
   
-  <p>These Materials are created by variouse authors for the Course *Research Methods and are licensed under Creative Commons Attribution 4.0 International License.</p> 
+  <p>These Materials are created by variouse authors for the Course Research Methods and are licensed under Creative Commons Attribution 4.0 International License.</p> 
   
-  
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></img></a>
+
 </div>
 </div>
 <!--/radix_placeholder_navigation_after_body-->

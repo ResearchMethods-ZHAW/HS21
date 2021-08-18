@@ -1,5 +1,3 @@
-knitr::purl("index.Rmd", "Demo_Datentypen.R", documentation = 0)
-
 x <- 10.3
 
 x

@@ -3,9 +3,11 @@ title: "Modul Research Methods"
 description: |
   Modul Research Methods
 output_dir: "docs"
+repository_url: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21
+source_url: true
 style: mystyle.css
 navbar:
-  logo: zhaw_rgb.png
+  logo: zhaw_sw_neg.png
   right:
     - text: "Home"
       href: index.html
@@ -13,6 +15,7 @@ navbar:
       menu:
       - text: "Alles zu Preprocessing"
         href: PrePro.html
+      - text: "---"
       - text: "PrePro1"
         href: PrePro.html#category:PrePro1
       - text: "PrePro2"
@@ -21,22 +24,17 @@ navbar:
       menu:
       - text: "Alles zu InfoVis"
         href: InfoVis.html
+      - text: "---"
       - text: "InfoVis1"
         href: InfoVis.html#category:InfoVis1
       - text: "InfoVis2"
         href: InfoVis.html#category:InfoVis2
     - text: "Statistik"
       menu:
-      - text: "Alles zu Räumliche Statistik"
+      - text: "Alles zu Statistik"
         href: Statistik.html
-      - text: "Statistik_Konsolidierung1"
-        href: Statistik_Konsolidierung.html#category:Statistik_Konsolidierung1
-      - text: "Statistik_Konsolidierung2"
-        href: Statistik_Konsolidierung.html#category:Statistik_Konsolidierung2
-      - text: "Statistik_Konsolidierung3"
-        href: Statistik_Konsolidierung.html#category:Statistik_Konsolidierung3
-      - text: "Statistik_Konsolidierung4"
-        href: Statistik_Konsolidierung.html#category:Statistik_Konsolidierung4
+      - text: "---"
+      - text: "Statistik 1 - 4"
       - text: "Statistik1"
         href: Statistik.html#category:Statistik1
       - text: "Statistik2"
@@ -45,6 +43,8 @@ navbar:
         href: Statistik.html#category:Statistik3
       - text: "Statistik4"
         href: Statistik.html#category:Statistik4
+      - text: "---"
+      - text: "Statistik 5 - 8"
       - text: "Statistik5"
         href: Statistik.html#category:Statistik5
       - text: "Statistik6"
@@ -53,10 +53,21 @@ navbar:
         href: Statistik.html#category:Statistik7
       - text: "Statistik8"
         href: Statistik.html#category:Statistik8
+      - text: "---"
+      - text: "Statistik Konsolidierung 1 - 4"
+      - text: "Statistik_Konsolidierung1"
+        href: Statistik.html#category:Statistik_Konsolidierung1
+      - text: "Statistik_Konsolidierung2"
+        href: Statistik.html#category:Statistik_Konsolidierung2
+      - text: "Statistik_Konsolidierung3"
+        href: Statistik.html#category:Statistik_Konsolidierung3
+      - text: "Statistik_Konsolidierung4"
+        href: Statistik.html#category:Statistik_Konsolidierung4
     - text: "Räumliche Analyse"
       menu:
       - text: "Alles zu Räumliche Analyse"
         href: RaumAn.html
+      - text: "---"
       - text: "RaumAn1"
         href: RaumAn.html#category:RaumAn1
       - text: "RaumAn2"
