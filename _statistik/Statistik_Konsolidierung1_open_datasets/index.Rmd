@@ -1,0 +1,122 @@
+---
+title: Verschiedene
+output: distill::distill_article
+categories:
+- Statistik_Konsolidierung1
+- Statistik
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+```{r, echo=FALSE}
+library(tidyverse)
+```
+
+## Verschiedene Datensaetze
+
+In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen.
+
+<span style="color:blue"> R data sets </span> 
+
+In R gibt es vordefinierte Datensätze, welche gut abrufbar sind. Beispiele sind:
+
+* sleep
+* USAccDeaths
+* USArrests
+* ...
+
+```{r}
+data() # erzeugt eine Liste mit den Datensätzen, welche in R verfügbaren sind
+head(chickwts)
+str(chickwts)
+```
+
+<span style="color:blue">Kaggle</span>
+
+Auf [Kaggle](www.kaggle.com) findet ihr öffentlich zugängliche Datensätze. Einzig was ihr tun müsst, ist euch registrieren. Beispiele sind:
+
+* [911](https://www.kaggle.com/mchirico/montcoalert)
+* [foodPreferences](https://www.kaggle.com/borapajo/food-choices#food_coded.csv)
+* [S.F. salaries](https://www.kaggle.com/kaggle/sf-salaries)
+* ...
+
+```{r}
+# Load packages and data
+data_911 <- read_delim("911.csv", delim = ",")
+str(data_911)
+
+```
+
+
+<span style="color:blue">Tidytuesday</span>
+
+[Tidytuesday](https://github.com/rfordatascience/tidytuesday) ist eine Plattform, in der wöchentlich - jeden Dienstag - einen öffentlich zugänglichen Datensatz publiziert. Dieses Projekt ist aus der [R4DS](https://r4ds.had.co.nz/) Online Learning Community und dem R for Data Science Lehrbuch hervorgegangen. Beispiele sind:
+
+* [Women in the Workplace](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-03-05)
+* [Dairy production & Consumption](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-01-29)
+* [Star Wars Survey](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-05-14)
+* [Global Coffee Chains](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-05-07)
+* [Malaria Deaths](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-11-13)
+* ...
+
+
+**Download via Github - 1. Möglichkeit**
+1. Geht zum File, welches ihr herunterladen wollt
+2. Klickt auf das File (.csv, .xlsx etc.), um den Inhalt innerhalb der GitHub Benutzeroberfläche anzuzeigen
+![](17_Statistik_Konsolidierung1/1_github.PNG){width=70%} 
+3. Klickt mit der rechten Maustaste auf den Knopf "raw"
+![](17_Statistik_Konsolidierung1/2_github.PNG){width=70%}
+4. (Ziel) Speichern unter...
+
+**Download via Github - 2. Möglichkeit**
+
+```{r}
+# Beachtet dabei, dass ihr die URL zum originalen (raw) Datensatz habt 
+star_wars <- read_delim("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-week7_starwars.csv", delim = ",", col_names = T)
+
+
+```
+
+**Download via Github - 3. Möglichkeit**
+
+```{r}
+# mehr Infos dazu findet ihr hier: https://rpubs.com/lokraj/github_csv
+urlfile = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-week7_starwars.csv" # definiere zuerst die URL auf der R zugreifen soll
+
+star_wars <- read_delim(url(urlfile), delim = ",", col_names = T) # lade die Datei von der obigen URL
+# head(star_wars)
+```
+
+
+<span style="color:blue">opendata.swiss</span>
+
+Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare Daten der Schweizerischen Behörden zu finden. opendata.swiss ist ein gemeinsames Projekt von Bund, Kantonen, Gemeinden und weiteren Organisationen mit einem staatlichen Auftrag. Beispiele sind:
+
+* [Statistik der Schweizer Städte](https://opendata.swiss/en/dataset/statistik-der-schweizer-stadte-wohnbevolkerung-1930-2011)
+* [Verpflegungsbetriebe nach Jahr und Stadtquartier](https://opendata.swiss/de/dataset/verpflegungsbetriebe-nach-jahr-und-stadtquartier)
+* [Altpapiermengen](https://opendata.swiss/de/dataset/altpapiermengen-tonnen)
+* ...
+
+
+<span style="color:blue">Open Data Katalog Stadt Zürich</span>
+
+Auf der Seite der [Stadt Zürich Open Data](https://data.stadt-zuerich.ch/) findet ihr verschiedene Datensätze der Stadt Zürich. Spannend daran ist, dass die veröffentlichten Daten kostenlos und zur freien - auch kommerziellen - Weiterverwendung zur Verfügung. Beispiele sind:
+
+* [Bevölkerung nach Bildungsstand, Jahr, Alter und Geschlecht seit 1970](https://data.stadt-zuerich.ch/dataset/bfs_bev_bildungsstand_alter_geschl_seit1970_od1005)
+* [Luftqualitätsmessungen](https://data.stadt-zuerich.ch/dataset/luftqualitaet-historisierte-messungen)
+* [Häufigste Hauptsprachen](https://data.stadt-zuerich.ch/dataset/bfs_ste_bev_hauptsprachen_top50_od3011)
+* ...
+
+```{r}
+# lade die Datei "Häufigste Sprachen"
+urlfile = "https://data.stadt-zuerich.ch/dataset/14f0e561-78a5-4f47-8ccf-9ae93d37e990/resource/91aa31e3-3272-4f8e-8763-bev301od3011.csv"
+
+dat_lang <- read_delim(url(urlfile), delim = ",", col_names = T)
+head(dat_lang)
+
+```
+
+*******
+

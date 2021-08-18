@@ -1,4 +1,0 @@
----
-title: "Statistik7"
-listing: statistik7
----

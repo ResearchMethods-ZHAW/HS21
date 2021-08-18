@@ -1,4 +1,0 @@
----
-title: "Statistik_Konsolidierung4"
-listing: statistik_konsolidierung4
----

@@ -5,155 +5,51 @@
       "title": "Analyses",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:25+02:00"
+      "last_modified": "2021-08-18T11:27:54+02:00"
     },
     {
       "path": "index.html",
-      "title": "knitr",
+      "title": "InfoVis1",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:25+02:00"
+      "contents": "\nDas Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).\nAuf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.\n\n\n\n",
+      "last_modified": "2021-08-18T11:27:54+02:00"
     },
     {
       "path": "index.html",
       "title": "Modul Research Methods",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:25+02:00"
+      "contents": "\nDas Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).\nAuf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.\n\n\n\n",
+      "last_modified": "2021-08-18T11:27:54+02:00"
     },
     {
-      "path": "InfoVis1.html",
-      "title": "InfoVis1",
+      "path": "InfoVis.html",
+      "title": "InfoVis",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:26+02:00"
+      "last_modified": "2021-08-18T11:27:55+02:00"
     },
     {
-      "path": "InfoVis2.html",
-      "title": "InfoVis2",
+      "path": "PrePro.html",
+      "title": "PrePro",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:26+02:00"
+      "last_modified": "2021-08-18T11:27:55+02:00"
     },
     {
-      "path": "PrePro1.html",
-      "title": "PrePro1",
+      "path": "RaumAn.html",
+      "title": "RaumAn",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:26+02:00"
+      "last_modified": "2021-08-18T11:27:56+02:00"
     },
     {
-      "path": "PrePro2.html",
-      "title": "PrePro2",
+      "path": "Statistik.html",
+      "title": "Statistik",
+      "description": "lökasdjfasdklfj",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:27+02:00"
-    },
-    {
-      "path": "RaumAn1.html",
-      "title": "RaumAn1",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:27+02:00"
-    },
-    {
-      "path": "RaumAn2.html",
-      "title": "RaumAn2",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:27+02:00"
-    },
-    {
-      "path": "RaumAn3.html",
-      "title": "RaumAn3",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:28+02:00"
-    },
-    {
-      "path": "Statistik_Konsolidierung1.html",
-      "title": "Statistik_Konsolidierung1",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:28+02:00"
-    },
-    {
-      "path": "Statistik_Konsolidierung2.html",
-      "title": "Statistik_Konsolidierung2",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:28+02:00"
-    },
-    {
-      "path": "Statistik_Konsolidierung3.html",
-      "title": "Statistik_Konsolidierung3",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:29+02:00"
-    },
-    {
-      "path": "Statistik_Konsolidierung4.html",
-      "title": "Statistik_Konsolidierung4",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:29+02:00"
-    },
-    {
-      "path": "Statistik1.html",
-      "title": "Statistik1",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:29+02:00"
-    },
-    {
-      "path": "Statistik2.html",
-      "title": "Statistik2",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:30+02:00"
-    },
-    {
-      "path": "Statistik3.html",
-      "title": "Statistik3",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:30+02:00"
-    },
-    {
-      "path": "Statistik4.html",
-      "title": "Statistik4",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:30+02:00"
-    },
-    {
-      "path": "Statistik5.html",
-      "title": "Statistik5",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:31+02:00"
-    },
-    {
-      "path": "Statistik6.html",
-      "title": "Statistik6",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:31+02:00"
-    },
-    {
-      "path": "Statistik7.html",
-      "title": "Statistik7",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:31+02:00"
-    },
-    {
-      "path": "Statistik8.html",
-      "title": "Statistik8",
-      "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T07:41:32+02:00"
+      "last_modified": "2021-08-18T11:28:43+02:00"
     }
   ],
-  "collections": ["prepro1/prepro1.json", "posts/posts.json", "infovis1/infovis1.json", "infovis2/infovis2.json", "prepro2/prepro2.json", "rauman1/rauman1.json", "rauman2/rauman2.json", "rauman3/rauman3.json", "statistik_konsolidierung1/statistik_konsolidierung1.json", "statistik_konsolidierung2/statistik_konsolidierung2.json", "statistik_konsolidierung3/statistik_konsolidierung3.json", "statistik_konsolidierung4/statistik_konsolidierung4.json", "statistik1/statistik1.json", "statistik2/statistik2.json", "statistik3/statistik3.json", "statistik4/statistik4.json", "statistik5/statistik5.json", "statistik6/statistik6.json", "statistik7/statistik7.json", "statistik8/statistik8.json"]
+  "collections": ["prepro1/prepro1.json", "posts/posts.json", "infovis/infovis.json", "prepro/prepro.json", "rauman/rauman.json", "statistik/statistik.json"]
 }

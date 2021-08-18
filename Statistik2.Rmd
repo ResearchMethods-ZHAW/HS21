@@ -1,4 +1,0 @@
----
-title: "Statistik2"
-listing: statistik2
----

@@ -1,4 +1,0 @@
----
-title: "InfoVis2"
-listing: infovis2
----

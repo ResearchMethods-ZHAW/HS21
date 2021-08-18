@@ -1,78 +1,13 @@
 ---
-title: knitr
+title: InfoVis1
 output: distill::distill_article
+categories:
+- InfoVis1
+- InfoVis
 
 ---
 
 
+# InfoVis1 (19.10.2020)
 
-
-
-
-```r
-library(tidyverse)
-library(lubridate)
-```
-
-## Demo: `ggplot2`
-
-[Demoscript als Download](11_InfoVis1/RFiles/Demo_ggplot.R)
-
-Als erstes laden wir den Wetterdatensatz von der Übung Prepro1 ein.
-
-
-```r
-wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
-                  col_types = list(
-                    col_factor(levels = NULL),    
-                    col_datetime(format = "%Y%m%d%H"),
-                    col_double()
-                    )
-                  )
-## Error: '09_PrePro1/data/order_52252_data.txt' does not exist in current working directory ('/home/nils/temp/Unterrichtsunterlagen_HS20/_infovis1/Demo_ggplot').
-```
-
-
-
-```
-## Error in head(wetter): object 'wetter' not found
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Die konventionelle schliessende Statistik arbeitet in der Regel konfirmatorisch, sprich aus der bestehenden Theorie heraus werden Hypothesen formuliert, welche sodann durch Experimente geprüft und akzeptiert oder verworfen werden. Die Explorative Datenanalyse (EDA) nimmt dazu eine antagonistische Analyseperspektive ein und will in den Daten zunächst Zusammenhänge aufdecken, welche dann wiederum zur Formulierung von prüfbaren Hypothesen führen kann. Die Einheit stellt dazu den klassischen 5-stufigen EDA-Prozess nach Tukey (1980!) vor. Abschliessend wird dann noch die Brücke geschlagen zur modernen Umsetzung der EDA in Form von Visual Analytics.

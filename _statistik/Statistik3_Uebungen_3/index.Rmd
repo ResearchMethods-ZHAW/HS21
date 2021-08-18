@@ -1,0 +1,25 @@
+---
+title: Uebung
+output: distill::distill_article
+categories:
+- Statistik3
+- Statistik
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+## Uebung 3
+
+### Aufgabe 3.1: Multiple Regression
+
+- **Datensatz [Ukraine_bearbeitet.xlsx](15_Statistik3/data/Ukraine_bearbeitet.xlsx)**
+- **Datensatz [Ukraine_bearbeitet.csv](Ukraine_bearbeitet.csv)**
+
+Artenzahlen von Vegetationsaufnahmen in der Ukraine vs. diverse Umweltparameter (farbig gruppiert nach Kategorien, aus Kuzemko et al. 2016) 
+
+- Bestimmt ein minimal adäquates Modell für die Erklärung der Artenzahlen mit allen notwendigen Arbeitsschritten
+- Wahlweise könnt ihr mit AICc und dredge oder mit p-Werten und schrittweiser Vereinfachung eines globalen Models arbeiten
+
+

@@ -51,15 +51,12 @@ mydf %>%
   # head(6) %>%
   select(file,name,name2, tag) %>%
   pmap(function(file,name,name2, tag){
-    newdir <- paste0("_",str_to_lower(name))
+    newdir <- paste0("_",str_to_lower(name2))
     newdir
     if(!dir.exists(newdir)){dir.create(newdir)}
     
     
-    
-    
-    
-    subdir <- str_split(basename(file), "\\.")[[1]][1]
+    subdir <- paste(name, str_split(basename(file), "\\.")[[1]][1], sep = "_")
     subdirpath <- file.path(newdir, subdir)
     if(!dir.exists(subdirpath)){dir.create(subdirpath)}
     
@@ -71,7 +68,7 @@ mydf %>%
     title <- rl[str_detect(rl, "^#")][1]
     
     title <- str_extract(title, "\\w+")
-    yaml_header <- list(title = title, output = "distill::distill_article") %>%
+    yaml_header <- list(title = title, output = "distill::distill_article", categories =  c(name, name2)) %>%
       yaml::as.yaml()
     
     head <- c(
@@ -87,11 +84,29 @@ mydf %>%
     rl <- c(head, rl)
     
     
+    
+    
+    paths <- str_match(rl, "([\\w\\/]+\\.(R|shp|csv|tif|gpkg|txt|png))")[,2]
+    
+    paths <- paths[!is.na(paths)]
+    
+    paths_new <- file.path("bookdown_files",paths)
+    
+    paths_new <- paths_new[file.exists(paths_new)]
+    
+    file_basename <- basename(paths_new)
+    
+    file.copy(paths_new, subdirpath)
+    
+    paths
+    # if(length(paths_new)>0){
+    #   map()
+    # }
+    rl <- str_replace(rl, '([\\w\\/]+\\/(\\w+)\\.(R|shp|csv|tif|gpkg|txt|png))','\\2.\\3')
+    
     write_lines(rl, file.path(subdirpath, "index.Rmd"))
     
     
-    # paths <- str_extract(rl, '"[\\w\\/]+\\.\\w+"')
-    # paths[!is.na(paths)]
   })
 
 
@@ -100,15 +115,14 @@ distill_dirs <- distill_dirs[str_detect(basename(distill_dirs), "^_")]
 
 library(knitr)
 distill_dirs %>%
+  map(~list.files(.x, "index.Rmd", recursive = TRUE, full.names = TRUE)) %>%
+  unlist() %>%
+  # head(1) %>%
   map(function(x){
-    file_list <- list.files(x, "index.Rmd", recursive = TRUE, full.names = TRUE)
-    
-    map(file_list, ~knit(.x))
-    
-    
+    tryCatch(rmarkdown::render(x), error = function(x){"couldn't render"})
+
   })
 
-library(glue)
 
 mydf %>%
   group_by(name2, name) %>%
@@ -132,7 +146,9 @@ mydf %>%
     })
 
 
-map(mydf$name, function(x){
+
+# file.remove(paste0(mydf$name, ".Rmd"))
+map(mydf$name2, function(x){
   
   
   head <- c(

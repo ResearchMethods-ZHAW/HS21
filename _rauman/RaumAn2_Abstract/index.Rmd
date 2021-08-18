@@ -1,0 +1,15 @@
+---
+title: Raumanalyse
+output: distill::distill_article
+categories:
+- RaumAn2
+- RaumAn
+
+---
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+# Raumanalyse 2 (30.11.2020)
+
+In dieser zweiten Übung wirst Du wiederum Geodatensätze verarbeiten und darstellen. Wir starten mit einem Punktdatensatz zu einem Messnetz zur Erhebung der Luftqualität in der Schweiz (Stickstoffdioxid NO2 um genau zu sein). Im Gegensatz zum Punktdatensatz zur Wasserverfügbarkeit aus der vorherigen Übung, sind die Messstellen des Messnetzes zur Luftqualität sehr unregelmässig im Raum verteilt. Trotzdem möchten wir versuchen ein kontinuierliches Raster von Luftqualitätswerten für die ganze Schweiz zu interpolieren. Wir starten mit der einfachen Interpolations-Methode Inverse Distance Weighting IDW. Danach wollen wir für den gleichen Datensatz nach dem Ansatz der nächsten Nachbarn die Thiessen Polygone konstruieren. Im zweiten Teil der Übung wollen wir Dichteverteilung untersuchen. Dabei untersuchen wir einen Datensatz mit Bewegungsdaten eines Rotmilans in der Schweiz. Mittels einer Kernel Density Estimation (KDE) berechnen wir eine kontinuierliche Dichteverteilung, über die wir eine Annäherung an das Habitat des untersuchten Greifvogels berechnen können. Bevor wir aber starten, schauen wir uns die Punktdatensätze genauer an indem wir die G-Function berechnen und plotten.
