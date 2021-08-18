@@ -1,5 +1,5 @@
 ---
-title: Uebung
+title: Übung
 output: distill::distill_article
 categories:
 - InfoVis1
@@ -7,9 +7,7 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
+
 ```{r, include=F, purl=F}
 library(knitr)
 
@@ -18,7 +16,6 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 
 ```
 
-## Uebung
 
 In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic ([blog.tagesanzeiger.ch](https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich)) zu rekonstruieren. Schau dir die Grafiken in dem Blogpost durch. Freundlicherweise hat Herr Kovic meist die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. 
 
@@ -52,7 +49,7 @@ kanton <- read_delim("initiative_masseneinwanderung_kanton.csv",",",locale = loc
 
 
 
-### Aufgabe 1
+## Aufgabe 1
 
 Rekonstruiere [Grafik 1](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-2.png) von Kovic. Erstelle dazu einen Scatterplot wo der Ausländeranteil der Kantone dem Ja-Anteil gegenüber gestellt wird. Speichere den Plot einer Variabel `plot1`.
 
@@ -79,7 +76,7 @@ plot1
 ```
 
 
-### Aufgabe 2
+## Aufgabe 2
 
 Rekonstruiere [Grafik 2](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-LOESS-986x923.png). Erweitere dazu `plot1` mit einer Trendlinie.
 
@@ -92,7 +89,7 @@ plot1 +
 
 
 
-### Aufgabe 3
+## Aufgabe 3
 
 
 Importiere die Gemeindedaten [initiative_masseneinwanderung_gemeinde.csv](initiative_masseneinwanderung_gemeinde.csv):
@@ -118,7 +115,7 @@ plot2
 ```
 
 
-### Aufgabe 4
+## Aufgabe 4
 
 Rekonstruiere [Grafik 4](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-GAM-2-986x939.png) indem `plot2` mit einer Trendlinie erweitert wird.
 
@@ -130,7 +127,7 @@ plot2 +
 ```
 
 
-### Aufgabe 5
+## Aufgabe 5
 
 Rekonstruiere [Grafik 5](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Kantone-2-986x857.png) indem `plot2` mit `facetting` erweitert wird. Die Facets sollen die einzelnen Kantone sein. Speichere den Plot als `plot3`.
 
@@ -144,7 +141,7 @@ plot3
 ```
 
 
-### Aufgabe 6
+## Aufgabe 6
 
 Rekonstruiere [Grafik 6](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Kantone-LOESS-2-986x857.png) indem `plot3` mit einer Trendlinie erweitert wird.
 
@@ -159,7 +156,7 @@ plot3 +
 ```
 
 
-### Aufgabe 7
+## Aufgabe 7
 
 Rekonstruiere [Grafik 7](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Quantile-2-986x637.png) indem `plot2`mit `facetting` erweitert wird. Die Facets sollen nun den Grössen-Quantilen entsprechen. Speichere den Plot unter `plot4`.
 
@@ -175,7 +172,7 @@ plot4
 ```
 
 
-### Aufgabe 8
+## Aufgabe 8
 
 Rekonstruiere [Grafik 8](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-x-Quantile-LOESS-2-986x637.png) indem `plot4` mit einer Trendlinie ausgestattet wird.
 
@@ -188,7 +185,7 @@ plot4 +
 ```
 
 
-### Aufgabe 9 (Optional, fortgeschritten)
+## Aufgabe 9 (Optional, fortgeschritten)
 
 Rekonstruiere die [Korrelationstabelle](https://tagi_dwpro.s3.amazonaws.com/UMvkt/2/fs.html).
 

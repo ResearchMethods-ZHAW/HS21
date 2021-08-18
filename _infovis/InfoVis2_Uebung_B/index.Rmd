@@ -1,21 +1,17 @@
 ---
-title: knitr
-output: distill::distill_article
+title: Uebung B (Optional)
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - InfoVis2
 - InfoVis
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
 
 ```{r, include=F, purl = F}
 library(knitr)
-knitr::opts_chunk$set(echo = F,include = T,message = F, warning = F, collapse=TRUE)
-# knitr::opts_knit$set(root.dir = "12_InfoVis2") 
-
 
 output <- knitr::opts_knit$get("rmarkdown.pandoc.to") # html / latex
 
@@ -26,7 +22,6 @@ default_error <- "In der PDF Version kann die interaktive Grafik bis auf weitere
 
 ```
 
-## Uebung B (Optional)
 
 In dieser Übung bauen wir einige etwas unübliche Plots aus der Vorlesung nach. Dafür verwenden wir Datensätze, die in R bereits integriert sind. Eine Liste dieser Datensätze findet man [hier](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) oder mit der Hilfe `?datasets`.
 
@@ -43,20 +38,13 @@ Dazu verwenden wir vor allem das Package `plotly` welches im Gegensatz zu `ggplo
 
 library(tidyverse)
 library(plotly)
-library(pander)
-library(webshot)
+
 
 ```
 
 
-```{r, echo = F, purl= F}
-Sys.setenv("plotly_username" = "rata_zhaw")
-Sys.setenv("plotly_api_key" = "ae8Fn1ltcjUGvWYX957J")
-```
 
-
-
-### Aufgabe 1: Parallel coordinate plots
+## Aufgabe 1: Parallel coordinate plots
 
 Erstelle einen [parallel coordinate plot](https://en.wikipedia.org/wiki/Parallel_coordinates). Dafür eignet sich der integrierte Datensatz [`mtcars`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html):
 
@@ -101,21 +89,13 @@ p <- mtcars %>%
             list(label = 'carb', values = ~carb)
           )
   )
+
+p
 ```
 
+---
 
-```{r, results="asis", purl = F, echo=F}
-aufgabe <- "aufgabe_1"
-filename <- paste0("12_InfoVis2/",aufgabe,".png")
-
-if(output == "latex"){
-  if(run_plotly_image){plotly_IMAGE(p, format = "png", out_file = filename)} 
-  if(show_static_image){pander::pandoc.image(filename)} else{pandoc.strong(default_error)}
-} else(p)
-
-```
-
-### Aufgabe 2: Polar Plot mit Biber Daten
+## Aufgabe 2: Polar Plot mit Biber Daten
 
 Polar Plots (welche man ebenfalls mit Plotly erstellen kann) eignen sich unter anderem für Daten, die zyklischer Natur sind, wie zum Beispiel zeitlich geprägte Daten (Tages-, Wochen-, oder Jahresrhythmen). Aus den Beispiels-Datensätzen  habe ich zwei Datensätze gefunden, die zeitlich geprägt sind:
 
@@ -125,6 +105,8 @@ Polar Plots (welche man ebenfalls mit Plotly erstellen kann) eignen sich unter a
 Beide Datensätze müssen noch etwas umgeformt werden, bevor wir sie für einen Radialplot verwenden können. In Aufgabe 2 verwenden wir die Biber-Datensätze, in der nächsten Aufgabe (3) die Passagier-Daten.
 
 Wenn wir die Daten von beiden Bibern verwenden wollen, müssen wir diese noch zusammenfügen:
+
+
 ```{r, echo = T}
 
 
@@ -139,6 +121,8 @@ beaver_new <- rbind(beaver1_new,beaver2_new)
 ```
 
 Zudem müssen wir die Zeitangabe noch anpassen: Gemäss der [Datenbeschreibung](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/beavers.html) handelt es sich bei der Zeitangabe um ein sehr programmier-unfreundliches Format. 3:30 wird als "0330" notiert. Wir müssen diese Zeitangabe, noch in ein Dezimalsystem umwandeln:
+
+
 ```{r, echo = T}
 beaver_new <- beaver_new %>%
   mutate(
@@ -151,6 +135,7 @@ beaver_new <- beaver_new %>%
 
 
 Der Datensatz: 
+
 ```{r, echo = F, purl = F}
 knitr::kable(head(beaver_new))
 #  formatRound(c("min_dec","hour_min_dec"), 2)
@@ -170,23 +155,14 @@ p <- beaver_new %>%
     orientation = 270,
     showlegend = F
     )
-```
 
-```{r, results="asis", purl = F, echo=F}
-aufgabe <- "aufgabe_2"
-filename <- paste0("12_InfoVis2/",aufgabe,".png")
-
-if(output == "latex"){
-  if(run_plotly_image){plotly_IMAGE(p, format = "png", out_file = filename)} 
-  if(show_static_image){pander::pandoc.image(filename)} else{pandoc.strong(default_error)}
-} else(p)
-
+p
 ```
 
 
+---
 
-
-### Aufgabe 3: Polar Plot mit Passagier-Daten
+## Aufgabe 3: Polar Plot mit Passagier-Daten
 
 
 Analog Aufgabe 2, dieses Mal mit dem Datensatz [`AirPassanger`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/AirPassengers.html)
@@ -201,6 +177,7 @@ class(AirPassengers)
 
 
 Damit wir den Datensatz verwenden können, müssen wir ihn zuerst in eine `matrix` umwandeln. Wie das geht habe ich [hier](https://stackoverflow.com/a/5332664/4139249) erfahren.
+
 ```{r, echo = T}
 AirPassengers2 <- tapply(AirPassengers, list(year = floor(time(AirPassengers)), month = month.abb[cycle(AirPassengers)]), c)
 ```
@@ -230,6 +207,7 @@ AirPassengers3 <- AirPassengers2 %>%
 
 
 Hier der fertige Plot. Rekonstruiere dies mit `plotly`:
+
 ```{r}
 
 # Lösung Aufgabe 3
@@ -248,16 +226,14 @@ p <- AirPassengers3 %>%
 
 
 ```{r, results="asis", purl = F, echo=F}
-aufgabe <- "aufgabe_3"
-filename <- paste0("12_InfoVis2/",aufgabe,".png")
 
-if(output == "latex"){
-  if(run_plotly_image){plotly_IMAGE(p, format = "png", out_file = filename)} 
-  if(show_static_image){pander::pandoc.image(filename)} else{pandoc.strong(default_error)}
-} else(p)
+
+p
 ```
 
-### Aufgabe 4: 3D Scatterplot
+---
+
+## Aufgabe 4: 3D Scatterplot
 
 Erstelle einen 3D Scatterplot, ebenfalls mit `plotly`. Nutze dazu den Datensatz `trees`. Ein Beispiel für einen 3D Scatterplot findet ihr [hier](https://plot.ly/r/3d-scatter-plots/).
 
@@ -273,16 +249,7 @@ Erstelle einen 3D Scatterplot, ebenfalls mit `plotly`. Nutze dazu den Datensatz 
 
 
 ```{r, results="asis", purl = F, echo=F}
-aufgabe <- "aufgabe_4"
-filename <- paste0("12_InfoVis2/",aufgabe,".png")
+p
 
-if(output == "latex"){
-  if(run_plotly_image){plotly_IMAGE(p, format = "png", out_file = filename)} 
-  if(show_static_image){pander::pandoc.image(filename)} else{pandoc.strong(default_error)}
-} else(p)
 ```
-
-
-
-
 

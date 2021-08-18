@@ -1,5 +1,5 @@
 ---
-title: Uebungen
+title: Übung 1
 output: distill::distill_article
 categories:
 - Statistik1
@@ -10,7 +10,6 @@ categories:
 ```{r echo = FALSE}
 knitr::opts_chunk$set(error = TRUE)
 ```
-## Uebungen 1
 
 
 ###	Uebung 1.1: Assoziationstest

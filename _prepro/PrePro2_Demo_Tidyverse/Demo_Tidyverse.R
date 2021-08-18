@@ -1,9 +1,11 @@
+knitr::purl("index.Rmd", "Demo_Tidyverse.R", documentation = 0)
+
 library(tidyverse)
 
 library(lubridate) 
 
 
-wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+wetter <- read_table("order_52252_data.txt",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -22,15 +24,15 @@ mean(wetter$tre200h0[wetter$year == 2000], na.rm = TRUE)
 
 summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = TRUE))
 
-## 
-## summarise(group_by(wetter,year),temp_mittel = mean(tre200h0))
-## 
-## # wird zu:
-## 
-## wetter %>%                                #1) nimm den Datensatz "wetter"
-##   group_by(year) %>%                      #2) Bilde Gruppen pro Jahr
-##   summarise(temp_mittel = mean(tre200h0)) #3) berechne das Temperaturmittel
-## 
+
+summarise(group_by(wetter,year),temp_mittel = mean(tre200h0))
+
+# wird zu:
+
+wetter %>%                                #1) nimm den Datensatz "wetter"
+  group_by(year) %>%                      #2) Bilde Gruppen pro Jahr
+  summarise(temp_mittel = mean(tre200h0)) #3) berechne das Temperaturmittel 
+
 
 # Maximal und minimal Temperatur pro Kalenderwoche
 wetter %>%                              #1) nimm den Datensatz "wetter"
@@ -85,3 +87,5 @@ ggplot(wetter_sry_long, aes(kw,Messwert, colour = Messtyp)) +
 
 wetter_sry_long %>%
   pivot_wider(names_from = Messtyp, values_from = Messwert)
+```{.r .distill-force-highlighting-css}
+```

@@ -2,7 +2,8 @@ library(tidyverse)
 library(lubridate)
 
 
-wetter <- read_table("09_PrePro1/data/order_52252_data.txt",
+
+wetter <- read_table("order_52252_data.txt",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -28,10 +29,10 @@ ggplot(data = wetter_fil, mapping = aes(time,tre200h0)) +
   # Layer: "geom_point" entspricht Punkten in einem Scatterplot 
   geom_point()                                    
 
-## 
-## ggplot(wetter_fil, aes(time,tre200h0)) +
-##   geom_point()
-## 
+
+ggplot(wetter_fil, aes(time,tre200h0)) +
+  geom_point()
+
 
 ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_point()
@@ -121,11 +122,11 @@ p <- ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
 
 
 
-## ggsave(filename = "11_InfoVis1/plot.png",plot = p)
+ggsave(filename = "plot.png",plot = p)
 
-## p +
-##   theme(legend.position="none")
-## 
+p +
+  theme(legend.position="none")
+
 
 p <- p +
   theme(legend.position="none")
@@ -134,3 +135,5 @@ p <- p +
   geom_smooth(colour = "black")
 
 p
+```{.r .distill-force-highlighting-css}
+```

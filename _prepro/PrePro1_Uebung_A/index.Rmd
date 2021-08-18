@@ -1,26 +1,22 @@
 ---
-title: Uebung
-output: distill::distill_article
+title: Uebung A
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - PrePro1
 - PrePro
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
 
 ```{r, include=FALSE, purl = F}
 knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE, warning = F)
 ```
 
+## Arbeiten mit RStudio "Project"
 
-## Uebung A 
-
-### Arbeiten mit RStudio "Project"
-
-Wir empfehlen die Verwendung von "Projects" innerhalb von RStudio. RStudio legt für jedes Projekt dann einen Ordner an, in welches die Projekt-Datei abgelegt wird (Dateiendung .Rproj). Sollen innerhalb des Projekts dann R-Skripts geladen oder erzeugt werden, werden diese dann auch im angelegten Ordner abgelegt. Mehr zu RStudio Projects findet ihr  [hier](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
+Wir empfehlen die Verwendung von "Projects" innerhalb von RStudio. RStudio legt für jedes Projekt dann einen Ordner an, in welches die Projekt-Datei abgelegt wird (Dateiendung `.Rproj`). Sollen innerhalb des Projekts dann R-Skripts geladen oder erzeugt werden, werden diese dann auch im angelegten Ordner abgelegt. Mehr zu RStudio Projects findet ihr  [hier](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
 
 
 Das Verwenden von Projects bringt verschiedene Vorteile, wie zum Beispiel:
@@ -31,7 +27,7 @@ Das Verwenden von Projects bringt verschiedene Vorteile, wie zum Beispiel:
 - Verwendung von Versionsverwaltungssystemen (git oder SVN)
 
 
-### Arbeiten mit Libraries / Packages
+## Arbeiten mit Libraries / Packages
 
 R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal installieren.
 
@@ -72,7 +68,7 @@ Tidyverse liefert viele Funktionen, für die es in der normalen R-Umgebung ("bas
 
 Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas restriktiver. Wir verwenden oft Tidyverse Funktionen, ihr könnt aber selber entscheiden welche Version ihr benutzt.
 
-### Aufgabe 1
+## Aufgabe 1
 
 Erstelle eine `data.frame` mit nachstehenden Daten.
 
@@ -102,7 +98,7 @@ knitr::kable(df)
 
 
 
-### Aufgabe 2
+## Aufgabe 2
 
 Was für Datentypen wurden (in Aufgabe 1) von R automatisch angenommen? Sind diese sinnvoll? 
 
@@ -130,7 +126,7 @@ df$Beschreibung <- as.character(df$Beschreibung)
 ```
 
 
-### Aufgabe 3
+## Aufgabe 3
 
 
 Nutze die Spalte `Gewicht` um die Tiere in 3 Gewichtskategorien einzuteilen: 
@@ -158,7 +154,7 @@ knitr::kable(df)
 
 
 
-### Aufgabe 4
+## Aufgabe 4
 
 Importiere den Datensatz [order_52252_data.txt](order_52252_data.txt). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz im Zeitraum 2000 - 2005. Wir empfehlen `read_table()`^[@wickham2017, Kapitel 8 bzw. http://r4ds.had.co.nz/data-import.html)] anstelle von `read.table()`.
 
@@ -176,7 +172,7 @@ knitr::kable(head(wetter,10))
 ```
 
 
-### Aufgabe 5
+## Aufgabe 5
 
 Schau dir die Rückmeldung von `read_table()`an. Sind die Daten korrekt interpretiert worden?
 
@@ -189,7 +185,7 @@ Schau dir die Rückmeldung von `read_table()`an. Sind die Daten korrekt interpre
 
 
 
-### Aufgabe 6
+## Aufgabe 6
 
 Die Spalte `time` ist eine Datum/Zeitangabe im Format JJJJMMTTHH (siehe [meta.txt](meta.txt)). Damit R dies als Datum-/Zeitangabe erkennt, müssen wir die Spalte in einem R-Format (`POSIXct`) einlesen und dabei R mitteilen, wie sie aktuell formatiert ist. Lies die Spalte mit `as.POSIXct()` (oder `parse_datetime`) ein und spezifiziere sowohl `format` wie auch `tz`. 
 
@@ -202,7 +198,7 @@ Tipps:
 # Lösung Aufgabe 6
 
 # mit readr
-parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
+wetter$time <- parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
 
 
 # mit as.POSIXct()
@@ -218,7 +214,7 @@ knitr::kable(head(wetter,10))
 
 
 
-### Aufgabe 7
+## Aufgabe 7
 
 
 Erstelle zwei neue Spalten mit Wochentag (Montag, Dienstag, etc) und Kalenderwoche. Verwende dazu die neu erstellte `POSIXct`-Spalte
@@ -242,7 +238,7 @@ knitr::kable(head(wetter,10))
 
 
 
-### Aufgabe 8
+## Aufgabe 8
 
 
 Erstelle eine neue Spalte basierend auf die Temperaturwerte mit der Einteilung "kalt" (Unter Null Grad) und "warm" (über Null Grad)

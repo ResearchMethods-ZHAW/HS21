@@ -1,23 +1,11 @@
 ---
-title: Demo
+title: Demo Debugging Tips
 output: distill::distill_article
 categories:
 - InfoVis2
 - InfoVis
 
 ---
-
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
----
-output:
-  pdf_document: default
-  html_document: default
----
-
-## Demo Debuggin Tipps
-
 
 
 ```{r}
@@ -46,14 +34,15 @@ wetter_fil <- wetter %>%
 ```
 
 
-1 Einzelne Zeilen ausführen  (Selektieren > run) 
-2 Einzelne Zeilen ein/auskommentieren: 
-  - von Hand
-  - mit Code > Comment/Uncomment line
-3 Auf Automatische Formatierung achten: Doppeltes "" macht den Rest grün...
-4 Errorwarnungen (x) auf Zeilen-Nummer genau lesen
-5 Synthax von `?scale_y_continuous()` prüfen, was ist die Funktion, was ist das Argument, Bsp. anschauen
+1. Einzelne Zeilen ausführen  (Selektieren > run) 
+2. Einzelne Zeilen ein/auskommentieren: 
+   - von Hand
+   - mit Code > Comment/Uncomment line
+3. Auf Automatische Formatierung achten: Doppeltes "" macht den Rest grün...
+4. Errorwarnungen (x) auf Zeilen-Nummer genau lesen
+5. Synthax von `?scale_y_continuous()` prüfen, was ist die Funktion, was ist das Argument, Bsp. anschauen
 6. Synthax auch im Netz noch prüfen, dann sogar über die Bildsuche, und zurück zur entsprechenden Webseite...
+
 
 ```{r}
 

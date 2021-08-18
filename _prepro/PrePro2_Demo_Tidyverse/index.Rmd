@@ -1,24 +1,19 @@
 ---
-title: Demo
-output: distill::distill_article
+title: Demo `tidyverse`
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - PrePro2
 - PrePro
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("index.Rmd", "Demo_Tidyverse.R", documentation = 0)
 ```
 
-```{r, include=F, purl=F}
-library(knitr)
-knitr::opts_chunk$set(echo = TRUE,include = TRUE, collapse=TRUE)
-```
-
-
-
-## Demo: `tidyverse`
 
 [Demoscript als Download](Demo_Tidyverse.R)
 
@@ -30,9 +25,9 @@ Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokus
 
 
 
-### Split-Apply-Combine
+## Split-Apply-Combine
 
-#### Packete laden
+### Packete laden
 
 ```{r,message=F}
 library(tidyverse)
@@ -46,7 +41,7 @@ library(lubridate)
 
 
 
-#### Daten Laden
+### Daten Laden
 
 Wir laden die Wetterdaten von der letzten Übung.
 
@@ -63,7 +58,7 @@ wetter <- read_table("order_52252_data.txt",
 ```
 
 
-#### Kennwerte berechnen
+### Kennwerte berechnen
 Wir möchten den Mittelwert aller gemessenen Temperaturwerte berechnen. Dazu könnten wir folgenden Befehl verwenden:
 
 ```{r}
@@ -77,7 +72,7 @@ Mit der selben Herangehensweise können diverse Werte berechnet werden (z.B. das
 Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *alle* Beobachtungen (Zeilen) für eine Variable (Spalte) berechnen wollen. Sobald wir die Beobachtungen gruppieren wollen, wird es schwierig. Zum Beispiel, wenn wir die durchschnittliche Temperatur *pro Jahr* berechnen wollen.
 
 
-#### Convenience Variablen
+### Convenience Variablen
 
 Um diese Aufgabe zu lösen, muss zuerst das "Jahr" berechne werden (das Jahr ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `year()` (von `lubridate`). 
 
@@ -95,7 +90,7 @@ wetter <- mutate(wetter,year = year(time))
 Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dieser wird aber später klar.
 
 
-#### Kennwerte nach Gruppen berechnen
+### Kennwerte nach Gruppen berechnen
 
 Jetzt kann man die `data.frame` mithilfe der Spalte "Jahr" filtern. 
 ```{r}
@@ -110,7 +105,7 @@ summarise(group_by(wetter,year),temp_mittel = mean(tre200h0, na.rm = TRUE))
 ```
 
 
-#### Verketten vs. verschachteln
+### Verketten vs. verschachteln
 
 Auf Deutsch übersetzt heisst die obige Operation folgendermassen: 
 
@@ -152,7 +147,7 @@ wetter %>%                              #1) nimm den Datensatz "wetter"
 ```
 
 
-#### Resultate plotten
+### Resultate plotten
 
 Mit diesen Tools können wir nun auch eine neue Grafik plotten, ähnlich wie in der Übung 1. Dafür müssen wir die ganzen Operationen aber zuerst in einer Variabel speichern (bis jetzt hat R zwar alles schön berechnet, aber uns nur auf die Konsole ausgegeben).
 
@@ -187,9 +182,9 @@ ggplot() +
 Das sieht schon mal gut aus. Nur, wir mussten pro Linie einen eigene Zeile schreiben (`geom_line()`) und dieser eine Farbe zuweisen. Bei drei Werten ist das ja ok, aber wie sieht es denn aus wenn es Hunderte sind? Da hat ggplot natürlich eine Lösung, dafür müssen aber alle Werte in *einer* Spalte daher kommen. Das ist ein häufiges Problem: Wir haben eine *breite* Tabelle (viele Spalten), bräuchten aber eine *lange* Tabelle (viele Zeilen).
 
 
-### Reshaping data
+## Reshaping data
 
-#### Breit -> lang
+### Breit -> lang
 
 Da kommt `tidyverse` wieder ins Spiel. Die Umformung von Tabellen *breit*->*lang* erfolgt mittels `tidyr`(siehe ^[https://r4ds.had.co.nz/tidy-data.html#pivoting]). Auch dieses package funktioniert wunderbar mit piping (`%>%`). 
 
@@ -216,13 +211,13 @@ wetter_sry_long <- wetter_sry %>%
 
 Die ersten 6 Zeilen von `wetter_sry_long`:
 ```{r, echo = F, purl=F}
-kable(head(arrange(wetter_sry_long,kw),6))
+knitr::kable(head(arrange(wetter_sry_long,kw),6))
 ```
 
 
 Die ersten 6 Zeilen von `wetter_sry`:
 ```{r, echo = F, purl = F}
-kable(head(wetter_sry,6))
+knitr::kable(head(wetter_sry,6))
 ```
 
 
@@ -241,7 +236,7 @@ ggplot(wetter_sry_long, aes(kw,Messwert, colour = Messtyp)) +
 Beachtet, dass wir gegenüber dem letzten Plot `colour` nun *innerhalb* von `aes()` festlegen und nicht mit einem expliziten Farbwert, sondern mit dem Verweis auf die Spalte `key`.
 
 
-#### Lang -> breit
+### Lang -> breit
 
 Das Gegenstück zu `pivot_longer` ist `pivot_wider`. Mit dieser Funktion können wir eine *lange* Tabelle in eine *breite* überführen. Dazu müssen wir in `names_from` angeben, aus welcher Spalte die neuen Spaltennamen erstellt werden sollen (`names_from`) und aus welcher Spalte die Werte entstammen sollen (`values_from`):
 
@@ -250,9 +245,4 @@ wetter_sry_long %>%
   pivot_wider(names_from = Messtyp, values_from = Messwert)
 ```
 
-
-### Quellen
-
-```
-```
 

@@ -86,7 +86,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>knitr</title>
+  <title>Uebung B</title>
 
 
 
@@ -95,19 +95,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="article:created" itemprop="dateCreated" content="2021-08-18" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="knitr" />
+  <meta property="og:title" content="Uebung B" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="knitr" />
+  <meta property="twitter:title" content="Uebung B" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["knitr"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["PrePro2","PrePro"]},{"type":"character","attributes":{},"value":["08-18-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Uebung B"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["PrePro2","PrePro"]},{"type":"character","attributes":{},"value":["08-18-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1451,7 +1451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"knitr","authors":[],"publishedDate":"2021-08-18T00:00:00.000+02:00"}
+{"title":"Uebung B","authors":[],"publishedDate":"2021-08-18T00:00:00.000+02:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1461,7 +1461,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>knitr</h1>
+<h1>Uebung B</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
 <div class="dt=tag">PrePro2</div>
@@ -1473,10 +1473,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<div class="layout-chunk" data-layout="l-body">
-
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#aufgabe-1">Aufgabe 1</a></li>
+<li><a href="#aufgabe-2">Aufgabe 2</a></li>
+<li><a href="#aufgabe-3">Aufgabe 3</a></li>
+<li><a href="#aufgabe-4">Aufgabe 4</a></li>
+</ul>
+</nav>
 </div>
-<h2 id="uebung-b">Uebung B</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
@@ -1485,7 +1492,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h3 id="aufgabe-1">Aufgabe 1</h3>
+<h2 id="aufgabe-1">Aufgabe 1</h2>
 <p>Gegeben sind die Daten von drei Sensoren (<a href="sensor1.csv">sensor1.csv</a>, <a href="10_PrePro2/data/sensor2.csv">sensor2.csv</a>, <a href="10_PrePro2/data/sensor3.csv">sensor3.csv</a>). Lade die Datensätze runter und lese sie ein.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1497,7 +1504,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h3 id="aufgabe-2">Aufgabe 2</h3>
+<h2 id="aufgabe-2">Aufgabe 2</h2>
 <p>Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Dafür musst du:</p>
 <ol type="1">
 <li>jedem Dataframe eine neue Spalte “Sensor” hinzufügen wo der jeweilige Sensor vermerkt ist</li>
@@ -1507,8 +1514,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># Lösung Aufgabe 2</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 2</span>
 
 <span class="va">sensor1</span><span class="op">$</span><span class="va">sensor</span> <span class="op">&lt;-</span> <span class="st">&quot;sensor1&quot;</span>
 <span class="va">sensor2</span><span class="op">$</span><span class="va">sensor</span> <span class="op">&lt;-</span> <span class="st">&quot;sensor2&quot;</span>
@@ -1634,12 +1640,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tbody>
 </table>
 </div>
-<h3 id="aufgabe-3">Aufgabe 3</h3>
+<h2 id="aufgabe-3">Aufgabe 3</h2>
 <p>Importiere die Datei <a href="sensor_fail.csv">sensor_1_fail.csv</a> in <code>R</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># Lösung Aufgabe 3</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 3</span>
 
 <span class="va">sensor_fail</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="st">&quot;sensor_fail.csv&quot;</span>, delim <span class="op">=</span> <span class="st">&quot;;&quot;</span><span class="op">)</span>
 </code></pre>
@@ -1733,8 +1738,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><code>sensor_fail.csv</code> hat eine Variabel <code>SensorStatus</code>: <code>1</code> bedeutet der Sensor misst, <code>0</code> bedeutet der Sensor miss nicht. Fälschlicherweise wurde auch dann der Messwert <code>Temp = 0</code> erfasst, wenn <code>Sensorstatus = 0</code>. Richtig wäre hier <code>NA</code> (not available). Korrigiere den Datensatz entsprechend.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># Lösungsweg 1</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösungsweg 1</span>
 <span class="va">sensor_fail</span><span class="op">$</span><span class="va">Datetime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">sensor_fail</span><span class="op">$</span><span class="va">Datetime</span>,format <span class="op">=</span> <span class="st">&quot;%d%m%Y_%H%M&quot;</span><span class="op">)</span>
 
 <span class="va">sensor_fail</span><span class="op">$</span><span class="va">`Hum_%`</span><span class="op">[</span><span class="va">sensor_fail</span><span class="op">$</span><span class="va">SensorStatus</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
@@ -1742,12 +1746,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<h3 id="aufgabe-4">Aufgabe 4</h3>
+<h2 id="aufgabe-4">Aufgabe 4</h2>
 <p>Warum spielt das es eine Rolle, ob <code>0</code> oder <code>NA</code> erfasst wird? Berechne die Mittlere der Temperatur / Feuchtigkeit nach der Korrektur.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># Lösung Aufgabe 4</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 4</span>
 
 <span class="co"># Mittelwerte der korrigierten Sensordaten: mit na.rm = TRUE werden NA-Werte aus der Berechnung entfernt. </span>
 <span class="co"># Ansonsten würden sie als 0 in die Berechnung einfliessen und diese verfälschen.</span>

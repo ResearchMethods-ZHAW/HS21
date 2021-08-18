@@ -1,3 +1,5 @@
+knitr::purl("index.Rmd", "Demo_Datentypen.R", documentation = 0)
+
 x <- 10.3
 
 x
@@ -167,3 +169,5 @@ df$Groesse[df$Einwohner <= 150000] <- "klein"
 library(lubridate)
 
 df$Ankunft_stunde <- hour(df$Ankunft)
+```{.r .distill-force-highlighting-css}
+```

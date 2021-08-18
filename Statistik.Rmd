@@ -1,5 +1,4 @@
 ---
 title: "Statistik"
 listing: statistik
-description: "lökasdjfasdklfj"
 ---

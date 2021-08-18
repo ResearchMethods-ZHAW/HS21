@@ -2040,8 +2040,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <style type="text/css">
+  body.layout-listing p {
+    padding-top: 50px
+  }
+
+
+  pre, .sourceCode{
+      background-color: aliceblue;
+  }
+
+
+  .footer div{
+    text-align: justify;
+  }
+
+  .footer img{
+    max-height: 200px; 
+    float: right;
+  }
+  </style>
   <!--/radix_placeholder_site_in_header-->
 
+  <link rel="stylesheet" href="mystyle.css" type="text/css"/>
 
 </head>
 
@@ -2058,6 +2079,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<span class="logo">
+<img src="zhaw_rgb.png"/>
+</span>
 <a href="index.html" class="title">Modul Research Methods</a>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
@@ -2295,7 +2319,17 @@ function init_posts_list() {
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<div class = "footer">
+  <img src="zhaw_lsfm_iunr_weiss.png" alt="ZHAW LSFM Logo"></img>
+  
+  <p>These Materials are created by variouse authors for the Course *Research Methods and are licensed under Creative Commons Attribution 4.0 International License.</p> 
+  
+  
+</div>
+</div>
 <!--/radix_placeholder_navigation_after_body-->
+
 
 </body>
 

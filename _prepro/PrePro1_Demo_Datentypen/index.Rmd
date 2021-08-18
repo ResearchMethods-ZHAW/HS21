@@ -1,22 +1,19 @@
 ---
-title: Demo
-output: distill::distill_article
+title: Demo Datentypen
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - PrePro1
 - PrePro
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("index.Rmd", "Demo_Datentypen.R", documentation = 0)
 ```
 
-```{r, include=FALSE, purl=F}
-
-knitr::opts_chunk$set(echo = TRUE,include = T, collapse=TRUE)
-```
-
-## Demo: Datentypen, Tabellen
 
 [R-Code als Download](Demo_Datentypen.R)
 
@@ -368,10 +365,6 @@ library(lubridate)
 df$Ankunft_stunde <- hour(df$Ankunft)
 ```
 
-### Quellen
-
-```
-```
 
 
 

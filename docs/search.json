@@ -5,51 +5,50 @@
       "title": "Analyses",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T11:27:54+02:00"
+      "last_modified": "2021-08-18T15:31:59+02:00"
     },
     {
       "path": "index.html",
       "title": "InfoVis1",
       "author": [],
       "contents": "\nDas Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).\nAuf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.\n\n\n\n",
-      "last_modified": "2021-08-18T11:27:54+02:00"
+      "last_modified": "2021-08-18T15:32:00+02:00"
     },
     {
       "path": "index.html",
       "title": "Modul Research Methods",
       "author": [],
       "contents": "\nDas Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).\nAuf dieser Plattform (RStudio Connect) werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.\n\n\n\n",
-      "last_modified": "2021-08-18T11:27:54+02:00"
+      "last_modified": "2021-08-18T15:32:00+02:00"
     },
     {
       "path": "InfoVis.html",
       "title": "InfoVis",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T11:27:55+02:00"
+      "contents": "\nDie konventionelle schliessende Statistik arbeitet in der Regel konfirmatorisch, sprich aus der bestehenden Theorie heraus werden Hypothesen formuliert, welche sodann durch Experimente geprüft und akzeptiert oder verworfen werden. Die Explorative Datenanalyse (EDA) nimmt dazu eine antagonistische Analyseperspektive ein und will in den Daten zunächst Zusammenhänge aufdecken, welche dann wiederum zur Formulierung von prüfbaren Hypothesen führen kann. Die Einheit stellt dazu den klassischen 5-stufigen EDA-Prozess nach Tukey (1980!) vor. Abschliessend wird dann noch die Brücke geschlagen zur modernen Umsetzung der EDA in Form von Visual Analytics.\nDie Informationsvisualisierung ist eine vielseitige, effektive und effiziente Methode für die explorative Datenanalyse. Während Scatterplots und Histogramme weitherum bekannt sind, bieten weniger bekannte Informationsvisualisierungs-Typen wie etwa Parallelkoordinatenplots, TreeMaps oder Chorddiagramme originelle alternative Darstellungsformen zur visuellen Analyse von Datensätze, welche stets grösser und komplexer werden. Die Studierenden lernen in dieser Lerneinheit eine Reihe von Informationsvisualisierungstypen kennen, lernen diese zielführend zu gestalten und selber zu erstellen.\n\n\n\n",
+      "last_modified": "2021-08-18T15:32:00+02:00"
     },
     {
       "path": "PrePro.html",
-      "title": "PrePro",
+      "title": "Daten Preprocessing",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T11:27:55+02:00"
+      "contents": "\nDie Datenkunde 2.0 gibt den Studierenden das Wissen und die Fertigkeiten an die Hand, selbst erhobene und bezogene Daten für Ihre eigenen Analysen vorzubereiten und anzureichern (preprocessing). Die Einheit vermittelt zentrale Datenverarbeitungskompetenzen und thematisiert bekannte Problemzonen der umweltwissenschaftlichen Datenverarbeitung – immer mit einer „hands-on“ Perspektive auf die begleitenden R-Übungen. Die Studierenden lernen die Eigenschaften ihrer Datensätze in der Fachsprache korrekt zu beschreiben. Sie lernen ausserdem Metadaten zu verstehen und die Implikationen derselben für ihre eigenen Analyseprojekte kritisch zu beurteilen. Zentrale Konzepte der Lerneinheit sind Skalenniveaus, Datentypen, Zeitdaten und Typumwandlungen.\n\n\n\n\n",
+      "last_modified": "2021-08-18T15:32:01+02:00"
     },
     {
       "path": "RaumAn.html",
       "title": "RaumAn",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T11:27:56+02:00"
+      "last_modified": "2021-08-18T15:32:01+02:00"
     },
     {
       "path": "Statistik.html",
       "title": "Statistik",
-      "description": "lökasdjfasdklfj",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-18T11:28:43+02:00"
+      "last_modified": "2021-08-18T15:32:02+02:00"
     }
   ],
-  "collections": ["prepro1/prepro1.json", "posts/posts.json", "infovis/infovis.json", "prepro/prepro.json", "rauman/rauman.json", "statistik/statistik.json"]
+  "collections": ["prepro1/prepro1.json", "infovis/infovis.json", "prepro/prepro.json", "rauman/rauman.json", "statistik/statistik.json"]
 }

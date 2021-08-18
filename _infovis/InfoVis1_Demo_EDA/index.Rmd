@@ -1,26 +1,18 @@
 ---
-title: knitr
-output: distill::distill_article
+title: EDA Beispiel Vorlesung
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - InfoVis1
 - InfoVis
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
-```{r, include=F, purl=F}
-
-knitr::opts_chunk$set(echo = T,include = T,message = F, collapse=TRUE)
-# knitr::opts_knit$set(root.dir = "11_InfoVis1") 
-
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("index.Rmd", "Demo_EDA.R", documentation = 0)
 ```
 
-
-
-
-## EDA Beispiel Vorlesung
 
 [Demoscript als Download](Demo_EDA.R)
 
@@ -170,7 +162,4 @@ symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
 
 ```
 
-### Quellen
 
-```
-```

@@ -1,5 +1,5 @@
 ---
-title: knitr
+title: Uebung A
 output: distill::distill_article
 categories:
 - PrePro2
@@ -19,7 +19,6 @@ select <- dplyr::select
 
 ```
 
-## Uebung A
 
 
 ```{r,message=F}
@@ -29,7 +28,7 @@ library(stringr)
 ```
 
 
-### Aufgabe 1
+## Aufgabe 1
 
 Lade die Wetterdaten aus der letzten Übung.
 
@@ -46,7 +45,7 @@ wetter <- read_table("order_52252_data.txt",
 ```
 
 
-### Aufgabe 2
+## Aufgabe 2
 
 Bereinige den Datensatz. Entferne z.B. alle Zeilen, bei dem der Stationsnahme oder Temperaturwerte fehlen 
 
@@ -61,7 +60,7 @@ wetter <- wetter %>%
 
 
 
-### Aufgabe 3
+## Aufgabe 3
 
 Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
 
@@ -79,7 +78,7 @@ wetter_wide[1:5, 1:7]
 ```
 
 
-### Aufgabe 4
+## Aufgabe 4
 
 
 
@@ -99,7 +98,7 @@ wetter_legende <- read_delim("order_52252_legend.csv",
 
 
 
-### Aufgabe 5
+## Aufgabe 5
 
 
 Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die `x` und `y` Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze dafür `tidyr::separate()`).
@@ -126,7 +125,7 @@ wetter_legende <- wetter_legende %>%
 ```
 
 
-### Aufgabe 6
+## Aufgabe 6
 
 Nun wollen wir den Datensatz `wetter`mit den Informationen aus `wetter_legende`anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).
 
@@ -140,7 +139,7 @@ wetter_legende <- dplyr::select(wetter_legende, stn, Name, x,y,Meereshoehe)
 ```
 
 
-### Aufgabe 7
+## Aufgabe 7
 
 Nun ist der Datensatz `wetter_legende`genügend vorbereitet. Jetzt kann er mit dem Datensatz `wetter` verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir "joinen" können.
 
@@ -156,7 +155,7 @@ wetter <- left_join(wetter,wetter_legende,by = "stn")
 # Attribut: "stn"
 ```
 
-### Aufgabe 8
+## Aufgabe 8
 
 Berechne die Durchschnittstemperatur pro Station. Nutze dabei `dplyr::summarise()` und wenn möglich `%>%`. Speichere das Resultat in einer neuen Variabel.
 
@@ -170,7 +169,7 @@ wetter_sry <- wetter %>%
   summarise(temp_mean = mean(tre200h0))
 ```
 
-### Aufgabe 9
+## Aufgabe 9
 
 Nun wollen wir das Resultat aus Aufgabe 7 nutzen, um die Durchschnittstemperatur der Meereshöhe gegenüber zu stellen. Dummerweise ging das Attribut `Meereshoehe` bei der `summarise()` Operation verloren (da bei `summarise()` alle Spalten weg fallen, die **nicht** in `group_by()` definiert wurden). Um die Spalte `Meereshoehe` beizubehalten, muss sie also unter `group_by()` aufgelistet werden. 
 

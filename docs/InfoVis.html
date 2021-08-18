@@ -2040,8 +2040,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <style type="text/css">
+  body.layout-listing p {
+    padding-top: 50px
+  }
+
+
+  pre, .sourceCode{
+      background-color: aliceblue;
+  }
+
+
+  .footer div{
+    text-align: justify;
+  }
+
+  .footer img{
+    max-height: 200px; 
+    float: right;
+  }
+  </style>
   <!--/radix_placeholder_site_in_header-->
 
+  <link rel="stylesheet" href="mystyle.css" type="text/css"/>
 
 </head>
 
@@ -2058,6 +2079,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<span class="logo">
+<img src="zhaw_rgb.png"/>
+</span>
 <a href="index.html" class="title">Modul Research Methods</a>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
@@ -2264,24 +2288,6 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="InfoVis">InfoVis</h1>
-<a href="infovis/InfoVis1_Abstract/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["InfoVis1","InfoVis"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>InfoVis1</h2>
-<div class="dt-tags">
-<div class="dt-tag">InfoVis1</div>
-<div class="dt-tag">InfoVis</div>
-</div>
-<p></p>
-</div>
-</a>
 <a href="infovis/InfoVis1_Demo_EDA/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["InfoVis1","InfoVis"]}</script>
 <div class="metadata">
@@ -2292,7 +2298,7 @@ function init_posts_list() {
 <img src="infovis/InfoVis1_Demo_EDA/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>knitr</h2>
+<h2>EDA Beispiel Vorlesung</h2>
 <div class="dt-tags">
 <div class="dt-tag">InfoVis1</div>
 <div class="dt-tag">InfoVis</div>
@@ -2300,17 +2306,17 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
-<a href="infovis/InfoVis1_Uebung_loesung/" class="post-preview">
+<a href="infovis/InfoVis1_Demo_ggplot/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["InfoVis1","InfoVis"]}</script>
 <div class="metadata">
 <div class="publishedDate">Aug. 18, 2021</div>
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img/>
+<img src="infovis/InfoVis1_Demo_ggplot/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>Loesung</h2>
+<h2>Demo `ggplot2`</h2>
 <div class="dt-tags">
 <div class="dt-tag">InfoVis1</div>
 <div class="dt-tag">InfoVis</div>
@@ -2325,30 +2331,12 @@ function init_posts_list() {
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img/>
+<img src="infovis/InfoVis1_Uebung/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>Uebung</h2>
+<h2>Übung</h2>
 <div class="dt-tags">
 <div class="dt-tag">InfoVis1</div>
-<div class="dt-tag">InfoVis</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="infovis/InfoVis2_Abstract/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["InfoVis2","InfoVis"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>InfoVis2</h2>
-<div class="dt-tags">
-<div class="dt-tag">InfoVis2</div>
 <div class="dt-tag">InfoVis</div>
 </div>
 <p></p>
@@ -2361,28 +2349,10 @@ function init_posts_list() {
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img data-src="infovis/InfoVis2_Demo_Debug/distill-preview.png"/>
+<img src="infovis/InfoVis2_Demo_Debug/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>Demo</h2>
-<div class="dt-tags">
-<div class="dt-tag">InfoVis2</div>
-<div class="dt-tag">InfoVis</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="infovis/InfoVis2_Uebung_A_loesung/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["InfoVis2","InfoVis"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung</h2>
+<h2>Demo Debugging Tips</h2>
 <div class="dt-tags">
 <div class="dt-tag">InfoVis2</div>
 <div class="dt-tag">InfoVis</div>
@@ -2397,28 +2367,10 @@ function init_posts_list() {
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img data-src="infovis/InfoVis2_Uebung_A/distill-preview.png"/>
+<img src="infovis/InfoVis2_Uebung_A/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>knitr</h2>
-<div class="dt-tags">
-<div class="dt-tag">InfoVis2</div>
-<div class="dt-tag">InfoVis</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="infovis/InfoVis2_Uebung_B_loesung/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["InfoVis2","InfoVis"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung</h2>
+<h2>Uebung A</h2>
 <div class="dt-tags">
 <div class="dt-tag">InfoVis2</div>
 <div class="dt-tag">InfoVis</div>
@@ -2436,7 +2388,7 @@ function init_posts_list() {
 <img/>
 </div>
 <div class="description">
-<h2>knitr</h2>
+<h2>Uebung B (Optional)</h2>
 <div class="dt-tags">
 <div class="dt-tag">InfoVis2</div>
 <div class="dt-tag">InfoVis</div>
@@ -2451,19 +2403,19 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(10)</span>
+<span class="category-count">(6)</span>
 </li>
 <li>
 <a href="#category:InfoVis">InfoVis</a>
-<span class="category-count">(10)</span>
+<span class="category-count">(6)</span>
 </li>
 <li>
 <a href="#category:InfoVis1">InfoVis1</a>
-<span class="category-count">(4)</span>
+<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#category:InfoVis2">InfoVis2</a>
-<span class="category-count">(6)</span>
+<span class="category-count">(3)</span>
 </li>
 </ul>
 </div>
@@ -2483,6 +2435,8 @@ function init_posts_list() {
 
 
 <div class="d-article">
+<p>Die konventionelle schliessende Statistik arbeitet in der Regel konfirmatorisch, sprich aus der bestehenden Theorie heraus werden Hypothesen formuliert, welche sodann durch Experimente geprüft und akzeptiert oder verworfen werden. Die Explorative Datenanalyse (EDA) nimmt dazu eine antagonistische Analyseperspektive ein und will in den Daten zunächst Zusammenhänge aufdecken, welche dann wiederum zur Formulierung von prüfbaren Hypothesen führen kann. Die Einheit stellt dazu den klassischen 5-stufigen EDA-Prozess nach Tukey (1980!) vor. Abschliessend wird dann noch die Brücke geschlagen zur modernen Umsetzung der EDA in Form von Visual Analytics.</p>
+<p>Die Informationsvisualisierung ist eine vielseitige, effektive und effiziente Methode für die explorative Datenanalyse. Während Scatterplots und Histogramme weitherum bekannt sind, bieten weniger bekannte Informationsvisualisierungs-Typen wie etwa Parallelkoordinatenplots, TreeMaps oder Chorddiagramme originelle alternative Darstellungsformen zur visuellen Analyse von Datensätze, welche stets grösser und komplexer werden. Die Studierenden lernen in dieser Lerneinheit eine Reihe von Informationsvisualisierungstypen kennen, lernen diese zielführend zu gestalten und selber zu erstellen.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2498,7 +2452,17 @@ function init_posts_list() {
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<div class = "footer">
+  <img src="zhaw_lsfm_iunr_weiss.png" alt="ZHAW LSFM Logo"></img>
+  
+  <p>These Materials are created by variouse authors for the Course *Research Methods and are licensed under Creative Commons Attribution 4.0 International License.</p> 
+  
+  
+</div>
+</div>
 <!--/radix_placeholder_navigation_after_body-->
+
 
 </body>
 

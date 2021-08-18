@@ -76,7 +76,7 @@
   },
   {
     "path": "statistik/Statistik1_assigment_stat1/",
-    "title": "Uebungen",
+    "title": "Übung 1",
     "description": {},
     "author": [],
     "date": "2021-08-18",
@@ -84,9 +84,9 @@
       "Statistik1",
       "Statistik"
     ],
-    "contents": "\n\n\n\nUebungen 1\nUebung 1.1: Assoziationstest\nBitte führt einen Assoziationstest zweier kategorialer Variablen (mit je zwei Ausprägungen) mit Chi-Quadrat und Fishers exaktem Test durch. Ihr habt zwei Möglichkeiten: (1) Ihr erhebt dazu selbst die Daten (wozu ihr euch auch in Teams zusammenschliessen könnt). Dabei könnt ihr sowohl Befragungen/Datenerhebung unter Mitstudierenden durchführen (etwa Nutzung Mac/Windows vs. männlich/weiblich) oder Daten zu anderen Objekten erheben. (2) Ihr nehmt zwei kategoriale Variablen aus einem der Novanimal-Datensätze (Feldexperiment oder Gästebefragung).  Bitte formuliert in beiden Fällen vor der Datenerhebung/Datenextraktion eine Hypothese, d.h. eine Erwartungshaltung, ob und welche Assoziation vorliegt und wenn ja warum. Bitte beachtet, dass ihr für die Form des Assoziationstests aus dem Kurs zwei binäre Variablen benötigt; wenn ihr also kategoriale Variablen mit mehr als zwei Ausprägungen habt, könnt ihr entweder Ausprägungen sinnvoll zusammenfassen oder seltene Ausprägungen im Test unberücksichtigt lassen.\nUebung 1.2: t-Test\nWerden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?\nDefiniere die Null- (\\(H_0\\)) und die Alternativhypothese (\\(H_1\\)).\nFühre einen t-Test durch.\nWelche Form von t-Test musst Du anwenden: einseitig/zweiseitig resp. gepaart/ungepaart?\nWie gut sind die Voraussetzungen für einen t-Test erfüllt (z.B. Normalverteilung der Residuen und Varianzhomogenität)?\nStelle deine Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle\n\n\n\n",
+    "contents": "\n\n\n\nUebung 1.1: Assoziationstest\nBitte führt einen Assoziationstest zweier kategorialer Variablen (mit je zwei Ausprägungen) mit Chi-Quadrat und Fishers exaktem Test durch. Ihr habt zwei Möglichkeiten: (1) Ihr erhebt dazu selbst die Daten (wozu ihr euch auch in Teams zusammenschliessen könnt). Dabei könnt ihr sowohl Befragungen/Datenerhebung unter Mitstudierenden durchführen (etwa Nutzung Mac/Windows vs. männlich/weiblich) oder Daten zu anderen Objekten erheben. (2) Ihr nehmt zwei kategoriale Variablen aus einem der Novanimal-Datensätze (Feldexperiment oder Gästebefragung).  Bitte formuliert in beiden Fällen vor der Datenerhebung/Datenextraktion eine Hypothese, d.h. eine Erwartungshaltung, ob und welche Assoziation vorliegt und wenn ja warum. Bitte beachtet, dass ihr für die Form des Assoziationstests aus dem Kurs zwei binäre Variablen benötigt; wenn ihr also kategoriale Variablen mit mehr als zwei Ausprägungen habt, könnt ihr entweder Ausprägungen sinnvoll zusammenfassen oder seltene Ausprägungen im Test unberücksichtigt lassen.\nUebung 1.2: t-Test\nWerden in den Basis- und Interventionswochen unterschiedlich viele Gerichte verkauft?\nDefiniere die Null- (\\(H_0\\)) und die Alternativhypothese (\\(H_1\\)).\nFühre einen t-Test durch.\nWelche Form von t-Test musst Du anwenden: einseitig/zweiseitig resp. gepaart/ungepaart?\nWie gut sind die Voraussetzungen für einen t-Test erfüllt (z.B. Normalverteilung der Residuen und Varianzhomogenität)?\nStelle deine Ergebnisse angemessen dar, d.h. Text mit Abbildung und/oder Tabelle\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-18T11:13:05+02:00",
+    "last_modified": "2021-08-18T14:35:19+02:00",
     "input_file": {}
   },
   {

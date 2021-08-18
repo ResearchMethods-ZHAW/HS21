@@ -1,0 +1,18 @@
+body.layout-listing p {
+  padding-top: 50px
+}
+
+
+pre, .sourceCode{
+    background-color: aliceblue;
+}
+
+
+.footer div{
+  text-align: justify;
+}
+
+.footer img{
+  max-height: 200px; 
+  float: right;
+}

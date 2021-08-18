@@ -140,3 +140,5 @@ symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
 
 symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
 
+```{.r .distill-force-highlighting-css}
+```

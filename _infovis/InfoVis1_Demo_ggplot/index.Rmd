@@ -1,32 +1,26 @@
 ---
-title: knitr
-output: distill::distill_article
+title: Demo `ggplot2`
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - InfoVis1
 - InfoVis
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("index.Rmd", "Demo_ggplot.R", documentation = 0)
 ```
 
-```{r, include=F, purl=F}
+[Demoscript als Download](Demo_ggplot.R)
 
-knitr::opts_chunk$set(echo = T,include = T,message = F, collapse=TRUE) # 
-# knitr::opts_knit$set(root.dir = "11_InfoVis1") 
-
-```
 
 ```{r, message = F}
 library(tidyverse)
 library(lubridate)
-
 ```
 
-## Demo: `ggplot2`
-
-[Demoscript als Download](Demo_ggplot.R)
 
 Als erstes laden wir den Wetterdatensatz von der Übung Prepro1 ein.
 
