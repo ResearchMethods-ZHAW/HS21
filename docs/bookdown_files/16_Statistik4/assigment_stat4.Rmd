@@ -1,4 +1,4 @@
-## Uebungen 4
+## Übungen 4
 
 ### Uebung 4.1: Nicht-lineare Regression
 

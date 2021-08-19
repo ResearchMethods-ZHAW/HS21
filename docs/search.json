@@ -5,77 +5,77 @@
       "title": "Analyses",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:42+02:00"
+      "last_modified": "2021-08-19T14:51:43+02:00"
     },
     {
       "path": "index.html",
       "title": "InfoVis1",
       "author": [],
       "contents": "\nDas Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).\nHier werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:42+02:00"
+      "last_modified": "2021-08-19T14:51:44+02:00"
     },
     {
       "path": "index.html",
       "title": "Modul Research Methods",
       "author": [],
       "contents": "\nDas Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für praxisorientiertes und angewandtes wissenschaftliches Arbeiten im Fachbereich „Umwelt und Natürliche Ressourcen“ auf MSc-Niveau. Die Studierenden erarbeiten sich vertiefte Methodenkompetenzen für die analytische Betrachtung der Zusammenhänge im Gesamtsystem „Umwelt und Natürliche Ressourcen“. Die Studierenden erlernen die methodischen Kompetenzen, auf denen die nachfolgenden Module im MSc Programm UNR aufbauen. Das Modul vermittelt einerseits allgemeine, fächerübergreifende methodische Kompetenzen (z.B. Wissenschaftstheorie, computer-gestützte Datenverar-beitung und Statistik).\nHier werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:42+02:00"
+      "last_modified": "2021-08-19T14:51:44+02:00"
     },
     {
       "path": "InfoVis_abstract.html",
       "title": "Informations Visualisierung",
       "author": [],
       "contents": "\n\nContents\nInfovis 1\nInfovis 2\n\nInfovis 1\nDie konventionelle schliessende Statistik arbeitet in der Regel konfirmatorisch, sprich aus der bestehenden Theorie heraus werden Hypothesen formuliert, welche sodann durch Experimente geprüft und akzeptiert oder verworfen werden. Die Explorative Datenanalyse (EDA) nimmt dazu eine antagonistische Analyseperspektive ein und will in den Daten zunächst Zusammenhänge aufdecken, welche dann wiederum zur Formulierung von prüfbaren Hypothesen führen kann. Die Einheit stellt dazu den klassischen 5-stufigen EDA-Prozess nach Tukey (1980!) vor. Abschliessend wird dann noch die Brücke geschlagen zur modernen Umsetzung der EDA in Form von Visual Analytics.\nInfovis 2\nDie Informationsvisualisierung ist eine vielseitige, effektive und effiziente Methode für die explorative Datenanalyse. Während Scatterplots und Histogramme weitherum bekannt sind, bieten weniger bekannte Informationsvisualisierungs-Typen wie etwa Parallelkoordinatenplots, TreeMaps oder Chorddiagramme originelle alternative Darstellungsformen zur visuellen Analyse von Datensätze, welche stets grösser und komplexer werden. Die Studierenden lernen in dieser Lerneinheit eine Reihe von Informationsvisualisierungstypen kennen, lernen diese zielführend zu gestalten und selber zu erstellen.\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:43+02:00"
+      "last_modified": "2021-08-19T14:51:44+02:00"
     },
     {
       "path": "InfoVis.html",
       "title": "InfoVis",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:43+02:00"
+      "last_modified": "2021-08-19T14:51:45+02:00"
     },
     {
       "path": "PrePro_abstract.html",
       "title": "Preprocessing: Die Vorverarbeitung von Daten",
       "author": [],
       "contents": "\nDie Datenkunde 2.0 gibt den Studierenden das Wissen und die Fertigkeiten an die Hand, selbst erhobene und bezogene Daten für Ihre eigenen Analysen vorzubereiten und anzureichern (preprocessing). Die Einheit vermittelt zentrale Datenverarbeitungskompetenzen und thematisiert bekannte Problemzonen der umweltwissenschaftlichen Datenverarbeitung – immer mit einer „hands-on“ Perspektive auf die begleitenden R-Übungen. Die Studierenden lernen die Eigenschaften ihrer Datensätze in der Fachsprache korrekt zu beschreiben. Sie lernen ausserdem Metadaten zu verstehen und die Implikationen derselben für ihre eigenen Analyseprojekte kritisch zu beurteilen. Zentrale Konzepte der Lerneinheit sind Skalenniveaus, Datentypen, Zeitdaten und Typumwandlungen.\nDie Lerneinheit vermittelt zentralste Fertigkeiten zur Vorverarbeitung von strukturierten Daten in der umweltwissenschaftlichen Forschung: Datensätze verbinden (Joins) und umformen („reshape“, „split-apply-combine“). Im Anwendungskontext haben Daten selten von Anfang an diejenige Struktur, welche für die statistische Auswertung oder für die Informationsvisualisierung erforderlich wäre. In dieser Lerneinheit lernen die Studierenden die für diese oft zeitraubenden Preprocessing-Schritte notwendigen Konzepte und R-Werkzeuge kennen und kompetent anzuwenden.\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:43+02:00"
+      "last_modified": "2021-08-19T14:51:45+02:00"
     },
     {
       "path": "PrePro.html",
       "title": "Daten Preprocessing",
       "author": [],
-      "contents": "\nDie Datenkunde 2.0 gibt den Studierenden das Wissen und die Fertigkeiten an die Hand, selbst erhobene und bezogene Daten für Ihre eigenen Analysen vorzubereiten und anzureichern (preprocessing). Die Einheit vermittelt zentrale Datenverarbeitungskompetenzen und thematisiert bekannte Problemzonen der umweltwissenschaftlichen Datenverarbeitung – immer mit einer „hands-on“ Perspektive auf die begleitenden R-Übungen. Die Studierenden lernen die Eigenschaften ihrer Datensätze in der Fachsprache korrekt zu beschreiben. Sie lernen ausserdem Metadaten zu verstehen und die Implikationen derselben für ihre eigenen Analyseprojekte kritisch zu beurteilen. Zentrale Konzepte der Lerneinheit sind Skalenniveaus, Datentypen, Zeitdaten und Typumwandlungen.\n\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:44+02:00"
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-08-19T14:51:45+02:00"
     },
     {
       "path": "RaumAn_abstract.html",
       "title": "Räumliche Analyse",
       "author": [],
       "contents": "\n\nContents\nTeil 1\nTeil 2\nTeil 3\n\nTeil 1\nDie erste Übung zur Raumanalyse illustriert das einfache Laden und Anzeigen von Geodaten im Vektor- und Raster-Datenformat. Zusätzlich veranschaulicht die Übung den Umgang mit Koordinatensystemen sowie die Vektor-Raster-Konvertierung. Einfach erste Analysen umfassen den Spatial Join (Annotieren von Punkten mit Attributen von die Punkte einbettenden Vektordaten) sowie Puffer-Operationen. Zum Abschluss thematisiert die Übung die Aggregationsabhängigkeit räumlicher Daten durch die Illustration des Modifiable Areal Unit Problem (MAUP). Inhaltlich orientiert sich die Übung an Bodeneigenschaften für den Untersuchungsraum Schweiz.\nTeil 2\nIn dieser zweiten Übung wirst Du wiederum Geodatensätze verarbeiten und darstellen. Wir starten mit einem Punktdatensatz zu einem Messnetz zur Erhebung der Luftqualität in der Schweiz (Stickstoffdioxid NO2 um genau zu sein). Im Gegensatz zum Punktdatensatz zur Wasserverfügbarkeit aus der vorherigen Übung, sind die Messstellen des Messnetzes zur Luftqualität sehr unregelmässig im Raum verteilt. Trotzdem möchten wir versuchen ein kontinuierliches Raster von Luftqualitätswerten für die ganze Schweiz zu interpolieren. Wir starten mit der einfachen Interpolations-Methode Inverse Distance Weighting IDW. Danach wollen wir für den gleichen Datensatz nach dem Ansatz der nächsten Nachbarn die Thiessen Polygone konstruieren. Im zweiten Teil der Übung wollen wir Dichteverteilung untersuchen. Dabei untersuchen wir einen Datensatz mit Bewegungsdaten eines Rotmilans in der Schweiz. Mittels einer Kernel Density Estimation (KDE) berechnen wir eine kontinuierliche Dichteverteilung, über die wir eine Annäherung an das Habitat des untersuchten Greifvogels berechnen können. Bevor wir aber starten, schauen wir uns die Punktdatensätze genauer an indem wir die G-Function berechnen und plotten.\nTeil 3\nZum Abschluss des Themenblockes Spatial Data Science berechnen wir mit dem Moran’s I einen Index zur Berechnung der räumlichen Autokorrelation einer Choroplethenkarte. Wir verwenden nochmals die aggregierten Choroplethenkarten zur Wasserverfügbarkeit aus der ersten Übung und schauen uns an, wie stark die Werte für die Kantone und die Bezirke autokorreliert sind. Anstatt einfach eine Funktion zur Berechnung von Moran’s I aufzurufen und diese dann wie eine Black Box anzuwenden, wollen wir Formel für die Berechnung des Index in Ihre Bausteine zerlegen und diese Schritt für Schritt selber nachrechnen. So seht Ihr, wie Moran’s I wirklich funktioniert und könnte dabei erst noch die zuvor gelernten Data Science Techniken repetieren.\nAusserdem zeigen wir Euch ganz einfache Verfahren, um die bereits erstellten Karten interaktiv zu machen.\nAuf geht’s!\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:44+02:00"
+      "last_modified": "2021-08-19T14:51:46+02:00"
     },
     {
       "path": "RaumAn.html",
       "title": "Räumliche Analyse: 'Spatial Data Science'",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:44+02:00"
+      "last_modified": "2021-08-19T14:51:46+02:00"
     },
     {
       "path": "Statistik_abstract.html",
       "title": "Statistik",
       "author": [],
       "contents": "\n\nContents\nStatistik 1\nStatistik 2\nStatistik 3\nStatistik 4\nStatistik 5\nStatistik 6\nStatistik 7\nStatistik 8\n\nStatistik 1\nIn Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der frequentist-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.\n\n\n\n\nStatistik 2\nIn Statistik 2 lernen die Studierenden die Idee, die Voraussetzungen und die praktische Anwendung „einfacher“ linearer Modelle in R (sowie teilweise ihrer „nicht-parametrischen“ bzw. „robusten“ Äquivalente). Am Anfang steht die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Dann beschäftigen wir uns mit Korrelationen, die auf einen linearen Zusammenhang zwischen zwei metrischen Variablen testen, ohne Annahme einer Kausalität. Es folgen einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer Kausalität leisten. Abschliessend besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm in R) auszeichnet.\n\n\nStatistik 3\nStatistik 3 fassen wir zu Beginn den generellen Ablauf inferenzstatistischer Analysen in einem Flussdiagramm zusammen. Dann wird die ANCOVA als eine Technik vorgestellt, die eine ANOVA mit einer linearen Regression verbindet. Danach geht es um komplexere Versionen linearer Regressionen. Hier betrachten wir polynomiale Regressionen, die z. B. einen Test auf unimodale Beziehungen erlaubt, indem man dieselbe Prädiktorvariable linear und quadriert einspeist. Multiple Regressionen versuchen dagegen, eine abhängige Variable durch zwei oder mehr verschieden Prädiktorvariablen zu erklären. Wir thematisieren verschiedene dabei auftretende Probleme und ihre Lösung, insbesondere den Umgang mit korrelierten Prädiktoren und das Aufspüren des besten unter mehreren möglichen statistischen Modellen. Hieran wird auch der informatian theoretician-Ansatz der Statistik und die multimodel inference eingeführt.\nStatistik 4\nHeute geht es hauptsächlich um generalized linear models (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden. Bei generalized linear regressions muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die logistische Regression für ja/nein-Daten anschauen. Danach folgt ein Einstieg in nicht-lineare Regressionen, die es erlauben, etwa Potenzgesetze oder Sättigungsfunktionen direkt zu modellieren. Zum Abschluss gibt es einen Ausblick auf Glättungsverfahren (LOWESS) und general additive models (GAMs).\nStatistik 5\nIn Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während generalized linear models (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um linear mixed effect models (LMMs und generalized linear mixed effect models (GLMMs). Dabei bezeichnet generalized die explizite Modellierung anderer Fehler- und Varianzstrukturen und mixed die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie split-plot und repeated-measures ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.\nStatistik 6\nStatistik 6 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit multiplen abhängigen und multiplen unabhängigen Variablen effektiv zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Es folgt eine konzeptionelle Einführung in die Idee von Ordinationen als einer Technik der deskriptiven Statistik, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion visualisiert. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich CA, DCA und NMDS.\nStatistik 7\nIn Statistik 7 beschäftigen wir uns zunächst damit, wie wir Ordinationsdiagramme informativer gestalten können, etwa durch die Beschriftung der Beobachtunge, post-hoc-Projektion der Prädiktorvariablen oder Response surfaces. Während wir bislang mit «unconstrained» Ordinationen gearbeitet haben, welche die Gesamtvariabilität in den Beobachtungen visualisieren, beschränken die jeweiligen «constrained»-Varianten derselben Ordinationsmethoden die Betrachtung auf den Teil der Variabilität, welcher durch eine Linearkombination der berücksichtigen Prädiktoren erklärt werden kann. Wir beschäftigen uns im Detail mit der Redundanz-Analyse (RDA), der «constrained»-Variante der PCA und gehen einen kompletten analytischen Ablauf mit Aufbereitung, Interpretation und Visualisierung der Ergebnisse am Beispiel eines gemeinschaftsökologischen Datensatzes (Fischgesellschaften und Umweltfaktoren im Jura-Fluss Doubs) durch\nStatistik 8\nIn Statistik 8 lernen die Studierenden Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre Technik der deskriptiven Statistik multivariater Datensätze kennen. Es gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative Clusteranalysen (die jeweils eine Hierarchie produzieren). Etwas genauer gehen wir auf die k-means Clusteranalyse (eine Partitionierung) und eine Reihe von agglomerativen Clusterverfahren ein. Hierbei hat das gewählte Distanzmass und der Modus für die sukzessive Fusion von Clustern einen grossen Einfluss auf das Endergebnis. Wir besprechen ferner, wie man die Ergebnisse von Clusteranalysen adäquat visualisieren und mit anderen statistischen Prozeduren kombinieren kann. Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte. Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:45+02:00"
+      "last_modified": "2021-08-19T14:51:46+02:00"
     },
     {
       "path": "Statistik.html",
       "title": "Statistik",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-19T13:20:45+02:00"
+      "last_modified": "2021-08-19T14:51:47+02:00"
     }
   ],
   "collections": ["prepro1/prepro1.json", "infovis/infovis.json", "prepro/prepro.json", "rauman/rauman.json", "statistik/statistik.json"]

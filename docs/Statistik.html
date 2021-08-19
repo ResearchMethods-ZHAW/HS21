@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Modul Research Methods: Statistik</title>
@@ -1859,7 +1860,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2229,6 +2233,7 @@ function init_posts_list() {
 
       // mark posts that match the category visible
       var page_category = window.location.hash.replace(/^#category:/, "");
+      page_category = decodeURIComponent(page_category)
       var posts = $('.post-metadata').map(function(idx, script) {
         var metadata = $.parseJSON($(script).html());
         var post = null;
@@ -2244,7 +2249,7 @@ function init_posts_list() {
       set_posts_visible(posts, true);
 
       // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
+      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
 
       // update the list_caption
       var list_caption = $('.posts-list-caption');
@@ -2397,73 +2402,19 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
-<a href="statistik/Statistik2_solution_stat_Beispiel/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Statistik2","Statistik"]}</script>
+<a href="statistik/Statistik1_Demo_Statistik_1/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Statistik1","Statistik"]}</script>
 <div class="metadata">
 <div class="publishedDate">Aug. 19, 2021</div>
 <div class="dt-authors"></div>
 </div>
 <div class="thumbnail">
-<img data-src="statistik/Statistik2_solution_stat_Beispiel/distill-preview.png"/>
+<img data-src="statistik/Statistik1_Demo_Statistik_1/distill-preview.png"/>
 </div>
 <div class="description">
-<h2>Musterloesung</h2>
+<h2>Demo Statistik 1</h2>
 <div class="dt-tags">
-<div class="dt-tag">Statistik2</div>
-<div class="dt-tag">Statistik</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="statistik/Statistik6_Demo_Statistik_6/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Statistik6","Statistik"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img data-src="statistik/Statistik6_Demo_Statistik_6/distill-preview.png"/>
-</div>
-<div class="description">
-<h2>Demo</h2>
-<div class="dt-tags">
-<div class="dt-tag">Statistik6</div>
-<div class="dt-tag">Statistik</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="statistik/Statistik7_Demoskirpt_extended/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Statistik7","Statistik"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Statistik</h2>
-<div class="dt-tags">
-<div class="dt-tag">Statistik7</div>
-<div class="dt-tag">Statistik</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="statistik/Statistik7_solution_stat7/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Statistik7","Statistik"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Musterloesung</h2>
-<div class="dt-tags">
-<div class="dt-tag">Statistik7</div>
+<div class="dt-tag">Statistik1</div>
 <div class="dt-tag">Statistik</div>
 </div>
 <p></p>
@@ -2480,24 +2431,6 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Beschreibung Forschungsprojekt NOVANIMAL (NFP69)</h2>
-<div class="dt-tags">
-<div class="dt-tag">Statistik1</div>
-<div class="dt-tag">Statistik</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="statistik/Statistik1_Demo_Statistik_1/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Statistik1","Statistik"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img data-src="statistik/Statistik1_Demo_Statistik_1/distill-preview.png"/>
-</div>
-<div class="description">
-<h2>Demo Statistik 1</h2>
 <div class="dt-tags">
 <div class="dt-tag">Statistik1</div>
 <div class="dt-tag">Statistik</div>
@@ -2541,6 +2474,24 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
+<a href="statistik/Statistik2_solution_stat_Beispiel/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Statistik2","Statistik"]}</script>
+<div class="metadata">
+<div class="publishedDate">Aug. 19, 2021</div>
+<div class="dt-authors"></div>
+</div>
+<div class="thumbnail">
+<img data-src="statistik/Statistik2_solution_stat_Beispiel/distill-preview.png"/>
+</div>
+<div class="description">
+<h2>Musterloesung</h2>
+<div class="dt-tags">
+<div class="dt-tag">Statistik2</div>
+<div class="dt-tag">Statistik</div>
+</div>
+<p></p>
+</div>
+</a>
 <a href="statistik/Statistik2_solution_stat2/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Statistik2","Statistik"]}</script>
 <div class="metadata">
@@ -2577,24 +2528,6 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
-<a href="statistik/Statistik3_Uebungen_3/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Statistik3","Statistik"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors"></div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung 3</h2>
-<div class="dt-tags">
-<div class="dt-tag">Statistik3</div>
-<div class="dt-tag">Statistik</div>
-</div>
-<p></p>
-</div>
-</a>
 <a href="statistik/Statistik3_solution_stat3/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Statistik3","Statistik"]}</script>
 <div class="metadata">
@@ -2606,6 +2539,24 @@ function init_posts_list() {
 </div>
 <div class="description">
 <h2>Musterloesung Aufgabe 3.1 Multiple Regression</h2>
+<div class="dt-tags">
+<div class="dt-tag">Statistik3</div>
+<div class="dt-tag">Statistik</div>
+</div>
+<p></p>
+</div>
+</a>
+<a href="statistik/Statistik3_Uebungen_3/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Statistik3","Statistik"]}</script>
+<div class="metadata">
+<div class="publishedDate">Aug. 19, 2021</div>
+<div class="dt-authors"></div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>Uebung 3</h2>
 <div class="dt-tags">
 <div class="dt-tag">Statistik3</div>
 <div class="dt-tag">Statistik</div>
@@ -2721,6 +2672,24 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
+<a href="statistik/Statistik6_Demo_Statistik_6/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Statistik6","Statistik"]}</script>
+<div class="metadata">
+<div class="publishedDate">Aug. 19, 2021</div>
+<div class="dt-authors"></div>
+</div>
+<div class="thumbnail">
+<img data-src="statistik/Statistik6_Demo_Statistik_6/distill-preview.png"/>
+</div>
+<div class="description">
+<h2>Demo</h2>
+<div class="dt-tags">
+<div class="dt-tag">Statistik6</div>
+<div class="dt-tag">Statistik</div>
+</div>
+<p></p>
+</div>
+</a>
 <a href="statistik/Statistik6_solution_stat6/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Statistik6","Statistik"]}</script>
 <div class="metadata">
@@ -2775,6 +2744,42 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
+<a href="statistik/Statistik7_Demoskirpt_extended/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Statistik7","Statistik"]}</script>
+<div class="metadata">
+<div class="publishedDate">Aug. 19, 2021</div>
+<div class="dt-authors"></div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>Statistik</h2>
+<div class="dt-tags">
+<div class="dt-tag">Statistik7</div>
+<div class="dt-tag">Statistik</div>
+</div>
+<p></p>
+</div>
+</a>
+<a href="statistik/Statistik7_solution_stat7/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Statistik7","Statistik"]}</script>
+<div class="metadata">
+<div class="publishedDate">Aug. 19, 2021</div>
+<div class="dt-authors"></div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>Musterloesung</h2>
+<div class="dt-tags">
+<div class="dt-tag">Statistik7</div>
+<div class="dt-tag">Statistik</div>
+</div>
+<p></p>
+</div>
+</a>
 <a href="statistik/Statistik8_assigment_stat8/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Statistik8","Statistik"]}</script>
 <div class="metadata">
@@ -2814,10 +2819,12 @@ function init_posts_list() {
 <a href="statistik/Statistik8_solution_stat8/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Statistik8","Statistik"]}</script>
 <div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
+<div class="publishedDate">Aug. 19, 2021</div>
 <div class="dt-authors"></div>
 </div>
-<div class="thumbnail"></div>
+<div class="thumbnail">
+<img/>
+</div>
 <div class="description">
 <h2>Musterloesung</h2>
 <div class="dt-tags">

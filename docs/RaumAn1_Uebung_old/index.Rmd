@@ -8,7 +8,7 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 ```{r, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
