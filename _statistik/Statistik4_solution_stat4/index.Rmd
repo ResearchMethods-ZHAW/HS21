@@ -1,5 +1,5 @@
 ---
-title: Musterloesung
+title: Musterloesung Aufgabe 4.2S multiple logistische Regression
 output: distill::distill_article
 categories:
 - Statistik4
@@ -7,25 +7,13 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
----
-output:
-  pdf_document:
-    latex_engine: xelatex
-  html_document: default
----
-## Musterloesung Aufgabe 4.2S: multiple logistische Regression
 
 *****
-> **Lese-Empfehlung** Kapitel 6 von [Manny Gimond]( https://mgimond.github.io/Stats-in-R/Logistic.html)
 
-> **Lese-Empfehlung** Kapitel 4 von [Gareth (2016)](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)
-
->Download [R-Skript](16_Statistik4/RFiles/solution_stat4.2s.R)
-
->Download [PDF](16_Statistik4/RFiles/solution_stat4.2s.pdf)
+- **Lese-Empfehlung** Kapitel 6 von [Manny Gimond]( https://mgimond.github.io/Stats-in-R/Logistic.html)
+- **Lese-Empfehlung** Kapitel 4 von [Gareth (2016)](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)
+- Download [R-Skript](16_Statistik4/RFiles/solution_stat4.2s.R)
+- Download [PDF](16_Statistik4/RFiles/solution_stat4.2s.pdf)
 
 *****
 

@@ -11,7 +11,7 @@ author:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 ```{r include=FALSE, purl=F}
 knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)

@@ -1,6 +1,8 @@
 ---
-title: Uebungen
-output: distill::distill_article
+title: Übung 5
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - Statistik5
 - Statistik
@@ -8,9 +10,8 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
-## Uebungen 5
 
 ### Uebung 5.1: Split-plot ANOVA
 
@@ -20,8 +21,8 @@ Versuch zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei Fa
 
 **Aufgaben**
 
-- **Bestimmt das minimal adäquate Modell**
-- **Stellt die Ergebnisse da**
+- Bestimmt das minimal adäquate Modell
+- Stellt die Ergebnisse da
 
 
 
@@ -34,8 +35,8 @@ Führt mit dem Datensatz [novanimal.csv](novanimal.csv) eine logistische Regress
 
 **Aufgaben**
 
-- **Bestimmt das minimal adäquate Modell**
-- **Stellt die Ergebnisse dar**
+- Bestimmt das minimal adäquate Modell
+- Stellt die Ergebnisse dar
 
 
 Ähnliches Vorgehen wie bei der Übung 4.2S:

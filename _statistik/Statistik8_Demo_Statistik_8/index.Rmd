@@ -1,21 +1,13 @@
 ---
-title: Demo
-output: distill::distill_article
+title: Demo Statistik 8
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - Statistik8
 - Statistik
-
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
-```{r, purl=F}
-
-knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, message = FALSE)
-```
-
-## Demo: Statistik 8
 
 **Cluster-Analysen**
 **(c) Juergen Dengler**
@@ -26,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE, m
 - Funktion hcoplot.R [hcoplot.R](hcoplot.R)
 
 
-__k-means clustering__
+## k-means clustering
 
 ```{r, eval=FALSE}
 # das Moordatenset aus Wildi...
@@ -58,7 +50,7 @@ plot(KM.cascade, sortg = TRUE)
 ```
 
 
-__Agglomarative Clusteranalyse__
+## Agglomarative Clusteranalyse
 mit Daten und Skripten aus Borcard et al. (2018)
 
 ```{r eval=FALSE}
@@ -71,7 +63,7 @@ spa <- spa[-8, ]
 latlong <- latlong[-8, ]
 ```
 
-__Dendogramme berechnen und ploten__
+## Dendogramme berechnen und ploten
 ```{r, eval=FALSE}
 ## Hierarchical agglomerative clustering of the species abundance 
 
@@ -130,7 +122,7 @@ plot(spe.ch.ward, labels = rownames(spe), main = "Chord - Ward")
 ```
 
 
-__Cophenetic correlations__
+## Cophenetic correlations
 
 ```{r, eval=FALSE}
 # Single linkage clustering
@@ -217,7 +209,7 @@ lines(lowess(spe.ch, spe.ch.ward.coph), col = "red")
 ```
 
 
-__Optimale Anzahl Cluster__
+## Optimale Anzahl Cluster
 ```{r eval=FALSE}
 ## Select a dendrogram (Ward/chord) and apply three criteria
 ## to choose the optimal number of clusters
@@ -321,7 +313,7 @@ text(28, 0.98, "b", cex = 1.8)
 ```
 
 
-__Final dendrogram with the selected clusters__
+## Final dendrogram with the selected clusters
 ```{r, eval=FALSE}
 # Choose the number of clusters
 k <- 4
@@ -365,7 +357,7 @@ source("drawmap.R")
 drawmap(xy = spa,clusters = spech.ward.g, main = "Four Ward clusters along the Doubs River")
 ```
 
-__Miscellaneous graphical outputs__
+## Miscellaneous graphical outputs
 ```{r, eval=FALSE}
 # Heat map of the dissimilarity matrix ordered with the dendrogram
 heatmap(as.matrix(spe.ch),Rowv =NULL , symm = TRUE,margin = c(3, 3))

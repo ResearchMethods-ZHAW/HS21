@@ -55,7 +55,6 @@ wetter_sry <- wetter %>%
     temp_mean = mean(tre200h0)
     )  
 
-
 ggplot() +
   geom_line(data = wetter_sry, aes(kw,temp_max), colour = "yellow") +
   geom_line(data = wetter_sry, aes(kw,temp_mean), colour = "pink") +

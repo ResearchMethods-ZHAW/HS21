@@ -1,8 +1,6 @@
 library(tidyverse)
 library(lubridate)
 
-
-
 wetter <- read_table("order_52252_data.txt",
                   col_types = list(
                     col_factor(levels = NULL),    

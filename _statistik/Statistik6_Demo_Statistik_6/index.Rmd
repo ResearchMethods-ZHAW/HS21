@@ -8,7 +8,7 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 
 ```{r, purl=F}
@@ -17,14 +17,15 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
 
 ## Demo: Statistik 6
+
 **Ordinationen I**
 **(c) Juergen Dengler**
 
 
 [Demoscript als Download](18_Statistik6/Statistik 6-Demo_v.04.R)
 
-
 __PCA__
+
 ```{r}
 if(!require(labdsv)){install.packages("labdsv")}
 library(labdsv)
@@ -155,6 +156,7 @@ plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achse
 ```
 
 __CA__
+
 ```{r}
 ca.1 <- cca(sveg^0.5)
 #Arten (o) und Communities (+) plotten
@@ -170,6 +172,7 @@ summary(eigenvals(ca.1))
 ```
 
  __DCA__
+ 
 ```{r, eval=FALSE}
 library(vegan)
 dca.1 <- decorana(sveg, mk=10)
@@ -180,6 +183,7 @@ plot(dca.2, display = "sites", type = "point")
 ```
 
  __NMDS__
+ 
 ```{r, eval=FALSE}
 #Distanzmatrix als Start erzeugen
 mde <- vegdist(sveg, method="euclidean")

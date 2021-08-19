@@ -1,5 +1,5 @@
 ---
-title: Uebung
+title: Uebung 3
 output: distill::distill_article
 categories:
 - Statistik3
@@ -7,10 +7,6 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
-## Uebung 3
 
 ### Aufgabe 3.1: Multiple Regression
 

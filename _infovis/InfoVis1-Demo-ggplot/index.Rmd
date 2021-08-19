@@ -128,6 +128,7 @@ ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
 
 
 Das gleiche Spiel kann man für die y-Achse betreiben. Bei unserer y-Achse handelt es sich ja um unsere `POSIXct` Daten. `ggplot` nennt diese: `scale_x_datetime()`. 
+
 ```{r}
 ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +
@@ -146,6 +147,7 @@ ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
 Mit `theme` verändert man das allgmeine Layout der Plots. Beispielsweise kann man mit `theme_classic()` `ggplot`-Grafiken etwas weniger "Poppig" erscheinen lassen: so sind sie besser für Bachelor- / Masterarbeiten sowie Publikationen geeignet. `theme_classic()` kann man indiviudell pro Plot anwenden, oder für die aktuelle Session global setzen (s.u.)
 
 Individuell pro Plot:
+
 ```{r}
 ggplot(wetter_fil, aes(time,tre200h0, colour = stn)) +
   geom_line() +

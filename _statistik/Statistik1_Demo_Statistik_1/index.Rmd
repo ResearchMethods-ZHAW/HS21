@@ -1,5 +1,5 @@
 ---
-title: Demo
+title: Demo Statistik 1
 output: distill::distill_article
 categories:
 - Statistik1
@@ -7,20 +7,17 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
-```{r, echo = F, purl = F}
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
-library(knitr)
+
+
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("index.Rmd", "Statistik_1_Demo.R", documentation = 0)
 ```
 
 
-## Demo: Statistik 1
-
-[Demoscript als Download](13_Statistik1/RFiles/Statistik_1_Demo_v.05.R)
+[Demoscript als Download](Statistik_1_Demo.R)
 
 ### Binomialtest
+
 ```{r}
 binom.test(43, 100) #In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
 binom.test(57, 100)
@@ -30,11 +27,13 @@ binom.test(57, 100)
 ### Chi-Quadrat-Test & Fishers Test
 
 Ermitteln des kritischen Wertes
+
 ```{r}
 qchisq(0.95, 1)
 ```
 
 Direkter Test in R (dazu Werte als Matrix nötig)
+
 ```{r}
 count<-matrix(c(38, 14, 11, 51), nrow = 2)
 count
@@ -59,6 +58,7 @@ hist(blume$b)
 ```
 
 zweiseitiger t-Test
+
 ```{r}
 t.test(blume$a, blume$b)
 ```
@@ -85,6 +85,7 @@ t.test(blume$a, blume$b, paired = T, alternative="greater")
 ```
 
 Wilcoxon-Vorzeichen-Rang-Test
+
 ```{r}
 shapiro.test(blume$b)
 var.test(blume$a, blume$b)

@@ -1,5 +1,5 @@
 ---
-title: Musterloesung
+title: Musterloesung Aufgabe 2.3S ANOVA mit Interaktion
 output: distill::distill_article
 categories:
 - Statistik2
@@ -7,22 +7,11 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
----
-output:
-  pdf_document: default
-  html_document: default
----
-## Musterloesung Aufgabe 2.3S: ANOVA mit Interaktion
 ******
 
->**Lese-Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
-
->Download [R-Skript](14_Statistik2/RFiles/solution_stat2.3s.R)
-
->Download [PDF](14_Statistik2/RFiles/solution_stat2.3s.pdf)
+- **Lese-Empfehlung** Kapitel 7 von [Manny Gimond](https://mgimond.github.io/Stats-in-R/ANOVA.html)
+- Download [R-Skript](14_Statistik2/RFiles/solution_stat2.3s.R)
+- Download [PDF](14_Statistik2/RFiles/solution_stat2.3s.pdf)
 
 ******
 
@@ -36,8 +25,7 @@ library(here)
 
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
-nova <- read_delim(here::here("2017_ZHAW_individual_menu_sales_NOVANIMAL.csv"), 
-                   delim = ";")
+nova <- read_delim("2017_ZHAW_individual_menu_sales_NOVANIMAL.csv", delim = ";")
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -115,7 +103,7 @@ plot(model)
 
 ```
 
-<span style="background-color: #FFFF00"> **Fazit**: Die Inspektion des Modells zeigt kleinere Verletzungen bei der Normalverteilung der Residuen (Q-Q Plot). Aufgrund keiner starken Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA ohne log-tranformierten Responsevariablen (AV).</span>
+**Fazit**: Die Inspektion des Modells zeigt kleinere Verletzungen bei der Normalverteilung der Residuen (Q-Q Plot). Aufgrund keiner starken Verbesserung durch eine Transformation der Responsevariable, entscheide ich mich für eine ANOVA ohne log-tranformierten Responsevariablen (AV).
 
 ```{r}
 # sieht aus, als ob die Voraussetzungen für eine Anova nur geringfügig verletzt sind

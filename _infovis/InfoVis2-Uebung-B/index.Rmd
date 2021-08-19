@@ -28,7 +28,7 @@ In dieser Übung bauen wir einige etwas unübliche Plots aus der Vorlesung nach.
 
 Dazu verwenden wir vor allem das Package `plotly` welches im Gegensatz zu `ggplot2` ein paar zusätzliche Plot-Typen kennt und zudem noch interaktiv ist.  Leider scheinen gewisse Browsers (z.B. Firefox) sowie der Viewer Pane mit `plotly` Mühe zu haben. Deshalb empfehlen wir folgendes:
 
-- [Übungsunterlagen für InfoVis2](http://oyster.zhaw.ch:3939/ResearchMethodsUebungen/) in Chrome zu öffnen
+- [Übungsunterlagen für InfoVis2](http://oyster.zhaw.ch:3939/ResearchMethodsÜbungen/) in Chrome zu öffnen
 - Falls ihr auf dem [RStudio Server](http://oyster.zhaw.ch:8787) arbeitet: hier ebenfalls in Chrome arbeiten
 - Falls ihr lokal mit RStudio arbeitet: Mit der Option `options(viewer=NULL)` werden Plots mit dem Standart Browser. 
 

@@ -8,7 +8,7 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 ---
 title: "Ponit Data Sources"

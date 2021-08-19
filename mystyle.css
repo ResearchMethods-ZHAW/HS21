@@ -6,9 +6,11 @@ body.layout-listing p {
 }
 
 
-pre, .sourceCode{
-    background-color: aliceblue;
+.sourceCode, d-article pre{
+    background-color: #f7f7f7;
 }
+
+
 
 /* stylign the footer (_footer.html) */
 .footer div{

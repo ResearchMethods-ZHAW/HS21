@@ -1,5 +1,5 @@
 ---
-title: Loesung
+title: Lösung 6.1
 output: distill::distill_article
 categories:
 - Statistik6
@@ -8,13 +8,11 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 
-## Loesung 6.1
 
 - [R-Skript als Download](18_Statistik6/Loesung_6.1_v.04.R)
-
 - [Loesungstext](18_Statistik6/Statistik_Loesungstext_6.1.pdf)
 
 ```{r eval=TRUE}

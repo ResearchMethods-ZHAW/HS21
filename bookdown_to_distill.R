@@ -77,7 +77,7 @@ mydf %>%
       "---",
       "",
       "```{r echo = FALSE}",
-      "knitr::opts_chunk$set(error = TRUE)",
+      "",
       "```"
     )
     
@@ -114,6 +114,7 @@ distill_dirs <- list.dirs(recursive = FALSE)
 distill_dirs <- distill_dirs[str_detect(basename(distill_dirs), "^_")]
 
 library(knitr)
+# render all rmd files in distill
 distill_dirs %>%
   map(~list.files(.x, "index.Rmd", recursive = TRUE, full.names = TRUE)) %>%
   unlist() %>%
@@ -122,6 +123,50 @@ distill_dirs %>%
     tryCatch(rmarkdown::render(x), error = function(x){"couldn't render"})
 
   })
+
+
+## Looks for code chunks that dont have an empty line before
+distill_dirs %>%
+  map(function(x){
+    list.files(path = x, pattern = ".Rmd", full.names = TRUE, recursive = TRUE)
+  }) %>%
+  unlist() %>%
+  # head(2) %>%
+  map_dfr(function(x){
+    print(paste("file", x))
+    
+    rl <- read_lines(x)
+    
+    code_chunks <- str_detect(rl, "```\\{r\\}")
+    nonempty <- lag(rl != "")
+    
+    lineses <- which(code_chunks & nonempty)
+    
+    tibble(file = x, lines = paste(lineses, collapse = ", "), n = length(lineses))
+}) %>%
+  filter(n)
+
+# looks for code chunks with a specific text
+distill_dirs %>%
+  map(function(x){
+    list.files(path = x, pattern = ".Rmd", full.names = TRUE, recursive = TRUE)
+  }) %>%
+  unlist() %>%
+  # head(2) %>%
+  map_dfr(function(x){
+    print(paste("file", x))
+    
+    rl <- read_lines(x)
+    
+    findings <- str_match(rl, "error = TRUE")[,1]
+
+
+    tibble(file = x, findings = findings)
+  }) 
+
+
+
+
 
 
 mydf %>%
@@ -163,4 +208,9 @@ map(mydf$name2, function(x){
   
   
 })
+
+
+
+
+
 

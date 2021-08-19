@@ -8,14 +8,14 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 ```{r, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 ```
 
-## Vorgeschlagene Datensaetze zur Repetition der Uebungen
+## Vorgeschlagene Datensaetze zur Repetition der Übungen
 
 <span style="color:blue">R data sets</span> 
 

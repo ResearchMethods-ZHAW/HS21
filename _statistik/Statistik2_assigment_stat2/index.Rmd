@@ -1,5 +1,5 @@
 ---
-title: Uebungen
+title: Übungen 2
 output: distill::distill_article
 categories:
 - Statistik2
@@ -8,9 +8,8 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
-## Uebungen 2
 
 ***
 

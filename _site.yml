@@ -1,7 +1,6 @@
 name: "Unterrichtsunterlagen_HS20"
 title: "Modul Research Methods"
 description: |
-  Modul Research Methods
 output_dir: "docs"
 repository_url: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21
 source_url: true
@@ -13,8 +12,8 @@ navbar:
       href: index.html
     - text: "Preprocessing"
       menu:
-      - text: "Alles zu Preprocessing"
-        href: PrePro.html
+      - text: "Abstract"
+        href: PrePro_abstract.html
       - text: "---"
       - text: "PrePro1"
         href: PrePro.html#category:PrePro1
@@ -22,8 +21,8 @@ navbar:
         href: PrePro.html#category:PrePro2
     - text: "InforVis"
       menu:
-      - text: "Alles zu InfoVis"
-        href: InfoVis.html
+      - text: "Abstract"
+        href: InfoVis_abstract.html
       - text: "---"
       - text: "InfoVis1"
         href: InfoVis.html#category:InfoVis1
@@ -31,8 +30,8 @@ navbar:
         href: InfoVis.html#category:InfoVis2
     - text: "Statistik"
       menu:
-      - text: "Alles zu Statistik"
-        href: Statistik.html
+      - text: "Abstract"
+        href: Statistik_abstract.html
       - text: "---"
       - text: "Statistik 1 - 4"
       - text: "Statistik1"
@@ -65,8 +64,8 @@ navbar:
         href: Statistik.html#category:Statistik_Konsolidierung4
     - text: "Räumliche Analyse"
       menu:
-      - text: "Alles zu Räumliche Analyse"
-        href: RaumAn.html
+      - text: "Abstract"
+        href: RaumAn_abstract.html
       - text: "---"
       - text: "RaumAn1"
         href: RaumAn.html#category:RaumAn1

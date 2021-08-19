@@ -91,8 +91,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-08-18" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-08-18" />
+  <meta property="article:published" itemprop="datePublished" content="2021-08-19" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-19" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Musterloesung" />
@@ -107,7 +107,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterloesung"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik8","Statistik"]},{"type":"character","attributes":{},"value":["08-18-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterloesung"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik8","Statistik"]},{"type":"character","attributes":{},"value":["08-19-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1451,7 +1451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Musterloesung","authors":[],"publishedDate":"2021-08-18T00:00:00.000+02:00"}
+{"title":"Musterloesung","authors":[],"publishedDate":"2021-08-19T00:00:00.000+02:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,16 +1478,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h2 id="musterloesung-aufgabe-8.1-clusteranalysen">Musterloesung Aufgabe 8.1: Clusteranalysen</h2>
 <ul>
-<li><p><a href="20_Statistik8/Loesung_8.1_v.03.R">R-Skript als Download</a></p></li>
-<li><p><a href="20_Statistik8/Statistik_Loesungstext_8.1.pdf">Loesungstext</a></p></li>
-<li><p><strong>Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)</strong></p></li>
-<li><p>Ladet den Datensatz crime2.csv. Dieser enthält Raten von 7 Kriminatlitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA.</p></li>
-<li><p>Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch. Bitte beachet, dass wegen der sehr ungleichen Varianzen in jedem Fall eine Standardisierung stattfinden muss, damit die Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können.</p></li>
-<li><p><strong>Überlegt in beiden Fällen, wie viele Cluster sinnvoll sind</strong> (k-means: z. B. visuelle Betrachtung einer PCA, agglomertive Clusteranalyse: z. B. Silhoutte-Plot).</p></li>
-<li><p>Entscheidet euch dann für eine der beiden Clusterungen und vergleicht dann die erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Cluster entsprechend.</p></li>
-<li><p>Bitte erklärt und begründet die einzelnen Schritte, die ihr unternehmt, um zu diesem Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in das ihr Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, eure Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere Vorgehen dokumentieren.</p></li>
-<li><p>Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.</p></li>
-<li><p><strong>Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).</strong></p></li>
+<li><a href="20_Statistik8/Loesung_8.1_v.03.R">R-Skript als Download</a></li>
+<li><a href="20_Statistik8/Statistik_Loesungstext_8.1.pdf">Loesungstext</a></li>
+</ul>
+<h2 id="übungsaufgabe">Übungsaufgabe</h2>
+<p><em>(hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)</em></p>
+<ul>
+<li>Ladet den Datensatz crime2.csv. Dieser enthält Raten von 7 Kriminatlitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA.</li>
+<li>Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch. Bitte beachet, dass wegen der sehr ungleichen Varianzen in jedem Fall eine Standardisierung stattfinden muss, damit die Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können.</li>
+<li><strong>Überlegt in beiden Fällen, wie viele Cluster sinnvoll sind</strong> (k-means: z. B. visuelle Betrachtung einer PCA, agglomertive Clusteranalyse: z. B. Silhoutte-Plot).</li>
+<li>Entscheidet euch dann für eine der beiden Clusterungen und vergleicht dann die erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Cluster entsprechend.</li>
+<li>Bitte erklärt und begründet die einzelnen Schritte, die ihr unternehmt, um zu diesem Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in das ihr Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, eure Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere Vorgehen dokumentieren.</li>
+<li>Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.</li>
+<li><strong>Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).</strong></li>
 </ul>
 <h3 id="uebung-8.1---clusteranalysen-loesung">Uebung 8.1 - Clusteranalysen – Loesung</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -1524,7 +1527,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class="co"># k-means visualisation</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">cclust</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">crimez.KM.cascade</span>, sortg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">crimez.KM.cascade</span>, sortg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 </code></pre>
 </div>
 </div>
@@ -1537,7 +1540,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class="co">#File für ANOVA (Originaldaten der Vorfälle, nicht die ztransformierten)</span>
 <span class="va">crime.KM4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">crime</span>,<span class="va">modelz</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-<span class="va">crime.KM4</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span><span class="va">crime.KM4</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span>
+<span class="va">crime.KM4</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">crime.KM4</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span>
 <span class="va">crime.KM4</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">crime.KM4</span><span class="op">)</span>
 </code></pre>
@@ -1557,7 +1560,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class="co">#Ward&#39;s minimum variance clustering</span>
 <span class="va">crime.ch.ward</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">crime.ch</span>, method <span class="op">=</span> <span class="st">&quot;ward.D2&quot;</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">crime.ch.ward</span>,
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">crime.ch.ward</span>,
  labels <span class="op">=</span> <span class="va">crime</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,
  main <span class="op">=</span> <span class="st">&quot;Chord - Ward&quot;</span><span class="op">)</span>
 
@@ -1577,15 +1580,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class="co"># Average silhouette widths (Rousseeuw quality index)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">cluster</a></span><span class="op">)</span>
-<span class="va">Si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="va">Si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="op">{</span>
  <span class="va">sil</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/silhouette.html">silhouette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span><span class="op">(</span><span class="va">hc</span>, k <span class="op">=</span> <span class="va">k</span><span class="op">)</span>, <span class="va">crime.ch</span><span class="op">)</span>
  <span class="va">Si</span><span class="op">[</span><span class="va">k</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sil</span><span class="op">)</span><span class="op">$</span><span class="va">avg.width</span>
 <span class="op">}</span>
-<span class="va">k.best</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/which.minmax.html">which.max</a></span><span class="op">(</span><span class="va">Si</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span>
- <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span>,
+<span class="va">k.best</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">Si</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>
+ <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span>,
  <span class="va">Si</span>,
  type <span class="op">=</span> <span class="st">&quot;h&quot;</span>,
  main <span class="op">=</span> <span class="st">&quot;Silhouette-optimal number of clusters&quot;</span>,
@@ -1615,19 +1618,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Anschliessend kann man die 7 ANOVAs rechnen, die Posthoc-Vergleiche durchführen und die zugehörigen Boxplots mit Buchstaben für die homogenen Gruppen erzeugen. Sinnvollerweise gruppiert man die Abbildungen gleich, z. B. je 2 x 2. Das Skript ist hier simple für jede Verbrechensart wiederholt (nur die erste und letzte gezeigt). Erfahrenere R-Nutzer können das Ganze hier natürlich durch eine Schleife abkürzen.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">multcomp</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://multcomp.R-forge.R-project.org">multcomp</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">ANOVA.Murder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Murder</span><span class="op">~</span><span class="va">cluster</span>, data<span class="op">=</span><span class="va">crime.KM4</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">ANOVA.Murder</span><span class="op">)</span>
-<span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu">cld</span><span class="op">(</span><span class="fu">glht</span><span class="op">(</span><span class="va">ANOVA.Murder</span>, linfct<span class="op">=</span><span class="fu">mcp</span><span class="op">(</span>cluster<span class="op">=</span><span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Murder</span><span class="op">~</span><span class="va">cluster</span>, data<span class="op">=</span><span class="va">crime.KM4</span>, xlab<span class="op">=</span><span class="st">&quot;Cluster&quot;</span>,
+<span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Murder</span>, linfct<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster<span class="op">=</span><span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Murder</span><span class="op">~</span><span class="va">cluster</span>, data<span class="op">=</span><span class="va">crime.KM4</span>, xlab<span class="op">=</span><span class="st">&quot;Cluster&quot;</span>,
 ylab<span class="op">=</span><span class="st">&quot;Murder&quot;</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
 
 <span class="va">ANOVA.Vehicle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Vehicle</span><span class="op">~</span><span class="va">cluster</span>, data<span class="op">=</span><span class="va">crime.KM4</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">ANOVA.Vehicle</span><span class="op">)</span>
-<span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu">cld</span><span class="op">(</span><span class="fu">glht</span><span class="op">(</span><span class="va">ANOVA.Vehicle</span>, linfct<span class="op">=</span><span class="fu">mcp</span><span class="op">(</span>cluster<span class="op">=</span><span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Vehicle</span><span class="op">~</span><span class="va">cluster</span>, data<span class="op">=</span><span class="va">crime.KM4</span>, xlab<span class="op">=</span><span class="st">&quot;Cluster&quot;</span>,
+<span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Vehicle</span>, linfct<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster<span class="op">=</span><span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Vehicle</span><span class="op">~</span><span class="va">cluster</span>, data<span class="op">=</span><span class="va">crime.KM4</span>, xlab<span class="op">=</span><span class="st">&quot;Cluster&quot;</span>,
 ylab<span class="op">=</span><span class="st">&quot;Vehicle&quot;</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
 </code></pre>

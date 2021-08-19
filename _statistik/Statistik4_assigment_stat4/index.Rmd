@@ -1,6 +1,8 @@
 ---
-title: Uebungen
-output: distill::distill_article
+title: Übung 4
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - Statistik4
 - Statistik
@@ -8,9 +10,8 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
-## Uebungen 4
 
 ### Uebung 4.1: Nicht-lineare Regression
 

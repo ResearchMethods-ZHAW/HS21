@@ -1,5 +1,5 @@
 ---
-title: Uebung
+title: Uebung Statistik 6
 output: distill::distill_article
 categories:
 - Statistik6
@@ -8,9 +8,8 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
-## Uebung Statistik 6
 
 **Übung 6.1: PCA (naturwissenschaftlich)**
 

@@ -243,6 +243,7 @@ zahlen
 ```
 
 Wie auch schon erwähnt werden `factors` als `character` Vektor dargestellt, aber als Integers gespeichert. Das führt zu einem scheinbaren Wiederspruch wenn man den Datentyp auf unterschiedliche Weise abfragt.
+
 ```{r}
 typeof(zahlen)
 

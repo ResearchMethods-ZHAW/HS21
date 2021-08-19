@@ -8,7 +8,7 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 
 ## Musterloesung Aufgabe 8.1: Clusteranalysen
@@ -17,7 +17,9 @@ knitr::opts_chunk$set(error = TRUE)
 - [Loesungstext](20_Statistik8/Statistik_Loesungstext_8.1.pdf)
 
 
-- **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
+## Übungsaufgabe 
+
+*(hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)*
 
 - Ladet den Datensatz crime2.csv. Dieser enthält Raten von 7   Kriminatlitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA.
 - Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch. Bitte beachet, dass wegen der sehr ungleichen Varianzen in jedem Fall eine Standardisierung stattfinden muss, damit die Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können.

@@ -1,0 +1,76 @@
+---
+title: json
+output: distill::distill_article
+categories:
+- RaumAn3
+- RaumAn
+
+---
+
+```{r echo = FALSE}
+
+```
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(jsonlite)
+library(sf)
+```
+
+
+
+```{r}
+zweitwohnung <- read_delim("23_RaumAn3/data_raw/px-x-1703030000_101.csv",
+           ",",
+           locale = locale(encoding = "Windows-1252"),skip = 2) %>%
+  janitor::clean_names()
+
+zweitwohnung$datum_und_vorlage <- NULL
+
+zweitwohnung <- zweitwohnung %>%
+  mutate_at(-1,as.numeric) %>%
+  filter(kanton_bezirk_gemeinde != "Schweiz") %>%
+  mutate(
+    kanton = str_match(kanton_bezirk_gemeinde,"-\\s(.+)")[,2],
+    bezirk = str_match(kanton_bezirk_gemeinde,">>\\s(.+)")[,2],
+    gemeinde = str_match(kanton_bezirk_gemeinde,"\\.+(.+)")[,2]
+    ) %>%
+  fill(kanton,bezirk)
+
+
+# json from https://www.pxweb.bfs.admin.ch/pxweb/de/px-x-1703030000_101/px-x-1703030000_101/px-x-1703030000_101.px
+df <- jsonlite::read_json("https://www.pxweb.bfs.admin.ch/api/v1/de/px-x-1703030000_101/px-x-1703030000_101.px")
+
+codes <- map2_dfr(df$variables[[1]][3][[1]],df$variables[[1]][4][[1]],~tibble(code = .x[1],name = .y[1]))
+
+
+zweitwohnung_gemeinde <- full_join(zweitwohnung,codes, by = c("kanton_bezirk_gemeinde" = "name")) %>%
+  filter(!is.na(gemeinde))
+
+zweitwohnung_kanton <- full_join(zweitwohnung,codes, by = c("kanton_bezirk_gemeinde" = "name")) %>%
+  filter(!is.na(kanton))
+```
+
+
+```{r}
+gemeinden <- read_sf("gemeinden.gpkg")
+
+gemeinden <- gemeinden %>%
+  mutate(gemeindenummer = str_sub(SHN,-4,-1)) %>%
+  dplyr::select(NAME,SHN,gemeindenummer)
+
+gemeinden_zweitwohnung<- left_join(gemeinden,zweitwohnung_gemeinde, c("gemeindenummer" = "code"))
+
+
+st_write(gemeinden_zweitwohnung,"zweitwohnung_gemeinden.gpkg")
+```
+
+
+
+

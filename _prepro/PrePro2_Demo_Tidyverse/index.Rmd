@@ -1,5 +1,5 @@
 ---
-title: Demo `tidyverse`
+title: Demo tidyverse
 output: 
   distill::distill_article:
     toc: true
@@ -80,12 +80,14 @@ Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *
 Um diese Aufgabe zu lösen, muss zuerst das "Jahr" berechne werden (das Jahr ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `year()` (von `lubridate`). 
 
 Nun kann kann die **convenience Variable** "Jahr" erstellt werden. Ohne `dpylr` wird eine neue Spalte wird folgendermassen hinzugefügt. 
+
 ```{r}
 wetter$year <- year(wetter$time)
 ```
 
 
 Mit `dplyr` (siehe ^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html]) sieht der gleiche Befehl folgendermassen aus:
+
 ```{r}
 wetter <- mutate(wetter,year = year(time))
 ```
@@ -96,6 +98,7 @@ Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dies
 ### Kennwerte nach Gruppen berechnen
 
 Jetzt kann man die `data.frame` mithilfe der Spalte "Jahr" filtern. 
+
 ```{r}
 mean(wetter$tre200h0[wetter$year == 2000], na.rm = TRUE)
 ```
@@ -170,9 +173,9 @@ wetter_sry <- wetter %>%
 ```
 
 Dieses Mal plotten wir nur mit `ggplot2` (siehe ^[@wickham2017, Kapitel 1 / http://r4ds.had.co.nz/data-visualisation.html oder hier ein sehr schönes Video: [Learn R: An Introduction to ggplot2](https://youtu.be/YxKr2a-Y1WE?t=1m40s)]) 
- 
-```{r}
 
+
+```{r}
 ggplot() +
   geom_line(data = wetter_sry, aes(kw,temp_max), colour = "yellow") +
   geom_line(data = wetter_sry, aes(kw,temp_mean), colour = "pink") +
@@ -225,6 +228,7 @@ knitr::kable(head(wetter_sry,6))
 
 
 Beachte: `wetter_sry_long` umfasst 159 Beobachtungen (Zeilen), das sind 3 mal soviel wie `wetter_sry`, da wir ja drei Spalten zusammengefasst haben.
+
 ```{r}
 nrow(wetter_sry)
 nrow(wetter_sry_long)

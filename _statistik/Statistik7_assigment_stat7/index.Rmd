@@ -1,5 +1,5 @@
 ---
-title: Uebung
+title: Übung 7
 output: distill::distill_article
 categories:
 - Statistik7
@@ -8,12 +8,10 @@ categories:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+
 ```
 
-## Uebung 7
-
-### Uebung 7.1: RDA (naturwissenschaftlich)
+### Übung 7.1: RDA (naturwissenschaftlich)
 
 Moordatensatz in **library(dave)** :
 

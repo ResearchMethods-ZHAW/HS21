@@ -1,26 +1,22 @@
 ---
-title: Demo
-output: distill::distill_article
+title: Demo Statistik 2
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - Statistik2
 - Statistik
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("index.Rmd", "Statistik_2_Demo.R", documentation = 0)
 ```
 
-```{r, include=FALSE, purl=F}
 
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
-```
+[Demoscript als Download](Statistik_2_Demo.R)
 
-## Demo: Statistik 2
-
-[Demoscript als Download](14_Statistik2/RFiles/Statistik_2_Demo_v.06.R)
-
- __t-test als ANOVA__ 
+## t-test als ANOVA 
 
 ```{r}
 a <- c(20, 19, 25, 10, 8, 15, 13 ,18, 11, 14)
@@ -38,7 +34,7 @@ summary(aov(size~cultivar, data = blume))
 summary.lm(aov(size~cultivar, data = blume))
 ```
 
-__Echte ANOVA__
+## Echte ANOVA
 
 ```{r}
 c <- c(30, 19, 31, 23, 18, 25, 26, 24, 17, 20)
@@ -68,7 +64,7 @@ summary(lm.1)
 ```
 
 
-__Tukeys Posthoc-Test__
+## Tukeys Posthoc-Test
 
 ```{r}
 if(!require(agricolae)){install.packages("agricolae")}
@@ -78,7 +74,7 @@ HSD.test(aov.1, "cultivar", group = FALSE, console = T)
 ```
 
 
-__Beispiel Posthoc-Labels in Plot__
+## Beispiel Posthoc-Labels in Plot
 
 ```{r}
 aov.2 <- aov(Sepal.Width ~ Species, data = iris)
@@ -95,7 +91,7 @@ ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
 ```
 
 
-__Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!) __
+## Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!) 
 
 ```{r}
 shapiro.test(blume2$size[blume2$cultivar == "a"])
@@ -109,17 +105,17 @@ wilcox.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == 
 ```
 
 
-__Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA massiv verletzt sind__
+## Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA massiv verletzt sind
 
-__Zum Vergleich normale ANOVA noch mal__
+## Zum Vergleich normale ANOVA noch mal
 
 ```{r}
 summary(aov(size~cultivar, data=blume2))
 ```
 
-__Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen__
+## Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen
 
-__Kruskal-Wallis-Test__
+## Kruskal-Wallis-Test
 
 ```{r}
 kruskal.test(size~cultivar, data = blume2)
@@ -128,15 +124,15 @@ library(FSA)
 dunnTest(size~cultivar, method="bh", data=blume2) #korrigierte p-Werte nach Bejamini-Hochberg
 ```
 
-__Bei erheblicher Heteroskedastizität, aber relative normal/symmetrisch verteilten Residuen__
+## Bei erheblicher Heteroskedastizität, aber relative normal/symmetrisch verteilten Residuen
 
-__Welch-Test__
+## Welch-Test
 
 ```{r}
 oneway.test(size~cultivar, var.equal = F, data = blume2)
 ```
 
-__2-faktorielle ANOVA__
+## 2-faktorielle ANOVA
 
 ```{r}
 d <- c(10, 12, 11, 13, 10, 25, 12, 30, 26, 13)
@@ -150,6 +146,7 @@ blume3 <- data.frame(cultivar=c(rep("a", 20), rep("b", 20), rep("c", 20)),
 ```{r reval=FALSE}
 blume3
 ```
+
 ```{r}
 boxplot(size~cultivar+house, data = blume3)
 
@@ -168,7 +165,7 @@ anova(lm(blume3$size~blume3$house), lm(blume3$size~blume3$cultivar*blume3$house)
 ```
 
 
-__Korrelationen__
+## Korrelationen
 
 ```{r}
 library(car)
@@ -191,7 +188,8 @@ library(lmodel2)
 lmodel2(b~a)
 ```
 
-__Beispiele Modelldiagnostik__
+## Beispiele Modelldiagnostik
+
 ```{r}
 par(mfrow=c(2,2)) #4 Plots in einem Fenster
 plot(lm(b~a))

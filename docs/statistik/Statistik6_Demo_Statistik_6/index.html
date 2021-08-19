@@ -91,8 +91,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-08-18"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-08-18"/>
+<meta property="article:published" itemprop="datePublished" content="2021-08-19"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-08-19"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Modul Research Methods: Demo"/>
@@ -108,7 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Demo"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik6","Statistik"]},{"type":"character","attributes":{},"value":["08-18-2021"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Demo"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik6","Statistik"]},{"type":"character","attributes":{},"value":["08-19-2021"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2057,9 +2057,11 @@ body.layout-listing p {
 }
 
 
-pre, .sourceCode{
-    background-color: aliceblue;
+.sourceCode, d-article pre{
+    background-color: #f7f7f7;
 }
+
+
 
 /* stylign the footer (_footer.html) */
 .footer div{
@@ -2086,7 +2088,7 @@ pre, .sourceCode{
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Demo","authors":[],"publishedDate":"2021-08-18T00:00:00.000+02:00"}
+{"title":"Demo","authors":[],"publishedDate":"2021-08-19T00:00:00.000+02:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2109,7 +2111,7 @@ Preprocessing
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="../../PrePro.html">Alles zu Preprocessing</a>
+<a href="../../PrePro_abstract.html">Abstract</a>
 <hr/>
 <a href="../../PrePro.html#category:PrePro1">PrePro1</a>
 <a href="../../PrePro.html#category:PrePro2">PrePro2</a>
@@ -2122,7 +2124,7 @@ InforVis
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="../../InfoVis.html">Alles zu InfoVis</a>
+<a href="../../InfoVis_abstract.html">Abstract</a>
 <hr/>
 <a href="../../InfoVis.html#category:InfoVis1">InfoVis1</a>
 <a href="../../InfoVis.html#category:InfoVis2">InfoVis2</a>
@@ -2135,7 +2137,7 @@ Statistik
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="../../Statistik.html">Alles zu Statistik</a>
+<a href="../../Statistik_abstract.html">Abstract</a>
 <hr/>
 <span class="nav-dropdown-header">Statistik 1 - 4</span>
 <a href="../../Statistik.html#category:Statistik1">Statistik1</a>
@@ -2163,7 +2165,7 @@ Räumliche Analyse
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="../../RaumAn.html">Alles zu Räumliche Analyse</a>
+<a href="../../RaumAn_abstract.html">Abstract</a>
 <hr/>
 <a href="../../RaumAn.html#category:RaumAn1">RaumAn1</a>
 <a href="../../RaumAn.html#category:RaumAn2">RaumAn2</a>
@@ -2203,7 +2205,7 @@ Räumliche Analyse
 <h2 id="demo-statistik-6">Demo: Statistik 6</h2>
 <p><strong>Ordinationen I</strong> <strong>(c) Juergen Dengler</strong></p>
 <p><a href="18_Statistik6/Statistik%206-Demo_v.04.R">Demoscript als Download</a></p>
-<strong>PCA</strong>
+<p><strong>PCA</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://ecology.msu.montana.edu/labdsv/R">labdsv</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">&quot;labdsv&quot;</span><span class="op">)</span><span class="op">}</span>
@@ -2372,7 +2374,7 @@ Räumliche Analyse
 </div>
 <p><img src="data:image/png;base64,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" width="624" /></p>
 </div>
-<strong>CA</strong>
+<p><strong>CA</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">ca.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cca.html">cca</a></span><span class="op">(</span><span class="va">sveg</span><span class="op">^</span><span class="fl">0.5</span><span class="op">)</span>
@@ -2397,7 +2399,7 @@ Räumliche Analyse
 </code></pre>
 </div>
 </div>
-<strong>DCA</strong>
+<p><strong>DCA</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
@@ -2409,7 +2411,7 @@ Räumliche Analyse
 </code></pre>
 </div>
 </div>
-<strong>NMDS</strong>
+<p><strong>NMDS</strong></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Distanzmatrix als Start erzeugen</span>

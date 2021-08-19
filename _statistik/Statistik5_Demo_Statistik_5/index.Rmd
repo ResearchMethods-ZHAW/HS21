@@ -1,5 +1,5 @@
 ---
-title: Demo
+title: Demo Statistik 5
 output: distill::distill_article
 categories:
 - Statistik5
@@ -7,14 +7,11 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
 ```{r, include=FALSE, purl=F}
-
 knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 ```
-## Demo: Statistik 5
+
+
 **Von linearen Modellen zu GLMMs**
 **(c) Juergen Dengler**
 
@@ -24,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 - Datensatz [DeerEcervi.txt](DeerEcervi.txt)
 
 
- __Split-plot ANOVA__
+## Split-plot ANOVA
 Based on Logan (2010), Chapter 14
 
 ```{r}
@@ -47,7 +44,7 @@ summary(spf.lme.1)
 summary(spf.lme.2)
 ```
 
- __GLMM__
+## GLMM
 Based on Zuur et al. (2009), chapter 13
 
 ```{r}
@@ -75,8 +72,8 @@ summary(DE.glm)
 anova(DE.glm)
 ```
 
- __GLMM__
- 
+## GLMM
+
 ```{r}
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)

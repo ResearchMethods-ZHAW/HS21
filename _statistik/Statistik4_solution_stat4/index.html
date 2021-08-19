@@ -86,28 +86,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Musterloesung</title>
+  <title>Musterloesung Aufgabe 4.2S multiple logistische Regression</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-08-18" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-08-18" />
+  <meta property="article:published" itemprop="datePublished" content="2021-08-19" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-19" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Musterloesung" />
+  <meta property="og:title" content="Musterloesung Aufgabe 4.2S multiple logistische Regression" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="Musterloesung" />
+  <meta property="twitter:title" content="Musterloesung Aufgabe 4.2S multiple logistische Regression" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterloesung"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik4","Statistik"]},{"type":"character","attributes":{},"value":["08-18-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterloesung Aufgabe 4.2S multiple logistische Regression"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik4","Statistik"]},{"type":"character","attributes":{},"value":["08-19-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1451,7 +1451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Musterloesung","authors":[],"publishedDate":"2021-08-18T00:00:00.000+02:00"}
+{"title":"Musterloesung Aufgabe 4.2S multiple logistische Regression","authors":[],"publishedDate":"2021-08-19T00:00:00.000+02:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1461,7 +1461,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Musterloesung</h1>
+<h1>Musterloesung Aufgabe 4.2S multiple logistische Regression</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
 <div class="dt=tag">Statistik4</div>
@@ -1476,39 +1476,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h2 id="musterloesung-aufgabe-4.2s-multiple-logistische-regression">Musterloesung Aufgabe 4.2S: multiple logistische Regression</h2>
 <hr />
-<blockquote>
-<p><strong>Lese-Empfehlung</strong> Kapitel 6 von <a href="https://mgimond.github.io/Stats-in-R/Logistic.html">Manny Gimond</a></p>
-</blockquote>
-<blockquote>
-<p><strong>Lese-Empfehlung</strong> Kapitel 4 von <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">Gareth (2016)</a></p>
-</blockquote>
-<blockquote>
-<p>Download <a href="16_Statistik4/RFiles/solution_stat4.2s.R">R-Skript</a></p>
-</blockquote>
-<blockquote>
-<p>Download <a href="16_Statistik4/RFiles/solution_stat4.2s.pdf">PDF</a></p>
-</blockquote>
+<ul>
+<li><strong>Lese-Empfehlung</strong> Kapitel 6 von <a href="https://mgimond.github.io/Stats-in-R/Logistic.html">Manny Gimond</a></li>
+<li><strong>Lese-Empfehlung</strong> Kapitel 4 von <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">Gareth (2016)</a></li>
+<li>Download <a href="16_Statistik4/RFiles/solution_stat4.2s.R">R-Skript</a></li>
+<li>Download <a href="16_Statistik4/RFiles/solution_stat4.2s.pdf">PDF</a></li>
+</ul>
 <hr />
 <strong>kommentierter Lösungsweg</strong>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>Error in open.connection(structure(4L, class = c(&quot;curl&quot;, &quot;connection&quot;), conn_id = &lt;pointer: 0x14852&gt;), : Could not resolve host: zenodo.2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv</code></pre>
+<pre><code>Error in open.connection(structure(4L, class = c(&quot;curl&quot;, &quot;connection&quot;), conn_id = &lt;pointer: 0x1c7&gt;), : Could not resolve host: zenodo.2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv</code></pre>
 <pre><code>Error in glimpse(nova_survey): object &#39;nova_survey&#39; not found</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="va">nova_survey</span> <span class="op">%&gt;%</span>  <span class="co"># kopiert originaler Datensatz</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>umwelteinstellung <span class="op">=</span> <span class="va">tho_2</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># änderung name der variable</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>umwelteinstellung <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">umwelteinstellung</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="fl">1</span>,
+  <span class="fu">rename</span><span class="op">(</span>umwelteinstellung <span class="op">=</span> <span class="va">tho_2</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># änderung name der variable</span>
+  <span class="fu">mutate</span><span class="op">(</span>umwelteinstellung <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">umwelteinstellung</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="fl">1</span>,
                                        <span class="va">umwelteinstellung</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="fl">1</span>,
                                        <span class="va">umwelteinstellung</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="fl">0</span>, 
                                        <span class="va">umwelteinstellung</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># lasse die kleine Gruppe mit x weg</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">&quot;x&quot;</span>, <span class="va">gender</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">str_detect</span><span class="op">(</span>string <span class="op">=</span> <span class="st">&quot;x&quot;</span>, <span class="va">gender</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># lasse die kleine Gruppe &quot;andere&quot; weg</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">&quot;Andere&quot;</span>, <span class="va">member</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">str_detect</span><span class="op">(</span>string <span class="op">=</span> <span class="st">&quot;Andere&quot;</span>, <span class="va">member</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  
   <span class="co"># wähle nur die relevanten variablen aus</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mensa</span>, <span class="va">age_groups</span>, <span class="va">gender</span>, <span class="va">member</span>, <span class="va">umwelteinstellung</span>, <span class="va">meat</span><span class="op">)</span> 
 </code></pre>
@@ -1545,7 +1538,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>Error in df$mensa: object of type &#39;closure&#39; is not subsettable</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">mensa</span><span class="op">)</span> <span class="co"># alternativ</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu">count</span><span class="op">(</span><span class="va">mensa</span><span class="op">)</span> <span class="co"># alternativ</span>
 </code></pre>
 </div>
 <pre><code>Error in UseMethod(&quot;count&quot;): no applicable method for &#39;count&#39; applied to an object of class &quot;function&quot;</code></pre>
@@ -1566,10 +1559,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Verpflegung zu haben, gegeben die Daten</span>
 
 <span class="co"># neues Modell ohne Umwelteinstellung</span>
-<span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/update.html">update</a></span><span class="op">(</span><span class="va">mod0</span>, <span class="op">~</span><span class="va">.</span> <span class="op">-</span><span class="va">umwelteinstellung</span><span class="op">)</span>
+<span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">mod0</span>, <span class="op">~</span><span class="va">.</span> <span class="op">-</span><span class="va">umwelteinstellung</span><span class="op">)</span>
 </code></pre>
 </div>
-<pre><code>Error in h(simpleError(msg, call)): error in evaluating the argument &#39;object&#39; in selecting a method for function &#39;update&#39;: object &#39;mod0&#39; not found</code></pre>
+<pre><code>Error in update(mod0, ~. - umwelteinstellung): object &#39;mod0&#39; not found</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/summary.lm.html">summary.lm</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span>
 </code></pre>
@@ -1591,10 +1584,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Konfusionsmatrix vom  Datensatz</span>
 <span class="co"># Model Vorhersage</span>
 <span class="co"># hier ein anderes Beispiel: </span>
-<span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/labdsv/man/predict.html">predict</a></span><span class="op">(</span><span class="va">mod1</span>, <span class="va">df</span>, type <span class="op">=</span> <span class="st">&quot;response&quot;</span><span class="op">)</span>
+<span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mod1</span>, <span class="va">df</span>, type <span class="op">=</span> <span class="st">&quot;response&quot;</span><span class="op">)</span>
 </code></pre>
 </div>
-<pre><code>Error in h(simpleError(msg, call)): error in evaluating the argument &#39;object&#39; in selecting a method for function &#39;predict&#39;: object &#39;mod1&#39; not found</code></pre>
+<pre><code>Error in predict(mod1, df, type = &quot;response&quot;): object &#39;mod1&#39; not found</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># erzeugt eine Tabelle mit den beobachteten</span>
 <span class="co"># Mensagänger/Selbstverpfleger und den Vorhersagen des Modells</span>
@@ -1655,7 +1648,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class="va">mf</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">km</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">km</span><span class="op">)</span><span class="op">)</span> <span class="co"># ist mit knapp 23 %  eher hoch</span>
 </code></pre>
 </div>
-<pre><code>Error in h(simpleError(msg, call)): error in evaluating the argument &#39;x&#39; in selecting a method for function &#39;diag&#39;: object &#39;km&#39; not found</code></pre>
+<pre><code>Error in diag(km): object &#39;km&#39; not found</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">mf</span>
 </code></pre>
@@ -1684,7 +1677,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     stopifnot(inherits(x, &quot;tbl_df&quot;))
     attr(x, &quot;spec&quot;)
 }
-&lt;bytecode: 0x55f68d6e7a78&gt;
+&lt;bytecode: 0x555b26e82270&gt;
 &lt;environment: namespace:readr&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sensitivity = d / (b+d) =&gt; Sensitivity is the ability of a </span>
