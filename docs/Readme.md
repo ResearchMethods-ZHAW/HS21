@@ -750,23 +750,10 @@ Räumliche Analyse
 <!--/radix_placeholder_site_before_body-->
 
 -   [Allgemeines](#allgemeines)
-    -   [Distill](#distill)
-    -   [Renv](#renv)
 -   [Anleitung: Software Aufsetzen](#anleitung-software-aufsetzen)
-    -   [R, RStudio und Git
-        installieren](#r-rstudio-und-git-installieren)
-    -   [RStudio Konfigurieren](#rstudio-konfigurieren)
-    -   [Git konfigurieren](#git-konfigurieren)
 -   [Anleitung: Projekt aufsetzen](#anleitung-projekt-aufsetzen)
-    -   [Repo Klonen](#repo-klonen)
-    -   [“Upstream” setzen](#upstream-setzen)
-    -   [Notwendige Packages
-        installieren](#notwendige-packages-installieren)
 -   [Anleitung: Inhalte Editieren und
     veröffentlichen](#anleitung-inhalte-editieren-und-veröffentlichen)
-    -   [Rmd Editieren](#rmd-editieren)
-    -   [Rmd Kompilieren](#rmd-kompilieren)
-    -   [Änderungen veröffentlichen](#änderungen-veröffentlichen)
 -   [Anleitung: Listings editieren und
     veröffentlichen](#anleitung-listings-editieren-und-veröffentlichen)
 
@@ -780,11 +767,11 @@ haben wir dafür [`bookdown`](https://bookdown.org/yihui/blogdown/)
 verwendet, im HS2021 wollen wir zu
 [`distill`](https://rstudio.github.io/distill/) wechseln.
 
--   Vorteile: Mit Bookdown müssen bei Änderungen jeweils *alle*
+-   Vorteil: Mit Bookdown müssen bei Änderungen jeweils *alle*
     .Rmd-Files neu kompiliert werden, was unter umständen sehr lange
     dauern kann. Mit `distill` ist jedes .Rmd File wie ein eigenes
     kleines Projekt und kann eigenständig kompiliert werden.
--   Nachteil:
+-   Nachteile:
     -   Werden files in mehreren .Rmd Files benutzt müssen diese für
         jedes .Rmd file abgespeichert werden
     -   ein PDF wird nicht ohne weiteres generiert
@@ -915,15 +902,35 @@ machen müsst ihr das .Rmd File zuerst kompilieren!
 
 ## Anleitung: Listings editieren und veröffentlichen
 
-*(dieser Teil ist eher Advanced und nicht für alle Interessant*
+*(dieser Teil ist eher Advanced und nicht für alle Interessant)*
 
 `distill` verfügt über die Möglichkeit, sogenannte “Collections” zu
 machen. Eine *collection* ist eine Sammlung von .Rmd files zu einem
 bestimmten Thema, für welche automatisch eine Übersichtsseite (sog.
 “Listing”) erstellt wird.
 
-Um eine *collection* zu erstellen wird ein neuer Ordner mit
-entsprechendem Namen und vorangestelltem Underscore (`_`) erstellt.
+Um eine *collection* zu erstellen:
+
+1.  neuer Ordner mit entsprechendem Namen und vorangestelltem Underscore
+    (`_`) im Projektordner erstellen (z.b. \_infovis)
+
+2.  neues Rmd-File mit einem passenden Namen im Projektordner erstellen
+    (z.B. `infoVis.Rmd`)
+
+3.  das neue Rmd File mit einem Rmd-YAML Header verstehen mit mindestens
+    folgendem Inhalt: `title` und `listing` (siehe unten)
+
+         ---
+         title: "InfoVis"      # <- Egal
+         listing: infovis      # <- ordnername der collection ohne Underscore
+         ---
+
+4.  die Listing in `_site.yml` zugänglich machen:
+
+         navbar:
+           right:
+             - text: "InfoVis1"     # <- Egal
+               href: InfoVis.html   # <- Name des Rmd files mit der Endung .html
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
