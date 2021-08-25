@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,7 +77,7 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,15 +85,15 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
 <title>Modul Research Methods: Demo Datentypen</title>
 
 
-<link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-08-19"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-08-19"/>
+<meta property="article:published" itemprop="datePublished" content="2021-08-25"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-08-25"/>
 <meta name="article:author" content="Patrick Laube"/>
 <meta name="article:author" content="Nils Ratnaweera"/>
 <meta name="article:author" content="Nikolaos Bakogiannis"/>
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","creative_commons","date"]}},"value":[{"type":"character","attributes":{},"value":["Demo Datentypen"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["PrePro1","PrePro"]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["08-19-2021"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Demo Datentypen"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["PrePro1","PrePro"]},{"type":"character","attributes":{},"value":["08-25-2021"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2082,7 +2082,7 @@ body.layout-listing p {
 
 /* hides the publish date from the listing, so we can specify the order via that date */
 .publishedDate {
-    visibility: visible;
+    visibility: hidden;
 }
 </style>
 <!--/radix_placeholder_site_in_header-->
@@ -2095,7 +2095,7 @@ body.layout-listing p {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Demo Datentypen","authors":[{"author":"Patrick Laube","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nils Ratnaweera","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nikolaos Bakogiannis","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-19T00:00:00.000+02:00","citationText":"Laube, et al., 2021"}
+{"title":"Demo Datentypen","authors":[{"author":"Patrick Laube","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nils Ratnaweera","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nikolaos Bakogiannis","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-25T00:00:00.000+02:00","citationText":"Laube, et al., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2157,12 +2157,22 @@ Statistik
 <a href="../../Statistik.html#category:Statistik6">Statistik6</a>
 <a href="../../Statistik.html#category:Statistik7">Statistik7</a>
 <a href="../../Statistik.html#category:Statistik8">Statistik8</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Statistik Konsolidierung
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="../../Statistik-Konsolidierung_abstract.html">Abstract</a>
 <hr/>
 <span class="nav-dropdown-header">Statistik Konsolidierung 1 - 4</span>
-<a href="../../Statistik.html#category:Statistik_Konsolidierung1">Statistik_Konsolidierung1</a>
-<a href="../../Statistik.html#category:Statistik_Konsolidierung2">Statistik_Konsolidierung2</a>
-<a href="../../Statistik.html#category:Statistik_Konsolidierung3">Statistik_Konsolidierung3</a>
-<a href="../../Statistik.html#category:Statistik_Konsolidierung4">Statistik_Konsolidierung4</a>
+<a href="../../Statistik-Konsolidierung.html#category:Statistik_Konsolidierung1">Statistik_Konsolidierung1</a>
+<a href="../../Statistik-Konsolidierung.html#category:Statistik_Konsolidierung2">Statistik_Konsolidierung2</a>
+<a href="../../Statistik-Konsolidierung.html#category:Statistik_Konsolidierung3">Statistik_Konsolidierung3</a>
+<a href="../../Statistik-Konsolidierung.html#category:Statistik_Konsolidierung4">Statistik_Konsolidierung4</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2205,7 +2215,7 @@ Räumliche Analyse
   
 ,   Nikolaos Bakogiannis  
   
-<br />08-19-2021
+<br />08-25-2021
 </div>
 
 <div class="d-article">
@@ -2240,8 +2250,7 @@ Räumliche Analyse
 </div>
 <pre><code>[1] 10.3</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>[1] &quot;double&quot;</code></pre>
@@ -2295,8 +2304,7 @@ Räumliche Analyse
 </div>
 <pre><code>[1] TRUE</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">8L</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">8L</span>
 <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span>
 </code></pre>
 </div>
@@ -2314,8 +2322,7 @@ Räumliche Analyse
 </div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>[1] TRUE</code></pre>
@@ -2344,8 +2351,7 @@ Räumliche Analyse
 </div>
 <pre><code>[1] 20 33 42</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="va">vector2</span> <span class="op">&lt;-</span> <span class="va">vector</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">vector2</span> <span class="op">&lt;-</span> <span class="va">vector</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
 </code></pre>
 </div>
 </div>
@@ -2471,8 +2477,7 @@ Räumliche Analyse
 </div>
 <pre><code>[1] &quot;Hans Muster&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="va">fname2</span> <span class="op">&lt;-</span> <span class="st">&quot;hans&quot;</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">fname2</span> <span class="op">&lt;-</span> <span class="st">&quot;hans&quot;</span>
 <span class="va">fname</span> <span class="op">==</span> <span class="va">fname2</span>
 </code></pre>
 </div>
@@ -2490,8 +2495,7 @@ Räumliche Analyse
 </div>
 <pre><code>[1] &quot;character&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="va">wochentage_fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">wochentage</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">wochentage_fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">wochentage</span><span class="op">)</span>
 
 <span class="va">wochentage</span>
 </code></pre>
@@ -2517,8 +2521,7 @@ Räumliche Analyse
 <pre><code>[1] &quot;Dienstag&quot;   &quot;Donnerstag&quot; &quot;Freitag&quot;    &quot;Mittwoch&quot;   &quot;Montag&quot;    
 [6] &quot;Samstag&quot;    &quot;Sonntag&quot;   </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">wochentage</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">wochentage</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>[1] &quot;Montag&quot;     &quot;Dienstag&quot;   &quot;Mittwoch&quot;   &quot;Donnerstag&quot; &quot;Freitag&quot;   
@@ -2566,8 +2569,7 @@ Levels: null &lt; eins &lt; zwei &lt; drei &lt; vier</code></pre>
 </div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="va">zahlen</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="va">zahlen</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>[1] FALSE</code></pre>
@@ -2635,16 +2637,14 @@ Levels: null &lt; eins &lt; zwei &lt; drei &lt; vier</code></pre>
 </div>
 <pre><code>[1] &quot;2017-10-01 13:45:00 CEST&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="va">datum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">datum</span>,format <span class="op">=</span> <span class="st">&quot;%d.%m.%Y %H:%M&quot;</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">datum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">datum</span>,format <span class="op">=</span> <span class="st">&quot;%d.%m.%Y %H:%M&quot;</span><span class="op">)</span>
 </code></pre>
 </div>
 </div>
 <p>Beachtet, dass in den den obigen Beispiel R automatisch eine Zeitzone angenommen hat (<code>CEST</code>). R geht davon aus, dass die Zeitzone der <strong>System Timezone</strong> (<code>Sys.timezone()</code>) entspricht.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strftime</a></span><span class="op">(</span><span class="va">datum</span>, format <span class="op">=</span> <span class="st">&quot;%m&quot;</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strftime</a></span><span class="op">(</span><span class="va">datum</span>, format <span class="op">=</span> <span class="st">&quot;%m&quot;</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>[1] &quot;10&quot;</code></pre>
@@ -2688,8 +2688,7 @@ Levels: null &lt; eins &lt; zwei &lt; drei &lt; vier</code></pre>
 </div>
 <pre><code>[1] 396027 194565 175131 140634 135629</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="va">df</span><span class="op">$</span><span class="va">Ankunft</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Ankunft</span>, format <span class="op">=</span> <span class="st">&quot;%d.%m.%Y %H:%M&quot;</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">df</span><span class="op">$</span><span class="va">Ankunft</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Ankunft</span>, format <span class="op">=</span> <span class="st">&quot;%d.%m.%Y %H:%M&quot;</span><span class="op">)</span>
 
 <span class="va">df</span><span class="op">$</span><span class="va">Ankunft</span>
 </code></pre>
@@ -2735,8 +2734,6 @@ Levels: null &lt; eins &lt; zwei &lt; drei &lt; vier</code></pre>
 <div class="appendix-bottom">
   <h3 id="updates-and-corrections">Corrections</h3>
   <p>If you see mistakes or want to suggest changes, please <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21">create an issue</a> on the source repository.</p>
-  <h3 id="reuse">Reuse</h3>
-  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21">https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
 </div>
 <!--/radix_placeholder_appendices-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
