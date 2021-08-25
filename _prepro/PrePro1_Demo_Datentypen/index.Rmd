@@ -10,7 +10,6 @@ author:
 categories:
 - PrePro1
 - PrePro
-creative_commons: CC BY
 ---
 
 
