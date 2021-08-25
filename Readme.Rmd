@@ -1,32 +1,24 @@
 ---
 title: "Anleitungen für Admins"
 description: |
-  Wie die Kursleitenden Ihre Unterlagen veröffentlichen
+  Im Kurs Research Methods verwenden wir seit einigen Jahren RMarkdown um die R Unterlagen für die Studenten bereit zu stellen. Diese Anleitung soll alle nötigen Informationen für "Admins" zur Verfügung stellen, damit dieser Prozess möglichst reibungslos abläuft. 
+  
+  Die Anleitung besteht aus einer Kurzen Einführung in die Verwendeten Tools ("distill" und "renv") sowie drei Anleitungen (1. Software aufsetzen, 2. Projekt aufsetzen, 3. Inhalte editieren und veröffentlichen)
 output: distill::distill_article
 ---
-
-
-Abstract:
-
-In diesem Repo werden die R-Übungen vom Kurs Research Methods verwaltet. Die Unterlagen sind für die Studierenden folgendem Link sichtbar:
-
-**https://github.zhaw.ch/pages/ModulResearchMethods/Unterrichtsunterlagen_HS21/**
-
-Die nachstehende Anleitung für Admins (Gian-Andrea, Nikolaos, Stefan und Nils) befindet sich hier: 
-
-**https://github.zhaw.ch/pages/ModulResearchMethods/Unterrichtsunterlagen_HS21/Readme.html**
-
 
 ## Allgemeines
 
 ### Distill 
 
-Im Kurs Research Methods verwenden wir seit einigen Jahren RMarkdown um die R Unterlagen für die Studenten bereit zu stellen. Bis und mit HS2020 haben wir dafür [`bookdown`](https://bookdown.org/yihui/blogdown/) verwendet, im HS2021 wollen wir zu [`distill`](https://rstudio.github.io/distill/) wechseln. 
+Bis und mit HS2020 haben wir für die Bereitstellung der Unterlagen [`bookdown`](https://bookdown.org/yihui/blogdown/) verwendet, im HS2021 wollen wir zu [`distill`](https://rstudio.github.io/distill/) wechseln. 
 
 - Vorteil: Mit Bookdown müssen bei Änderungen jeweils *alle* .Rmd-Files neu kompiliert werden, was unter umständen sehr lange dauern kann. Mit `distill` ist jedes .Rmd File wie ein eigenes kleines Projekt und kann eigenständig kompiliert werden.
 - Nachteile: 
   - Werden files in mehreren .Rmd Files benutzt müssen diese für jedes .Rmd file abgespeichert werden
-  - ein PDF wird nicht ohne weiteres generiert
+  - ein PDF kann nicht ohne weiteres generiert werden
+
+PS: Wir verwenden eine von Nils leicht modifizierte Version von `distill`
 
 ### Renv
 
@@ -39,29 +31,31 @@ Im Unterricht werden sehr viele RPackages verwendet. Um sicher zu stellen, das w
 - Die Packages werden mit `renv::restore()` lokal installiert
 
 
-## Anleitung: Software Aufsetzen
+## Anleitung 1: Software Aufsetzen
 
 ### R, RStudio und Git installieren
 
-*(wer dies bereits gemacht hat, kann diesen Schritt überspringen)*
+*(wer dies bereits gemacht hat oder auf dem RStudio Server arbeitet, kann diesen Schritt überspringen)*
 
 Wer Lokal auf seinem eingenen PC arbeiten will, muss eine aktuell version von R, RStudio und Git installieren. Siehe dazu folgende Anleitungen:
 
-- [Install or upgrade R and RStudio](https://happygitwithr.com/install-r-rstudio.html)
-- [Install Git](https://happygitwithr.com/install-git.html)
+- [happygitwithr: Install or upgrade R and RStudio](https://happygitwithr.com/install-r-rstudio.html)
+- [happygitwithr: Install Git](https://happygitwithr.com/install-git.html)
 
 
 ### RStudio Konfigurieren
 
-Ich empfehle folgende Konfiguration in RStudio (`Global Options -> R Markdown`):
+Ich empfehle folgende Konfiguration in RStudio (`Global Options`):
 
-- Show document outline by default: checked *(Stellt ein Inhaltsverzeichnis rechts von .Rmd files dar)*
-- Soft-wrap R Markdown files: checken *(macht autmatische Zeilenumbrüche bei .Rmd files)*
-- Show in document outline: Sections Only *(zeigt nur "Sections" im Inhaltsverzeichnis)*
-- Show output preview in: Window *(beim kopilieren von Rmd Files wird im Anschluss ein Popup mit dem Resultat dargestellt)*
-- Show equation an impage previews: In a popup
-- Evaluate chunks in directory: Document
-
+- R Markdown
+  - Show document outline by default: checked *(Stellt ein Inhaltsverzeichnis rechts von .Rmd files dar)*
+  - Soft-wrap R Markdown files: checken *(macht autmatische Zeilenumbrüche bei .Rmd files)*
+  - Show in document outline: Sections Only *(zeigt nur "Sections" im Inhaltsverzeichnis)*
+  - Show output preview in: Window *(beim kopilieren von Rmd Files wird im Anschluss ein Popup mit dem Resultat dargestellt)*
+  - Show equation an impage previews: In a popup
+  - Evaluate chunks in directory: Document (** <- wichtig !**)
+- Code > Tab "Saving"
+  - Default Text Encoding: UTF-8 (** <- wichtig !**)
 
 ### Git konfigurieren
 
@@ -69,18 +63,18 @@ Ich empfehle folgende Konfiguration in RStudio (`Global Options -> R Markdown`):
 
 Nach der Installation muss git konfiguriert werden. Siehe dazu folgende Kapitel:
 
-- [Introduce yourself to Git](https://happygitwithr.com/hello-git.html)
-- [Cache credentials for HTTPS](https://happygitwithr.com/credential-caching.html)
+- [happygitwithr: Introduce yourself to Git](https://happygitwithr.com/hello-git.html)
+- [happygitwithr: Cache credentials for HTTPS](https://happygitwithr.com/credential-caching.html)
 
 
-## Anleitung: Projekt aufsetzen
+## Anleitung 2: Projekt aufsetzen
 
 
 ### Repo Klonen
 
 Um die ganzen *.Rmd Files lokal bearbeiten zu können, muss das Repository geklont werden. Mit RStudio ist dies sehr einfach, siehe dazu nachstehende Anleitung. Als Repo-URL folgendes einfügen: `https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS20.git`
 
-- [New RStudio Project via git clone](https://happygitwithr.com/new-github-first.html#new-rstudio-project-via-git)
+- [happygitwithr: New RStudio Project via git clone](https://happygitwithr.com/new-github-first.html#new-rstudio-project-via-git)
 
 ### "Upstream" setzen
 
@@ -101,7 +95,7 @@ Wie bereits erwähnt, verwenden wir im Projekt `renv`.
 
 
 
-## Anleitung: Inhalte Editieren und veröffentlichen
+## Anleitung 3: Inhalte Editieren und veröffentlichen
 
 
 ```{r, echo = FALSE}
@@ -134,7 +128,7 @@ Um die Änderungen zu veröffentlichen (für die Studenten sichtbar zu machen) m
 
 *Achtung*: Um Änderungen, die ihr am  .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren! 
 
-## Anleitung: Listings editieren und veröffentlichen
+## Anleitung 4: Listings editieren und veröffentlichen
 
 *(dieser Teil ist eher Advanced und nicht für alle Interessant)*
 

@@ -13,8 +13,9 @@ body.layout-listing p {
 
 
 /* stylign the footer (_footer.html) */
-.footer div{
-  text-align: justify;
+.distill-site-footer div{
+  text-align: left;
+  padding-left: 100px;
 }
 
 .footer img{
