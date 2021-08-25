@@ -27,3 +27,9 @@ body.layout-listing p {
 .publishedDate {
     visibility: hidden;
 }
+
+
+/* reduce the space between bullet points */
+d-article li{
+  margin-bottom: 0.5em;
+}

@@ -9,7 +9,7 @@ style: mystyle.css
 navbar:
   logo: zhaw_sw_neg.png
   search: true
-  right:
+  left:
     - text: "Home"
       href: index.html
     - text: "Preprocessing"
@@ -79,6 +79,9 @@ navbar:
         href: RaumAn.html#category:RaumAn2
       - text: "RaumAn3"
         href: RaumAn.html#category:RaumAn3
+  right:
+    - icon: fab fa-github
+      href: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/
 output: 
   distill::distill_article:
     toc: true

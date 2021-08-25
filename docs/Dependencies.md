@@ -641,6 +641,12 @@ body.layout-listing p {
 .publishedDate {
     visibility: hidden;
 }
+
+
+/* reduce the space between bullet points */
+d-article li{
+  margin-bottom: 0.5em;
+}
 </style>
 <!--/radix_placeholder_site_in_header-->
 
@@ -659,9 +665,6 @@ body {
 <img src="zhaw_sw_neg.png"/>
 </span>
 <a href="index.html" class="title">Modul Research Methods</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
 <a href="index.html">Home</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
@@ -741,6 +744,12 @@ Räumliche Analyse
 <a href="RaumAn.html#category:RaumAn3">RaumAn3</a>
 </div>
 </div>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
