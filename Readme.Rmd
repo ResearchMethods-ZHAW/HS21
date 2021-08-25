@@ -1,0 +1,20 @@
+---
+title: "About"
+---
+## Dependencies
+
+```{r, echo = FALSE}
+
+library(dplyr)
+library(stringr)
+library(purrr)
+
+library(jsonlite)
+
+dep <- jsonlite::read_json("renv.lock")
+
+dep_df <- map_dfr(dep$Packages, ~as_tibble(.x))
+
+knitr::kable(dep_df[, c("Package", "Version")])
+```
+
