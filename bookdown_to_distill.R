@@ -72,3 +72,18 @@ mydf %>%
     
     
   })
+
+
+
+
+dirs <- list.dirs("_statistik", recursive = FALSE, full.names = TRUE)
+
+cha <- tibble(original = dirs) %>% 
+  mutate(
+    new = str_remove(dirs, "_stat\\d|_Statistik_\\d")
+    )  
+
+cha %>% head(1) %>%
+pmap(function(original, new){
+  file.rename(original, new)
+})
