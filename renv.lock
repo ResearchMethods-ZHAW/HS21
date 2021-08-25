@@ -635,8 +635,8 @@
       "RemoteRepo": "distill",
       "RemoteUsername": "ratnanil",
       "RemoteRef": "HEAD",
-      "RemoteSha": "29054989259e08d6b2c28b1ea95de089c8b6e337",
-      "Hash": "34e15f4bce94533f726f0a49afe5d0a9"
+      "RemoteSha": "d81b5c6f5e4237ce6286e47f78e13cabd43c6ac3",
+      "Hash": "9f8fe08c02cdbde593649702ecb3b93a"
     },
     "downlit": {
       "Package": "downlit",
