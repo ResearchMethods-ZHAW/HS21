@@ -3,6 +3,7 @@ title: "Anleitung für Admins"
 output: 
   rmarkdown::github_document:
     toc: true
+    toc_depth: 2
 ---
 
 ## Allgemeines
@@ -11,8 +12,8 @@ output:
 
 Im Kurs Research Methods verwenden wir seit einigen Jahren RMarkdown um die R Unterlagen für die Studenten bereit zu stellen. Bis und mit HS2020 haben wir dafür [`bookdown`](https://bookdown.org/yihui/blogdown/) verwendet, im HS2021 wollen wir zu [`distill`](https://rstudio.github.io/distill/) wechseln. 
 
-- Vorteile: Mit Bookdown müssen bei Änderungen jeweils *alle* .Rmd-Files neu kompiliert werden, was unter umständen sehr lange dauern kann. Mit `distill` ist jedes .Rmd File wie ein eigenes kleines Projekt und kann eigenständig kompiliert werden.
-- Nachteil: 
+- Vorteil: Mit Bookdown müssen bei Änderungen jeweils *alle* .Rmd-Files neu kompiliert werden, was unter umständen sehr lange dauern kann. Mit `distill` ist jedes .Rmd File wie ein eigenes kleines Projekt und kann eigenständig kompiliert werden.
+- Nachteile: 
   - Werden files in mehreren .Rmd Files benutzt müssen diese für jedes .Rmd file abgespeichert werden
   - ein PDF wird nicht ohne weiteres generiert
 
@@ -124,7 +125,7 @@ Um die Änderungen zu veröffentlichen (für die Studenten sichtbar zu machen) m
 
 ## Anleitung: Listings editieren und veröffentlichen
 
-*(dieser Teil ist eher Advanced und nicht für alle Interessant*
+*(dieser Teil ist eher Advanced und nicht für alle Interessant)*
 
 `distill` verfügt über die Möglichkeit, sogenannte "Collections" zu machen. Eine *collection* ist eine Sammlung von .Rmd files zu einem bestimmten Thema, für welche automatisch eine Übersichtsseite (sog. "Listing") erstellt wird. 
 

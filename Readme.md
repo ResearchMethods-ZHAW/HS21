@@ -11,11 +11,11 @@ haben wir dafür [`bookdown`](https://bookdown.org/yihui/blogdown/)
 verwendet, im HS2021 wollen wir zu
 [`distill`](https://rstudio.github.io/distill/) wechseln.
 
--   Vorteile: Mit Bookdown müssen bei Änderungen jeweils *alle*
+-   Vorteil: Mit Bookdown müssen bei Änderungen jeweils *alle*
     .Rmd-Files neu kompiliert werden, was unter umständen sehr lange
     dauern kann. Mit `distill` ist jedes .Rmd File wie ein eigenes
     kleines Projekt und kann eigenständig kompiliert werden.
--   Nachteil:
+-   Nachteile:
     -   Werden files in mehreren .Rmd Files benutzt müssen diese für
         jedes .Rmd file abgespeichert werden
     -   ein PDF wird nicht ohne weiteres generiert
@@ -146,7 +146,7 @@ machen müsst ihr das .Rmd File zuerst kompilieren!
 
 ## Anleitung: Listings editieren und veröffentlichen
 
-*(dieser Teil ist eher Advanced und nicht für alle Interessant*
+*(dieser Teil ist eher Advanced und nicht für alle Interessant)*
 
 `distill` verfügt über die Möglichkeit, sogenannte “Collections” zu
 machen. Eine *collection* ist eine Sammlung von .Rmd files zu einem
