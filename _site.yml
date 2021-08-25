@@ -52,16 +52,20 @@ navbar:
         href: Statistik.html#category:Statistik7
       - text: "Statistik8"
         href: Statistik.html#category:Statistik8
+    - text: "Statistik Konsolidierung"
+      menu:
+      - text: "Abstract"
+        href: Statistik-Konsolidierung_abstract.html
       - text: "---"
       - text: "Statistik Konsolidierung 1 - 4"
       - text: "Statistik_Konsolidierung1"
-        href: Statistik.html#category:Statistik_Konsolidierung1
+        href: Statistik-Konsolidierung.html#category:Statistik_Konsolidierung1
       - text: "Statistik_Konsolidierung2"
-        href: Statistik.html#category:Statistik_Konsolidierung2
+        href: Statistik-Konsolidierung.html#category:Statistik_Konsolidierung2
       - text: "Statistik_Konsolidierung3"
-        href: Statistik.html#category:Statistik_Konsolidierung3
+        href: Statistik-Konsolidierung.html#category:Statistik_Konsolidierung3
       - text: "Statistik_Konsolidierung4"
-        href: Statistik.html#category:Statistik_Konsolidierung4
+        href: Statistik-Konsolidierung.html#category:Statistik_Konsolidierung4
     - text: "Räumliche Analyse"
       menu:
       - text: "Abstract"
