@@ -3,10 +3,12 @@ title: "Modul Research Methods"
 description: |
 output_dir: "docs"
 repository_url: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21
+base_url: https://github.zhaw.ch/pages/ModulResearchMethods/Unterrichtsunterlagen_HS21
 source_url: true
 style: mystyle.css
 navbar:
   logo: zhaw_sw_neg.png
+  search: true
   right:
     - text: "Home"
       href: index.html
