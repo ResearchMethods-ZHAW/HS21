@@ -3,6 +3,7 @@ title: Demo Datentypen
 output: 
   distill::distill_article:
     toc: true
+    toc_float: true
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
@@ -11,6 +12,7 @@ categories:
 - PrePro1
 - PrePro
 ---
+
 
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}

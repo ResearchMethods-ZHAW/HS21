@@ -1094,8 +1094,8 @@ Räumliche Analyse
   
   <p>Diese Unterlagen wurden von verschiedenen Authoren für den Kurs "Research Methods" entwickelt und stehen, wo nicht anders genannt, under der Linzenz <a href = "http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> </p> 
   <p>Diee vorliegende Lizenz erstreckt sich nicht auf die zitierten Werke. Diese Werke stehen unter Umständen unter urheberrechtlichem Schutz.</p>
-  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></img></a>
-  
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="88x31.png"></img></a>
+
   <p>
     Für Admins: Lesen Sie das <a href = "/Readme.html">Readme</a> um Beiträge zu diesem Werk hinzu zu fügen oder zu verändern.
   </p>

@@ -128,7 +128,7 @@ Um die Änderungen zu veröffentlichen (für die Studenten sichtbar zu machen) m
 
 *Achtung*: Um Änderungen, die ihr am  .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren! 
 
-## Advanced: Listings editieren und veröffentlichen
+## Anleitung 4 (Fortgeschritten): Listings editieren und veröffentlichen
 
 *(dieser Teil ist eher "advanced" und nicht für alle Interessant)*
 
