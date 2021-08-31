@@ -2189,6 +2189,7 @@ Räumliche Analyse
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
+<a href="Fallstudien.html">Fallstudie Biodiversity and Ecosystems</a>
 <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/">
 <i class="fab fa-github" aria-hidden="true"></i>
 </a>
@@ -2317,7 +2318,7 @@ Räumliche Analyse
 </div>
 <p>Eine <code>distill</code> Webseite besteht aus einzelnen .Rmd Files, pro Rmd-File exisitert ein eigener Ordner im Projekt. Diese Rmd fiels werden beim Kompilieren (<code>knìt</code>) in .html-Files konvertiert. Um daraus eine zusammenhängende Website zu machen ist das File <code>_site.yml</code> verantwortlich. Die Einstiegsseite wird in <code>index.Rmd</code> definiert.</p>
 <h3 id="rmd-editieren">Rmd Editieren</h3>
-<p>Um Inhalte zu editieren, öffnet ihr das entsprechende .Rmd file in einem der Ordner _infovis, _prepro, _rauman, _statistik, _statistik-konsolidierung. Ihr könnt dies wie ein reguläres, eigenständiges .Rmd File handhaben. Alle Pfade im Dokument sind <em>relativ</em> zum .Rmd File zu verstehen: <strong>Das Working directory ist der Folder des entsprechenden Rmd Files!!</strong>.</p>
+<p>Um Inhalte zu editieren, öffnet ihr das entsprechende .Rmd file in einem der Ordner _fallstudien, _infovis, _prepro, _rauman, _statistik, _statistik-konsolidierung. Ihr könnt dies wie ein reguläres, eigenständiges .Rmd File handhaben. Alle Pfade im Dokument sind <em>relativ</em> zum .Rmd File zu verstehen: <strong>Das Working directory ist der Folder des entsprechenden Rmd Files!!</strong>.</p>
 <h3 id="rmd-kompilieren">Rmd Kompilieren</h3>
 <p>Um das Rmd in Html zu konvertieren (“Kompilieren”) klickt ihr auf “Knit” oder nutzt die Tastenkombination <code>Ctr + Shift + K</code>.</p>
 <h3 id="änderungen-veröffentlichen">Änderungen veröffentlichen</h3>
@@ -2333,7 +2334,7 @@ Räumliche Analyse
 <p><code>distill</code> verfügt über die Möglichkeit, sogenannte “Collections” zu machen. Eine <em>collection</em> ist eine Sammlung von .Rmd files zu einem bestimmten Thema, für welche automatisch eine Übersichtsseite (sog. “Listing”) erstellt wird.</p>
 <p>Um eine <em>collection</em> zu erstellen:</p>
 <ol type="1">
-<li><p>neuer Ordner mit entsprechendem Namen und vorangestelltem Underscore (<code>_</code>) im Projektordner erstellen (z.b. _infovis)</p></li>
+<li><p>neuer Ordner mit entsprechendem Namen und vorangestelltem Underscore (<code>_</code>) im Projektordner erstellen (z.b. _fallstudien)</p></li>
 <li><p>neues Rmd-File mit einem passenden Namen im Projektordner erstellen (z.B. <code>infoVis.Rmd</code>)</p></li>
 <li><p>das neue Rmd File mit einem Rmd-YAML Header verstehen mit mindestens folgendem Inhalt: <code>title</code> und <code>listing</code> (siehe unten)</p>
 <pre><code> ---
@@ -2365,6 +2366,7 @@ Räumliche Analyse
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <div class="distill-site-nav distill-site-footer">
+<!--
 <div class = "footer">
   <img src="zhaw_lsfm_iunr_weiss.png" alt="ZHAW LSFM Logo"></img>
   
@@ -2372,10 +2374,8 @@ Räumliche Analyse
   <p>Diee vorliegende Lizenz erstreckt sich nicht auf die zitierten Werke. Diese Werke stehen unter Umständen unter urheberrechtlichem Schutz.</p>
   <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="88x31.png"></img></a>
 
-  <p>
-    Für Admins: Lesen Sie das <a href = "/Readme.html">Readme</a> um Beiträge zu diesem Werk hinzu zu fügen oder zu verändern.
-  </p>
-
+-->
+<p><p> Für Admins: Lesen Sie das <a href = "/Readme">Readme</a> um Beiträge zu diesem Werk hinzu zu fügen oder zu verändern. </p></p>
 </div>
 </div>
 <!--/radix_placeholder_navigation_after_body-->
