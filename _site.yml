@@ -80,6 +80,8 @@ navbar:
       - text: "RaumAn3"
         href: RaumAn.html#category:RaumAn3
   right:
+    - text: "Fallstudie Biodiversity and Ecosystems"
+      href: Fallstudien.html
     - icon: fab fa-github
       href: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/
 output: 
