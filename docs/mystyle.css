@@ -1,0 +1,35 @@
+
+/* without this padding, the text added to a listings page is to high */
+
+body.layout-listing p {
+  padding-top: 50px
+}
+
+
+.sourceCode, d-article pre{
+    background-color: #f7f7f7;
+}
+
+
+
+/* stylign the footer (_footer.html) */
+.distill-site-footer div{
+  text-align: left;
+  padding-left: 100px;
+}
+
+.footer img{
+  max-height: 200px; 
+  float: right;
+}
+
+/* hides the publish date from the listing, so we can specify the order via that date */
+.publishedDate {
+    visibility: hidden;
+}
+
+
+/* reduce the space between bullet points */
+d-article li{
+  margin-bottom: 0.5em;
+}
