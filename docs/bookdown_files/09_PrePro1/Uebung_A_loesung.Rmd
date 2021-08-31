@@ -1,8 +1,0 @@
-## Uebung A Loesung
-
-[R-Script als Download](09_PrePro1/RFiles/Uebung_A.R)
-
-```{r code=readLines('09_PrePro1/RFiles/Uebung_A.R',encoding = "UTF-8"), echo=T, eval=F}
-```
-
-
