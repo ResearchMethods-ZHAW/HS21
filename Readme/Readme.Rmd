@@ -52,10 +52,10 @@ Ich empfehle folgende Konfiguration in RStudio (`Global Options`):
   - Soft-wrap R Markdown files: checken *(macht autmatische Zeilenumbrüche bei .Rmd files)*
   - Show in document outline: Sections Only *(zeigt nur "Sections" im Inhaltsverzeichnis)*
   - Show output preview in: Window *(beim kopilieren von Rmd Files wird im Anschluss ein Popup mit dem Resultat dargestellt)*
-  - Show equation an impage previews: In a popup
-  - Evaluate chunks in directory: Document (** <- wichtig !**)
+  - Show equation an image previews: In a popup
+  - Evaluate chunks in directory: Document (**<- wichtig !**)
 - Code > Tab "Saving"
-  - Default Text Encoding: UTF-8 (** <- wichtig !**)
+  - Default Text Encoding: UTF-8 (**<- wichtig !**)
 
 ### Git konfigurieren
 
@@ -72,7 +72,7 @@ Nach der Installation muss git konfiguriert werden. Siehe dazu folgende Kapitel:
 
 ### Repo Klonen
 
-Um die ganzen *.Rmd Files lokal bearbeiten zu können, muss das Repository geklont werden. Mit RStudio ist dies sehr einfach, siehe dazu nachstehende Anleitung. Als Repo-URL folgendes einfügen: `https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS20.git`
+Um die ganzen *.Rmd Files lokal bearbeiten zu können, muss das Repository geklont werden. Mit RStudio ist dies sehr einfach, siehe dazu nachstehende Anleitung. Als Repo-URL folgendes einfügen: `https://github.com/ResearchMethods-ZHAW/HS21.git`
 
 - [happygitwithr: New RStudio Project via git clone](https://happygitwithr.com/new-github-first.html#new-rstudio-project-via-git)
 
@@ -92,26 +92,32 @@ Wie bereits erwähnt, verwenden wir im Projekt `renv`.
 - Installiert dieses Package mit `install.packages("renv")`
 - Installiert alle notwendigen Packages mit `renv::restore()`
 
-
-
+weitere infos: [Collaborating with renv](https://rstudio.github.io/renv/articles/collaborating.html)
 
 ## Anleitung 3: Inhalte Editieren und veröffentlichen
 
 
 ```{r, echo = FALSE}
-
 di <- list.dirs(recursive = FALSE,full.names = F)
 di <- di[startsWith(di, "_")]
-
+aufzaehlung <- function(vec, word = "und"){paste(paste(head(vec,-1), collapse = ", "),word,tail(vec,1))}
 
 ```
 
+- Eine `distill` Webseite besteht aus einzelnen .Rmd Files
+- **Pro Rmd-File exisitert ein eigener Ordner im Projekt**
+- Diese Rmd fiels werden beim Kompilieren (`knìt`) in  .html-Files konvertiert
+- Um daraus eine zusammenhängende Website zu machen ist das File `_site.yml` verantwortlich. 
 
-Eine `distill` Webseite besteht aus einzelnen .Rmd Files, pro Rmd-File exisitert ein eigener Ordner im Projekt. Diese Rmd fiels werden beim Kompilieren (`knìt`) in  .html-Files konvertiert. Um daraus eine zusammenhängende Website zu machen ist das File `_site.yml` verantwortlich. Die Einstiegsseite wird in `index.Rmd` definiert. 
+### Rmd erstellen
 
-### Rmd Editieren
+Die meisten Inhalte exisitieren bereits und ihr müsst sie nur noch anpassen. Falls ihr aber ein neues .Rmd File erstellen möchtet, müsst ihr einen Unterordner in einem der Ordner `r aufzaehlung(di, "oder")` erstellen. Der Name des Unterordners bestimmt einerseits den URL des Beitrags und andererseits die Position der Erscheinung in der "Listing". 
 
-Um Inhalte zu editieren, öffnet ihr das entsprechende .Rmd file in einem der Ordner `r paste(di, collapse = ", ")`. Ihr könnt dies wie ein reguläres, eigenständiges .Rmd File handhaben. Alle Pfade im Dokument sind *relativ* zum .Rmd File zu verstehen: **Das Working directory ist der Folder des entsprechenden Rmd Files!!**. 
+Fügt dem Artikel danach einen YAML header hinzu. Nutzt dazu am besten die Vorlage eines ähnlichen Artikels.
+
+### Rmd editieren
+
+Um Inhalte zu editieren, öffnet ihr das entsprechende .Rmd file in einem der Ordner `r aufzaehlung(di, "oder")`. Ihr könnt dieses File wie ein reguläres, eigenständiges .Rmd File handhaben. Wichtig: Alle Pfade im Dokument sind *relativ* zum .Rmd File zu verstehen: **Das Working directory ist der Folder des entsprechenden Rmd Files!!**. 
 
 
 ### Rmd Kompilieren
