@@ -1,3 +1,0 @@
-https://data.geo.admin.ch/ch.blw.bodeneignung-vernaessung/gdb/2056/ch.blw.bodeneignung-vernaessung.zip
-
-https://map.geo.admin.ch/?lang=en&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.blw.bodeneignung-vernaessung&layers_opacity=0.75&E=2700366.73&N=1225478.48&zoom=3

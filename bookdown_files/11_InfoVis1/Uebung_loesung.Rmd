@@ -1,7 +1,0 @@
-## Loesung
-
-[RCode als Download](11_InfoVis1/RFiles/Uebung.R)
-
-
-```{r code=readLines('11_InfoVis1/RFiles/Uebung.R', encoding = "UTF-8"), echo=T, eval=F}
-```
