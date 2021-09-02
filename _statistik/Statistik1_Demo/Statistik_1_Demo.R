@@ -10,7 +10,7 @@ fisher.test(count)
 
 a <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
 b <- c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
-blume<-data.frame(a,b)
+blume<-data.frame(a, b)
 blume
 summary(blume)
 boxplot(blume$a, blume$b)
