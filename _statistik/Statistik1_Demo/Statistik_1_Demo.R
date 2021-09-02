@@ -10,7 +10,7 @@ fisher.test(count)
 
 a <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
 b <- c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
-blume<-data.frame(a, b)
+blume <- data.frame(a, b)
 blume
 summary(blume)
 boxplot(blume$a, blume$b)
@@ -47,7 +47,7 @@ rm(cultivar)
 rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
 rm(cultivar)
 
-blume.long <- data.frame(cultivar=c(rep("a", 10), rep("b", 10)), size=c(a, b))
+blume.long <- data.frame(cultivar=c(rep("a", 10), rep("b", 10)), size = c(a, b))
 summary(blume.long)             
 head(blume.long)
 
@@ -61,9 +61,9 @@ library(tidyverse)
 ggplot(blume.long, aes(cultivar, size)) + geom_boxplot()
 ggplot(blume.long, aes(cultivar, size)) + geom_boxplot() + theme_classic()
 ggplot(blume.long, aes(cultivar, size)) + geom_boxplot(size = 1) + theme_classic()+
-theme(axis.line = element_line(size=1)) + theme(axis.title = element_text(size = 14))+
-theme(axis.text = element_text(size=14))
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
+theme(axis.line = element_line(size = 1)) + theme(axis.title = element_text(size = 14))+
+theme(axis.text = element_text(size = 14))
+ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size = 1) + theme_classic()+
   theme(axis.line = element_line(size = 1), axis.ticks = element_line(size = 1), 
        axis.text = element_text(size = 20), axis.title = element_text(size = 20))
 
