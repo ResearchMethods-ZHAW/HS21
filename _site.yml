@@ -85,8 +85,8 @@ navbar:
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(S)
   right:
     - icon: fab fa-github
-      href: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/
-    - icon: fab fa-github
+      href: https://github.com/ResearchMethods-ZHAW/HS21
+    - icon: fa-solid fa-forward
       href: Readme.html
 output: 
   distill::distill_article:
