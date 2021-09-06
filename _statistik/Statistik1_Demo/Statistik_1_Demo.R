@@ -3,14 +3,14 @@ binom.test(57, 100)
 
 qchisq(0.95, 1)
 
-count<-matrix(c(38, 14, 11, 51), nrow = 2)
+count <- matrix(c(38, 14, 11, 51), nrow = 2)
 count
 chisq.test(count)
 fisher.test(count)
 
 a <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
-b <- c(12, 15, 16,7, 8, 10, 12, 11, 13, 10)
-blume<-data.frame(a,b)
+b <- c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
+blume<-data.frame(a, b)
 blume
 summary(blume)
 boxplot(blume$a, blume$b)
@@ -58,17 +58,17 @@ t.test(size~cultivar, blume.long, var.equal = F)
 
 
 library(tidyverse)
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot() + theme_classic()
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size = 1) + theme_classic()+
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot()
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot() + theme_classic()
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot(size = 1) + theme_classic()+
 theme(axis.line = element_line(size=1)) + theme(axis.title = element_text(size = 14))+
 theme(axis.text = element_text(size=14))
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
-  theme(axis.line = element_line(size=1), axis.ticks = element_line(size = 1), 
+  theme(axis.line = element_line(size = 1), axis.ticks = element_line(size = 1), 
        axis.text = element_text(size = 20), axis.title = element_text(size = 20))
 
 mytheme <- theme_classic() + 
-  theme(axis.line = element_line(color = "black", size=1), 
+  theme(axis.line = element_line(color = "black", size = 1), 
         axis.text = element_text(size = 20, color = "black"), 
         axis.title = element_text(size = 20, color = "black"), 
         axis.ticks = element_line(size = 1, color = "black"), 
@@ -83,12 +83,14 @@ t_test <- t.test(size~cultivar, blume.long)
 ggplot(blume.long, aes(cultivar, size)) + 
   geom_boxplot(size = 1) + 
   mytheme +
-  annotate("text", x = "b", y = 24, label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
+  annotate("text", x = "b", y = 24,
+  label = paste0("italic(p) == ", round(t_test$p.value, 3)), 
+  parse = TRUE, size = 8)
 
 ggplot (blume.long, aes(cultivar,size)) + 
   geom_boxplot(size = 1) + 
   mytheme +
-  labs(x="Cultivar",y="Size (cm)")
+  labs(x = "Cultivar", y = "Size (cm)")
 
 ```{.r .distill-force-highlighting-css}
 ```
