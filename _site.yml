@@ -81,8 +81,8 @@ navbar:
         href: RaumAn.html#category:RaumAn3
     - text: "Fallstudien"
       menu:
-      - text: "Biodiversity and Ecosystems"
-        href: Fallstudien.html#category:Biodiversity_&_Ecosystems
+      - text: "Biodiversity and Ecosystems (Profil S)"
+        href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(S)
   right:
     - icon: fab fa-github
       href: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/
