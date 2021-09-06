@@ -86,6 +86,8 @@ navbar:
   right:
     - icon: fab fa-github
       href: https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/
+    - icon: fab fa-github
+      href: Readme.html
 output: 
   distill::distill_article:
     toc: true

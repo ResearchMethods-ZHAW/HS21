@@ -751,13 +751,16 @@ Fallstudien
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems">Biodiversity and Ecosystems</a>
+<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)">Biodiversity and Ecosystems (Profil S)</a>
 </div>
 </div>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
 <a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="Readme.html">
 <i class="fab fa-github" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
