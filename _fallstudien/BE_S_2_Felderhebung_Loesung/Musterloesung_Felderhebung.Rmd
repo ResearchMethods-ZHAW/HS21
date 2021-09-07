@@ -1,0 +1,196 @@
+---
+title: "Musterloesung: Felderhebung Grüntal"
+description:
+author:
+  - name: Adrian Hochreutener
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (S) Musterloesung
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.align="left")
+```
+
+```{r}
+#.###############################################################################################
+# Besuchermonitoring Grüntal - Auswertung der Besucherzahlen ####
+# Modul Research Methods, HS20. Adrian Hochreutener ####
+#.################################################################################################
+#.##############################################################################################
+# METADATA UND DEFINITIONEN ####
+#.################################################################################################
+# Ordnerstruktur ####
+# Im Ordner in dem das R-Projekt abgelegt ist muessen folgende Unterordner bestehen:
+# - Skripts
+# - Felderhebungen (Rohdaten hier ablegen)
+# - Results
+# Benoetigte Bibliotheken ####
+library(tidyverse) # Data wrangling und piping
+library(lubridate) # Arbeiten mit Datumsformaten
+library(data.table)# schnelles Dateneinlesen
+
+#.###############################################################################################
+# 1. DATENIMPORT #####
+#.###############################################################################################
+
+# 1.1 Einlesen ####
+# lese die Daten mithilfe von data.table ein. Je nach Bedarf muss der Speicherort sowie der
+# Dateiname angepasst werden
+cam <- fread("DummyData.csv")
+```
+
+```{r}
+#.###############################################################################################
+# 2. VORBEREITUNG DER DATEN #####
+#.###############################################################################################
+
+# 2.1 erstes Sichten und anpassen der Datentypen ####
+str(cam)
+head(cam)
+
+cam <- cam %>% 
+  mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))%>%
+  mutate(Kamerastandort = factor(Kamerastandort))%>%
+  mutate(Art = factor(Art))%>%
+  mutate(Richtung = factor(Richtung))%>%
+  mutate(Aktivität = factor(Aktivitaet))%>%
+  mutate(Begleittier = factor(Begleittier))%>%
+  mutate(Wildtier = factor(Wildtier))
+
+# Datensatz trennen ####
+# Kamera ost und West sind noch in einem Datensatz.
+# Wir betrachten jeden Standort einzeln --> trennen aufgrund Name Standort
+ost <- filter(cam, Kamerastandort == "ost")
+west <- filter(cam, Kamerastandort == "west")
+
+# 2.3 Verteilung pruefen ####
+# mittels Histogram 
+# bei explorativen Analysen macht es immer Sinn sich die Verteilung der Daten anzuschauen
+hist(ost$Anzahl[ost$Art=="Mensch" &# wir sind vorerst nur an den Menschen interessiert
+                  !ost$Anzahl==0], # hier schliesse ich die Nuller aus der Visualisierung aus
+     breaks = 10) 
+
+hist(west$Anzahl[west$Art=="Mensch" &
+                  !west$Anzahl==0], 
+     breaks = 10) 
+
+# 2.4 mittels Scatterplot ####
+plot(x=ost$Datum[ost$Art=="Mensch" &
+                   !ost$Anzahl==0], 
+     y=ost$Anzahl[ost$Art=="Mensch" &
+                    !ost$Anzahl==0], 
+     xlab = "Datum")
+
+plot(x=west$Datum[west$Art=="Mensch" &
+                   !west$Anzahl==0], 
+     y=west$Anzahl[west$Art=="Mensch" &
+                    !west$Anzahl==0], 
+     xlab = "Datum")
+
+# Filter ####
+# fuer die weiteren Analysen schliessen wir die Wildtiere komplett aus
+ost <- filter(ost, Art == "Mensch")
+west <- filter(west, Art == "Mensch")
+
+# Dennoch wolle wir auch wissen, welche Tiere auf dem Areal unterwegs sind
+# Dafuer gibts einen separaten Datensatz
+Tiere <- filter(cam, cam$Art == "Wildtier")
+```
+
+```{r}
+#.##############################################################################################
+# 3. ANALYSE #####
+#.###############################################################################################
+
+# Fuer die Analyse Eigenschaften Datensatz anschauen
+summary(ost)
+summary(west)
+
+# Anzahl Total / standort ####
+Anzahl_Ost <- sum(ost$Anzahl)
+Anzahl_West <- sum(west$Anzahl)
+
+# Meiste Aktivitaet ####
+Akt_Ost <- ost %>%
+  group_by(Aktivität)%>%       # Hier sagen wir nach was wir gruppieren 
+  summarise (n = n()) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
+  mutate(freq = n / sum(n))%>% # und dann soll und R das prozentuale Verhaeltniss berechnen
+  arrange(desc(n))             # und dann das ganze absteigend sortieren
+
+# das ganze wiederholen wir fuer den zweiten Standort
+# Jetzt kommt die grosse Staerke von R. 
+# Wir haben den Code zur Berechnung der Anzahl pro Gruppe bereits geschrieben.
+# fuer die folgenden Auswertungen koennen wir ihn einfach "recyceln"
+ Akt_West<- west %>%
+  group_by(Aktivität)%>%
+  summarise (n = n()) %>%
+  mutate(freq = n / sum(n))%>%
+  arrange(desc(n))
+
+Aktivitaet_West <- west %>%
+  group_by(Aktivität)%>%
+  summarise (n = n()) %>%
+  mutate(freq = n / sum(n))%>%
+  arrange(desc(n))
+
+# Begleittier
+Begleit_ost <- ost %>%
+  group_by(Begleittier)%>%
+  summarise (n = n()) %>%
+  mutate(freq = n / sum(n))%>%
+  arrange(desc(n))
+# uns interessiert es nicht, wie viele Leute kein Begleittier dabei hatten
+Begleit_ost <- filter(Begleit_ost, !Begleittier == "0")
+
+Begleit_west <- west %>%
+  group_by(Begleittier)%>%
+  summarise (n = n()) %>%
+  mutate(freq = n / sum(n))%>%
+  arrange(desc(n))
+
+Begleit_west <- filter(Begleit_west, !Begleittier == "0")
+
+# Wildtier
+Wildtier <- Tiere %>%
+  group_by(Wildtier)%>%
+  summarise (n = n()) %>%
+  mutate(freq = n / sum(n))%>%
+  arrange(desc(n))
+
+```
+
+```{r}
+#.###############################################################################################
+# 4. VISUALISIERUNG #####
+#.###############################################################################################
+
+# Verteilung der Aktivitaeten als Pie Chart ####
+# Zuerst eine Palette mit 5 Farben definieren
+pal <- hcl.colors(5, palette = "heat")
+# Dann als Kreisdiagramm plotten
+pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
+    main = "Prozentuales Verhaeltnis West",
+    col = pal) 
+
+# Begleittier als Bar Chart ####
+ggplot(Begleit_ost,                      # hier den Datensatz spezifizieren
+       mapping=aes(x=Begleittier, y = n))+ # Absolute Anzahl darstellen
+  geom_col(width=0.9,position = "dodge")+# hier sage ich, dass ich ein Balkendiagramm will
+  labs(x="Begleittier", y= "Anzahl")+    # Achsenbeschriftung setzen
+  theme_classic(base_size = 15)+         # Und zu guter letzt: Stil definieren
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) # sowie Achsenbeschr.ausrichten
+
+# Wildtier als Bar Chart ####
+ggplot(Wildtier, mapping=aes(x=Wildtier, y=freq*100))+ # kann auch prozentual dargestellt werden
+  geom_col(width=0.9,position = "dodge")+
+  labs(x="Begleittier", y= "Prozent [%]")+
+  theme_classic(base_size = 15)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+# Bei Bedraf koennen die selben Plots fuer den zweiten Standort gemacht werden.
+```
+
+
