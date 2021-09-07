@@ -1,6 +1,6 @@
 [
   {
-    "path": "fallstudien/Biodiversity1_Einleitung/",
+    "path": "fallstudien/Biodiversity_S1_Einleitung/",
     "title": "Einleitung",
     "description": {},
     "author": [
@@ -9,19 +9,19 @@
         "url": {}
       }
     ],
-    "date": "2021-08-31",
+    "date": "2021-09-06",
     "categories": [
-      "Biodiversity & Ecosystems"
+      "Biodiversity & Ecosystems (S)"
     ],
     "contents": "\nEinleitung\nHintergrund\nDas rund 1100 ha grosse Naturschutzgebiet Wildnispark Zürich Sihlwald, welches im periurbanen Raum südlich von Zürich liegt, gilt seit dem 1. Januar 2010 als erster national anerkannter Naturerlebnispark. Er ist Teil des Wildnisparks Zürich. Seine Rolle als Naherholungsgebiet für die Stadt Zürich ist von grosser Bedeutung.\n\n\n\n\n\nFigure 1: Rechtlich bindende Schutzgebiete im Regionalen Naturpark Beverin. Dargestellt ist der Perimeter des Naturparks, Wildruhezonen sowie das Eidgenössische Jagdbanngebiet Beverin.\n\n\n\nIm Perimeter gelten verschiedene Regeln. So darf z. B. nur auf bestimmten Wegen mit den Velo gefahren und Hunde müssen an der Leine geführt werden. Damit soll im Schutzgebiet die Balance zwischen Schutz und Nutzen bewahrt werden, denn einerseits sollen die Besuchenden den Wald erleben dürfen, andererseits soll sich dieser, in der Kernzone, frei entwicklen dürfen.\n\n\n\nDamit diese Balance erreicht werden kann, muss das Management auf solide, empirisch erhobene Daten zur Natur und zu den Besuchenden zurückgreifen können. Das Besuchermonitoring deckt den zweiten Teil dieser notwendigen Daten ab.\nIm Wildnispark Zürich sind dazu mehrere automatische Zählstellen in Betrieb. Die Zählstellen erfassen stundenweise Besuchende. Einige Zählstellen erfassen richtungsgetrennt und / oder können zwischen verschiedenen Nutzergruppen wie Personen, die zu Fuss gehen, und Velofahrenden unterscheiden.\nIm Rahmen des Moduls Research Methods werden in der Fallstudie Profil S mehrere dieser automatischen Zählstellen genauer untersucht. Die Daten, welche im Besitz des WPZ sind, wurden bereits kalibriert. Das heisst, Zählungen während Wartungsarbeiten, bei Felhbetrieb o.ä. wurden bereits ausgeschlossen. Dies ist eine Zeitintensive Arbeit und wir dürfen hier mit einem wahren, sauber aufbereiteten “Datenschatz” arbeiten.\nDer Wildnispark wertet die Zahlen auf verschiedene Weise aus. So sind z. B. Jahresgänge (an welchen Monaten herrscht besonders viel Betrieb) und Nutzungszahlen bekannt. Vertiefte Auswertungen, die beispielsweise den Zusammenhang zwischen Besuchszahlen und dem Wetter untersuchen, werden nicht gemacht, da dies die Kapazitäten übersteigen würde.\nUnsere Analysen in diesem Modul helfen dem Management, ein besseres Verständnis zum Verhalten der Besuchenden zu erlangen und bilden Grundlagen für Managemententscheide in der Praxis.\nZiele\nIn dieser Fallstudie zeigen wir, welche Einfluss der Lockdown während der Covid19-Pandemie im Frühjahr 2020 sowie jener im Winter 2020/2021 auf die täglichen Besuchszahlen im Wildnispark Zürich hatte.\nErgänzend beschreiben wir den Zusammenhang der Besuchszahlen mit verschiedenen Wetterparametern. Die Hypothese lautet, je mehr Sonnenstunden und je höher die Temperatur, desto mehr Besuchende sind im Untersuchungsgebiet unterwegs; je mehr Niederschlag gemessen wird, desto weniger Besuchende werden gezählt.\nDa neben dem Wetter aber auch saisonale Muster, wie z.B. Schulferien, einen grossen Einfluss auf Besuchszahlen haben können, ziehen wir diese und weitere Parameter (Wochentage, Kalenderwoche, Jahr) ebenfalls in die Auswertung ein.\nDiese kombinierte, statistisch schliesssende, Betrachtung erlaubt uns Aussagen darüber, ob “nur” aufgrund des schönen Frühlings 2021 mehr Menschen in Wald unterwegs waren, oder ob der Lockdown tatsächlich einen so deutlich positiven Einfluss auf die Besuche hatte.\nGrundlagen\nZur Verfügung stehen:\ndie stündlichen, richtungsgetrennten Zählungen von Velos an drei Zählstellen\nMeteodaten (Temperatur, Sonnenscheindauer, Niederschlagssumme)\nR-Skripte mit Hinweisen zur Auswertung\n\n\n\n",
-    "preview": "fallstudien/Biodiversity1_Einleitung/Perimeter.png",
-    "last_modified": "2021-08-31T16:05:39+02:00",
+    "preview": "fallstudien/Biodiversity_S1_Einleitung/Perimeter.png",
+    "last_modified": "2021-09-06T15:06:24+02:00",
     "input_file": {},
     "preview_width": 2001,
     "preview_height": 1051
   },
   {
-    "path": "fallstudien/Biodiversity2_Felderhebung/",
+    "path": "fallstudien/Biodiversity_S2_Felderhebung/",
     "title": "Felderhebung Grüntal",
     "description": {},
     "author": [
@@ -30,19 +30,19 @@
         "url": {}
       }
     ],
-    "date": "2021-08-31",
+    "date": "2021-09-06",
     "categories": [
-      "Biodiversity & Ecosystems"
+      "Biodiversity & Ecosystems (S)"
     ],
     "contents": "\nEinführung\nEs gibt eine Vielzahl an möglichen Methoden zur Erfassung der Besucherzahlen. Automatische Zählgeräte bieten die Möglichkeit lange und durchgehende Zeitreihen zu erfassen. Managemententscheide können mithilfe dieser fundierten Datengrundlagen gezielt geplant und gerechtfertigt werden.\nZiele\nIn dieser Übung wird eine Methode des Besuchermonitorings angewandt.\nDie Studierenden können das eingesetzte Gerät installieren und kennen die Vor- und Nachteile verschiedener Methoden.\nSie können die Daten auslesen und explorativ analysieren.\nGrundlagen\nDie Geräte werden innerhalb der auf Abbildung 1 gekennzeichneten Standorte platziert. Damit soll überprüft werden, wie stark frequentiert die Waldränder der ökologisch aufgewerteten Seeparzelle sind.\n\n\nknitr::include_graphics(\"Perimeter_Felderhebung.png\")\n\n\n\n\nDie BEsuchenden werden über den Zweck der Kameras informiert:\n\n\nknitr::include_graphics(\"Begleitzettel_Kamera.png\")\n\n\n\n\nDatenanalyse\nVorbereitungen\nFuer diese Aufgabe benoetigen wir folgende Bibliotheken:\n\n\n# Benoetigte Bibliotheken ####\nlibrary(tidyverse) # Data wrangling und piping\nlibrary(lubridate) # Arbeiten mit Datumsformaten\nlibrary(data.table)# schnelles Dateneinlesen\n\n\n\nLese nun zuerst den bereitsgestellen Datensatz (csv) mithilfe von fread() oder read.csv() ein und nennt ihn cam.\nPruefe die Daten. Wurden sie richtig eingelesen? Wie sieht die Struktur der Daten aus?\nTipp: Brauch zum pruefen den Befehl str() sowie head().\nAufgabe 1: Datentypen\nViele Befehle zum Einlesen erkennen die Datentypen automatisch. Bei Faktoren funktioniert das aber nicht (sie sind ja eigentlich einfach Text und R weiss nicht, was wir damit wollen).\nAuch das Datum muss vielfach manuell definiert werden (hier muessen wir R sagen, wie das Format dieses aussieht).\n\n\ncam <- cam %>% \n  mutate(Datum = as.Date(Datum, format = \"%d.%m.%Y\"))%>%\n  mutate(Kamerastandort = factor(Kamerastandort))%>%\n  ...\n\n\n\nDefiniert nun die restlichen (relevanten) Variablen als Faktor.\nAufgabe 2: Datensatz trennen\nUnser Datensatz enthaellt die Angeben zu ost und west. Wir wollen die Auswertungen aber pro Standort machen.\nTrennt den Datensatz aufgrund des Standorts. Nutzt dazu filter().\n\n\nost <- filter(DATENSATZ, SPALTENNAME == \"Attribut\")\nwest <- ...\n\n\n\nAufgabe 3: Verteilung pruefen\nBei explorativen Analysen macht es immer Sinn sich die Verteilung der Daten anzuschauen. Pruefe daher die Verteilung pro Datensatz mittels Histogram und Scatterplot.\nBeim Histogram sollen nur die Menschen angezeigt und die 0er ausgeschlossen werden. Das kann mit folgendem Code erreicht werden:\n\n\nhist(west$Anzahl[west$Art==\"Mensch\" &\n                  !west$Anzahl==0], # das \"!\" bedeutet \"nicht gleich\"\n     breaks = 10) \n\n\n\nBeim Scatterplot soll auf der x-Achse das Datum stehen, auf der y-Achse die Anzahl der Personen. Auch hier wollen wir keine Wildtiere im Plot.\nAufgabe 3: Daten ausschliessen\nFuer die weiteren Analysen schliessen wir die Wildtiere komplett aus.\nNutzt dazu wiederum den Befehl filter() und ueberschreibt die Datensaetze ost und west.\nDennoch wolle wir auch wissen, welche Tiere auf dem Areal (ost und west zusammen, also df cam) unterwegs sind.\nDafuer gibts einen separaten Datensatz namens Tiere. Nutzt dazu den Befehl filter().\nAufgabe 4: Explorative Analysen\nBerechnet zuerst die totale Anzahl Menschen / Standort mit sum(DATENSATZ$SPALTENNAME).\nGruppieren und summieren: Berechnet nun die Anzahl Menschen pro Aktivität sowie die Anzahl Begleittier pro Kategorie pro Standort. Untenstehender Code eigent sich dazu ganz gut:\n\n\nAkt_Ost <- ost %>%\n  group_by(Aktivitaet)%>%       # Hier sagen wir nach was wir gruppieren \n  summarise (n = n()) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl\n  mutate(freq = n / sum(n))%>% # und dann soll und R das prozentuale Verhaeltniss berechnen\n  arrange(desc(n))             # und dann das ganze absteigend sortieren\n\n\n\nNun soll noch berechnet werden, wie viele unterschiedliche Wildtiere auf dem ganzen Areal gezaehlt wurden. Recycelt dazu obenstenenden Code.\nAufgabe 5: Visualisieren\nVerteilung der Aktivitäten als Pie Chart\nZuerst eine Palette mit 5 Farben definieren:\n\n\npal <- hcl.colors(5, palette = \"heat\")\n\n\n\nDann als Kreisdiagramm plotten. Haltet euch an untenstehenden Plot:\n\n\npie(Akt_West$n, labels = c(\"Anderes\", \"Biker\", \"Landwirtschaft\", \"Spaziergaenger\", \"unbestimmbar\"),\n    main = \"Prozentuales Verhaeltnis West\",\n    col = pal) \n\n\n\n\nBegleittier als Bar Chart\n\n\n# Begleittier als Bar Chart ####\nggplot(Begleit_ost,                      # hier den Datensatz spezifizieren\n       mapping=aes(x=Begleittier, y=n))+ # Absolute Anzahl darstellen\n  geom_col(width=0.9,position = \"dodge\")+# hier sage ich, dass ich ein Balkendiagramm will\n  labs(x=\"Begleittier\", y= \"Anzahl\")+    # Achsenbeschriftung setzen\n  theme_classic(base_size = 20)+         # Und zu guter letzt: Stil definieren\n  theme(axis.text.x = element_text(angle = 90, vjust = 0, hjust=0)) # sowie Achsenbeschr.ausrichten\n\n\n\n\nBei Bedraf koennen die selben Plots fuer den zweiten Standort gemacht werden.\nUnd schliesslich: Wildtier als Bar Chart Stellt hier auf der y-Achse die Anzahl nicht total sondern relativ (in Prozent) dar.\n\n\n\n\n\n\n",
-    "preview": "fallstudien/Biodiversity2_Felderhebung/Perimeter_Felderhebung.png",
-    "last_modified": "2021-08-31T16:05:56+02:00",
+    "preview": "fallstudien/Biodiversity_S2_Felderhebung/Perimeter_Felderhebung.png",
+    "last_modified": "2021-09-06T15:06:11+02:00",
     "input_file": {},
     "preview_width": 1268,
     "preview_height": 894
   },
   {
-    "path": "fallstudien/Biodiversity3_Aufgabenstellung/",
+    "path": "fallstudien/Biodiversity_S3_Aufgabenstellung/",
     "title": "Aufgabenstellung Wildnispark",
     "description": {},
     "author": [
@@ -51,13 +51,13 @@
         "url": {}
       }
     ],
-    "date": "2021-08-31",
+    "date": "2021-09-06",
     "categories": [
-      "Biodiversity & Ecosystems"
+      "Biodiversity & Ecosystems (S)"
     ],
     "contents": "\nAbschlussbericht über die multivariate Analyse\nZiele\nBisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt. Das Besuchermonitoring Grüntal ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.\nIm Rahmen dessen programmieren wir multivariate Modelle, welche den Zusammenhang zwischen der Anzahl Besuchenden und verschiedenen Einflussfaktoren (Lockdown, Wetter, Ferien, Wochentag, Kalenderwoche) beschreiben. Dank ihnen können wir sagen, wie die Besucher:innen auf die untersuchten Faktoren reagieren (siehe dazu [Einleitung], Ziele).\nKonkret sollen folgende Fragestellungen beantwortet werden:\n\nWelchen Einfluss haben neben den Lockdowns auch die Wetterparameter (Sonnenscheindauer, Tageshöchsttemperatur, Niederschlagssumme) sowie der Wochentag, die Ferien, die Kalenderwoche und das Jahr auf die Besuchszahlen?\nDabei interessiert uns besonders, wie stark die jeweiligen Einflüsse sind, welche Effektrichtungen beobachtbar sind und welche der untersuchten Parameter signifikant sind.\nKönnen deutliche Unterschiede zwischen den “normalen”, vor-Covid19-Jahren und danach bei Tages-, Wochen-, und / oder Saisongang sowie den wichtigsten, deskriptiven Kennzahlen gefunden werden?\n\nIm Bericht sollen die Informationen und Erfahrungen aus dem gesamten Verlauf der Fallstudie in geeigneter Weise einfliessen. Bezüglich der Felderhebung erwarten wir keine Angaben.\n\n\nknitr::include_graphics(\"Aufbau_Fallstudie_Profil_S.png\")\n\n\n\n\nErwartungen\nStruktur / Aufbau\nFragestellung (siehe oben; die Fragestellung ist vorgegeben, darf aber natürlich für den Bericht geschärft und optimal formuliert und konkretisiert werden.)\nMethoden (kurzes Kapitel mit den statistischen Analysen)\nResultate (deskriptive Statistik, multivariates Modell; kurzer Fliesstext sowie die notwendigen Tabellen und eine Auswahl möglichst informativer Grafiken)\nDiskussion (Diskussion der deskriptiven Analysen und der Modellergebnisse; dieser Abschnitt sollte die eigenen Resultate auch im Zusammenhang mit aktueller Fachliteratur reflektieren.)\nLiteraturverzeichnis (Tipp: Das Literaturverzeichnis sollte vollständig sein, sowie formal korrekt und einheitlich daherkommen. Wir erwarten speziell in der Diskussion eine Abstützung auf aktuelle Fachliteratur. Auf Moodle haben wir Euch eine Auswahl relevanter Papers bereitgestellt.)\nAnhang (für alle Auswertungen relevanter R-Code in geeigneter Form)\nGesamtumfang max. 7500 Zeichen (inkl. Leerzeichen; exkl. Einleitung, Tabellen, Literaturverzeichnis und Anhang)\nAbgabe am 8.1.2022 auf Moodle oder per Mail an hoce@zhaw.ch\nBewertungskriterien\nIst die Methode klar und verständlich formuliert?\nSind die deskriptiven Analysen klar beschrieben und geeignet visualisiert?\nIst die Variablenselektion klar beschrieben, plausibel und nachvollziehbar?\nSind die Modellresultate in Text- und Tabellenform korrekt beschrieben und geeignet visualisiert?\nIst die Diskussion klar formuliert und inhaltlich schlüssig?\nWie gut ist die Diskussion auf relevante und aktuelle Fachliteratur abgestützt?\nZusätzliche bewerten wir die inhaltliche Dichte der Arbeit und die formale Qualität (Sprache, Struktur, Aufbau, Darstellung, Literaturverzeichnis, Umgang mit Literatur im Text)\nZusammensetzung der Fallstudiennote: - Fallstudie-Leistungsnachweis 1 - Forschungsplan: 30% - Fallstudie-Leistungsnachweis 2 - Multivariate Analyse: 70%\n\n\n\n",
-    "preview": "fallstudien/Biodiversity3_Aufgabenstellung/Aufbau_Fallstudie_Profil_S.png",
-    "last_modified": "2021-08-31T16:05:14+02:00",
+    "preview": "fallstudien/Biodiversity_S3_Aufgabenstellung/Aufbau_Fallstudie_Profil_S.png",
+    "last_modified": "2021-09-06T15:06:01+02:00",
     "input_file": {},
     "preview_width": 1429,
     "preview_height": 903

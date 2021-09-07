@@ -2193,14 +2193,17 @@ Fallstudien
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems">Biodiversity and Ecosystems</a>
+<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)">Biodiversity and Ecosystems (Profil S)</a>
 </div>
 </div>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS21/">
+<a href="https://github.com/ResearchMethods-ZHAW/HS21">
 <i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="Readme.html">
+<i class="fa fa-solid fa-forward" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
@@ -2243,7 +2246,8 @@ Fallstudien
 </ul></li>
 <li><a href="#anleitung-3-inhalte-editieren-und-veröffentlichen">Anleitung 3: Inhalte Editieren und veröffentlichen</a>
 <ul>
-<li><a href="#rmd-editieren">Rmd Editieren</a></li>
+<li><a href="#rmd-erstellen">Rmd erstellen</a></li>
+<li><a href="#rmd-editieren">Rmd editieren</a></li>
 <li><a href="#rmd-kompilieren">Rmd Kompilieren</a></li>
 <li><a href="#änderungen-veröffentlichen">Änderungen veröffentlichen</a></li>
 </ul></li>
@@ -2291,12 +2295,12 @@ Fallstudien
 <li>Soft-wrap R Markdown files: checken <em>(macht autmatische Zeilenumbrüche bei .Rmd files)</em></li>
 <li>Show in document outline: Sections Only <em>(zeigt nur “Sections” im Inhaltsverzeichnis)</em></li>
 <li>Show output preview in: Window <em>(beim kopilieren von Rmd Files wird im Anschluss ein Popup mit dem Resultat dargestellt)</em></li>
-<li>Show equation an impage previews: In a popup</li>
-<li>Evaluate chunks in directory: Document (** &lt;- wichtig !**)</li>
+<li>Show equation an image previews: In a popup</li>
+<li>Evaluate chunks in directory: Document (<strong>&lt;- wichtig !</strong>)</li>
 </ul></li>
 <li>Code &gt; Tab “Saving”
 <ul>
-<li>Default Text Encoding: UTF-8 (** &lt;- wichtig !**)</li>
+<li>Default Text Encoding: UTF-8 (<strong>&lt;- wichtig !</strong>)</li>
 </ul></li>
 </ul>
 <h3 id="git-konfigurieren">Git konfigurieren</h3>
@@ -2308,7 +2312,7 @@ Fallstudien
 </ul>
 <h2 id="anleitung-2-projekt-aufsetzen">Anleitung 2: Projekt aufsetzen</h2>
 <h3 id="repo-klonen">Repo Klonen</h3>
-<p>Um die ganzen *.Rmd Files lokal bearbeiten zu können, muss das Repository geklont werden. Mit RStudio ist dies sehr einfach, siehe dazu nachstehende Anleitung. Als Repo-URL folgendes einfügen: <code>https://github.zhaw.ch/ModulResearchMethods/Unterrichtsunterlagen_HS20.git</code></p>
+<p>Um die ganzen *.Rmd Files lokal bearbeiten zu können, muss das Repository geklont werden. Mit RStudio ist dies sehr einfach, siehe dazu nachstehende Anleitung. Als Repo-URL folgendes einfügen: <code>https://github.com/ResearchMethods-ZHAW/HS21.git</code></p>
 <ul>
 <li><a href="https://happygitwithr.com/new-github-first.html#new-rstudio-project-via-git">happygitwithr: New RStudio Project via git clone</a></li>
 </ul>
@@ -2321,13 +2325,22 @@ Fallstudien
 <li>Installiert dieses Package mit <code>install.packages("renv")</code></li>
 <li>Installiert alle notwendigen Packages mit <code>renv::restore()</code></li>
 </ul>
+<p>weitere infos: <a href="https://rstudio.github.io/renv/articles/collaborating.html">Collaborating with renv</a></p>
 <h2 id="anleitung-3-inhalte-editieren-und-veröffentlichen">Anleitung 3: Inhalte Editieren und veröffentlichen</h2>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>Eine <code>distill</code> Webseite besteht aus einzelnen .Rmd Files, pro Rmd-File exisitert ein eigener Ordner im Projekt. Diese Rmd fiels werden beim Kompilieren (<code>knìt</code>) in .html-Files konvertiert. Um daraus eine zusammenhängende Website zu machen ist das File <code>_site.yml</code> verantwortlich. Die Einstiegsseite wird in <code>index.Rmd</code> definiert.</p>
-<h3 id="rmd-editieren">Rmd Editieren</h3>
-<p>Um Inhalte zu editieren, öffnet ihr das entsprechende .Rmd file in einem der Ordner _fallstudien, _infovis, _prepro, _rauman, _statistik, _statistik-konsolidierung. Ihr könnt dies wie ein reguläres, eigenständiges .Rmd File handhaben. Alle Pfade im Dokument sind <em>relativ</em> zum .Rmd File zu verstehen: <strong>Das Working directory ist der Folder des entsprechenden Rmd Files!!</strong>.</p>
+<ul>
+<li>Eine <code>distill</code> Webseite besteht aus einzelnen .Rmd Files</li>
+<li><strong>Pro Rmd-File exisitert ein eigener Ordner im Projekt</strong></li>
+<li>Diese Rmd fiels werden beim Kompilieren (<code>knìt</code>) in .html-Files konvertiert</li>
+<li>Um daraus eine zusammenhängende Website zu machen ist das File <code>_site.yml</code> verantwortlich.</li>
+</ul>
+<h3 id="rmd-erstellen">Rmd erstellen</h3>
+<p>Die meisten Inhalte exisitieren bereits und ihr müsst sie nur noch anpassen. Falls ihr aber ein neues .Rmd File erstellen möchtet, müsst ihr einen Unterordner in einem der Ordner _fallstudien, _infovis, _prepro, _rauman, _statistik oder _statistik-konsolidierung erstellen. Der Name des Unterordners bestimmt einerseits den URL des Beitrags und andererseits die Position der Erscheinung in der “Listing”.</p>
+<p>Fügt dem Artikel danach einen YAML header hinzu. Nutzt dazu am besten die Vorlage eines ähnlichen Artikels.</p>
+<h3 id="rmd-editieren">Rmd editieren</h3>
+<p>Um Inhalte zu editieren, öffnet ihr das entsprechende .Rmd file in einem der Ordner _fallstudien, _infovis, _prepro, _rauman, _statistik oder _statistik-konsolidierung. Ihr könnt dieses File wie ein reguläres, eigenständiges .Rmd File handhaben. Wichtig: Alle Pfade im Dokument sind <em>relativ</em> zum .Rmd File zu verstehen: <strong>Das Working directory ist der Folder des entsprechenden Rmd Files!!</strong>.</p>
 <h3 id="rmd-kompilieren">Rmd Kompilieren</h3>
 <p>Um das Rmd in Html zu konvertieren (“Kompilieren”) klickt ihr auf “Knit” oder nutzt die Tastenkombination <code>Ctr + Shift + K</code>.</p>
 <h3 id="änderungen-veröffentlichen">Änderungen veröffentlichen</h3>
@@ -2368,10 +2381,7 @@ Fallstudien
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom">
-<h3 id="updates-and-corrections">Corrections</h3>
-<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/ResearchMethods-ZHAW/HS21/issues/new">create an issue</a> on the source repository.</p>
-</div>
+<div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <div class="distill-site-nav distill-site-footer">

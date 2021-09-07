@@ -1,0 +1,63 @@
+---
+title: "Einleitung"
+description:
+author:
+  - name: Adrian Hochreutener
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (S)
+---
+
+
+# Einleitung
+
+__Hintergrund__
+
+Das rund 1100 ha grosse Naturschutzgebiet Wildnispark Zürich Sihlwald, welches im periurbanen Raum südlich von Zürich liegt, gilt seit dem 1. Januar 2010 als erster national anerkannter Naturerlebnispark. Er ist Teil des Wildnisparks Zürich. Seine Rolle als Naherholungsgebiet für die Stadt Zürich ist von grosser Bedeutung.
+
+```{r mapgeo, fig.align = "center", fig.cap= "Rechtlich bindende Schutzgebiete im Regionalen Naturpark Beverin. Dargestellt ist der Perimeter des Naturparks, Wildruhezonen sowie das Eidgenössische Jagdbanngebiet Beverin.", echo = FALSE}
+knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.zeitreihen,ch.bfs.gebaeude_wohnungs_register,ch.bav.haltestellen-oev,ch.swisstopo.swisstlm3d-wanderwege,ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter&layers_visibility=false,false,false,false,false,true&layers_timestamp=18641231,,,,,&layers_opacity=1,1,1,0.8,0.85,0.85&E=2684990.28&N=1236061.81&zoom=5", height ="1000px")
+```
+
+
+Im Perimeter gelten verschiedene Regeln. So darf z. B. nur auf bestimmten Wegen mit den Velo gefahren und Hunde müssen an der Leine geführt werden. Damit soll im Schutzgebiet die Balance zwischen Schutz und Nutzen bewahrt werden, denn einerseits sollen die Besuchenden den Wald erleben dürfen, andererseits soll sich dieser, in der Kernzone, frei entwicklen dürfen.
+
+```{r out.width = "100%", fig.align ="center", echo = FALSE}
+knitr::include_graphics("Perimeter.png")
+```
+
+Damit diese Balance erreicht werden kann, muss das Management auf solide, empirisch erhobene Daten zur Natur und zu den Besuchenden zurückgreifen können. Das Besuchermonitoring deckt den zweiten Teil dieser notwendigen Daten ab.
+
+Im Wildnispark Zürich sind dazu mehrere automatische Zählstellen in Betrieb. Die Zählstellen erfassen stundenweise Besuchende. Einige Zählstellen erfassen richtungsgetrennt und / oder können zwischen verschiedenen Nutzergruppen wie Personen, die zu Fuss gehen, und Velofahrenden unterscheiden.
+
+Im Rahmen des Moduls Research Methods werden in der Fallstudie Profil S mehrere dieser automatischen Zählstellen genauer untersucht. Die Daten, welche im Besitz des WPZ sind, wurden bereits kalibriert. Das heisst, Zählungen während Wartungsarbeiten, bei Felhbetrieb o.ä.  wurden bereits ausgeschlossen. Dies ist eine Zeitintensive Arbeit und wir dürfen hier mit einem wahren, sauber aufbereiteten "Datenschatz" arbeiten.
+
+Der Wildnispark wertet die Zahlen auf verschiedene Weise aus. So sind z. B. Jahresgänge (an welchen Monaten herrscht besonders viel Betrieb) und Nutzungszahlen bekannt. Vertiefte Auswertungen, die beispielsweise den Zusammenhang zwischen Besuchszahlen und dem Wetter untersuchen, werden nicht gemacht, da dies die Kapazitäten übersteigen würde.
+
+Unsere Analysen in diesem Modul helfen dem Management, ein besseres Verständnis zum Verhalten der Besuchenden zu erlangen und bilden Grundlagen für Managemententscheide in der Praxis.
+
+
+__Ziele__
+
+- In dieser Fallstudie zeigen wir, welche Einfluss der Lockdown während der Covid19-Pandemie im Frühjahr 2020 sowie jener im Winter 2020/2021 auf die täglichen Besuchszahlen im Wildnispark Zürich hatte.
+
+-	Ergänzend beschreiben wir den Zusammenhang der Besuchszahlen mit verschiedenen Wetterparametern. Die Hypothese lautet, je mehr Sonnenstunden und je höher die Temperatur, desto mehr Besuchende sind im Untersuchungsgebiet unterwegs; je mehr Niederschlag gemessen wird, desto weniger Besuchende werden gezählt.
+
+-	Da neben dem Wetter aber auch saisonale Muster, wie z.B. Schulferien, einen grossen Einfluss auf Besuchszahlen haben können, ziehen wir diese und weitere Parameter (Wochentage, Kalenderwoche, Jahr) ebenfalls in die Auswertung ein.
+
+- Diese kombinierte, statistisch schliesssende, Betrachtung erlaubt uns Aussagen darüber, ob "nur" aufgrund des schönen Frühlings 2021 mehr Menschen in Wald unterwegs waren, oder ob der Lockdown tatsächlich einen so deutlich positiven Einfluss auf die Besuche hatte.
+
+
+__Grundlagen__
+
+Zur Verfügung stehen:
+
+-	die stündlichen, richtungsgetrennten Zählungen von Velos an drei Zählstellen
+
+-	Meteodaten (Temperatur, Sonnenscheindauer, Niederschlagssumme)
+
+- R-Skripte mit Hinweisen zur Auswertung
+
+
