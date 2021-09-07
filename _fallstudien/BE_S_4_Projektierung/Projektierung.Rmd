@@ -1,0 +1,136 @@
+---
+title: "Aufgabenstellung Wildnispark"
+description:
+author:
+  - name: Adrian Hochreutener
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (S)
+---
+
+# Einfuehrung
+
+Vor den eigentlichen Auswertungen muessen einige Vorbereitungen unternommen werden. Die Zeit, die man hier investiert, wird in der spaeteren Projektphase um ein Mehrfaches eingespart.
+
+Ich empfehle generell mit Projekten zu arbeiten, da diese sehr einfach ausgetauscht (auf verschiedene Rechner) und somit auch reproduziert werden koennen. Wichtig ist, dass es keine absoluten Arbeitspfade sondern nur relative gibt. Der Datenimport (und -export) kann mithilfe dieser relativen Pfade stark vereinfacht werden. --> Kurz gesagt: Projekte helfen alles am richtigen Ort zu behalten (mehr zur Arbeit mit Projekten: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
+
+Erstellt an einem passenden Speicherort ein neues Projekt mit einem treffenden Namen:
+
+--> File / New Project
+
+# Aufgabe 1: Projektaufbau
+
+Nutzt fuer allen Text, welcher nicht im Code integriert ist, das Symbol #. Wenn ihr den Text als Titel definieren wollt, so dass er in der UEbersicht erscheint, muessen vor dem Wort # und nach dem Wort #### eingefuegt werden.
+
+```{r}
+# Texte, vor denen ein # und nach denen #### stehen, sind Titel
+# Texte, vor denen ein # steht, erklaeren den Ablauf
+# Zeilen ohne vorangehendes # sind Operationen
+
+# Wenn man rechts neben "Source" und links neben "Environment" klickt (oder CTRL + SHIFT + O --> Show document Outline), 
+# oeffnet sich die UEbersicht zu den UEberschriften
+```
+
+Tipp: 
+
+- Alt + - = <- 
+
+- Ctrl + Shift + M = %>%
+
+- Ctrl + Shift + C = # vor der ausgewaehlten Zeile
+
+Zuerst immer den __Titel des Projekts__ sowie den __Autor/ die Autorin__ des Skripts nennen. Hier soll auch die __Herkunft der Daten__ ersichtlich sein und falls externe Daten verwendet werden, sollte geklaert werden, wer Dateneigentuemer ist (Wildnispark und Meteo Schweiz).
+
+Im Skript soll immer die __Ordnerstruktur__ des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __Skripts, Data, Results, Results_compare und Meteo__).
+
+Beschreibt zudem folgendes die verwendete __Meteodaten__ (siehe dazu Metadata Meteodaten, --> order_83583_legend.txt)
+
+Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthaellt (nach den bereits erwaehnten Definitionen) 4 Kapitel: __1. Datenimport__, __2. Vorbereitung__, __3. Deskriptive Analyse und Visualisierung__ und __4. Multifaktorielle Analyse und Visualisierung__.
+
+Bereitet euer Sktipt mit diesen Kapitel vor.
+
+```{r}
+#.################################################################################################
+# Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
+# Fallstudie Modul Research Methods, HS21. Autor/in ####
+#
+#.################################################################################################
+
+#.###############################################################################################
+# METADATA UND DEFINITIONEN ####
+#.################################################################################################
+
+# Datenherkunft ####
+# ...
+
+#.###############################################################################################
+# 1. DATENIMPORT #####
+#.################################################################################################
+
+```
+
+# Aufgabe 2: Laden der Bibliotheken
+
+Geplottet wird mit ggplot, daher wird __tidyverse__ geladen. Diese Bibliothek ergaenzt BASE R in vielerlei Hinsicht uns ist eigentlich fast immer nötig. Da wir es bei Besucherdaten immer mit einem zeitlichen Bezug zu tun haben, benoetigen wir eine passende Bibliothek. Ich arbeite hier mit __lubridate__, POSIXct waere natuerlich auch moeglich. Base R bietet verschiedene Funktionen um Daten einzulesen. __data.table__ ergaenzt diese Basisfunktionen aber sehr gut. __GGally__, __PerformanceAnalytics__, __MuMIn__, __AICcmodavg__, __fitdistrplus__, __lme4__ und __sjPlot__ werden fuer die spaeteren multivariaten Analysen benoetigt.
+Die Modellguete werden wir mittels __lattice__, __blmeco__ und __lattice__ pruefen.
+
+- Ladet nun also die benoetigten Bibliotheken.
+
+- Allenfalls muessen diese zuerst mit install.packages("NAME_BIB") installiert werden.
+
+```{r eval=FALSE}
+# Benoetigte Bibliotheken ####
+library(tidyverse) # Data wrangling und piping
+library(lubridate) # Arbeiten mit Datumsformaten
+library(data.table)# schnelles Dateneinlesen
+library(GGally)    # plotten von mehreren Plots gleichzeitig
+library(PerformanceAnalytics) # Plotte Korrelationsmatrix
+library(MuMIn)     # Multi-Model Inference
+library(AICcmodavg)# Modellaverageing
+library(fitdistrplus)# Prueft die Verteilung in Daten
+library(lme4)      # Multivariate Modelle
+library(blmeco)    # Bayesian data analysis using linear models
+library(sjPlot)    # Plotten von Modellergebnissen (tab_model)
+library(lattice)   # einfaches plotten von Zusammenhaengen zwischen Variablen
+```
+
+# Aufgabe 3: Zeitliche Definitionen
+
+Definiert den zeitlichen Horizont, also Start sowie Ende der Untersuchungen. Der __Start- sowie der Endtermin__ fuer unsere Untersuchungen sollen das Jahr 2019 und das Jahr 2020 umfassen:
+
+```{r eval=FALSE}
+depo_start <- as.Date("2019-01-01")
+depo_end <- ...
+```
+
+Wichtiger Teil unserer Auswertungen ist der Einfluss des Lockdown auf das Besuchsverhalten. Wir muessen also Start und Ende des "harten" Lockdowns in der Schweiz definieren:
+
+```{r eval=FALSE}
+lock_start <- as.Date("2020-03-16")
+lock_end <- as.Date("2020-05-11")
+```
+
+Ebenfalls muessen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden. Diese werden bei wochenweisen Analysen ausgeklammert da sie i.d.R. unvollstaendig sind (das ist ein spaeterer Arbeitsschritt). Geht wie oben vor. Tipp: der Befehl __week()__ liefert euch die Kalenderwoche.
+
+Ferienzeiten koennen einen grossen Einfluss auf das Besueraufkommen haben. Die relevanten Ferienzeitraeume (fuer das Jahr 2019 und das erste Halbjahr 2020) muessen daher bekannt sein. Zur Definition der Ferien kann z.B. folgend vorgegangen werden:
+
+```{r warning=FALSE, results="hide"}
+# (https://www.schulferien.org/schweiz/ferien/2020/)
+Fruehlingsferien_2019_start <- as.Date("2019-04-13")
+Fruehlingsferien_2019_ende <- as.Date("2019-04-28")
+Sommerferien_2019_start <- as.Date("2019-07-6")
+Sommerferien_2019_ende <- as.Date("2019-08-18")
+Herbstferien_2019_start <- as.Date("2019-10-05")
+Herbstferien_2019_ende <- as.Date("2019-10-20")
+Winterferien_2019_start <- as.Date("2019-12-21")
+Winterferien_2019_ende <- as.Date("2020-01-02")
+
+Fruehlingsferien_start <- as.Date("2020-04-11")
+Fruehlingsferien_ende <- as.Date("2020-04-26")
+Sommerferien_start <- as.Date("2020-07-11")
+Sommerferien_ende <- as.Date("2020-08-16")
+```
+
+__Nun sind alle Vorbereitungen gemacht, die Projektstruktur aufgebaut und die eigentliche Arbeit kann beginnen.__
