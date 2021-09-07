@@ -12,11 +12,9 @@ categories:
 
 ## Einführung
 
-Es gibt eine Vielzahl an möglichen Methoden zur Erfassung der Besucherzahlen. Automatische Zählgeräte bieten die Möglichkeit lange und durchgehende Zeitreihen zu erfassen. Managemententscheide können mithilfe dieser fundierten Datengrundlagen gezielt geplant und gerechtfertigt werden.
+Es gibt eine Vielzahl an möglichen Methoden zur Erfassung der Besucherzahlen. Automatische Zählgeräte bieten die Möglichkeit lange und durchgehende Zeitreihen zu erfassen. Diese müssen aber natürlich auch ausgewertet werden. Hier erhaltet ihr erste Inputs dazu.
 
 ## Ziele
-
-In dieser Übung wird eine Methode des Besuchermonitorings angewandt. 
 
 - Die Studierenden können das eingesetzte Gerät installieren und kennen die Vor- und Nachteile verschiedener Methoden.
 - Sie können die Daten auslesen und explorativ analysieren.
@@ -29,13 +27,24 @@ Die Geräte werden innerhalb der auf Abbildung 1 gekennzeichneten Standorte plat
 knitr::include_graphics("Perimeter_Felderhebung.png")
 ```
 
-Die BEsuchenden werden über den Zweck der Kameras informiert:
+Datenschutz ist ein wichtiges Thema. Die Besuchenden werden über den Zweck der Kameras informiert, die Daten nach der Bearbeitung wieder gelöscht und nicht weitergegeben.
 
 ```{r out.width = "90%", fig.align ="center"}
 knitr::include_graphics("Begleitzettel_Kamera.png")
 ```
 
-## Datenanalyse
+Nun geht es ins Feld uns die Geräte werden installiert.
+
+__AUFGABE ab dem 12.10.2021__
+
+_Nachdem die Kameras für zwei Wochen im Einsatz standen, werden die Daten ausgelesen, die Sichtungen in Excel festgehalten und die explorativen Analysen durchgeführt._
+
+Bereits beim Detektieren der Sichtungen muss einem klar sein, was man auswerten möchte. Nur so können die relevanten Variablen erfasst werden.
+
+- Im Rahmen dieser Felderhebung erhaltet ihr von Adrian eine Excel-Vorlage zur Erfassung der Sichtungen.
+- Sobald alle Sichtungen erfasst sind, geht es ins R!
+
+## Datenanalyse in R
 
 ```{r include=FALSE}
 #.################################################################################################
@@ -223,7 +232,7 @@ library(lubridate) # Arbeiten mit Datumsformaten
 library(data.table)# schnelles Dateneinlesen
 ```
 
-Lese nun zuerst den bereitsgestellen Datensatz (csv) mithilfe von __fread()__ oder __read.csv()__ ein und nennt ihn __cam__.
+Lese nun zuerst den bereitsgestellen, respektiven den selbst erstellten Datensatz (csv) mithilfe von __fread()__ oder __read.csv()__ ein und nennt ihn __cam__.
 
 Pruefe die Daten. Wurden sie richtig eingelesen? Wie sieht die Struktur der Daten aus?
 
@@ -241,6 +250,7 @@ cam <- cam %>%
   mutate(Kamerastandort = factor(Kamerastandort))%>%
   ...
 ```
+
 Definiert nun die restlichen (relevanten) Variablen als Faktor.
 
 #### Aufgabe 2: Datensatz trennen
@@ -264,7 +274,7 @@ Das kann mit folgendem Code erreicht werden:
 ```{r eval=FALSE}
 hist(west$Anzahl[west$Art=="Mensch" &
                   !west$Anzahl==0], # das "!" bedeutet "nicht gleich"
-     breaks = 10) 
+     breaks = 10)                   # wie viele Balken brauchen wir im Histogram?
 ```
 
 Beim Scatterplot soll auf der x-Achse das Datum stehen, auf der y-Achse die Anzahl der Personen.
@@ -283,23 +293,26 @@ Dennoch wolle wir auch wissen, welche Tiere auf dem Areal (ost und west zusammen
 Berechnet zuerst die totale Anzahl Menschen / Standort mit __sum(DATENSATZ$SPALTENNAME)__.
 
 Gruppieren und summieren:
+
 Berechnet nun die Anzahl Menschen pro Aktivität sowie die Anzahl Begleittier pro Kategorie pro Standort.
+
 Untenstehender Code eigent sich dazu ganz gut:
 
 ```{r eval=FALSE}
 Akt_Ost <- ost %>%
-  group_by(Aktivitaet)%>%       # Hier sagen wir nach was wir gruppieren 
+  group_by(Aktivitaet)%>%      # Hier sagen wir nach was wir gruppieren 
   summarise (n = n()) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
   mutate(freq = n / sum(n))%>% # und dann soll und R das prozentuale Verhaeltniss berechnen
   arrange(desc(n))             # und dann das ganze absteigend sortieren
 ```
 
 Nun soll noch berechnet werden, wie viele unterschiedliche Wildtiere auf dem ganzen Areal gezaehlt wurden.
+
 Recycelt dazu obenstenenden Code.
 
 #### Aufgabe 5: Visualisieren
 
-Verteilung der Aktivitäten als Pie Chart
+__Verteilung der Aktivitäten als Pie Chart__
 
 Zuerst eine Palette mit 5 Farben definieren:
 ```{r eval=FALSE}
@@ -314,29 +327,31 @@ pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger
     col = pal) 
 ```
 
-Begleittier als Bar Chart
+- __FRAGE:__ eignen sich Pie Charts überhaupt für solche Darstellungen? Wie könnten die Aktivitäten auch noch dargestellt werden? Welches sind eure eigenen Ideen zur Visualisierung?
+
+__Begleittier als Bar Chart__
 
 ```{r message = FALSE, warning = FALSE}
 # Begleittier als Bar Chart ####
 ggplot(Begleit_ost,                      # hier den Datensatz spezifizieren
-       mapping=aes(x=Begleittier, y=n))+ # Absolute Anzahl darstellen
+       mapping=aes(x=Begleittier, y = n))+ # Absolute Anzahl darstellen
   geom_col(width=0.9,position = "dodge")+# hier sage ich, dass ich ein Balkendiagramm will
   labs(x="Begleittier", y= "Anzahl")+    # Achsenbeschriftung setzen
-  theme_classic(base_size = 20)+         # Und zu guter letzt: Stil definieren
-  theme(axis.text.x = element_text(angle = 90, vjust = 0, hjust=0)) # sowie Achsenbeschr.ausrichten
+  theme_classic(base_size = 15)+         # Und zu guter letzt: Stil definieren
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) # sowie Achsenbeschr.ausrichten
 ```
 
 Bei Bedraf koennen die selben Plots fuer den zweiten Standort gemacht werden.
 
-Und schliesslich: Wildtier als Bar Chart
+Und schliesslich: __Wildtier als Bar Chart__
 Stellt hier auf der y-Achse die Anzahl nicht total sondern relativ (in Prozent) dar.
 
 ```{r echo=FALSE}
+# Wildtier als Bar Chart ####
 ggplot(Wildtier, mapping=aes(x=Wildtier, y=freq*100))+ # kann auch prozentual dargestellt werden
   geom_col(width=0.9,position = "dodge")+
   labs(x="Begleittier", y= "Prozent [%]")+
-  theme_classic(base_size = 20)+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0, hjust=0))
-
+  theme_classic(base_size = 15)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
