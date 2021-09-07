@@ -32,12 +32,12 @@ Stationen
 stn       Name                                 Parameter        Datenquelle                                        Länge/Breite             Koordinaten [km] Höhe ü. M. [m]
 WAE       Wädenswil                            tre200jx         MeteoSchweiz                                       8°41'/47°13'             693847/230744    485
 WAE       Wädenswil                            rre150j0         MeteoSchweiz                                       8°41'/47°13'             693847/230744    485
-WAE       Wädenswil                            sre000d0         MeteoSchweiz                                       8°41'/47°13'             693847/230744    485
+WAE       Wädenswil                            sremaxdv         MeteoSchweiz                                       8°41'/47°13'             693847/230744    485
 
 Parameter
 ---------
           Einheit                              Beschreibung
 tre200jx  °C                                   Lufttemperatur 2 m über Boden; Tagmaximum (6 UTC  bis 18 UTC)
 rre150j0  mm                                   Niederschlag; Halbtagessumme 6 UTC - 18 UTC
-sre000d0  min                                  Sonnenscheindauer; Tagessumme
+sremaxdv  %                                    Sonnenscheindauer; relativ zur absolut möglichen Tagessumme
 
