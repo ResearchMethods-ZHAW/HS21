@@ -1,5 +1,5 @@
 ---
-title: "Aufgabenstellung Wildnispark"
+title: "R Projekt vorbereiten"
 description:
 author:
   - name: Adrian Hochreutener
@@ -29,7 +29,8 @@ Nutzt fuer allen Text, welcher nicht im Code integriert ist, das Symbol #. Wenn 
 # Texte, vor denen ein # steht, erklaeren den Ablauf
 # Zeilen ohne vorangehendes # sind Operationen
 
-# Wenn man rechts neben "Source" und links neben "Environment" klickt (oder CTRL + SHIFT + O --> Show document Outline), 
+# Wenn man rechts neben "Source" und links neben "Environment" klickt 
+# (oder CTRL + SHIFT + O --> Show document Outline), 
 # oeffnet sich die UEbersicht zu den UEberschriften
 ```
 
@@ -43,42 +44,42 @@ Tipp:
 
 Zuerst immer den __Titel des Projekts__ sowie den __Autor/ die Autorin__ des Skripts nennen. Hier soll auch die __Herkunft der Daten__ ersichtlich sein und falls externe Daten verwendet werden, sollte geklaert werden, wer Dateneigentuemer ist (Wildnispark und Meteo Schweiz).
 
-Im Skript soll immer die __Ordnerstruktur__ des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __Skripts, Data, Results, Results_compare und Meteo__).
+Im Skript soll immer die __Ordnerstruktur__ des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __skripts, data, results und results_compare__).
 
-Beschreibt zudem folgendes die verwendete __Meteodaten__ (siehe dazu Metadata Meteodaten, --> order_83583_legend.txt)
+Beschreibt zudem folgendes die verwendete __Meteodaten__ (siehe dazu Metadata Meteodaten, --> order_XXX_legend.txt)
 
-Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthaellt (nach den bereits erwaehnten Definitionen) 4 Kapitel: __1. Datenimport__, __2. Vorbereitung__, __3. Deskriptive Analyse und Visualisierung__ und __4. Multifaktorielle Analyse und Visualisierung__.
+Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthaellt (nach den bereits erwaehnten Definitionen) 4 Kapitel: 
+
+1) Datenimport, 
+2) Vorbereitung, 
+3) Deskriptive Analyse und Visualisierung und 
+4) Multifaktorielle Analyse und Visualisierung.
 
 Bereitet euer Sktipt mit diesen Kapitel vor.
 
 ```{r}
-#.################################################################################################
-# Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
+#.################################################################################################ Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
 # Fallstudie Modul Research Methods, HS21. Autor/in ####
-#
 #.################################################################################################
-
 #.###############################################################################################
 # METADATA UND DEFINITIONEN ####
 #.################################################################################################
-
 # Datenherkunft ####
 # ...
 
 #.###############################################################################################
 # 1. DATENIMPORT #####
-#.################################################################################################
+#.###############################################################################################
 
 ```
 
 # Aufgabe 2: Laden der Bibliotheken
 
-Geplottet wird mit ggplot, daher wird __tidyverse__ geladen. Diese Bibliothek ergaenzt BASE R in vielerlei Hinsicht uns ist eigentlich fast immer nötig. Da wir es bei Besucherdaten immer mit einem zeitlichen Bezug zu tun haben, benoetigen wir eine passende Bibliothek. Ich arbeite hier mit __lubridate__, POSIXct waere natuerlich auch moeglich. Base R bietet verschiedene Funktionen um Daten einzulesen. __data.table__ ergaenzt diese Basisfunktionen aber sehr gut. __GGally__, __PerformanceAnalytics__, __MuMIn__, __AICcmodavg__, __fitdistrplus__, __lme4__ und __sjPlot__ werden fuer die spaeteren multivariaten Analysen benoetigt.
-Die Modellguete werden wir mittels __lattice__, __blmeco__ und __lattice__ pruefen.
+Geplottet wird mit ggplot, daher wird __tidyverse__ geladen. Diese Bibliothek ergaenzt BASE R in vielerlei Hinsicht uns ist eigentlich fast immer nötig. Da wir es bei Besucherdaten immer mit einem zeitlichen Bezug zu tun haben, benoetigen wir eine passende Bibliothek. Ich arbeite mit __lubridate__, POSIXct waere natuerlich auch moeglich. Base R bietet verschiedene Funktionen um Daten einzulesen. __data.table__ ergaenzt diese Basisfunktionen sehr gut. __GGally__, __PerformanceAnalytics__, __MuMIn__, __AICcmodavg__, __fitdistrplus__, __lme4__ und __sjPlot__ werden fuer die spaeteren multivariaten Analysen benoetigt. Die Modellguete werden wir mittels __lattice__, __blmeco__ und __lattice__ pruefen.
 
 - Ladet nun also die benoetigten Bibliotheken.
 
-- Allenfalls muessen diese zuerst mit install.packages("NAME_BIB") installiert werden.
+- Allenfalls muessen diese zuerst mit _install.packages("NAME")_ installiert werden.
 
 ```{r eval=FALSE}
 # Benoetigte Bibliotheken ####

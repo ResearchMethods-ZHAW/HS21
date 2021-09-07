@@ -17,8 +17,9 @@ __Hintergrund__
 
 Das rund 1100 ha grosse Naturschutzgebiet Wildnispark Zürich Sihlwald, welches im periurbanen Raum südlich von Zürich liegt, gilt seit dem 1. Januar 2010 als erster national anerkannter Naturerlebnispark. Er ist Teil des Wildnisparks Zürich. Seine Rolle als Naherholungsgebiet für die Stadt Zürich ist von grosser Bedeutung.
 
-```{r mapgeo, fig.align = "center", fig.cap= "Rechtlich bindende Schutzgebiete im Regionalen Naturpark Beverin. Dargestellt ist der Perimeter des Naturparks, Wildruhezonen sowie das Eidgenössische Jagdbanngebiet Beverin.", echo = FALSE}
-knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.zeitreihen,ch.bfs.gebaeude_wohnungs_register,ch.bav.haltestellen-oev,ch.swisstopo.swisstlm3d-wanderwege,ch.bafu.schutzgebiete-paerke_nationaler_bedeutung,ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter&layers_visibility=false,false,false,false,false,true&layers_timestamp=18641231,,,,,&layers_opacity=1,1,1,0.8,0.85,0.85&E=2684990.28&N=1236061.81&zoom=5", height ="1000px")
+_Perimeter des Wildnispark Zürichs mit den ungefähren Standorten von drei ausgewählten automatischen Zählstellen._
+```{r mapgeo, fig.align = "center", fig.cap= "", echo = FALSE}
+knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2Fm8cqaMjMRcycTRE33mYaOw&E=2684746.27&N=1234824.19&zoom=6&layers_opacity=0.35,1", height ="1000px")
 ```
 
 
