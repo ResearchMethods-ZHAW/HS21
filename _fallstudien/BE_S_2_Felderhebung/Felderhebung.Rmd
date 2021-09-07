@@ -23,13 +23,13 @@ Es gibt eine Vielzahl an möglichen Methoden zur Erfassung der Besucherzahlen. A
 
 Die Geräte werden innerhalb der auf Abbildung 1 gekennzeichneten Standorte platziert. Damit soll überprüft werden, wie stark frequentiert die Waldränder der ökologisch aufgewerteten Seeparzelle sind.
 
-```{r out.width = "90%", fig.align ="center"}
+```{r out.width = "100%", fig.align ="center", echo=FALSE}
 knitr::include_graphics("Perimeter_Felderhebung.png")
 ```
 
 Datenschutz ist ein wichtiges Thema. Die Besuchenden werden über den Zweck der Kameras informiert, die Daten nach der Bearbeitung wieder gelöscht und nicht weitergegeben.
 
-```{r out.width = "90%", fig.align ="center"}
+```{r out.width = "90%", fig.align ="center", echo=FALSE}
 knitr::include_graphics("Begleitzettel_Kamera.png")
 ```
 
@@ -315,11 +315,12 @@ Recycelt dazu obenstenenden Code.
 __Verteilung der Aktivitäten als Pie Chart__
 
 Zuerst eine Palette mit 5 Farben definieren:
+
 ```{r eval=FALSE}
 pal <- hcl.colors(5, palette = "heat")
 ```
 
-Dann als Kreisdiagramm plotten. Haltet euch an untenstehenden Plot:
+Dann als Kreisdiagramm plotten.
 
 ```{r message = FALSE, warning = FALSE}
 pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
@@ -341,8 +342,6 @@ ggplot(Begleit_ost,                      # hier den Datensatz spezifizieren
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) # sowie Achsenbeschr.ausrichten
 ```
 
-Bei Bedraf koennen die selben Plots fuer den zweiten Standort gemacht werden.
-
 Und schliesslich: __Wildtier als Bar Chart__
 Stellt hier auf der y-Achse die Anzahl nicht total sondern relativ (in Prozent) dar.
 
@@ -354,4 +353,6 @@ ggplot(Wildtier, mapping=aes(x=Wildtier, y=freq*100))+ # kann auch prozentual da
   theme_classic(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
+
+Bei Bedraf koennen die selben Plots fuer den zweiten Standort gemacht werden.
 
