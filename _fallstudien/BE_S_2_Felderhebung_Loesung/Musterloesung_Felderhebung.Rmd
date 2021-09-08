@@ -11,7 +11,23 @@ categories:
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.align="left")
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "show", fig.align="left")
+```
+
+```{r echo=FALSE}
+# Benoetigte Bibliotheken ####
+library(tidyverse) # Data wrangling und piping
+library(lubridate) # Arbeiten mit Datumsformaten
+library(data.table)# schnelles Dateneinlesen
+library(ggpubr)    # to arrange multiple plots in one graph
+library(PerformanceAnalytics) # Plotte Korrelationsmatrix
+library(MuMIn)     # Multi-Model Inference
+library(AICcmodavg)# Modellaverageing
+library(fitdistrplus)# Prueft die Verteilung in Daten
+library(lme4)      # Multivariate Modelle
+library(blmeco)    # Bayesian data analysis using linear models
+library(sjPlot)    # Plotten von Modellergebnissen (tab_model)
+library(lattice)   # einfaches plotten von Zusammenhängen zwischen Variablen
 ```
 
 ```{r}

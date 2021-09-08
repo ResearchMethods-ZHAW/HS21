@@ -10,9 +10,10 @@ categories:
   - Biodiversity & Ecosystems (S)
 ---
 
-__Abschlussbericht über die multivariate Analyse__
+# Abschlussbericht über die multivariate Analyse
 
 ## Ziele 
+
 Bisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt.
 Das Besuchermonitoring Grüntal ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.
 
@@ -26,6 +27,10 @@ Konkret sollen folgende Fragestellungen beantwortet werden:
 >
 >3)	Können deutliche Unterschiede zwischen den "normalen", vor-Covid19-Jahren und danach bei Tages-, Wochen-, und / oder Saisongang sowie den wichtigsten, deskriptiven Kennzahlen gefunden werden?
 >
+
+- Jede Gruppe wertet ausschliesslich Daten eines Zählers aus. Sprecht miteinander ab, wer welchen Zähler behandelt. Jeder Zähler soll nur von einer Gruppe ausgewertet werden!
+
+- Für euren Zähler stehen eventuell Zahlen zu Fussgänger:innen und Velos zur Verfügung. Entscheidet euch in diesem Fall selbst, ob ihr Fussgänger:innen ODER Velos auswerten wollt. Die anderen Daten dürft ihr vernachläsigen.
 
 Im Bericht sollen die Informationen und Erfahrungen aus dem gesamten Verlauf der Fallstudie in geeigneter Weise einfliessen. Bezüglich der Felderhebung erwarten wir keine Angaben. 
 

@@ -28,8 +28,7 @@
 library(tidyverse) # Data wrangling und piping
 library(lubridate) # Arbeiten mit Datumsformaten
 library(data.table)# schnelles Dateneinlesen
-library(suncalc)   # zum berechnen der Sonnenscheindauer
-library(GGally)    # plotten von mehreren Plots gleichzeitig
+library(ggpubr)    # to arrange multiple plots in one graph
 library(PerformanceAnalytics) # Plotte Korrelationsmatrix
 library(MuMIn)     # Multi-Model Inference
 library(AICcmodavg)# Modellaverageing
@@ -44,11 +43,6 @@ library(lattice)   # einfaches plotten von Zusammenhängen zwischen Variablen
 depo_start <- as.Date("2019-01-01")
 depo_end <- as.Date("2021-7-27")
 
-# Ebenfalls muessen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden
-# Diese werden bei Wochenweisen Analysen ebenfalls ausgeklammert da sie i.d.R. unvollstaendig sind
-KW_start <- week(depo_start)
-KW_end <- week(depo_end)
-
 # Start und Ende Lockdown
 # definieren, wichtig fuer die spaeteren Auswertungen
 lock_1_start_2020 <- as.Date("2020-03-16")
@@ -57,6 +51,36 @@ lock_1_end_2020 <- as.Date("2020-05-11")
 lock_2_start_2021 <- as.Date("2020-12-22")
 lock_2_end_2021 <- as.Date("2021-03-01")
 
+# Ebenfalls muessen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden
+# Diese werden bei Wochenweisen Analysen ebenfalls ausgeklammert da sie i.d.R. unvollstaendig sind
+KW_start <- week(depo_start)
+KW_end <- week(depo_end)
+
+# Erster und letzter Tag der Ferien
+# je nach Untersuchungsdauer muessen hier weitere oder andere Ferienzeiten ergaenzt werden
+# (https://www.schulferien.org/schweiz/ferien/2020/)
+Fruehlingsferien_2019_start <- as.Date("2019-04-13")
+Fruehlingsferien_2019_ende <- as.Date("2019-04-28")
+Sommerferien_2019_start <- as.Date("2019-07-6")
+Sommerferien_2019_ende <- as.Date("2019-08-18")
+Herbstferien_2019_start <- as.Date("2019-10-05")
+Herbstferien_2019_ende <- as.Date("2019-10-20")
+Winterferien_2019_start <- as.Date("2019-12-21")
+Winterferien_2019_ende <- as.Date("2020-01-02")
+
+Fruehlingsferien_2020_start <- as.Date("2020-04-11")
+Fruehlingsferien_2020_ende <- as.Date("2020-04-26")
+Sommerferien_2020_start <- as.Date("2020-07-11")
+Sommerferien_2020_ende <- as.Date("2020-08-16")
+Herbstferien_2020_start <- as.Date("2020-10-03")
+Herbstferien_2020_ende <- as.Date("2020-10-18")
+Winterferien_2020_start <- as.Date("2020-12-19")
+Winterferien_2020_ende <- as.Date("2021-01-03")
+
+Fruehlingsferien_2021_start <- as.Date("2021-04-24")
+Fruehlingsferien_2021_ende <- as.Date("2021-05-09")
+Sommerferien_2021_start <- as.Date("2021-07-17")
+
 #.################################################################################################
 # 1. DATENIMPORT #####
 #.################################################################################################
@@ -64,7 +88,7 @@ lock_2_end_2021 <- as.Date("2021-03-01")
 # Beim Daten einlesen koennen sogleich die Datentypen und erste Bereinigungen vorgenommen werden
 
 # 1.1 Zaehldaten ####
-# Die Zaehldaten des Wildnispark Sihlwald wurden vorgaengig bereinigt. z.B. wurden Stundenwerte 
+# Die Zaehldaten des Wildnispark wurden vorgaengig bereinigt. z.B. wurden Stundenwerte 
 # entfernt, an denen am Zaehler Wartungsarbeiten stattgefunden haben.
 
 # lese die Daten mithilfe der Bibliothek data.table ein (alternative zu read_csv und dergleichen). 
@@ -99,10 +123,12 @@ depo <- na.omit(depo)
 # 1.2 Meteodaten ####
 # Einlesen
 meteo <- fread("./_fallstudien/_R_analysis/data/order_97149_data.txt")
+
 # Datentypen setzen
 # Das Datum wird als Integer erkannt. Zuerst muss es in Text umgewaldelt werden aus dem dann
 # das eigentliche Datum herausgelesen werden kann
 meteo <- transform(meteo, time = as.Date(as.character(time), "%Y%m%d"))
+
 # Die eigentlichen Messwerte sind alle nummerisch
 meteo <- meteo%>%
   mutate(tre200jx = as.numeric(tre200jx))%>%
@@ -149,7 +175,7 @@ depo <- depo %>%
   # vor oder danach?
   mutate(COVID = if_else(Datum >= lock_1_start_2020, "covid", "normal"))
 
-#Lockdown Fruehling 20
+#Lockdown 
 # Hinweis: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele 
 # Operationen in einem Schritt auch schon mal durcheinander erzeugen koennen.
 # Hinweis II: Wir packen die beiden Lockdowns in eine Spalte --> long ist schoener als wide
@@ -180,7 +206,7 @@ depo$Total <- round(depo$Total, digits = 0)
 depo$Fuss_IN <- round(depo$Fuss_IN, digits = 0)
 depo$Fuss_OUT <- round(depo$Fuss_OUT, digits = 0)
 
-# 2.2 Pruefen auf Ausreisser ####
+# 2.2 Pruefen auf Ausreisser (OPTIONAL) ####
 # Grundsaetzlich ist es schwierig Ausreisser in einem df zu finden. Gerade die Extremwerte 
 # koennen entweder falsche Werte, oder aber die wichtigsten Werte im ganzen df sein.
 # Ausreisser koennen in einem ersten Schritt optisch relativ einfach gefunden werden.
@@ -225,7 +251,7 @@ head(depo)
 # Zur Berechnung von Kennwerten ist es hilfreich, wenn neben den Stundendaten auch auf Ganztagesdaten
 # zurueckgegriffen werden kann
 # hier werden also pro Nutzergruppe und Richtung die Stundenwerte pro Tag aufsummiert
-Day <- depo %>% 
+depo_d <- depo %>% 
   group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Lockdown, COVID) %>% 
   summarise(Total = sum(Fuss_IN + Fuss_OUT), 
             Fuss_IN = sum(Fuss_IN),
@@ -234,7 +260,22 @@ Day <- depo %>%
 # das neue df uebernommen und muessen nicht nochmals hinzugefuegt werden
 
 # pruefe das df
-head(Day)
+head(depo_d)
+
+# Gruppiere die Werte nach Monat
+depo_m <- depo %>% 
+  group_by(Jahr, Monat) %>% 
+  summarise(Total = sum(Total)) 
+# sortiere das df aufsteigend (nur das es sicher stimmt)
+depo_m <- as.data.frame(depo_m)
+depo_m[
+  with(depo_m, order(Jahr, Monat)),]
+# mache dann aus Jahr und Monat faktoren
+depo_m <- depo_m %>% 
+  mutate(Jahr = as.factor(Jahr)) %>% 
+  mutate(Monat = as.factor(Monat)) %>% 
+  mutate(Ym = paste(Jahr, Monat)) %>% # und mache eine neue Spalte, in der Jahr und
+  mutate(Ym= factor(Ym, levels=unique(Ym))) # Monat in zusammen sind
 
 # 2.4 Explorative Darstellung Meteodaten ####
 # ausschliesslich zur optischen validierung, kein wichtiges Resultat!
@@ -259,12 +300,38 @@ str(meteo)
 # 3. DESKRIPTIVE ANALYSE UND VISUALISIERUNG #####
 #.################################################################################################
 
-# Die deskriptiven Vergleiche sollen den Zeitraum des Lockdown 1 und 2 betrachten
+# Entwicklung über Jahre ####
+
+# wann beginnt die Datenreihe schon wieder?
+first(depo_m$Ym)
+# und wann ist die fertig?
+last(depo_m$Ym)
+
+ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
+  #zeichne Lockdown 1
+  geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
+                          ymin =0, ymax=max(Total+(Total/100*10))),
+            fill = "lightskyblue", alpha = 0.4, colour = NA)+
+  #zeichne Lockdown 2
+    geom_rect(mapping = aes(xmin="2020 12", xmax="2021 3", 
+                          ymin =0, ymax=max(Total+(Total/100*10))), 
+            fill = "lightskyblue", alpha = 0.4, colour = NA)+
+  geom_line(alpha = 0.6, size = 1.5)+
+  scale_x_discrete(breaks = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"),
+                   labels = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"))+
+  labs(title= "", y="Fuss pro Monat", x = "Jahr")+
+  theme_linedraw(base_size = 15)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+ggsave("Entwicklung_Zaehlstelle.png", width=20, height=10, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
+
+# Die weiteren deskriptiven Vergleiche sollen den Zeitraum des Lockdown 1 und 2 betrachten
 lock <- depo %>% 
   filter(Lockdown == "Lockdown_1" | # da wir den Zeitraum bereits definiert haben,
            Lockdown == "Lockdown_2")# muessen wir nicht mehr ueber das Datum gehen
 
-lock_day <- Day %>% 
+lock_day <- depo_d %>% 
   filter(Lockdown == "Lockdown_1" |
            Lockdown == "Lockdown_2")
 
@@ -304,5 +371,75 @@ ggplot(data = mean_lock_day, mapping = aes(x = Gruppe, y = Durchschnitt, fill = 
   theme(legend.title = element_blank(),
         legend.position = "bottom")
 
-ggsave("Bewegungsrichtung_Lockdown.jpg", width=10, height=10, units="cm", dpi=1000, 
+ggsave("Bewegungsrichtung_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
        path = "_fallstudien/_R_analysis/results/")  
+
+# 3.2 Tagesgang ####
+# Bei diesen Berechnungen wird jeweils der Mittelwert pro Stunde berechnet. 
+# wiederum nutzen wir dafuer "pipes"
+Mean_h <- lock %>% 
+  group_by(Wochentag, Stunde, Lockdown) %>% 
+  summarise(Total = mean(Total)) 
+
+# transformiere fuer Plotting
+Mean_h_long<- reshape2::melt(Mean_h,measure.vars = c("Total"),
+                           value.name = "Durchschnitt",variable.name = "Gruppe")
+
+# Plotte den Tagesgang, unterteilt nach Wochentagen
+# Lockdown 1
+tag_lock_1 <- ggplot(subset(Mean_h_long, Lockdown %in% c("Lockdown_1")), 
+       mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "dashed", "dashed"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "Durchschnittliche Anzahl Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Lockdown 2
+tag_lock_2 <- ggplot(subset(Mean_h_long, Lockdown %in% c("Lockdown_2")), 
+       mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "dashed", "dashed"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "Durchschnittliche Anzahl Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Arrange und Export Tagesgang
+ggarrange(tag_lock_1,            # plot 1 aufrufen
+          tag_lock_2+            # plot 2 aufrufen
+            rremove("y.text")+   # bei plot 2 brauchen wir nicht mehr die y-Achsenbeschriftung
+            rremove("y.title"),
+          ncol = 2, nrow = 1,    # definieren, wie die plots angeordnet werden
+          heights = c(1),        # beide sind bleich hoch
+          widths = c(1,0.95),    # plot 2 ist aufgrund der fehlenden y-achsenbesch. etwas schmaler
+          labels = c("a) Lockdown 1", "b) Lockdown 2"),
+          label.x = -0.1,        # wo stehen die labels
+          label.y = 0.99,
+          common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
+
+ggsave("Tagesgang_Lockdown.png", width=20, height=20, units="cm", dpi=1000,
+       path = "_fallstudien/_R_analysis/results/")
+
+# Wochengang ####
+ggplot(data = lock_day)+
+  geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Lockdown))+
+  labs(title="", y= "Anzahl pro Tag")+
+  scale_fill_manual(values = c("orangered", "royalblue"))+
+  theme_classic(base_size = 15)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+        legend.title = element_blank())
+
+# Statistik: Unterschied WE und WO
+t.test(lock_day$Total [lock_day$Wochenende=="Werktag"], 
+       lock_day$Total [lock_day$Wochenende=="Wochenende"])
+
+ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/")
+
+

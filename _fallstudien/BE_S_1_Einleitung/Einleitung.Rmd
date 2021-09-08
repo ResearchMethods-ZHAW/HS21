@@ -1,5 +1,5 @@
 ---
-title: "KW40: Einleitung"
+title: "KW40: Einführung"
 description:
 author:
   - name: Adrian Hochreutener
@@ -13,22 +13,9 @@ categories:
 
 # Einleitung
 
-__Hintergrund__
+## Hintergrund
 
 Das rund 1100 ha grosse Naturschutzgebiet Wildnispark Zürich Sihlwald, welches im periurbanen Raum südlich von Zürich liegt, gilt seit dem 1. Januar 2010 als erster national anerkannter Naturerlebnispark. Er ist Teil des Wildnisparks Zürich. Seine Rolle als Naherholungsgebiet für die Stadt Zürich ist von grosser Bedeutung.
-
-_Perimeter des Wildnispark Zürichs mit den ungefähren Standorten von drei ausgewählten automatischen Zählstellen._
-
-```{r mapgeo, fig.align = "center", fig.cap= "", echo = FALSE}
-knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2FFFPk_-tvTLCGHGrldxyqqA&E=2684447.07&N=1235586.69&zoom=7&layers_opacity=0.35,1", height ="1000px")
-```
-
-__Hinweis:__ 
-
-- Die Zähler 2011 und 502 erfassen sowohl Fussgänger:innen als auch Fahrräder. Die Erfassung erfolgt Richtungsgetrennt.
-
-- Der Zähler 204 kann nicht zwischen Nutzungsarten unterscheiden; er erfasst alle Passagen auf den Hochwachtturm als Fussgänger:innen. Der Sensror hat keine Richtungserkennung und die Besuchenden werden jeweils 2x gezählt, einmal beim Aufstieg und einmal beim Abstieg. Das ist im Kalibrierunsgfaktor berücksichtigt, die Kalibrierte Zahl gibt also die Anzahl der Turmbesuche an.
-
 
 Im Perimeter gelten verschiedene Regeln. So darf z. B. nur auf bestimmten Wegen mit den Velo gefahren und Hunde müssen an der Leine geführt werden. Damit soll im Schutzgebiet die Balance zwischen Schutz und Nutzen bewahrt werden, denn einerseits sollen die Besuchenden den Wald erleben dürfen, andererseits soll sich dieser, in der Kernzone, frei entwicklen dürfen.
 
@@ -42,12 +29,23 @@ Im Wildnispark Zürich sind dazu mehrere automatische Zählstellen in Betrieb. D
 
 Im Rahmen des Moduls Research Methods werden in der Fallstudie Profil S mehrere dieser automatischen Zählstellen genauer untersucht. Die Daten, welche im Besitz des WPZ sind, wurden bereits kalibriert. Das heisst, Zählungen während Wartungsarbeiten, bei Felhbetrieb o.ä.  wurden bereits ausgeschlossen. Dies ist eine Zeitintensive Arbeit und wir dürfen hier mit einem wahren, sauber aufbereiteten "Datenschatz" arbeiten.
 
+_Perimeter des Wildnispark Zürichs mit den ungefähren Standorten von drei ausgewählten automatischen Zählstellen._
+
+```{r mapgeo, fig.align = "center", fig.cap= "", echo = FALSE}
+knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2FFFPk_-tvTLCGHGrldxyqqA&E=2683777.07&N=1235591.69&zoom=7&layers_opacity=0.35,1", height ="1000px")
+```
+
+__Hinweis:__ 
+
+- Die Zähler 2011 und 502 erfassen sowohl Fussgänger:innen als auch Fahrräder. Die Erfassung erfolgt Richtungsgetrennt.
+
+- Der Zähler 204 kann nicht zwischen Nutzungsarten unterscheiden; er erfasst alle Passagen auf den Hochwachtturm als Fussgänger:innen. Der Sensror hat keine Richtungserkennung und die Besuchenden werden jeweils 2x gezählt, einmal beim Aufstieg und einmal beim Abstieg. Das ist im Kalibrierunsgfaktor berücksichtigt, die Kalibrierte Zahl gibt also die Anzahl der Turmbesuche an.
+
 Der Wildnispark wertet die Zahlen auf verschiedene Weise aus. So sind z. B. Jahresgänge (an welchen Monaten herrscht besonders viel Betrieb) und Nutzungszahlen bekannt. Vertiefte Auswertungen, die beispielsweise den Zusammenhang zwischen Besuchszahlen und dem Wetter untersuchen, werden nicht gemacht, da dies die Kapazitäten übersteigen würde.
 
 Unsere Analysen in diesem Modul helfen dem Management, ein besseres Verständnis zum Verhalten der Besuchenden zu erlangen und bilden Grundlagen für Managemententscheide in der Praxis.
 
-
-__Ziele__
+## Ziele
 
 - In dieser Fallstudie zeigen wir, welche Einfluss der Lockdown während der Covid19-Pandemie im Frühjahr 2020 sowie jener im Winter 2020/2021 auf die täglichen Besuchszahlen im Wildnispark Zürich hatte.
 
@@ -58,11 +56,11 @@ __Ziele__
 - Diese kombinierte, statistisch schliesssende, Betrachtung erlaubt uns Aussagen darüber, ob "nur" aufgrund des schönen Frühlings 2021 mehr Menschen in Wald unterwegs waren, oder ob der Lockdown tatsächlich einen so deutlich positiven Einfluss auf die Besuche hatte.
 
 
-__Grundlagen__
+## Grundlagen
 
 Zur Verfügung stehen:
 
--	die stündlichen, richtungsgetrennten Zählungen von Velos an drei Zählstellen
+-	die stündlichen, richtungsgetrennten Zählungen von Fussgänger:innen und Velos an drei Zählstellen
 
 -	Meteodaten (Temperatur, Sonnenscheindauer, Niederschlagssumme)
 
