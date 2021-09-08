@@ -51,8 +51,8 @@ KW_end <- week(depo_end)
 
 # Start und Ende Lockdown
 # definieren, wichtig fuer die spaeteren Auswertungen
-lock_start_2020 <- as.Date("2020-03-16")
-lock_end_2020 <- as.Date("2020-05-11")
+lock_1_start_2020 <- as.Date("2020-03-16")
+lock_1_end_2020 <- as.Date("2020-05-11")
 
 lock_2_start_2021 <- as.Date("2020-12-22")
 lock_2_end_2021 <- as.Date("2021-03-01")
@@ -107,7 +107,8 @@ meteo <- transform(meteo, time = as.Date(as.character(time), "%Y%m%d"))
 meteo <- meteo%>%
   mutate(tre200jx = as.numeric(tre200jx))%>%
   mutate(rre150j0 = as.numeric(rre150j0))%>%
-  mutate(sremaxdv = as.numeric(sremaxdv))
+  mutate(sremaxdv = as.numeric(sremaxdv)) %>% 
+  filter(time >= depo_start, time <=  depo_end) # schneide dann auf Untersuchungsdauer
 
 # Was ist eigentlich Niederschlag:
 # https://www.meteoschweiz.admin.ch/home/wetter/wetterbegriffe/niederschlag.html
@@ -133,7 +134,7 @@ depo <- depo %>%
   mutate(Wochentag = weekdays(Datum)) %>% 
   # R sortiert die Levels aplhabetisch. Da das in unserem Fall aber sehr unpraktisch ist,
   # muessen die Levels manuell manuell bestimmt werden
-  mutate(Wochentag = factor(Wochentag, 
+  mutate(Wochentag = base::factor(Wochentag, 
                             levels = c("Montag", "Dienstag", "Mittwoch", 
                                        "Donnerstag", "Freitag", "Samstag", "Sonntag"))) %>% 
   # Werktag oder Wochenende hinzufuegen
@@ -142,20 +143,35 @@ depo <- depo %>%
                            Wochentag == "Freitag", "Werktag", "Wochenende"))%>%
   #Kalenderwoche hinzufuegen
   mutate(KW= week(Datum))%>%
-  mutate(KW = factor(KW)) %>% 
   # monat und Jahr
   mutate(Monat = month(Datum)) %>% 
   mutate(Jahr = year(Datum)) %>% 
-  #Lockdown Fruehling 20
-  mutate(Lockdown = if_else(Datum >= lock_start_2020 & Datum <= lock_end_2020,
-                            "1", "0"))%>%  
-  #Lockdown Winter 20 21
-  mutate(Lockdown_2 = if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
-                              "1", "0"))%>%  
-  mutate(Lockdown_2 = factor(Lockdown_2)) %>% 
   # vor oder danach?
-  mutate(COVID = if_else(Datum >= lock_start_2020, "COVID", "normal"))
+  mutate(COVID = if_else(Datum >= lock_1_start_2020, "covid", "normal"))
 
+#Lockdown Fruehling 20
+# Hinweis: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele 
+# Operationen in einem Schritt auch schon mal durcheinander erzeugen koennen.
+# Hinweis II: Wir packen die beiden Lockdowns in eine Spalte --> long ist schoener als wide
+depo <- depo %>% 
+mutate(Lockdown = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
+                          "Lockdown_1",
+                          if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
+                                  "Lockdown_2", "0"))) 
+# hat das gepklappt?!
+unique(depo$Lockdown)
+
+# aendere die Datentypen
+depo <- depo %>% 
+  mutate(Wochenende = as.factor(Wochenende)) %>% 
+  mutate(KW = factor(KW)) %>% 
+  mutate(Lockdown = as.factor(Lockdown)) %>% 
+  # mit factor() koennen die levels direkt einfach selbst definiert werden.
+  # wichtig: speizfizieren, dass aus R base, ansonsten kommt es zu einem 
+  # mix-up mit anderen packages
+  mutate(COVID = base::factor(COVID, levels = c("normal", "covid")))
+str(depo)
+  
 # Fuer einige Auswertungen muss auf die Stunden als nummerischer Wert zurueckgegriffen werden
 depo$Stunde <- as.numeric(format(as.POSIXct(depo$Zeit,format="%H:%M"),"%H"))
 
@@ -201,15 +217,92 @@ abline(h=qts[2], col="red")
 
 # Da der WPZ die Daten aber bereits bereinigte, koennen wir uns diesen Schritt eigentlich sparen... ;)
 
+# pruefe das df
+str(depo)
+head(depo)
+
 # 2.3 Aggregierung der Stundendaten zu ganzen Tagen ####
 # Zur Berechnung von Kennwerten ist es hilfreich, wenn neben den Stundendaten auch auf Ganztagesdaten
 # zurueckgegriffen werden kann
 # hier werden also pro Nutzergruppe und Richtung die Stundenwerte pro Tag aufsummiert
 Day <- depo %>% 
-  group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Lockdown, Lockdown_2, COVID) %>% 
+  group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Lockdown, COVID) %>% 
   summarise(Total = sum(Fuss_IN + Fuss_OUT), 
             Fuss_IN = sum(Fuss_IN),
             Fuss_OUT = sum(Fuss_OUT)) 
+# Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in 
+# das neue df uebernommen und muessen nicht nochmals hinzugefuegt werden
 
+# pruefe das df
+head(Day)
 
-# continue on row 374
+# 2.4 Explorative Darstellung Meteodaten ####
+# ausschliesslich zur optischen validierung, kein wichtiges Resultat!
+# Temperaturmaximum
+ggplot(data=meteo, mapping=aes(x=time, y=tre200jx))+
+  geom_point()+
+  geom_smooth(col="red")
+# Niederschlagsumme
+ggplot(data=meteo, mapping=aes(x=time, y=rre150j0))+
+  geom_point()+
+  geom_smooth(col="blue")
+# Sonnenminuten
+ggplot(data=meteo, mapping=aes(x=time, y=sremaxdv))+
+  geom_point()+
+  geom_smooth(col="yellow")
+
+# Pruefe das df
+head(meteo)
+str(meteo)
+
+#.################################################################################################
+# 3. DESKRIPTIVE ANALYSE UND VISUALISIERUNG #####
+#.################################################################################################
+
+# Die deskriptiven Vergleiche sollen den Zeitraum des Lockdown 1 und 2 betrachten
+lock <- depo %>% 
+  filter(Lockdown == "Lockdown_1" | # da wir den Zeitraum bereits definiert haben,
+           Lockdown == "Lockdown_2")# muessen wir nicht mehr ueber das Datum gehen
+
+lock_day <- Day %>% 
+  filter(Lockdown == "Lockdown_1" |
+           Lockdown == "Lockdown_2")
+
+# 3.1 Besuchszahlen nach Phase ####
+total_lock_day <- lock_day %>% 
+  group_by(Lockdown) %>% 
+  summarise(Total = sum(Total),
+            IN = sum(Fuss_IN),
+            OUT = sum(Fuss_OUT))
+
+# mean besser Vergleichbar, da Zeitreihen unterschiedlich lange
+mean_lock_day <- lock_day %>% 
+  group_by(Lockdown) %>% 
+  summarise(Total = mean(Total),
+            IN = mean(Fuss_IN),
+            OUT = mean(Fuss_OUT))
+# berechne prozentuale Richtungsverteilung
+mean_lock_day <- mean_lock_day %>% 
+  mutate(Proz_IN = round(100/Total*IN, 1)) %>% # berechnen und auf eine Nachkommastelle runden
+  mutate(Proz_OUT = round(100/Total*OUT,1))
+
+# behalte rel. Spalten
+mean_lock_day <- mean_lock_day[,-c(2:4), drop=FALSE]
+
+# transformiere fuer Plotting
+mean_lock_day <- reshape2::melt(mean_lock_day, 
+                                 measure.vars = c("Proz_IN","Proz_OUT"),
+                                 value.name = "Durchschnitt",variable.name = "Gruppe")
+
+# Visualisierung
+ggplot(data = mean_lock_day, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Lockdown))+
+  geom_col(position = "dodge", width = 0.8)+
+  scale_fill_manual(values = c("orangered", "royalblue"))+
+  scale_x_discrete(labels = c("IN", "OUT"))+
+  labs(y = "Durchschnitt [%]", x= "Bewegungsrichtung")+
+  theme_classic(base_size = 15)+
+  theme(legend.title = element_blank(),
+        legend.position = "bottom")
+
+ggsave("Bewegungsrichtung_Lockdown.jpg", width=10, height=10, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/")  

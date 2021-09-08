@@ -1,5 +1,5 @@
 ---
-title: "Einleitung"
+title: "KW40: Einleitung"
 description:
 author:
   - name: Adrian Hochreutener
@@ -18,9 +18,16 @@ __Hintergrund__
 Das rund 1100 ha grosse Naturschutzgebiet Wildnispark Zürich Sihlwald, welches im periurbanen Raum südlich von Zürich liegt, gilt seit dem 1. Januar 2010 als erster national anerkannter Naturerlebnispark. Er ist Teil des Wildnisparks Zürich. Seine Rolle als Naherholungsgebiet für die Stadt Zürich ist von grosser Bedeutung.
 
 _Perimeter des Wildnispark Zürichs mit den ungefähren Standorten von drei ausgewählten automatischen Zählstellen._
+
 ```{r mapgeo, fig.align = "center", fig.cap= "", echo = FALSE}
-knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2Fm8cqaMjMRcycTRE33mYaOw&E=2684746.27&N=1234824.19&zoom=6&layers_opacity=0.35,1", height ="1000px")
+knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swisstopo.pixelkarte-grau&layers=ch.bafu.schutzgebiete-paerke_nationaler_bedeutung_perimeter,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2FFFPk_-tvTLCGHGrldxyqqA&E=2684447.07&N=1235586.69&zoom=7&layers_opacity=0.35,1", height ="1000px")
 ```
+
+__Hinweis:__ 
+
+- Die Zähler 2011 und 502 erfassen sowohl Fussgänger:innen als auch Fahrräder. Die Erfassung erfolgt Richtungsgetrennt.
+
+- Der Zähler 204 kann nicht zwischen Nutzungsarten unterscheiden; er erfasst alle Passagen auf den Hochwachtturm als Fussgänger:innen. Der Sensror hat keine Richtungserkennung und die Besuchenden werden jeweils 2x gezählt, einmal beim Aufstieg und einmal beim Abstieg. Das ist im Kalibrierunsgfaktor berücksichtigt, die Kalibrierte Zahl gibt also die Anzahl der Turmbesuche an.
 
 
 Im Perimeter gelten verschiedene Regeln. So darf z. B. nur auf bestimmten Wegen mit den Velo gefahren und Hunde müssen an der Leine geführt werden. Damit soll im Schutzgebiet die Balance zwischen Schutz und Nutzen bewahrt werden, denn einerseits sollen die Besuchenden den Wald erleben dürfen, andererseits soll sich dieser, in der Kernzone, frei entwicklen dürfen.

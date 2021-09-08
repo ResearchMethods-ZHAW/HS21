@@ -1,5 +1,5 @@
 ---
-title: "Musterloesung: Felderhebung Grüntal"
+title: "KW42: Musterloesung Felderhebung Grüntal"
 description:
 author:
   - name: Adrian Hochreutener
