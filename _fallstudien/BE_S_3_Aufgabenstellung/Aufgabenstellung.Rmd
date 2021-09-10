@@ -1,0 +1,81 @@
+---
+title: "KW 43: Aufgabenstellung Wildnispark"
+description:
+author:
+  - name: Adrian Hochreutener
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (S)
+---
+
+# Abschlussbericht über die multivariate Analyse
+
+## Ziele 
+
+Bisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt.
+Das Besuchermonitoring Grüntal ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.
+
+Im Rahmen dessen programmieren wir multivariate Modelle, welche den Zusammenhang zwischen der Anzahl Besuchenden und verschiedenen Einflussfaktoren (Lockdown, Wetter, Ferien, Wochentag, Kalenderwoche) beschreiben. Dank ihnen können wir sagen, wie die Besucher:innen auf die untersuchten Faktoren reagieren (siehe dazu [Einleitung], Ziele). 
+
+Konkret sollen folgende Fragestellungen beantwortet werden:
+
+>1) Welchen Einfluss haben neben den Lockdowns auch die Wetterparameter (Sonnenscheindauer, Tageshöchsttemperatur, Niederschlagssumme) sowie der Wochentag, die Ferien, die Kalenderwoche und das Jahr auf die Besuchszahlen?
+>
+>2) Dabei interessiert uns besonders, wie stark die jeweiligen Einflüsse sind, welche Effektrichtungen beobachtbar sind und welche der untersuchten Parameter signifikant sind.
+>
+>3)	Können deutliche Unterschiede zwischen den "normalen", vor-Covid19-Jahren und danach bei Tages-, Wochen-, und / oder Saisongang sowie den wichtigsten, deskriptiven Kennzahlen gefunden werden?
+>
+
+- Jede Gruppe wertet ausschliesslich Daten eines Zählers aus. Sprecht miteinander ab, wer welchen Zähler behandelt. Jeder Zähler soll nur von einer Gruppe ausgewertet werden!
+
+- Für euren Zähler stehen eventuell Zahlen zu Fussgänger:innen und Velos zur Verfügung. Entscheidet euch in diesem Fall selbst, ob ihr Fussgänger:innen ODER Velos auswerten wollt. Die anderen Daten dürft ihr vernachläsigen.
+
+Im Bericht sollen die Informationen und Erfahrungen aus dem gesamten Verlauf der Fallstudie in geeigneter Weise einfliessen. Bezüglich der Felderhebung erwarten wir keine Angaben. 
+
+```{r out.width = "100%", fig.align ="center", echo=FALSE}
+knitr::include_graphics("Aufbau_Fallstudie_Profil_S.png")
+```
+
+## Erwartungen
+
+1) Struktur / Aufbau
+
+-	Fragestellung (siehe oben; die Fragestellung ist vorgegeben, darf aber natürlich für den Bericht geschärft und optimal formuliert und konkretisiert werden.)
+
+-	Methoden (kurzes Kapitel mit den statistischen Analysen)
+
+-	Resultate (deskriptive Statistik, multivariates Modell; kurzer Fliesstext sowie die notwendigen Tabellen und eine Auswahl möglichst informativer Grafiken)
+
+-	Diskussion (Diskussion der deskriptiven Analysen und der Modellergebnisse; dieser Abschnitt sollte die eigenen Resultate auch im Zusammenhang mit aktueller Fachliteratur reflektieren.)
+
+-	Literaturverzeichnis (Tipp: Das Literaturverzeichnis sollte vollständig sein, sowie formal korrekt und einheitlich daherkommen. Wir erwarten speziell in der Diskussion eine Abstützung auf aktuelle Fachliteratur. Auf Moodle haben wir Euch eine Auswahl relevanter Papers bereitgestellt.)
+
+-	Anhang (für alle Auswertungen relevanter R-Code in geeigneter Form) 
+
+2) Gesamtumfang max. 7500 Zeichen (inkl. Leerzeichen; exkl. Einleitung, Tabellen, Literaturverzeichnis und Anhang)
+3) Abgabe am _8.1.2022_ auf Moodle oder per Mail an hoce@zhaw.ch
+
+## Bewertungskriterien
+
+-	Ist die Methode klar und verständlich formuliert?
+
+-	Sind die deskriptiven Analysen klar beschrieben und geeignet visualisiert?
+
+-	Ist die Variablenselektion klar beschrieben, plausibel und nachvollziehbar?
+
+-	Sind die Modellresultate in Text- und Tabellenform korrekt beschrieben und geeignet visualisiert?
+
+-	Ist die Diskussion klar formuliert und inhaltlich schlüssig?
+
+-	Wie gut ist die Diskussion auf relevante und aktuelle Fachliteratur abgestützt?
+
+-	Zusätzliche bewerten wir die inhaltliche Dichte der Arbeit und die formale Qualität (Sprache, Struktur, Aufbau, Darstellung, Literaturverzeichnis, Umgang mit Literatur im Text)
+
+__Zusammensetzung der Fallstudiennote:__
+
+-	Fallstudie-Leistungsnachweis 1 - Forschungsplan: 30%
+
+-	Fallstudie-Leistungsnachweis 2 - Multivariate Analyse: 70%
+
