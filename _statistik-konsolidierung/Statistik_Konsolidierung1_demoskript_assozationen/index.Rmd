@@ -1,29 +1,24 @@
 ---
-title: Demo
+title: Demo Assoziationen
 output: distill::distill_article
+  toc: true
+  toc_float: true
+author:
+  name: Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung1
 - Statistik
 
 ---
 
-```{r echo = FALSE}
-
-```
 ```{r, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
+knitr::purl("index.Rmd", "Demo_Assoziationen.R", documentation = 0)
 ```
 
-## Demo: Statistik Konsolidierung 1
+Download [R-Skript](demoskript_assozationen.R)
 
-*****
-
->Download [R-Skript](demoskript_assozationen.R)
-
-*****
-
-**Demo für Assoziationen**
 
 ```{r}
 
