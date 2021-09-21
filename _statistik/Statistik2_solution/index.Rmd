@@ -1,6 +1,7 @@
 ---
 title: Musterloesung Aufgabe 2.3S ANOVA mit Interaktion
 output: distill::distill_article
+draft: true
 categories:
 - Statistik2
 - Statistik
