@@ -1,6 +1,8 @@
 ---
 title: "Statistik Konsolidierung"
 output: distill::distill_article
+draft: true
+
 ---
 
 

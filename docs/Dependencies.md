@@ -776,20 +776,20 @@ Fallstudien
 ## Dependencies
 
     ## 
-    ## Attache Paket: 'dplyr'
+    ## Attaching package: 'dplyr'
 
-    ## Die folgenden Objekte sind maskiert von 'package:stats':
+    ## The following objects are masked from 'package:stats':
     ## 
     ##     filter, lag
 
-    ## Die folgenden Objekte sind maskiert von 'package:base':
+    ## The following objects are masked from 'package:base':
     ## 
     ##     intersect, setdiff, setequal, union
 
     ## 
-    ## Attache Paket: 'jsonlite'
+    ## Attaching package: 'jsonlite'
 
-    ## Das folgende Objekt ist maskiert 'package:purrr':
+    ## The following object is masked from 'package:purrr':
     ## 
     ##     flatten
 

@@ -1,6 +1,7 @@
 ---
 title: "Statistik"
 output: distill::distill_article
+draft: true
 ---
 
 

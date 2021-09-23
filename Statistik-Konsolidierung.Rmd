@@ -1,4 +1,6 @@
 ---
 title: "Statistik Konsolidierung"
 listing: statistik-konsolidierung
+draft: true
+
 ---
