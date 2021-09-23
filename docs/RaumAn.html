@@ -2289,7 +2289,7 @@ function init_posts_list() {
       var list_caption = $('.posts-list-caption');
       var caption = (page_category || '').toLowerCase() === "articles"
         ? list_caption.attr('data-caption')
-        : ('Thema: ' + page_category.replace(/_/g," "));
+        : ('Category: ' + page_category.replace(/_/g," "));
       list_caption.text(caption);
 
     } else {
@@ -2503,7 +2503,7 @@ function init_posts_list() {
 </div>
 <div class="posts-sidebar">
 <div class="sidebar-section categories">
-<h3>Themen</h3>
+<h3>Categories</h3>
 <ul>
 <li>
 <a href="#category:RaumAn">RaumAn</a>
@@ -2551,7 +2551,10 @@ function init_posts_list() {
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="updates-and-corrections">Corrections</h3>
+<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/ResearchMethods-ZHAW/HS21/issues/new">create an issue</a> on the source repository.</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <div class="distill-site-nav distill-site-footer">
