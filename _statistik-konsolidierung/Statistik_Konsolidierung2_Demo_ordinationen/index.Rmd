@@ -1,5 +1,8 @@
 ---
-title: Statistik
+title: "Konsolidierung 2: Ordinationen"
+author:
+  Gian-Andrea Egeler
+  Jürgen Dengler
 output: distill::distill_article
 categories:
 - Statistik_Konsolidierung2
@@ -7,50 +10,41 @@ categories:
 
 ---
 
-```{r echo = FALSE}
-
-```
-
-```{r, include=FALSE, purl=F}
-
+```{r echo = FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
+
+#export files
+knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R"), documentation = 0)
+# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+
 ```
 
-# Statistik Konsolidierung 2 (10.11.2020)
 
-In Statistik Konsolidierung 2 bekommen die Studierenden eine Einführung in das Thema der Ordinationen, eine Technik der deskriptiven Statistik. Diese Methoden visualisiert die Strukturen in multivariaten Datensätzen via Dimensionsreduktion. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich NMDS.
+> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R)
 
-## Demo: Statistik Konsolidierung 2
+# Demo Ordinationen (PCA)
 
-*****
 
->Download [R-Skript](demoskript_ordinationen_v2.R)
-
-*****
 
 ```{r Beispiel pca mtcars, message=FALSE}
 
-# Research Methods Statistik-Vorlesung 2020
-# Ordinationen 
-# Gian-Andrea Egeler & J?rgen Dengler 
+#Beispiel inspiriert von Luke Hayden: https://www.datacamp.com/community/tutorials/pca-analysis-r
 
-#einfaches beispiel: angelehnt an diesem post: https://www.datacamp.com/community/tutorials/pca-analysis-r
+#Ausgangslage: viel zusammenhängende Variablen
+#Ziel: Reduktion der Variablenkomplexität
+#WICHTIG hier: Datenformat muss Wide sein! Damit die Matrixmultiplikation gemacht werden kann
 
-#ausgangslage: viel zusammenh?ngende variablen
-#ziel: reduktion der variablen
-#WICHTIG: mit wide-format arbeiten => das ist mit matrizen gemeint
+# lade Datei
+cars <- mtcars
 
-# lade datei
-d <- mtcars
-
-# korrelationen
-cor<- cor(mtcars[,c(1:7,10,11)])
+# Korrelationen
+cor<- cor(cars[,c(1:7,10,11)])
 cor[abs(cor)<.7] <- 0
 cor
 
 # pca
 # achtung unterschiedliche messeinheiten, wichtig es muss noch einheitlich transfomiert werden
-library(FactoMineR)
+library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
 o.pca <- PCA(mtcars[,c(1:7,10,11)], scale.unit = TRUE) # entweder korrelations oder covarianzmatrix
 
 # schaue output an
@@ -67,13 +61,62 @@ ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice 
 ```
 
 
-```{r pca mtcars, message=FALSE}
-#-------------------------
+
+```{r CA mit mcars}
+
+library(vegan)
+
+# ebenfalls mit transformierten daten
+o.ca<-cca(cars)
+o.ca1 <- CA(sveg^0.5)
+
+#Arten (o) und Communities (+) plotten
+plot(o.ca)
+
+summary(o.ca1)
+plot(o.ca1)
+
+#Nur Arten plotten
+x<-o.ca$CA$u[,1]
+y<-o.ca$CA$u[,2]
+plot(x,y)
+
+#Anteilige Varianz, die durch die ersten beiden Achsen erklaert wird
+o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
+
+```
+
+
+```{r NMDS mit mcars}
+
+#Distanzmatrix als Start erzeugen
+library(MASS)
+library(vegan)
+
+mde <-vegdist(sveg,method="euclidean")
+mdm <-vegdist(sveg,method="manhattan")
+
+#Zwei verschiedene NMDS-Methoden
+set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
+o.imds<-isoMDS(mde, k=2) # mit K = Dimensionen
+set.seed(1)
+o.mmds<-metaMDS(mde,k=3) # scheint nicht mit 2 Dimensionen zu konvergieren
+
+plot(o.imds$points)
+plot(o.mmds$points)
+
+#Stress =  Abweichung der zweidimensionalen NMDS-Loesung von der originalen Distanzmatrix
+stressplot(o.imds,mde)
+stressplot(o.mmds,mde)
+
+```
+
+
+```{r pca aus Wildi, message=FALSE}
 
 #Mit Beispieldaten aus Wildi (2013, 2017)
-# library(dave)
 library(labdsv)
-library(dave) # lade package f?r Datensatz sveg
+library(dave) # lade package für Daten sveg
 head(sveg)
 
 
@@ -124,12 +167,8 @@ text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 ```
 
 
-```{r pca wildi}
-# PCA ---------------------------------------------------------------------
-# Beispiel1: Daten aus Wildi (2013)
+```{r einfaches Beispiel mit Daten aus Wildi: visualisierung der methodik}
 #Idee von Ordinationen aus Wildi p. 73-74
-
-if(!require(labdsv)){install.packages("labdsv")}
 library(labdsv)
 
 #Für Ordinationen benötigen wir Matrizen, nicht Data.frames
@@ -182,14 +221,13 @@ pca$loadings
 E <- pca$sdev^2/pca$totdev*100
 E
 
-#mit prcomp
+#mit prcomp, ein weiteres Package für Ordinationen
 pca.2 <- prcomp(raw, scale=F)
 summary(pca.2)
 plot(pca.2)
 biplot(pca.2)
 
-#mit vegan
-if(!require(vegan)){install.packages("vegan")}
+#mit vegan, ein anderes Package für Ordinationen
 library("vegan")
 pca.3 <- rda(raw, scale=FALSE) #Die Funktion rda führt ein PCA aus an wenn nicht Umwelt und Artdaten definiert werden
 #scores(pca.3,display=c("sites"))
@@ -197,18 +235,12 @@ pca.3 <- rda(raw, scale=FALSE) #Die Funktion rda führt ein PCA aus an wenn nich
 summary(pca.3, axes=0)
 biplot(pca.3, scaling=2)
 biplot(pca.3, scaling="species")#scaling=species macht das selbe wie scaling=2
+```
 
 
-####Beispiel2: Daten aus Wildi 2013
-if(!require(dave)){install.packages("dave")}
-library(dave)
-data(sveg)
-str(sveg)
-summary(sveg)
-names(sveg)
-
+```{r zweites Beispiel aus Wildi 2013}
 #PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
-pca.5 <- pca(sveg^0.25,cor=T)
+pca.5 <- pca(sveg^0.25, cor=T)
 
 #Koordinaten im Ordinationsraum
 pca.5$scores
@@ -261,14 +293,12 @@ plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achse
 
 
 ```{r CA, message=FALSE}
-#CA---------
-
 library(vegan)
 library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
 
 # ebenfalls mit transformierten daten
-o.ca<-cca(sveg^0.5)
-o.ca1 <- CA(sveg^0.5)
+o.ca<-cca(sveg^0.5) #package vegan
+o.ca1 <- CA(sveg^0.5) #package FactoMineR
 
 #Arten (o) und Communities (+) plotten
 plot(o.ca)

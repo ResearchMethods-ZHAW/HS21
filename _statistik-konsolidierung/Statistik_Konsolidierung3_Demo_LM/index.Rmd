@@ -1,6 +1,8 @@
 ---
-title: Statistik
+title: "Konsolidierung 3: Lineare Modelle"
 output: distill::distill_article
+author: 
+  Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung3
 - Statistik
@@ -8,9 +10,20 @@ categories:
 ---
 
 ```{r echo = FALSE}
+#export files
+knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/Demo_LM_Konsolidierung3.R"), documentation = 0)
+# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
 
 ```
-```{r message=FALSE, include=FALSE, purl=F}
+
+
+#Demo Lineare Modelle
+
+> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/Demo_LM_Konsolidierung3.R)
+
+
+
+```{r load data and packages, message=FALSE, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
@@ -33,80 +46,101 @@ mytheme <-
 
 ```
 
-# Statistik Konsolidierung 3 (16.11.2020)
 
-In Statistik Konsolidierung 3 lernen die Studierenden die Idee, die Voraussetzungen und die praktische Anwendung „einfacher“ linearer Modelle in R. Im Fokus steht die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind.
-
-## Demo
-
-
-*****
-
->Download [R-Skript](demoskript_lineare_modelle.R)
-
-*****
-
-
-```{r anova & ancova, message=FALSE, eval=FALSE}
+```{r prepare data for anova, message=FALSE, eval=FALSE}
 # für mehr infos
 #https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
 
-d <- mtcars %>% 
+cars <- mtcars %>% 
     mutate(cyl = as.factor(cyl)) %>% 
     slice(-31) # lösch die 31ste Zeile
 
 #Alternativ ginge auch das
-d[-31,]
+cars[-31,]
 
 # schaue daten zuerst mal an
 #1. Responsevariable
-hist(d$hp) # nur sinnvoll bei grossem n
-boxplot(d$hp)
+hist(cars$hp) # nur sinnvoll bei grossem n
+boxplot(cars$hp)
 
 
 #2. Responsevariable ~ Prediktorvariable
-table(d$cyl) # mögliches probel, da n's unterschiedlich gross
-boxplot(d$hp ~ d$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
+table(cars$cyl) # mögliches probel, da n's unterschiedlich gross
+boxplot(cars$hp ~ d$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
 
 # definiere das modell für eine ein-faktorielle anova
-aov.1 <- aov(hp ~ cyl, data = d)
-# par(mfrow = c(2,2))
-# plot(aov.1)
+aov.1 <- aov(hp ~ cyl, data = cars)
+
+#3. Schaue Modelgüte an
+par(mfrow = c(2,2))
+plot(aov.1)
+
+#4. Schaue output an und ordne es ein
 summary.lm(aov.1)
 
 
-#posthoc vergleiche
+#5. bei meheren Kategorien wende einen post-hoc Vergleichstest an
 TukeyHSD(aov.1)
 
+#6. Ergebnisse passend darstellen
+#habt ihr Vorschläge?
 
-# alternativ welch t.test für ungleiche varianzen
+
+# Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
 welch1 <- oneway.test(hp ~ cyl, data = d, var.equal = FALSE)
 posthocTGH(d$hp, d$cyl, method = "games-howell")
+```
 
-# definiere das modell für eine zwei-faktorielle anova
-# achtung reihenfolge ist bei anova wichtig: https://stats.stackexchange.com/questions/212496/why-do-p-values-change-in-significance-when-changing-the-order-of-covariates-in
+
+
+```{r define ANOVA with two factors}
+
+#1. Wähle zusätzliche Variable aus (wenn nicht in der Aufgabe steht), was für eine Skala muss die Variable aufweisen?
+
+#2. definiere das Modell für eine zwei-faktorielle Anova
+#ACHTUNG: die Reihenfolge ist bei Anova relevant, siehe für mehr Infos: https://stats.stackexchange.com/questions/212496/why-do-p-values-change-in-significance-when-changing-the-order-of-covariates-in
 # https://stats.stackexchange.com/questions/13241/the-order-of-variables-in-anova-matters-doesnt-it
-aov.2 <- aov(log10(hp) ~ cyl * am + wt, data = d) 
+
+#3. Rechne Modell
+aov.2 <- aov(hp ~ cyl * am + wt, data = cars) 
+
+#4. Überprüfe Modelvoraussetzungen: sind sie gegeben? 
+#-> Wenn ja dann mit 5. fortfahren
+#-> wenn nein (wie in unserem Fall), zurück zu Schritt 3, was für Möglichkeiten haben wir?
 par(mfrow = c(2,2))
 plot(aov.2)
+
+#5. Interpretiere den Output
 summary.lm(aov.2)
 
 
-#frage: beispiel einer ancova? was bräuchte es noch?
-
-
+#6. Ergebnisse passend darstellen
 # plotte ergebnisse
 library(multcomp)
 
-letters <- cld(glht(aov.1, linfct=mcp(cyl="Tukey"))) # achtung mit factorwerten
-boxplot(hp ~ cyl, data = d)
+#erstens die signifikanten Unterschiede mit Buchstaben versehen
+letters <- cld(glht(aov.1, linfct=mcp(cyl="Tukey"))) # Achtung die kategoriale Variable (unsere unabhängige Variable "cyl") muss als Faktor definiert sein z.B. as.factor()
+
+#einfachere Variante
+boxplot(hp ~ cyl, data = cars)
 mtext(letters$mcletters$Letters, at=1:3)
 
-ggplot(d, aes(x = cyl, y = hp)) +
+#schönere Variante :)
+ggplot(cars, aes(x = cyl, y = hp)) +
 	stat_boxplot(geom = "errorbar", width = .5) +
   geom_boxplot(size = 1) + 
 	annotate("text", x = 1:3, y = 350, label = letters$mcletters$Letters, size = 7) +
-  labs(x = "Anzahl Zylinder", y = "Pferdestärke")  + mytheme
+  labs(x = "\nAnzahl Zylinder", y = "Pferdestärke")  + mytheme
+
+#Plot exportieren
+ggsave(filename = "distill-preview.png",
+       device = "png") # hier kann man festlegen, was für ein Bildformat exportiert werden möchte
+
+
+
+#Frage: was brauchts für ein Model, damit man von einer Ancova sprechen darf?
+
+
 
 
 ```
@@ -116,32 +150,36 @@ ggplot(d, aes(x = cyl, y = hp)) +
 ```{r einfache regression, message=FALSE}
 
 # inspiriert von Simon Jackson: http s://drsimonj.svbtle.com/visualising-residuals
-d <- mtcars %>%  # klone data set
-     slice(-31) # # lösche Maserrati und schaue nochmals Modelfit an
+cars <- mtcars %>% 
+  #ändere die unabhängige Variable mpg in 100Km/L
+  mutate(kml = (235.214583/mpg)) # mehr Infos hier: https://www.asknumbers.com/mpg-to-L100km.aspx
+  # %>%  # klone data set
+  # slice(-31) # # lösche Maserrati und schaue nochmals Modelfit an
 
 #############
-##Daten anschauen
+##1.Daten anschauen
 ############
 
-# achtung es sind miles per gallon:) beispiel 25 mpg = 9.41 L/100km 
-plot(hp ~ mpg, data = d)
+# Zusammenhang mal anschauen
+# Achtung kml = 100km pro Liter 
+plot(hp ~ kml, data = cars)
 
-# responsevariable anschauen
-boxplot(d$hp)
+# Responsevariable anschauen
+boxplot(cars$hp)
 
-# correlationen uv + av anschauen
-# reihenfolge spielt keine rolle
-cor(d$mpg, d$hp) # hängen stark zusammen
+# Korrelationen uv + av anschauen
+# Reihenfolge spielt hier keine Rolle, wieso?
+cor(cars$mpg, cars$hp) # hängen stark zusammen
 
 
 ###################
-# einfache regression
+#2. Modell definieren: einfache regression
 ##################
-model <- lm(hp ~ mpg, data = d)
+model <- lm(hp ~ mpg, data = cars)
 summary.lm(model)
 
 ###############
-# Modeldiagnostik
+#3.Modeldiagnostik und ggf. Anpassungen ans Modell oder ähnliches
 ###############
 
 # semi schöne Ergebnisse
@@ -149,12 +187,12 @@ autoplot(model) + mytheme # gitb einige Extremwerte => was tun? (Eingabe/Einlese
 #überprüfen, Transformation, Extremwerte nur ausschliessen mit guter Begründung)
 
 
-# erzeuge vorhergesagte werte und residualwerte
-d$predicted <- predict(model)   # bilde neue Variable mit geschätzten y-Werten
-d$residuals <- residuals(model)
+# erzeuge vorhergesagte Werte und Residualwerte
+cars$predicted <- predict(model)   # bilde neue Variable mit geschätzten y-Werten
+cars$residuals <- residuals(model)
 
 # schaue es dir an, sieht man gut was die Residuen sind
-d %<>% 
+d <- cars %>%  
     dplyr::select(hp, mpg, predicted, residuals)
 
 # schauen wir es uns an
@@ -178,7 +216,7 @@ ggplot(d, aes(x = mpg, y = hp)) +
   mytheme
 
 ##########
-# plotte ergebnis
+#4. plotte Ergebnis
 ##########
 ggplot(d, aes(x = mpg, y = hp)) +
     geom_point(size = 4) +
@@ -200,36 +238,49 @@ ggplot(d, aes(x = mpg, y = hp)) +
 ###################
 
 # Select data
-d <- mtcars %>% 
-    slice(-31) %>% 
-    dplyr::select(mpg, hp, wt, disp)
+cars <- mtcars %>% 
+    slice(-31) %>%
+    mutate(kml = (235.214583/mpg)) %>% 
+    dplyr::select(kml, hp, wt, disp)
 
 ################
-# multikollinearitüt überprüfen
+# 1. Multikollinearitüt überprüfen
 # Korrelation zwischen Prädiktoren kleiner .7
-cor <- cor(d[, -2])
+cor <- cor(cars[, -2])
 cor[abs(cor)<0.7] <- 0  
 cor # disp weglassen, vgl. model2
 
-##### info
-#wt gewicht
-#disp hubraum
+##### info zu Variablen
+#wt = gewicht
+#disp = hubraum
 
+
+###############
+#2. Responsevariable + Kriteriumsvariable anschauen
+##############
+# was würdet ihr tun?
 
 
 ############
-# Fit the model
+#3. Definiere das Model
 ############
-model1 <- lm(hp ~ mpg + wt + disp, data = d) 
-model2 <- lm(hp ~ mpg + wt, data = d)
-model3 <- lm(log10(hp) ~ mpg + wt, data = d)
+model1 <- lm(hp ~ kml + wt + disp, data = d) 
+model2 <- lm(hp ~ kml + wt, data = d)
+model3 <- lm(log10(hp) ~ kml + wt, data = d)
 
 #############
-# modeldiagnostik
+#4. Modeldiagnostik
 ############
 autoplot(model1)
 autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
 autoplot(model3)
+
+
+############
+#5. Modellfit vorhersagen: wie gut sagt mein Modell meine Daten vorher
+############
+
+#es gibt 3 Mögliche Wege
 
 # gebe dir predicted values aus für model2 (für vorzeigebeispiel einfacher :)
 # gibts unterschidliche varianten die predicted values zu berechnen
@@ -241,37 +292,38 @@ d$predicted <- predict(model2)
 # namen haben wie im Model
 # besser mit Traindata von Beginn an mehr Infos hier: https://www.r-bloggers.com/using-linear-regression-to-predict-energy-output-of-a-power-plant/
 
-new.data <- tibble(mpg = sample(seq(15.1,33.9, .3), 31),
+new.data <- tibble(kml = sample(seq(6.9384, 22.61, .3), 31),
                    wt = sample(seq(1.513, 5.424, 0.01), 31),
                    disp = sample(seq(71.1, 472.0, .1), 31)) 
 d$predicted_own <- predict(model2, newdata = new.data)
 
 # 3. train_test_split durchführen (empfohlen) muss jedoch von beginn an bereits 
-# gemacht werden logik hier: https://towardsdatascience.com/train-test-split-and-cross-validation-in-python-80b61beca4b6 oder https://towardsdatascience.com/6-amateur-mistakes-ive-made-working-with-train-test-splits-916fabb421bb
+# gemacht werden - Logik findet ihr hier: https://towardsdatascience.com/train-test-split-and-cross-validation-in-python-80b61beca4b6 oder https://towardsdatascience.com/6-amateur-mistakes-ive-made-working-with-train-test-splits-916fabb421bb
 # beispiel hier: https://ijlyttle.github.io/model_cv_selection.html
-d <- mtcars %>% 
-  mutate(id = 1:nrow(.)) %>%  # für das mergen der datensätze
-  dplyr::select(hp, mpg, wt, id)
+cars <- mtcars %>% 
+  mutate(id = 1:nrow(.)) %>%  # für das mergen der Datensätze
+  mutate(kml = (235.214583/mpg)) %>% 
+  dplyr::select(kml, hp, wt, disp)
   
-train_data <- d %>% 
-  dplyr::sample_frac(.75) # für das modellfitting
+train_data <- cars %>% 
+  dplyr::sample_frac(.75) # für das Modellfitting
 
-test_data  <- dplyr::anti_join(d, train_data, by = 'id') # für den test mit predict
-
-
-# erstelle das modell und "trainiere" es auf den train datensatz
-model2_train <- lm(hp ~ mpg + wt, data = train_data)
+test_data  <- dplyr::anti_join(cars, train_data, by = 'id') # für den Test mit predict
 
 
-# mit dem "neuen" datensatz wird das model überprüft auf modelfit
+# erstelle das Modell und "trainiere" es auf den train Datensatz
+model2_train <- lm(hp ~ kml + wt, data = train_data)
+
+
+# mit dem "neuen" Datensatz wird das Model überprüft ob guter Modelfit
 train_data$predicted_test <- predict(model2_train, newdata = test_data)
 
 
-# residuen
+# Residuen
 train_data$residuals <- residuals(model2_train)
 head(train_data)
 
-# mehrere plots der residual-regression
+# mehrere plots der Residual-Regression
 train_data %>% 
     # Get data into shape
     tidyr::pivot_longer(cols = c(-hp, -predicted_test, -residuals), names_to = "x") %>%  
@@ -289,7 +341,7 @@ train_data %>%
 
 #----------------
 # Schnelle variante mit broom
-d <- lm(hp ~ mpg + wt+ disp, data = mtcars) %>% 
+d <- lm(hp ~ kml + wt+ disp, data = mtcars) %>% 
     broom::augment()
 
 head(d)
@@ -306,22 +358,26 @@ ggplot(d, aes(x = mpg, y = hp)) +
 
 
 ############
-# Modellvereinfachung
+# 6. Modellvereinfachung
 ############
 
 
 # Varianzpartitionierung
 library(hier.part)
-d <- mtcars
-names(d) # finde "position" deiner responsevariable
+cars <- mtcars %>% 
+  mutate(kml = (235.214583/mpg)) %>% 
+  dplyr::select(kml, hp, wt, disp)
 
-X = d[, -4] # definiere all die prädiktor variablen im Model (minus Responsevar)
+
+names(cars) # finde "position" deiner Responsevariable
+
+X = cars[, -4] # definiere all die Prädiktorvariablen im Model (minus Responsevar)
 
 # dauert ein paar sekunden
-hier.part(d$hp, X, gof = "Rsqu")
+hier.part(cars$hp, X, gof = "Rsqu")
 
-# alle Modelle miteinander vergleichen mit dredge Befehl
-model2 <- lm(hp ~ ., data = d)
+# alle Modelle miteinander vergleichen mit dredge Befehl: geht nur bis maximal 15 Variablen
+model2 <- lm(hp ~ ., data = cars)
 library(MuMIn)
 options(na.action = "na.fail")
 allmodels <- dredge(model2)
@@ -335,7 +391,7 @@ avgmodel<- MuMIn::model.avg(get.models(allmodels, subset=TRUE))
 summary(avgmodel)
 
 # adäquatest model gemäss multimodel inference
-model_ad <- lm(hp ~ carb + disp + mpg + wt, data = d)
+model_ad <- lm(hp ~ carb + disp + kml + wt, data = cars)
 
 ```
 

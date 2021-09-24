@@ -1,5 +1,5 @@
 ---
-title: Übung 5
+title: Aufgabe 5
 output: 
   distill::distill_article:
     toc: true
@@ -13,7 +13,7 @@ categories:
 
 ```
 
-### Uebung 5.1: Split-plot ANOVA
+# Aufgabe 5.1: Split-plot ANOVA
 
 **Datensatz [splityield.csv](splityield.csv)**
 
@@ -27,9 +27,9 @@ Versuch zum Ernteertrag (yield) einer Kulturpflanze in Abhängigkeit der drei Fa
 
 
 
-### Uebung 5.2: GLMM
+# Aufgabe 5.2: GLMM
 
-Führt mit dem Datensatz [novanimal.csv](novanimal.csv) eine logistische Regression durch, wobei ihr die einzelnen Käufer (single campus_card holder) als weitere randomisierte Variable mitberücksichtigt. Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden? Vergleich die Ergebnisse mit der eurem multiplen logistische Modell von 4.2
+Führt mit dem Datensatz [novanimal.csv](https://zenodo.org/record/3890949/files/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv?download=1) eine logistische Regression durch, wobei ihr die einzelnen Käufer (single campus_card holder) als weitere randomisierte Variable mitberücksichtigt. Kann der Fleischkonsum durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden? Vergleich die Ergebnisse mit der eurem multiplen logistische Modell von Aufgabe 4.2
 
 **Kann der Fleischkonsum nun besser durch das Geschlecht, die Hochschulzugehörigkeit und das Alter erklärt werden?**
 
@@ -43,4 +43,4 @@ Führt mit dem Datensatz [novanimal.csv](novanimal.csv) eine logistische Regress
 
 -   Generiert eine neue Variable "Fleisch" (0 = kein Fleisch, 1 = Fleisch)
 -   Entfernt fehlende Werte aus der Variable "Fleisch"
--   Lasst für die Analyse den Menü-Inhalt "Buffet" weg
+-   Lasst für die Analyse den Menüinhalt "Buffet" weg
