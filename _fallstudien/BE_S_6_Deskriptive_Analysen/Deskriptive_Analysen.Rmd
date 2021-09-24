@@ -1,5 +1,5 @@
 ---
-title: "KW 44: Explorative Analysen"
+title: "KW 44: Deskriptive Analysen"
 description:
 author:
   - name: Adrian Hochreutener
@@ -8,4 +8,7 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S)
+draft: true
 ---
+
+Hier kommt alles desktiprive rein, inkl vergleicht zu normal
