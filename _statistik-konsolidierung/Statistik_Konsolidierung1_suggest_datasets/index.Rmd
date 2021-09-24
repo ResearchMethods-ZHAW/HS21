@@ -1,17 +1,14 @@
 ---
-title: Vorgeschlagene
+title: "Vorgeschlagene Datensätze für die Repetitionsübungen"
 output: distill::distill_article
 categories:
-- Statistik_Konsolidierung1
+- Statistik_Konsolidierung_1
 - Statistik
+
 
 ---
 
-```{r echo = FALSE}
-
-```
 ```{r, include=FALSE, purl=F}
-
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 ```
 
@@ -21,7 +18,6 @@ knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
 * chickwts
 * iris
-* mtcars
 * Titanic (achtung hat das table Datenformat)
 * starwars (dplyr package)
 
