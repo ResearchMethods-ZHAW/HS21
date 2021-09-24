@@ -1,8 +1,9 @@
 Package: "ResearchMethods"
 Depends: R (>= 4.0.0)
 Imports: 
-    distill
-    knitr 
-    rmarkdown
+    distill,
+    knitr,
+    rmarkdown,
+    markdown
 Remotes:  
     https://github.com/ratnanil/distill
