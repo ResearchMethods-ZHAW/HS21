@@ -4,12 +4,11 @@ output: distill::distill_article
 categories:
 - Statistik_Konsolidierung1
 - Statistik
+draft: true
 
 ---
 
-```{r echo = FALSE}
 
-```
 ```{r, echo=FALSE}
 library(tidyverse)
 ```
@@ -18,7 +17,7 @@ library(tidyverse)
 
 In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen.
 
-<span style="color:blue"> R data sets </span> 
+### in R
 
 In R gibt es vordefinierte Datensätze, welche gut abrufbar sind. Beispiele sind:
 
@@ -33,7 +32,7 @@ head(chickwts)
 str(chickwts)
 ```
 
-<span style="color:blue">Kaggle</span>
+###Kaggle
 
 Auf [Kaggle](www.kaggle.com) findet ihr öffentlich zugängliche Datensätze. Einzig was ihr tun müsst, ist euch registrieren. Beispiele sind:
 
@@ -50,7 +49,7 @@ str(data_911)
 ```
 
 
-<span style="color:blue">Tidytuesday</span>
+###Tidytuesday
 
 [Tidytuesday](https://github.com/rfordatascience/tidytuesday) ist eine Plattform, in der wöchentlich - jeden Dienstag - einen öffentlich zugänglichen Datensatz publiziert. Dieses Projekt ist aus der [R4DS](https://r4ds.had.co.nz/) Online Learning Community und dem R for Data Science Lehrbuch hervorgegangen. Beispiele sind:
 
@@ -90,7 +89,7 @@ star_wars <- read_delim(url(urlfile), delim = ",", col_names = T) # lade die Dat
 ```
 
 
-<span style="color:blue">opendata.swiss</span>
+###opendata.swiss
 
 Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare Daten der Schweizerischen Behörden zu finden. opendata.swiss ist ein gemeinsames Projekt von Bund, Kantonen, Gemeinden und weiteren Organisationen mit einem staatlichen Auftrag. Beispiele sind:
 
@@ -100,7 +99,7 @@ Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare D
 * ...
 
 
-<span style="color:blue">Open Data Katalog Stadt Zürich</span>
+###Open Data Katalog Stadt Zürich
 
 Auf der Seite der [Stadt Zürich Open Data](https://data.stadt-zuerich.ch/) findet ihr verschiedene Datensätze der Stadt Zürich. Spannend daran ist, dass die veröffentlichten Daten kostenlos und zur freien - auch kommerziellen - Weiterverwendung zur Verfügung. Beispiele sind:
 
@@ -118,5 +117,5 @@ head(dat_lang)
 
 ```
 
-*******
+
 

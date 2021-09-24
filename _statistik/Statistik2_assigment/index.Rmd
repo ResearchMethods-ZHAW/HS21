@@ -1,5 +1,5 @@
 ---
-title: Übungen 2
+title: "Aufgabe 2"
 output: distill::distill_article
 categories:
 - Statistik2
@@ -37,7 +37,7 @@ draft: true
 ***
 
 
-### Uebung 2.1: Regression
+### Aufgabe 2.1: Regression
 
 **Regressionsanalyse mit [SAR.csv](SAR.csv)**
 
@@ -52,9 +52,9 @@ Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in 
 
 
 
-### Uebung 2.2: Einfaktorielle ANOVA
+### Aufgabe 2.2: Einfaktorielle ANOVA
 
-**ANOVA mit [novanimal.csv](2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv)**
+**ANOVA mit [novanimal_agg.csv](https://zenodo.org/record/3890931/files/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv?download=1)**
 
 Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
 
@@ -66,10 +66,10 @@ werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführ
 - Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
 - Führt anschliessend Post-hoc-Vergleiche durch.
-- Fasst die Ergebnisse in einem Satz zusammen.
+- Fasst die Ergebnisse in wenigen Sätzen zusammen und stellst die angemessen dar (Text mit Abbildung und/oder Tabelle)
 
 
-### Uebung 2.3N: Mehrfaktorielle ANOVA (NatWis)
+### Aufgabe 2.3N: Mehrfaktorielle ANOVA (NatWis)
 
 **ANOVA mit [kormoran.csv](kormoran.csv)**
 
@@ -82,14 +82,15 @@ beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen.
 
 ### Uebung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)
 
-**ANOVA mit [novanimal.csv](2017_ZHAW_individual_menu_sales_NOVANIMAL.csv)**
+**ANOVA mit [novanimal_indiv.csv](https://zenodo.org/record/3890949/files/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv?download=1)**
 
 In der Mensa gibt es zwei unterschiedliche Preisniveaus bzgl. den Gerichten: eine preisgünstigere Menülinie ("World" & "Favorite") und eine teuere Menülinie ("Kitchen").
 Gibt es Unterschiede zwischen dem Kauf von preisgünstigeren resp. teureren Menülinien betreffend Menüinhalt & Hochschulzugehörigkeit?
 
 Hinweise für die Analysen:
 
-- Fasst die zwei günstigeren Menülinien "Favorite" & "World" zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit str_replace() oder sub()).
+- Fasst die zwei günstigeren Menülinien "Favorite" & "World" zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit stringr::str_replace() oder base::sub()).
+- Kleiner Hinweis: "Local" Gerichte könnt ihr zu den anderen Gerichten dazu zählen z.B. Local Favorite -> Favorite
 - Danach muss der Datensatz gruppiert (nach Menülinie & Hochschulzugehörigkeit) und zusammengefasst werden.
 - Unbekannte Menüinhalte können vernachlässigt werden.
 - Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls

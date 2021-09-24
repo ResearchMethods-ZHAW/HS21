@@ -5,4 +5,48 @@ draft: true
 ---
 
 
-Um was geht es hier eigentlich?
+# Statistik Konsolidierung
+
+In den vier Blöcken “Konsolidierung Statistik” repetieren die Studierenden die wichtigen Verfahren der Inferenz-Statistik. Beginnend mit den beiden Fällen, dem $Chi ^{2}/$-Test für die Assoziation zwischen zwei kategorialen Variablen und dem t-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Die Studierene wiederholen auch die Varianzanalyse (ANOVA) als Verallgemeinerung des t-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Weiter geht es mit der Repetition von komplexere Versionen linearer Regressionen und generalized linear models (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Abschliessend bekommen die Studierenden eine Einführung in die Welt der Ordinationen z.B. PCA.
+
+Für die nächsten vier gemeinsamen Sitzungen werden wir nochmals folgende Themen aufgreifen:
+
+# Statstik Konsolidierung 1
+
+In diesem Block beschäftigen wir uns mit folgenden Inhalten:
+
+*Warum Statistik? Warum mit R?
+*Genereller Ablauf einer statistischen Analyse
+*$Chi ^{2}/$-Test- bzw. Fishers Test (für kategoriale Daten)
+*t-Test (für metrische Daten)
+
+
+# Statistik Konsolidierung 2
+
+In diesem Teil beschäftigen wir uns mit Themen wie:
+
+*Einführung in «multivariate» Methoden
+*Idee von Ordinationen
+*Hauptkomponentenanalyse (PCA)
+
+# Statistik Konsolidierung 3
+
+In diesem Block werden folgende Inhalte angeschaut:
+
+*Parametrische vs. nicht-parametrische Verfahren
+*Varianzanalyse (ANOVA vs. MANOVA vs. ANCOVA)
+*Lineare Modelle allgemein
+*Multiple lineare Regressionen
+*Nicht-lineare Regressionen
+
+# Statistik Konsolidierung 4
+
+Im letzten Teil werden wir die wichtigsten GLM's repetieren:
+
+*Von linearen Modellen zu GLMs
+*Poisson-Regressionen für Zähldaten
+*Logistische Regressionen für Binärdaten
+*Glättungsfunktionen und GAMs
+*Gesamtüberblick und Wiederholung
+
+
