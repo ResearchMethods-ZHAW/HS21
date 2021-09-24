@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.1",
+    "Version": "4.0.0",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -55,8 +55,8 @@
       "Package": "distill",
       "Version": "1.2.4",
       "Source": "GitHub",
-      "RemoteType": "github",
       "Remotes": "rstudio/rmarkdown",
+      "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "distill",
       "RemoteUsername": "ratnanil",
@@ -161,6 +161,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "41287f1ac7d28a92f0a286ed507928d3"
+    },
+    "markdown": {
+      "Package": "markdown",
+      "Version": "1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "61e4a10781dd00d7d81dd06ca9b94e95"
     },
     "mime": {
       "Package": "mime",

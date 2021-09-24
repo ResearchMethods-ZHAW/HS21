@@ -8,6 +8,7 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S) Musterloesung
+draft: true
 ---
 
 ```{r include=FALSE}
