@@ -1,5 +1,5 @@
 ---
-title: "KW 45 Multivariate Statistik"
+title: "KW 45 Aufgabe Multivariate Statistik"
 description:
 author:
   - name: Adrian Hochreutener

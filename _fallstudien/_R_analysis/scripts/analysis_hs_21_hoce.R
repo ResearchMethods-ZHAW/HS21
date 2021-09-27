@@ -311,7 +311,7 @@ first(depo_m$Ym)
 last(depo_m$Ym)
 
 # Plotte
-ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
+ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group = 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
   #zeichne Lockdown 1
   geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
                           ymin =0, ymax=max(Total+(Total/100*10))),
@@ -323,7 +323,7 @@ ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass a
   geom_line(alpha = 0.6, size = 1.5)+
   scale_x_discrete(breaks = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"),
                    labels = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"))+
-  labs(title= "", y="Fuss pro Monat", x = "Jahr")+
+  labs(title= "", y="Fussgänger:innen pro Monat", x = "Jahr")+
   theme_linedraw(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
@@ -342,7 +342,7 @@ write.csv(mean_phase_wd, "_fallstudien/_R_analysis/results/mean_phase_wd.csv")
 #plot
 ggplot(data = depo_d)+
   geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
-  labs(title="", y= "Anzahl pro Tag")+
+  labs(title="", y= "Fussgänger:innen pro Tag")+
   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"))+
   theme_classic(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
@@ -354,7 +354,6 @@ ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000,
 # Statistik: Unterschied WE und WO während Lockdown 1
 t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
        depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
-
 
 # 3.3 Tagesgang ####
 # Bei diesen Berechnungen wird jeweils der Mittelwert pro Stunde berechnet. 

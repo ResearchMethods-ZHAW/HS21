@@ -1,5 +1,5 @@
 ---
-title: "KW 43: R Projekt vorbereiten"
+title: "KW 43: Aufgabe R Projekt vorbereiten"
 description:
 author:
   - name: Adrian Hochreutener
@@ -49,7 +49,7 @@ Tipp:
 
 Zuerst immer den __Titel des Projekts__ sowie den __Autor/ die Autorin__ des Skripts nennen. Hier soll auch die __Herkunft der Daten__ ersichtlich sein und falls externe Daten verwendet werden, sollte geklaert werden, wer Dateneigentuemer ist (Wildnispark und Meteo Schweiz).
 
-Im Skript soll immer die __Ordnerstruktur__ des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __skripts, data, results und results_compare__).
+Im Skript soll immer die __Ordnerstruktur__ des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __skripts, data, results).
 
 Beschreibt zudem folgendes die verwendete __Meteodaten__ (siehe dazu Metadata Meteodaten, --> order_XXX_legend.txt)
 

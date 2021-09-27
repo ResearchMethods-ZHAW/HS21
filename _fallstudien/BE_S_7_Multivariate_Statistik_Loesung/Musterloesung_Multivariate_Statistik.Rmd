@@ -1,0 +1,16 @@
+---
+title: "KW 44: Loesung Multivariate Statistik"
+description:
+author:
+  - name: Adrian Hochreutener
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (S) Musterloesung
+draft: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.align="left")
+```

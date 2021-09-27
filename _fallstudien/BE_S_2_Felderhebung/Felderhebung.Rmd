@@ -1,5 +1,5 @@
 ---
-title: "KW40 - KW42: Felderhebung Grüntal"
+title: "KW40 - KW42: Aufgabe Felderhebung Grüntal"
 description:
 author:
   - name: Adrian Hochreutener

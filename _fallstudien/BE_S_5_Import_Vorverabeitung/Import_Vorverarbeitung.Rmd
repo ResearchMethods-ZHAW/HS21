@@ -1,5 +1,5 @@
 ---
-title: "KW 43: Import und Datenvorverarbeitung"
+title: "KW 43: Aufgabe Import und Datenvorverarbeitung"
 description:
 author:
   - name: Adrian Hochreutener
@@ -48,8 +48,7 @@ depo <- read_csv("./HIER RELATIVEN DATEIPFAD EINGEBEN")
 # Je nach Bedarf muss der Speicherort sowie der Dateiname angepasst werden
 ```
 
-_Hinweis zu den Daten:_
-Im Stundenformat zeigen die Werte um 11:00 die Zähldaten zwischen 11:00 und 12:00.
+__Hinweis:__ Im Stundenformat zeigen die Werte um 11:00 die Zähldaten zwischen 11:00 und 12:00.
 
 ## 1a) 
 

@@ -1,5 +1,5 @@
 ---
-title: "KW 43: Musterloesung Import und Datenvorverarbeitung "
+title: "KW 43: Loesung Import und Datenvorverarbeitung"
 description:
 author:
   - name: Adrian Hochreutener
@@ -12,7 +12,7 @@ draft: true
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "show", fig.align="left")
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.align="left")
 ```
 
 ```{r echo=FALSE}

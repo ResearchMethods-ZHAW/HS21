@@ -1,5 +1,5 @@
 ---
-title: "KW 44: Aufgabe Deskriptive Analysen"
+title: "KW 44: Loesung Deskriptive Analysen"
 description:
 author:
   - name: Adrian Hochreutener
@@ -7,12 +7,12 @@ output:
   distill::distill_article:
     self_contained: false
 categories:
-  - Biodiversity & Ecosystems (S)
+  - Biodiversity & Ecosystems (S) Musterloesung
 draft: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.align="left")
 ```
 
 ```{r include=FALSE}
@@ -435,23 +435,21 @@ ggarrange(abs,            # plot 1 aufrufen
 
 # Aufgabe 1: Verlauf der Besuchszahlen / m
 
-Nachdem wir die Projektstruktur aufgebaut haben und die Daten vorbereitet sind, machen wir uns an die deskriptive Analyse. Dies macht eigentlich immer Sinn. Bevor mach sich an die schliessende Statistik macht, muss man ein "Gefühl" für die Daten bekommen. Dies funktioniert am einfachsten mit deskriptiven, explorativen Analysen.
+```{r}
+#.################################################################################################
+# 3. DESKRIPTIVE ANALYSE UND VISUALISIERUNG #####
+#.################################################################################################
 
-Wir interessieren uns in den Analysen grundsätzlich für 4 Zeitabschnitte:
+# 3.1 Verlauf der Besuchszahlen / m ####
+# Monatliche Summen am Standort
 
-1) Normal (vom Start der Erhebungen bis vor dem ersten Lockdown)
-2) Lockdown 1
-3) Lockdown 2
-4) Seit Covid, aber nicht während eines Lockdowns
+# wann beginnt die Datenreihe schon wieder?
+first(depo_m$Ym)
+# und wann ist die fertig?
+last(depo_m$Ym)
 
-Wir haben relativ lange Zeitreihen. Zur Visualisierung des generellen Trends greifen wir darum auf die aggregierten Daten zurück - das macht den Plot übersichtlicher und damit aussagekräftiger.
-
-- Plottet den Verlauf der monatlichen Besuchszahlen an eurer Zählstelle. Auf der x-Achse steht dabei dabei Jahr und Monat (gespeichert im df _depo_m_), auf der y-Achse die monatlichen Besuchszahlen. Zeichnet auch die beiden Lockdown ein.
-
-Haltet euch dabei an untenstehenden Plot:
-
-```{r echo = F}
-ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
+# Plotte
+ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group = 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
   #zeichne Lockdown 1
   geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
                           ymin =0, ymax=max(Total+(Total/100*10))),
@@ -466,56 +464,24 @@ ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass a
   labs(title= "", y="Fussgänger:innen pro Monat", x = "Jahr")+
   theme_linedraw(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+# Beachtet, dass ich in der Musterlösung keine Resultate exportiere, untenstehend aber der Code dazu:
+
+# ggsave("Entwicklung_Zaehlstelle.png", width=20, height=10, units="cm", dpi=1000, 
+#        path = "_fallstudien/_R_analysis/results/") 
 ```
-
-__Hinweis:__ 
-- Nutzt zum plotten __ggplot()__
-- folgende Codeschnipsel helfen euch:
-
-```{r eval = F}
-ggplot(data = depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
-  # zeichne Lockdown 1; ein einfaches Rechteck. bestimme mit min und max die Dimensionen
-  geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
-                          ymin =0, ymax=max(Total+(Total/100*10))), # das Rechteck soll 10 % grösser als die maximale Besuchszahl sein 
-            fill = "lightskyblue", alpha = 0.4, colour = NA)+
-  # zeichne Lockdown 2
-    ...+
-  # zeichne die Linie
-  geom_line(...)+
-  # bestimme manuell, wo auf der x-Achse die breaks sind und wie diese angeschrieben werden sollen
-  scale_x_discrete(breaks = c("...", "...", ...),
-                   labels = c("...", "...", ...))+
-  theme_linedraw(base_size = 15)+
-  ...
-```
-
-- Exportiert euren Plot mit __ggsave()__ nach __results__. Breite = 20, Höhe = 10, Einheiten = cm, dpi = 1000
 
 # Aufgabe 2: Wochengang
 
-Nachdem wir nun wissen, wie sich die Besuchszahlen während der Untersuchungsdauer monatlich entwickelt haben, möchten wir genauer untersuchen, wie sich die Zahlen je nach Phase (Normal, Lockdown 1. Lockdown 2 und Covid) auf die Wochentage verteilen. 
-
-## 2a)
-
-- Berechnet zuerst die Totale Anzahl pro Wochentag pro Phase.
-
-```{r eval=F}
+```{r}
+# mean / d / phase
 mean_phase_wd <- depo_d %>% 
-  group_by(...) %>% 
-  ...
-```
+  group_by(Wochentag, Phase) %>% 
+  summarise(Total = mean(Total))
 
-- Speichert das als .csv
+# write.csv(mean_phase_wd, "_fallstudien/_R_analysis/results/mean_phase_wd.csv")
 
-```{r eval=F}
-write.csv(mean_phase_wd, "results/mean_phase_wd.csv")
-```
-
-## 2b)
-
-- Erstellt einen Boxplot nach untenstehender Vorgabe:
-
-```{r echo=F}
+#plot
 ggplot(data = depo_d)+
   geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
   labs(title="", y= "Fussgänger:innen pro Tag")+
@@ -523,51 +489,33 @@ ggplot(data = depo_d)+
   theme_classic(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
         legend.title = element_blank())
+
+# ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
+#        path = "_fallstudien/_R_analysis/results/")
+
+# Statistik: Unterschied WE und WO während Lockdown 1
+t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
+       depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
+
 ```
-
-__Hinweis:__ 
-- Nutzt zum plotten __ggplot()__
-- folgende Codeschnipsel helfen euch:
-
-```{r eval = FALSE}
-ggplot(data = depo_d)+
-  geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
-  ...
-```
-
-- Exportiert auch diesen Plot mit __ggsave()__. Welche Breite und Höhe passt hier?
-
-## 2c)
-
-Sind die Unterschiede zwischen Werktag und Wochenende wirklich signifikant? Falls ja, in allen Phasen oder nur während bestimmter?
-
-- Prüft das pro Phase mit einem einfachen t.test.
 
 # Aufgabe 3: Tagesgang
+```{r}
+# 3.3 Tagesgang ####
+# Bei diesen Berechnungen wird jeweils der Mittelwert pro Stunde berechnet. 
+# wiederum nutzen wir dafuer "pipes"
+Mean_h <- depo %>% 
+  group_by(Wochentag, Stunde, Phase) %>% 
+  summarise(Total = mean(Total)) 
 
-Vom Grossen zum Kleinen, von der Übersicht ins Detail. Jetzt widmen wir uns dem Tagesgang, das heisst der Verteilung der Besuchenden auf die 24 Tagesstunden je nach Phase.
-
-## 3a)
-
-- Berechnet zuerst den Mittelwert der Totalen Besuchszahlen pro Wochentag pro Stunde pro Phase. (ganz ähnlich wie unter 2a) und speichert das df unter __Mean_h__.
-
-ggplots haben Daten lieber im Format long als wide. 
-
-- Wir müssen also noch transformieren:
-
-```{reval=FALSE}
+# transformiere fuer Plotting
 Mean_h_long<- reshape2::melt(Mean_h,measure.vars = c("Total"),
                              value.name = "Durchschnitt",variable.name = "Gruppe")
-```
 
-__Hinweis:__ melt ersetzt gather. Gather und spread werden nicht mehr gewartet / betreut
+# Plotte den Tagesgang, unterteilt nach Wochentagen
 
-## 3b)
-
-- Plottet den Tagesgang, unterteilt nach den 7 Wochentagen nun für unsere 4 Phasen.
-
-```{r echo=F} 
-ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
+# Normal
+tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
@@ -577,23 +525,44 @@ ggplot(subset(Mean_h_long, Phase %in% c("Normal")),
   lims(y = c(0,25))+
   theme_linedraw(base_size = 15)+
   theme(legend.position = "right")
-```
 
-Für die Phase "Normal" benutze ich folgenden Codeschnipsel. Speichert den Plot ab (hier: __tag_norm__).
+# Lockdown 1
 
-```{r eval=F}
-tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
+tag_lock_1 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_1")), 
                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
-  ...
-```
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
 
-__Hinweis:__ Achtet darauf, dass die Skalierung der y-Achse bei allen 4 Plots dieselbe ist (z.B. immer vom 0 bis 25). 
+# Lockdown 2
+tag_lock_2 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_2")), 
+                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
 
-## 3c)
+# Covid
+tag_covid <- ggplot(subset(Mean_h_long, Phase %in% c("Covid")), 
+                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
 
-- Arrangiert die vier erstellten Plots und speichert das Resultat. Das ist etwas tricky, darum hier der vollständige Code.
-
-```{r eval=F}
 # Arrange und Export Tagesgang
 ggarrange(tag_lock_1+            # plot 1 aufrufen
             rremove("x.text")+   # plot 1 braucht es nicht alle Achsenbeschriftungen
@@ -615,52 +584,54 @@ ggarrange(tag_lock_1+            # plot 1 aufrufen
           label.y = 0.99,
           common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
 
-ggsave("Tagesgang.png", width=25, height=25, units="cm", dpi=1000,
-       path = "results/")
+# ggsave("Tagesgang.png", width=25, height=25, units="cm", dpi=1000,
+#        path = "_fallstudien/_R_analysis/results/")
 ```
 
 # Aufgabe 4: Kennzahlen
 
-Schliesslich berechnen wir noch einige Kennzahlen (Anzahl Passagen, Richtungsverteilung, ...).
+```{r}
+# 3.4 Kennzahlen ####
+total_phase <- depo_d %>% 
+  # gruppiere nach Phasen inkl. Normal. Diese Levels haben wir bereits definiert
+  group_by(Phase) %>% 
+  summarise(Total = sum(Total),
+            IN = sum(Fuss_IN),
+            OUT = sum(Fuss_OUT))
 
-## 4a)
+# write.csv(total_phase, "_fallstudien/_R_analysis/results/total_phase.csv")
 
-- Gruppiert nach Phase und berechnet dieses mal die Summe (nicht den Durchschnitt) Total, IN und OUT (ähnlich wie in 2a und 3a).
-
-- Speichert das Ergebnis als .csv
-
-## 4b) 
-
-Die Zeitreihen der 4 Phasen unterscheiden sich deutlich voneinander. Totale Summen sind da kaum miteinander vergleichbar, besser eignet sich der Durchschnitt oder der Median.
-
-- Gruppiert nach Phase und berechnet den Durchschnitt Total, IN und OUT und speichert das df unter __mean_phase_d__.
-
-- Ergänzt das mit der prozentualen Richtungsverteilung
-
-```{r eval=FALSE}
+# mean besser Vergleichbar, da Zeitreihen unterschiedlich lange
+mean_phase_d <- depo_d %>% 
+  group_by(Phase) %>% 
+  summarise(Total = mean(Total),
+            IN = mean(Fuss_IN),
+            OUT = mean(Fuss_OUT))
+# berechne prozentuale Richtungsverteilung
 mean_phase_d <- mean_phase_d %>% 
   mutate(Proz_IN = round(100/Total*IN, 1)) %>% # berechnen und auf eine Nachkommastelle runden
-  ...
-```
+  mutate(Proz_OUT = round(100/Total*OUT,1))
 
-- Speichert das Ergebnis als .csv
+# write.csv(mean_phase_d, "_fallstudien/_R_analysis/results/mean_phase_d.csv")
 
-- Selektiert nun die absoluten Zahlen im df __mean_phase_d__ sowie die relativen und speichert das jeweils in einem df __mean_phase_d_abs__ und __mean_phase_d_proz__.
-
-```{r eval=F}
+# selektiere absolute Zahlen
+# behalte rel. Spalten (nur die relativen Prozentangaben)
 mean_phase_d_abs <- mean_phase_d[,-c(2,5,6), drop=FALSE]
-```
+# transformiere fuer Plotting
+mean_phase_d_abs <- reshape2::melt(mean_phase_d_abs, 
+                                     measure.vars = c("IN","OUT"),
+                                     value.name = "Durchschnitt",variable.name = "Gruppe")
 
-- transformiert beide df mittels __reshape2::melt()__ von wide zu long (siehe auch Codeschnipsel unter 3a)
+# selektiere relative Zahlen
+# behalte rel. Spalten (nur die relativen Prozentangaben)
+mean_phase_d_proz <- mean_phase_d[,-c(2:4), drop=FALSE]
+# transformiere fuer Plotting
+mean_phase_d_proz <- reshape2::melt(mean_phase_d_proz, 
+                                 measure.vars = c("Proz_IN","Proz_OUT"),
+                                 value.name = "Durchschnitt",variable.name = "Gruppe")
 
-## 4c)
-
-Nun visualisieren wie die Verteilung der absoluten und der relativen Zahlen nach Phasen in einem Barplot.
-
-- Erstellt je einen Plot zu den absoluten und den relativen Zahlen nach den unterstehenden Vorgaben und speichert beide Plots im Environment:
-
-```{r echo=F}
-ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
+# Visualisierung abs
+abs <- ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
   geom_col(position = "dodge", width = 0.8)+
   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
   scale_x_discrete(labels = c("IN", "OUT"))+
@@ -668,13 +639,27 @@ ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill
   theme_classic(base_size = 15)+
   theme(legend.position = "bottom")
 
-ggplot(data = mean_phase_d_proz, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
+# Visualisierung %
+proz <- ggplot(data = mean_phase_d_proz, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
   geom_col(position = "dodge", width = 0.8)+
   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
   scale_x_discrete(labels = c("IN", "OUT"))+
   labs(y = "Durchschnitt [%]", x= "Bewegungsrichtung")+
   theme_classic(base_size = 15)+
   theme(legend.position = "bottom")
+
+# Arrange und Export Verteilung
+ggarrange(abs,            # plot 1 aufrufen
+          proz,            # plot 2 aufrufen
+          ncol = 2, nrow = 1,    # definieren, wie die plots angeordnet werden
+          heights = c(1),        # beide sind bleich hoch
+          widths = c(1,0.95),    # plot 2 ist aufgrund der fehlenden y-achsenbesch. etwas schmaler
+          labels = c("a) Absolute Verteilung", "b) Relative Verteilung"),
+          label.x = 0,        # wo stehen die labels
+          label.y = 1.0,
+          common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
+
+# ggsave("Verteilung.png", width=20, height=15, units="cm", dpi=1000,
+#        path = "_fallstudien/_R_analysis/results/")
 ```
 
-- Arrangiert beide Plots nebeneinander und exportiert das Ergebnis (Arrangieren siehe 3c). 
