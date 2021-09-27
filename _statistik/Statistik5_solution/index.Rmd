@@ -1,5 +1,5 @@
 ---
-title: Musterloesung Aufgabe 5.2S GLMM
+title: Loesung Aufgabe 5
 output: distill::distill_article
 categories:
 - Statistik5
@@ -7,25 +7,32 @@ categories:
 
 ---
 
+```{r export files echo = FALSE}
+#export files
+knitr::purl("_statistik/Statistik5_solution/index.Rmd", here::here("_statistik/Statistik5_solution/Solution_stat5.R"), documentation = 0)
+# rmarkdown::render(input = "index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
 
-- Meine Leseempfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
+```
+
+>Download [R-Skript](_statistik/Statistik5_solution/Solution_stat5.R) 
+
+
 
 *****
-- Lese-Empfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
+> Lese-Empfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
 - Interessierte [hier](https://rpsychologist.com/r-guide-longitudinal-lme-lmer) oder [hier](https://rpubs.com/kaz_yos/glmm1)
-- Download [R-Skript](17_Statistik5/RFiles/solution_stat5.2.R)
-- Download [PDF](17_Statistik5/solution_stat5.2.pdf)
 
 ****
 
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+##kommentierter Loesungsweg
+```{r load data, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 library(dplyr)
 library(readr)
 library(stringr)
 library(ggfortify)
 library(lme4)
 
-nova <- read_delim("https://zenodo.2017_ZHAW_individual_menu_sales_NOVANIMAL.csv?download=1", delim = ";", locale = locale(encoding = "latin1"))
+nova <- read_delim("https://zenodo.org/record/3890949/files/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv?download=1", delim = ";", locale = locale(encoding = "latin1"))
 
 ## definiert mytheme für ggplot2 (verwendet dabei theme_classic())
 mytheme <- 
@@ -40,9 +47,8 @@ mytheme <-
 
 ```
 
-**kommentierter Lösungsweg**
 
-```{r, error=FALSE}
+```{r prepare data and define model, error=FALSE}
 
 df <- nova # kopiert originaler Datensatz
 
@@ -71,6 +77,13 @@ table(df$meat) # gibt die absoluten werte an
 
 # definiert das logistische Modell mit ccrs als random intercept und 
 # wendet es auf den Datensatz an
+
+
+#check out ICC: https://www.datanovia.com/en/lessons/intraclass-correlation-coefficient-in-r/
+#however data needs to be wide format
+#not working yet
+df %>% dplyr::select(ccrs, label_content) %>% pivot_wider(names_from = "ccrs", values_fill = "label_content") -> tt
+
 
 library(lme4)
 #dauert ein paar sekunden
@@ -109,19 +122,15 @@ tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se,
 tab2 <- exp(tab1)
 ```
 
-*****
-
-**Methoden**
+##Methoden
 
 Die Responsevariable “Fleischkonsum” ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren “Alter (Gruppen)”, “Geschlecht” und “Hochschulzugehörigkeit” gerechnet. Da in den Daten gewisse Individuen mehrmals vorkommen, wird das Individuum (Variable ccrs) als variabler Effekt in das Modell aufgenommen.
 
-*****
-
-**Ergebnisse**
+##Ergebnisse
 
 Das Geschlecht und das Alter nehmen einen signifikanten Einfluss auf den Fleischkonsum (siehe Table 1): Männer kaufen signifikant häufiger ein fleischhaltiges Gericht als Frauen; junge Personen (15 bis 25-jährig) kaufen signifikant häufiger ein fleischhaltiges Gericht in der Mensa. Es sieht so aus, als ob die Hochschulzugehörigkeit auf den ersten Blick keinen Einfluss nimmt. Aber man müsste auch die Interaktion zwischen Geschlecht und Hochschulzugehörigkeit berücksichtigen, um ein abschliessendes Bild zu bekommen. Das kleine marginale Pseudo-R^2 zeigt auf, dass es nicht das "beste" Modell ist. Insbesondere die tiefe Varianzaufklärung für die randomisierte Variable (r2c; ccrs) scheint mit (nur) 4% sehr gering. Das sind Hinweise dafür, dass das Modell ggf. noch weitere Ebenen haben könnte (z.B. Standort Mensa).
 
-```{r, message=FALSE, echo=FALSE}
+```{r print results coefficients, message=FALSE, echo=FALSE}
 
 #replace rownames
 rownames(tab1) <-  c("Intercept", "Männer", "Mitarbeitende",
@@ -138,7 +147,7 @@ knitr::kable(tab1, col.names = c("Coefficients", "Lower Limit (LL)", "Uppewr Lim
 
 Die Chance, dass Männer ein fleischhaltiges Gericht kaufen ist 2.36mal (+136%) höher als bei Frauen (siehe Table 2). Die Chance, dass 26 bis 34-jährige Personen ein fleischhaltiges Gericht kaufen ist kleiner (-21%) als bei den 15 bis 25-jährigen Personen.
 
-```{r, message=FALSE, echo=FALSE}
+```{r print results OR, message=FALSE, echo=FALSE}
 
 # ersetze row names
 rownames(tab2) <-  c("Intercept", "Männer", "Mitarbeitende",

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Fallstudien.html</loc>
-    <lastmod>2021-09-01T09:14:50+02:00</lastmod>
+    <loc>https://researchmethods-zhaw.github.io/HS21/Dependencies.html</loc>
+    <lastmod>2021-09-16T14:52:11+02:00</lastmod>
   </url>
+  <url>
+    <loc>https://researchmethods-zhaw.github.io/HS21/Fallstudien.html</loc>
+    <lastmod>2021-09-16T14:52:11+02:00</lastmod>
+  </url>
+   </url>
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/</loc>
     <lastmod>2021-09-24T14:45:36+02:00</lastmod>
@@ -183,6 +188,10 @@
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_solution_stat_Beispiel/</loc>
     <lastmod>2021-09-01T09:14:53+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_assigment/</loc>
+    <lastmod>2021-09-24T13:57:34+02:00</lastmod>
   </url>
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_Demo/</loc>

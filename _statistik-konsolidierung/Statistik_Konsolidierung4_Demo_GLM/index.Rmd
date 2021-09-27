@@ -1,6 +1,8 @@
 ---
-title: Statistik
+title: "Konsolidierung 4: GLM"
 output: distill::distill_article
+author:
+  Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung4
 - Statistik
@@ -8,8 +10,19 @@ categories:
 ---
 
 ```{r echo = FALSE}
+#export files
+knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/Demo_GLM_Konsolidierung4.R"), documentation = 0)
+# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
 
 ```
+
+# Demo GLM
+
+> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/Demo_GLM_Konsolidierung4.R)
+
+
+
+
 ```{r, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
@@ -30,17 +43,6 @@ mytheme <-
 
 ```
 
-# Statistik Konsolidierung 4 (17.11.2020)
-
-In Statistik Konsolidierung 4 kennen die Studierende alles Rund um das Thema der lineare Regressionen (inkl. nicht-lineare Regressionen). Die Studierenden bekommen eine Einführung in die generalized linear models (GLMs), eine Methode die einige wesentliche Limitierungen von linearen Modellen überwindenwerden können. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und logistische Regression für ja/nein-Daten anschauen.
-
-## Demo
-
-*****
-
->Download [R-Skript](demoskript_lineare_modelle_teil2.R)
-
-*****
 
 
 ```{r quasi-poisson regression, message=FALSE}
@@ -48,9 +50,10 @@ In Statistik Konsolidierung 4 kennen die Studierende alles Rund um das Thema der
 # quasipoisson regression
 ############
 
-d <- mtcars
+cars <- mtcars %>% 
+   mutate(kml = (235.214583/mpg))
 
-glm.poisson <- glm(hp ~ mpg, data = d, family = poisson(link = log))
+glm.poisson <- glm(hp ~ kml, data = cars, family = poisson(link = log))
 
 summary(glm.poisson) # klare overdisperion
 
@@ -70,6 +73,11 @@ ggplot2::ggplot(d, aes(x = mpg, y = hp)) +
     theme_classic()
 
 
+#Rücktransformation meiner Variablen
+XY
+
+
+
 ```
 
 
@@ -78,10 +86,10 @@ ggplot2::ggplot(d, aes(x = mpg, y = hp)) +
 ############
 # logistische regression
 ############
-d <- mtcars
+cars <- mtcars
 
 # erstelle das modell
-glm.binar <- glm(vs ~ hp, data = d, family = binomial(link = logit)) 
+glm.binar <- glm(vs ~ hp, data = cars, family = binomial(link = logit)) 
 
 
 summary(glm.binar)
@@ -123,6 +131,10 @@ dimnames(tab1) <- list(c("M:S-type","M:V-type"), c("T:S-type", "T:V-type"))
 tab1
 
 prop.table(tab1, 2)
+
+#Rücktransformation meiner Variablen
+XY
+
 
 ```
 
