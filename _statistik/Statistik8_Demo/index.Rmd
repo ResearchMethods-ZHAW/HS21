@@ -6,6 +6,7 @@ output:
 categories:
 - Statistik8
 - Statistik
+draft: true
 ---
 
 
