@@ -16,7 +16,6 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.al
 ```
 
 ```{r include=FALSE}
-
 # Benoetigte Bibliotheken ####
 library(tidyverse) # Data wrangling und piping
 library(lubridate) # Arbeiten mit Datumsformaten
@@ -29,7 +28,7 @@ library(fitdistrplus)# Prueft die Verteilung in Daten
 library(lme4)      # Multivariate Modelle
 library(blmeco)    # Bayesian data analysis using linear models
 library(sjPlot)    # Plotten von Modellergebnissen (tab_model)
-library(lattice)   # einfaches plotten von Zusammenhängen zwischen Variablen
+library(lattice)   # einfaches plotten von Zusammenhaengen zwischen Variablen
 
 # Start und Ende ####
 # Untersuchungszeitraum, ich waehle hier das Jahr 2019 bis und mit Sommer 2021
@@ -279,7 +278,7 @@ ggplot(data = depo_d)+
         legend.title = element_blank())
 
 
-# Statistik: Unterschied WE und WO während Lockdown 1
+# Statistik: Unterschied WE und WO waehrend Lockdown 1
 t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
        depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
 
@@ -455,21 +454,22 @@ ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group = 1 braucht R, dass
                           ymin =0, ymax=max(Total+(Total/100*10))),
             fill = "lightskyblue", alpha = 0.4, colour = NA)+
   #zeichne Lockdown 2
-    geom_rect(mapping = aes(xmin="2020 12", xmax="2021 3", 
+  geom_rect(mapping = aes(xmin="2020 12", xmax="2021 3", 
                           ymin =0, ymax=max(Total+(Total/100*10))), 
             fill = "lightskyblue", alpha = 0.4, colour = NA)+
   geom_line(alpha = 0.6, size = 1.5)+
   scale_x_discrete(breaks = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"),
                    labels = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"))+
-  labs(title= "", y="Fussgänger:innen pro Monat", x = "Jahr")+
+  labs(title= "", y="Fussgaenger:innen pro Monat", x = "Jahr")+
   theme_linedraw(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
-# Beachtet, dass ich in der Musterlösung keine Resultate exportiere, untenstehend aber der Code dazu:
+# Beachtet, dass ich in der Musterloesung keine Resultate exportiere, untenstehend aber der Code dazu:
 
 # ggsave("Entwicklung_Zaehlstelle.png", width=20, height=10, units="cm", dpi=1000, 
 #        path = "_fallstudien/_R_analysis/results/") 
 ```
+
 
 # Aufgabe 2: Wochengang
 
@@ -484,7 +484,7 @@ mean_phase_wd <- depo_d %>%
 #plot
 ggplot(data = depo_d)+
   geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
-  labs(title="", y= "Fussgänger:innen pro Tag")+
+  labs(title="", y= "Fussgaenger:innen pro Tag")+
   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"))+
   theme_classic(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
@@ -493,7 +493,7 @@ ggplot(data = depo_d)+
 # ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
 #        path = "_fallstudien/_R_analysis/results/")
 
-# Statistik: Unterschied WE und WO während Lockdown 1
+# Statistik: Unterschied WE und WO waehrend Lockdown 1
 t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
        depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
 
@@ -516,7 +516,7 @@ Mean_h_long<- reshape2::melt(Mean_h,measure.vars = c("Total"),
 
 # Normal
 tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
-                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+                   mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
   scale_linetype_manual(values = c(rep("solid", 5),  "twodash", "twodash"))+
@@ -527,7 +527,6 @@ tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")),
   theme(legend.position = "right")
 
 # Lockdown 1
-
 tag_lock_1 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_1")), 
                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
@@ -553,7 +552,7 @@ tag_lock_2 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_2")),
 
 # Covid
 tag_covid <- ggplot(subset(Mean_h_long, Phase %in% c("Covid")), 
-                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+                    mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
@@ -619,16 +618,16 @@ mean_phase_d <- mean_phase_d %>%
 mean_phase_d_abs <- mean_phase_d[,-c(2,5,6), drop=FALSE]
 # transformiere fuer Plotting
 mean_phase_d_abs <- reshape2::melt(mean_phase_d_abs, 
-                                     measure.vars = c("IN","OUT"),
-                                     value.name = "Durchschnitt",variable.name = "Gruppe")
+                                   measure.vars = c("IN","OUT"),
+                                   value.name = "Durchschnitt",variable.name = "Gruppe")
 
 # selektiere relative Zahlen
 # behalte rel. Spalten (nur die relativen Prozentangaben)
 mean_phase_d_proz <- mean_phase_d[,-c(2:4), drop=FALSE]
 # transformiere fuer Plotting
 mean_phase_d_proz <- reshape2::melt(mean_phase_d_proz, 
-                                 measure.vars = c("Proz_IN","Proz_OUT"),
-                                 value.name = "Durchschnitt",variable.name = "Gruppe")
+                                    measure.vars = c("Proz_IN","Proz_OUT"),
+                                    value.name = "Durchschnitt",variable.name = "Gruppe")
 
 # Visualisierung abs
 abs <- ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+

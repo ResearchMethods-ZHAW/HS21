@@ -512,9 +512,92 @@ ggarrange(abs,            # plot 1 aufrufen
 ggsave("Verteilung.png", width=20, height=15, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/")
 
+#.################################################################################################
+# 4. MULTIFAKTORIELLE ANALYSE UND VISUALISIERUNG #####
+#.################################################################################################
 
+# 4.1 Einflussfaktoren Besucherzahl ####
+# Erstelle ein df indem die taeglichen Zaehldaten und Meteodaten vereint sind
+umwelt <- inner_join(depo, meteo, by = c("Datum" = "time"))
+# Das zusammenfuehren folgt evtl. in NA-Werten bei gewissen Tagen
+sum(is.na(umwelt))
 
+# nochmals einige Convinience Variablen
+umwelt <- umwelt%>%
+  mutate(Ferien = if_else(  
+    Datum >= Fruehlingsferien_2019_start & Datum <= Fruehlingsferien_2019_ende |
+      Datum >= Sommerferien_2019_start & Datum <= Sommerferien_2019_ende |
+      Datum >= Herbstferien_2019_start & Datum <= Herbstferien_2019_ende |
+      Datum >= Winterferien_2019_start & Datum <= Winterferien_2019_ende |
+      Datum >= Fruehlingsferien_2020_start & Datum <= Fruehlingsferien_2020_ende |
+      Datum >= Sommerferien_2020_start & Datum <= Sommerferien_2020_ende |
+      Datum >= Herbstferien_2020_start & Datum <= Herbstferien_2020_ende |
+      Datum >= Winterferien_2020_start & Datum <= Winterferien_2020_ende |
+      Datum >= Fruehlingsferien_2021_start & Datum <= Fruehlingsferien_2021_ende |
+      Datum >= Sommerferien_2021_start & Datum <= max(depo$Datum),
+        "1", "0"))%>%
+  mutate(Ferien = factor(Ferien))
 
+# Faktor und integer
+# Im GLMM wird die Kalenderwoche und das Jahr als random factor definiert. Dazu muss sie als
+# Faktor vorliegen.
+umwelt <- umwelt %>% 
+  mutate(Jahr = as.factor(Jahr))
 
+# Unser Modell kann nur mit ganzen Zahlen umgehen. Zum Glueck habe wir die Zaehldaten
+# bereits gerundet.
+
+# pruefe str des df
+summary(umwelt)
+str(umwelt)
+
+#  Variablen skalieren
+# Skalieren der Variablen, damit ihr Einfluss vergleichbar wird 
+# (Problem verschiedene Skalen der Variablen (bspw. Temperatur in Grad Celsius, 
+# Niederschlag in Millimeter und Sonnenscheindauer in Minuten)
+umwelt <- umwelt %>% 
+  mutate(tre200jx_scaled = scale(tre200jx), 
+         rre150j0_scaled = scale(rre150j0), 
+         sremaxdv_scaled = scale(sremaxdv))
+
+# 4.2 Variablenselektion ####
+# Korrelierende Variablen koennen das Modelergebnis verfaelschen. Daher muss vor der
+# Modelldefinition auf Korrelation getestet werden.
+
+# Erklaerende Variablen definieren
+# Hier wird die Korrelation zwischen den (nummerischen) erklaerenden Variablen berechnet
+cor <-  cor(umwelt[,18:(ncol(umwelt))]) # in den [] waehle ich die skalierten Spalten.
+# Mit dem folgenden Code kann eine simple Korrelationsmatrix aufgebaut werden
+# hier kann auch die Schwelle für die Korrelation gesetzt werden, 
+# 0.7 ist liberal / 0.5 konservativ
+cor[abs(cor)<0.7] <-  0 #Setzt alle Werte kleiner 0.7 auf 0 (diese sind dann ok, alles groesser ist problematisch!)
+cor
+
+# Korrelationsmatrix erstellen
+# Zur Visualisierung kann ein einfacher Plot erstellt werden:
+chart.Correlation(umwelt[,18:(ncol(umwelt))], histogram=TRUE, pch=19)
+
+# Automatisierte Variablenselektion 
+# fuehre die dredge-Funktion und ein Modelaveraging durch
+# Hier wird die Formel für die dredge-Funktion vorbereitet
+f <- Total ~ Wochentag + Ferien + Phase +
+  tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled
+# Jetzt kommt der Random-Factor hinzu und es wird eine Formel daraus gemacht
+f_dredge <- paste(c(f, "+ (1|KW)", "+ (1|Jahr)"), collapse = " ") %>% 
+  as.formula()
+# Das Modell mit dieser Formel ausführen
+m <- glmer(f_dredge, data = umwelt, family = poisson, na.action = "na.fail")
+# Das Modell in die dredge-Funktion einfügen (siehe auch ?dredge)
+all_m <- dredge(m)
+# suche das beste Modell
+print(all_m)
+# Importance values der Variablen 
+# hier wird die wichtigkeit der Variablen in den verschiedenen Modellen abgelesen
+MuMIn::importance(all_m) 
+
+# Schliesslich wird ein Modelaverage durchgeführt 
+# Schwellenwert für das delta-AIC = 2
+avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500) 
+summary(avgmodel)
 
 
