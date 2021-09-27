@@ -157,30 +157,27 @@ Frage: Was bedeuten die | (zu erstellen mit AltGr + 7)? Welches ist das if Argum
 - Kalenderwoche: __week()__
 - Monat: __month()__
 - Jahr: __year()__
-- Vor oder nach COVID?
 
-```{r eval= FALSE}
-  ...
-  mutate(COVID = if_else(Datum >= lock_1_start_2020, "covid", "normal"))
-```
+- Phase Covid (Code untenstehend)
 
-- Lockdown
-
-Tipp: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen koennen. Hinweis II: Wir packen die beiden Lockdowns in eine Spalte --> long ist schöner als wide.
+Tipp: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen koennen. Hinweis II: Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte --> long ist schöner als wide.
 
 ```{r eval=FALSE}
-depo <- depo %>% 
-mutate(Lockdown = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
+depo <- depo %>%
+mutate(Phase = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
                           "Lockdown_1",
-                          if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
-                                  "Lockdown_2", "0"))) 
+                       if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
+                               "Lockdown_2",
+                               if_else(Datum < lock_1_start_2020,
+                                  "Normal", "Covid"))))
+
 # hat das gepklappt?!
-unique(depo$Lockdown)
+unique(depo$Phase)
 ```
 
 Frage: Welches ist das if Argument, welches das else?
 
-- Ändert die Datentypen der Spalten Wochenende, KW, Lockdown sowie COVID zu factor.
+- Ändert die Datentypen der Spalten Wochenende, KW, Phase zu factor.
 
 ## 3b)
 
@@ -209,7 +206,7 @@ depo$... <- as.integer(...)
 
 Unsere Daten liegen im Stundenformat vor. Fuer einige Auswertungen muessen wir aber auf ganze Tage zurueckgreifen koennen. 
 
-- Die Stundendaten muessen zu ganzen Tagen aggregiert werden. Macht das wiederum mit piping. Berechnet die Summen pro Nutzergruppe und Richtung pro Tag.
+- Die Stundendaten muessen zu ganzen Tagen aggregiert werden. Macht das wiederum mit piping. Bezieht folgende Gruppierungen mit ein: __Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase__
 
 Tipp: Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in das neue df uebernommen und muessen nicht nochmals hinzugefuegt werden
 

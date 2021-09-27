@@ -15,8 +15,7 @@ draft: true
 
 ## Ziele 
 
-Bisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt.
-Das Besuchermonitoring Grüntal ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.
+Bisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt. Das Besuchermonitoring Grüntal ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.
 
 Im Rahmen dessen programmieren wir multivariate Modelle, welche den Zusammenhang zwischen der Anzahl Besuchenden und verschiedenen Einflussfaktoren (Lockdown, Wetter, Ferien, Wochentag, Kalenderwoche) beschreiben. Dank ihnen können wir sagen, wie die Besucher:innen auf die untersuchten Faktoren reagieren (siehe dazu [Einleitung], Ziele). 
 
@@ -29,11 +28,11 @@ Konkret sollen folgende Fragestellungen beantwortet werden:
 >3)	Können deutliche Unterschiede zwischen den "normalen", vor-Covid19-Jahren und danach bei Tages-, Wochen-, und / oder Saisongang sowie den wichtigsten, deskriptiven Kennzahlen gefunden werden?
 >
 
-- Jede Gruppe wertet ausschliesslich Daten eines Zählers aus. Sprecht miteinander ab, wer welchen Zähler behandelt. Jeder Zähler soll nur von einer Gruppe ausgewertet werden!
+- Jede Gruppe wertet ausschliesslich __Daten eines Zählers__ aus. Sprecht miteinander ab, wer welchen Zähler behandelt (204, 211 oder 502; Spezifikationen siehe [Einleitung], Hinweis). Jeder Zähler soll nur von einer Gruppe ausgewertet werden!
 
-- Für euren Zähler stehen eventuell Zahlen zu Fussgänger:innen und Velos zur Verfügung. Entscheidet euch in diesem Fall selbst, ob ihr Fussgänger:innen ODER Velos auswerten wollt. Die anderen Daten dürft ihr vernachläsigen.
+- Für euren Zähler stehen eventuell Zahlen zu Fussgänger:innen und Velos zur Verfügung (siehe [Einleitung], Hinweis). Entscheidet euch in diesem Fall selbst, ob ihr Fussgänger:innen ODER Velos auswerten wollt. Die anderen Daten dürft ihr vernachlässigen.
 
-Im Bericht sollen die Informationen und Erfahrungen aus dem gesamten Verlauf der Fallstudie in geeigneter Weise einfliessen. Bezüglich der Felderhebung erwarten wir keine Angaben. 
+Im Bericht sollen die Informationen und Erfahrungen aus dem gesamten Verlauf der Fallstudie in geeigneter Weise einfliessen. Bezüglich der Felderhebung Grüntal erwarten wir __keine__ Angaben. 
 
 ```{r out.width = "100%", fig.align ="center", echo=FALSE}
 knitr::include_graphics("Aufbau_Fallstudie_Profil_S.png")
@@ -56,7 +55,7 @@ knitr::include_graphics("Aufbau_Fallstudie_Profil_S.png")
 -	Anhang (für alle Auswertungen relevanter R-Code in geeigneter Form) 
 
 2) Gesamtumfang max. 7500 Zeichen (inkl. Leerzeichen; exkl. Einleitung, Tabellen, Literaturverzeichnis und Anhang)
-3) Abgabe am _8.1.2022_ auf Moodle oder per Mail an hoce@zhaw.ch
+3) Abgabe am __9.1.2022__ auf Moodle oder per Mail an hoce@zhaw.ch
 
 ## Bewertungskriterien
 

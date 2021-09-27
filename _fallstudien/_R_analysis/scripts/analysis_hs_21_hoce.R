@@ -171,31 +171,33 @@ depo <- depo %>%
   mutate(KW= week(Datum))%>%
   # monat und Jahr
   mutate(Monat = month(Datum)) %>% 
-  mutate(Jahr = year(Datum)) %>% 
-  # vor oder danach?
-  mutate(COVID = if_else(Datum >= lock_1_start_2020, "covid", "normal"))
+  mutate(Jahr = year(Datum))
 
 #Lockdown 
 # Hinweis: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele 
 # Operationen in einem Schritt auch schon mal durcheinander erzeugen koennen.
-# Hinweis II: Wir packen die beiden Lockdowns in eine Spalte --> long ist schoener als wide
-depo <- depo %>% 
-mutate(Lockdown = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
+# Hinweis II: Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown)
+# in eine Spalte --> long ist schoener als wide
+depo <- depo %>%
+mutate(Phase = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
                           "Lockdown_1",
-                          if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
-                                  "Lockdown_2", "0"))) 
+                       if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
+                               "Lockdown_2",
+                               if_else(Datum < lock_1_start_2020,
+                                  "Normal", "Covid"))))
+
 # hat das gepklappt?!
-unique(depo$Lockdown)
+unique(depo$Phase)
 
 # aendere die Datentypen
 depo <- depo %>% 
   mutate(Wochenende = as.factor(Wochenende)) %>% 
   mutate(KW = factor(KW)) %>% 
-  mutate(Lockdown = as.factor(Lockdown)) %>% 
   # mit factor() koennen die levels direkt einfach selbst definiert werden.
   # wichtig: speizfizieren, dass aus R base, ansonsten kommt es zu einem 
   # mix-up mit anderen packages
-  mutate(COVID = base::factor(COVID, levels = c("normal", "covid")))
+  mutate(Phase = base::factor(Phase, levels = c("Normal", "Lockdown_1", "Lockdown_2", "Covid")))
+
 str(depo)
   
 # Fuer einige Auswertungen muss auf die Stunden als nummerischer Wert zurueckgegriffen werden
@@ -252,7 +254,7 @@ head(depo)
 # zurueckgegriffen werden kann
 # hier werden also pro Nutzergruppe und Richtung die Stundenwerte pro Tag aufsummiert
 depo_d <- depo %>% 
-  group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Lockdown, COVID) %>% 
+  group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase) %>% 
   summarise(Total = sum(Fuss_IN + Fuss_OUT), 
             Fuss_IN = sum(Fuss_IN),
             Fuss_OUT = sum(Fuss_OUT)) 
@@ -300,13 +302,15 @@ str(meteo)
 # 3. DESKRIPTIVE ANALYSE UND VISUALISIERUNG #####
 #.################################################################################################
 
-# Entwicklung über Jahre ####
+# 3.1 Verlauf der Besuchszahlen / m ####
+# Monatliche Summen am Standort
 
 # wann beginnt die Datenreihe schon wieder?
 first(depo_m$Ym)
 # und wann ist die fertig?
 last(depo_m$Ym)
 
+# Plotte
 ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
   #zeichne Lockdown 1
   geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
@@ -326,120 +330,192 @@ ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass a
 ggsave("Entwicklung_Zaehlstelle.png", width=20, height=10, units="cm", dpi=1000, 
        path = "_fallstudien/_R_analysis/results/") 
 
-# Die weiteren deskriptiven Vergleiche sollen den Zeitraum des Lockdown 1 und 2 betrachten
-lock <- depo %>% 
-  filter(Lockdown == "Lockdown_1" | # da wir den Zeitraum bereits definiert haben,
-           Lockdown == "Lockdown_2")# muessen wir nicht mehr ueber das Datum gehen
+# 3.2 Wochengang ####
 
-lock_day <- depo_d %>% 
-  filter(Lockdown == "Lockdown_1" |
-           Lockdown == "Lockdown_2")
+# mean / d / phase
+mean_phase_wd <- depo_d %>% 
+  group_by(Wochentag, Phase) %>% 
+  summarise(Total = mean(Total))
 
-# 3.1 Besuchszahlen nach Phase ####
-total_lock_day <- lock_day %>% 
-  group_by(Lockdown) %>% 
-  summarise(Total = sum(Total),
-            IN = sum(Fuss_IN),
-            OUT = sum(Fuss_OUT))
+write.csv(mean_phase_wd, "_fallstudien/_R_analysis/results/mean_phase_wd.csv")
 
-# mean besser Vergleichbar, da Zeitreihen unterschiedlich lange
-mean_lock_day <- lock_day %>% 
-  group_by(Lockdown) %>% 
-  summarise(Total = mean(Total),
-            IN = mean(Fuss_IN),
-            OUT = mean(Fuss_OUT))
-# berechne prozentuale Richtungsverteilung
-mean_lock_day <- mean_lock_day %>% 
-  mutate(Proz_IN = round(100/Total*IN, 1)) %>% # berechnen und auf eine Nachkommastelle runden
-  mutate(Proz_OUT = round(100/Total*OUT,1))
-
-# behalte rel. Spalten
-mean_lock_day <- mean_lock_day[,-c(2:4), drop=FALSE]
-
-# transformiere fuer Plotting
-mean_lock_day <- reshape2::melt(mean_lock_day, 
-                                 measure.vars = c("Proz_IN","Proz_OUT"),
-                                 value.name = "Durchschnitt",variable.name = "Gruppe")
-
-# Visualisierung
-ggplot(data = mean_lock_day, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Lockdown))+
-  geom_col(position = "dodge", width = 0.8)+
-  scale_fill_manual(values = c("orangered", "royalblue"))+
-  scale_x_discrete(labels = c("IN", "OUT"))+
-  labs(y = "Durchschnitt [%]", x= "Bewegungsrichtung")+
+#plot
+ggplot(data = depo_d)+
+  geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
+  labs(title="", y= "Anzahl pro Tag")+
+  scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"))+
   theme_classic(base_size = 15)+
-  theme(legend.title = element_blank(),
-        legend.position = "bottom")
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+        legend.title = element_blank())
 
-ggsave("Bewegungsrichtung_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
-       path = "_fallstudien/_R_analysis/results/")  
+ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/")
 
-# 3.2 Tagesgang ####
+# Statistik: Unterschied WE und WO während Lockdown 1
+t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
+       depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
+
+
+# 3.3 Tagesgang ####
 # Bei diesen Berechnungen wird jeweils der Mittelwert pro Stunde berechnet. 
 # wiederum nutzen wir dafuer "pipes"
-Mean_h <- lock %>% 
-  group_by(Wochentag, Stunde, Lockdown) %>% 
+Mean_h <- depo %>% 
+  group_by(Wochentag, Stunde, Phase) %>% 
   summarise(Total = mean(Total)) 
 
 # transformiere fuer Plotting
 Mean_h_long<- reshape2::melt(Mean_h,measure.vars = c("Total"),
-                           value.name = "Durchschnitt",variable.name = "Gruppe")
+                             value.name = "Durchschnitt",variable.name = "Gruppe")
 
 # Plotte den Tagesgang, unterteilt nach Wochentagen
-# Lockdown 1
-tag_lock_1 <- ggplot(subset(Mean_h_long, Lockdown %in% c("Lockdown_1")), 
-       mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+
+# Normal
+tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
+                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
-  scale_linetype_manual(values = c(rep("solid", 5), "dashed", "dashed"))+
+  scale_linetype_manual(values = c(rep("solid", 5),  "twodash", "twodash"))+
   scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
-  labs(x="Uhrzeit [h]", y= "Durchschnittliche Anzahl Fussganger_Innen / h", title = "")+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Lockdown 1
+
+tag_lock_1 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_1")), 
+                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
   lims(y = c(0,25))+
   theme_linedraw(base_size = 15)+
   theme(legend.position = "right")
 
 # Lockdown 2
-tag_lock_2 <- ggplot(subset(Mean_h_long, Lockdown %in% c("Lockdown_2")), 
-       mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+tag_lock_2 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_2")), 
+                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
-  scale_linetype_manual(values = c(rep("solid", 5), "dashed", "dashed"))+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
   scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
-  labs(x="Uhrzeit [h]", y= "Durchschnittliche Anzahl Fussganger_Innen / h", title = "")+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Covid
+tag_covid <- ggplot(subset(Mean_h_long, Phase %in% c("Covid")), 
+                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
   lims(y = c(0,25))+
   theme_linedraw(base_size = 15)+
   theme(legend.position = "right")
 
 # Arrange und Export Tagesgang
-ggarrange(tag_lock_1,            # plot 1 aufrufen
+ggarrange(tag_lock_1+            # plot 1 aufrufen
+            rremove("x.text")+   # plot 1 braucht es nicht alle Achsenbeschriftungen
+            rremove("x.title"),            
           tag_lock_2+            # plot 2 aufrufen
-            rremove("y.text")+   # bei plot 2 brauchen wir nicht mehr die y-Achsenbeschriftung
+            rremove("y.text")+   # bei plot 2 brauchen wir keine Achsenbeschriftung
+            rremove("y.title")+
+            rremove("x.text")+
+            rremove("x.title"),
+          tag_norm,
+          tag_covid+
+            rremove("y.text")+   
             rremove("y.title"),
-          ncol = 2, nrow = 1,    # definieren, wie die plots angeordnet werden
-          heights = c(1),        # beide sind bleich hoch
-          widths = c(1,0.95),    # plot 2 ist aufgrund der fehlenden y-achsenbesch. etwas schmaler
-          labels = c("a) Lockdown 1", "b) Lockdown 2"),
-          label.x = -0.1,        # wo stehen die labels
+          ncol = 2, nrow = 2,    # definieren, wie die plots angeordnet werden
+          heights = c(0.9, 1),  # beide plots sind wegen der fehlenden Beschriftung nicht gleich hoch
+          widths = c(1,0.9),    
+          labels = c("a) Lockdown 1", "b) Lockdown 2", "c) Normal", "d) Covid"),
+          label.x = 0.1,        # wo stehen die Plottitel
           label.y = 0.99,
           common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
 
-ggsave("Tagesgang_Lockdown.png", width=20, height=20, units="cm", dpi=1000,
+ggsave("Tagesgang.png", width=25, height=25, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/")
 
-# Wochengang ####
-ggplot(data = lock_day)+
-  geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Lockdown))+
-  labs(title="", y= "Anzahl pro Tag")+
-  scale_fill_manual(values = c("orangered", "royalblue"))+
+# 3.4 Kennzahlen ####
+total_phase <- depo_d %>% 
+  # gruppiere nach Phasen inkl. Normal. Diese Levels haben wir bereits definiert
+  group_by(Phase) %>% 
+  summarise(Total = sum(Total),
+            IN = sum(Fuss_IN),
+            OUT = sum(Fuss_OUT))
+
+write.csv(total_phase, "_fallstudien/_R_analysis/results/total_phase.csv")
+
+# mean besser Vergleichbar, da Zeitreihen unterschiedlich lange
+mean_phase_d <- depo_d %>% 
+  group_by(Phase) %>% 
+  summarise(Total = mean(Total),
+            IN = mean(Fuss_IN),
+            OUT = mean(Fuss_OUT))
+# berechne prozentuale Richtungsverteilung
+mean_phase_d <- mean_phase_d %>% 
+  mutate(Proz_IN = round(100/Total*IN, 1)) %>% # berechnen und auf eine Nachkommastelle runden
+  mutate(Proz_OUT = round(100/Total*OUT,1))
+
+write.csv(mean_phase_d, "_fallstudien/_R_analysis/results/mean_phase_d.csv")
+
+# selektiere absolute Zahlen
+# behalte rel. Spalten (nur die relativen Prozentangaben)
+mean_phase_d_abs <- mean_phase_d[,-c(2,5,6), drop=FALSE]
+# transformiere fuer Plotting
+mean_phase_d_abs <- reshape2::melt(mean_phase_d_abs, 
+                                     measure.vars = c("IN","OUT"),
+                                     value.name = "Durchschnitt",variable.name = "Gruppe")
+
+# selektiere relative Zahlen
+# behalte rel. Spalten (nur die relativen Prozentangaben)
+mean_phase_d_proz <- mean_phase_d[,-c(2:4), drop=FALSE]
+# transformiere fuer Plotting
+mean_phase_d_proz <- reshape2::melt(mean_phase_d_proz, 
+                                 measure.vars = c("Proz_IN","Proz_OUT"),
+                                 value.name = "Durchschnitt",variable.name = "Gruppe")
+
+# Visualisierung abs
+abs <- ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
+  geom_col(position = "dodge", width = 0.8)+
+  scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
+  scale_x_discrete(labels = c("IN", "OUT"))+
+  labs(y = "Durchschnitt [mean]", x= "Bewegungsrichtung")+
   theme_classic(base_size = 15)+
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
-        legend.title = element_blank())
+  theme(legend.position = "bottom")
 
-# Statistik: Unterschied WE und WO
-t.test(lock_day$Total [lock_day$Wochenende=="Werktag"], 
-       lock_day$Total [lock_day$Wochenende=="Wochenende"])
+# Visualisierung %
+proz <- ggplot(data = mean_phase_d_proz, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
+  geom_col(position = "dodge", width = 0.8)+
+  scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
+  scale_x_discrete(labels = c("IN", "OUT"))+
+  labs(y = "Durchschnitt [%]", x= "Bewegungsrichtung")+
+  theme_classic(base_size = 15)+
+  theme(legend.position = "bottom")
 
-ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
+# Arrange und Export Verteilung
+ggarrange(abs,            # plot 1 aufrufen
+          proz,            # plot 2 aufrufen
+          ncol = 2, nrow = 1,    # definieren, wie die plots angeordnet werden
+          heights = c(1),        # beide sind bleich hoch
+          widths = c(1,0.95),    # plot 2 ist aufgrund der fehlenden y-achsenbesch. etwas schmaler
+          labels = c("a) Absolute Verteilung", "b) Relative Verteilung"),
+          label.x = 0,        # wo stehen die labels
+          label.y = 1.0,
+          common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
+
+ggsave("Verteilung.png", width=20, height=15, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/")
+
+
+
+
+
 
 

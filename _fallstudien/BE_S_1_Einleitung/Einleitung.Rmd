@@ -37,9 +37,9 @@ knitr::include_url("https://map.geo.admin.ch/?lang=de&topic=ech&bgLayer=ch.swiss
 
 __Hinweis:__ 
 
-- Die Zähler 2011 und 502 erfassen sowohl Fussgänger:innen als auch Fahrräder. Die Erfassung erfolgt Richtungsgetrennt.
+- Die __Zähler 211 und 502__ erfassen sowohl Fussgänger:innen als auch Fahrräder. Die Erfassung erfolgt Richtungsgetrennt.
 
-- Der Zähler 204 kann nicht zwischen Nutzungsarten unterscheiden; er erfasst alle Passagen auf den Hochwachtturm als Fussgänger:innen. Der Sensror hat keine Richtungserkennung und die Besuchenden werden jeweils 2x gezählt, einmal beim Aufstieg und einmal beim Abstieg. Das ist im Kalibrierunsgfaktor berücksichtigt, die Kalibrierte Zahl gibt also die Anzahl der Turmbesuche an.
+- Der __Zähler 204__ kann nicht zwischen Nutzungsarten unterscheiden; er erfasst alle Passagen auf den Hochwachtturm als Fussgänger:innen. Der Sensror hat keine Richtungserkennung und die Besuchenden werden jeweils 2x gezählt, einmal beim Aufstieg und einmal beim Abstieg. Das ist im Kalibrierunsgfaktor berücksichtigt, die Kalibrierte Zahl gibt also die Anzahl der Turmbesuche an.
 
 Der Wildnispark wertet die Zahlen auf verschiedene Weise aus. So sind z. B. Jahresgänge (an welchen Monaten herrscht besonders viel Betrieb) und Nutzungszahlen bekannt. Vertiefte Auswertungen, die beispielsweise den Zusammenhang zwischen Besuchszahlen und dem Wetter untersuchen, werden nicht gemacht, da dies die Kapazitäten übersteigen würde.
 

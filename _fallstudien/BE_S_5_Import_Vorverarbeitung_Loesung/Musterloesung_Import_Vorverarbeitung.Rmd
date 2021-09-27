@@ -177,31 +177,33 @@ depo <- depo %>%
   mutate(KW= week(Datum))%>%
   # monat und Jahr
   mutate(Monat = month(Datum)) %>% 
-  mutate(Jahr = year(Datum)) %>% 
-  # vor oder danach?
-  mutate(COVID = if_else(Datum >= lock_1_start_2020, "covid", "normal"))
+  mutate(Jahr = year(Datum))
 
 #Lockdown 
 # Hinweis: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele 
 # Operationen in einem Schritt auch schon mal durcheinander erzeugen koennen.
-# Hinweis II: Wir packen die beiden Lockdowns in eine Spalte --> long ist schoener als wide
-depo <- depo %>% 
-mutate(Lockdown = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
+# Hinweis II: Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown)
+# in eine Spalte --> long ist schoener als wide
+depo <- depo %>%
+mutate(Phase = if_else(Datum >= lock_1_start_2020 & Datum <= lock_1_end_2020,
                           "Lockdown_1",
-                          if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
-                                  "Lockdown_2", "0"))) 
+                       if_else(Datum >= lock_2_start_2021 & Datum <= lock_2_end_2021,
+                               "Lockdown_2",
+                               if_else(Datum < lock_1_start_2020,
+                                  "Normal", "Covid"))))
+
 # hat das gepklappt?!
-unique(depo$Lockdown)
+unique(depo$Phase)
 
 # aendere die Datentypen
 depo <- depo %>% 
   mutate(Wochenende = as.factor(Wochenende)) %>% 
   mutate(KW = factor(KW)) %>% 
-  mutate(Lockdown = as.factor(Lockdown)) %>% 
   # mit factor() koennen die levels direkt einfach selbst definiert werden.
   # wichtig: speizfizieren, dass aus R base, ansonsten kommt es zu einem 
   # mix-up mit anderen packages
-  mutate(COVID = base::factor(COVID, levels = c("normal", "covid")))
+  mutate(Phase = base::factor(Phase, levels = c("Normal", "Lockdown_1", "Lockdown_2", "Covid")))
+
 str(depo)
   
 # Fuer einige Auswertungen muss auf die Stunden als nummerischer Wert zurueckgegriffen werden
@@ -222,7 +224,7 @@ depo$Fuss_OUT <- round(depo$Fuss_OUT, digits = 0)
 # zurueckgegriffen werden kann
 # hier werden also pro Nutzergruppe und Richtung die Stundenwerte pro Tag aufsummiert
 depo_d <- depo %>% 
-  group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Lockdown, COVID) %>% 
+  group_by(Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase) %>% 
   summarise(Total = sum(Fuss_IN + Fuss_OUT), 
             Fuss_IN = sum(Fuss_IN),
             Fuss_OUT = sum(Fuss_OUT)) 
@@ -255,5 +257,10 @@ hist(depo$Total[!depo$Total==0] , breaks = 100)
 
 # Verteilung mittels Scatterplot pruefen
 plot(x=depo$Datum, y=depo$Total)
+
+# Temperaturmaximum
+ggplot(data=meteo, mapping=aes(x=time, y=tre200jx))+
+  geom_point()+
+  geom_smooth(col="red")
 ```
 
