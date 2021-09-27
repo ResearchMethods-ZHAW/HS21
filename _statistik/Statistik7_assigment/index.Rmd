@@ -4,6 +4,7 @@ output: distill::distill_article
 categories:
 - Statistik7
 - Statistik
+draft: true
 
 ---
 
