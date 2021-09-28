@@ -5,47 +5,48 @@ knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/index.R
 
 
 
-## # für mehr infos
-## #https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
-## 
-## cars <- mtcars %>%
-##     mutate(cyl = as.factor(cyl)) %>%
-##     slice(-31) # lösch die 31ste Zeile
-## 
-## #Alternativ ginge auch das
-## cars[-31,]
-## 
-## # schaue daten zuerst mal an
-## #1. Responsevariable
-## hist(cars$hp) # nur sinnvoll bei grossem n
-## boxplot(cars$hp)
-## 
-## 
-## #2. Responsevariable ~ Prediktorvariable
-## table(cars$cyl) # mögliches probel, da n's unterschiedlich gross
-## boxplot(cars$hp ~ d$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
-## 
-## # definiere das modell für eine ein-faktorielle anova
-## aov.1 <- aov(hp ~ cyl, data = cars)
-## 
-## #3. Schaue Modelgüte an
-## par(mfrow = c(2,2))
-## plot(aov.1)
-## 
-## #4. Schaue output an und ordne es ein
-## summary.lm(aov.1)
-## 
-## 
-## #5. bei meheren Kategorien wende einen post-hoc Vergleichstest an
-## TukeyHSD(aov.1)
-## 
-## #6. Ergebnisse passend darstellen
-## #habt ihr Vorschläge?
-## 
-## 
-## # Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
-## welch1 <- oneway.test(hp ~ cyl, data = d, var.equal = FALSE)
-## posthocTGH(d$hp, d$cyl, method = "games-howell")
+
+# für mehr infos
+#https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
+
+cars <- mtcars %>% 
+    mutate(cyl = as.factor(cyl)) %>% 
+    slice(-31) # lösch die 31ste Zeile
+
+#Alternativ ginge auch das
+cars[-31,]
+
+# schaue daten zuerst mal an
+#1. Responsevariable
+hist(cars$hp) # nur sinnvoll bei grossem n
+boxplot(cars$hp)
+
+
+#2. Responsevariable ~ Prediktorvariable
+table(cars$cyl) # mögliches probel, da n's unterschiedlich gross
+boxplot(cars$hp ~ cars$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
+
+# definiere das modell für eine ein-faktorielle anova
+aov.1 <- aov(hp ~ cyl, data = cars)
+
+#3. Schaue Modelgüte an
+par(mfrow = c(2,2))
+plot(aov.1)
+
+#4. Schaue output an und ordne es ein
+summary.lm(aov.1)
+
+
+#5. bei meheren Kategorien wende einen post-hoc Vergleichstest an
+TukeyHSD(aov.1)
+
+#6. Ergebnisse passend darstellen
+#habt ihr Vorschläge?
+
+
+# Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
+welch1 <- oneway.test(hp ~ cyl, data = cars, var.equal = FALSE)
+posthocTGH(cars$hp, cars$cyl, method = "games-howell")
 
 
 #1. Wähle zusätzliche Variable aus (wenn nicht in der Aufgabe steht), was für eine Skala muss die Variable aufweisen?
@@ -173,7 +174,7 @@ ggplot(d, aes(x = mpg, y = hp)) +
     # plot regression line
     geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
     #intercept
-    geom_line(aes(y = mean(hp)), color = "blue") +
+    geom_line(aes(y = mean(d$hp)), color = "blue") +
     mytheme
 
 
@@ -209,16 +210,16 @@ cor # disp weglassen, vgl. model2
 ############
 #3. Definiere das Model
 ############
-model1 <- lm(hp ~ kml + wt + disp, data = d) 
-model2 <- lm(hp ~ kml + wt, data = d)
-model3 <- lm(log10(hp) ~ kml + wt, data = d)
+model1 <- lm(hp ~ kml + wt + disp, data = cars) 
+model2 <- lm(hp ~ kml + wt, data = cars)
+model3 <- lm(log10(hp) ~ kml + wt, data = cars)
 
 #############
 #4. Modeldiagnostik
 ############
-autoplot(model1)
-autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
-autoplot(model3)
+ggfortify::autoplot(model1)
+ggfortify::autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
+ggfortify::autoplot(model3)
 
 
 ############
@@ -338,3 +339,5 @@ summary(avgmodel)
 # adäquatest model gemäss multimodel inference
 model_ad <- lm(hp ~ carb + disp + kml + wt, data = cars)
 
+```{.r .distill-force-highlighting-css}
+```

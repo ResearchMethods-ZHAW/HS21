@@ -1,33 +1,3 @@
----
-title: "Konsolidierung 2: Ordinationen"
-author:
-  Gian-Andrea Egeler
-  Jürgen Dengler
-output: distill::distill_article
-categories:
-- Statistik_Konsolidierung2
-- Statistik
-
----
-
-```{r echo = FALSE, purl = FALSE}
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
-
-#export files
-knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R"), documentation = 0)
-# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
-
-```
-
-# Demo Ordinationen (PCA)
-
-> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R)
-
-
-
-
-# PCA mit mtcars
-```{r, message=FALSE}
 
 #Beispiel inspiriert von Luke Hayden: https://www.datacamp.com/community/tutorials/pca-analysis-r
 
@@ -70,18 +40,13 @@ cars$mtcars.country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US"
 ggbiplot(o.pca,ellipse=TRUE,  labels = rownames(mtcars), groups = cars$mtcars.country)
 
 
-```
 
 
-# CA mit mtcars
-```{r}
 library(vegan)
-cars <- mtcars
-
 
 # ebenfalls mit transformierten daten
 o.ca<-cca(cars)
-# o.ca1 <- CA(cars^0.5)
+o.ca1 <- CA(sveg^0.5)
 
 #Arten (o) und Communities (+) plotten
 plot(o.ca)
@@ -97,10 +62,7 @@ plot(x,y)
 #Anteilige Varianz, die durch die ersten beiden Achsen erklaert wird
 o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
-```
 
-# NMDS mit mtcars
-```{r}
 
 #Distanzmatrix als Start erzeugen
 library(MASS)
@@ -122,10 +84,7 @@ plot(o.mmds$points)
 stressplot(o.imds,mde)
 stressplot(o.mmds,mde)
 
-```
 
-# PCA mit sveg
-```{r, message=FALSE}
 
 #Mit Beispieldaten aus Wildi (2013, 2017)
 library(labdsv)
@@ -177,10 +136,7 @@ text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 # https://stats.stackexchange.com/questions/222/what-are-principal-component-scores
 # https://stats.stackexchange.com/questions/102882/steps-done-in-factor-analysis-compared-to-steps-done-in-pca/102999#102999
 
-```
 
-# CA mit sveg
-```{r}
 #Idee von Ordinationen aus Wildi p. 73-74
 library(labdsv)
 
@@ -248,10 +204,7 @@ pca.3 <- rda(raw, scale=FALSE) #Die Funktion rda führt ein PCA aus an wenn nich
 summary(pca.3, axes=0)
 biplot(pca.3, scaling=2)
 biplot(pca.3, scaling="species")#scaling=species macht das selbe wie scaling=2
-```
 
-
-```{r}
 #PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
 pca.5 <- pca(sveg^0.25, cor=T)
 
@@ -301,11 +254,7 @@ plot(x, y, type="n", asp=1)
 arrows(0,0, x[sel.sp], y[sel.sp], length=0.08)
 text(x[sel.sp], y[sel.sp], snames,pos=1,cex=0.6)
 plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achsen
-```
 
-
-
-```{r, message=FALSE}
 library(vegan)
 library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
 
@@ -327,12 +276,7 @@ plot(x,y)
 #Anteilige Varianz, die durch die ersten beiden Achsen erklaert wird
 o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
-```
 
-
-
-
-```{r, message=FALSE, eval=FALSE}
 #NMDS----------
 
 #Distanzmatrix als Start erzeugen
@@ -355,6 +299,5 @@ plot(o.mmds$points)
 stressplot(o.imds,mde)
 stressplot(o.mmds,mde)
 
+```{.r .distill-force-highlighting-css}
 ```
-
-

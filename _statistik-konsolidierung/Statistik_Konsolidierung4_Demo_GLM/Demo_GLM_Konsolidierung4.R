@@ -1,50 +1,10 @@
----
-title: "Konsolidierung 4: GLM"
-output: distill::distill_article
-author:
-  Gian-Andrea Egeler
-categories:
-- Statistik_Konsolidierung4
-- Statistik
-
----
-
-```{r, echo = FALSE}
 #export files
 knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/Demo_GLM_Konsolidierung4.R"), documentation = 0)
 # rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
 
-```
-
-# Demo GLM
-
-> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/Demo_GLM_Konsolidierung4.R)
 
 
 
-
-```{r, include=FALSE, purl=F}
-
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
-
-library(tidyverse)
-
-
-mytheme <- 
-  theme_classic() + 
-  theme(
-    axis.line = element_line(color = "black"), 
-    axis.text = element_text(size = 12, color = "black"), 
-    axis.title = element_text(size = 12, color = "black"), 
-    axis.ticks = element_line(size = .75, color = "black"), 
-    axis.ticks.length = unit(.5, "cm")
-    )
-
-```
-
-
-# quasi-poisson regression
-```{r, message=FALSE}
 ############
 # quasipoisson regression
 ############
@@ -77,11 +37,7 @@ ggplot2::ggplot(cars, aes(x = mpg, y = hp)) +
 
 
 
-```
 
-# logistische Regression
-
-```{r, message=FALSE}
 ############
 # logistische regression
 ############
@@ -135,11 +91,7 @@ prop.table(tab1, 2)
 
 
 
-```
 
-#LOESS & GAM
-
-```{r, message=FALSE}
 
 ###########
 # LOESS & GAM
@@ -165,7 +117,5 @@ ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) +
   mytheme
 
 
+```{.r .distill-force-highlighting-css}
 ```
-
-
-
