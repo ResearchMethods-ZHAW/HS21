@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>KW 45 Aufgabe Multivariate Statistik</title>
+
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-09-28"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-09-28"/>
+  <meta name="article:author" content="Adrian Hochreutener"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="KW 45 Aufgabe Multivariate Statistik"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="KW 45 Aufgabe Multivariate Statistik"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["09-28-2021"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["211_sihlwaldstrasse_2017_2021.csv","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-1.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-2.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-3.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-4.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-5.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-6.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-7.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-1-8.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-15-1.png","Multivariate_Statistik_files/figure-html5/unnamed-chunk-16-1.png","order_97149_data.txt"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="Multivariate_Statistik_files/header-attrs-2.10/header-attrs.js"></script>
+  <script src="Multivariate_Statistik_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="Multivariate_Statistik_files/popper-2.6.0/popper.min.js"></script>
+  <link href="Multivariate_Statistik_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="Multivariate_Statistik_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="Multivariate_Statistik_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="Multivariate_Statistik_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="Multivariate_Statistik_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="Multivariate_Statistik_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="Multivariate_Statistik_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-28T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>KW 45 Aufgabe Multivariate Statistik</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">Biodiversity &amp; Ecosystems (S)</div>
+</div>
+<!--/radix_placeholder_categories-->
+
+</div>
+
+<div class="d-byline">
+  Adrian Hochreutener  
+  
+<br/>09-28-2021
+</div>
+
+<div class="d-article">
+<h1 id="aufgabe-1-verbinde-zwei-datensätze">Aufgabe 1: Verbinde zwei Datensätze</h1>
+<p>Nachdem die deskriptiven Resultate vorliegen, kann jetzt die Berechnung eines multivariaten Modells angegangen werden. Das Ziel ist es, den Zusammenhang zwischen der gesamten Anzahl Besucher:innen (Total) und verschiedenen erklärenden Variablen (Wetter, Wochentag, Ferien, Phase) aufzuzeigen.</p>
+<p>Aktuell haben wir noch zwei einzelne Datensaetze von Interesse:</p>
+<ul>
+<li><p>einen mit den täglichen Besuchszahlen von Besuchenden mit den dazugehoerigen Datumsinformationen (Datensatz “depo_d” - zu Tagen aggregierte Stunden)</p></li>
+<li><p>und einen mit den Wetterparametern (“meteo”).</p></li>
+</ul>
+<p>–&gt; Diese beiden Datensaetze muessen zuerst miteinander verbunden werden. <strong>Ziel</strong>: Ein Datensatz mit den Zaehldaten und Datumsinformationen angereichert mit Wetterdaten. <strong>join() [left, right, inner, outher?], rbind() oder cbind()</strong>? Der neue Datensatz soll " <strong>umwelt</strong> " heissen.</p>
+<p>Sind durch das Zusammenfuehren NA’s entstanden? Falls ja, muessen <strong>alle</strong> für die weitern Auswertungen ausgeschlossen werden.</p>
+<h1 id="aufgabe-2-anreicherung-und-varialen-skalieren">Aufgabe 2: Anreicherung und Varialen skalieren</h1>
+<h2 id="a">2a)</h2>
+<p>Fuegt folgende Faktoren zum Datensatz <strong>umwelt</strong> hinzu und definiert sie als Faktoren:</p>
+<ul>
+<li>Ferien</li>
+<li>Jahr (bereits vorhanden, muss nur noch als Faktor definiert werden)</li>
+</ul>
+<p>Ob Ferien sind oder nicht, soll in einer neuen Spalte gespeichert werden (1/0). Das geschieht z. B. mit <strong>if_else()</strong>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>umwelt</span> <span class='op'>&lt;-</span> <span class='va'>umwelt</span><span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Ferien <span class='op'>=</span> <span class='fu'>if_else</span><span class='op'>(</span>
+    <span class='va'>Datum</span> <span class='op'>&gt;=</span> <span class='va'>Fruehlingsferien_2019_start</span> <span class='op'>&amp;</span> <span class='va'>Datum</span> <span class='op'>&lt;=</span> <span class='va'>Fruehlingsferien_2019_ende</span> <span class='op'>|</span> 
+    <span class='co'># das "|" bedeutet "oder"</span>
+  <span class='va'>...</span>
+  ,<span class='st'>"1"</span>, <span class='st'>"0"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='va'>...</span>
+</code></pre>
+</div>
+</div>
+<p>Es kann sein, dass unsere Daten aktuell als “tibble” vorliegen. Damit wir mit ihnen besser arbeiten können, müssen sie aber als data.frame vorliegen.</p>
+<ul>
+<li><p>Stellt sicher das der Datensatz “umwelt” als data.frame vorliegt. Falls dem nicht so ist, ändert das.</p></li>
+<li><p>Prüft den datensatz mit <strong>str()</strong>, <strong>summary()</strong>, und <strong>head</strong>.</p></li>
+</ul>
+<h2 id="b">2b)</h2>
+<p>Skalieren der Variablen, damit ihr Einfluss vergleichbar wird.</p>
+<p>Problem: verschiedene Skalen der Variablen (z.B. Temperatur in Grad Celsius, Niederschlag in Millimeter und Sonnenscheindauer in %)</p>
+<ul>
+<li>Loesung: Skalieren aller kontinuierlichen Variablen (Wetter) gemaess untenstehendem Code:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>umwelt <span class="ot">&lt;-</span> umwelt <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tre200jx_scaled =</span> <span class="fu">scale</span>(tre200jx)<span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  ...</span></code></pre></div>
+</div>
+<h1 id="aufgabe-3-teste-auf-korrelation-und-variablenselektion">Aufgabe 3: Teste auf Korrelation und Variablenselektion</h1>
+<h2 id="a-1">3a)</h2>
+<p>Korrelierende Variablen koennen das Modellergebnis verfaelschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden.</p>
+<ul>
+<li><p>Welches sind die erklaerenden Variablen, welches ist die Abhaengige?</p></li>
+<li><p>Teste mittels folgendem Code auf eine Korrelation zwischen den Messwerten (Wetterparameter).</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span>  <span class="fu">cor</span>(umwelt[,ERSTE SPALTE MIT ERKLAERENDEN MESSWERTEN <span class="sc">:</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                     LETZTE SPALTE MIT ERKLAERENDEN MESSWERTEN])</span></code></pre></div>
+</div>
+<h2 id="b-1">3b)</h2>
+<p>Korrelationsmatrix erstellen</p>
+<p>Mit dem folgenden Code kann eine simple Korrelationsmatrix (mit den Messwerten) aufgebaut werden. Hier kann auch die Schwelle für die Korrelation gesetzt werden (0.7 ist liberal / 0.5 konservativ).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cor</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>cor</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='fl'>0.7</span><span class='op'>]</span> <span class='op'>&lt;-</span>  <span class='fl'>0</span> <span class='co'>#Setzt alle Werte kleiner 0.7 auf 0</span>
+</code></pre>
+</div>
+</div>
+<p>Zur Visualisierung kann ein einfacher Plot erstellt werden.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.Correlation</span>(umwelt[,ERSTE SPALTE MIT ERKLAERENDEN MESSWERTEN <span class="sc">:</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                     LETZTE SPALTE MIT ERKLAERENDEN MESSWERTEN], </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">histogram=</span><span class="cn">TRUE</span>, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># In the above plot:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The distribution of each variable is shown on the diagonal.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># On the bottom of the diagonal : the bivariate scatter plots with a fitted line are displayed</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># On the top of the diagonal : the value of the correlation plus the significance level as stars</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Each significance level is associated to a symbol : </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># -values(0, 0.001, 0.01, 0.05, 0.1, 1) &lt;=&gt; symbols(“***”, “**”, “*”, “.”, &quot; “)</span></span></code></pre></div>
+</div>
+<p>Wo kann eine kritische Korrelation beobachtet werden? Kann man es verantworten, trotzdem alle drei Parameter in das Modell zu geben?</p>
+<p>Falls ja: warum? Falls nein: schliesst den betreffenden Parameter aus. Wenn ihr Parameter ausschliesst: welchen der beiden Korrelierenden behaltet ihr im Modell?</p>
+<h1 id="aufgabe-4-optional-automatische-variablenselektion">Aufgabe 4 (OPTIONAL): Automatische Variablenselektion</h1>
+<ul>
+<li>Fuehre die dredge-Funktion und ein Modelaveraging durch.</li>
+</ul>
+<p>Der Code dazu ist untenstehend. Was passiert in der Funktion? Macht es Sinn, die Funktion auszufuehren?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># fuehre die dredge-Funktion und ein Modelaveraging durch</span>
+<span class='co'># Hier wird die Formel für die dredge-Funktion vorbereitet</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='va'>Total</span> <span class='op'>~</span> <span class='va'>Wochentag</span> <span class='op'>+</span> <span class='va'>Ferien</span> <span class='op'>+</span> <span class='va'>Phase</span> <span class='op'>+</span>
+  <span class='va'>tre200jx_scaled</span> <span class='op'>+</span> <span class='va'>rre150j0_scaled</span> <span class='op'>+</span> <span class='va'>sremaxdv_scaled</span>
+<span class='co'># Jetzt kommt der Random-Factor hinzu und es wird eine Formel daraus gemacht</span>
+<span class='va'>f_dredge</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>f</span>, <span class='st'>"+ (1|KW)"</span>, <span class='st'>"+ (1|Jahr)"</span><span class='op'>)</span>, collapse <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/formula.html'>as.formula</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Das Modell mit dieser Formel ausführen</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/lme4/man/glmer.html'>glmer</a></span><span class='op'>(</span><span class='va'>f_dredge</span>, data <span class='op'>=</span> <span class='va'>umwelt</span>, family <span class='op'>=</span> <span class='va'>poisson</span>, na.action <span class='op'>=</span> <span class='st'>"na.fail"</span><span class='op'>)</span>
+<span class='co'># Das Modell in die dredge-Funktion einfügen (siehe auch ?dredge)</span>
+<span class='va'>all_m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/MuMIn/man/dredge.html'>dredge</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='co'># suche das beste Modell</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>all_m</span><span class='op'>)</span>
+<span class='co'># Importance values der Variablen</span>
+<span class='co'># hier wird die wichtigkeit der Variablen in den verschiedenen Modellen abgelesen</span>
+<span class='fu'>MuMIn</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/MuMIn/man/sumofweights.html'>importance</a></span><span class='op'>(</span><span class='va'>all_m</span><span class='op'>)</span>
+
+<span class='co'># Schliesslich wird ein Modelaverage durchgeführt </span>
+<span class='co'># Schwellenwert für das delta-AIC = 2 (statistisch gleichwertig)</span>
+
+<span class='co'># in meinem Beispiel funktioniert untenstehender Code nicht, da es kein zweites Modell mit</span>
+<span class='co'># delta AICc &lt; 2 gibt. Es gibt also nur ein "bestes" Modell.</span>
+
+<span class='va'>avgmodel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/MuMIn/man/model.avg.html'>model.avg</a></span><span class='op'>(</span><span class='va'>all_m</span>, rank <span class='op'>=</span> <span class='st'>"AICc"</span>, subset <span class='op'>=</span> <span class='va'>delta</span> <span class='op'>&lt;</span> <span class='fl'>2</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>avgmodel</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="aufgabe-5-prüfen-der-verteilung">Aufgabe 5: Prüfen der Verteilung</h1>
+<p>Die Verteilung der abhängigen Variabel bestimmt generell, was für ein Modell geschrieben werden kann. Die Modelle gehen von einer gegebenen Verteilung aus. Wenn diese Annahme verletzt wird, kann es sein, dass das Modellergebnis nicht valide ist.</p>
+<ul>
+<li><p>Folgender Codeblock prüft, wie die Daten auf verschiedene Verteilungen passen.</p></li>
+<li><p>Die besten (gemaess AICc) sollen zur Visualisierung geplottet werden.</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># pruefe zuerst nochmals, ob wir NA im df haben:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>f1</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/fitdist.html'>fitdist</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span>,<span class='st'>"norm"</span><span class='op'>)</span>  <span class='co'># Normalverteilung</span>
+<span class='co'># f1_1&lt;-fitdist((umwelt$Total + 1),"lnorm")  # log-Normalvert (beachte, dass ich +1 rechne. </span>
+                                             <span class='co'># log muss positiv sein; allerdings kann man die</span>
+                                             <span class='co'># Verteilungen dann nicht mehr miteinander vergleichen). </span>
+<span class='va'>f2</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/fitdist.html'>fitdist</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span>,<span class='st'>"pois"</span><span class='op'>)</span>  <span class='co'># Poisson</span>
+<span class='va'>f3</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/fitdist.html'>fitdist</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span>,<span class='st'>"nbinom"</span><span class='op'>)</span>  <span class='co'># negativ binomial</span>
+<span class='va'>f4</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/fitdist.html'>fitdist</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span>,<span class='st'>"exp"</span><span class='op'>)</span>  <span class='co'># exponentiell</span>
+<span class='co'># f5&lt;-fitdist(umwelt$Total,"gamma")  # gamma (berechnung mit meinen Daten nicht möglich)</span>
+<span class='va'>f6</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/fitdist.html'>fitdist</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span>,<span class='st'>"logis"</span><span class='op'>)</span>  <span class='co'># logistisch</span>
+<span class='va'>f7</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/fitdist.html'>fitdist</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Total</span>,<span class='st'>"geom"</span><span class='op'>)</span>  <span class='co'># geometrisch</span>
+<span class='co'># f8&lt;-fitdist(umwelt$Total,"weibull")  # Weibull (berechnung mit meinen Daten nicht möglich)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/gofstat.html'>gofstat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>f1</span>,<span class='va'>f2</span>,<span class='va'>f3</span>,<span class='va'>f4</span>,<span class='va'>f6</span>,<span class='va'>f7</span><span class='op'>)</span>, 
+        fitnames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Normalverteilung"</span>, <span class='st'>"Poisson"</span>,
+                     <span class='st'>"negativ binomial"</span>,<span class='st'>"exponentiell"</span>, <span class='st'>"logistisch"</span>,
+                     <span class='st'>"geometrisch"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># die 2 besten (gemaess Akaike's Information Criterion) als Plot + normalverteilt, </span>
+<span class='va'>plot.legend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Normalverteilung"</span>, <span class='st'>"exponentiell"</span>, <span class='st'>"negativ binomial"</span><span class='op'>)</span>
+<span class='co'># vergleicht mehrere theoretische Verteilungen mit den empirischen Daten</span>
+<span class='fu'><a href='https://rdrr.io/pkg/fitdistrplus/man/graphcomp.html'>cdfcomp</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f4</span>, <span class='va'>f3</span><span class='op'>)</span>, legendtext <span class='op'>=</span> <span class='va'>plot.legend</span><span class='op'>)</span>
+
+<span class='co'># --&gt; Verteilung ist gemäss AICc negativ binomial. --&gt; ich entscheide </span>
+<span class='co'># mich für letztere.</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Welche Verteilung haben eure Daten?</li>
+</ul>
+<h1 id="aufgabe-6-modelle-entwickeln">Aufgabe 6: Modelle entwickeln</h1>
+<p>Ich verwende die Funktion <strong>glmer()</strong> aus der Bibliothek <strong>lme4</strong>. glmer sei neuer, schneller und zuverlaessiger als vergleichbare Funktionen (diese Bibliothek wird auch in vielen wissenschaftlichen Papern im Feld Biologie / Wildtiermamagement zitiert).</p>
+<p><strong>Hinweis:</strong> zu GLMM: <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html" class="uri">https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html</a></p>
+<h2 id="a-2">6a)</h2>
+<p>Die tägliche Besuchszahl soll durch die Wetterparameter, den Wochentag, die Ferien sowie die Phase erklaert werden (Datensatz “umwelt”). Die Saisonalität (KW und Jahr) soll hierbei nicht beachtet werden, sie werden als “random factor” bestimmt –&gt; Saisonbereinigung.</p>
+<p>Unter Aufgabe 5 haben wir die Verteilungen geprüft. Ich habe bei meinen Daten gestgestellt, dass die beste Verteilung eine negativ binomiale ist. Trotzdem fange ich nicht mit einem negativ-binomialen Modell an. Warum? Irgendwo muss man einfach anfangen und ich mache das gerne mit dem einfachsten Modell. Ein einfaches GLMM, ohne Interaktionen, ohne quadratische Terme und Transformationen.</p>
+<ul>
+<li>Die Modellformel lautet also:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Tages_Model <span class="ot">&lt;-</span> <span class="fu">glmer</span>(ABHAENGIGE VARIABLE <span class="sc">~</span> ERKLAERENDE VARIABLE <span class="dv">1</span> <span class="sc">+</span> ERKLAERENDE VARIABLE <span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      ERKLAERENDE VARIABLE <span class="dv">3</span> <span class="sc">+</span> ERKLAERENDE VARIABLE <span class="dv">4</span> <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                      ERKLAERENDE VARIABLE <span class="dv">5</span> <span class="sc">+</span> ERKLAERENDE VARIABLE <span class="dv">6</span> <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                     (<span class="dv">1</span><span class="sc">|</span>RANDOM FACTOR <span class="dv">1</span>)<span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>RANDOM FACTOR <span class="dv">2</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> poisson, <span class="at">data =</span> DATENSATZ)<span class="er">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Tages_Model) <span class="co">#Zeigt das Resultat des Modells</span></span></code></pre></div>
+</div>
+<p>Was bedeutet “family = poisson”?</p>
+<h2 id="b-modelldiagnostik">6b) Modelldiagnostik</h2>
+<p>Prüft optisch ob euer Modell valide ist.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># glmer bringt einige eigene Funktionen mit, mit denen sich testen laesst, </span>
+<span class='co'># ob das Modell valide ist. Untenstehend sind sie aufgefuehrt.</span>
+<span class='co'># (--&gt; analog zu den Funktionen aus der Vorlesung, aber halt für glmer)</span>
+
+<span class='co'># Verteilung der Residuen</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Tages_Model</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"p"</span>, <span class='st'>"smooth"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Pruefen auf Normalverteilung</span>
+<span class='fu'><a href='https://rdrr.io/pkg/lattice/man/qqmath.html'>qqmath</a></span><span class='op'>(</span><span class='va'>Tages_Model</span><span class='op'>)</span>
+
+<span class='co'># Overdispersion describes the observation that variation is higher than would be expected.</span>
+<span class='fu'><a href='https://rdrr.io/pkg/blmeco/man/dispersion_glmer.html'>dispersion_glmer</a></span><span class='op'>(</span><span class='va'>Tages_Model</span><span class='op'>)</span> <span class='co'>#it shouldn't be over 1.4</span>
+<span class='co'># zeige die erklaerte Varianz (je hoeher r2m ist, desto besser!)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/MuMIn/man/r.squaredGLMM.html'>r.squaredGLMM</a></span><span class='op'>(</span><span class='va'>Tages_Model</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Sind die Voraussetzungen des Modells erfüllt?</li>
+</ul>
+<h2 id="c-alternative-modelle">6c) Alternative Modelle</h2>
+<p>Wir sind auf der Suche nach dem minimalen adequaten Modell. Das ist ein langer, manchmal mühsamer Weg. Wir schreiben ein Modell, prüfen ob die Voraussetzungen erfüllt sind und ob die abhangige Variable besser erklart wird als im vorhergenden Modell.</p>
+<ul>
+<li><p>Meine Daten sind negativ binomial verteilt. Daher programmiere ich unbedingt ein solches Modell. –&gt; Funktion <strong>glmer.nb()</strong></p></li>
+<li><p>Hypothese: “Es gehen weniger Leute in den Wald, wenn es zu heiss ist” –&gt; auf quadratischen Term Temperatur testen</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Notation in Modellformel</span>
+<span class='va'>...</span> <span class='op'>+</span>
+<span class='va'>tre200jx_scaled</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>tre200jx_scaled</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='va'>...</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Könnte es zwischen einzelnen Variablen zu Interaktionen kommen, die plausible sind? –&gt; Falls ja: testen! (Achtung, rechenintensiv!)</li>
+</ul>
+<p>Wenn ihr verschiedene Modelle (mindestens 3) gerechnet habt, können diese über den AICc verglichen werden. Folgender Code kann dazu genutzt werden:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vergleich der Modellguete mittels AICc</span>
+<span class='va'>cand.models</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>cand.models</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>Tages_Model</span>
+<span class='va'>cand.models</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>Tages_Model_nb</span>
+<span class='va'>cand.models</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>Tages_Model_nb_int</span> 
+<span class='va'>cand.models</span><span class='op'>[[</span><span class='fl'>4</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>Tages_Model_nb_quad</span>
+
+<span class='va'>Modnames</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Tages_Model"</span>,<span class='st'>"Tages_Model_nb"</span>, <span class='st'>"Tages_Model_nb_int"</span>, 
+            <span class='st'>"Tages_Model_nb_quad"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/AICcmodavg/man/aictab.html'>aictab</a></span><span class='op'>(</span>cand.set<span class='op'>=</span><span class='va'>cand.models</span>,modnames<span class='op'>=</span><span class='va'>Modnames</span><span class='op'>)</span>
+<span class='co'>#K = Anzahl geschaetzter Parameter (2 Funktionsparameter und die Varianz)</span>
+<span class='co'>#Delta_AICc &lt;2 = Statistisch gleichwertig</span>
+<span class='co'>#AICcWt =  Akaike weight in %</span>
+</code></pre>
+</div>
+</div>
+<p>Je kleiner der AICc, desto besser!</p>
+<p>Untenstehend noch ein Code um Modellresultate optimal anzuzeigen (markieren, copy + paste in Word):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(BESTES MODELL, <span class="at">transform =</span> <span class="cn">NULL</span>, <span class="at">show.se =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<h2 id="d-optional">6d) OPTIONAL</h2>
+<p>Die Modellvoraussetzungen waren überall mehr oder weniger verletzt. Das ist ein Problem, allerdings auch nicht ein so grosses. (man sollte es aber trotzdem ernst nehmen):</p>
+<p><a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434" class="uri">https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434</a></p>
+<p>Die Lösung ist nun, die Daten zu transformieren. Mehr unter: <a href="https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/" class="uri">https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/</a></p>
+<ul>
+<li>Berechnet zerst den skewness coefficient</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.r-project.org'>moments</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/moments/man/skewness.html'>skewness</a></span><span class='op'>(</span><span class='va'>umwelt</span><span class='op'>$</span><span class='va'>Anzahl_Total</span><span class='op'>)</span>
+<span class='co'># A positive value means the distribution is positively skewed (rechtsschief).</span>
+<span class='co'># The most frequent values are low; tail is toward the high values (on the right-hand side)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Welche Transformation kann angewandt werden?</p></li>
+<li><p>Was spricht gegen eine Transformation (auch im Hinblick zur Visualisierung und Interpretation)? Was spricht dafür?</p></li>
+</ul>
+<h1 id="aufgabe-7-modellvisualisierung">Aufgabe 7: Modellvisualisierung</h1>
+<p>Visualisiert die (signifikanten) Ergebnisse eures Modells.</p>
+<p>Das Resultat soll sich für kontinuierliche Variablen an untenstehendem Plot orientieren:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Multivariate_Statistik_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+</div>
+<p>Für diskrete Variablen haltet ihr euch bitte an diesen Plot:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Multivariate_Statistik_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
+</div>
+<p>Einige Codeschnipsel die euch dabei helfen koennen:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotte das Modell und speichere es unter &quot;t&quot;.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> <span class="fu">plot_model</span>(NAME DES BESTEN MODELLS, <span class="at">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="at">terms =</span> <span class="st">&quot;NAME DES MODELLPARAMETERS [all]&quot;</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="co"># [all] = Model contains polynomial or cubic / qadratic terms. </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Consider using `NAME DES MODELLPARAMETERS [all]&quot;` to get smooth plots. </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;&quot;</span>, <span class="at">axis.title =</span> <span class="fu">c</span>(<span class="st">&quot;TITEL X-ACHSE&quot;</span>, <span class="st">&quot;TITEL Y-ACHSE&quot;</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fuege die Achsenbeschriftung hinzu. Hier wird auf die unskalierten Werte zugegriffen.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Die unskalierten Werte koennen dem Datensatz umwelt (nicht dem Modell) entnommen werden.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">seq</span>(<span class="fu">floor</span>(<span class="fu">min</span>(DATENSATZNAME<span class="sc">$</span>PARAMETERNAME)),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">ceiling</span>(<span class="fu">max</span>(DATENSATZNAME<span class="sc">$</span>PARAMETERNAME)),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length.out =</span> <span class="dv">5</span>), <span class="dv">0</span>) <span class="co"># length.out = ___ --&gt; Anpassen gemaess Anzahl </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                                                             <span class="co"># breaks auf dem Plot &quot;t&quot;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Anpassen der breaks gemaess dem Plot und hinzufuegen der Labels</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>Predplot <span class="ot">&lt;-</span> t <span class="sc">+</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(labels))<span class="sc">+</span> <span class="co"># breaks = c(___) --&gt; Anpassen</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="co"># gemaess Position breaks auf</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="co"># dem Plot &quot;t&quot;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fuege die y- Achsenbeschriftung hinzu. Hier transformieren wir die Werte zurueck</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fl">1.5</span>,<span class="dv">2</span>),</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">0</span>, <span class="dv">10</span><span class="sc">^</span><span class="fl">0.5</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">1</span>, <span class="dv">10</span><span class="sc">^</span><span class="fl">1.5</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>),<span class="dv">0</span>),</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))<span class="sc">+</span> <span class="co"># Achtet darauf, dass alle Modellplots dieselben limits</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                                          <span class="co"># haben --&gt; Vergleichbarkeit!</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">20</span>)<span class="er">)</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Export</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;temp.png&quot;</span>, <span class="at">width=</span><span class="dv">15</span>, <span class="at">height=</span><span class="dv">15</span>, <span class="at">units=</span><span class="st">&quot;cm&quot;</span>, <span class="at">dpi=</span><span class="dv">1000</span>, </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">path =</span> <span class="st">&quot;results/&quot;</span>) </span></code></pre></div>
+</div>
+<h1 id="abschluss">Abschluss</h1>
+<p>Nun habt ihr verschiedenste Ergebnisse vorliegen. In einem wissenschaftlichen Bericht sollen aber niemals alle Ergebnisse abgebildet werden. Eine Faustregel besagt, dass nur signifikante Ergebnisse visualisiert werden. Entscheidet euch also, was ihr in eurem Bericht abbilden wollt und was lediglich beschrieben werden soll.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

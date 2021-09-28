@@ -599,7 +599,7 @@ chart.Correlation(umwelt[,16:(ncol(umwelt))], histogram=TRUE, pch=19)
 # f <- Total ~ Wochentag + Ferien + Phase +
 #   tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled
 # # Jetzt kommt der Random-Factor hinzu und es wird eine Formel daraus gemacht
-# f_dredge <- paste(c(f, "+ (1|KW)", "+ (1|Jahr)"), collapse = " ") %>% 
+# f_dredge <- paste(c(f, "+ (1|KW)", "+ (1|Jahr)"), collapse = " ") %>%
 #   as.formula()
 # # Das Modell mit dieser Formel ausführen
 # m <- glmer(f_dredge, data = umwelt, family = poisson, na.action = "na.fail")
@@ -607,16 +607,16 @@ chart.Correlation(umwelt[,16:(ncol(umwelt))], histogram=TRUE, pch=19)
 # all_m <- dredge(m)
 # # suche das beste Modell
 # print(all_m)
-# # Importance values der Variablen 
+# # Importance values der Variablen
 # # hier wird die wichtigkeit der Variablen in den verschiedenen Modellen abgelesen
-# MuMIn::importance(all_m) 
-
-# Schliesslich wird ein Modelaverage durchgeführt 
-# Schwellenwert für das delta-AIC = 2 (statistisch gleichwertig)
-
-# in meinem Beispiel funktioniert untenstehender Code nicht, da es kein zweites Modell mit
-# delta AICc < 2 gibt. Es gibt also nur ein "bestes" Modell.
-
+# MuMIn::importance(all_m)
+# 
+# # Schliesslich wird ein Modelaverage durchgeführt 
+# # Schwellenwert für das delta-AIC = 2 (statistisch gleichwertig)
+# 
+# # in meinem Beispiel funktioniert untenstehender Code nicht, da es kein zweites Modell mit
+# # delta AICc < 2 gibt. Es gibt also nur ein "bestes" Modell.
+# 
 # avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 2) 
 # summary(avgmodel)
 
@@ -657,7 +657,7 @@ cdfcomp(list(f1, f4, f3), legendtext = plot.legend)
 # Ich verwende hier die Funktion glmer aus der Bibliothek lme4. glmer sei neuer, 
 # schneller und zuverlaessiger als vergleichbare Funktionen.
 # Die Totale Besucheranzahl soll durch verschiedene Parameter erklaert werden. 
-# Die saisonalitaet (KW) soll hierbei nicht beachtet werden, 
+# Die saisonalitaet (KW, Jahr) soll hierbei nicht beachtet werden, 
 # sie wird als random Faktor bestimmt --> Saisonbereinigung.
 
 # Einfacher Start
