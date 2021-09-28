@@ -14,3 +14,18 @@ draft: true
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.align="left")
 ```
+
+
+# Aufgabe 1: Verbinde zwei Datensätze
+
+# Aufgabe 2: Anreicherung und Varialen skalieren
+
+# Aufgabe 3: Teste auf Korrelation und Variablenselektion
+
+# Aufgabe 4 (OPTIONAL): Automatische Variablenselektion
+
+# Aufgabe 5: Prüfen der Verteilung
+
+# Aufgabe 6: Modelle entwickeln
+
+# Aufgabe 7: Modellvisualisierung

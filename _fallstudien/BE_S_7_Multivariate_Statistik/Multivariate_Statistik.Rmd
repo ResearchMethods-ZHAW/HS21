@@ -10,3 +10,53 @@ categories:
   - Biodiversity & Ecosystems (S)
 draft: true
 ---
+
+# Aufgabe 1: Verbinde zwei Datensätze
+
+Nachdem die deskriptiven Resultate vorliegen, kann jetzt die Berechnung eines multivariaten Modells angegangen werden. Das Ziel ist es, den Zusammenhang zwischen der gesamten Anzahl Besucher:innen (Total) und verschiedenen erklärenden Variablen (Wetter, Wochentag, Ferien, Phase) aufzuzeigen.
+
+Aktuell haben wir noch zwei einzelne Datensaetze von Interesse:
+
+- einen mit den täglichen Besuchszahlen von Besuchenden mit den dazugehoerigen Datumsinformationen (Datensatz "depo_d" - zu Tagen aggregierte Stunden) 
+
+- und einen mit den Wetterparametern ("meteo"). 
+
+--> Diese beiden Datensaetze muessen zuerst miteinander verbunden werden. __Ziel__: Ein Datensatz mit den Zaehldaten und Datumsinformationen angereichert mit Wetterdaten. __join() [left, right, inner, outher?], rbind() oder cbind()__? Der neue Datensatz soll " __umwelt__ " heissen.
+
+Sind durch das Zusammenfuehren NA's entstanden? Falls ja, muessen __alle__ für die weitern Auswertungen ausgeschlossen werden.
+
+# Aufgabe 2: Anreicherung und Varialen skalieren
+
+## 2a) 
+Fuegt folgende Faktoren zum Datensatz __umwelt__ hinzu und definiert sie als Faktoren:
+
+- Ferien
+- Jahr (bereits vorhanden, muss nur noch als Faktor definiert werden)
+
+Ob Ferien sind oder nicht, soll in einer neuen Spalte gespeichert werden (1/0). Das geschieht z. B. mit __if else__
+
+```{r eval=FALSE}
+umwelt <- umwelt%>%
+  mutate(Ferien = if_else(
+    Datum >= Fruehlingsferien_2019_start & Datum <= Fruehlingsferien_2019_ende | # das "|" bedeutet "oder"
+  ...
+  ,"1", "0"))%>%
+  ...
+    
+```
+
+
+
+# Aufgabe 3: Teste auf Korrelation und Variablenselektion
+
+# Aufgabe 4 (OPTIONAL): Automatische Variablenselektion
+
+# Aufgabe 5: Prüfen der Verteilung
+
+# Aufgabe 6: Modelle entwickeln
+
+# Aufgabe 7: Modellvisualisierung
+
+
+
+
