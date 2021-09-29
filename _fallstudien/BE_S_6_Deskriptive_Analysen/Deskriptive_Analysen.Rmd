@@ -497,6 +497,11 @@ Nachdem wir nun wissen, wie sich die Besuchszahlen während der Untersuchungsdau
 
 ## 2a)
 
+Machen die vier definierten Phasen überhaupt Sinn? Welche alternative Einteilung gäbe es?
+Schaut euch den Verlauf der Besuchszahlen unter Aufgabe 1 an und passt allenfalls die Phasen nochmals an. Sicherlich bestehen bleibt die Phase Normal sowie diejenige der beiden Lockdowns. 
+
+- Wie kann (und soll) also die Phase COVID noch aufgeteilt werden?
+
 - Berechnet zuerst die Totale Anzahl pro Wochentag pro Phase.
 
 ```{r eval=F}
