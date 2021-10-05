@@ -1,5 +1,5 @@
 ---
-title: "KW42: Loesung Felderhebung Grüntal"
+title: "KW42: Loesung Felderhebung Grüental"
 description:
 author:
   - name: Adrian Hochreutener
