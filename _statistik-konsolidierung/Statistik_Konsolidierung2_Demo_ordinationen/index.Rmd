@@ -19,15 +19,14 @@ knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordination
 
 ```
 
-# Demo Ordinationen (PCA)
 
 > Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R)
 
+# Demo Ordinationen (PCA)
 
 
 
-# PCA mit mtcars
-```{r, message=FALSE}
+```{r Beispiel pca mtcars, message=FALSE}
 
 #Beispiel inspiriert von Luke Hayden: https://www.datacamp.com/community/tutorials/pca-analysis-r
 
@@ -52,36 +51,24 @@ o.pca <- PCA(mtcars[,c(1:7,10,11)], scale.unit = TRUE) # entweder korrelations o
 summary(o.pca) # generiert auch automatische plots
 
 
-#plote das ganze, für dieses packet 
-#brauchts ein paar schritte für die installation
-library(devtools)
-install_github("vqv/ggbiplot")
-
+# plote das ganze
 library(ggbiplot)
 ggbiplot(o.pca,choices = c(1,2))
 
 # nehme noch die autonamen hinzu
-ggbiplot(o.pca, labels=rownames(cars), choices = c(1,2)) # + mytheme # choice gibt die axen an
-
-
-# man kann noch einen schritt weiter denken
-cars$mtcars.country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US",3), "Europe", rep("Japan", 3), rep("US",4), rep("Europe", 3), "US", rep("Europe", 3))
-
-ggbiplot(o.pca,ellipse=TRUE,  labels = rownames(mtcars), groups = cars$mtcars.country)
-
+ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice gibt die axen an
 
 ```
 
 
-# CA mit mtcars
-```{r}
-library(vegan)
-cars <- mtcars
 
+```{r CA mit mcars}
+
+library(vegan)
 
 # ebenfalls mit transformierten daten
 o.ca<-cca(cars)
-# o.ca1 <- CA(cars^0.5)
+o.ca1 <- CA(sveg^0.5)
 
 #Arten (o) und Communities (+) plotten
 plot(o.ca)
@@ -99,8 +86,8 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
 ```
 
-# NMDS mit mtcars
-```{r}
+
+```{r NMDS mit mcars}
 
 #Distanzmatrix als Start erzeugen
 library(MASS)
@@ -124,8 +111,8 @@ stressplot(o.mmds,mde)
 
 ```
 
-# PCA mit sveg
-```{r, message=FALSE}
+
+```{r pca aus Wildi, message=FALSE}
 
 #Mit Beispieldaten aus Wildi (2013, 2017)
 library(labdsv)
@@ -179,8 +166,8 @@ text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 
 ```
 
-# CA mit sveg
-```{r}
+
+```{r einfaches Beispiel mit Daten aus Wildi: visualisierung der methodik}
 #Idee von Ordinationen aus Wildi p. 73-74
 library(labdsv)
 
@@ -251,7 +238,7 @@ biplot(pca.3, scaling="species")#scaling=species macht das selbe wie scaling=2
 ```
 
 
-```{r}
+```{r zweites Beispiel aus Wildi 2013}
 #PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
 pca.5 <- pca(sveg^0.25, cor=T)
 
@@ -305,7 +292,7 @@ plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achse
 
 
 
-```{r, message=FALSE}
+```{r CA, message=FALSE}
 library(vegan)
 library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
 
@@ -332,7 +319,7 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
 
 
-```{r, message=FALSE, eval=FALSE}
+```{r NMDS, message=FALSE, eval=FALSE}
 #NMDS----------
 
 #Distanzmatrix als Start erzeugen

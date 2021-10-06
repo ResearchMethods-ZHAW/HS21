@@ -1,5 +1,5 @@
 ---
-title: "KW40 - KW42: Aufgabe Felderhebung Grüental"
+title: "KW40 - KW42: Aufgabe Felderhebung Grüntal"
 description:
 author:
   - name: Adrian Hochreutener
@@ -12,7 +12,7 @@ categories:
 
 # Einführung und Installation
 
-Es gibt eine Vielzahl an möglichen Methoden zur Erfassung der Besuchszahlen. Automatische Zählgeräte bieten die Möglichkeit lange und durchgehende Zeitreihen zu erfassen. Diese müssen aber natürlich auch ausgewertet werden. Hier erhaltet ihr erste Inputs dazu.
+Es gibt eine Vielzahl an möglichen Methoden zur Erfassung der Besucherzahlen. Automatische Zählgeräte bieten die Möglichkeit lange und durchgehende Zeitreihen zu erfassen. Diese müssen aber natürlich auch ausgewertet werden. Hier erhaltet ihr erste Inputs dazu.
 
 ```{r out.width = "100%", fig.align ="center", echo = FALSE}
 knitr::include_graphics("gruental.jpg")
@@ -21,7 +21,6 @@ knitr::include_graphics("gruental.jpg")
 ## Ziele
 
 - Die Studierenden können das eingesetzte Gerät installieren und kennen die Vor- und Nachteile verschiedener Methoden.
-
 - Sie können die Daten auslesen und explorativ analysieren.
 
 ## Grundlagen
@@ -38,7 +37,7 @@ Datenschutz ist ein wichtiges Thema. Die Besuchenden werden über den Zweck der 
 knitr::include_graphics("Begleitzettel_Kamera.png")
 ```
 
-Nun geht es ins Feld und die Geräte werden installiert.
+Nun geht es ins Feld uns die Geräte werden installiert.
 
 # Auswertung
 
@@ -49,7 +48,6 @@ _Nachdem die Kameras für zwei Wochen im Einsatz standen, werden die Daten ausge
 Bereits beim Detektieren der Sichtungen muss einem klar sein, was man auswerten möchte. Nur so können die relevanten Variablen erfasst werden.
 
 - Im Rahmen dieser Felderhebung erhaltet ihr von Adrian eine Excel-Vorlage zur Erfassung der Sichtungen.
-
 - Sobald alle Sichtungen erfasst sind, geht es ins R!
 
 ## Datenanalyse in R
@@ -231,7 +229,7 @@ ggplot(Wildtier, mapping=aes(x=Wildtier, y=freq*100))+ # kann auch prozentual da
 
 ### Vorbereitungen
 
-Für diese Aufgabe benötigen wir folgende Bibliotheken:
+Fuer diese Aufgabe benoetigen wir folgende Bibliotheken:
 
 ```{r eval=FALSE}
 # Benoetigte Bibliotheken ####
@@ -240,21 +238,17 @@ library(lubridate) # Arbeiten mit Datumsformaten
 library(data.table)# schnelles Dateneinlesen
 ```
 
-- Lese nun zuerst den bereitsgestellen, respektiven den selbst erstellten Datensatz (csv) mithilfe von __fread()__ oder __read.csv()__ ein und nennt ihn __cam__.
+Lese nun zuerst den bereitsgestellen, respektiven den selbst erstellten Datensatz (csv) mithilfe von __fread()__ oder __read.csv()__ ein und nennt ihn __cam__.
 
-- Pruefe die Daten. Wurden sie richtig eingelesen? Wie sieht die Struktur der Daten aus?
+Pruefe die Daten. Wurden sie richtig eingelesen? Wie sieht die Struktur der Daten aus?
 
 Tipp: Brauch zum pruefen den Befehl __str()__ sowie __head()__.
 
 ### Aufgabe 1: Datentypen
-
-Viele Befehle zum Einlesen erkennen die Datentypen automatisch. Bei Faktoren funktioniert das aber nicht (sie sind ja eigentlich einfach Text und R weiss nicht, was wir damit wollen).
-
-- Definiert die entsprechenden Spalten als factor.
+Viele Befehle zum Einlesen erkennen die Datentypen automatisch.
+Bei Faktoren funktioniert das aber nicht (sie sind ja eigentlich einfach Text und R weiss nicht, was wir damit wollen).
 
 Auch das Datum muss vielfach manuell definiert werden (hier muessen wir R sagen, wie das Format dieses aussieht).
-
-- Definiert die entsprechenden Spalten als Datum.
 
 ```{r eval=FALSE}
 cam <- cam %>% 
@@ -263,11 +257,12 @@ cam <- cam %>%
   ...
 ```
 
+Definiert nun die restlichen (relevanten) Variablen als Faktor.
+
 ### Aufgabe 2: Datensatz trennen
+Unser Datensatz enthaellt die Angeben zu __ost__ und __west__. Wir wollen die Auswertungen aber pro Standort machen.
 
-Unser Datensatz enthällt die Angeben zu __ost__ und __west__. Wir wollen die Auswertungen aber pro Standort machen.
-
-- Trennt den Datensatz aufgrund des Standorts. Nutzt dazu __filter()__.
+Trennt den Datensatz aufgrund des Standorts. Nutzt dazu __filter()__.
 
 ```{r eval=FALSE}
 ost <- filter(DATENSATZ, SPALTENNAME == "Attribut")
@@ -276,37 +271,36 @@ west <- ...
 
 
 ### Aufgabe 3: Verteilung pruefen
-
 Bei explorativen Analysen macht es immer Sinn sich die Verteilung der Daten anzuschauen.
+Pruefe daher die Verteilung pro Datensatz mittels __Histogram__ und __Scatterplot__.
 
-- Prüfe daher die Verteilung pro Datensatz mittels __Histogram__ und __Scatterplot__.
-
-Beim Histogram sollen nur die Menschen angezeigt und die 0er ausgeschlossen werden. Wir wollen keine Wildtiere im Plot. 
+Beim Histogram sollen nur die Menschen angezeigt und die 0er ausgeschlossen werden. 
 Das kann mit folgendem Code erreicht werden:
 
 ```{r eval=FALSE}
 hist(west$Anzahl[west$Art=="Mensch" &
                   !west$Anzahl==0], # das "!" bedeutet "nicht gleich"
-     breaks = 100)                  # wie viele Balken brauchen wir im Histogram?
+     breaks = 10)                   # wie viele Balken brauchen wir im Histogram?
 ```
 
 Beim Scatterplot soll auf der x-Achse das Datum stehen, auf der y-Achse die Anzahl der Personen.
+Auch hier wollen wir keine Wildtiere im Plot.
 
 ### Aufgabe 3: Daten ausschliessen
+Fuer die weiteren Analysen schliessen wir die Wildtiere komplett aus.
 
-Für die weiteren Analysen schliessen wir die Wildtiere komplett aus.
-
-- Nutzt dazu wiederum den Befehl __filter()__ und überschreibt die Datensaetze __ost__ und __west__.
+- Nutzt dazu wiederum den Befehl __filter()__ und ueberschreibt die Datensaetze __ost__ und __west__.
 
 Dennoch wolle wir auch wissen, welche Tiere auf dem Areal (ost und west zusammen, also df __cam__) unterwegs sind.
 
-- Dafür gibts einen separaten Datensatz namens __Tiere__. Nutzt dazu den Befehl __filter()__.
+- Dafuer gibts einen separaten Datensatz namens __Tiere__. Nutzt dazu den Befehl __filter()__.
 
 ### Aufgabe 4: Explorative Analysen
+Berechnet zuerst die totale Anzahl Menschen / Standort mit __sum(DATENSATZ$SPALTENNAME)__.
 
-- Berechnet die totale Anzahl Menschen / Standort mit __sum(DATENSATZ$SPALTENNAME)__.
+Gruppieren und summieren:
 
-- Berechnet die Anzahl Menschen pro Aktivität sowie die Anzahl Begleittier pro Kategorie pro Standort.
+Berechnet nun die Anzahl Menschen pro Aktivität sowie die Anzahl Begleittier pro Kategorie pro Standort.
 
 Untenstehender Code eigent sich dazu ganz gut:
 
@@ -318,13 +312,13 @@ Akt_Ost <- ost %>%
   arrange(desc(n))             # und dann das ganze absteigend sortieren
 ```
 
-- Nun soll noch berechnet werden, wie viele unterschiedliche Wildtiere auf dem ganzen Areal gezaehlt wurden. Recycelt dazu obenstenenden Code.
+Nun soll noch berechnet werden, wie viele unterschiedliche Wildtiere auf dem ganzen Areal gezaehlt wurden.
+
+Recycelt dazu obenstenenden Code.
 
 ### Aufgabe 5: Visualisieren
 
-- __Zeigt eure Ergebnisse in geeigneter Form. Untenstehnd einige Ideen, von denen gerne abgewichen werden kann!__
-
-- Verteilung der Aktivitäten als Pie Chart
+__Verteilung der Aktivitäten als Pie Chart__
 
 Zuerst eine Palette mit 5 Farben definieren:
 
@@ -342,7 +336,7 @@ pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger
 
 - __FRAGE:__ eignen sich Pie Charts überhaupt für solche Darstellungen? Wie könnten die Aktivitäten auch noch dargestellt werden? Welches sind eure eigenen Ideen zur Visualisierung?
 
-- Begleittier als Bar Chart
+__Begleittier als Bar Chart__
 
 ```{r message = FALSE, warning = FALSE}
 # Begleittier als Bar Chart ####
@@ -354,8 +348,7 @@ ggplot(Begleit_ost,                      # hier den Datensatz spezifizieren
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) # sowie Achsenbeschr.ausrichten
 ```
 
-- Wildtier als Bar Chart
-
+Und schliesslich: __Wildtier als Bar Chart__
 Stellt hier auf der y-Achse die Anzahl nicht total sondern relativ (in Prozent) dar.
 
 ```{r echo=FALSE}
@@ -366,4 +359,6 @@ ggplot(Wildtier, mapping=aes(x=Wildtier, y=freq*100))+ # kann auch prozentual da
   theme_classic(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
+
+Bei Bedraf koennen die selben Plots fuer den zweiten Standort gemacht werden.
 
