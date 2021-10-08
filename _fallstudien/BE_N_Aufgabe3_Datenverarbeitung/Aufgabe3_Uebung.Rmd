@@ -1,0 +1,196 @@
+---
+title: "Daten(vor)verarbeitung Fallstudie WPZ Uebung"
+description:
+author:
+  - name: Beni Sigrist
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (N)
+draft: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+# Einfuehrung
+
+#### Vor den eingentlichen Auswertungen muessen einige vorbereitende Arbeiten unternommen werden. Die Zeit, die man hier investiert, wird in der spaeteren Projektphase um ein vielfaches eingespart. Im Skript soll die Ordnerstruktur des Projekts genannt werden, damit der Arbeitsvorgang auf verschiedenen Rechnern reproduzierbar ist.
+
+#### Arbeitet mit Projekten, da diese sehr einfach ausgetauscht und somit auch reproduziert werden koennen; es gibt keine absoluten Arbeitspfade sondern nur Relative. Der Datenimport (und auch der Export) kann mithilfe dieser relativen Pfaden stark vereinfacht werden.Projekte helfen alles am richtigen Ort zu behalten. (mehr zur Arbeit mit Projekten: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+# Projektaufbau
+
+#### Im Kopf des Skripts zuerst immer den Titel des Projekts sowie den Autor/die Autorin des Skripts nennen. Hier soll auch die Herkunft der Daten ersichtlich sein und falls externe Daten verwendet werden, sollte geklaert werden, wer der Datenherr ist (Rehdaten: Forschungsgruppe WILMA).
+
+```{r warning=FALSE, results="hide"}
+
+#.#####################################################################################
+# Daten(vor)verarbeitung Fallstudie WPZ  ####
+# Modul Research Methods, HS21. Autor/in ####
+#.#####################################################################################
+
+# Beschreibt zudem folgendes:
+# • Ordnerstruktur (ich verwende hier den Projektordner mit den Unterordnern Skripts, 
+# Feldaufnahmen, Data, Results, Plots)
+# • Verwendete Daten
+
+# Ein Skript soll in R eigentlich immer nach dem selbem Schema aufgebaut sein. 
+# Dieses Schema beinhaltet (nach dem bereits erwaehnten Kopf des Skripts) 4 Kapitel: 
+```
+
+## 1. Datenimport 
+## 2. Datenvorverarbeitung
+## 3. Analyse
+## 4. Visualisierung
+
+
+#### Bereitet euer Skript also nach dieser Struktur vor. Nutzt fuer den Text, welcher nicht Code ist, vor dem Text das Symbol #. Wenn ihr den Text als Titel definieren wollt, der die grobe Struktur des Skripts absteckt, baut in wie in folgendem Beispiel auf:
+
+```{r warning=FALSE, results="hide"}
+
+#.#####################################################################################
+# METADATA ####
+#.#####################################################################################
+# Datenherkunft ####
+# ...
+
+#.#####################################################################################
+# 1. DATENIMPORT #####
+#.#####################################################################################
+
+```
+
+## libraries laden: hier tidyverse
+
+```{r tidy=TRUE, message=FALSE, warning=F}
+
+library(tidyverse)
+
+```
+
+## Herunterladen der Daten der Feldaufnahme von Moodle, Einlesen, Sichtung der Datensaetze und der Datentypen
+
+```{r tidy=TRUE, message=FALSE, warning=FALSE, results="hide"}
+
+# Die Datensätze aller Teams müssen erst noch in CSVs umgewandelt werden, bevor sie 
+# eingelesen werden können 
+
+df_team1 <- read_delim("Feldaufnahmen/Felderhebung Sihlwald Team 1 (türkis).csv", delim = ";")
+
+df_team2 <- read_delim("Feldaufnahmen/Felderhebungen_Team2_gelb.csv", delim = ";")
+
+# Achtung! Beim Datensatz des Teams 2 fehlen wichtige Infos, die wir für die weiteren Prozesschritte brauchen, welche? 
+# Ausserdem sind % bei den Werten in den Zellen angehängt, manuell anpassen
+
+df_team3 <- read_delim("Feldaufnahmen/Felderhebungen_Team3_pink.csv", delim = ";")
+
+# Achtung! Hier ist beim Einlesen etwas falsch gelaufen. 
+
+df_team4 <- read_delim("Feldaufnahmen/Felderhebung_Waldstruktur_Team4.csv", delim = ",")
+
+# Achtung! Hier ist beim Einlesen etwas falsch gelaufen. 
+
+
+df_reh <- read_delim("Feldaufnahmen/Reh_SH_waldstruktur_201016.csv", delim = ";")
+
+str(df_reh)
+
+
+# Die eingelesenen Datensaetze anschauen und versuchen zu einem Gesamtdatensatz verbinden. 
+# Ist der Output zufriedenstellend?
+
+df_gesamt <- bind_rows(df_team1, df_team2, df_team3, df_team4)
+
+str(df_gesamt)
+
+```
+
+## Aufgabe 1: 
+
+### - Einfuegen zusaetzliche Spalte pro Datensatz mit der Gruppenzugehoerigkeit (Team1-4) 
+### - Spaltenumbenennung damit die Bezeichungen in allen Datensaetzen gleich sind und der Gesamtdatensatz zusammengefuegt werden kann
+### --> (Befehle mutate und rename, mit pipes (%>%) in einem Schritt moeglich)
+
+```{r echo=FALSE, include=FALSE, tidy=TRUE, eval= F}
+
+#.################################################################################################
+# 2. DATENVORVERARBEITUNG #####
+#.################################################################################################
+
+
+df_team1 <- df_team1 %>%
+  mutate(team = "team1") %>%
+  rename(KreisID = "Kreis (r 12.5m)",
+         DG_Rubus = "Deckungsgrad Rubus sp. (%)",
+         DG_Strauchschicht = "DG Strauchschicht (%) (0.5-3m)",
+         DG_Baumschicht = "DG Baumschicht (%) (ab 3m)")
+
+
+df_team2 <- df_team2 %>%
+  mutate(team = "team2") %>%
+  rename(KreisID = "Kreis (r 12.5m)",
+         DG_Rubus = "DG Rubus sp.",
+         DG_Strauchschicht = "DG Strauchschicht",
+         DG_Baumschicht = "DG Baumschicht")
+
+df_team3 <- df_team3 %>%
+  mutate(team = "team3") %>%
+  rename(KreisID = "Kreis (r 12.5m)",
+         DG_Rubus = "Deckungsgrad Rubus sp. (%)",
+         DG_Strauchschicht = "DG Strauchschicht (%) (0.5 - 3m)",
+         DG_Baumschicht = "DG Baumschicht (%) (ab 3m)")
+
+
+df_team4 <- df_team4 %>%
+  mutate(team = "team4") %>%
+  rename(KreisID = "Kreis (r 12.5m)",
+         DG_Rubus = "Deckungsgrad Rubus sp. (%)",
+         DG_Strauchschicht = "DG Strauchschicht (%) (0.5 ? 3m)",
+         DG_Baumschicht = "DG Baumschicht (%) (ab 3m)")
+
+
+```
+
+
+
+## Aufgabe 2: 
+
+### Zusammenfuehren der Teildatensaetze zu einem Datensatz
+
+```{r tidy=TRUE,echo=FALSE, include=FALSE}
+
+df_gesamt <- bind_rows(df_team1, df_team2, df_team3, df_team4)
+
+```
+
+## Aufgabe 3: 
+
+### Verbinden (join) des Datensatzes der Felderhebungen mit dem Datensatz der Rehe. 
+
+### Ziel: ein Datensatz mit allen Kreisen der Felderhebung, angereichert mit den Umweltvariablen Understory und Overstory aus den LIDAR-Daten (DG_us, DG_os) aus dem Rehdatensatz. 
+###--> Welche Art von join? Welche Spalten zum Verbinden (by = ?) der Datensaetze
+
+```{r tidy=TRUE,echo=FALSE, include=FALSE}
+
+df_with_LIDAR <- left_join(df_gesamt,df_reh, by = c("X" = "x", "Y" = "y"))
+
+```
+
+## Aufgabe 4: 
+
+### Scatterplot der korrespondondierenden Umweltvariablen aus den Felderhebungen gegen die Umweltvariablen aus den LIDAR-Daten erstellen (zusaetzlich Einfaerben der Gruppen und Regressionslinie darueberlegen). 
+
+```{r tidy=TRUE,echo=FALSE, include=FALSE, eval=FALSE}
+
+#.################################################################################################
+# 3. VISUALISERUNG #####
+#.################################################################################################
+
+ggplot(df_with_LIDAR, aes(DG_os, DG_Baumschicht)) + geom_point() + stat_smooth(method = "lm")
+
+
+```
+
