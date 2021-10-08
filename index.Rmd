@@ -7,4 +7,3 @@ Das Modul „Research Methods“ vermittelt vertiefte Methodenkompetenzen für p
 
 Hier werden die Unterlagen für die R-Übungsteile bereitgestellt. Es werden sukzessive sowohl Demo-Files, Aufgabenstellungen und Lösungen veröffentlicht.
 
-

@@ -8,14 +8,14 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S)
-draft: true
+draft: false
 ---
 
 # Abschlussbericht über die multivariate Analyse
 
 ## Ziele 
 
-Bisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt. Das Besuchermonitoring Grüntal ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.
+Bisher habt ihr euch mit dem Untersuchungsgebiet beschäftigt und habt selbst ein (kleines) Besuchermonitoring durchgeführt. Das Besuchermonitoring Grüental ist nun abgeschlossen und wir beschäftigen uns voll und ganz mit dem Wildnispark Zürich.
 
 Im Rahmen dessen programmieren wir multivariate Modelle, welche den Zusammenhang zwischen der Anzahl Besuchenden und verschiedenen Einflussfaktoren (Lockdown, Wetter, Ferien, Wochentag, Kalenderwoche) beschreiben. Dank ihnen können wir sagen, wie die Besucher:innen auf die untersuchten Faktoren reagieren (siehe dazu [Einleitung], Ziele). 
 

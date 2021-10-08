@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-27"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-27"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-10-06"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-06"/>
   <meta name="article:author" content="Adrian Hochreutener"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 43: Aufgabe R Projekt vorbereiten"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["09-27-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 43: Aufgabe R Projekt vorbereiten"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["10-06-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW 43: Aufgabe R Projekt vorbereiten","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-27T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
+{"title":"KW 43: Aufgabe R Projekt vorbereiten","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-06T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,20 +1478,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Adrian Hochreutener  
   
-<br/>09-27-2021
+<br/>10-06-2021
 </div>
 
 <div class="d-article">
 <h1 id="arbeiten-mit-projekten">Arbeiten mit Projekten</h1>
-<p>Vor den eigentlichen Auswertungen muessen einige Vorbereitungen unternommen werden. Die Zeit, die man hier investiert, wird in der späteren Projektphase um ein Mehrfaches eingespart. R Studio ist vereinfacht das Arbeiten mit R enorm.</p>
+<p>Vor den eigentlichen Auswertungen muessen einige Vorbereitungen unternommen werden. Die Zeit, die man hier investiert, wird in der späteren Projektphase um ein Mehrfaches eingespart.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="the-r-project-for-statistical-computing.png" width="30%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
-<p>Ich empfehle generell mit Projekten zu arbeiten, da diese sehr einfach ausgetauscht (auf verschiedene Rechner) und somit auch reproduziert werden koennen. Wichtig ist, dass es keine absoluten Arbeitspfade sondern nur relative gibt. Der Datenimport (und -export) kann mithilfe dieser relativen Pfade stark vereinfacht werden. –&gt; Kurz gesagt: Projekte helfen alles am richtigen Ort zu behalten (mehr zur Arbeit mit Projekten: <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects" class="uri">https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects</a>).</p>
-<p>Erstellt an einem passenden Speicherort ein neues Projekt mit einem treffenden Namen:</p>
+<p>Ich empfehle generell mit Projekten zu arbeiten, da diese sehr einfach ausgetauscht (auf verschiedene Rechner) und somit auch reproduziert werden können. Wichtig ist, dass es keine absoluten Arbeitspfade sondern nur relative gibt. Der Datenimport (und -export) kann mithilfe dieser relativen Pfade stark vereinfacht werden. –&gt; Kurz gesagt: Projekte helfen alles am richtigen Ort zu behalten (mehr zur Arbeit mit Projekten: <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects" class="uri">https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects</a>).</p>
+<ul>
+<li>Erstellt an einem passenden Speicherort ein neues Projekt mit einem treffenden Namen:</li>
+</ul>
 <p>–&gt; File / New Project</p>
 <h2 id="aufgabe-1-projektaufbau">Aufgabe 1: Projektaufbau</h2>
-<p>Nutzt fuer allen Text, welcher nicht im Code integriert ist, das Symbol #. Wenn ihr den Text als Titel definieren wollt, so dass er in der UEbersicht erscheint, muessen vor dem Wort # und nach dem Wort #### eingefuegt werden.</p>
+<p>Nutzt für allen Text, welcher nicht im Code integriert ist, das Symbol #. Wenn ihr den Text als Titel definieren wollt, so dass er in der Übersicht erscheint, müssen vor dem Wort # und nach dem Wort #### eingefügt werden.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Texte, vor denen ein # und nach denen #### stehen, sind Titel</span>
@@ -1510,10 +1512,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>Ctrl + Shift + M = %&gt;%</p></li>
 <li><p>Ctrl + Shift + C = # vor der ausgewaehlten Zeile</p></li>
 </ul>
-<p>Zuerst immer den <strong>Titel des Projekts</strong> sowie den <strong>Autor/ die Autorin</strong> des Skripts nennen. Hier soll auch die <strong>Herkunft der Daten</strong> ersichtlich sein und falls externe Daten verwendet werden, sollte geklaert werden, wer Dateneigentuemer ist (Wildnispark und Meteo Schweiz).</p>
+<p>Zuerst immer den <strong>Titel des Projekts</strong> sowie den <strong>Autor/ die Autorin</strong> des Skripts nennen. Hier soll auch die <strong>Herkunft der Daten</strong> ersichtlich sein und falls externe Daten verwendet werden, sollte geklärt werden, wer Dateneigentümer ist (Wildnispark und Meteo Schweiz).</p>
 <p>Im Skript soll immer die <strong>Ordnerstruktur</strong> des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __skripts, data, results).</p>
 <p>Beschreibt zudem folgendes die verwendete <strong>Meteodaten</strong> (siehe dazu Metadata Meteodaten, –&gt; order_XXX_legend.txt)</p>
-<p>Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthaellt (nach den bereits erwaehnten Definitionen) 4 Kapitel:</p>
+<p>Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthällt (nach den bereits erwähnten Definitionen) 4 Kapitel:</p>
 <ol start="0" type="1">
 <li>Metadaten und Definitionen</li>
 <li>Datenimport,</li>
@@ -1524,18 +1526,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Bereitet euer Sktipt mit diesen Kapitel vor.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#.################################################################################################ Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#.########################################################################################### Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####</span>
 <span class='co'># Fallstudie Modul Research Methods, HS21. Autor/in ####</span>
-<span class='co'>#.################################################################################################</span>
-<span class='co'>#.###############################################################################################</span>
+<span class='co'>#.##########################################################################################</span>
+
+<span class='co'>#.##########################################################################################</span>
 <span class='co'># METADATA UND DEFINITIONEN ####</span>
-<span class='co'>#.################################################################################################</span>
+<span class='co'>#.##########################################################################################</span>
+
 <span class='co'># Datenherkunft ####</span>
 <span class='co'># ...</span>
 
-<span class='co'>#.###############################################################################################</span>
+<span class='co'>#.##########################################################################################</span>
 <span class='co'># 1. DATENIMPORT #####</span>
-<span class='co'>#.###############################################################################################</span>
+<span class='co'>#.##########################################################################################</span>
 </code></pre>
 </div>
 </div>
@@ -1564,10 +1568,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h2 id="aufgabe-3-zeitliche-definitionen">Aufgabe 3: Zeitliche Definitionen</h2>
-<p>Definiert den zeitlichen Horizont, also Start sowie Ende der Untersuchungen. Bezieht in eure Auswertungen den gesamten verfügbaren Zeitraum ein.</p>
 <ul>
-<li>Dafür müsst ihr in die Rohdaten eures Zählers schauen. Am einfachsten direkt in der .csv Datei.</li>
+<li>Definiert den zeitlichen Horizont, also Start sowie Ende der Untersuchungen. Bezieht in eure Auswertungen den gesamten verfügbaren Zeitraum ein.</li>
 </ul>
+<p>Dafür müsst ihr in die Rohdaten eures Zählers schauen. Am einfachsten direkt in der .csv Datei.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>depo_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"YYYY-MM-DD"</span><span class='op'>)</span>
@@ -1575,7 +1579,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Wichtiger Teil unserer Auswertungen ist der Einfluss des Lockdown auf das Besuchsverhalten. Wir muessen also Start und Ende der beiden Lockdowns in der Schweiz definieren:</p>
+<p>Wichtiger Teil unserer Auswertungen ist der Einfluss des Lockdown auf das Besuchsverhalten. -Wir müssen also Start und Ende der beiden Lockdowns in der Schweiz definieren:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lock_1_start_2020</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-03-16"</span><span class='op'>)</span>
@@ -1586,8 +1590,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Ebenfalls muessen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden. Diese werden bei wochenweisen Analysen ausgeklammert da sie i.d.R. unvollstaendig sind (das ist ein spaeterer Arbeitsschritt). Geht wie oben vor. Tipp: der Befehl <strong>week()</strong> liefert euch die Kalenderwoche.</p>
-<p>Ferienzeiten koennen einen grossen Einfluss auf das Besueraufkommen haben. Die relevanten Ferienzeitraeume (in meinem Beispiel ab 2019, je nach dem müsst ihr das anpassen) muessen daher bekannt sein. Zur Definition der Ferien kann z.B. folgend vorgegangen werden:</p>
+<p>Ebenfalls müssen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden. Diese werden bei wochenweisen Analysen ausgeklammert da sie i.d.R. unvollstaendig sind (das ist ein späterer Arbeitsschritt). Geht wie oben vor. Tipp: der Befehl <strong>week()</strong> liefert euch die Kalenderwoche.</p>
+<p>Ferienzeiten können einen grossen Einfluss auf das Besucheraufkommen haben. Die relevanten Ferienzeiträume (in meinem Beispiel ab 2019, je nach dem müsst ihr das anpassen) muüsen daher bekannt sein. Zur Definition der Ferien kann z.B. folgend vorgegangen werden:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># (https://www.schulferien.org/schweiz/ferien/2020/)</span>
