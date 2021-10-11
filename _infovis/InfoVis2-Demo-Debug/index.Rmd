@@ -3,7 +3,7 @@ title: Demo Debugging Tips
 output: distill::distill_article
 categories:
 - InfoVis2
-- InfoVis
+draft: true
 
 ---
 
