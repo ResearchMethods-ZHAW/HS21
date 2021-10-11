@@ -87,8 +87,8 @@ fname2 <- "hans"
 fname == fname2
 
 #' #### `Factors`
-wochentage <- c("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag",
-                "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag")
+wochentage <- c("Donnerstag","Freitag","Samstag","Sonntag","Montag","Dienstag","Mittwoch",
+                "Donnerstag","Freitag","Samstag","Sonntag", "Montag","Dienstag","Mittwoch")
 
 typeof(wochentage)
 
@@ -107,7 +107,7 @@ zahlen <- factor(c("null","eins","zwei","drei"))
 
 zahlen
 
-zahlen <- factor(zahlen,ordered = T)
+zahlen <- factor(zahlen,ordered = TRUE)
 
 zahlen
 
@@ -124,12 +124,8 @@ class(zahlen)
 zahlen
 as.integer(zahlen)
 
-zahlen2 <- factor(c("3","2","1","0"))
-
+zahlen2 <- factor(c("10","20"))
 as.integer(zahlen2)
-
-
-zahlen2 <- factor(c("3","2","1","0"))
 
 as.integer(as.character(zahlen2))
 
