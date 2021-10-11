@@ -3,10 +3,8 @@ title: "Loesung Aufgabe 1"
 output: distill::distill_article
 categories:
 - Statistik1
-
 draft: true
 autor: Gian-Andrea Egeler
-
 ---
 
 ```{r echo = FALSE}

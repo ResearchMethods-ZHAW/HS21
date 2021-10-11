@@ -3,9 +3,7 @@ title: Übung 7
 output: distill::distill_article
 categories:
 - Statistik7
-
 draft: true
-
 ---
 
 ```{r echo = FALSE}

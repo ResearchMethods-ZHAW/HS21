@@ -7,8 +7,6 @@ author:
 draft: true
 categories:
 - Statistik2
-
-
 ---
 
 ```{r echo = FALSE}

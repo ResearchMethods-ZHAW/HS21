@@ -4,8 +4,6 @@ output: distill::distill_article
 draft: true
 categories:
 - Statistik2
-
-
 ---
 
 ```{r echo = FALSE}

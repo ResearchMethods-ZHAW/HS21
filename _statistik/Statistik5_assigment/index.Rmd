@@ -5,9 +5,7 @@ output:
     toc: true
 categories:
 - Statistik5
-
 draft: true
-
 ---
 
 ```{r echo = FALSE}

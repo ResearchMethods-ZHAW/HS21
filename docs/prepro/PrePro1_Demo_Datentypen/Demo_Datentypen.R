@@ -1,3 +1,7 @@
+
+#' ### Datentypen 
+#' #### Numerics
+#' ##### Doubles
 x <- 10.3
 
 x
@@ -15,6 +19,7 @@ is.numeric(z)
 is.double(z)
 
 
+#' #### Ganzzahl / Integer 
 a <- as.integer(z)
 is.numeric(a)
 is.integer(a)
@@ -49,6 +54,7 @@ c <- as.integer("3.14")
 c
 typeof(c)
 
+#' #### Logische Abfragen 
 e <- 3
 f <- 6
 g <- e > f
@@ -58,6 +64,7 @@ g
 typeof(g)
 
 
+#' #### Logische Operationen
 sonnig <- TRUE
 trocken <- FALSE
 
@@ -67,6 +74,7 @@ u <- TRUE
 v <- !u 
 v
 
+#' #### Zeichenketten
 s <- as.character(3.14)
 s
 typeof(s)
@@ -78,6 +86,7 @@ paste(fname,lname)
 fname2 <- "hans"
 fname == fname2
 
+#' #### `Factors`
 wochentage <- c("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag",
                 "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag")
 
@@ -124,6 +133,7 @@ zahlen2 <- factor(c("3","2","1","0"))
 
 as.integer(as.character(zahlen2))
 
+#' #### Zeit/Datum
 datum <- "2017-10-01 13:45:10"
 
 as.POSIXct(datum)
@@ -141,6 +151,7 @@ strftime(datum, format = "%m")
 strftime(datum, format = "%b")
 strftime(datum, format = "%B")
 
+#' ### Data Frames und Conveniance Variabeln
 df <- data.frame(
   Stadt = c("Zürich","Genf","Basel","Bern","Lausanne"),
   Einwohner = c(396027,194565,175131,140634,135629),
@@ -167,5 +178,4 @@ df$Groesse[df$Einwohner <= 150000] <- "klein"
 library(lubridate)
 
 df$Ankunft_stunde <- hour(df$Ankunft)
-```{.r .distill-force-highlighting-css}
-```
+
