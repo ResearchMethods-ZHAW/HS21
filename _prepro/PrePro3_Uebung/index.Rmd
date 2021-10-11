@@ -1,0 +1,28 @@
+---
+title: Uebung
+output: distill::distill_article
+categories:
+- PrePro3
+- PrePro
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+---
+
+## Aufgabe 3
+
+Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
+
+```{r}
+
+# Lösung Aufgabe 3
+
+wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
+
+```
+
+```{r, echo = TRUE}
+# Hier ein Ausschnitt der df, wie es aussehen sollte:
+wetter_wide[1:5, 1:7]
+```
