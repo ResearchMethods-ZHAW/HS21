@@ -167,5 +167,3 @@ df$Groesse[df$Einwohner <= 150000] <- "klein"
 library(lubridate)
 
 df$Ankunft_stunde <- hour(df$Ankunft)
-```{.r .distill-force-highlighting-css}
-```
