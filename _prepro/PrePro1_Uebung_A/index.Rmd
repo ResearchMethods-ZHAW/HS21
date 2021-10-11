@@ -46,10 +46,10 @@ Um ein `package` in R verwenden zu können, gibt es zwei Möglichkeiten:
 Letztere Notation ist vor allem dann sinnvoll, wenn sich zwei unterschiedliche Funktionen mit dem gleichen namen in verschiedenen pacakges existieren. `filter()` existiert als Funktion einersits im package `dplyr` sowie in  `stats`. Dieses Phänomen nennt man "masking". 
 
 
-Zu beginn laden wir die nötigen Pakete:
+Zu Beginn laden wir die nötigen Pakete:
 
 
-```{r,message = F}
+```{r,message = F, echo = TRUE}
 library(tidyverse)
 # Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs- 
 # und Schlusszeichen gesetzt.
@@ -159,7 +159,7 @@ knitr::kable(df)
 
 ## Aufgabe 4
 
-Importiere den Datensatz [order_52252_data.txt](order_52252_data.txt). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz im Zeitraum 2000 - 2005. Wir empfehlen `read_table()`^[@wickham2017, Kapitel 8 bzw. http://r4ds.had.co.nz/data-import.html)] anstelle von `read.table()`.
+Importiere den Datensatz [order_52252_data.txt](order_52252_data.txt) (Rechtsklick -> Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz im Zeitraum 2000 - 2005. Wir empfehlen [`read_table()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.table()`.
 
 ```{r, message = F}
 # Lösung Aufgabe 4
@@ -197,13 +197,16 @@ Tipps:
 - Wenn keine Zeitzone festgelegt wird, trifft `as.POSIXct()` eine Annahme (basierend auf `Sys.timezone()`). In unserem Fall handelt es sich aber um Werte in UTC (siehe [meta.txt](meta.txt))
 - `as.POSIXct`erwartet `character`: Wenn du eine Fehlermeldung hast die `'origin' must be supplied` (o.ä) heisst, hast du der Funktion vermutlich einen `Numeric` übergeben.
 
-```{r}
+```{r, eval = FALSE}
 # Lösung Aufgabe 6
 
-# mit readr
+# mit readr (parse_datetime nimmt als Zeitzone UTC an,
+# wenn nichts anderes angegeben wird)
 wetter$time <- parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
+```
 
 
+```{r}
 # mit as.POSIXct()
 wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H",tz = "UTC")
 
@@ -211,7 +214,7 @@ wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H",tz = "U
 
 
 ```{r, purl=F}
-knitr::kable(head(wetter,10))
+knitr::kable(head(wetter,10),caption = "Die neue Tabelle sollte so aussehen")
 ```
 
 
