@@ -60,9 +60,6 @@ library(lubridate)
 # das package lubridate nicht berücksichtigt
 ```
 
-
-<!-- Aus oben beschriebenen Grund ist es auch problematisch, dass `data.frame()` sowie alle `read.*` Funktionen (`read.table`, `read.csv` etc) immer davon ausgehen, dass `strings` als `factors` interpretiert werden sollten. Es gibt in Base R einige Funktionen, welche Annahmen treffen die problematisch sein können. Ein weiteres Beispiel ist die Annahme der Zeitzone und Verwendung von Sommerzeit bei `as.POSIXct()`. -->
-
 Tidyverse liefert viele Funktionen, für die es in der normalen R-Umgebung ("base R") keine wirkliche Alternative gibt. Andere Funktionen sind alternativen zu Base-R Funktionen:
 
 - `data_frame()` statt `data.frame()` 
@@ -159,12 +156,12 @@ knitr::kable(df)
 
 ## Aufgabe 4
 
-Importiere den Datensatz [order_52252_data.txt](order_52252_data.txt) (Rechtsklick -> Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz im Zeitraum 2000 - 2005. Wir empfehlen [`read_table()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.table()`.
+Importiere den Datensatz [weather.csv](weather.csv) (Rechtsklick -> Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz. Wir empfehlen [`read_csv()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.csv()`.
 
 ```{r, message = F}
 # Lösung Aufgabe 4
 
-wetter <- readr::read_table("order_52252_data.txt")
+wetter <- readr::read_csv("weather.csv")
 ```
 
 
@@ -177,7 +174,7 @@ knitr::kable(head(wetter,10))
 
 ## Aufgabe 5
 
-Schau dir die Rückmeldung von `read_table()`an. Sind die Daten korrekt interpretiert worden?
+Schau dir die Rückmeldung von `read_csv()`an. Sind die Daten korrekt interpretiert worden?
 
 
 ```{r}
