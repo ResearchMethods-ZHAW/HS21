@@ -3,7 +3,7 @@ title: Übung A
 output: distill::distill_article
 categories:
 - RaumAn3
-- RaumAn
+draft: true
 description: |
   Heute berechnen wir Moran's I auf verschiedenen Datensätzen und vergleichen die Resultate.
 author:
