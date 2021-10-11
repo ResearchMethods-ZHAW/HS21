@@ -6,7 +6,7 @@ author:
   Gian-Andrea Egeler
 categories:
 - Statistik4
-- Statistik
+
 draft: true
 
 ---

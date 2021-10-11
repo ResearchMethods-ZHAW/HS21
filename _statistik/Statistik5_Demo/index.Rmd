@@ -3,7 +3,7 @@ title: Demo Statistik 5
 output: distill::distill_article
 categories:
 - Statistik5
-- Statistik
+
 
 ---
 

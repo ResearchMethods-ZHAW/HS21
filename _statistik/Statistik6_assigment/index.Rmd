@@ -3,7 +3,7 @@ title: Uebung Statistik 6
 output: distill::distill_article
 categories:
 - Statistik6
-- Statistik
+
 
 ---
 

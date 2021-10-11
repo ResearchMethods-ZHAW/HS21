@@ -5,7 +5,7 @@ output:
     toc: true
 categories:
 - Statistik3
-- Statistik
+
 draft: true
 ---
 
