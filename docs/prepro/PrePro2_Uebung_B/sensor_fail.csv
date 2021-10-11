@@ -1,4 +1,4 @@
-Sensor;Temp;Hum_%;Datetime;SensorStatus
+Sensor;Temp;Humidity;Datetime;SensorStatus
 Sen102;0.6;98;16102017_1800;1
 Sen102;0.3;96;17102017_1800;1
 Sen102;0;87;18102017_1800;1

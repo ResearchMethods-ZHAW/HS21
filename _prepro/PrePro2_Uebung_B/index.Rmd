@@ -39,45 +39,24 @@ sensor3 <- read_delim("sensor3.csv",";")
 
 ## Aufgabe 2
 
-Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Dafür musst du: 
-
-1. jedem Dataframe eine neue Spalte "Sensor" hinzufügen wo der jeweilige Sensor vermerkt ist
-2. die drei Dataframes zu **einer** mittels `rbind()` zusammenführen
-3. die Spalte `Datetime` in ein `POSIXct`-Format konvertiren (das ursprüngliche Format lautet:`DDMMYYYY_HHMM`)
-4. die Tabelle von long zu wide mittels `pivot_wider` überführen
-
-
+Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Nutze dafür einen `*_join()` aus `dplyr`. Um 3 `data.frames` miteinander zu verbinden brauchst du 2 `joins`. Bereinige im Anschluss die Spaltennamen ([wie geht das?](https://www.statology.org/how-to-rename-data-frame-columns-in-r/)).
 
 
 ```{r}
 
 # Lösung Aufgabe 2
 
-sensor1$sensor <- "sensor1"
-sensor2$sensor <- "sensor2"
-sensor3$sensor <- "sensor3"
+sensor1_2 <- full_join(sensor1, sensor2, "Datetime")
 
-sensor_all <- rbind(sensor1,sensor2,sensor3)
+sensor_all <- full_join(sensor1_2, sensor3, by = "Datetime")
 
-sensor_all <- sensor_all %>%
-  mutate(
-    Datetime = as.POSIXct(Datetime,format = "%d%m%Y_%H%M")
-  ) %>%
-  pivot_wider(names_from = sensor, values_from = Temp)
-
+names(sensor_all) <- c("Datetime","sensor1","sensor2","sensor3")
 ```
 
 
 ```{r,  echo = F, eval = T, purl=F}
 knitr::kable(sensor_all)
 ```
-
-
-
-
-
-
-
 
 
 ## Aufgabe 3
@@ -103,11 +82,6 @@ knitr::kable(sensor_fail)
 
 
 ```{r}
-
-# Lösungsweg 1
-sensor_fail$Datetime <- as.POSIXct(sensor_fail$Datetime,format = "%d%m%Y_%H%M")
-
-sensor_fail$`Hum_%`[sensor_fail$SensorStatus == 0] <- NA
 sensor_fail$Temp[sensor_fail$SensorStatus == 0] <- NA
 ```
 
@@ -124,7 +98,6 @@ Warum spielt das es eine Rolle, ob `0` oder `NA` erfasst wird? Berechne die Mitt
 # Mittelwerte der korrigierten Sensordaten: mit na.rm = TRUE werden NA-Werte aus der Berechnung entfernt. 
 # Ansonsten würden sie als 0 in die Berechnung einfliessen und diese verfälschen.
 mean(sensor_fail$Temp, na.rm = TRUE)
-mean(sensor_fail$`Hum_%`, na.rm = TRUE)
 
 ```
 

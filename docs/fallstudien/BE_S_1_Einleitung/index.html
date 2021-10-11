@@ -2077,10 +2077,18 @@ body.layout-listing p {
 }
 
 
-.sourceCode, d-article pre{
-    background-color: #f7f7f7;
+/* this should format the code blocks and inline code in a better way */
+code:not(.sourceCode){
+  font-size: .85em;
+  padding: .2em;
 }
 
+.sourceCode, code{
+  background: #f7f7f7;
+}
+d-article pre{
+  background: #f7f7f7;
+}
 
 
 /* stylign the footer (_footer.html) */
@@ -2215,6 +2223,7 @@ Fallstudien
 <div class="nav-dropdown-content">
 <a href="../../Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)">Biodiversity and Ecosystems (Profil S)</a>
 <a href="../../Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)_Musterloesung">Biodiversity and Ecosystems (Profil S): Musterloesung</a>
+<a href="../../Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(N)">Biodiversity and Ecosystems (Profil N)</a>
 </div>
 </div>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
