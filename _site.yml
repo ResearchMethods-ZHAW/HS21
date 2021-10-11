@@ -85,6 +85,8 @@ navbar:
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(S)
       - text: "Biodiversity and Ecosystems (Profil S): Musterloesung"
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(S)_Musterloesung
+      - text: "Biodiversity and Ecosystems (Profil N)"
+        href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)
   right:
     - icon: fab fa-github
       href: https://github.com/ResearchMethods-ZHAW/HS21
