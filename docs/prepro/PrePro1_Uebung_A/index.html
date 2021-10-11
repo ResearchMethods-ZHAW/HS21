@@ -2311,7 +2311,6 @@ Fallstudien
 </code></pre>
 </div>
 </div>
-<!-- Aus oben beschriebenen Grund ist es auch problematisch, dass `data.frame()` sowie alle `read.*` Funktionen (`read.table`, `read.csv` etc) immer davon ausgehen, dass `strings` als `factors` interpretiert werden sollten. Es gibt in Base R einige Funktionen, welche Annahmen treffen die problematisch sein können. Ein weiteres Beispiel ist die Annahme der Zeitzone und Verwendung von Sommerzeit bei `as.POSIXct()`. -->
 <p>Tidyverse liefert viele Funktionen, für die es in der normalen R-Umgebung (“base R”) keine wirkliche Alternative gibt. Andere Funktionen sind alternativen zu Base-R Funktionen:</p>
 <ul>
 <li><code>data_frame()</code> statt <code>data.frame()</code></li>
@@ -2445,7 +2444,7 @@ Fallstudien
 </table>
 </div>
 <h2 id="aufgabe-4">Aufgabe 4</h2>
-<p>Importiere den Datensatz <a href="order_52252_data.txt">order_52252_data.txt</a> (Rechtsklick -&gt; Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz im Zeitraum 2000 - 2005. Wir empfehlen <a href="http://r4ds.had.co.nz/data-import.html"><code>read_table()</code></a> anstelle von <code>read.table()</code>.</p>
+<p>Importiere den Datensatz <a href="weather.csv">weather.csv</a> (Rechtsklick -&gt; Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz. Wir empfehlen <a href="http://r4ds.had.co.nz/data-import.html"><code>read_csv()</code></a> anstelle von <code>read.csv()</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2513,7 +2512,7 @@ Fallstudien
 </table>
 </div>
 <h2 id="aufgabe-5">Aufgabe 5</h2>
-<p>Schau dir die Rückmeldung von <code>read_table()</code>an. Sind die Daten korrekt interpretiert worden?</p>
+<p>Schau dir die Rückmeldung von <code>read_csv()</code>an. Sind die Daten korrekt interpretiert worden?</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
