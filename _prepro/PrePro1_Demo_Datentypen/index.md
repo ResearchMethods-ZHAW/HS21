@@ -16,9 +16,7 @@ draft: false
 
 
 
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-distill::mypurl("index.Rmd", "Demo_Datentypen.R")
-```
+
 
 
 [R-Code als Download](Demo_Datentypen.R)
@@ -37,35 +35,31 @@ Unter die Kategorie `numeric` fallen in R zwei Datentypen:
 
 Folgendermassen wird eine Gleitkommazahl einer Variabel zuweisen:
 
-```{r}
-x <- 10.3
 
-x
-
-typeof(x)
+```
+## [1] 10.3
+## [1] "double"
 ```
 
 
 
 Statt `<-`kann auch `=` verwendet werden. Dies funktioniert aber nicht in allen Situationen, und ist zudem leicht mit `==` zu verwechseln.
 
-```{r}
-y = 7.3
 
-y
+```
+## [1] 7.3
 ```
 
 
 
 Ohne explizite Zuweisung nimmt R immer den Datentyp `double`an:
 
-```{r}
-z <- 42
-typeof(z)
-is.integer(z)
-is.numeric(z)
-is.double(z)
 
+```
+## [1] "double"
+## [1] FALSE
+## [1] TRUE
+## [1] TRUE
 ```
 
 #### Ganzzahl / Integer 
@@ -73,61 +67,55 @@ is.double(z)
 
 Erst wenn man eine Zahl explizit als `integer` definiert (mit `as.integer()` oder `L`), wird sie auch als solches abgespeichert.
 
-```{r}
-a <- as.integer(z)
-is.numeric(a)
-is.integer(a)
 
-c <- 8L
-is.numeric(c)
-is.integer(c)
+```
+## [1] TRUE
+## [1] TRUE
+## [1] TRUE
+## [1] TRUE
 ```
 
 
 
 
-```{r}
-typeof(a)
 
-is.numeric(a)
-is.integer(a)
+```
+## [1] "integer"
+## [1] TRUE
+## [1] TRUE
 ```
 
 
 
 Mit `c()` können eine Reihe von Werten in einer Variabel zugewiesen werden (als `vector`). Es gibt zudem auch `character vectors`. 
 
-```{r}
-vector <- c(10,20,33,42,54,66,77)
-vector
-vector[5]
-vector[2:4]
 
-vector2 <- vector[2:4]
+```
+## [1] 10 20 33 42 54 66 77
+## [1] 54
+## [1] 20 33 42
 ```
 
 
 
 Eine Ganzzahl kann explizit mit `as.integer()` definiert werden.
 
-```{r}
-a <- as.integer(7)
-b <- as.integer(3.14)
-a
-b
-typeof(a)
-typeof(b)
-is.integer(a)
-is.integer(b)
 
+```
+## [1] 7
+## [1] 3
+## [1] "integer"
+## [1] "integer"
+## [1] TRUE
+## [1] TRUE
 ```
 
 Eine Zeichenkette kann als Zahl eingelesen werden.
 
-```{r}
-c <- as.integer("3.14")
-c
-typeof(c)
+
+```
+## [1] 3
+## [1] "integer"
 ```
 
 
@@ -135,33 +123,27 @@ typeof(c)
 
 Wird auch auch als boolesch (Eng. **boolean**) bezeichnet.
 
-```{r}
-e <- 3
-f <- 6
-g <- e > f
-e
-f
-g
-typeof(g)
 
+```
+## [1] 3
+## [1] 6
+## [1] FALSE
+## [1] "logical"
 ```
 
 #### Logische Operationen
 
 
-```{r}
-sonnig <- TRUE
-trocken <- FALSE
 
-sonnig & !trocken
+```
+## [1] TRUE
 ```
 
 Oft braucht man auch das Gegenteil / die Negation eines Wertes. Dies wird mittels `!` erreicht
 
-```{r}
-u <- TRUE
-v <- !u 
-v
+
+```
+## [1] FALSE
 ```
 
 
@@ -170,23 +152,20 @@ v
 
 Zeichenketten (Eng. **character**) stellen Text dar
 
-```{r}
-s <- as.character(3.14)
-s
-typeof(s)
+
+```
+## [1] "3.14"
+## [1] "character"
 ```
 
 
 
 Zeichenketten verbinden / zusammenfügen (Eng. **concatenate**)
 
-```{r}
-fname <- "Hans"
-lname <- "Muster"
-paste(fname,lname)
 
-fname2 <- "hans"
-fname == fname2
+```
+## [1] "Hans Muster"
+## [1] FALSE
 ```
 
 
@@ -194,35 +173,31 @@ fname == fname2
 
 Mit `Factors` wird in R eine Sammlung von Zeichenketten bezeichnet, die sich wiederholen, z.B. Wochentage (es gibt nur 7 unterschiedliche Werte für "Wochentage").
 
-```{r}
-wochentage <- c("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag",
-                "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag")
 
-typeof(wochentage)
-
-wochentage_fac <- as.factor(wochentage)
-
-wochentage
-wochentage_fac
-
-
+```
+## [1] "character"
+##  [1] "Montag"     "Dienstag"   "Mittwoch"   "Donnerstag" "Freitag"    "Samstag"    "Sonntag"    "Montag"    
+##  [9] "Dienstag"   "Mittwoch"   "Donnerstag" "Freitag"    "Samstag"    "Sonntag"
+##  [1] Montag     Dienstag   Mittwoch   Donnerstag Freitag    Samstag    Sonntag    Montag     Dienstag  
+## [10] Mittwoch   Donnerstag Freitag    Samstag    Sonntag   
+## Levels: Dienstag Donnerstag Freitag Mittwoch Montag Samstag Sonntag
 ```
 
 Wie man oben sieht, unterscheiden sich `character vectors` und `factors` v.a. dadurch, dass letztere über sogenannte `levels` verfügt. Diese `levels` entsprechen den Eindeutigen (`unique`) Werten.
 
-```{r}
-levels(wochentage_fac)
 
-unique(wochentage)
+```
+## [1] "Dienstag"   "Donnerstag" "Freitag"    "Mittwoch"   "Montag"     "Samstag"    "Sonntag"
+## [1] "Montag"     "Dienstag"   "Mittwoch"   "Donnerstag" "Freitag"    "Samstag"    "Sonntag"
 ```
 
 Zudem ist fällt auf, dass die Reihenfolge der Wohentag alphabetisch sortiert ist. Wie diese sortiert werden zeigen wir an einem anderen Beispiel:
 
 
-```{r}
-zahlen <- factor(c("null","eins","zwei","drei"))
 
-zahlen
+```
+## [1] null eins zwei drei
+## Levels: drei eins null zwei
 ```
 
 Offensichtlich sollten diese `factors` geordnet sein, R weiss davon aber nichts. Eine Ordnung kann man mit dem Befehl `ordered = T` festlegen. 
@@ -230,58 +205,58 @@ Offensichtlich sollten diese `factors` geordnet sein, R weiss davon aber nichts.
 Beachtet: `ordered = T` kann nur bei der Funktion `factor()` spezifiziert werden, nicht bei `as.factor()`. Ansonsten sind `factor()` und `as.factor()` sehr ähnlich.
 
 
-```{r}
-zahlen <- factor(zahlen,ordered = T)
 
-zahlen
+```
+## [1] null eins zwei drei
+## Levels: drei < eins < null < zwei
 ```
 
 Beachtet das "<"-Zeichen zwischen den Levels. Die Zahlen werden nicht in der korrekten Reihenfolge, sondern Alphabetisch geordnet. Die richtige Reihenfolge kann man mit `levels = ` festlegen.
 
-```{r}
-zahlen <- factor(zahlen,ordered = T,levels = c("null","eins","zwei","drei","vier"))
 
-zahlen
+```
+## [1] null eins zwei drei
+## Levels: null < eins < zwei < drei < vier
 ```
 
 Wie auch schon erwähnt werden `factors` als `character` Vektor dargestellt, aber als Integers gespeichert. Das führt zu einem scheinbaren Wiederspruch wenn man den Datentyp auf unterschiedliche Weise abfragt.
 
-```{r}
-typeof(zahlen)
 
-is.integer(zahlen)
+```
+## [1] "integer"
+## [1] FALSE
 ```
 
 
 Mit `typeof()` wird eben diese Form der Speicherung abgefragt und deshalb mit `integer` beantwortet. Da es sich aber nicht um einen eigentlichen Integer Vektor handelt, wird die Frage `is.integer()` mit `FALSE` beantwortet. Das ist etwas verwirrend, beruht aber darauf, dass die beiden Funktionen die Frage von unterschiedlichen Perspektiven beantworten. In diesem Fall schafft `class()` Klarheit:
 
-```{r}
-class(zahlen)
+
+```
+## [1] "ordered" "factor"
 ```
 
 
 Wirklich verwirrend wird es, wenn `factors` in numeric umgewandelt werden sollen.
 
-```{r}
-zahlen
-as.integer(zahlen)
+
+```
+## [1] null eins zwei drei
+## Levels: null < eins < zwei < drei < vier
+## [1] 1 2 3 4
 ```
 
 Das die Übersetzung der auf Deutsch ausgeschriebenen Nummern in nummerische Zahlen nicht funktionieren würde, war ja klar. Weniger klar ist es jedoch, wenn die `factors` bereits aus nummerischen Zahlen bestehen.
 
-```{r}
-zahlen2 <- factor(c("3","2","1","0"))
 
-as.integer(zahlen2)
-
+```
+## [1] 4 3 2 1
 ```
 
 In diesem Fall müssen die `factors` erstmals in `character` umgewandelt werden.
 
-```{r}
-zahlen2 <- factor(c("3","2","1","0"))
 
-as.integer(as.character(zahlen2))
+```
+## [1] 3 2 1 0
 ```
 
 
@@ -291,31 +266,25 @@ as.integer(as.character(zahlen2))
 
 Um in R mit Datum/Zeit Datentypen umzugehen, müssen sie als `POSIXct` eingelesen werden (es gibt alternativ noch `POSIXlt`, aber diese ignorieren wir mal). Anders als Beispielsweise bei Excel, sollten in R Datum und Uhrzeit immer in **einer Spalte** gespeichert werden.
 
-```{r}
-datum <- "2017-10-01 13:45:10"
 
-as.POSIXct(datum)
-
+```
+## [1] "2017-10-01 13:45:10 CEST"
 ```
 
 Wenn das die Zeichenkette in dem obigen Format (Jahr-Monat-Tag Stunde:Minute:Sekunde) daher kommt, braucht `as.POSIXct`keine weiteren Informationen. Sollte das Format von dem aber Abweichen, muss man der Funktion das genaue Schema jedoch mitteilen. Der Syntax dafür kann via `?strptime` nachgeschlagen werden.
 
-```{r}
-datum <- "01.10.2017 13:45"
 
-as.POSIXct(datum,format = "%d.%m.%Y %H:%M")
-
-datum <- as.POSIXct(datum,format = "%d.%m.%Y %H:%M")
-
+```
+## [1] "2017-10-01 13:45:00 CEST"
 ```
 
 Beachtet, dass in den den obigen Beispiel R automatisch eine Zeitzone angenommen hat (`CEST`). R geht davon aus, dass die Zeitzone der **System Timezone** (`Sys.timezone()`) entspricht.
 
-```{r}
 
-strftime(datum, format = "%m")
-strftime(datum, format = "%b")
-strftime(datum, format = "%B")
+```
+## [1] "10"
+## [1] "Okt"
+## [1] "Oktober"
 ```
 
 
@@ -324,53 +293,37 @@ strftime(datum, format = "%B")
 
 Eine `data.frame` ist die gängigste Art, Tabellarische Daten zu speichern. 
 
-```{r}
-df <- data.frame(
-  Stadt = c("Zürich","Genf","Basel","Bern","Lausanne"),
-  Einwohner = c(396027,194565,175131,140634,135629),
-  Ankunft = c("1.1.2017 10:00","1.1.2017 14:00",
-              "1.1.2017 13:00","1.1.2017 18:00","1.1.2017 21:00")
-)
 
-str(df)
-
+```
+## 'data.frame':	5 obs. of  3 variables:
+##  $ Stadt    : chr  "Zürich" "Genf" "Basel" "Bern" ...
+##  $ Einwohner: num  396027 194565 175131 140634 135629
+##  $ Ankunft  : chr  "1.1.2017 10:00" "1.1.2017 14:00" "1.1.2017 13:00" "1.1.2017 18:00" ...
 ```
 
 In der obigen `data.frame` wurde die Spalte `Einwohner` als Fliesskommazahl abgespeichert. Dies ist zwar nicht tragisch, aber da wir wissen das es sich hier sicher um Ganzzahlen handelt, können wir das korrigieren. Wichtiger ist aber, dass wir die Ankunftszeit (Spalte`Ankunft`) von  einem `Factor` in ein Zeitformat (`POSIXct`) umwandeln. 
 
 
-```{r}
-df$Einwohner <- as.integer(df$Einwohner)
 
-df$Einwohner
-
-df$Ankunft <- as.POSIXct(df$Ankunft, format = "%d.%m.%Y %H:%M")
-
-df$Ankunft
+```
+## [1] 396027 194565 175131 140634 135629
+## [1] "2017-01-01 10:00:00 CET" "2017-01-01 14:00:00 CET" "2017-01-01 13:00:00 CET" "2017-01-01 18:00:00 CET"
+## [5] "2017-01-01 21:00:00 CET"
 ```
 
 
 Diese Rohdaten können nun helfen, um Hilfsvariablen (**convenience variables**) zu erstellen. Z.B. können wir die Städte einteilen in gross, mittel und klein. 
 
-```{r}
-df$Groesse[df$Einwohner > 300000] <- "gross"
-df$Groesse[df$Einwohner <= 300000 & df$Einwohner > 150000] <- "mittel"
-df$Groesse[df$Einwohner <= 150000] <- "klein"
 
-```
 
 
 
 Oder aber, die Ankunftszeit kann von der Spalte `Ankunft`abgeleitet werden. Dazu brauchen wir aber das Package `lubridate`
 
-```{r, message = F}
-library(lubridate)
-```
 
 
-```{r}
-df$Ankunft_stunde <- hour(df$Ankunft)
-```
+
+
 
 
 
