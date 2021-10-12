@@ -54,5 +54,32 @@
     "input_file": "index.knit.md",
     "preview_width": 1950,
     "preview_height": 1200
+  },
+  {
+    "path": "prepro/Prepro2_Demo/",
+    "title": "Demo",
+    "description": {},
+    "author": [
+      {
+        "name": "Patrick Laube",
+        "url": {}
+      },
+      {
+        "name": "Nils Ratnaweera",
+        "url": {}
+      },
+      {
+        "name": "Nikolaos Bakogiannis",
+        "url": {}
+      }
+    ],
+    "date": "2021-10-12",
+    "categories": [
+      "PrePro1"
+    ],
+    "contents": "\n\nContents\nPiping\n\n\n\n\nR-Code als Download\nPiping\n\n\nsubtrahieren <- function(minuend, subtrahend){\n  differenzwert <- minuend - subtrahend\n  return(differenzwert)\n}\n\nmultiplizieren <- function(multiplikator, multiplikand){\n  produkt <- multiplikator*multiplikand\n  return(produkt)\n}\n\ndividieren <- function(dividend, divisor){\n  quotiend <- dividend/divisor\n  return(quotiend)\n}\n\ndiary <- c(\n  \"The temperature is 21° Farenheit\",\n  \"The temperature is 42° Farenheit\",\n  \"The temperature is 55° Farenheit\"\n)\n\ndividieren(multiplizieren(subtrahieren(as.numeric(substr(diary, 20, 21)),32),5),9)\n\n\n[1] -6.111111  5.555556 12.777778\n\n# Nimm diary, und dann\ntemp1 <- substr(diary, 20, 21)     # extrahiere werte 20 bis 21, und dann\ntemp2 <- as.numeric(temp1)         # konvertiere character zu numeric, und dann\ntemp3 <- subtrahieren(temp2, 32)   # subtrahiere 32, und dann\ntemp4 <- multiplizieren(temp3, 5)  # multipliziere mit 5, und dann\noutput <- dividieren(temp4, 9)     # dividieren mit 9\n\ndiary |>                          # Nimm diary, und dann\n  substr(20, 21) |>               # extrahiere werte 20 bis 21, und dann\n  as.numeric() |>                 # konvertiere character zu numeric, und dann\n  subtrahieren(32) |>             # subtrahiere 32, und dann\n  multiplizieren(5) |>            # multipliziere mit 5, und dann\n  dividieren(9)                    # dividieren mit 9\n\n\n[1] -6.111111  5.555556 12.777778\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-10-12T16:33:35+02:00",
+    "input_file": "index.knit.md"
   }
 ]
