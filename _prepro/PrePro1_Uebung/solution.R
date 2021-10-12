@@ -1,14 +1,13 @@
 
 #' ## Arbeiten mit RStudio "Project"
 #' ## Arbeiten mit Libraries / Packages
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(lubridate)
+
 # Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs- 
 # und Schlusszeichen gesetzt.
-
-
-library(lubridate)
-# Im Unterschied zu install.packages("tidyverse") wird bei library(tidyverse) 
-# das package lubridate nicht berücksichtigt
 
 #' ## Aufgabe 1
 
@@ -54,7 +53,7 @@ df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
 #' ## Aufgabe 4
 # Musterlösung
 
-wetter <- readr::read_csv("weather.csv")
+wetter <- readr::read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv")
 
 
 #' ## Aufgabe 5
@@ -63,15 +62,7 @@ wetter <- readr::read_csv("weather.csv")
 # sich offensichtlich um Zeitangaben.
 
 #' ## Aufgabe 6
-# Musterlösung
-
-# mit readr (parse_datetime nimmt als Zeitzone UTC an,
-# wenn nichts anderes angegeben wird)
-wetter$time <- parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
-
-# mit as.POSIXct()
 wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H",tz = "UTC")
-
 
 
 #' ## Aufgabe 7
