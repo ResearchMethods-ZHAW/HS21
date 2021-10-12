@@ -36,41 +36,37 @@ Das Verwenden von Projects bringt verschiedene Vorteile, wie zum Beispiel:
 
 ## Arbeiten mit Libraries / Packages
 
-R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal installieren.
+R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal die wichtigsten Packages aus `tidyverse` installieren (heute werden wir davon nur einen kleinen Teil benutzen.
 
 ```
-install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("readr")
+install.packages("lubridate")
 ```
 
 Um ein `package` in R verwenden zu können, gibt es zwei Möglichkeiten: 
 
-- entweder man lädt es zu Beginn der R-session mittles `library(tidyverse)` (ohne Anführungs- und Schlusszeichen). 
+- entweder man lädt es zu Beginn der R-session mittles `library(dplyr)` (ohne Anführungs- und Schlusszeichen). 
 - oder man ruft eine `function` mit vorangestelltem Packetname sowie zwei Doppelpunkten auf. `dplyr::filter()` ruft die Funktion `filter()` des Packets `dplyr` auf. 
 
 Letztere Notation ist vor allem dann sinnvoll, wenn sich zwei unterschiedliche Funktionen mit dem gleichen namen in verschiedenen pacakges existieren. `filter()` existiert als Funktion einersits im package `dplyr` sowie in  `stats`. Dieses Phänomen nennt man "masking". 
 
 
-Zu Beginn laden wir die nötigen Pakete:
+Zu Beginn laden wir die nötigen Pakete :
 
 
 ```{r,message = F, echo = TRUE}
-library(tidyverse)
+library(readr)
+library(lubridate)
+
 # Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs- 
 # und Schlusszeichen gesetzt.
-
-
-library(lubridate)
-# Im Unterschied zu install.packages("tidyverse") wird bei library(tidyverse) 
-# das package lubridate nicht berücksichtigt
 ```
 
-Tidyverse liefert viele Funktionen, für die es in der normalen R-Umgebung ("base R") keine wirkliche Alternative gibt. Andere Funktionen sind alternativen zu Base-R Funktionen:
+`dplyr` liefert viele Funktionen, für die es in der normalen R-Umgebung ("base R") keine wirkliche Alternative gibt. Andere Funktionen sind alternativen zu Base-R Funktionen (`read_csv` statt `read.csv`, `read_delim` statt `read.delim`. 
 
-- `data_frame()` statt `data.frame()` 
-- `read_*` statt `read.*`
-- `parse_datetime` statt `as.POSIXct()`
-
-Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas restriktiver. Wir verwenden oft Tidyverse Funktionen, ihr könnt aber selber entscheiden welche Version ihr benutzt.
+Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas konservativer. Wir verwenden oft Tidyverse Funktionen, ihr könnt aber selber entscheiden welche Version ihr benutzt.
 
 ## Aufgabe 1
 
@@ -120,13 +116,10 @@ str(df)
 
 
 ```{r}
-
-
 typeof(df$Anzahl)
 
 df$Anzahl <- as.integer(df$Anzahl)
 df$Beschreibung <- as.character(df$Beschreibung)
-
 ```
 
 
@@ -141,13 +134,11 @@ Nutze die Spalte `Gewicht` um die Tiere in 3 Gewichtskategorien einzuteilen:
 
 
 ```{r}
-
 # Musterlösung
 
 df$Gewichtsklasse[df$Gewicht > 100] <- "schwer"
 df$Gewichtsklasse[df$Gewicht <= 100 & df$Gewicht > 5] <- "mittel"
 df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
-
 ```
 
 
@@ -160,16 +151,15 @@ knitr::kable(df)
 
 ## Aufgabe 4
 
-Importiere den Datensatz [weather.csv](weather.csv) (Rechtsklick -> Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz. Wir empfehlen [`read_csv()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.csv()`.
+Importiere den Datensatz [weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) (Rechtsklick -> Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz. Wir empfehlen [`read_csv()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.csv()`. 
+
+Achtung! `read_csv` erwartet leicht andere inputs als `read.csv`, schaut euch die Hilfe dazu an (`?read_csv`).
 
 ```{r, message = F}
 # Musterlösung
 
-wetter <- readr::read_csv("weather.csv")
+wetter <- readr::read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv")
 ```
-
-
-
 
 ```{r, purl=F}
 knitr::kable(head(wetter,10))
@@ -191,26 +181,15 @@ Schau dir die Rückmeldung von `read_csv()`an. Sind die Daten korrekt interpreti
 
 ## Aufgabe 6
 
-Die Spalte `time` ist eine Datum/Zeitangabe im Format JJJJMMTTHH (siehe [meta.txt](meta.txt)). Damit R dies als Datum-/Zeitangabe erkennt, müssen wir die Spalte in einem R-Format (`POSIXct`) einlesen und dabei R mitteilen, wie sie aktuell formatiert ist. Lies die Spalte mit `as.POSIXct()` (oder `parse_datetime`) ein und spezifiziere sowohl `format` wie auch `tz`. 
+Die Spalte `time` ist eine Datum/Zeitangabe im Format JJJJMMTTHH (siehe [meta.txt](meta.txt)). Damit R dies als Datum-/Zeitangabe erkennt, müssen wir die Spalte in einem R-Format (`POSIXct`) einlesen und dabei R mitteilen, wie sie aktuell formatiert ist. Lies die Spalte mit `as.POSIXct()` ein und spezifiziere sowohl `format` wie auch `tz`. 
 
 Tipps: 
 
-- Wenn keine Zeitzone festgelegt wird, trifft `as.POSIXct()` eine Annahme (basierend auf `Sys.timezone()`). In unserem Fall handelt es sich aber um Werte in UTC (siehe [meta.txt](meta.txt))
+- Wenn keine Zeitzone festgelegt wird, trifft `as.POSIXct()` eine Annahme (basierend auf `Sys.timezone()`). In unserem Fall handelt es sich aber um Werte in UTC (siehe [metadata.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv))
 - `as.POSIXct`erwartet `character`: Wenn du eine Fehlermeldung hast die `'origin' must be supplied` (o.ä) heisst, hast du der Funktion vermutlich einen `Numeric` übergeben.
 
-```{r, eval = FALSE}
-# Musterlösung
-
-# mit readr (parse_datetime nimmt als Zeitzone UTC an,
-# wenn nichts anderes angegeben wird)
-wetter$time <- parse_datetime(as.character(wetter$time), format = "%Y%m%d%H")
-```
-
-
 ```{r}
-# mit as.POSIXct()
 wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H",tz = "UTC")
-
 ```
 
 
@@ -228,12 +207,10 @@ Erstelle zwei neue Spalten mit Wochentag (Montag, Dienstag, etc) und Kalenderwoc
 
 
 ```{r}
-
 # Musterlösung
 
 wetter$wochentag <- wday(wetter$time,label = T)
 wetter$kw <- week(wetter$time)
-
 ```
 
 
@@ -242,16 +219,12 @@ knitr::kable(head(wetter,10))
 ```
 
 
-
-
-
 ## Aufgabe 8
 
 
 Erstelle eine neue Spalte basierend auf die Temperaturwerte mit der Einteilung "kalt" (Unter Null Grad) und "warm" (über Null Grad)
 
 ```{r}
-
 # Musterlösung
 
 wetter$temp_kat[wetter$tre200h0>0] <- "warm"
