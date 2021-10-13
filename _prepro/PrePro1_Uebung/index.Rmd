@@ -231,5 +231,9 @@ ggsave("preview.png", p)
 ```
 
 
+## Musterlösung
 
+<div class="solution">
+[Musterlösung](solution.R)
+</div>
 
