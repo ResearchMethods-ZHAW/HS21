@@ -33,12 +33,8 @@ Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokus
 ### Packete laden
 
 ```{r,message=F}
-library(tidyverse)
-```
-
-Mit `library(tidyverse)` werden nicht alle Packete geladen, die mit `install.packages(tidyverse)` intalliert wurden ([warum?](https://community.rstudio.com/t/which-packages-get-loaded/298)). Unter anderem muss `lubridate` noch separat geladen werden:
-
-```{r, message=F}
+library(dplyr)
+library(tidyr)
 library(lubridate) 
 ```
 

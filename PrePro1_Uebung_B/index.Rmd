@@ -15,7 +15,9 @@ author:
 
 
 ```{r, message = F}
-library(tidyverse)
+library(dplyr)
+library(readr)
+library(ggplot2)
 ```
 
 

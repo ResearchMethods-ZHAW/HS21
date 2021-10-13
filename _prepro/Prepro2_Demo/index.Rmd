@@ -134,7 +134,13 @@ left_join(studierende, ortschaften, by = "PLZ")
 right_join(studierende, ortschaften, by = "PLZ")
 
 full_join(studierende, ortschaften, by = "PLZ")
+```
+
+## Long Tables
+
+```{r}
 
 ```
+
 
 

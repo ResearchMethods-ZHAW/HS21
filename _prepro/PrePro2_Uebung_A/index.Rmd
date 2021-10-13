@@ -17,7 +17,8 @@ knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
 
 
 ```{r,message=F}
-library(tidyverse)
+library(dplyr)
+library(readr)
 library(lubridate)
 library(stringr)
 ```
@@ -25,11 +26,11 @@ library(stringr)
 
 ## Aufgabe 1
 
-Lade die Wetterdaten runter ([weather.csv](weather.csv)) und importiere sie in `R`.
+Lade die Wetterdaten runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv)) und importiere sie in `R`.
 
 ```{r loesung-1}
 
-wetter <- read_csv("weather.csv",
+wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -41,14 +42,14 @@ wetter <- read_csv("weather.csv",
 
 ## Aufgabe 2
 
-Importiere die Datei [metadata.csv](metadata.csv) (z.B. mit `read_delim`).
+Importiere die Datei [metadata.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv) (z.B. mit `read_delim`).
 
 Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. in Gen*è*ve), hat das vermutlich mit der [Zeichencodierung](https://de.wikipedia.org/wiki/Zeichenkodierung) zu tun. Das File ist aktuell in 'ANSI' Codiert, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows 'Editor' oder 'Notepad++', Mac: 'TextEdit') und mit einer neuen Codierung (z.B 'UTF-8') abspeichern. Danach kann die Codierung spezifitiert werden (bei `read_delim(): mit `locale = locale(encoding = "UTF-8")`)
 
 ```{r loesung-2}
 
 
-wetter_legende <- read_delim("metadata.csv",
+wetter_legende <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv",
                              delim = ";", 
                              locale = locale(encoding = "UTF-8"))
 
@@ -89,7 +90,7 @@ wetter_legende <- wetter_legende[,c("stn", "Name", "x","y","Meereshoehe")]
 
 Nun ist der Datensatz `wetter_legende` genügend vorbereitet. Jetzt kann er mit dem Datensatz `wetter` verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir "joinen" können.
 
-Nutze die Join-Möglichkeiten von `dplyr` (Hilfe via `?dplyr::join`)  um die Datensätze `wetter` und `wetter_legende`zu verbinden.
+Nutze die Join-Möglichkeiten von `dplyr` (Hilfe via `?dplyr::join`)  um die Datensätze `wetter` und `wetter_legende` zu verbinden.
 
 ```{r loesung-5}
 
