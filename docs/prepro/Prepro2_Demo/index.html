@@ -103,13 +103,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:title" content="Modul Research Methods: Demo"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/"/>
+<meta property="og:image" content="https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/pipe.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Modul Research Methods"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="Modul Research Methods: Demo"/>
 <meta property="twitter:url" content="https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/"/>
+<meta property="twitter:image" content="https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/pipe.jpg"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Modul Research Methods: Demo"/>
@@ -123,7 +125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","preview","categories","draft","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Demo"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["types.jpg"]},{"type":"character","attributes":{},"value":["PrePro2"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["10-13-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","preview","categories","draft","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Demo"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["pipe.jpg"]},{"type":"character","attributes":{},"value":["PrePro2"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["10-13-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2278,8 +2280,7 @@ Fallstudien
 </div>
 <p><a href="Demo.R">R-Code als Download</a></p>
 <h2 id="piping">Piping</h2>
-<p>Gegeben ist ein character string (<code>diary</code>) sowie die Hilfsfunktion <code>subtrahieren</code></p>
-<p>Wir wollen aus diesem Text die Temperaturangabe aus dem String extrahieren und danach den Wert von Kelvin in Celsius nach der folgenden Formel umwandeln und zum schluss den Mittelwert über all diese Werte berechnen.</p>
+<p>Gegeben ist ein character string (<code>diary</code>). Wir wollen aus diesem Text die Temperaturangabe aus dem String extrahieren und danach den Wert von Kelvin in Celsius nach der folgenden Formel umwandeln und zum Schluss den Mittelwert über all diese Werte berechnen.</p>
 <p><span class="math display">\[°C = K - 273.15\]</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2295,6 +2296,7 @@ Fallstudien
 <pre><code>[1] &quot;The temperature is 310° Kelvin&quot; &quot;The temperature is 322° Kelvin&quot;
 [3] &quot;The temperature is 410° Kelvin&quot;</code></pre>
 </div>
+<p>Dafür haben wir eine Hilfsfunktion <code>subtrahieren</code>, welche zwei Werte annimmt, den <code>minuend</code> und den <code>subtrahend</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">subtrahieren</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">minuend</span>, <span class="va">subtrahend</span><span class="op">)</span><span class="op">{</span>
@@ -2302,6 +2304,25 @@ Fallstudien
 <span class="op">}</span>
 </code></pre>
 </div>
+</div>
+<p>Zudem brauchen wir die Funktion <code>substr()</code>, welche aus einem <code>character</code> einen teil “raus schnipseln” kann.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Wenn die Buchstaben einzelne _Elemente_ eines Vektors wären, würden wir diese</span>
+<span class="co"># folgendermassen subsetten:</span>
+
+<span class="va">charvec1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;h&quot;</span><span class="op">)</span>
+<span class="va">charvec1</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;d&quot; &quot;e&quot; &quot;f&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Aber wenn diese in einem einzigen character gespeichert sind, brauchen wir substr:</span>
+<span class="va">charvec2</span> <span class="op">&lt;-</span> <span class="st">&quot;abcdefgh&quot;</span>
+<span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">charvec2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;def&quot;</code></pre>
 </div>
 <p>Übersetzt in <code>R</code>-Code entsteht folgende Operation:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2428,7 +2449,7 @@ Fallstudien
 4          NA    &lt;NA&gt; 8001    Zürich
 5          NA    &lt;NA&gt; 8810    Horgen</code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

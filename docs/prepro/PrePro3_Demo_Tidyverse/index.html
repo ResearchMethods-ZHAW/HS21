@@ -85,6 +85,27 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
 <title>Modul Research Methods: Demo tidyverse</title>
@@ -126,10 +147,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="citation_author" content="Nils Ratnaweera"/>
 <meta name="citation_author" content="Nikolaos Bakogiannis"/>
 <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=R for data science;citation_publication_date=2017;citation_publisher=O’Reilly;citation_author=Hadley Wickham;citation_author=Garrett Grolemund" />
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","author","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Demo tidyverse"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["PrePro3"]},{"type":"logical","attributes":{},"value":[false]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["10-13-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/PrePro3_Demo_Tidyverse/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/PrePro3_Demo_Tidyverse/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","author","bibliography","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Demo tidyverse"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["PrePro3"]},{"type":"logical","attributes":{},"value":[false]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["10-13-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/PrePro3_Demo_Tidyverse/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/prepro/PrePro3_Demo_Tidyverse/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2295,8 +2318,8 @@ Fallstudien
 
 </div>
 <p><a href="Demo_Tidyverse.R">Demoscript als Download</a></p>
-<p>Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden. Der Prozess und das Modell ist hier<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> schön beschrieben. Die Sammlung von Tools wird unter dem Namen <a href="https://www.tidyverse.org/">tidyverse</a> vertrieben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem “must have” im Umgang mit Daten in R entwickelt.</p>
-<p>Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> und zeigen ein paar Funktionalitäten, die wir oft verwenden und Euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch <span class="citation" data-cites="wickham2017">@wickham2017</span> beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, das vollständige eBook kann über die Bibliothek bezogen werden<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden. Die Sammlung von Tools wird unter dem Namen <a href="https://www.tidyverse.org/">tidyverse</a> vertrieben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem “must have” im Umgang mit Daten in R entwickelt.</p>
+<p>Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> und zeigen ein paar Funktionalitäten, die wir oft verwenden und Euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch <span class="citation" data-cites="wickham2017"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span> beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, das vollständige eBook kann über die Bibliothek bezogen werden<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <h2 id="split-apply-combine">Split-Apply-Combine</h2>
 <h3 id="packete-laden">Packete laden</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2312,8 +2335,11 @@ Fallstudien
 <h3 id="daten-laden">Daten Laden</h3>
 <p>Wir laden die Wetterdaten von der letzten Übung.</p>
 <div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">wetter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">&quot;https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv&quot;</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">wetter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">&quot;weather.csv&quot;</span>,
                   col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
                     <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,    
                     <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">col_datetime</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">&quot;%Y%m%d%H&quot;</span><span class="op">)</span>,
@@ -2334,17 +2360,17 @@ Fallstudien
 </div>
 <p>Die Option <code>na.rm = T</code> bedeutet, dass NA Werte von der Berechnung ausgeschlossen werden sollen.</p>
 <p>Mit der selben Herangehensweise können diverse Werte berechnet werden (z.B. das Maximum (<code>max()</code>), Minimum (<code>min()</code>), Median (<code>median()</code>) u.v.m.).</p>
-<p>Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über <em>alle</em> Beobachtungen (Zeilen) für eine Variable (Spalte) berechnen wollen. Sobald wir die Beobachtungen gruppieren wollen, wird es schwierig. Zum Beispiel, wenn wir die durchschnittliche Temperatur <em>pro Monat</em> berechnen wollen.</p>
+<p>Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über <em>alle</em> Beobachtungen für eine Variable (Spalte) berechnen wollen. Sobald wir die Beobachtungen gruppieren wollen, wird es schwierig. Zum Beispiel, wenn wir die durchschnittliche Temperatur <em>pro Monat</em> berechnen wollen.</p>
 <h3 id="convenience-variablen">Convenience Variablen</h3>
-<p>Um diese Aufgabe zu lösen, muss zuerst den Monat extrahiert werden (der Monat ist die <em>convenience variabel</em>). Hierfür brauchen wir die Funktion <code>month()</code> (von <code>lubridate</code>).</p>
-<p>Nun kann kann die <strong>convenience Variable</strong> “Month” erstellt werden. Ohne <code>dpylr</code> wird eine neue Spalte wird folgendermassen hinzugefügt.</p>
+<p>Um diese Aufgabe zu lösen, muss zuerst den Monat extrahiert werden (der Monat ist die <em>convenience variabel</em>). Hierfür brauchen wir die Funktion <code>lubridate::month()</code>.</p>
+<p>Nun kann kann die <strong>convenience Variable</strong> “Month” erstellt werden. Ohne <code>dpylr</code> wird eine neue Spalte folgendermassen hinzugefügt.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">wetter</span><span class="op">$</span><span class="va">month</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">wetter</span><span class="op">$</span><span class="va">time</span><span class="op">)</span>
 </code></pre>
 </div>
 </div>
-<p>Mit <code>dplyr</code> (siehe <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>) sieht der gleiche Befehl folgendermassen aus:</p>
+<p>Mit <code>dplyr</code> (siehe)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> sieht der gleiche Befehl folgendermassen aus:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">wetter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">wetter</span>,month <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html">month</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span>
@@ -2353,7 +2379,7 @@ Fallstudien
 </div>
 <p>Der grosse Vorteil von <code>dplyr</code> ist an dieser Stelle noch nicht ersichtlich. Dieser wird aber später klar.</p>
 <h3 id="kennwerte-nach-gruppen-berechnen">Kennwerte nach Gruppen berechnen</h3>
-<p>Jetzt kann man die <code>data.frame</code> mithilfe der Spalte <code>month</code> filtern.</p>
+<p>Um mit base R den Mittelwert pro Monat zu berechnen, kann man zuerst ein Subset mit <code>[]</code> erstellen und davon den Mittelwerb berechnen, z.B. folgendermassen:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wetter</span><span class="op">$</span><span class="va">tre200h0</span><span class="op">[</span><span class="va">wetter</span><span class="op">$</span><span class="va">month</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -2390,21 +2416,28 @@ Fallstudien
 <li>Bilde Gruppen pro Jahr (<code>group_by(wetter,year)</code>)</li>
 <li>Berechne das Temperaturmittel (<code>mean(tre200h0)</code>)</li>
 </ol>
-Diese Übersetzung <code>R</code>-&gt; Deutsch unterscheidet sich vor allem darin, dass die Operation auf Deutsch <em>verkettet</em> ausgesprochen wird (Operation 1-&gt;2-&gt;3) während der Computer <em>verschachtelt</em> liest 3(2(1)). Um <code>R</code> näher an die gesprochene Sprache zu bringen, kann man den <code>%&gt;%</code>-Operator verwenden (siehe <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>).
+<p>Diese Übersetzung <code>R</code>-&gt; Deutsch unterscheidet sich vor allem darin, dass die Operation auf Deutsch <em>verkettet</em> ausgesprochen wird (Operation 1-&gt;2-&gt;3) während der Computer <em>verschachtelt</em> liest 3(2(1)). Um <code>R</code> näher an die gesprochene Sprache zu bringen, kann man den <code>%&gt;%</code>-Operator verwenden (siehe).<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wetter</span>,<span class="va">month</span><span class="op">)</span>,temp_mittel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tre200h0</span><span class="op">)</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1 nimm den Datensatz &quot;wetter&quot;</span>
+<span class="co"># 2 Bilde Gruppen pro Monat</span>
+<span class="co"># 3 berechne das Temperaturmittel </span>
+
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">wetter</span>,<span class="va">month</span><span class="op">)</span>,temp_mittel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tre200h0</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#                  \_1_/</span>
+<span class="co">#         \__________2_________/</span>
+<span class="co">#\___________________3_______________________________________/</span>
 
 <span class="co"># wird zu:</span>
 
-<span class="va">wetter</span> <span class="op">%&gt;%</span>                                 <span class="co">#1) nimm den Datensatz &quot;wetter&quot;</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>                      <span class="co">#2) Bilde Gruppen pro Jahr</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>temp_mittel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tre200h0</span><span class="op">)</span><span class="op">)</span>  <span class="co">#3) berechne das Temperaturmittel </span>
+<span class="va">wetter</span> <span class="op">%&gt;%</span>                                 <span class="co"># 1</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span> <span class="op">%&gt;%</span>                      <span class="co"># 2</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>temp_mittel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tre200h0</span><span class="op">)</span><span class="op">)</span>  <span class="co"># 3</span>
 </code></pre>
 </div>
 </div>
-<p>Dieses Verketten mittels <code>%&gt;%</code> macht den Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Dabei handelt es sich um das package <code>magrittr</code>, welches mit <code>tidyverse</code> mitgeliefert wird.</p>
-<p>Zu <code>dplyr</code> und <code>magrittr</code>gibt es etliche Tutorials online (siehe<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>), deshalb werden wir diese Tools nicht in allen Details erläutern. Nur noch folgenden wichtigen Unterschied zu zwei wichtigen Funktionen in <code>dpylr</code>: <code>mutate()</code> und <code>summarise()</code>.</p>
+<p>Dieses Verketten mittels <code>%&gt;%</code> (genannt “pipe”) macht den Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Die “pipe” wird mit dem package <code>magrittr</code> bereitgestellt und mit <code>dplyr</code> mitinstalliert.</p>
+<p>Zu <code>dplyr</code> gibt es etliche Tutorials online (siehe<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>), deshalb werden wir diese Tools nicht in allen Details erläutern. Nur noch folgenden wichtigen Unterschied zu zwei wichtigen Funktionen in <code>dpylr</code>: <code>mutate()</code> und <code>summarise()</code>.</p>
 <ul>
 <li><code>summarise()</code> fasst einen Datensatz zusammen. Dabei reduziert sich die Anzahl Beobachtungen (Zeilen) auf die Anzahl Gruppen (z.B. eine zusammengefasste Beobachtung (Zeile) pro Jahr). Zudem reduziert sich die Anzahl Variablen (Spalten) auf diejenigen, die in der “summarise” Funktion spezifiziert wurde (z.B. <code>temp_mittel</code>).</li>
 <li>mit <code>mutate</code> wird ein <code>data.frame</code> vom Umfang her belassen, es werden lediglich <em>zusätzliche</em> Variablen (Spalten) hinzugefügt (siehe Beispiel unten).</li>
@@ -2441,7 +2474,7 @@ Diese Übersetzung <code>R</code>-&gt; Deutsch unterscheidet sich vor allem dari
 </div>
 <h2 id="reshaping-data">Reshaping data</h2>
 <h3 id="breit---lang">Breit -&gt; lang</h3>
-<p>Die Umformung von Tabellen <em>breit</em>-&gt;<em>lang</em> erfolgt mittels <code>tidyr</code>(siehe <a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>). Auch dieses package funktioniert wunderbar mit piping (<code>%&gt;%</code>).</p>
+<p>Die Umformung von Tabellen <em>breit</em>-&gt;<em>lang</em> erfolgt mittels <code>tidyr</code>(siehe).<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Auch dieses package funktioniert wunderbar mit piping (<code>%&gt;%</code>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">weather_summary</span> <span class="op">%&gt;%</span>
@@ -2493,7 +2526,7 @@ Diese Übersetzung <code>R</code>-&gt; Deutsch unterscheidet sich vor allem dari
 </code></pre>
 </div>
 </div>
-Die ersten 6 Zeilen von <code>weather_summary_long</code>:
+<p>Die ersten 6 Zeilen von <code>weather_summary_long</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
@@ -2537,7 +2570,7 @@ Die ersten 6 Zeilen von <code>weather_summary_long</code>:
 </tbody>
 </table>
 </div>
-Die ersten 6 Zeilen von <code>wetter_sry</code>:
+<p>Die ersten 6 Zeilen von <code>wetter_sry</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
@@ -2594,6 +2627,7 @@ Die ersten 6 Zeilen von <code>wetter_sry</code>:
 </div>
 <pre><code>[1] 62</code></pre>
 </div>
+<p>Lange Tabellen sind in verschiedenen Situationen praktischer. Beispielsweise ist das Visualisieren mittels <code>ggplot2</code> (dieses Package werdet ihr im Block “InfoVis” kennenlernen) mit <em>long tables</em> wesentlich einfacher.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">weather_summary_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">day</span>,<span class="va">Messwert</span>, colour <span class="op">=</span> <span class="va">Messtyp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -2626,17 +2660,21 @@ Die ersten 6 Zeilen von <code>wetter_sry</code>:
 # … with 21 more rows</code></pre>
 </div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-wickham2017" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science</em>. O’Reilly. <a href="https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093">https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093</a>.
+</div>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><a href="http://r4ds.had.co.nz/introduction.html#" class="uri">http://r4ds.had.co.nz/introduction.html#</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p><code>dplyr, ggplot2, tidyr, magrittr, lubridate</code><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p><a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p><a href="https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093" class="uri">https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p><span class="citation" data-cites="wickham2017">@wickham2017</span>, Kapitel 10 / <a href="http://r4ds.had.co.nz/transform.html" class="uri">http://r4ds.had.co.nz/transform.html</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6" role="doc-endnote"><p><span class="citation" data-cites="wickham2017">@wickham2017</span>, Kapitel 14 / <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7" role="doc-endnote"><p><span class="citation" data-cites="wickham2017">@wickham2017</span>, Kapitel 10 / <a href="http://r4ds.had.co.nz/transform.html" class="uri">http://r4ds.had.co.nz/transform.html</a>, oder <a href="https://youtu.be/jWjqLW-u3hc">Hands-on dplyr tutorial..</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8" role="doc-endnote"><p><a href="https://r4ds.had.co.nz/tidy-data.html#pivoting" class="uri">https://r4ds.had.co.nz/tidy-data.html#pivoting</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><code>dplyr, ggplot2, tidyr, magrittr, lubridate</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093" class="uri">https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><span class="citation" data-cites="wickham2017"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, Kapitel 10 / <a href="http://r4ds.had.co.nz/transform.html" class="uri">http://r4ds.had.co.nz/transform.html</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p><span class="citation" data-cites="wickham2017"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, Kapitel 14 / <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p><span class="citation" data-cites="wickham2017"><a href="#ref-wickham2017" role="doc-biblioref">Wickham and Grolemund</a> (<a href="#ref-wickham2017" role="doc-biblioref">2017</a>)</span>, Kapitel 10 / <a href="http://r4ds.had.co.nz/transform.html" class="uri">http://r4ds.had.co.nz/transform.html</a>, oder <a href="https://youtu.be/jWjqLW-u3hc">Hands-on dplyr tutorial..</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p><a href="https://r4ds.had.co.nz/tidy-data.html#pivoting" class="uri">https://r4ds.had.co.nz/tidy-data.html#pivoting</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2650,7 +2688,10 @@ Die ersten 6 Zeilen von <code>wetter_sry</code>:
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+  <h3 id="references">References</h3>
+  <div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <!--radix_placeholder_navigation_after_body--><html><body>

@@ -14,8 +14,8 @@ preview: preview.png
 ---
 
 
-```{r, include=FALSE, purl = F}
-knitr::opts_chunk$set(echo = F, include = T, collapse=TRUE, warning = F)
+```{r, include=FALSE, purl = FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, collapse=TRUE, warning = FALSE)
 
 distill::mypurl("index.Rmd", "solution.R")
 ```
@@ -36,7 +36,7 @@ Das Verwenden von Projects bringt verschiedene Vorteile, wie zum Beispiel:
 
 ## Arbeiten mit Libraries / Packages
 
-R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal die wichtigsten Packages aus `tidyverse` installieren (heute werden wir davon nur einen kleinen Teil benutzen.
+R ist ohne Zusatzpackete nicht mehr denkbar. Die allermeisten Packages werden auf [CRAN](https://cran.r-project.org/) gehostet und können leicht mittels `install.packages()` installiert werden. Eine sehr wichtige Sammlung von Packages wird von RStudio entwickelt. Unter dem Namen [Tidyverse](https://www.tidyverse.org/) werden eine Reihe von Packages angeboten, den R-Alltag enorm erleichtert. Wir werden später näher auf das "Tidy"-Universum eingehen, an dieser Stelle können wir die Sammlung einfach mal die wichtigsten Packages aus `tidyverse` installieren (heute werden wir davon nur einen kleinen Teil benutzen).
 
 ```
 install.packages("dplyr")
@@ -60,13 +60,14 @@ Zu Beginn laden wir die nötigen Pakete :
 library(readr)
 library(lubridate)
 
-# Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs- 
-# und Schlusszeichen gesetzt.
+# Im Unterschied zu install.packages() werden bei library()
+# keine Anführungs- und Schlusszeichen gesetzt.
 ```
 
 `dplyr` liefert viele Funktionen, für die es in der normalen R-Umgebung ("base R") keine wirkliche Alternative gibt. Andere Funktionen sind alternativen zu Base-R Funktionen (`read_csv` statt `read.csv`, `read_delim` statt `read.delim`. 
 
 Diese verhalten sich leicht anders als Base-R Funktionen: Sie treffen weniger Annahmen und sind etwas konservativer. Wir verwenden oft Tidyverse Funktionen, ihr könnt aber selber entscheiden welche Version ihr benutzt.
+
 
 ## Aufgabe 1
 
@@ -92,7 +93,7 @@ df <- data.frame(
 ```
 
 
-```{r, echo = F, purl=F}
+```{r, echo = FALSE, purl=FALSE}
 knitr::kable(df)
 ```
 
@@ -102,24 +103,14 @@ knitr::kable(df)
 
 Was für Datentypen wurden (in Aufgabe 1) von R automatisch angenommen? Sind diese sinnvoll? 
 
-Tipp: Nutze dazu `str()`
-
 ```{r}
 # Musterlösung
 
 str(df)
-
-# Anzahl wurde als `double` interpretiert, ist aber eigentlich ein `integer`. 
-# Mit data.frame() wurde Beschreibung wurde als `factor` interpretiert, ist 
-# aber eigentlich `character`
-```
-
-
-```{r}
 typeof(df$Anzahl)
+# Anzahl wurde als `double` interpretiert, ist aber eigentlich ein `integer`. 
 
 df$Anzahl <- as.integer(df$Anzahl)
-df$Beschreibung <- as.character(df$Beschreibung)
 ```
 
 
@@ -140,13 +131,6 @@ df$Gewichtsklasse[df$Gewicht > 100] <- "schwer"
 df$Gewichtsklasse[df$Gewicht <= 100 & df$Gewicht > 5] <- "mittel"
 df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
 ```
-
-
-```{r, purl=F}
-knitr::kable(df)
-```
-
-
 
 
 ## Aufgabe 4
@@ -222,7 +206,7 @@ knitr::kable(head(wetter,10))
 ## Aufgabe 8
 
 
-Erstelle eine neue Spalte basierend auf die Temperaturwerte mit der Einteilung "kalt" (Unter Null Grad) und "warm" (über Null Grad)
+Erstelle eine neue Spalte basierend auf die Temperaturwerte mit der Einteilung "kalt" (unter Null Grad) und "warm" (über Null Grad)
 
 ```{r}
 # Musterlösung
@@ -237,6 +221,7 @@ knitr::kable(head(wetter,10))
 ```
 
 ```{r, purl = FALSE, include = FALSE}
+library(ggplot2)
 
 p <- ggplot(wetter, aes(time, tre200h0)) +
   geom_smooth() +
@@ -244,5 +229,7 @@ p <- ggplot(wetter, aes(time, tre200h0)) +
 
 ggsave("preview.png", p)
 ```
+
+
 
 
