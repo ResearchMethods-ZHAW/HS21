@@ -21,6 +21,8 @@ navbar:
         href: PrePro.html#category:PrePro1
       - text: "PrePro2"
         href: PrePro.html#category:PrePro2
+      - text: "PrePro3"
+        href: PrePro.html#category:PrePro3
     - text: "InforVis"
       menu:
       - text: "Abstract"

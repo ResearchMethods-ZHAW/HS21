@@ -21,7 +21,7 @@ distill::mypurl("index.Rmd", "Demo.R")
 ```
 
 
-[R-Code als Download](Demo_Datentypen.R)
+[R-Code als Download](Demo.R)
 
 ## Piping 
 
