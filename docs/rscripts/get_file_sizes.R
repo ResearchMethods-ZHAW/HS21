@@ -1,10 +1,12 @@
+library(tidyverse)
+
 dirs <- list.dirs(full.names = FALSE, recursive = FALSE)
 
 dirs <- dirs[startsWith(dirs, "_")]
 
-filez <- map_dfr(dirs, function(x){
+filez <- purrr::map_dfr(dirs, function(x){
   fi <- list.files(x, full.names = TRUE,recursive = TRUE)
-  tibble(file = fi, topic = x)
+  tibble::tibble(file = fi, topic = x)
   })
 
 filez <- filez%>%

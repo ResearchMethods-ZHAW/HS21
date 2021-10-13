@@ -70,4 +70,3 @@ right_join(studierende, ortschaften, by = "PLZ")
 
 full_join(studierende, ortschaften, by = "PLZ")
 
-
