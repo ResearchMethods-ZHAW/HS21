@@ -5,7 +5,9 @@ library(readr)
 library(ggplot2)
 
 
-wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv",
+
+
+wetter <- read_csv("weather.csv",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -25,14 +27,20 @@ mean(wetter$tre200h0[wetter$month == 1], na.rm = TRUE)
 
 summarise(group_by(wetter,month),temp_mittel = mean(tre200h0, na.rm = TRUE))
 
+# 1 nimm den Datensatz "wetter"
+# 2 Bilde Gruppen pro Monat
+# 3 berechne das Temperaturmittel 
 
 summarise(group_by(wetter,month),temp_mittel = mean(tre200h0))
+#                  \_1_/
+#         \__________2_________/
+#\___________________3_______________________________________/
 
 # wird zu:
 
-wetter %>%                                 #1) nimm den Datensatz "wetter"
-  group_by(month) %>%                      #2) Bilde Gruppen pro Jahr
-  summarise(temp_mittel = mean(tre200h0))  #3) berechne das Temperaturmittel 
+wetter %>%                                 # 1
+  group_by(month) %>%                      # 2
+  summarise(temp_mittel = mean(tre200h0))  # 3
 
 
 # Maximal und minimal Temperatur pro Kalenderwoche

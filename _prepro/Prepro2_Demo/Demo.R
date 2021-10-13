@@ -12,6 +12,17 @@ subtrahieren <- function(minuend, subtrahend){
   minuend - subtrahend
 }
 
+# Wenn die Buchstaben einzelne _Elemente_ eines Vektors wären, würden wir diese
+# folgendermassen subsetten:
+
+charvec1 <- c("a", "b", "c", "d", "e", "f", "g", "h")
+charvec1[4:6]
+
+# Aber wenn diese in einem einzigen character gespeichert sind, brauchen wir substr:
+charvec2 <- "abcdefgh"
+substr(charvec2, 4, 6)
+
+
 # 1. Nimm diary
 # 2. Extrahiere auf jeder Zeile die Werte 20 bis 22
 # 3. Konvertiere "character" zu "numeric"

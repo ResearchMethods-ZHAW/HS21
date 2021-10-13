@@ -8,7 +8,7 @@ author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
-preview: types.jpg
+preview: pipe.jpg
 categories:
 - PrePro2
 draft: false
@@ -20,14 +20,11 @@ draft: false
 distill::mypurl("index.Rmd", "Demo.R")
 ```
 
-
 [R-Code als Download](Demo.R)
 
 ## Piping 
 
-Gegeben ist ein character string (`diary`) sowie die Hilfsfunktion `subtrahieren`
-
-Wir wollen aus diesem Text die Temperaturangabe aus dem String extrahieren und danach den Wert von Kelvin in Celsius nach der folgenden Formel umwandeln und zum schluss den Mittelwert über all diese Werte berechnen. 
+Gegeben ist ein character string (`diary`). Wir wollen aus diesem Text die Temperaturangabe aus dem String extrahieren und danach den Wert von Kelvin in Celsius nach der folgenden Formel umwandeln und zum Schluss den Mittelwert über all diese Werte berechnen. 
 
 $$°C = K - 273.15$$
 
@@ -42,15 +39,28 @@ diary
 ```
 
 
+Dafür haben wir eine Hilfsfunktion `subtrahieren`, welche zwei Werte annimmt, den `minuend` und den `subtrahend`:
+
 ```{r}
 subtrahieren <- function(minuend, subtrahend){
   minuend - subtrahend
 }
 ```
 
+Zudem brauchen wir die Funktion `substr()`, welche aus einem `character` einen teil "raus schnipseln" kann.
 
+```{r}
+# Wenn die Buchstaben einzelne _Elemente_ eines Vektors wären, würden wir diese
+# folgendermassen subsetten:
 
+charvec1 <- c("a", "b", "c", "d", "e", "f", "g", "h")
+charvec1[4:6]
 
+# Aber wenn diese in einem einzigen character gespeichert sind, brauchen wir substr:
+charvec2 <- "abcdefgh"
+substr(charvec2, 4, 6)
+
+```
 
 
 Übersetzt in `R`-Code entsteht folgende Operation:

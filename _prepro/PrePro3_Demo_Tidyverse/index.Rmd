@@ -10,6 +10,7 @@ author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
+bibliography: bibliography.bib
 ---
 
 
@@ -20,7 +21,7 @@ knitr::purl("index.Rmd", "Demo_Tidyverse.R", documentation = 0)
 [Demoscript als Download](Demo_Tidyverse.R)
 
 
-Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden. Der Prozess und das Modell ist hier^[http://r4ds.had.co.nz/introduction.html#] schön beschrieben.
+Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden.
 Die Sammlung von Tools wird unter dem Namen [tidyverse](https://www.tidyverse.org/) vertrieben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem "must have" im Umgang mit Daten in R entwickelt. 
 
 Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten^[`dplyr, ggplot2, tidyr, magrittr, lubridate`] und zeigen ein paar Funktionalitäten, die wir oft verwenden und Euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch @wickham2017 beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online^[http://r4ds.had.co.nz/], das vollständige eBook kann über die Bibliothek bezogen werden^[https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093].
@@ -45,9 +46,15 @@ library(ggplot2)
 
 Wir laden die Wetterdaten von der letzten Übung.
 
+```{r, echo = FALSE, purl = FALSE}
+
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
+```
+
+
 ```{r}
 
-wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv",
+wetter <- read_csv("weather.csv",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -71,14 +78,14 @@ Die Option `na.rm = T` bedeutet, dass NA Werte von der Berechnung ausgeschlossen
 
 Mit der selben Herangehensweise können diverse Werte berechnet werden (z.B. das Maximum (`max()`), Minimum (`min()`), Median (`median()`) u.v.m.). 
 
-Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *alle* Beobachtungen (Zeilen) für eine Variable (Spalte) berechnen wollen. Sobald wir die Beobachtungen gruppieren wollen, wird es schwierig. Zum Beispiel, wenn wir die durchschnittliche Temperatur *pro Monat* berechnen wollen.
+Diese Herangehensweise funktioniert nur dann gut, wenn wir die Kennwerte über *alle* Beobachtungen für eine Variable (Spalte) berechnen wollen. Sobald wir die Beobachtungen gruppieren wollen, wird es schwierig. Zum Beispiel, wenn wir die durchschnittliche Temperatur *pro Monat* berechnen wollen.
 
 
 ### Convenience Variablen
 
-Um diese Aufgabe zu lösen, muss zuerst den Monat extrahiert werden (der Monat ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `month()` (von `lubridate`). 
+Um diese Aufgabe zu lösen, muss zuerst den Monat extrahiert werden (der Monat ist die *convenience variabel*).   Hierfür brauchen wir die Funktion `lubridate::month()`.
 
-Nun kann kann die **convenience Variable** "Month" erstellt werden. Ohne `dpylr` wird eine neue Spalte wird folgendermassen hinzugefügt. 
+Nun kann kann die **convenience Variable** "Month" erstellt werden. Ohne `dpylr` wird eine neue Spalte folgendermassen hinzugefügt. 
 
 ```{r}
 wetter$month <- month(wetter$time)
@@ -96,7 +103,7 @@ Der grosse Vorteil von `dplyr` ist an dieser Stelle noch nicht ersichtlich. Dies
 
 ### Kennwerte nach Gruppen berechnen
 
-Jetzt kann man die `data.frame` mithilfe der Spalte `month` filtern. 
+Um mit base R den Mittelwert pro Monat zu berechnen, kann man zuerst ein Subset mit `[]` erstellen und davon den Mittelwerb berechnen, z.B. folgendermassen:
 
 ```{r}
 mean(wetter$tre200h0[wetter$month == 1], na.rm = TRUE)
@@ -119,22 +126,29 @@ Auf Deutsch übersetzt heisst die obige Operation folgendermassen:
 3) Berechne das Temperaturmittel (`mean(tre200h0)`)
 
 Diese Übersetzung `R`-> Deutsch unterscheidet sich vor allem darin, dass die Operation auf Deutsch *verkettet* ausgesprochen wird (Operation 1->2->3) während der Computer *verschachtelt* liest 3(2(1)). Um `R` näher an die gesprochene Sprache zu bringen, kann man den `%>%`-Operator verwenden  (siehe ^[@wickham2017, Kapitel 14 / http://r4ds.had.co.nz/pipes.html]). 
+
 ```{r, eval = F}
+# 1 nimm den Datensatz "wetter"
+# 2 Bilde Gruppen pro Monat
+# 3 berechne das Temperaturmittel 
 
 summarise(group_by(wetter,month),temp_mittel = mean(tre200h0))
+#                  \_1_/
+#         \__________2_________/
+#\___________________3_______________________________________/
 
 # wird zu:
 
-wetter %>%                                 #1) nimm den Datensatz "wetter"
-  group_by(month) %>%                      #2) Bilde Gruppen pro Jahr
-  summarise(temp_mittel = mean(tre200h0))  #3) berechne das Temperaturmittel 
+wetter %>%                                 # 1
+  group_by(month) %>%                      # 2
+  summarise(temp_mittel = mean(tre200h0))  # 3
 
 ```
 
 
-Dieses Verketten mittels `%>%` macht den Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Dabei handelt es sich um das package `magrittr`, welches mit `tidyverse` mitgeliefert wird. 
+Dieses Verketten mittels `%>%` (genannt "pipe") macht den Code einiges schreib- und leserfreundlicher, und wir werden ihn in den nachfolgenden Übungen verwenden. Die "pipe" wird mit dem package `magrittr` bereitgestellt und mit `dplyr` mitinstalliert.
 
-Zu `dplyr` und `magrittr`gibt es etliche Tutorials online (siehe^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html, oder [Hands-on dplyr tutorial..](https://youtu.be/jWjqLW-u3hc)]), deshalb werden wir diese Tools nicht in allen Details erläutern. Nur noch folgenden wichtigen Unterschied zu zwei wichtigen Funktionen in `dpylr`: `mutate()` und `summarise()`.
+Zu `dplyr` gibt es etliche Tutorials online (siehe^[@wickham2017, Kapitel 10 / http://r4ds.had.co.nz/transform.html, oder [Hands-on dplyr tutorial..](https://youtu.be/jWjqLW-u3hc)]), deshalb werden wir diese Tools nicht in allen Details erläutern. Nur noch folgenden wichtigen Unterschied zu zwei wichtigen Funktionen in `dpylr`: `mutate()` und `summarise()`.
 
 - `summarise()` fasst einen Datensatz zusammen. Dabei reduziert sich die Anzahl Beobachtungen (Zeilen) auf die Anzahl Gruppen (z.B. eine zusammengefasste Beobachtung (Zeile) pro Jahr). Zudem reduziert sich die Anzahl Variablen (Spalten) auf diejenigen, die in der "summarise" Funktion spezifiziert wurde (z.B. `temp_mittel`).
 - mit `mutate` wird ein `data.frame` vom Umfang her belassen, es werden lediglich *zusätzliche* Variablen (Spalten) hinzugefügt (siehe Beispiel unten).
@@ -181,12 +195,14 @@ weather_summary_long <- weather_summary %>%
 ```
 
 Die ersten 6 Zeilen von `weather_summary_long`:
+
 ```{r, echo = F, purl=F}
 knitr::kable(head(weather_summary_long))
 ```
 
 
 Die ersten 6 Zeilen von `wetter_sry`:
+
 ```{r, echo = F, purl = F}
 knitr::kable(head(weather_summary,6))
 ```
@@ -199,6 +215,7 @@ nrow(weather_summary)
 nrow(weather_summary_long)
 ```
 
+Lange Tabellen sind in verschiedenen Situationen praktischer. Beispielsweise ist das Visualisieren mittels `ggplot2` (dieses Package werdet ihr im Block "InfoVis" kennenlernen) mit *long tables* wesentlich einfacher.
 
 ```{r}
 ggplot(weather_summary_long, aes(day,Messwert, colour = Messtyp)) +
