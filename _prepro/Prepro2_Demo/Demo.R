@@ -1,37 +1,5 @@
----
-title: Demo
-output: 
-  distill::distill_article:
-    toc: true
-    toc_float: true
-author:
-  - name: Patrick Laube
-  - name: Nils Ratnaweera
-  - name: Nikolaos Bakogiannis
-preview: types.jpg
-categories:
-- PrePro1
-draft: false
----
 
-
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-distill::mypurl("index.Rmd", "Demo.R")
-```
-
-
-[R-Code als Download](Demo_Datentypen.R)
-
-## Piping 
-
-Gegeben ist ein character string (`diary`) sowie die Hilfsfunktion `subtrahieren`
-
-Wir wollen aus diesem Text die Temperaturangabe aus dem String extrahieren und danach den Wert von Kelvin in Celsius nach der folgenden Formel umwandeln und zum schluss den Mittelwert über all diese Werte berechnen. 
-
-$$°C = K - 273.15$$
-
-```{r}
+#' ## Piping 
 diary <- c(
   "The temperature is 310° Kelvin",
   "The temperature is 322° Kelvin",
@@ -39,23 +7,11 @@ diary <- c(
 )
 
 diary
-```
 
-
-```{r}
 subtrahieren <- function(minuend, subtrahend){
   minuend - subtrahend
 }
-```
 
-
-
-
-
-
-Übersetzt in `R`-Code entsteht folgende Operation:
-
-```{r}
 # 1. Nimm diary
 # 2. Extrahiere auf jeder Zeile die Werte 20 bis 22
 # 3. Konvertiere "character" zu "numeric"
@@ -68,21 +24,12 @@ output <- mean(subtrahieren(as.numeric(substr(diary, 20, 22)),273.15))
 #                           \___________________3___________/
 #              \________________________________4__________________/
 #         \_____________________________________5____________________/
-```
 
-Die ganze Operation liest sich etwas leichter, wenn diese sequentiell notiert wird:
-
-```{r}
 temp <- substr(diary, 20, 22)       # 1, 2
 temp <- as.numeric(temp)            # 3
 temp <- subtrahieren(temp, 273.15)  # 4
 output <- mean(temp)                # 5
-```
 
-Umständlich ist dabei einfach, dass die Zwischenresultate immer abgespeichert und in der darauf folgenden Operation wieder abgerufen werden müssen. Hier kommt "piping" ins Spiel:
-*Mit "piping" wird der Output der einen Funktion der erste Parameter der darauf folgenden Funktion.*
-
-```{r}
 library(magrittr)
 
 diary %>%                            # 1
@@ -90,24 +37,14 @@ diary %>%                            # 1
   as.numeric() %>%                   # 3 
   subtrahieren(273.15) %>%           # 4
   mean()                             # 5
-```
 
-
-Noch ein Hinweis: die `%>%` Pipe Operation aus `magrittr` wurde in R so beliebt, dass in R 4.1 ein "base R pipe" eingeführt. Diese sieht folgendermassen aus:
-
-```{r}
 diary |>                             # 1
   substr(20, 22) |>                  # 2
   as.numeric() |>                    # 3 
   subtrahieren(273.15) |>            # 4
   mean()                             # 5
-```
 
-
-## Joins
-
-
-```{r}
+#' ## Joins
 studierende <- data.frame(
   Matrikel_Nr = c(100002, 100003, 200003),
   Studi = c("Patrick", "Manuela", "Pascal"),
@@ -122,9 +59,7 @@ ortschaften <- data.frame(
 )
 
 ortschaften
-```
 
-```{r}
 library(dplyr)
 
 inner_join(studierende, ortschaften, by = "PLZ")
@@ -134,7 +69,5 @@ left_join(studierende, ortschaften, by = "PLZ")
 right_join(studierende, ortschaften, by = "PLZ")
 
 full_join(studierende, ortschaften, by = "PLZ")
-
-```
 
 
