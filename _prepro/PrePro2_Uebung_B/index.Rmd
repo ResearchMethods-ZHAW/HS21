@@ -5,17 +5,18 @@ output:
     toc: true
 categories:
 - PrePro2
-- PrePro
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
+draft: true
 ---
 
 
 
 ```{r,message=F}
-library(tidyverse)
+library(dplyr)
+library(readr)
 library(lubridate)
 library(stringr)
 ```
@@ -24,16 +25,16 @@ library(stringr)
 
 ## Aufgabe 1
 
-Gegeben sind die Daten von drei Sensoren ([sensor1.csv](sensor1.csv), [sensor2.csv](10_PrePro2/data/sensor2.csv), [sensor3.csv](10_PrePro2/data/sensor3.csv)). Lade die Datensätze runter und lese sie ein.
+Gegeben sind die Daten von drei Sensoren ([sensor1.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv), [sensor2.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv), [sensor3.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv)). Lade die Datensätze runter und lese sie ein.
 
 
 
 ```{r, message=F}
 # Lösung Aufgabe 1
 
-sensor1 <- read_delim("sensor1.csv",";")
-sensor2 <- read_delim("sensor2.csv",";")
-sensor3 <- read_delim("sensor3.csv",";")
+sensor1 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv",";")
+sensor2 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv",";")
+sensor3 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv",";")
 
 ```
 
@@ -61,14 +62,14 @@ knitr::kable(sensor_all)
 
 ## Aufgabe 3
 
-Importiere die Datei [sensor_1_fail.csv](sensor_fail.csv) in `R`.
+Importiere die Datei [sensor_1_fail.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor_fail.csv) in `R`.
 
 
 ```{r, message = F}
 
 # Lösung Aufgabe 3
 
-sensor_fail <- read_delim("sensor_fail.csv", delim = ";")
+sensor_fail <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor_fail.csv", delim = ";")
 
 ```
 

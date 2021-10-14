@@ -5,7 +5,7 @@ output:
     toc: true
 categories:
 - PrePro1
-- PrePro
+
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
@@ -15,7 +15,9 @@ author:
 
 
 ```{r, message = F}
-library(tidyverse)
+library(dplyr)
+library(readr)
+library(ggplot2)
 ```
 
 

@@ -5,7 +5,7 @@ output:
     toc: true
 categories:
 - RaumAn1
-- RaumAn
+draft: true
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera

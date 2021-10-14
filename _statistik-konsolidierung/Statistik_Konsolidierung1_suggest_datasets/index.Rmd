@@ -3,7 +3,7 @@ title: "Vorgeschlagene Datensätze für die Repetitionsübungen"
 output: distill::distill_article
 categories:
 - Statistik_Konsolidierung_1
-- Statistik
+
 
 
 ---

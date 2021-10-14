@@ -3,7 +3,7 @@ title: Übung
 output: distill::distill_article
 categories:
 - InfoVis1
-- InfoVis
+draft: true
 
 ---
 

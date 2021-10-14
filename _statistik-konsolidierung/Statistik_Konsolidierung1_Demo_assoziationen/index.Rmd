@@ -7,8 +7,6 @@ author:
   name: Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung1
-- Statistik
-
 ---
 
 ```{r, include=FALSE, purl=F}
@@ -20,7 +18,7 @@ knitr::purl(here::here("_statistik-konsolidierung/Statistik_Konsolidierung1_Demo
 ```
 
 
-#Konsolidierung 1: Demo Assoziationen
+# Konsolidierung 1: Demo Assoziationen
 
 >Download [R-Skript](_statistik-konsolidierung/Statistik-Konsolidierung1_Demo_assoziationen/Demo_Assoziationen_Konsolidierung1.R)
 

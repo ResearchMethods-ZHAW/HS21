@@ -3,7 +3,7 @@ title: Übung B
 output: distill::distill_article
 categories:
 - RaumAn2
-- RaumAn
+draft: true
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
