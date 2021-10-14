@@ -139,10 +139,16 @@ Importiere den Datensatz [weather.csv](https://github.com/ResearchMethods-ZHAW/d
 
 Achtung! `read_csv` erwartet leicht andere inputs als `read.csv`, schaut euch die Hilfe dazu an (`?read_csv`).
 
+```{r, purl = FALSE}
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
+```
+
+
+
 ```{r, message = F}
 # Musterlösung
 
-wetter <- readr::read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv")
+wetter <- readr::read_csv("weather.csv")
 ```
 
 ```{r, purl=F}

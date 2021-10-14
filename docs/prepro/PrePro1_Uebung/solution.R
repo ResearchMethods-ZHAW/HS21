@@ -38,9 +38,10 @@ df$Gewichtsklasse[df$Gewicht <= 100 & df$Gewicht > 5] <- "mittel"
 df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
 
 #' ## Aufgabe 4
+
 # Musterlösung
 
-wetter <- readr::read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv")
+wetter <- readr::read_csv("weather.csv")
 
 
 #' ## Aufgabe 5
@@ -67,3 +68,4 @@ wetter$temp_kat[wetter$tre200h0<=0] <- "kalt"
 
 
 
+#' ## Musterlösung
