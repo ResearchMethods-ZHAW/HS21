@@ -1,9 +1,14 @@
 ---
-title: "Homeranges Fallstudie WPZ Uebung"
-author: "B.Sigrist"
-date: "26 Oktober 2020"
+title: "KW43 Homeranges Fallstudie WPZ - Profil N"
+description:
+author:
+  - name: Beni Sigrist
 output:
-  pdf_document: default
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (N)
+draft: false
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
 
 # R-Skript zur Berechung der Home-Ranges der Rehe 
 
-## Benötigte Libraries laden
+### Benötigte Libraries laden
 
 ```{r results='hide', warning=FALSE, message=FALSE}
 
@@ -22,39 +27,41 @@ if (length(new.pkg))
 install.packages(new.pkg, dependencies = TRUE)
 sapply(pkg, require, character.only = TRUE)
 }
-packages <- c("sf", "raster", "tidyverse", "adehabitatHR", "maptools", "sp", "ggspatial", "rgeos", "rgdal")
+packages <- c("sf", "raster", "tidyverse", "adehabitatHR", "maptools", "sp", 
+              "ggspatial", "rgeos", "rgdal")
 ipak(packages)
 
 
 ```
 
-## Einlesen des Gesamtdatensatzes von Moodle, Sichtung des Datensatzes und der Datentypen
+### Einlesen des Gesamtdatensatzes von Moodle, Sichtung des Datensatzes und der Datentypen
 
 ```{r tidy=TRUE, warning=FALSE, message=FALSE, results="hide"}
 
-Rehe <- read_delim("Data/Rehe_landforst_20201020.csv", delim = ";")
+Rehe <- read_delim("Aufgabe3_Homeranges_Rehe_landforst_20211014.csv", delim = ";")
 
 str(Rehe)
 
 ```
 
-## Aufgabe 1: In Datensatz Rehe eine neue Spalte mit Datum und Zeit in einer Spalte kreieren. Beim Format hat sich ein Fehler eingeschlichen. Findet ihr ihn?
+### Aufgabe 1: In Datensatz Rehe eine neue Spalte mit Datum und Zeit in einer Spalte kreieren. Beim Format hat sich ein Fehler eingeschlichen. Findet ihr ihn?
 
 
 ```{r tidy=TRUE, eval=TRUE, warnings = FALSE}
 
 Rehe <- Rehe %>%
-  mutate(UTC_DateTime = as.POSIXct(paste(UTC_Date, UTC_Time), format = "%Y-%m-%d %H:%M:%S"))
+  mutate(UTC_DateTime = as.POSIXct(paste(UTC_Date, UTC_Time), 
+                                   format = "%Y-%m-%d %H:%M:%S"))
 
 ```
 
-## Hier einige Zeilen Code, um eine HomeRange zu berechnen.
+### Hier einige Zeilen Code, um eine HomeRange zu berechnen.
 
-## Aufgabe 2: Herumschrauben an den Einstellungen von: 
-### - href (in der Funktion kernelUD)
-### - an der Ausdehung, resp. prozentualer Anteil Punkte in der HR (Funktion getverticeshr) 
+### Aufgabe 2: Herumschrauben an den Einstellungen von: 
+##### - href (in der Funktion kernelUD)
+##### - an der Ausdehung, resp. prozentualer Anteil Punkte in der HR (Funktion getverticeshr) 
 
-## --> Ziel: eine Karte erstellen mit der Visualiserung mindestens einer HR
+##### --> Ziel: eine Karte erstellen mit der Visualiserung mindestens einer HR
 
 ```{r tidy=TRUE, warning=FALSE, message=FALSE, fig.keep="none", results="hide"}
 
@@ -86,7 +93,8 @@ homerange <- getverticeshr(kud, percent=95)
 
 hr <- st_as_sf(homerange)
 
-st_write(hr, dsn= "Results", layer="HR_RE13", driver="ESRI Shapefile",  delete_layer = T )
+st_write(hr, dsn= "Results", layer="HR_RE13", driver="ESRI Shapefile",  
+         delete_layer = T )
 
 ```
 
@@ -122,7 +130,7 @@ legend.position="none"
 
 ```    
 
-## Code um die Homerange auf der Landeskarte 1:25000 zu plotten. Transparenz kann mit alpha angepasst werden
+##### Code um die Homerange auf der Landeskarte 1:25000 zu plotten. Transparenz kann mit alpha angepasst werden
 
 ```{r tidy=TRUE,fig.keep = "none"}
 
@@ -145,11 +153,11 @@ legend.position="none"
 
 ```
 
-## Erstellen des Sampling Grids mit den Kreisen (Wird als Grundlage für Extraktion der Umweltvariablen innerhalb der Homeranges benötigt)
+### Erstellen des Sampling Grids mit den Kreisen (Wird als Grundlage für Extraktion der Umweltvariablen innerhalb der Homeranges benötigt)
 
-### Xmin bzw. Ymin des Grids: c(684000, 234000)
-### cellsize des Grids: c(25, 25)
-### Anzahl Kreise in X und Y Richtung: c(100, 160)
+##### Xmin bzw. Ymin des Grids: c(684000, 234000)
+##### cellsize des Grids: c(25, 25)
+##### Anzahl Kreise in X und Y Richtung: c(100, 160)
 
 
 ```{r tidy=TRUE, message=FALSE, results="hide", fig.keep='none'}
@@ -191,14 +199,14 @@ legend.position="none"
 ```
 
 
-## Aufgabe 3: testen der Variablen der Vegetationsschichten von letzter Woche auf einen linearen Zusammenhang (Korrelation; Funktion cor.test). DG_Baumschicht vs. DG_os / DG_Strauchschicht vs. DG_us aus dem Datensatz df_with_lidar den wir letzte Woche erstellt haben
+### Aufgabe 3: Testen der Variablen der Vegetationsschichten von letzter Woche auf einen linearen Zusammenhang (Korrelation; Funktion cor.test). DG_Baumschicht vs. DG_os / DG_Strauchschicht vs. DG_us aus dem Datensatz df_with_lidar den wir letzte Woche erstellt haben
 
-## Die Theorie zu Korrelation folgt erst 27.10. vormittags
+#### Die Theorie zu Korrelation folgt erst ab 1.11
 
 
 ```{r tidy=TRUE, echo=FALSE, message=FALSE, results="hide"}
 
-df_with_lidar <- read_delim("Results/df_with_lidar.csv", delim =";")
+df_with_lidar <- read_delim("df_with_lidar.csv", delim =";")
 
 
 cor.test(~ DG_Strauchschicht+DG_us, data = df_with_lidar, method="pearson")
