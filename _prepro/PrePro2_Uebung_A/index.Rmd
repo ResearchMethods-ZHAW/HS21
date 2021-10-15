@@ -12,6 +12,9 @@ preview: weather.jpg # https://commons.wikimedia.org/wiki/File:%27a_sign_of_good
 
 ```{r include=FALSE, purl=F}
 knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
+
+distill::mypurl("index.Rmd", "solution.R")
+
 ```
 
 Für die Musterlösungen werden wir die nachstehenden Libraries verwenden:
@@ -31,7 +34,7 @@ library(stringr)
 
 Lade die Wetterdaten von letzer Woche runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv)) und importiere sie in `R`. Sorge dafür, dass die Spalten korrekt formatiert sind (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `numeric`.)
 
-```{r loesung-1}
+```{r}
 
 wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv",
                   col_types = list(
@@ -50,7 +53,7 @@ Lade [metadata](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro
 
 Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. in Gen*è*ve), hat das vermutlich mit der [Zeichencodierung](https://de.wikipedia.org/wiki/Zeichenkodierung) zu tun. Das File ist aktuell in 'ANSI' Codiert, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows 'Editor' oder 'Notepad++', Mac: 'TextEdit') und mit einer neuen Codierung (z.B 'UTF-8') abspeichern. Danach kann die Codierung spezifitiert werden (bei `read_delim(): mit `locale = locale(encoding = "UTF-8")`)
 
-```{r loesung-2}
+```{r}
 
 
 metadata <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv",
@@ -68,7 +71,7 @@ Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinate
 2. Schritt: benenne die Spalten der `matrix` in `x` und `y` um
 3. Schritt: nutze `cbind` um die `matrix` mit der `data.frame` zu verbinden
 
-```{r loesung-3}
+```{r}
 
 
 # 1. Schritt
@@ -84,7 +87,7 @@ metadata <- cbind(metadata,koordinaten)
 
 Nun wollen wir den Datensatz `wetter`mit den Informationen aus `metadata` anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).
 
-```{r loesung-4, message=F}
+```{r, message=F}
 
 metadata <- metadata[,c("stn", "Name", "x","y","Meereshoehe")]
 ```
@@ -96,7 +99,7 @@ Nun ist der Datensatz `metadata` genügend vorbereitet. Jetzt kann er mit dem Da
 
 Nutze die Join-Möglichkeiten von `dplyr` (Hilfe via `?dplyr::join`)  um die Datensätze `wetter` und `metadata` zu verbinden.
 
-```{r loesung-5}
+```{r}
 
 
 wetter <- left_join(wetter,metadata,by = "stn")
@@ -109,7 +112,7 @@ wetter <- left_join(wetter,metadata,by = "stn")
 
 Erstelle eine neue Spalte `month` welche den jeweiligen Monat (aus `time`) beinhaltet. Nutze dafür die Funktion `lubridate::month()`.
 
-```{r loesung-6}
+```{r}
 wetter$month <- month(wetter$time)
 ```
 
@@ -118,7 +121,7 @@ wetter$month <- month(wetter$time)
 Berechne mit der Spalte `month` die Durchschnittstemperatur pro Monat.
 
 
-```{r loesung-7, warning=F}
+```{r, warning=F}
 
 mean(wetter$tre200h0[wetter$month == 1])
 mean(wetter$tre200h0[wetter$month == 2])
