@@ -1500,39 +1500,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
-</code></pre>
-</div>
+
 </div>
 <h2 id="aufgabe-1">Aufgabe 1</h2>
 <p>Gegeben sind die Daten von drei Sensoren (<a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv">sensor1.csv</a>, <a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv">sensor2.csv</a>, <a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv">sensor3.csv</a>). Lade die Datensätze runter und lese sie ein.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 1</span>
 
-<span class="va">sensor1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">&quot;https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv&quot;</span>,<span class="st">&quot;;&quot;</span><span class="op">)</span>
-<span class="va">sensor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">&quot;https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv&quot;</span>,<span class="st">&quot;;&quot;</span><span class="op">)</span>
-<span class="va">sensor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">&quot;https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv&quot;</span>,<span class="st">&quot;;&quot;</span><span class="op">)</span>
-</code></pre>
-</div>
 </div>
 <h2 id="aufgabe-2">Aufgabe 2</h2>
-<p>Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Nutze dafür einen <code>*_join()</code> aus <code>dplyr</code>. Um 3 <code>data.frames</code> miteinander zu verbinden brauchst du 2 <code>joins</code>. Bereinige im Anschluss die Spaltennamen (<a href="https://www.statology.org/how-to-rename-data-frame-columns-in-r/">wie geht das?</a>).</p>
+<p>Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Nutze dafür zwei joins aus <code>dplyr</code> um 3 <code>data.frames</code> miteinander zu verbinden. Bereinige im Anschluss die Spaltennamen (<a href="https://www.statology.org/how-to-rename-data-frame-columns-in-r/">wie geht das?</a>).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 2</span>
 
-<span class="va">sensor1_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">sensor1</span>, <span class="va">sensor2</span>, <span class="st">&quot;Datetime&quot;</span><span class="op">)</span>
-
-<span class="va">sensor_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">sensor1_2</span>, <span class="va">sensor3</span>, by <span class="op">=</span> <span class="st">&quot;Datetime&quot;</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">sensor_all</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;Datetime&quot;</span>,<span class="st">&quot;sensor1&quot;</span>,<span class="st">&quot;sensor2&quot;</span>,<span class="st">&quot;sensor3&quot;</span><span class="op">)</span>
-</code></pre>
-</div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <table>
@@ -1581,79 +1559,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <td style="text-align: right;">11.3</td>
 <td style="text-align: right;">NA</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">25102017_1800</td>
-<td style="text-align: right;">12.4</td>
-<td style="text-align: right;">22.4</td>
-<td style="text-align: right;">15.4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">26102017_1800</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: right;">13.5</td>
-<td style="text-align: right;">16.5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">27102017_1800</td>
-<td style="text-align: right;">5.4</td>
-<td style="text-align: right;">5.4</td>
-<td style="text-align: right;">7.4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">28102017_1800</td>
-<td style="text-align: right;">4.4</td>
-<td style="text-align: right;">4.4</td>
-<td style="text-align: right;">4.4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">29102017_1800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">30102017_1800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">5.4</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">31102017_1800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">12.4</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">01112017_1800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">14.4</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">02112017_1800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">7.4</td>
-<td style="text-align: right;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">03112017_1800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">4.8</td>
-<td style="text-align: right;">NA</td>
-</tr>
 </tbody>
 </table>
 </div>
 <h2 id="aufgabe-3">Aufgabe 3</h2>
 <p>Importiere die Datei <a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor_fail.csv">sensor_1_fail.csv</a> in <code>R</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 3</span>
 
-<span class="va">sensor_fail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">&quot;https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor_fail.csv&quot;</span>, delim <span class="op">=</span> <span class="st">&quot;;&quot;</span><span class="op">)</span>
-</code></pre>
 </div>
-</div>
+<p><code>sensor_fail.csv</code> hat eine Variabel <code>SensorStatus</code>: <code>1</code> bedeutet der Sensor misst, <code>0</code> bedeutet der Sensor miss nicht. Fälschlicherweise wurde auch dann der Messwert <code>Temp = 0</code> erfasst, wenn <code>Sensorstatus = 0</code>. Richtig wäre hier <code>NA</code> (not available). Korrigiere den Datensatz entsprechend.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <thead>
@@ -1739,27 +1653,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tbody>
 </table>
 </div>
-<p><code>sensor_fail.csv</code> hat eine Variabel <code>SensorStatus</code>: <code>1</code> bedeutet der Sensor misst, <code>0</code> bedeutet der Sensor miss nicht. Fälschlicherweise wurde auch dann der Messwert <code>Temp = 0</code> erfasst, wenn <code>Sensorstatus = 0</code>. Richtig wäre hier <code>NA</code> (not available). Korrigiere den Datensatz entsprechend.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">sensor_fail</span><span class="op">$</span><span class="va">Temp</span><span class="op">[</span><span class="va">sensor_fail</span><span class="op">$</span><span class="va">SensorStatus</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-</code></pre>
-</div>
+
 </div>
 <h2 id="aufgabe-4">Aufgabe 4</h2>
 <p>Warum spielt das es eine Rolle, ob <code>0</code> oder <code>NA</code> erfasst wird? Berechne die Mittlere der Temperatur / Feuchtigkeit nach der Korrektur.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lösung Aufgabe 4</span>
 
-<span class="co"># Mittelwerte der korrigierten Sensordaten: mit na.rm = TRUE werden NA-Werte aus der Berechnung entfernt. </span>
-<span class="co"># Ansonsten würden sie als 0 in die Berechnung einfliessen und diese verfälschen.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sensor_fail</span><span class="op">$</span><span class="va">Temp</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-</code></pre>
 </div>
-<pre><code>[1] -0.1857143</code></pre>
-</div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

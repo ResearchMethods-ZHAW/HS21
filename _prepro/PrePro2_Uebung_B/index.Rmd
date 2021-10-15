@@ -13,6 +13,13 @@ preview: sensor.jpg # https://commons.wikimedia.org/wiki/File:SparkFun_Humidity_
 ---
 
 
+```{r include=FALSE, purl=F}
+knitr::opts_chunk$set(echo = FALSE, collapse=TRUE)
+
+distill::mypurl("index.Rmd", "solution.R")
+
+```
+
 
 ```{r,message=F}
 library(dplyr)
@@ -40,7 +47,7 @@ sensor3 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main
 
 ## Aufgabe 2
 
-Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Nutze dafür einen `*_join()` aus `dplyr`. Um 3 `data.frames` miteinander zu verbinden brauchst du 2 `joins`. Bereinige im Anschluss die Spaltennamen ([wie geht das?](https://www.statology.org/how-to-rename-data-frame-columns-in-r/)).
+Erstelle aus den 3 Dataframes eine einzige Dataframe, die aussieht wie unten dargestellt. Nutze dafür zwei joins aus `dplyr` um 3 `data.frames` miteinander zu verbinden. Bereinige im Anschluss die Spaltennamen ([wie geht das?](https://www.statology.org/how-to-rename-data-frame-columns-in-r/)).
 
 
 ```{r}
@@ -55,8 +62,8 @@ names(sensor_all) <- c("Datetime","sensor1","sensor2","sensor3")
 ```
 
 
-```{r,  echo = F, eval = T, purl=F}
-knitr::kable(sensor_all)
+```{r echo=FALSE, purl=FALSE}
+knitr::kable(head(sensor_all))
 ```
 
 
@@ -66,23 +73,22 @@ Importiere die Datei [sensor_1_fail.csv](https://github.com/ResearchMethods-ZHAW
 
 
 ```{r, message = F}
-
-# Lösung Aufgabe 3
-
 sensor_fail <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor_fail.csv", delim = ";")
 
 ```
 
+`sensor_fail.csv` hat eine Variabel `SensorStatus`: `1` bedeutet der Sensor misst, `0` bedeutet der Sensor miss nicht. Fälschlicherweise wurde auch dann der Messwert `Temp = 0` erfasst, wenn `Sensorstatus = 0`. Richtig wäre hier `NA` (not available). Korrigiere den Datensatz entsprechend.
 
 ```{r,  echo = F, eval = T, purl=F}
 knitr::kable(sensor_fail)
 ```
 
 
-`sensor_fail.csv` hat eine Variabel `SensorStatus`: `1` bedeutet der Sensor misst, `0` bedeutet der Sensor miss nicht. Fälschlicherweise wurde auch dann der Messwert `Temp = 0` erfasst, wenn `Sensorstatus = 0`. Richtig wäre hier `NA` (not available). Korrigiere den Datensatz entsprechend.
 
 
 ```{r}
+# Lösung Aufgabe 3
+
 sensor_fail$Temp[sensor_fail$SensorStatus == 0] <- NA
 ```
 
@@ -92,7 +98,7 @@ sensor_fail$Temp[sensor_fail$SensorStatus == 0] <- NA
 
 Warum spielt das es eine Rolle, ob `0` oder `NA` erfasst wird? Berechne die Mittlere der Temperatur / Feuchtigkeit nach der Korrektur. 
 
-```{r}
+```{r, eval = FALSE}
 
 # Lösung Aufgabe 4
 
