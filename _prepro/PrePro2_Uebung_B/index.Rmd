@@ -9,6 +9,7 @@ author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
+preview: sensor.jpg # https://commons.wikimedia.org/wiki/File:SparkFun_Humidity_and_Temperature_Sensor_Breakout_-_HIH6130_11295-01.jpg
 ---
 
 
