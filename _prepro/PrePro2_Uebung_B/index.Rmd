@@ -34,14 +34,20 @@ library(stringr)
 
 Gegeben sind die Daten von drei Sensoren ([sensor1.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv), [sensor2.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv), [sensor3.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv)). Lade die Datensätze runter und lese sie ein.
 
+```{r echo = FALSE, purl = FALSE}
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv", "sensor1.csv")
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv", "sensor2.csv")
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv", "sensor3.csv")
+
+```
 
 
 ```{r, message=F}
 # Lösung Aufgabe 1
 
-sensor1 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv",";")
-sensor2 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv",";")
-sensor3 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv",";")
+sensor1 <- read_delim("sensor1.csv",";")
+sensor2 <- read_delim("sensor2.csv",";")
+sensor3 <- read_delim("sensor3.csv",";")
 
 ```
 
@@ -110,5 +116,10 @@ mean(sensor_fail$Temp, na.rm = TRUE)
 
 
 
+## Musterlösung
+
+<div class="solution">
+[Musterlösung](solution.R)
+</div>
 
 
