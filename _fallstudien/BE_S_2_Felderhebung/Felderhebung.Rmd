@@ -47,8 +47,12 @@ _Nachdem die Kameras für zwei Wochen im Einsatz standen, werden die Daten ausge
 
 Bereits beim Detektieren der Sichtungen muss einem klar sein, was man auswerten möchte. Nur so können die relevanten Variablen erfasst werden.
 
-- Im Rahmen dieser Felderhebung erhaltet ihr von Adrian eine Excel-Vorlage zur Erfassung der Sichtungen.
-- Sobald alle Sichtungen erfasst sind, geht es ins R!
+- Im Rahmen dieser Felderhebung erhaltet ihr von Adrian eine Excel-Vorlage zur Verifizeriung der automatisch detektierten Sichtungen.
+
+- Verifiziert __kurz__, was euch der Algorithmus geliefert hat.
+
+- Als nächstes geht es ins R. Da wir für unsere Auswertungen zu wenige Sichtungen haben, verwendet bitte den Datensatz __DummyData__ (ReMe HS21 MSc ENR_/Fallstudie Biodiversity & Ecosystems/S_Daten/Felderhebungen). Eure Verifizierung braucht ihr nicht mehr.
+
 
 ## Datenanalyse in R
 
