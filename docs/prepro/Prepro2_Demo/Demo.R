@@ -58,18 +58,26 @@ diary |>                             # 1
 #' ## Joins
 studierende <- data.frame(
   Matrikel_Nr = c(100002, 100003, 200003),
-  Studi = c("Patrick", "Manuela", "Pascal"),
-  PLZ = c(8006, 8820, 8006)
+  Studi = c("Patrick", "Manuela", "Eva"),
+  PLZ = c(8006, 8001, 8820)
 )
+
+ 
 
 studierende
 
+ 
+
 ortschaften <- data.frame(
-  PLZ = c(8001, 8006, 8810, 8820),
+  PLZ = c(8003, 8006, 8810, 8820),
   Ortsname = c("Zürich", "Zürich", "Horgen", "Wädenswil")
 )
 
+ 
+
 ortschaften
+
+ 
 
 library(dplyr)
 
@@ -80,4 +88,13 @@ left_join(studierende, ortschaften, by = "PLZ")
 right_join(studierende, ortschaften, by = "PLZ")
 
 full_join(studierende, ortschaften, by = "PLZ")
+
+studierende <- data.frame(
+  Matrikel_Nr = c(100002, 100003, 200003),
+  Studi = c("Patrick", "Manuela", "Pascal"),
+  Wohnort = c(8006, 8001, 8006)
+)
+ 
+
+left_join(studierende, ortschaften, by = c("Wohnort" = "PLZ"))
 
