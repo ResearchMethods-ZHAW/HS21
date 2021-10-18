@@ -15,12 +15,9 @@ draft: false
 ---
 
 
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-distill::mypurl("index.Rmd", "Demo.R")
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
 ```
-
-[R-Code als Download](Demo.R)
 
 ## Piping 
 

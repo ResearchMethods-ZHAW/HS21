@@ -15,9 +15,6 @@ preview: sensor.jpg # https://commons.wikimedia.org/wiki/File:SparkFun_Humidity_
 
 ```{r include=FALSE, purl=F}
 knitr::opts_chunk$set(echo = FALSE, collapse=TRUE)
-
-distill::mypurl("index.Rmd", "solution.R")
-
 ```
 
 
@@ -118,8 +115,10 @@ mean(sensor_fail$Temp, na.rm = TRUE)
 
 ## Musterlösung
 
-<div class="solution">
-[Musterlösung](solution.R)
-</div>
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
+```
+
 
 

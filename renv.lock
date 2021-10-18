@@ -61,8 +61,8 @@
       "RemoteRepo": "distill",
       "RemoteUsername": "ResearchMethods-ZHAW",
       "RemoteRef": "HEAD",
-      "RemoteSha": "b3d679b878c8b8b9b261c043c0a789df05082b01",
-      "Hash": "bf1cbf1637802424be1a47b1d1f78ace"
+      "RemoteSha": "56463329fcb3b16ae75c72abd58077783f72bd00",
+      "Hash": "5706c109e4e03a4a1681f275a55b0078"
     },
     "downlit": {
       "Package": "downlit",

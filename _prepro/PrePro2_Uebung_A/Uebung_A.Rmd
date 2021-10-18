@@ -15,9 +15,6 @@ preview: weather.jpg # https://commons.wikimedia.org/wiki/File:%27a_sign_of_good
 
 ```{r include=FALSE, purl=F}
 knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
-
-distill::mypurl("index.Rmd", "solution.R")
-
 ```
 
 Für die Musterlösungen werden wir die nachstehenden Libraries verwenden:
@@ -145,7 +142,8 @@ mean(wetter$tre200h0[wetter$month == 3])
 
 ## Musterlösung
 
-<div class="solution">
-[Musterlösung](solution.R)
-</div>
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE, include = TRUE}
+distill::mypurl()
+```
+
 

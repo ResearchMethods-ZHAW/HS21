@@ -16,8 +16,6 @@ preview: preview.png
 
 ```{r, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = FALSE, include = TRUE, collapse=TRUE, warning = FALSE)
-
-distill::mypurl("index.Rmd", "solution.R")
 ```
 
 
@@ -239,7 +237,8 @@ ggsave("preview.png", p)
 
 ## Musterlösung
 
-<div class="solution">
-[Musterlösung](solution.R)
-</div>
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
+```
 
