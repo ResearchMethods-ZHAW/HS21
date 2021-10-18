@@ -5,11 +5,12 @@ library(lubridate)
 library(stringr)
 
 #' ## Aufgabe 1
+
 # Lösung Aufgabe 1
 
-sensor1 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor1.csv",";")
-sensor2 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor2.csv",";")
-sensor3 <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensor3.csv",";")
+sensor1 <- read_delim("sensor1.csv",";")
+sensor2 <- read_delim("sensor2.csv",";")
+sensor3 <- read_delim("sensor3.csv",";")
 
 
 #' ## Aufgabe 2
@@ -41,3 +42,4 @@ sensor_fail$Temp[sensor_fail$SensorStatus == 0] <- NA
 mean(sensor_fail$Temp, na.rm = TRUE)
 
 
+#' ## Musterlösung

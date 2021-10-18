@@ -4,11 +4,17 @@ library(readr)
 library(lubridate)
 library(stringr)
 
-# Alternativ kannst du alle tidyverse packages mit library(tidyverse) laden`
+# Alternativ kannst du alle tidyverse packages mit library(tidyverse) laden
 
 #' ## Aufgabe 1
 
-wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv",
+# Variante 1
+wetter <- read_csv("weather.csv")
+wetter$stn <- as.factor(wetter$stn)
+wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H", tz = "UTC")
+
+# Variate 2 (für Profis)
+wetter <- read_csv("weather.csv",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -17,11 +23,7 @@ wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/pr
                   )
 
 #' ## Aufgabe 2
-
-
-metadata <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv",
-                             delim = ";", 
-                             locale = locale(encoding = "UTF-8"))
+metadata <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv", delim = ";", locale = locale(encoding = "UTF-8"))
 
 
 #' ## Aufgabe 3
@@ -39,8 +41,6 @@ metadata <- cbind(metadata,koordinaten)
 metadata <- metadata[,c("stn", "Name", "x","y","Meereshoehe")]
 
 #' ## Aufgabe 5
-
-
 wetter <- left_join(wetter,metadata,by = "stn")
 
 # Jointyp: Left-Join auf 'wetter', da uns nur die Stationen im Datensatz 'wetter' interessieren.
@@ -57,3 +57,4 @@ mean(wetter$tre200h0[wetter$month == 3])
 
 # usw. für alle 12 Monate
 
+#' ## Musterlösung
