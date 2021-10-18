@@ -8,7 +8,7 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S) Musterloesung
-draft: true
+draft: false
 ---
 
 ```{r include=FALSE}
@@ -131,9 +131,9 @@ Anzahl_Ost <- sum(ost$Anzahl)
 Anzahl_West <- sum(west$Anzahl)
 
 # Meiste Aktivitaet ####
-Akt_Ost <- ost %>%
+Akt_ost <- ost %>%
   group_by(Aktivität)%>%       # Hier sagen wir nach was wir gruppieren 
-  summarise (n = n()) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
+  summarise (n = sum(Anzahl)) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
   mutate(freq = n / sum(n))%>% # und dann soll und R das prozentuale Verhaeltniss berechnen
   arrange(desc(n))             # und dann das ganze absteigend sortieren
 
@@ -141,22 +141,22 @@ Akt_Ost <- ost %>%
 # Jetzt kommt die grosse Staerke von R. 
 # Wir haben den Code zur Berechnung der Anzahl pro Gruppe bereits geschrieben.
 # fuer die folgenden Auswertungen koennen wir ihn einfach "recyceln"
- Akt_West<- west %>%
+ Akt_west<- west %>%
   group_by(Aktivität)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
 Aktivitaet_West <- west %>%
   group_by(Aktivität)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
 # Begleittier
 Begleit_ost <- ost %>%
   group_by(Begleittier)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 # uns interessiert es nicht, wie viele Leute kein Begleittier dabei hatten
@@ -164,7 +164,7 @@ Begleit_ost <- filter(Begleit_ost, !Begleittier == "0")
 
 Begleit_west <- west %>%
   group_by(Begleittier)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
@@ -173,7 +173,7 @@ Begleit_west <- filter(Begleit_west, !Begleittier == "0")
 # Wildtier
 Wildtier <- Tiere %>%
   group_by(Wildtier)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
@@ -188,7 +188,7 @@ Wildtier <- Tiere %>%
 # Zuerst eine Palette mit 5 Farben definieren
 pal <- hcl.colors(5, palette = "heat")
 # Dann als Kreisdiagramm plotten
-pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
+pie(Akt_west$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
     main = "Prozentuales Verhaeltnis West",
     col = pal) 
 

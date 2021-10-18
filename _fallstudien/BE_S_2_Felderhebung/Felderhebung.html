@@ -1573,13 +1573,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="aufgabe-4-explorative-analysen">Aufgabe 4: Explorative Analysen</h3>
 <p>Berechnet zuerst die totale Anzahl Menschen / Standort mit <strong>sum(DATENSATZ$SPALTENNAME)</strong>.</p>
 <p>Gruppieren und summieren:</p>
-<p>Berechnet nun die Anzahl Menschen pro Aktivität sowie die Anzahl Begleittier pro Kategorie pro Standort.</p>
+<ul>
+<li><p>Berechnet nun die Anzahl Menschen pro Aktivität und Standort (= Akt_ost und Akt_west).</p></li>
+<li><p>Berechnet auch die Anzahl Begleittier pro Kategorie und Standort (= Begleittier_ost und Begleittier_west).</p></li>
+</ul>
 <p>Untenstehender Code eigent sich dazu ganz gut:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Akt_Ost</span> <span class='op'>&lt;-</span> <span class='va'>ost</span> <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Akt_ost</span> <span class='op'>&lt;-</span> <span class='va'>ost</span> <span class='op'>%&gt;%</span>
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Aktivitaet</span><span class='op'>)</span><span class='op'>%&gt;%</span>      <span class='co'># Hier sagen wir nach was wir gruppieren </span>
-  <span class='fu'>summarise</span> <span class='op'>(</span>n <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>      <span class='co'># und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl</span>
+  <span class='fu'>summarise</span> <span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Anzahl</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>      <span class='co'># und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl</span>
   <span class='fu'>mutate</span><span class='op'>(</span>freq <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span> <span class='co'># und dann soll und R das prozentuale Verhaeltniss berechnen</span>
   <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span>             <span class='co'># und dann das ganze absteigend sortieren</span>
 </code></pre>
@@ -1599,7 +1602,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Dann als Kreisdiagramm plotten.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='va'>Akt_West</span><span class='op'>$</span><span class='va'>n</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Anderes"</span>, <span class='st'>"Biker"</span>, <span class='st'>"Landwirtschaft"</span>, <span class='st'>"Spaziergaenger"</span>, <span class='st'>"unbestimmbar"</span><span class='op'>)</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='va'>Akt_west</span><span class='op'>$</span><span class='va'>n</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Anderes"</span>, <span class='st'>"Biker"</span>, <span class='st'>"Landwirtschaft"</span>, <span class='st'>"Spaziergaenger"</span>, <span class='st'>"unbestimmbar"</span><span class='op'>)</span>,
     main <span class='op'>=</span> <span class='st'>"Prozentuales Verhaeltnis West"</span>,
     col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span> 
 </code></pre>
