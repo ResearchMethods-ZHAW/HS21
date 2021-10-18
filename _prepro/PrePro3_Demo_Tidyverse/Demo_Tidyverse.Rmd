@@ -14,11 +14,10 @@ bibliography: bibliography.bib
 ---
 
 
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("index.Rmd", "Demo_Tidyverse.R", documentation = 0)
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
 ```
 
-[Demoscript als Download](Demo_Tidyverse.R)
 
 
 Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden.

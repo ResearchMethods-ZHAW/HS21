@@ -1,10 +1,13 @@
+
+#' ## Split-Apply-Combine
+#' ### Packete laden
 library(dplyr)
 library(tidyr)
 library(lubridate)
 library(readr)
 library(ggplot2)
 
-
+#' ### Daten Laden
 
 
 wetter <- read_csv("weather.csv",
@@ -17,16 +20,20 @@ wetter <- read_csv("weather.csv",
 
 
 
+#' ### Kennwerte berechnen
 mean(wetter$tre200h0, na.rm = TRUE) 
 
+#' ### Convenience Variablen
 wetter$month <- month(wetter$time)
 
 wetter <- mutate(wetter,month = month(time))
 
+#' ### Kennwerte nach Gruppen berechnen
 mean(wetter$tre200h0[wetter$month == 1], na.rm = TRUE)
 
 summarise(group_by(wetter,month),temp_mittel = mean(tre200h0, na.rm = TRUE))
 
+#' ### Verketten vs. verschachteln
 # 1 nimm den Datensatz "wetter"
 # 2 Bilde Gruppen pro Monat
 # 3 berechne das Temperaturmittel 
@@ -55,6 +62,8 @@ weather_summary <- wetter %>%               #1) nimm den Datensatz "wetter"
 
 weather_summary
 
+#' ## Reshaping data
+#' ### Breit -> lang
 
 weather_summary %>%
   pivot_longer(c(temp_max,temp_min))
@@ -67,15 +76,13 @@ weather_summary_long <- weather_summary %>%
 
 
 
-
-
 nrow(weather_summary)
 nrow(weather_summary_long)
 
 ggplot(weather_summary_long, aes(day,Messwert, colour = Messtyp)) +
   geom_line()
 
+#' ### Lang -> breit
 weather_summary_long %>%
   pivot_wider(names_from = Messtyp, values_from = Messwert)
-```{.r .distill-force-highlighting-css}
-```
+

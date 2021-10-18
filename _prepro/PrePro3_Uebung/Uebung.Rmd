@@ -10,6 +10,20 @@ author:
   - name: Nikolaos Bakogiannis
 ---
 
+
+```
+- angereichter Datensatz (join zw. wetter und metadaten für verschiedene stationen)
+- mutate() conveniance variable (z.b. Monate, Jahr
+- summarise group_by(moante), danach group_by(monate, jahr)
+- pivot_wider
+
+demo: 
+- code patrick einbinden
+- ggplot mit wide table demonstreren
+
+```
+
+
 ## Aufgabe 3
 
 Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
