@@ -5,7 +5,7 @@ library(lubridate)
 library(readr)
 library(ggplot2)
 
-#' ## Split-Appli-Combine (Beispiel 1)
+#' ## Split-Apply-Combine (Beispiel 1)
 df <- data.frame(
   key = c("A","B","C","A","B","C","A","B","C"),
   data = c(0, 5, 10, 5, 10, 15, 10, 15, 20)
@@ -27,6 +27,7 @@ sry <- df %>%
     Maximun = max(data)
     )
 
+#' ## Split-Apply-Combine (Beispiel 2)
 ?mtcars
 
 mtcars <- mtcars                          # Einlesen des Beispielsdatensatzes mtcars
@@ -39,7 +40,7 @@ by_cyl_2 <- group_by(mtcars,cyl,am)       # Gruppieren nach Anzahl Zylinder (cyl
 
 summarise(by_cyl_2,mean_mpg = mean(mpg))
 
-#' ## Split-Apply-Combine (Beispiel 2)
+#' ## Split-Apply-Combine (Beispiel 3)
 #' ### Daten Laden
 
 
