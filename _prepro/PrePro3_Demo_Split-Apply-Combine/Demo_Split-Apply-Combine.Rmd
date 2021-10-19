@@ -1,5 +1,5 @@
 ---
-title: Demo tidyverse
+title: Demo PrePro 3
 output: 
   distill::distill_article:
     toc: true
@@ -13,31 +13,79 @@ author:
 bibliography: bibliography.bib
 ---
 
-
 ```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
 distill::mypurl()
 ```
 
 
 
-Hier möchten wir euch mit einer Sammlung von Tools vertraut machen, die spezifisch für das Daten prozessieren in Data Science entwickelt wurden.
-Die Sammlung von Tools wird unter dem Namen [tidyverse](https://www.tidyverse.org/) vertrieben. Die Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem "must have" im Umgang mit Daten in R entwickelt. 
+In dieser DEMO möchten wir weitere Werkzeuge aus dem Tidyverse vorstellen und mit Beispielen illustrieren. Die tidyverse-Tools erleichtern den Umgang mit Daten ungeheuer und haben sich mittlerweile zu einem “must have” im Umgang mit Daten in R entwickelt.
 
-Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf einzelne Komponenten^[`dplyr, ggplot2, tidyr, magrittr, lubridate`] und zeigen ein paar Funktionalitäten, die wir oft verwenden und Euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch @wickham2017 beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online^[http://r4ds.had.co.nz/], das vollständige eBook kann über die Bibliothek bezogen werden^[https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093].
+ 
 
+Wir können Euch nicht sämtliche Möglichkeiten von tidyverse zeigen. Wir fokussieren uns deshalb auf weitere wichtige Komponenten 1 und zeigen zusätzliche Funktionalitäten, die wir oft verwenden und Euch ggf. noch nicht bekannt sind. Wer sich vertieft mit dem Thema auseinandersetzen möchte, der sollte sich unbedingt das Buch  @wickham2017 beschaffen. Eine umfangreiche, aber nicht ganz vollständige Version gibt es online^[http://r4ds.had.co.nz/] , das vollständige eBook kann über die Bibliothek bezogen werden^[https://ebookcentral.proquest.com/lib/zhaw/detail.action?docID=4770093].
 
+Wir benötigen dazu folgende Packages:
 
-## Split-Apply-Combine
-
-### Packete laden
-
-```{r,message=F}
+```{r, message=F}
 library(dplyr)
 library(tidyr)
 library(lubridate)
 library(readr)
 library(ggplot2)
 ```
+
+
+
+
+
+
+## Split-Appli-Combine (Beispiel 1)
+
+```{r}
+df <- data.frame(
+  key = c("A","B","C","A","B","C","A","B","C"),
+  data = c(0, 5, 10, 5, 10, 15, 10, 15, 20)
+)
+
+
+df 
+
+sry <- df %>%
+  group_by(key) %>%
+  summarise(Summe = sum(data))
+
+ 
+sry <- df %>%
+  group_by(key) %>%
+  summarise(
+    Summe = sum(data),
+    Minimum = min(data),
+    Maximun = max(data)
+    )
+```
+
+
+```{r, eval = FALSE}
+?mtcars
+```
+
+
+```{r}
+mtcars <- mtcars                          # Einlesen des Beispielsdatensatzes mtcars
+by_cyl <- group_by(mtcars, cyl)           # Gruppieren nach Anzahl Zylinder (cyl)
+summarise(by_cyl,mean_mpg = mean(mpg))    # Berechnen des Mittelwerts pro 
+                                          # Zylinder-Gruppe, resp. Kategorie
+
+by_cyl_2 <- group_by(mtcars,cyl,am)       # Gruppieren nach Anzahl Zylinder (cyl) 
+                                          # UND Schaltung automatisch oder manuell (am)
+
+summarise(by_cyl_2,mean_mpg = mean(mpg))
+```
+
+
+
+## Split-Apply-Combine (Beispiel 2)
 
 
 
@@ -230,6 +278,15 @@ Das Gegenstück zu `pivot_longer` ist `pivot_wider`. Mit dieser Funktion können
 ```{r}
 weather_summary_long %>%
   pivot_wider(names_from = Messtyp, values_from = Messwert)
+```
+
+
+Zum Vergleich: mit einer *wide* table müssen wir in `ggplot2` jede Spalte einzeln plotten. Dies ist bei wenigen Variabeln wie hier noch nicht problematisch, aber bei einer hohen Anzahl wir dies schnell mühsam.
+
+```{r}
+ggplot(weather_summary) +
+  geom_line(aes(day, temp_max)) +
+  geom_line(aes(day, temp_min))
 ```
 
 

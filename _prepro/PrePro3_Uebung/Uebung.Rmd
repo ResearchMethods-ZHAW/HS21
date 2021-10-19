@@ -11,17 +11,87 @@ author:
 ---
 
 
-```
-- angereichter Datensatz (join zw. wetter und metadaten für verschiedene stationen)
-- mutate() conveniance variable (z.b. Monate, Jahr
-- summarise group_by(moante), danach group_by(monate, jahr)
-- pivot_wider
 
-demo: 
-- code patrick einbinden
-- ggplot mit wide table demonstreren
+## Aufgabe 1
+
+
+Gegeben sei ein Datensatz "[sensors_combined.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensors_combined.csv)", mit den Temperaturwerten von drei verschiedenen Sensoren. Lade diesen Datensatz herunter,  importiere ihn als csv in R (als `sensors_combined`). 
+
+Formatiere die `Datetime` Spalte in `POSIXct` um. Verwende dazu die Funktion `as.POSIXct` (lies mit `?strftime()` nochmal nach wie du das spezfische Format (die "Schablone") festlegen kannst.
+
+```{r, echo = FALSE, purl = FALSE}
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensors_combined.csv", "sensors_combined.csv")
+```
+
+
+```{r}
+library(readr)
+
+sensors_combined <- read_csv("sensors_combined.csv")
+
+sensors_combined$Datetime <- as.POSIXct(sensors_combined$Datetime, format = "%d%m%Y_%H%M")
+```
+
+
+## Aufgabe 2
+
+Überführe die Tabelle in ein *langes* Format (verwende dazu die Funktion `pivot_longer` aus `tidyr`) und speichere den output als `sensors_long`. 
+
+Tipp: im Argument `cols` kannst du entweder die Spalten auflisten, die "pivotiert" werden sollen. Alternativ kannst du (mit vorangestelltem Minuszeichen, `-`) die Spalte, bezeichnen, die *nicht* pivotiert werden soll. Dazu musst du die Spalten weder mit Anführungs- und Schlusszeichen noch mit dem $-Zeichen versehen.
+
+```{r}
+library(tidyr)
+
+
+# Variante 1 (Spalten abwählen)
+pivot_longer(sensors_combined, -Datetime) 
+
+# Variante 2 (Spalten anwählen)
+sensors_long <- pivot_longer(sensors_combined, c(sensor1:sensor3))
 
 ```
+
+## Aufgabe 3
+
+Gruppiere `sensors_long` nach der neuen Spalte wo die Sensor-Information enthalten ist (default: `name`) mit `group_by` und berechne die mittlere Temperatur pro Sensor (`summarise`). Hinweis: Beide Funktionen sind Teil des Packages `dplyr`.
+
+```{r}
+library(dplyr)
+
+sensors_long %>%
+  group_by(name) %>%
+  summarise(temp_mean = mean(value, na.rm = TRUE))
+```
+
+## Aufgabe 4
+
+Erstelle für `sensors_long` eine neue *conveniance* Variabel `month` welche den Monat beinhaltet (Tipp: verwende dazu die Funktion `month` aus `lubridate`). Gruppiere nun nach `month` *und* Sensor und berechne die mittlere Temperatur. 
+
+```{r}
+library(lubridate)
+
+sensors_long %>%
+  mutate(month = month(Datetime)) %>%
+  group_by(month, name) %>%
+  summarise(temp_mean = mean(value, na.rm = TRUE))
+```
+
+
+## Aufgabe 5
+
+Lade jetzt nochmal den Datensatz [wetter.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) herunter und importiere ihn als CSV mit den Korrekten Spaltentypen ()
+
+```{r, echo = FALSE, purl = FALSE}
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
+
+```
+
+```{r}
+weather <- read_csv("weather.csv", col_types = cols(col_factor(), col_datetime("%Y%m%d%H"), col_double()))
+```
+
+
+
 
 
 ## Aufgabe 3
