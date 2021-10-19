@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-27"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-27"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-10-18"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-18"/>
   <meta name="article:author" content="Adrian Hochreutener"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW42: Loesung Felderhebung Grüntal"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S) Musterloesung"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["09-27-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW42: Loesung Felderhebung Grüntal"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S) Musterloesung"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["10-18-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW42: Loesung Felderhebung Grüntal","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-27T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
+{"title":"KW42: Loesung Felderhebung Grüntal","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-18T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,7 +1478,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Adrian Hochreutener  
   
-<br/>09-27-2021
+<br/>10-18-2021
 </div>
 
 <div class="d-article">
@@ -1691,9 +1691,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Anzahl_West <span class="ot">&lt;-</span> <span class="fu">sum</span>(west<span class="sc">$</span>Anzahl)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Meiste Aktivitaet ####</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Akt_Ost <span class="ot">&lt;-</span> ost <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Akt_ost <span class="ot">&lt;-</span> ost <span class="sc">%&gt;%</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Aktivität)<span class="sc">%&gt;%</span>       <span class="co"># Hier sagen wir nach was wir gruppieren </span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>      <span class="co"># und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">sum</span>(Anzahl)) <span class="sc">%&gt;%</span>      <span class="co"># und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span> <span class="co"># und dann soll und R das prozentuale Verhaeltniss berechnen</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))             <span class="co"># und dann das ganze absteigend sortieren</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -1701,22 +1701,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Jetzt kommt die grosse Staerke von R. </span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Wir haben den Code zur Berechnung der Anzahl pro Gruppe bereits geschrieben.</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># fuer die folgenden Auswertungen koennen wir ihn einfach &quot;recyceln&quot;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a> Akt_West<span class="ot">&lt;-</span> west <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a> Akt_west<span class="ot">&lt;-</span> west <span class="sc">%&gt;%</span></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Aktivität)<span class="sc">%&gt;%</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">sum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>Aktivitaet_West <span class="ot">&lt;-</span> west <span class="sc">%&gt;%</span></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Aktivität)<span class="sc">%&gt;%</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">sum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Begleittier</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>Begleit_ost <span class="ot">&lt;-</span> ost <span class="sc">%&gt;%</span></span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Begleittier)<span class="sc">%&gt;%</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">sum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span></span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># uns interessiert es nicht, wie viele Leute kein Begleittier dabei hatten</span></span>
@@ -1724,7 +1724,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>Begleit_west <span class="ot">&lt;-</span> west <span class="sc">%&gt;%</span></span>
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Begleittier)<span class="sc">%&gt;%</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">sum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span></span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
@@ -1733,7 +1733,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Wildtier</span></span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>Wildtier <span class="ot">&lt;-</span> Tiere <span class="sc">%&gt;%</span></span>
 <span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Wildtier)<span class="sc">%&gt;%</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">sum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))<span class="sc">%&gt;%</span></span>
 <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
 </div>
@@ -1747,7 +1747,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='co'># Zuerst eine Palette mit 5 Farben definieren</span>
 <span class='va'>pal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>5</span>, palette <span class='op'>=</span> <span class='st'>"heat"</span><span class='op'>)</span>
 <span class='co'># Dann als Kreisdiagramm plotten</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='va'>Akt_West</span><span class='op'>$</span><span class='va'>n</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Anderes"</span>, <span class='st'>"Biker"</span>, <span class='st'>"Landwirtschaft"</span>, <span class='st'>"Spaziergaenger"</span>, <span class='st'>"unbestimmbar"</span><span class='op'>)</span>,
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='va'>Akt_west</span><span class='op'>$</span><span class='va'>n</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Anderes"</span>, <span class='st'>"Biker"</span>, <span class='st'>"Landwirtschaft"</span>, <span class='st'>"Spaziergaenger"</span>, <span class='st'>"unbestimmbar"</span><span class='op'>)</span>,
     main <span class='op'>=</span> <span class='st'>"Prozentuales Verhaeltnis West"</span>,
     col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span> 
 </code></pre>
