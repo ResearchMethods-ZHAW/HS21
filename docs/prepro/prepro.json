@@ -164,5 +164,34 @@
     "input_file": "Demo_Split-Apply-Combine.knit.md",
     "preview_width": 1248,
     "preview_height": 768
+  },
+  {
+    "path": "prepro/PrePro3_Uebung/",
+    "title": "Uebung",
+    "description": {},
+    "author": [
+      {
+        "name": "Patrick Laube",
+        "url": {}
+      },
+      {
+        "name": "Nils Ratnaweera",
+        "url": {}
+      },
+      {
+        "name": "Nikolaos Bakogiannis",
+        "url": {}
+      }
+    ],
+    "date": "2021-10-19",
+    "categories": [
+      "PrePro3"
+    ],
+    "contents": "\nAufgabe 1\nGegeben sei ein Datensatz “sensors_combined.csv”, mit den Temperaturwerten von drei verschiedenen Sensoren. Lade diesen Datensatz herunter, importiere ihn als csv in R (als sensors_combined).\nFormatiere die Datetime Spalte in POSIXct um. Verwende dazu die Funktion as.POSIXct (lies mit ?strftime() nochmal nach wie du das spezfische Format (die “Schablone”) festlegen kannst.\n\n\n\n\n\n\nAufgabe 2\nÜberführe die Tabelle in ein langes Format (verwende dazu die Funktion pivot_longer aus tidyr) und speichere den output als sensors_long.\nTipp:\nim Argument cols kannst du entweder die Spalten auflisten, die “pivotiert” werden sollen.\nAlternativ kannst du (mit vorangestelltem Minuszeichen, -) die Spalte, bezeichnen, die nicht pivotiert werden soll.\nIn beiden Fällen musst du die Spalten weder mit Anführungs- und Schlusszeichen noch mit dem $-Zeichen versehen.\n\n\n\nAufgabe 3\nGruppiere sensors_long nach der neuen Spalte wo die Sensor-Information enthalten ist (default: name) mit group_by und berechne die mittlere Temperatur pro Sensor (summarise). Hinweis: Beide Funktionen sind Teil des Packages dplyr.\nDer Output sieht folgendermassen aus:\n\n# A tibble: 3 × 2\n  name    temp_mean\n  <chr>       <dbl>\n1 sensor1      14.7\n2 sensor2      12.0\n3 sensor3      14.4\n\nAufgabe 4\nErstelle für sensors_long eine neue convenience Variabel month welche den Monat beinhaltet (Tipp: verwende dazu die Funktion month aus lubridate). Gruppiere nun nach month und Sensor und berechne die mittlere Temperatur.\n\n# A tibble: 6 × 3\n# Groups:   month [2]\n  month name    temp_mean\n  <dbl> <chr>       <dbl>\n1    10 sensor1     14.7 \n2    10 sensor2     12.7 \n3    10 sensor3     14.4 \n4    11 sensor1    NaN   \n5    11 sensor2      8.87\n6    11 sensor3    NaN   \n\nAufgabe 5\nLade jetzt nochmal den Datensatz wetter.csv herunter und importiere ihn als CSV mit den Korrekten Spaltentypen (stn als factor, time als POSIXct, tre200h0 als double).\n\n\n\n\n\n\nAufgabe 6\nErstelle nun eine convenience Variabel für die Kalenderwoche pro Messung (lubridate::isoweek). Berechne im Anschluss den mittleren Temperaturwert pro Kalenderwoche.\n\n\n\nVisualisiere im Anschluss das Resultat:\n\n\nplot(weather_summary$week, weather_summary$temp_mean, type = \"l\")\n\n\n\n\nAufgabe 7\nIn der vorherigen Aufgabe haben wir die mittlere Temperatur pro Kalenderwoche über alle Jahre (2000 und 2001) berechnet. Wenn wir die Jahre aber miteinander vergleichen wollen, müssen wir das Jahr als zusätzliche convenience Variabel erstellen und danach gruppieren. Versuche dies mit den Wetterdaten und visualisiere den Output anschliessend.\n\n\n\n\n\n\nFigure 1: baseplot mag keine long tables und macht aus den beiden Jahren eine Kontinuierliche Linie\n\n\n\nAufgabe 8\nÜberführe den Output aus der letzten Übung in eine wide table. Nun lassen sich die beiden Jahre viel besser miteinander vergleichen.\n\n\n\n\n\nplot(weather_summary2$week, weather_summary2$year2000, type = \"l\",col = \"blue\")\nlines(weather_summary2$week, weather_summary2$year2001, type = \"l\",col = \"red\")\n\n\n\n\n\n\n\n",
+    "preview": "prepro/PrePro3_Uebung/distill-preview.png",
+    "last_modified": "2021-10-19T07:55:24+02:00",
+    "input_file": "Uebung.knit.md",
+    "preview_width": 1248,
+    "preview_height": 768
   }
 ]

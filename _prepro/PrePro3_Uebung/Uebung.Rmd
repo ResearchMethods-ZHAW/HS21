@@ -3,7 +3,6 @@ title: Uebung
 output: distill::distill_article
 categories:
 - PrePro3
-draft: true
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
@@ -20,6 +19,9 @@ Gegeben sei ein Datensatz "[sensors_combined.csv](https://github.com/ResearchMet
 Formatiere die `Datetime` Spalte in `POSIXct` um. Verwende dazu die Funktion `as.POSIXct` (lies mit `?strftime()` nochmal nach wie du das spezfische Format (die "Schablone") festlegen kannst.
 
 ```{r, echo = FALSE, purl = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+
 download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/sensors_combined.csv", "sensors_combined.csv")
 ```
 
@@ -37,14 +39,18 @@ sensors_combined$Datetime <- as.POSIXct(sensors_combined$Datetime, format = "%d%
 
 Überführe die Tabelle in ein *langes* Format (verwende dazu die Funktion `pivot_longer` aus `tidyr`) und speichere den output als `sensors_long`. 
 
-Tipp: im Argument `cols` kannst du entweder die Spalten auflisten, die "pivotiert" werden sollen. Alternativ kannst du (mit vorangestelltem Minuszeichen, `-`) die Spalte, bezeichnen, die *nicht* pivotiert werden soll. Dazu musst du die Spalten weder mit Anführungs- und Schlusszeichen noch mit dem $-Zeichen versehen.
+Tipp: 
+
+- im Argument `cols` kannst du entweder die Spalten auflisten, die "pivotiert" werden sollen. 
+- Alternativ kannst du (mit vorangestelltem Minuszeichen, `-`) die Spalte, bezeichnen, die *nicht* pivotiert werden soll. 
+- In beiden Fällen musst du die Spalten weder mit Anführungs- und Schlusszeichen noch mit dem `$`-Zeichen versehen.
 
 ```{r}
 library(tidyr)
 
 
 # Variante 1 (Spalten abwählen)
-pivot_longer(sensors_combined, -Datetime) 
+sensors_long <- pivot_longer(sensors_combined, -Datetime) 
 
 # Variante 2 (Spalten anwählen)
 sensors_long <- pivot_longer(sensors_combined, c(sensor1:sensor3))
@@ -54,6 +60,8 @@ sensors_long <- pivot_longer(sensors_combined, c(sensor1:sensor3))
 ## Aufgabe 3
 
 Gruppiere `sensors_long` nach der neuen Spalte wo die Sensor-Information enthalten ist (default: `name`) mit `group_by` und berechne die mittlere Temperatur pro Sensor (`summarise`). Hinweis: Beide Funktionen sind Teil des Packages `dplyr`.
+
+Der Output sieht folgendermassen aus: 
 
 ```{r}
 library(dplyr)
@@ -65,7 +73,7 @@ sensors_long %>%
 
 ## Aufgabe 4
 
-Erstelle für `sensors_long` eine neue *conveniance* Variabel `month` welche den Monat beinhaltet (Tipp: verwende dazu die Funktion `month` aus `lubridate`). Gruppiere nun nach `month` *und* Sensor und berechne die mittlere Temperatur. 
+Erstelle für `sensors_long` eine neue *convenience* Variabel `month` welche den Monat beinhaltet (Tipp: verwende dazu die Funktion `month` aus `lubridate`). Gruppiere nun nach `month` *und* Sensor und berechne die mittlere Temperatur. 
 
 ```{r}
 library(lubridate)
@@ -79,7 +87,7 @@ sensors_long %>%
 
 ## Aufgabe 5
 
-Lade jetzt nochmal den Datensatz [wetter.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) herunter und importiere ihn als CSV mit den Korrekten Spaltentypen ()
+Lade jetzt nochmal den Datensatz [wetter.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) herunter und importiere ihn als CSV mit den Korrekten Spaltentypen (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `double`).
 
 ```{r, echo = FALSE, purl = FALSE}
 download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
@@ -91,48 +99,66 @@ weather <- read_csv("weather.csv", col_types = cols(col_factor(), col_datetime("
 ```
 
 
+## Aufgabe 6
 
-
-
-## Aufgabe 3
-
-Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
+Erstelle nun eine *convenience* Variabel für die Kalenderwoche pro Messung (`lubridate::isoweek`). Berechne im Anschluss den mittleren Temperaturwert pro Kalenderwoche.
 
 ```{r}
 
-# Lösung Aufgabe 3
-
-wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
+weather_summary <- weather %>%
+  mutate(week = isoweek(time)) %>%
+  group_by(week) %>%
+  summarise(
+    temp_mean = mean(tre200h0, na.rm = TRUE)
+  )
 
 ```
+
+Visualisiere im Anschluss das Resultat:
 
 ```{r, echo = TRUE}
-# Hier ein Ausschnitt der df, wie es aussehen sollte:
-wetter_wide[1:5, 1:7]
+plot(weather_summary$week, weather_summary$temp_mean, type = "l")
 ```
 
+## Aufgabe 7
 
-## Aufgabe 9
-
-Nun wollen wir das Resultat aus Aufgabe 7 nutzen, um die Durchschnittstemperatur der Meereshöhe gegenüber zu stellen. Dummerweise ging das Attribut `Meereshoehe` bei der `summarise()` Operation verloren (da bei `summarise()` alle Spalten weg fallen, die **nicht** in `group_by()` definiert wurden). Um die Spalte `Meereshoehe` beizubehalten, muss sie also unter `group_by()` aufgelistet werden. 
-
-Wiederhole Übung 7 und siehe zu, dass die Meereshöhe beibehalten wird. Stelle danach in einem Scatterplot (wenn möglich mit `ggplot()`) die Meereshöhe der Durchschnittstemperatur gegenüber.
+In der vorherigen Aufgabe haben wir die mittlere Temperatur pro Kalenderwoche über *alle Jahre* (2000 und 2001) berechnet. Wenn wir die Jahre aber miteinander vergleichen wollen, müssen wir das Jahr als zusätzliche *convenience* Variabel erstellen und danach gruppieren. Versuche dies mit den Wetterdaten und visualisiere den Output anschliessend.
 
 ```{r}
-# Lösung Aufgabe 9
-
-wetter_sry <- wetter %>%
-  group_by(stn,Meereshoehe) %>%
-  summarise(temp_mean = mean(tre200h0))
-
-# Achtung: wenn mehrere Argumente in group_by() definiert werden führt das 
-# üblicherweise zu Untergruppen. In unserem Fall hat jede Station nur EINE 
-# Meereshöhe, deshalb wird die Zahl der Gruppen nicht erhöht.
+weather_summary2 <- weather %>%
+  mutate(
+    week = isoweek(time),
+    year = year(time)
+    ) %>%
+  group_by(year, week) %>%
+  summarise(
+    temp_mean = mean(tre200h0, na.rm = TRUE)
+  )
 ```
+
+
+```{r, fig.cap="baseplot mag keine long tables und macht aus den beiden Jahren eine Kontinuierliche Linie"}
+plot(weather_summary2$week, weather_summary2$temp_mean, type = "l")
+
+```
+
+
+## Aufgabe 8
+
+Überführe den Output aus der letzten Übung in eine *wide table*. Nun lassen sich die beiden Jahre viel besser miteinander vergleichen.
 
 
 ```{r}
-ggplot(wetter_sry, aes(temp_mean,Meereshoehe)) +
-  geom_point()
+weather_summary2 <- weather_summary2 %>%
+  pivot_wider(names_from = year, values_from = temp_mean,names_prefix = "year")
 ```
+
+
+```{r, echo = TRUE}
+plot(weather_summary2$week, weather_summary2$year2000, type = "l",col = "blue")
+lines(weather_summary2$week, weather_summary2$year2001, type = "l",col = "red")
+
+```
+
+
 
