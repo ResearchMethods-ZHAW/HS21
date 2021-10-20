@@ -21,7 +21,7 @@ Laden den `wetter`-Datensatz, bereinige ihn wenn nötig (`NA`-Werte entfernen) u
 ```{r, echo = T, message = F}
 
 wetter <- read_table("order_52252_data.txt",
-                     col_types = list(
+                     col_types = cols(
                        col_character(),    
                        col_datetime(format = "%Y%m%d%H"),
                        col_double()

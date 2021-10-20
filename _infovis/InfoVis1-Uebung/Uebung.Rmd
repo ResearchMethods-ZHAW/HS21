@@ -3,8 +3,8 @@ title: Übung
 output: distill::distill_article
 categories:
 - InfoVis1
-draft: true
-
+draft: false
+bibliography: bibliography.bib
 ---
 
 
@@ -17,47 +17,29 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 ```
 
 
-In dieser Übung geht es darum, die Grafiken aus dem Blog-post von Marko Kovic ([blog.tagesanzeiger.ch](https://blog.tagesanzeiger.ch/datenblog/index.php/668/je-weniger-auslaender-desto-mehr-ja-stimmen-wirklich)) zu rekonstruieren. Schau dir die Grafiken in dem Blogpost durch. Freundlicherweise hat Herr Kovic meist die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. 
+In dieser Übung geht es darum, die Grafiken aus dem Blog-post @kovic2014 zu rekonstruieren. Schau dir die Grafiken in dem Blogpost durch. Freundlicherweise wurden im Blogbeitrag die `ggplot2` Standardeinstellungen benutzt, was die Rekonstruktion relativ einfach macht. Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind meine eigenen Rekonstruktionen. 
 
-Die Links im Text verweisen auf die Originalgrafik, die eingebetteten Plots sind meine eigenen Rekonstruktionen. Importiere als erstes den Datensatz [initiative_masseneinwanderung_kanton.csv](initiative_masseneinwanderung_kanton.csv) (auf der Blog-Seite erhältlich).
+Importiere als erstes den Datensatz [initiative_masseneinwanderung_kanton.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/tagi_data_kantone.csv) (dieser ist auch auf der Blog-Seite verfügbar).
 
 
 ```{r, message=F}
 
-library(tidyverse)
+library(dplyr)
 library(ggplot2)
-library(stringr)
-library(janitor) # um die Spaltennamen zu säubern
+library(readr)
 
+kanton <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/tagi_data_kantone.csv") 
 ```
-
-
-```{r, eval=F}
-# Es kann sein, dass man die Codierung des Files spezifizieren muss. Mit `readr::read_delim()` 
-# läuft dies mit der Option locale = locale(encoding = "UTF-8") wobei anstelle von UTF-8 die 
-# entsprechende Codierung angegeben wird. 
-# Tipp: Excel speichert CSV oft in ANSI, welches für den Import in R nicht sonderlich geeignet 
-# ist. Falls Probleme auftreten muss das File mittels einer geeigneter Software (Widows: "Editor" 
-# oder "Notepad++", Mac: "TextEdit")  und mit einer neuen Codierung (z.B. `UTF-8`) abgespeichert 
-# werden.
-```
-
-```{r, echo = TRUE}
-kanton <- read_delim("initiative_masseneinwanderung_kanton.csv",",",locale = locale(encoding = "UTF-8")) %>%
-  janitor::clean_names() # säubert die Spaltennamen
-```
-
-
 
 ## Aufgabe 1
 
-Rekonstruiere [Grafik 1](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-2.png) von Kovic. Erstelle dazu einen Scatterplot wo der Ausländeranteil der Kantone dem Ja-Anteil gegenüber gestellt wird. Speichere den Plot einer Variabel `plot1`.
+Rekonstruiere [Grafik 1](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Kantone-2.png) [@kovic2014]. Erstelle dazu einen Scatterplot wo der Ausländeranteil der Kantone dem Ja-Anteil gegenüber gestellt wird. Speichere den Plot einer Variabel `plot1`.
 
-- nutze `ggplot(kanton, aes(auslanderanteil, ja_anteil))` um den ggplot zu initiieren.Füge danach ein einen Punkte Layer hinzu (`geom_point()`)
+- nutze `ggplot(kanton, aes(auslanderanteil, ja_anteil))` um den ggplot zu initiieren. Füge danach ein einen Punkte Layer hinzu (`geom_point()`)
 - nutze `coord_fixed()` um die beiden Achsen in ein fixes Verhältnis zu setzen (1:1).
 - Optional: 
-  - setze die Achsen Start- und Endwerte mittels `lims()` oder `scale_y_continuous`bzw. `scale_x_continuous`.
-  - Setze analog Kovic die `breaks` (`0.0`, `0.1`...`0.7`) manuell
+  - setze die Achsen Start- und Endwerte mittels `lims()` oder `scale_y_continuous` bzw. `scale_x_continuous`.
+  - Setze analog @kovic2014 die `breaks` (`0.0`, `0.1`...`0.7`) manuell
 
 Rekonstruktion:
 
@@ -92,18 +74,12 @@ plot1 +
 ## Aufgabe 3
 
 
-Importiere die Gemeindedaten [initiative_masseneinwanderung_gemeinde.csv](initiative_masseneinwanderung_gemeinde.csv):
-
-```{r, echo = T}
-gemeinde <- read_delim("initiative_masseneinwanderung_gemeinde.csv",",",locale = locale(encoding = "UTF-8")) %>%
-  janitor::clean_names() # säubert die Spaltennamen
-```
-
-
-Rekonstruiere [Grafik 3](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-2-986x939.png). Stelle dazu den Ausländeranteil aller Gemeinden dem Ja-Stimmen-Anteil gegenüber. Speichere den Plot als `plot2`
+Importiere die Gemeindedaten [initiative_masseneinwanderung_gemeinde.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/tagi_data_gemeinden.csv). Rekonstruiere danach [Grafik 3](https://blog.tagesanzeiger.ch/datenblog/wp-content/uploads/sites/32/2014/03/Gemeinden-2-986x939.png) indem du den Ausländeranteil aller Gemeinden dem Ja-Stimmen-Anteil gegenüber. Speichere den Plot als `plot2`
 
 ```{r}
 # Lösung zu Aufgabe 3
+
+gemeinde <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/tagi_data_gemeinden.csv")
 
 plot2 <- ggplot(gemeinde, aes(anteil_ausl, anteil_ja)) +
   geom_point() +
@@ -194,7 +170,7 @@ Tipp:
 - Nutze `cor.test()` um den Korrelationskoeffizienten sowie den p-Wert zu erhalten. 
 - Mit `$estimate` und `$p.value` können die entsprechenden Werte direkt angesprochen werden
 
-Hinweis: aus bisher unerklärlichen Gründen weiche gewisse meiner Werte leicht von den Berechnungen des Herrn Kovics ab.
+Hinweis: aus bisher unerklärlichen Gründen weiche gewisse meiner Werte leicht von den Berechnungen aus @kovic2014 ab.
 
 ```{r}
 

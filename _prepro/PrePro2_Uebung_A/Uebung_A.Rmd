@@ -51,7 +51,7 @@ wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H", tz = "
 ```{r}
 # Variate 2 (für Profis)
 wetter <- read_csv("weather.csv",
-                  col_types = list(
+                  col_types = cols(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
                     col_double()

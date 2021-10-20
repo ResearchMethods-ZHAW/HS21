@@ -1,21 +1,4 @@
----
-title: Demo EDA
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- InfoVis1
-draft: false
----
 
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-distill::mypurl()
-```
-
-
-
-
-```{r,message=F}
 
 
 library(tidyverse)
@@ -157,7 +140,5 @@ peopleClean$radius <- sqrt( peopleClean$weight/ pi )
 symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
 
 symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
-
-```
 
 

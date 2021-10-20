@@ -104,7 +104,7 @@ download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/
 ```{r}
 
 wetter <- read_csv("weather.csv",
-                  col_types = list(
+                  col_types = cols(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
                     col_double()
