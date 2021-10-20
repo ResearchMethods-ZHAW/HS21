@@ -3,29 +3,22 @@ title: Uebung A
 output: distill::distill_article
 categories:
 - PrePro2
-- PrePro
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
+draft: true
 ---
 
-```{r echo = FALSE}
-
-```
 ```{r include=FALSE, purl=F}
 knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
-# knitr::opts_knit$set(root.dir = "10_PrePro2") 
-
-select <- dplyr::select
-
-
 ```
 
 
 
 ```{r,message=F}
-library(tidyverse)
+library(dplyr)
+library(readr)
 library(lubridate)
 library(stringr)
 ```
@@ -33,12 +26,11 @@ library(stringr)
 
 ## Aufgabe 1
 
-Lade die Wetterdaten aus der letzten Übung.
+Lade die Wetterdaten runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv)) und importiere sie in `R`.
 
-```{r}
-# Lösung Aufgabe 1
+```{r loesung-1}
 
-wetter <- read_table("order_52252_data.txt",
+wetter <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv",
                   col_types = list(
                     col_factor(levels = NULL),    
                     col_datetime(format = "%Y%m%d%H"),
@@ -50,107 +42,58 @@ wetter <- read_table("order_52252_data.txt",
 
 ## Aufgabe 2
 
-Bereinige den Datensatz. Entferne z.B. alle Zeilen, bei dem der Stationsnahme oder Temperaturwerte fehlen 
-
-```{r}
-# Lösung Aufgabe 2
-
-wetter <- wetter %>%
-  filter(!is.na(stn)) %>%
-  filter(!is.na(tre200h0))
-
-```
-
-
-
-## Aufgabe 3
-
-Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
-
-```{r}
-
-# Lösung Aufgabe 3
-
-wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
-
-```
-
-```{r, echo = TRUE}
-# Hier ein Ausschnitt der df, wie es aussehen sollte:
-wetter_wide[1:5, 1:7]
-```
-
-
-## Aufgabe 4
-
-
-
-Importiere die Datei [order_52252_legend.csv](order_52252_legend.csv) (z.B. mit `read_delim`).
+Importiere die Datei [metadata.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv) (z.B. mit `read_delim`).
 
 Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. in Gen*è*ve), hat das vermutlich mit der [Zeichencodierung](https://de.wikipedia.org/wiki/Zeichenkodierung) zu tun. Das File ist aktuell in 'ANSI' Codiert, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows 'Editor' oder 'Notepad++', Mac: 'TextEdit') und mit einer neuen Codierung (z.B 'UTF-8') abspeichern. Danach kann die Codierung spezifitiert werden (bei `read_delim(): mit `locale = locale(encoding = "UTF-8")`)
 
-```{r}
+```{r loesung-2}
 
-# Lösung Aufgabe 4
 
-wetter_legende <- read_delim("order_52252_legend.csv",
+wetter_legende <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv",
                              delim = ";", 
                              locale = locale(encoding = "UTF-8"))
 
 ```
 
 
+## Aufgabe 3
 
-## Aufgabe 5
+Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die `x` und `y` Koordinaten aus der Spalte `Koordinaten`.
+
+1. Schritt: verwende `stringr::str_split_fixed` um die Spalte in eine `matrix` zu überführen
+2. Schritt: benenne die Spalten der `matrix` in `x` und `y` um
+3. Schritt: nutze `cbind` um die `matrix` mit der `data.frame` zu verbinden
+
+```{r loesung-3}
 
 
-Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die `x` und `y` Koordinaten aus der Spalte `Koordinaten` (Tipp: nutze dafür `tidyr::separate()`).
-
-```{r}
-
-# Lösung Aufgabe 5
-
-# Variante mit str_split_fixed()
+# 1. Schritt
 koordinaten <- str_split_fixed(wetter_legende$Koordinaten, "/", 2)
-
+# 2. Schritt
 colnames(koordinaten) <- c("x","y")
-
-cbind(wetter_legende,koordinaten)
-
-
-
-# Variante mit tidyr::separate
-# ich lösche die Spalten wieder, damit ich die tidyr lösung zeigen kann
-
-wetter_legende <- wetter_legende %>%
-  separate(Koordinaten,c("x","y"),"/")
-
+# 3. Schritt
+wetter_legende <- cbind(wetter_legende,koordinaten)
 ```
 
 
-## Aufgabe 6
+## Aufgabe 4
 
 Nun wollen wir den Datensatz `wetter`mit den Informationen aus `wetter_legende`anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).
 
-Tipp: Nutze `select()` von `dplyr`
+```{r loesung-4, message=F}
 
-```{r, message=F}
-
-# Lösung Aufgabe 6
-
-wetter_legende <- dplyr::select(wetter_legende, stn, Name, x,y,Meereshoehe)
+wetter_legende <- wetter_legende[,c("stn", "Name", "x","y","Meereshoehe")]
 ```
 
 
-## Aufgabe 7
+## Aufgabe 5
 
-Nun ist der Datensatz `wetter_legende`genügend vorbereitet. Jetzt kann er mit dem Datensatz `wetter` verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir "joinen" können.
+Nun ist der Datensatz `wetter_legende` genügend vorbereitet. Jetzt kann er mit dem Datensatz `wetter` verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir "joinen" können.
 
-Nutze die Join-Möglichkeiten von `dplyr` (Hilfe via `?dplyr::join`)  um die Datensätze `wetter` und `wetter_legende`zu verbinden.
+Nutze die Join-Möglichkeiten von `dplyr` (Hilfe via `?dplyr::join`)  um die Datensätze `wetter` und `wetter_legende` zu verbinden.
 
-```{r}
+```{r loesung-5}
 
-# Lösung Aufgabe 7
 
 wetter <- left_join(wetter,wetter_legende,by = "stn")
 
@@ -158,43 +101,26 @@ wetter <- left_join(wetter,wetter_legende,by = "stn")
 # Attribut: "stn"
 ```
 
-## Aufgabe 8
+## Aufgabe 6
 
-Berechne die Durchschnittstemperatur pro Station. Nutze dabei `dplyr::summarise()` und wenn möglich `%>%`. Speichere das Resultat in einer neuen Variabel.
+Erstelle eine neue Spalte `month` welche den jeweiligen Monat (aus `time`) beinhaltet. Nutze dafür die Funktion `lubridate::month()`.
 
-
-```{r,warning=F}
-
-# Lösung Aufgabe 8
-
-wetter_sry <- wetter %>%
-  group_by(stn) %>%
-  summarise(temp_mean = mean(tre200h0))
+```{r loesung-6}
+wetter$month <- month(wetter$time)
 ```
 
-## Aufgabe 9
+## Aufgabe 7
 
-Nun wollen wir das Resultat aus Aufgabe 7 nutzen, um die Durchschnittstemperatur der Meereshöhe gegenüber zu stellen. Dummerweise ging das Attribut `Meereshoehe` bei der `summarise()` Operation verloren (da bei `summarise()` alle Spalten weg fallen, die **nicht** in `group_by()` definiert wurden). Um die Spalte `Meereshoehe` beizubehalten, muss sie also unter `group_by()` aufgelistet werden. 
-
-Wiederhole Übung 7 und siehe zu, dass die Meereshöhe beibehalten wird. Stelle danach in einem Scatterplot (wenn möglich mit `ggplot()`) die Meereshöhe der Durchschnittstemperatur gegenüber.
-
-```{r}
-# Lösung Aufgabe 9
-
-wetter_sry <- wetter %>%
-  group_by(stn,Meereshoehe) %>%
-  summarise(temp_mean = mean(tre200h0))
-
-# Achtung: wenn mehrere Argumente in group_by() definiert werden führt das 
-# üblicherweise zu Untergruppen. In unserem Fall hat jede Station nur EINE 
-# Meereshöhe, deshalb wird die Zahl der Gruppen nicht erhöht.
-```
+Berechne mit der Spalte `month` die Durchschnittstemperatur pro Monat.
 
 
-```{r}
+```{r loesung-7, warning=F}
 
-ggplot(wetter_sry, aes(temp_mean,Meereshoehe)) +
-  geom_point()
+mean(wetter$tre200h0[wetter$month == 1])
+mean(wetter$tre200h0[wetter$month == 2])
+mean(wetter$tre200h0[wetter$month == 3])
+
+# usw. für alle 12 Monate
 ```
 
 

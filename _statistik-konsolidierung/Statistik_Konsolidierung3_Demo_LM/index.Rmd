@@ -5,7 +5,7 @@ author:
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung3
-- Statistik
+
 
 ---
 

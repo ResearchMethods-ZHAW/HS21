@@ -3,9 +3,7 @@ title: "Aufgabe 1"
 output: distill::distill_article
 categories:
 - Statistik1
-- Statistik
 draft: true
-
 ---
 
 ```{r echo = FALSE}

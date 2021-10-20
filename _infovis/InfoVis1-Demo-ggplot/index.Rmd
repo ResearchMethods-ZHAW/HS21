@@ -5,8 +5,7 @@ output:
     toc: true
 categories:
 - InfoVis1
-- InfoVis
-
+draft: true
 ---
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}

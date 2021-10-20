@@ -3,9 +3,7 @@ title: Demo
 output: distill::distill_article
 categories:
 - Statistik6
-- Statistik
 draft: true
-
 ---
 
 ```{r echo = FALSE}

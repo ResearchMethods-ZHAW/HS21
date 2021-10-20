@@ -1,0 +1,121 @@
+#export files
+knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/Demo_GLM_Konsolidierung4.R"), documentation = 0)
+# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+
+
+
+
+############
+# quasipoisson regression
+############
+
+cars <- mtcars %>% 
+   mutate(kml = (235.214583/mpg))
+
+glm.poisson <- glm(hp ~ kml, data = cars, family = poisson(link = log))
+
+summary(glm.poisson) # klare overdisperion
+
+# deshalb quasipoisson
+glm.quasipoisson <- glm(hp ~ mpg, data = cars, family = quasipoisson(link = log))
+
+summary(glm.quasipoisson)
+
+
+# visualisiere
+ggplot2::ggplot(cars, aes(x = mpg, y = hp)) + 
+    geom_point(size = 8) + 
+    geom_smooth(method = "glm", method.args = list(family = "poisson"), se = F,
+                color = "green", size = 2) + 
+    scale_x_continuous(limits = c(0,35)) + 
+    scale_y_continuous(limits = c(0,400)) + 
+    theme_classic()
+
+
+#Rücktransformation meiner Variablen
+
+
+
+
+
+############
+# logistische regression
+############
+cars <- mtcars
+
+# erstelle das modell
+glm.binar <- glm(vs ~ hp, data = cars, family = binomial(link = logit)) 
+
+
+summary(glm.binar)
+
+
+# überprüfe das modell
+cars$predicted <- predict(glm.binar, type = "response")
+
+
+# visualisiere
+ggplot(cars, aes(x = hp, y = vs)) +    
+    geom_point(size = 8) +
+    geom_point(aes(y = predicted), shape  = 1, size = 6) +
+    guides(color = F) +
+    geom_smooth(method = "glm", method.args = list(family = 'binomial'), 
+                se = FALSE,
+                size = 2) +
+    # geom_smooth(method = "lm", color = "red", se = FALSE) +
+    mytheme
+
+#Modeldiagnostik (wenn nicht signifikant, dann OK)
+1 - pchisq(glm.binar$deviance,glm.binar$df.resid)  
+
+
+#Modellgüte (pseudo-R²)
+1 - (glm.binar$dev / glm.binar$null)  
+
+#Steilheit der Beziehung (relative Änderung der odds von x + 1 vs. x)
+exp(glm.binar$coefficients[2])
+
+
+#LD50 (wieso negativ: weil zweiter koeffizient negative steigung hat)
+abs(glm.binar$coefficients[1]/glm.binar$coefficients[2])
+
+
+# kreuztabelle (confusion matrix): fasse die ergebnisse aus predict und "gegebenheiten, realität" zusammen
+tab1 <- table(cars$predicted>.5, cars$vs)
+dimnames(tab1) <- list(c("M:S-type","M:V-type"), c("T:S-type", "T:V-type"))
+tab1
+
+prop.table(tab1, 2)
+
+#Rücktransformation meiner Variablen
+
+
+
+
+
+###########
+# LOESS & GAM
+###########
+
+ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) + 
+  geom_point(size = 8) + 
+  geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
+  geom_smooth(method = "loess", se = F, color = "red", size = 2) + 
+  geom_smooth(method = "glm", size = 2, color = "blue", se = F) + 
+  scale_x_continuous(limits = c(0,35)) + 
+    scale_y_continuous(limits = c(0,400)) + 
+    mytheme
+
+
+ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) + 
+  geom_point(size = 8) + 
+  geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
+    # geom_smooth(method = "loess", se = F, color = "red", size = 2) + 
+  geom_smooth(method = "glm", size = 2, color = "grey", se = F) + 
+  scale_x_continuous(limits = c(0,35)) + 
+  scale_y_continuous(limits = c(0,400)) + 
+  mytheme
+
+
+```{.r .distill-force-highlighting-css}
+```

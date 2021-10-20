@@ -456,7 +456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -2037,7 +2037,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2056,10 +2056,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }
 
 
-  .sourceCode, d-article pre{
-      background-color: #f7f7f7;
+  /* this should format the code blocks and inline code in a better way */
+  code:not(.sourceCode){
+    font-size: .85em;
+    padding: .2em;
   }
 
+  .sourceCode, code{
+    background: #f7f7f7;
+  }
+  d-article pre{
+    background: #f7f7f7;
+  }
 
 
   /* stylign the footer (_footer.html) */
@@ -2119,6 +2127,7 @@ Preprocessing
 <hr/>
 <a href="PrePro.html#category:PrePro1">PrePro1</a>
 <a href="PrePro.html#category:PrePro2">PrePro2</a>
+<a href="PrePro.html#category:PrePro3">PrePro3</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2195,6 +2204,8 @@ Fallstudien
 <div class="nav-dropdown-content">
 <a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)">Biodiversity and Ecosystems (Profil S)</a>
 <a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)_Musterloesung">Biodiversity and Ecosystems (Profil S): Musterloesung</a>
+<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(N)">Biodiversity and Ecosystems (Profil N)</a>
+<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(N)_Musterloesung">Biodiversity and Ecosystems (Profil N): Musterloesung</a>
 </div>
 </div>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
@@ -2269,7 +2280,7 @@ Fallstudien
 </ul>
 <p>PS: Wir verwenden eine von Nils leicht modifizierte Version von <code>distill</code></p>
 <h3 id="renv">Renv</h3>
-<p>Im Unterricht werden sehr viele RPackages verwendet. Um sicher zu stellen, das wir alle mit der gleichen Version dieser Packages arbeiten verwenden wir das RPackage <a href="https://rstudio.github.io/renv/"><code>renv</code></a>. Das arbeiten mit <code>renv</code> bringt folgende Änderungen mit sich:</p>
+<p>Im Unterricht werden sehr viele RPackages verwendet. Bei gewissen Packgages ist es kritisch, das wir mit der gleichen <em>Version</em> arbeiten (dies gilt v.a. für <code>distill</code>). Um sicher zu stellen, das wir alle mit der gleichen Version dieser Packages arbeiten verwenden wir das RPackage <a href="https://rstudio.github.io/renv/"><code>renv</code></a>. Das arbeiten mit <code>renv</code> bringt folgende Änderungen mit sich:</p>
 <ul>
 <li>Packages werden alle im Projektfolder installiert (<code>renv/library</code>) statt wie üblich in <code>C:/Users/xyz/Documents/R/win-library/3.6</code> bzw. <code>C:/Program Files/R/R-3.6.1/library</code>
 <ul>
@@ -2323,10 +2334,12 @@ Fallstudien
 <h3 id="notwendige-packages-installieren">Notwendige Packages installieren</h3>
 <p>Wie bereits erwähnt, verwenden wir im Projekt <code>renv</code>.</p>
 <ul>
-<li>Installiert dieses Package mit <code>install.packages("renv")</code></li>
-<li>Installiert alle notwendigen Packages mit <code>renv::restore()</code></li>
+<li>Installiere dieses Package mit <code>install.packages("renv")</code></li>
+<li>Installiere alle notwendigen Packages mit <code>renv::restore()</code></li>
 </ul>
-<p>weitere infos: <a href="https://rstudio.github.io/renv/articles/collaborating.html">Collaborating with renv</a></p>
+<p>Wichtig: Es hat sich herausgestellt, das die Vereinigungsmenge aller Packages eine unhandlich grosse Liste von Packages ist: Damit nicht alle Personen alle Packages installieren müssen, verwenden wir <code>renv</code> mit der Einstellung <code>snapshot.type: explicit</code>. Damit werden in <code>renv.lock</code> nur Packages inkludiert, welche in <code>DESCRIPTION</code> festgehalten sind.</p>
+<p>Zudem haben wir die RVersion Manuell gesetzt, und zwar via <code>r.version: 4.1.0</code></p>
+<p>Weitere infos zu <code>renv</code> für Kollaboration: <a href="https://rstudio.github.io/renv/articles/collaborating.html">Collaborating with renv</a></p>
 <h2 id="anleitung-3-inhalte-editieren-und-veröffentlichen">Anleitung 3: Inhalte Editieren und veröffentlichen</h2>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -2347,30 +2360,43 @@ Fallstudien
 <h3 id="änderungen-veröffentlichen">Änderungen veröffentlichen</h3>
 <p>Um die Änderungen zu veröffentlichen (für die Studenten sichtbar zu machen) müsst ihr diese via git auf das Repository “pushen”. Vorher aber müsst ihr die Änderungen <code>stage</code>-en und <code>commit</code>-en. Ich empfehle, dass ihr zumindest zu beginn mit dem RStudio “Git” Fenster arbeitet.</p>
 <ul>
-<li><code>stage</code>: Setzen eines Häckchens bei “Staged”</li>
-<li><code>commit</code>: Klick auf den Button “commit”</li>
-<li><code>push</code>: Click auf den button “Push”</li>
+<li><code>stage</code>: Setzen eines Häckchens bei “Staged” (im Terminal mit <code>git add .</code>)</li>
+<li><code>commit</code>: Klick auf den Button “commit” (im Terminal mit <code>git commit -m "deine message"</code>)</li>
+<li><code>pull</code>: Klick auf den Button “Pull” (im Terminal mit <code>git pull</code>)</li>
+<li><code>push</code>: Click auf den button “Push” (im Terminal mit <code>git push</code>)</li>
 </ul>
-<p><em>Achtung</em>: Um Änderungen, die ihr am .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren!</p>
+<p><em>Achtung</em>:</p>
+<ul>
+<li>Um Änderungen, die ihr am .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren (mit <code>Ctrl+Shift+K</code> oder dem button “Knit”)</li>
+<li>In gewissen Fällen<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> muss man die gesamte Seite “builden” (mit <code>Ctrl+Shift+B</code> oder dem Button Build -&gt; Build Website)</li>
+</ul>
 <h2 id="anleitung-4-fortgeschritten-listings-editieren-und-veröffentlichen">Anleitung 4 (Fortgeschritten): Listings editieren und veröffentlichen</h2>
 <p><em>(dieser Teil ist eher “advanced” und nicht für alle Interessant)</em></p>
 <p><code>distill</code> verfügt über die Möglichkeit, sogenannte “Collections” zu machen. Eine <em>collection</em> ist eine Sammlung von .Rmd files zu einem bestimmten Thema, für welche automatisch eine Übersichtsseite (sog. “Listing”) erstellt wird.</p>
 <p>Um eine <em>collection</em> zu erstellen:</p>
 <ol type="1">
-<li><p>neuer Ordner mit entsprechendem Namen und vorangestelltem Underscore (<code>_</code>) im Projektordner erstellen (z.b. _fallstudien)</p></li>
-<li><p>neues Rmd-File mit einem passenden Namen im Projektordner erstellen (z.B. <code>infoVis.Rmd</code>)</p></li>
-<li><p>das neue Rmd File mit einem Rmd-YAML Header verstehen mit mindestens folgendem Inhalt: <code>title</code> und <code>listing</code> (siehe unten)</p>
-<pre><code> ---
- title: &quot;InfoVis&quot;      # &lt;- Egal
- listing: infovis      # &lt;- ordnername der collection ohne Underscore
- ---</code></pre></li>
-<li><p>die Listing in <code>_site.yml</code> zugänglich machen:</p>
-<pre><code> navbar:
-   right:
-     - text: &quot;InfoVis1&quot;     # &lt;- Egal
-       href: InfoVis.html   # &lt;- Name des Rmd files mit der Endung .html</code></pre></li>
+<li>neuer Ordner mit entsprechendem Namen und vorangestelltem Underscore (<code>_</code>) im Projektordner erstellen (z.b. _fallstudien)</li>
+<li>neues Rmd-File mit einem passenden Namen im Projektordner erstellen (z.B. <code>infoVis.Rmd</code>)</li>
+<li>das neue Rmd File mit einem Rmd-YAML Header verstehen mit mindestens folgendem Inhalt: <code>title</code> und <code>listing</code> (siehe unten)</li>
 </ol>
+<pre><code>---
+title: &quot;InfoVis&quot;      # &lt;- Egal
+listing: infovis      # &lt;- ordnername der collection ohne Underscore
+---</code></pre>
+<ol start="4" type="1">
+<li>die Listing in <code>_site.yml</code> zugänglich machen:</li>
+</ol>
+<pre><code>navbar:
+  right:
+    - text: &quot;InfoVis1&quot;     # &lt;- Egal
+      href: InfoVis.html   # &lt;- Name des Rmd files mit der Endung .html</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>v.a. Änderungen an <code>_site.yml</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

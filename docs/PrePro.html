@@ -453,7 +453,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -2034,7 +2034,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2053,10 +2053,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }
 
 
-  .sourceCode, d-article pre{
-      background-color: #f7f7f7;
+  /* this should format the code blocks and inline code in a better way */
+  code:not(.sourceCode){
+    font-size: .85em;
+    padding: .2em;
   }
 
+  .sourceCode, code{
+    background: #f7f7f7;
+  }
+  d-article pre{
+    background: #f7f7f7;
+  }
 
 
   /* stylign the footer (_footer.html) */
@@ -2116,6 +2124,7 @@ Preprocessing
 <hr/>
 <a href="PrePro.html#category:PrePro1">PrePro1</a>
 <a href="PrePro.html#category:PrePro2">PrePro2</a>
+<a href="PrePro.html#category:PrePro3">PrePro3</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2192,6 +2201,8 @@ Fallstudien
 <div class="nav-dropdown-content">
 <a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)">Biodiversity and Ecosystems (Profil S)</a>
 <a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(S)_Musterloesung">Biodiversity and Ecosystems (Profil S): Musterloesung</a>
+<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(N)">Biodiversity and Ecosystems (Profil N)</a>
+<a href="Fallstudien.html#category:Biodiversity_&amp;_Ecosystems_(N)_Musterloesung">Biodiversity and Ecosystems (Profil N): Musterloesung</a>
 </div>
 </div>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
@@ -2221,7 +2232,7 @@ function init_posts_list() {
     var src = $(img).attr('data-src');
     if (src) {
       $(img).attr('src', src);
-      $(img).load(function() {
+      $(img).on("load", function() {
         img.removeAttribute('data-src');
       });
     }
@@ -2347,9 +2358,9 @@ function init_posts_list() {
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Daten Preprocessing">Daten Preprocessing</h1>
 <a href="prepro/PrePro1_Demo_Datentypen/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["PrePro1","PrePro"]}</script>
+<script class="post-metadata" type="text/json">{"categories":["PrePro1"]}</script>
 <div class="metadata">
-<div class="publishedDate">Aug. 26, 2021</div>
+<div class="publishedDate">Oct. 11, 2021</div>
 <div class="dt-authors">
 <div class="dt-author">Patrick Laube</div>
 <div class="dt-author">Nils Ratnaweera</div>
@@ -2357,21 +2368,41 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img/>
+<img src="prepro/PrePro1_Demo_Datentypen/types.jpg"/>
 </div>
 <div class="description">
 <h2>Demo Datentypen</h2>
 <div class="dt-tags">
 <div class="dt-tag">PrePro1</div>
-<div class="dt-tag">PrePro</div>
 </div>
 <p></p>
 </div>
 </a>
-<a href="prepro/PrePro1_Uebung_A/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["PrePro1","PrePro"]}</script>
+<a href="prepro/PrePro1_Uebung/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["PrePro1"]}</script>
 <div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
+<div class="publishedDate">Oct. 12, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Patrick Laube</div>
+<div class="dt-author">Nils Ratnaweera</div>
+<div class="dt-author">Nikolaos Bakogiannis</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="prepro/PrePro1_Uebung/preview.png"/>
+</div>
+<div class="description">
+<h2>Uebung</h2>
+<div class="dt-tags">
+<div class="dt-tag">PrePro1</div>
+</div>
+<p></p>
+</div>
+</a>
+<a href="prepro/Prepro2_Demo/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["PrePro2"]}</script>
+<div class="metadata">
+<div class="publishedDate">Oct. 13, 2021</div>
 <div class="dt-authors">
 <div class="dt-author">Patrick Laube</div>
 <div class="dt-author">Nils Ratnaweera</div>
@@ -2382,18 +2413,17 @@ function init_posts_list() {
 <img/>
 </div>
 <div class="description">
-<h2>Uebung A</h2>
+<h2>Demo</h2>
 <div class="dt-tags">
-<div class="dt-tag">PrePro1</div>
-<div class="dt-tag">PrePro</div>
+<div class="dt-tag">PrePro2</div>
 </div>
 <p></p>
 </div>
 </a>
-<a href="prepro/PrePro1_Uebung_B/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["PrePro1","PrePro"]}</script>
+<a href="prepro/PrePro3_Demo_Tidyverse/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["PrePro3"]}</script>
 <div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
+<div class="publishedDate">Oct. 13, 2021</div>
 <div class="dt-authors">
 <div class="dt-author">Patrick Laube</div>
 <div class="dt-author">Nils Ratnaweera</div>
@@ -2401,79 +2431,12 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="prepro/PrePro1_Uebung_B/distill-preview.png"/>
-</div>
-<div class="description">
-<h2>Uebung B</h2>
-<div class="dt-tags">
-<div class="dt-tag">PrePro1</div>
-<div class="dt-tag">PrePro</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="prepro/PrePro2_Demo_Tidyverse/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["PrePro2","PrePro"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Patrick Laube</div>
-<div class="dt-author">Nils Ratnaweera</div>
-<div class="dt-author">Nikolaos Bakogiannis</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="prepro/PrePro2_Demo_Tidyverse/distill-preview.png"/>
+<img src="prepro/PrePro3_Demo_Tidyverse/distill-preview.png"/>
 </div>
 <div class="description">
 <h2>Demo tidyverse</h2>
 <div class="dt-tags">
-<div class="dt-tag">PrePro2</div>
-<div class="dt-tag">PrePro</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="prepro/PrePro2_Uebung_A/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["PrePro2","PrePro"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 18, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Patrick Laube</div>
-<div class="dt-author">Nils Ratnaweera</div>
-<div class="dt-author">Nikolaos Bakogiannis</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Uebung A</h2>
-<div class="dt-tags">
-<div class="dt-tag">PrePro2</div>
-<div class="dt-tag">PrePro</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="prepro/PrePro2_Uebung_B/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["PrePro2","PrePro"]}</script>
-<div class="metadata">
-<div class="publishedDate">Aug. 19, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Patrick Laube</div>
-<div class="dt-author">Nils Ratnaweera</div>
-<div class="dt-author">Nikolaos Bakogiannis</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Übung B</h2>
-<div class="dt-tags">
-<div class="dt-tag">PrePro2</div>
-<div class="dt-tag">PrePro</div>
+<div class="dt-tag">PrePro3</div>
 </div>
 <p></p>
 </div>
@@ -2484,16 +2447,20 @@ function init_posts_list() {
 <h3>Themen</h3>
 <ul>
 <li>
-<a href="#category:PrePro">PrePro</a>
-<span class="category-count">(6)</span>
+<a href="#category:Articles">Alle Themen</a>
+<span class="category-count">(4)</span>
 </li>
 <li>
 <a href="#category:PrePro1">PrePro1</a>
-<span class="category-count">(3)</span>
+<span class="category-count">(2)</span>
 </li>
 <li>
 <a href="#category:PrePro2">PrePro2</a>
-<span class="category-count">(3)</span>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:PrePro3">PrePro3</a>
+<span class="category-count">(1)</span>
 </li>
 </ul>
 </div>

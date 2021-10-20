@@ -1,12 +1,9 @@
 ---
 title: Demo Statistik 1
 output: distill::distill_article
-
 categories:
 - Statistik1
-- Statistik
 draft: true
-
 ---
 
 

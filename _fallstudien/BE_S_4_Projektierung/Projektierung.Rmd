@@ -8,26 +8,26 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S)
-draft: true
+draft: false
 ---
 
 # Arbeiten mit Projekten
 
-Vor den eigentlichen Auswertungen muessen einige Vorbereitungen unternommen werden. Die Zeit, die man hier investiert, wird in der späteren Projektphase um ein Mehrfaches eingespart. R Studio ist vereinfacht das Arbeiten mit R enorm.
+Vor den eigentlichen Auswertungen muessen einige Vorbereitungen unternommen werden. Die Zeit, die man hier investiert, wird in der späteren Projektphase um ein Mehrfaches eingespart. 
 
 ```{r out.width = "30%", fig.align ="left", echo = FALSE}
 knitr::include_graphics("the-r-project-for-statistical-computing.png")
 ```
 
-Ich empfehle generell mit Projekten zu arbeiten, da diese sehr einfach ausgetauscht (auf verschiedene Rechner) und somit auch reproduziert werden koennen. Wichtig ist, dass es keine absoluten Arbeitspfade sondern nur relative gibt. Der Datenimport (und -export) kann mithilfe dieser relativen Pfade stark vereinfacht werden. --> Kurz gesagt: Projekte helfen alles am richtigen Ort zu behalten (mehr zur Arbeit mit Projekten: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
+Ich empfehle generell mit Projekten zu arbeiten, da diese sehr einfach ausgetauscht (auf verschiedene Rechner) und somit auch reproduziert werden können. Wichtig ist, dass es keine absoluten Arbeitspfade sondern nur relative gibt. Der Datenimport (und -export) kann mithilfe dieser relativen Pfade stark vereinfacht werden. --> Kurz gesagt: Projekte helfen alles am richtigen Ort zu behalten (mehr zur Arbeit mit Projekten: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
 
-Erstellt an einem passenden Speicherort ein neues Projekt mit einem treffenden Namen:
+- Erstellt an einem passenden Speicherort ein neues Projekt mit einem treffenden Namen:
 
 --> File / New Project
 
 ## Aufgabe 1: Projektaufbau
 
-Nutzt fuer allen Text, welcher nicht im Code integriert ist, das Symbol #. Wenn ihr den Text als Titel definieren wollt, so dass er in der UEbersicht erscheint, muessen vor dem Wort # und nach dem Wort #### eingefuegt werden.
+Nutzt für allen Text, welcher nicht im Code integriert ist, das Symbol #. Wenn ihr den Text als Titel definieren wollt, so dass er in der Übersicht erscheint, müssen vor dem Wort # und nach dem Wort #### eingefügt werden.
 
 ```{r}
 # Texte, vor denen ein # und nach denen #### stehen, sind Titel
@@ -47,13 +47,13 @@ Tipp:
 
 - Ctrl + Shift + C = # vor der ausgewaehlten Zeile
 
-Zuerst immer den __Titel des Projekts__ sowie den __Autor/ die Autorin__ des Skripts nennen. Hier soll auch die __Herkunft der Daten__ ersichtlich sein und falls externe Daten verwendet werden, sollte geklaert werden, wer Dateneigentuemer ist (Wildnispark und Meteo Schweiz).
+Zuerst immer den __Titel des Projekts__ sowie den __Autor/ die Autorin__ des Skripts nennen. Hier soll auch die __Herkunft der Daten__ ersichtlich sein und falls externe Daten verwendet werden, sollte geklärt werden, wer Dateneigentümer ist (Wildnispark und Meteo Schweiz).
 
 Im Skript soll immer die __Ordnerstruktur__ des Projekts genannt werden. So kann der Arbeitsvorgang auf verschiedenen Rechnern einfach reproduziert werden (ich verwende hier ein Projektornder mit den Unterordnern __skripts, data, results).
 
 Beschreibt zudem folgendes die verwendete __Meteodaten__ (siehe dazu Metadata Meteodaten, --> order_XXX_legend.txt)
 
-Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthaellt (nach den bereits erwaehnten Definitionen) 4 Kapitel: 
+Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema aufgebaut sein. Dieses Schema enthällt (nach den bereits erwähnten Definitionen) 4 Kapitel: 
 
 0) Metadaten und Definitionen
 1) Datenimport, 
@@ -64,18 +64,20 @@ Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema
 Bereitet euer Sktipt mit diesen Kapitel vor.
 
 ```{r}
-#.################################################################################################ Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
+#.########################################################################################### Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
 # Fallstudie Modul Research Methods, HS21. Autor/in ####
-#.################################################################################################
-#.###############################################################################################
+#.##########################################################################################
+
+#.##########################################################################################
 # METADATA UND DEFINITIONEN ####
-#.################################################################################################
+#.##########################################################################################
+
 # Datenherkunft ####
 # ...
 
-#.###############################################################################################
+#.##########################################################################################
 # 1. DATENIMPORT #####
-#.###############################################################################################
+#.##########################################################################################
 
 ```
 
@@ -105,16 +107,17 @@ library(lattice)   # einfaches plotten von Zusammenhängen zwischen Variablen
 
 ## Aufgabe 3: Zeitliche Definitionen
 
-Definiert den zeitlichen Horizont, also Start sowie Ende der Untersuchungen. Bezieht in eure Auswertungen den gesamten verfügbaren Zeitraum ein.
+- Definiert den zeitlichen Horizont, also Start sowie Ende der Untersuchungen. Bezieht in eure Auswertungen den gesamten verfügbaren Zeitraum ein.
 
-- Dafür müsst ihr in die Rohdaten eures Zählers schauen. Am einfachsten direkt in der .csv Datei.
+Dafür müsst ihr in die Rohdaten eures Zählers schauen. Am einfachsten direkt in der .csv Datei.
 
 ```{r eval=FALSE}
 depo_start <- as.Date("YYYY-MM-DD")
 depo_end <- ...
 ```
 
-Wichtiger Teil unserer Auswertungen ist der Einfluss des Lockdown auf das Besuchsverhalten. Wir muessen also Start und Ende der beiden Lockdowns in der Schweiz definieren:
+Wichtiger Teil unserer Auswertungen ist der Einfluss des Lockdown auf das Besuchsverhalten. 
+-Wir müssen also Start und Ende der beiden Lockdowns in der Schweiz definieren:
 
 ```{r eval=FALSE}
 lock_1_start_2020 <- as.Date("2020-03-16")
@@ -124,9 +127,9 @@ lock_2_start_2021 <- as.Date("2020-12-22")
 lock_2_end_2021 <- as.Date("2021-03-01")
 ```
 
-Ebenfalls muessen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden. Diese werden bei wochenweisen Analysen ausgeklammert da sie i.d.R. unvollstaendig sind (das ist ein spaeterer Arbeitsschritt). Geht wie oben vor. Tipp: der Befehl __week()__ liefert euch die Kalenderwoche.
+Ebenfalls müssen die erste und letzte Kalenderwoche der Untersuchungsfrist definiert werden. Diese werden bei wochenweisen Analysen ausgeklammert da sie i.d.R. unvollstaendig sind (das ist ein späterer Arbeitsschritt). Geht wie oben vor. Tipp: der Befehl __week()__ liefert euch die Kalenderwoche.
 
-Ferienzeiten koennen einen grossen Einfluss auf das Besueraufkommen haben. Die relevanten Ferienzeitraeume (in meinem Beispiel ab 2019, je nach dem müsst ihr das anpassen) muessen daher bekannt sein. Zur Definition der Ferien kann z.B. folgend vorgegangen werden:
+Ferienzeiten können einen grossen Einfluss auf das Besucheraufkommen haben. Die relevanten Ferienzeiträume (in meinem Beispiel ab 2019, je nach dem müsst ihr das anpassen) muüsen daher bekannt sein. Zur Definition der Ferien kann z.B. folgend vorgegangen werden:
 
 ```{r warning=FALSE, results="hide"}
 # (https://www.schulferien.org/schweiz/ferien/2020/)

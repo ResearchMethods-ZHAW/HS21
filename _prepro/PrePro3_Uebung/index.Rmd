@@ -1,0 +1,54 @@
+---
+title: Uebung
+output: distill::distill_article
+categories:
+- PrePro3
+draft: true
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+---
+
+## Aufgabe 3
+
+Überführe die **lange** Tabelle über in eine breite. Dabei sollte jede Station eine eigene Spalte enthalten (`names_from`), gefüllt mit den Temperaturwerten (`values_from`).  Speichere diese Tabelle in einer neuen Variabel.
+
+```{r}
+
+# Lösung Aufgabe 3
+
+wetter_wide <- pivot_wider(wetter, names_from = stn, values_from = tre200h0)
+
+```
+
+```{r, echo = TRUE}
+# Hier ein Ausschnitt der df, wie es aussehen sollte:
+wetter_wide[1:5, 1:7]
+```
+
+
+## Aufgabe 9
+
+Nun wollen wir das Resultat aus Aufgabe 7 nutzen, um die Durchschnittstemperatur der Meereshöhe gegenüber zu stellen. Dummerweise ging das Attribut `Meereshoehe` bei der `summarise()` Operation verloren (da bei `summarise()` alle Spalten weg fallen, die **nicht** in `group_by()` definiert wurden). Um die Spalte `Meereshoehe` beizubehalten, muss sie also unter `group_by()` aufgelistet werden. 
+
+Wiederhole Übung 7 und siehe zu, dass die Meereshöhe beibehalten wird. Stelle danach in einem Scatterplot (wenn möglich mit `ggplot()`) die Meereshöhe der Durchschnittstemperatur gegenüber.
+
+```{r}
+# Lösung Aufgabe 9
+
+wetter_sry <- wetter %>%
+  group_by(stn,Meereshoehe) %>%
+  summarise(temp_mean = mean(tre200h0))
+
+# Achtung: wenn mehrere Argumente in group_by() definiert werden führt das 
+# üblicherweise zu Untergruppen. In unserem Fall hat jede Station nur EINE 
+# Meereshöhe, deshalb wird die Zahl der Gruppen nicht erhöht.
+```
+
+
+```{r}
+ggplot(wetter_sry, aes(temp_mean,Meereshoehe)) +
+  geom_point()
+```
+

@@ -5,8 +5,6 @@ output:
     toc: true
 categories:
 - Statistik3
-- Statistik
-
 ---
 
 #Aufgabe 3: Multiple Regression

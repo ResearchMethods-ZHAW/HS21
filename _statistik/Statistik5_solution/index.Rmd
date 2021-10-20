@@ -3,8 +3,6 @@ title: Loesung Aufgabe 5
 output: distill::distill_article
 categories:
 - Statistik5
-- Statistik
-
 ---
 
 ```{r export files echo = FALSE}

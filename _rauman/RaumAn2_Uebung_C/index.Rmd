@@ -3,7 +3,7 @@ title: Uebung C
 output: distill::distill_article
 categories:
 - RaumAn2
-- RaumAn
+draft: true
 description: |
   Dichteverteilungen
 author:

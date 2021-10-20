@@ -8,15 +8,16 @@ author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
+preview: types.jpg
 categories:
 - PrePro1
-- PrePro
+draft: false
 ---
 
 
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("index.Rmd", "Demo_Datentypen.R", documentation = 0)
+distill::mypurl("index.Rmd", "Demo_Datentypen.R")
 ```
 
 
@@ -194,8 +195,8 @@ fname == fname2
 Mit `Factors` wird in R eine Sammlung von Zeichenketten bezeichnet, die sich wiederholen, z.B. Wochentage (es gibt nur 7 unterschiedliche Werte für "Wochentage").
 
 ```{r}
-wochentage <- c("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag",
-                "Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag")
+wochentage <- c("Donnerstag","Freitag","Samstag","Sonntag","Montag","Dienstag","Mittwoch",
+                "Donnerstag","Freitag","Samstag","Sonntag", "Montag","Dienstag","Mittwoch")
 
 typeof(wochentage)
 
@@ -230,7 +231,7 @@ Beachtet: `ordered = T` kann nur bei der Funktion `factor()` spezifiziert werden
 
 
 ```{r}
-zahlen <- factor(zahlen,ordered = T)
+zahlen <- factor(zahlen,ordered = TRUE)
 
 zahlen
 ```
@@ -269,17 +270,13 @@ as.integer(zahlen)
 Das die Übersetzung der auf Deutsch ausgeschriebenen Nummern in nummerische Zahlen nicht funktionieren würde, war ja klar. Weniger klar ist es jedoch, wenn die `factors` bereits aus nummerischen Zahlen bestehen.
 
 ```{r}
-zahlen2 <- factor(c("3","2","1","0"))
-
+zahlen2 <- factor(c("10","20"))
 as.integer(zahlen2)
-
 ```
 
 In diesem Fall müssen die `factors` erstmals in `character` umgewandelt werden.
 
 ```{r}
-zahlen2 <- factor(c("3","2","1","0"))
-
 as.integer(as.character(zahlen2))
 ```
 
