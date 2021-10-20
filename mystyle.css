@@ -41,3 +41,11 @@ d-article pre{
 d-article li{
   margin-bottom: 0.5em;
 }
+
+
+.solution {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px;
+  text-align: center;
+}

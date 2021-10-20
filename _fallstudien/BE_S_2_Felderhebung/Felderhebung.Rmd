@@ -1,5 +1,5 @@
 ---
-title: "KW40 - KW42: Aufgabe Felderhebung Grüntal"
+title: "KW40 + KW42: Aufgabe Felderhebung Grüntal"
 description:
 author:
   - name: Adrian Hochreutener
@@ -47,8 +47,12 @@ _Nachdem die Kameras für zwei Wochen im Einsatz standen, werden die Daten ausge
 
 Bereits beim Detektieren der Sichtungen muss einem klar sein, was man auswerten möchte. Nur so können die relevanten Variablen erfasst werden.
 
-- Im Rahmen dieser Felderhebung erhaltet ihr von Adrian eine Excel-Vorlage zur Erfassung der Sichtungen.
-- Sobald alle Sichtungen erfasst sind, geht es ins R!
+- Im Rahmen dieser Felderhebung erhaltet ihr von Adrian eine Excel-Vorlage zur Verifizeriung der automatisch detektierten Sichtungen.
+
+- Verifiziert __kurz__, was euch der Algorithmus geliefert hat.
+
+- Als nächstes geht es ins R. Da wir für unsere Auswertungen zu wenige Sichtungen haben, verwendet bitte den Datensatz __DummyData__ (ReMe HS21 MSc ENR_/Fallstudie Biodiversity & Ecosystems/S_Daten/Felderhebungen). Eure Verifizierung braucht ihr nicht mehr.
+
 
 ## Datenanalyse in R
 
@@ -152,9 +156,9 @@ Anzahl_Ost <- sum(ost$Anzahl)
 Anzahl_West <- sum(west$Anzahl)
 
 # Meiste Aktivitaet ####
-Akt_Ost <- ost %>%
+Akt_ost <- ost %>%
   group_by(Aktivitaet)%>%       # Hier sagen wir nach was wir gruppieren 
-  summarise (n = n()) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
+  summarise (n = sum(Anzahl)) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
   mutate(freq = n / sum(n))%>% # und dann soll und R das prozentuale Verhaeltniss berechnen
   arrange(desc(n))             # und dann das ganze absteigend sortieren
 
@@ -162,22 +166,22 @@ Akt_Ost <- ost %>%
 # Jetzt kommt die grosse Staerke von R. 
 # Wir haben den Code zur Berechnung der Anzahl pro Gruppe bereits geschrieben.
 # fuer die folgenden Auswertungen koennen wir ihn einfach "recyceln"
- Akt_West<- west %>%
+ Akt_west<- west %>%
   group_by(Aktivitaet)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
 Aktivitaet_West <- west %>%
   group_by(Aktivitaet)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
 # Begleittier
 Begleit_ost <- ost %>%
   group_by(Begleittier)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 # uns interessiert es nicht, wie viele Leute kein Begleittier dabei hatten
@@ -185,7 +189,7 @@ Begleit_ost <- filter(Begleit_ost, !Begleittier == "0")
 
 Begleit_west <- west %>%
   group_by(Begleittier)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
@@ -194,7 +198,7 @@ Begleit_west <- filter(Begleit_west, !Begleittier == "0")
 # Wildtier
 Wildtier <- Tiere %>%
   group_by(Wildtier)%>%
-  summarise (n = n()) %>%
+  summarise (n = sum(Anzahl)) %>%
   mutate(freq = n / sum(n))%>%
   arrange(desc(n))
 
@@ -206,7 +210,7 @@ Wildtier <- Tiere %>%
 # Zuerst eine Palette mit 5 Farben definieren
 pal <- hcl.colors(5, palette = "heat")
 # Dann als Kreisdiagramm plotten
-pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
+pie(Akt_west$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
     main = "Prozentuales Verhaeltnis West",
     col = pal) 
 
@@ -300,14 +304,16 @@ Berechnet zuerst die totale Anzahl Menschen / Standort mit __sum(DATENSATZ$SPALT
 
 Gruppieren und summieren:
 
-Berechnet nun die Anzahl Menschen pro Aktivität sowie die Anzahl Begleittier pro Kategorie pro Standort.
+- Berechnet nun die Anzahl Menschen pro Aktivität und Standort (= Akt_ost und Akt_west).
+
+- Berechnet auch die Anzahl Begleittier pro Kategorie und Standort (= Begleittier_ost und Begleittier_west).
 
 Untenstehender Code eigent sich dazu ganz gut:
 
 ```{r eval=FALSE}
-Akt_Ost <- ost %>%
+Akt_ost <- ost %>%
   group_by(Aktivitaet)%>%      # Hier sagen wir nach was wir gruppieren 
-  summarise (n = n()) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
+  summarise (n = sum(Anzahl)) %>%      # und dann sagen wir, dass R zusammenfassen soll und zwar die Anzahl
   mutate(freq = n / sum(n))%>% # und dann soll und R das prozentuale Verhaeltniss berechnen
   arrange(desc(n))             # und dann das ganze absteigend sortieren
 ```
@@ -329,10 +335,12 @@ pal <- hcl.colors(5, palette = "heat")
 Dann als Kreisdiagramm plotten.
 
 ```{r message = FALSE, warning = FALSE}
-pie(Akt_West$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
+pie(Akt_west$n, labels = c("Anderes", "Biker", "Landwirtschaft", "Spaziergaenger", "unbestimmbar"),
     main = "Prozentuales Verhaeltnis West",
     col = pal) 
 ```
+
+__Hinweis:__ Die labels im base R plot müssen manuell definiert werden. ggplot als Alternative macht das selbst.
 
 - __FRAGE:__ eignen sich Pie Charts überhaupt für solche Darstellungen? Wie könnten die Aktivitäten auch noch dargestellt werden? Welches sind eure eigenen Ideen zur Visualisierung?
 

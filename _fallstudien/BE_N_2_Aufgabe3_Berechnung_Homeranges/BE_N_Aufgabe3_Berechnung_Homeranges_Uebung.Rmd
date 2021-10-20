@@ -1,0 +1,214 @@
+---
+title: "KW43: Homeranges Fallstudie WPZ - Profil N"
+description:
+author:
+  - name: Beni Sigrist
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (N)
+draft: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
+
+# R-Skript zur Berechung der Home-Ranges der Rehe 
+
+### Benötigte Libraries laden
+
+```{r results='hide', warning=FALSE, message=FALSE}
+
+ipak <- function(pkg){
+new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+if (length(new.pkg))
+install.packages(new.pkg, dependencies = TRUE)
+sapply(pkg, require, character.only = TRUE)
+}
+packages <- c("sf", "raster", "tidyverse", "adehabitatHR", "maptools", "sp", 
+              "ggspatial", "rgeos", "rgdal")
+ipak(packages)
+
+
+```
+
+### Einlesen des Gesamtdatensatzes von Moodle, Sichtung des Datensatzes und der Datentypen
+
+```{r tidy=TRUE, warning=FALSE, message=FALSE, results="hide"}
+
+Rehe <- read_delim("Aufgabe3_Homeranges_Rehe_landforst_20211014.csv", delim = ";")
+
+str(Rehe)
+
+```
+
+### Aufgabe 1: In Datensatz Rehe eine neue Spalte mit Datum und Zeit in einer Spalte kreieren. Beim Format hat sich ein Fehler eingeschlichen. Findet ihr ihn?
+
+
+```{r tidy=TRUE, eval=TRUE, warnings = FALSE}
+
+Rehe <- Rehe %>%
+  mutate(UTC_DateTime = as.POSIXct(paste(UTC_Date, UTC_Time), 
+                                   format = "%Y-%m-%d %H:%M:%S"))
+
+```
+
+### Hier einige Zeilen Code, um eine HomeRange zu berechnen.
+
+### Aufgabe 2: Herumschrauben an den Einstellungen von: 
+##### - href (in der Funktion kernelUD)
+##### - an der Ausdehung, resp. prozentualer Anteil Punkte in der HR (Funktion getverticeshr) 
+
+##### --> Ziel: eine Karte erstellen mit der Visualiserung mindestens einer HR
+
+```{r tidy=TRUE, warning=FALSE, message=FALSE, fig.keep="none", results="hide"}
+
+x <- Rehe$X[Rehe$TierID== "RE13"]    
+y <- Rehe$Y[Rehe$TierID== "RE13"]
+xy <- data.frame(cbind (x, y, rep(1, length(x))))       
+coordinates(xy)<-c("x","y")                             
+proj4string(xy)<-CRS("+init=epsg:21781")  
+
+plot(xy, col = "blue", pch = 19, cex = 1.5)
+
+# Berechnung von href nach: Pebsworth et al. (2012) Evaluating home range techniques: 
+# use of Global Positioning System (GPS) collar data from chacma baboons
+
+sigma <- 0.5*(sd(x)+sd(y))                              
+n <- length(x)
+href <- sigma * n^(-1/6)*0.9  
+
+# scaled reference: href * 0.9
+
+kud <- kernelUD(xy, h=href, grid=25)             
+
+# Berechnung der Home Range (95% Isopleth)
+
+homerange <- getverticeshr(kud, percent=95)             
+
+
+# Schreibt HR in den oben beschriebenen Ordner (als Shapefile)
+
+hr <- st_as_sf(homerange)
+
+st_write(hr, dsn= "Results", layer="HR_RE13", driver="ESRI Shapefile",  
+         delete_layer = T )
+
+```
+
+```{r tidy=TRUE, warning=FALSE, message=FALSE, fig.keep="none", results="hide"}
+
+# mit diesem Befehl kann die HR geplottet werden
+
+
+ggplot(hr, aes(color = "red", fill="red")) + 
+  geom_sf(size = 1, alpha = 0.3) +
+coord_sf(datum = sf::st_crs(21781))+
+theme(
+axis.title = element_blank(),
+axis.text = element_blank(),
+axis.ticks = element_blank(),
+legend.position="none"
+)
+
+# und die Punkte der GPS-Lokalisationen darüber gelegt werden 
+
+xy_p <- st_as_sf(xy)
+
+ggplot(hr, aes(color = "red", fill="red")) + 
+  geom_sf(size = 1, alpha = 0.3) +
+geom_sf(data = xy_p, aes(fill = "red")) +
+coord_sf(datum = sf::st_crs(21781))+
+theme(
+axis.title = element_blank(),
+axis.text = element_blank(),
+axis.ticks = element_blank(),
+legend.position="none"
+)
+
+```    
+
+##### Code um die Homerange auf der Landeskarte 1:25000 zu plotten. Transparenz kann mit alpha angepasst werden
+
+```{r tidy=TRUE,fig.keep = "none"}
+
+pk25_wpz <- brick("C:/Users/sigb/Beni/WPZ_Fallstudie/HS20/Data/pk25_wpz.tif")
+
+xy_p <- st_as_sf(xy)
+
+ggplot(hr, aes(color = "red", fill="red")) +
+annotation_spatial(pk25_wpz) +
+geom_sf(size = 1, alpha = 0.3) +
+geom_sf(data = xy_p, aes(fill = "red")) +
+coord_sf(datum = sf::st_crs(21781))+
+theme(
+axis.title = element_blank(),
+axis.text = element_blank(),
+axis.ticks = element_blank(),
+legend.position="none"
+)
+
+
+```
+
+### Erstellen des Sampling Grids mit den Kreisen (Wird als Grundlage für Extraktion der Umweltvariablen innerhalb der Homeranges benötigt)
+
+##### Xmin bzw. Ymin des Grids: c(684000, 234000)
+##### cellsize des Grids: c(25, 25)
+##### Anzahl Kreise in X und Y Richtung: c(100, 160)
+
+
+```{r tidy=TRUE, message=FALSE, results="hide", fig.keep='none'}
+x25       <- GridTopology(c(684000, 234000), c(25, 25), c(100, 160)) 
+data25    = data.frame(1:(100*160))           
+# Erstellt aus der GridTopology und den Daten ein SpatialGridDataFrame
+grid25    <- SpatialGridDataFrame(x25, data25,  proj4string <- CRS("+init=epsg:21781"))
+pixel25   <- as(grid25, "SpatialPixelsDataFrame")
+
+
+# zweites Sampling Grid für einen Ausschnitt aufbauen, plotten
+# -> dient nur der Visualisierung des Sampling Grids um einen Eindruck zu erhalten
+
+x       <- GridTopology(c(684200, 236900), c(25, 25), c(35, 35)) 
+data    = data.frame(1:(35*35))           
+# Erstellt aus der GridTopology und den Daten ein SpatialGridDataFrame
+grid    <- SpatialGridDataFrame(x, data,  proj4string <- CRS("+init=epsg:21781"))
+pixel  <- as(grid, "SpatialPixelsDataFrame")
+
+points <- as(pixel, "SpatialPointsDataFrame")
+
+grid_plot <- st_buffer(st_as_sf(points), 12.5)
+
+plot(st_geometry(grid_plot))
+
+ggplot(grid_plot, color = "black", fill=NA) + 
+  geom_sf() +
+geom_sf(data = xy_p, color = "blue",  ) +
+  geom_sf(data = hr, color = "red", fill = NA, size = 2) +
+coord_sf(datum = sf::st_crs(21781))+
+theme(
+axis.title = element_blank(),
+axis.text = element_blank(),
+axis.ticks = element_blank(),
+legend.position="none"
+)
+
+
+```
+
+
+### Aufgabe 3: Testen der Variablen der Vegetationsschichten von letzter Woche auf einen linearen Zusammenhang (Korrelation; Funktion cor.test). DG_Baumschicht vs. DG_os / DG_Strauchschicht vs. DG_us aus dem Datensatz df_with_lidar den wir letzte Woche erstellt haben
+
+#### Die Theorie zu Korrelation folgt erst ab 1.11
+
+
+```{r tidy=TRUE, echo=FALSE, message=FALSE, results="hide"}
+
+df_with_lidar <- read_delim("df_with_lidar.csv", delim =";")
+
+
+cor.test(~ DG_Strauchschicht+DG_us, data = df_with_lidar, method="pearson")
+
+```

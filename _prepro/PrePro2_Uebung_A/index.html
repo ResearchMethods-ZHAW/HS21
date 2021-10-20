@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-13" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-13" />
+  <meta property="article:published" itemprop="datePublished" content="2021-10-18" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-18" />
   <meta name="article:author" content="Patrick Laube" />
   <meta name="article:author" content="Nils Ratnaweera" />
   <meta name="article:author" content="Nikolaos Bakogiannis" />
@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","author","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Uebung A"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["PrePro2"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["10-13-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","author","preview","date"]}},"value":[{"type":"character","attributes":{},"value":["Uebung A"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["PrePro2"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]}]},{"type":"character","attributes":{},"value":["weather.jpg"]},{"type":"character","attributes":{},"value":["10-18-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1458,7 +1458,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Uebung A","authors":[{"author":"Patrick Laube","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nils Ratnaweera","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nikolaos Bakogiannis","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-13T00:00:00.000+02:00","citationText":"Laube, et al., 2021"}
+{"title":"Uebung A","authors":[{"author":"Patrick Laube","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nils Ratnaweera","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Nikolaos Bakogiannis","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-18T00:00:00.000+02:00","citationText":"Laube, et al., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1484,14 +1484,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
 ,   Nikolaos Bakogiannis  
   
-<br />10-13-2021
+<br />10-18-2021
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#aufgabe-1">Aufgabe 1</a></li>
+<li><a href="#aufgabe-2">Aufgabe 2</a></li>
+<li><a href="#aufgabe-3">Aufgabe 3</a></li>
+<li><a href="#aufgabe-4">Aufgabe 4</a></li>
+<li><a href="#aufgabe-5">Aufgabe 5</a></li>
+<li><a href="#aufgabe-6">Aufgabe 6</a></li>
+<li><a href="#aufgabe-7">Aufgabe 7</a></li>
+<li><a href="#musterlösung">Musterlösung</a></li>
+</ul>
+</nav>
+</div>
+<p>Für die Musterlösungen werden wir die nachstehenden Libraries verwenden:</p>
 <h2 id="aufgabe-1">Aufgabe 1</h2>
-<p>Lade die Wetterdaten runter (<a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv">weather.csv</a>) und importiere sie in <code>R</code>.</p>
+<p>Lade die Wetterdaten von letzer Woche runter (<a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv">weather.csv</a>) und importiere sie in <code>R</code>. Sorge dafür, dass die Spalten korrekt formatiert sind (<code>stn</code> als <code>factor</code>, <code>time</code> als <code>POSIXct</code>, <code>tre200h0</code> als <code>numeric</code>.)</p>
 <h2 id="aufgabe-2">Aufgabe 2</h2>
-<p>Importiere die Datei <a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv">metadata.csv</a> (z.B. mit <code>read_delim</code>).</p>
+<p>Lade <a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv">metadata</a> herunter und lade es ebenfalls als csv ein.</p>
 <p>Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. in Gen<em>è</em>ve), hat das vermutlich mit der <a href="https://de.wikipedia.org/wiki/Zeichenkodierung">Zeichencodierung</a> zu tun. Das File ist aktuell in ‘ANSI’ Codiert, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows ‘Editor’ oder ‘Notepad++’, Mac: ‘TextEdit’) und mit einer neuen Codierung (z.B ‘UTF-8’) abspeichern. Danach kann die Codierung spezifitiert werden (bei <code>read_delim(): mit</code>locale = locale(encoding = “UTF-8”)`)</p>
 <h2 id="aufgabe-3">Aufgabe 3</h2>
 <p>Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die <code>x</code> und <code>y</code> Koordinaten aus der Spalte <code>Koordinaten</code>.</p>
@@ -1501,14 +1517,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>Schritt: nutze <code>cbind</code> um die <code>matrix</code> mit der <code>data.frame</code> zu verbinden</li>
 </ol>
 <h2 id="aufgabe-4">Aufgabe 4</h2>
-<p>Nun wollen wir den Datensatz <code>wetter</code>mit den Informationen aus <code>wetter_legende</code>anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).</p>
+<p>Nun wollen wir den Datensatz <code>wetter</code>mit den Informationen aus <code>metadata</code> anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).</p>
 <h2 id="aufgabe-5">Aufgabe 5</h2>
-<p>Nun ist der Datensatz <code>wetter_legende</code> genügend vorbereitet. Jetzt kann er mit dem Datensatz <code>wetter</code> verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir “joinen” können.</p>
-<p>Nutze die Join-Möglichkeiten von <code>dplyr</code> (Hilfe via <code>?dplyr::join</code>) um die Datensätze <code>wetter</code> und <code>wetter_legende</code>zu verbinden.</p>
+<p>Nun ist der Datensatz <code>metadata</code> genügend vorbereitet. Jetzt kann er mit dem Datensatz <code>wetter</code> verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir “joinen” können.</p>
+<p>Nutze die Join-Möglichkeiten von <code>dplyr</code> (Hilfe via <code>?dplyr::join</code>) um die Datensätze <code>wetter</code> und <code>metadata</code> zu verbinden.</p>
 <h2 id="aufgabe-6">Aufgabe 6</h2>
 <p>Erstelle eine neue Spalte <code>month</code> welche den jeweiligen Monat (aus <code>time</code>) beinhaltet. Nutze dafür die Funktion <code>lubridate::month()</code>.</p>
 <h2 id="aufgabe-7">Aufgabe 7</h2>
 <p>Berechne mit der Spalte <code>month</code> die Durchschnittstemperatur pro Monat.</p>
+<h2 id="musterlösung">Musterlösung</h2>
+<div class="solution">
+<p><a href="solution.R">Musterlösung</a></p>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

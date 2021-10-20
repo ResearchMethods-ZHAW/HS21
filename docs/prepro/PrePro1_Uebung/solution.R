@@ -1,13 +1,11 @@
 
 #' ## Arbeiten mit RStudio "Project"
 #' ## Arbeiten mit Libraries / Packages
-library(dplyr)
-library(ggplot2)
 library(readr)
 library(lubridate)
 
-# Im Unterschied zu `install.packages()` werden bei `library()` keine Anführungs- 
-# und Schlusszeichen gesetzt.
+# Im Unterschied zu install.packages() werden bei library()
+# keine Anführungs- und Schlusszeichen gesetzt.
 
 #' ## Aufgabe 1
 
@@ -27,33 +25,23 @@ df <- data.frame(
 # Musterlösung
 
 str(df)
-
-# Anzahl wurde als `double` interpretiert, ist aber eigentlich ein `integer`. 
-# Mit data.frame() wurde Beschreibung wurde als `factor` interpretiert, ist 
-# aber eigentlich `character`
-
-
-
 typeof(df$Anzahl)
+# Anzahl wurde als `double` interpretiert, ist aber eigentlich ein `integer`. 
 
 df$Anzahl <- as.integer(df$Anzahl)
-df$Beschreibung <- as.character(df$Beschreibung)
-
 
 #' ## Aufgabe 3
-
 # Musterlösung
 
 df$Gewichtsklasse[df$Gewicht > 100] <- "schwer"
 df$Gewichtsklasse[df$Gewicht <= 100 & df$Gewicht > 5] <- "mittel"
 df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
 
-
-
 #' ## Aufgabe 4
+
 # Musterlösung
 
-wetter <- readr::read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv")
+wetter <- readr::read_csv("weather.csv")
 
 
 #' ## Aufgabe 5
@@ -66,16 +54,13 @@ wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H",tz = "U
 
 
 #' ## Aufgabe 7
-
 # Musterlösung
 
 wetter$wochentag <- wday(wetter$time,label = T)
 wetter$kw <- week(wetter$time)
 
 
-
 #' ## Aufgabe 8
-
 # Musterlösung
 
 wetter$temp_kat[wetter$tre200h0>0] <- "warm"
@@ -83,3 +68,4 @@ wetter$temp_kat[wetter$tre200h0<=0] <- "kalt"
 
 
 
+#' ## Musterlösung

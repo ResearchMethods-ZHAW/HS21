@@ -1,0 +1,149 @@
+---
+title: Uebung A
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- PrePro2
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+preview: weather.jpg # https://commons.wikimedia.org/wiki/File:%27a_sign_of_good_weather_to_come%27%3F_(10955230055).jpg
+
+---
+
+```{r include=FALSE, purl=F}
+knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
+```
+
+Für die Musterlösungen werden wir die nachstehenden Libraries verwenden:
+
+
+```{r,message=FALSE, echo = FALSE}
+library(dplyr)
+library(readr)
+library(lubridate)
+library(stringr)
+
+# Alternativ kannst du alle tidyverse packages mit library(tidyverse) laden
+```
+
+
+## Aufgabe 1
+
+Lade die Wetterdaten von letzer Woche runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv)) und importiere sie in `R`. Sorge dafür, dass die Spalten korrekt formatiert sind (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `numeric`.)
+
+```{r, echo = FALSE, purl = FALSE}
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
+
+```
+
+
+```{r}
+# Variante 1
+wetter <- read_csv("weather.csv")
+wetter$stn <- as.factor(wetter$stn)
+wetter$time <- as.POSIXct(as.character(wetter$time), format = "%Y%m%d%H", tz = "UTC")
+```
+
+
+```{r}
+# Variate 2 (für Profis)
+wetter <- read_csv("weather.csv",
+                  col_types = cols(
+                    col_factor(levels = NULL),    
+                    col_datetime(format = "%Y%m%d%H"),
+                    col_double()
+                    )
+                  )
+```
+
+
+
+
+## Aufgabe 2
+
+
+Lade [metadata](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv) herunter und lade es ebenfalls als csv ein.
+
+Hinweis: Wenn Umlaute und Sonderzeichen nicht korrekt dargestellt werden (z.B. in Gen*è*ve), hat das vermutlich mit der [Zeichencodierung](https://de.wikipedia.org/wiki/Zeichenkodierung) zu tun. Das File ist aktuell in 'ANSI' Codiert, welche für gewisse Betriebssysteme / R-Versionen ein Problem darstellt. Um das Problem zu umgehen muss man das File mit einem Editor öffnen (Windows 'Editor' oder 'Notepad++', Mac: 'TextEdit') und mit einer neuen Codierung (z.B 'UTF-8') abspeichern. Danach kann die Codierung spezifitiert werden (bei `read_delim(): mit `locale = locale(encoding = "UTF-8")`)
+
+```{r}
+metadata <- read_delim("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/metadata.csv", delim = ";", locale = locale(encoding = "UTF-8"))
+
+```
+
+
+## Aufgabe 3
+
+Die x-/y-Koordinaten sind aktuell in einer Spalte erfasst. Um mit den Koordinaten sinnvoll arbeiten zu können, brauchen wir die Koordinaten getrennt. Trenne die `x` und `y` Koordinaten aus der Spalte `Koordinaten`.
+
+1. Schritt: verwende `stringr::str_split_fixed` um die Spalte in eine `matrix` zu überführen
+2. Schritt: benenne die Spalten der `matrix` in `x` und `y` um
+3. Schritt: nutze `cbind` um die `matrix` mit der `data.frame` zu verbinden
+
+```{r}
+
+
+# 1. Schritt
+koordinaten <- str_split_fixed(metadata$Koordinaten, "/", 2)
+# 2. Schritt
+colnames(koordinaten) <- c("x","y")
+# 3. Schritt
+metadata <- cbind(metadata,koordinaten)
+```
+
+
+## Aufgabe 4
+
+Nun wollen wir den Datensatz `wetter`mit den Informationen aus `metadata` anreichern. Uns interessiert aber nur das Stationskürzel, der Name, die x/y Koordinaten sowie die Meereshöhe. Lösche die nicht benötigten Spalten (oder selektiere die benötigten Spalten).
+
+```{r, message=F}
+
+metadata <- metadata[,c("stn", "Name", "x","y","Meereshoehe")]
+```
+
+
+## Aufgabe 5
+
+Nun ist der Datensatz `metadata` genügend vorbereitet. Jetzt kann er mit dem Datensatz `wetter` verbunden werden. Überlege dir, welcher Join dafür sinnvoll ist und mit welchem Attribut wir "joinen" können.
+
+Nutze die Join-Möglichkeiten von `dplyr` (Hilfe via `?dplyr::join`)  um die Datensätze `wetter` und `metadata` zu verbinden.
+
+```{r}
+wetter <- left_join(wetter,metadata,by = "stn")
+
+# Jointyp: Left-Join auf 'wetter', da uns nur die Stationen im Datensatz 'wetter' interessieren.
+# Attribut: "stn"
+```
+
+## Aufgabe 6
+
+Erstelle eine neue Spalte `month` welche den jeweiligen Monat (aus `time`) beinhaltet. Nutze dafür die Funktion `lubridate::month()`.
+
+```{r}
+wetter$month <- month(wetter$time)
+```
+
+## Aufgabe 7
+
+Berechne mit der Spalte `month` die Durchschnittstemperatur pro Monat.
+
+
+```{r, warning=F}
+
+mean(wetter$tre200h0[wetter$month == 1])
+mean(wetter$tre200h0[wetter$month == 2])
+mean(wetter$tre200h0[wetter$month == 3])
+
+# usw. für alle 12 Monate
+```
+
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE, include = TRUE}
+distill::mypurl()
+```
+
+
