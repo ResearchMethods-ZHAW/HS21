@@ -52,7 +52,7 @@ plot1 <- ggplot(kanton, aes(auslanderanteil, ja_anteil)) +
   coord_fixed(1) +
   scale_y_continuous(breaks = c(0,0.1,0.3,0.5,0.7),limits =  c(0,0.7)) +
   scale_x_continuous(breaks = c(0,0.1,0.3,0.5,0.7),limits =  c(0,0.7)) +
-  labs(y = "Anteil Ja-Stimmen")
+  labs(y = "Anteil Ja-Stimmen", x = "Ausländeranteil")
 
 plot1
 ```
