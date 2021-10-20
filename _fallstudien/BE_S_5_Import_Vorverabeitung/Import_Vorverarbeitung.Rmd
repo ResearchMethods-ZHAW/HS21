@@ -8,7 +8,7 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S)
-draft: true
+draft: false
 ---
 
 ```{r setup, include=FALSE}
@@ -33,29 +33,28 @@ library(lattice)   # einfaches plotten von Zusammenhängen zwischen Variablen
 
 # Aufgabe 1: Zähldaten
 
-Die Projektstruktur steht. Nun können die Daten eingelesen und die nötigen Datentypen definiert werden. Das tidyverse-Universum ist dazu ganz zentral.
+Die Projektstruktur steht. Nun können die Daten eingelesen und die nötigen Datentypen definiert werden. Das tidyverse-Universum (u.a. pipes, ggplot usw.) ist in unseren Auswertungen zentral.
 
 ```{r out.width = "100%", fig.align ="center", echo = FALSE}
 knitr::include_graphics("tidyverse.png")
 ```
 
-Die Zaehldaten des Wildnispark Zürich wurden vorgaengig bereinigt. Z.B. wurden Stundenwerte entfernt, an denen am Zaehler Wartungsarbeiten stattgefunden haben. Das macht es fuer uns einfach, denn wir koennen die Daten ohne vorgaengige Bereinigung einfach einlesen.
+Die Zähldaten des Wildnispark Zürich wurden vorgängig bereinigt (z.B. wurden Stundenwerte entfernt, an denen am Zähler Wartungsarbeiten stattgefunden haben). Das macht es für uns einfach, denn wir können die Daten ohne vorgängige Bereinigung einlesen. Behaltet aber im Hinterkopf, dass die Datenaufbereitung, die Datenbereinigung mit viel Aufwand verbunden ist.
 
-Lest die Zaehlaten ein und sichtet den Datensatz.
+- Lest die Zählaten ein, speichert ihn unter der Variable __depo__ und sichtet den Datensatz (z. B. str(), head(), view() usw.).
 
 ```{r eval=FALSE}
 depo <- read_csv("./HIER RELATIVEN DATEIPFAD EINGEBEN") 
-# Je nach Bedarf muss der Speicherort sowie der Dateiname angepasst werden
+# Speicherort sowie Dateiname anpassen
 ```
 
 __Hinweis:__ Im Stundenformat zeigen die Werte um 11:00 die Zähldaten zwischen 11:00 und 12:00.
 
 ## 1a) 
 
-- Im Datensatz des Wildnisparks sind Datum und Uhrzeit in einer Spalte. Diese muessen getrennt werden.
-Ich schlage hier den Ansatz des piping vor. Damit koennen in einem "Rutsch" mehrere Operationen ausgefuehrt werden.
+- Im Datensatz des Wildnisparks sind Datum und Uhrzeit in einer Spalte. Diese müssen getrennt werden (Ich schlage hier den Ansatz des piping ( %>% ) vor. Damit können in einem "Rutsch" mehrere Operationen ausgeführt werden).
 
-- Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (format = "")?
+- Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (im Code: format = "XXX")?
 
 - Schliesslich schneiden wir den Datensatz auf die Untersuchungsdauer zu.
 
@@ -65,8 +64,8 @@ depo <- depo %>%
   mutate(Datum_Uhrzeit = as.character(DatumUhrzeit)) %>%
   separate(Datum_Uhrzeit, into = c("Datum", "Zeit"), sep = " ")%>% # mit seperate() trennt man
                                                                    # 1 Spalte in 2.
-  mutate(Datum = as.Date(Datum, format = "HIER DATUMSFORMAT")) %>% # hier wird Text zum Datumsformat
-  # Schneide das df auf den gewuenschten Zeitraum zu
+  mutate(Datum = as.Date(Datum, format = "HIER DATUMSFORMAT")) %>% # hier wird Text zum Datum
+  # Schneide das df auf den gewünschten Zeitraum zu
   filter(Datum >= depo_start, Datum <=  depo_end) # das Komma hat die gleiche Funktion wie ein &
 ```
 
@@ -80,7 +79,7 @@ Ihr könnt selbst wählen, ob ihr Fussgänger:innen oder Velos untersuchen wollt
 
 - Berechnen des Totals (IN + OUT), da dieses in den Daten nicht vorhanden ist (wiederum mit piping). 
 
-Tipp: Wenn man R sagt: "addiere mir Spalte x mit Spalte y", dann macht R das fuer alle Zeilen in diesen zwei Spalten. Wenn man nun noch sagt: "speichere mir das Ergebnis dieser Addition in einer neuen Spalte namens __Total__", dann hat man die Aufgabe bereits geloest. Arbeitet mit __mutate()__).
+Tipp: Wenn man R sagt: "addiere mir Spalte x mit Spalte y", dann macht R das für alle Zeilen in diesen zwei Spalten. Wenn man nun noch sagt: "speichere mir das Ergebnis dieser Addition in einer neuen Spalte namens __Total__", dann hat man die Aufgabe bereits gelöst. Arbeitet mit __mutate()__).
 
 - Entfernt nun alle NA-Werte mit __na.omit()__.
 
@@ -92,9 +91,9 @@ Tipp: Wenn man R sagt: "addiere mir Spalte x mit Spalte y", dann macht R das fue
 
 ## 2b) 
 
-- Auch hier muessen die Datentypen manuell gesetzt werden. 
+- Auch hier müssen die Datentypen manuell gesetzt werden. 
 
-Tipp: Das Datum wird als Integer erkannt. Zuerst muss es in Text umgewaldelt werden aus dem dann das eigentliche Datum herausgelesen werden kann. Das ist muehsam - darum hier der Code.
+Tipp: Das Datum wird als Integer erkannt. Zuerst muss es in Text umgewandelt werden aus dem dann das eigentliche Datum herausgelesen werden kann. Das ist mühsam - darum hier der Code.
 
 ```{r eval=FALSE}
 meteo <- transform(meteo, time = as.Date(as.character(time), "%Y%m%d"))
@@ -110,9 +109,9 @@ https://www.meteoschweiz.admin.ch/home/wetter/wetterbegriffe/niederschlag.html
 
 ## 2c) 
 
-- Jetzt muessen auch hier alle nicht verfuegbare Werte (NA's) herausgefiltert werden.
+- Jetzt müssen auch hier alle nicht verfügbare Werte (NA's) herausgefiltert werden.
 
-Tipp: Entweder geht das mit __na.omit()__ oder, etwas konservativer, koennen mit __filter()__ die Spalten genauer definiert werden. Mit folgendem Codeblock koennen z.B. alle Werte gefiltert werden, die in der Spalte stn nicht gleich NA sind (es werden also die Werte behalten, die vorhanden sind). Der Code muss für die anderen relevanten Spalten noch ergaenzt werden.
+Tipp: Entweder geht das mit __na.omit()__ für alle Spalten oder, etwas konservativer, können mit __filter()__ die zu filternden Spalten definiert werden. Mit folgendem Codeblock können z.B. alle Werte gefiltert werden, die in der Spalte stn nicht gleich NA sind (es werden also die Werte behalten, die vorhanden sind). Der Code muss für die anderen relevanten Spalten noch ergänzt werden.
 
 ```{r eval=FALSE}
 meteo <- meteo %>%
@@ -121,17 +120,17 @@ meteo <- meteo %>%
   ...
 ```
 
-- Prueft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden. Stimmen alle Datentypen?
+- Prüft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden. Stimmen alle Datentypen?
 
 # Aufgabe 3: Datenvorverarbeitung (Mutationen)
 
 ## 3a) 
 
-Jetzt fügen wir wahnsinnig viele Convinience Variabeln hinzu. Wir brauchen:
+Jetzt fügen wir viele Convinience Variabeln hinzu. Wir brauchen:
 
 - Wochentag, der Befehl dazu ist __weekdays()__
   
-Tipp: R sortiert die Levels aplhabetisch. Da das in unserem Fall aber sehr unpraktisch ist, müssen die Levels manuell bestimmt werden
+Tipp: R sortiert die Levels alphabetisch. Da das in unserem Fall aber sehr unpraktisch ist, müssen die Levels manuell bestimmt werden
 
 ```{r eval=FALSE}
   ...
@@ -140,6 +139,8 @@ Tipp: R sortiert die Levels aplhabetisch. Da das in unserem Fall aber sehr unpra
                                        "Donnerstag", "Freitag", "Samstag", "Sonntag")))
   ...
 ```
+
+Frage: Was bedeutet base:: vor den eigentlichen Befehl?
 
 - Ist es ein Werktag oder Wochenende?
 
@@ -159,7 +160,7 @@ Frage: Was bedeuten die | (zu erstellen mit AltGr + 7)? Welches ist das if Argum
 
 - Phase Covid (Code untenstehend)
 
-Tipp: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen koennen. Hinweis II: Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte --> long ist schöner als wide.
+__Hinweis I:__ ich mache das nachgelagert, da zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen können. __Hinweis II:__ Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte --> long-format ist schöner (und praktischer für das plotten) als wide-format.
 
 ```{r eval=FALSE}
 depo <- depo %>%
@@ -180,7 +181,7 @@ Frage: Welches ist das if Argument, welches das else?
 
 ## 3b)
 
-- Nun soll noch die volle Stunde als Integer im Datensatz stehen. Diese Angabe muss etwas muehsam aus den Daten gezogen werden (darum hier der fertige Code dazu):
+- Nun soll noch die volle Stunde als Integer im Datensatz stehen. Diese Angabe muss etwas mühsam aus den Daten gezogen werden (darum hier der fertige Code dazu):
 
 ```{r eval = FALSE}
 depo$Stunde <- as.numeric(format(as.POSIXct(depo$Zeit,format="%H:%M"),"%H"))
@@ -188,9 +189,11 @@ depo$Stunde <- as.numeric(format(as.POSIXct(depo$Zeit,format="%H:%M"),"%H"))
 
 ## 3c) 
 
-Die Daten wurden durch den WPZ kalibriert. Wir runden sie fuer unserer Analysen auf Ganzzahlen (unser Modell kann z. B. nicht mit Kommazahlen in der ahbängigen Variable umgehen). 
+Die Daten wurden durch den WPZ kalibriert (Kommastellen). 
 
-- Definieren sie sicherheitshalber als Ganzzahl (Integer)
+- Rundet sie auf 0 Nachkommastellen (Ganzzahl; unser Modell kann nicht mit Kommazahlen in der ahbängigen Variable umgehen). 
+
+- Definiert sie sicherheitshalber als Integer
 
 - Macht das für IN, OUT und Total.
 
@@ -203,11 +206,11 @@ depo$... <- as.integer(...)
 
 ## 4a) 
 
-Unsere Daten liegen im Stundenformat vor. Fuer einige Auswertungen muessen wir aber auf ganze Tage zurueckgreifen koennen. 
+Unsere Daten liegen im Stundenformat vor. Für einige Auswertungen müssen wir aber auf ganze Tage zurückgreifen können. 
 
-- Die Stundendaten muessen zu ganzen Tagen aggregiert werden. Macht das wiederum mit piping. Bezieht folgende Gruppierungen mit ein: __Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase__
+- Die Stundendaten müssen zu ganzen Tagen aggregiert werden. Macht das wiederum einer Pipe Bezieht folgende Gruppierungen (__group_by()__) mit ein: __Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase__. Summiert die Zählmengen separat (Total, IN, OUT) auf und speichert das Resultat unter depo_d
 
-Tipp: Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in das neue df uebernommen und muessen nicht nochmals hinzugefuegt werden
+Tipp: Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in das neue df übernommen und müssen nicht nochmals hinzugefügt werden
 
 ```{r eval=FALSE}
 depo_d <- depo %>% 
@@ -219,28 +222,29 @@ depo_d <- depo %>%
 
 ## 4b)
 
-- Aggregiere die Stundenwerte nach dem Jahr und Monat.
+- Aggregiere die Stundenwerte nach dem Monat (Gruppierungen __Monat, Jahr__) und speichert das neue df unter depo_m.
 
 Tipp: Braucht wiederum __group_by()__ und __summarise()__. Nun brauchen wir nur noch das Total, keine Richtungstrennung mehr.
 
-- Fügt den neu erstellten df eine Spalte mit Jahr und Monat hinzu. Das ist etwas mühsam, darum hier der fertige Code dazu:
+- Fügt den neu erstellten df eine Spalte mit Jahr + Monat hinzu. Das ist etwas mühsam, darum hier der fertige Code dazu:
 
 ```{r eval = FALSE}
-# sortiere das df aufsteigend (nur das es sicher stimmt)
+# vergewissere, dass sicher df
 depo_m <- as.data.frame(depo_m)
-depo_m[
-  with(depo_m, order(Jahr, Monat)),]
-# mache dann aus Jahr und Monat faktoren
+# sortiere das df anhand zwei Spalten aufsteigend (damit die Reihenfolge sicher stimmt)
+depo_m[with(depo_m, order(Jahr, Monat)),]
+
 depo_m <- depo_m %>% 
-  mutate(Jahr = as.factor(Jahr)) %>% 
+  mutate(Jahr = as.factor(Jahr)) %>% # mache dann aus Jahr und Monat Faktoren
   mutate(Monat = as.factor(Monat)) %>% 
-  mutate(Ym = paste(Jahr, Monat)) %>% # und mache eine neue Spalte, in der Jahr und
-  mutate(Ym= factor(Ym, levels=unique(Ym))) # Monat in zusammen sind
+  mutate(Ym = paste(Jahr, Monat)) %>% # und mache eine neue Spalte, in der Jahr und Monat in zusammen sind
+  mutate(Ym= factor(Ym, levels=unique(Ym))) # auch dass soll ein Faktor sein, 
+        # die Levels sind die einzelnen Einträge in der Spalte (welche ja bereits geordnet sind)
 ```
 
 ## 4c)
 
-Macht euch mit den Daten vertraut. Plottet sie, sehr euch die df's an, versteht, was sie repräsentieren.
+Macht euch mit den Daten vertraut. Plottet sie, seht euch die df's an, versteht, was sie repräsentieren.
 
 Z.B. sind folgende Befehle und Plots wichtig:
 
@@ -251,4 +255,7 @@ Z.B. sind folgende Befehle und Plots wichtig:
 - Scatterplot, x = Datum, y = Anzahl pro Zeiteinheit
 - Histrogram
 - usw.
-__Nun sind alle Daten vorbereitet. Der naechste Schritt ist die Analyse.__
+
+__--> Erklärt dem Plenum am 26.10.2021 was ihr gemacht habt, was eure Daten zeigen und präsentiert diese einfachen Plots. __
+
+Nachdem nun alle Daten vorbereitet sind folgt im nächsten Schritt die Analyse.
