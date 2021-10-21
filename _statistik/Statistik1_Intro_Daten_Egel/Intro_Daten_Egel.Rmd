@@ -6,11 +6,6 @@ categories:
 draft: true
 ---
 
-```{r echo = FALSE}
-
-```
-
-
 Im Forschungsprojekt NOVANIMAL wird u.a. der Frage nachgegangen, was es braucht, damit Menschen freiwillig weniger tierische Produkte konsumieren? Ein interessanter Ansatzpunkt ist die Ausser-Haus-Verpflegung. Gemäss der ersten in den Jahren 2014/2015 durchgeführten nationalen Ernährungserhebung menuCH essen 70 % der Bevölkerung zwischen 18 und 75 Jahren am Mittag auswärts (Bochud et al. 2017). Daher rückt die Gastronomie als zentraler Akteur einer innovativen und nachhaltigen Ernährungswirtschaft ins Blickfeld. Welche Innovationen in der Gastronomie könnten dazu beitragen, den Pro-Kopf-Verbrauch an tierischen Nahrungsmitteln zu senken? 
 
 Dazu wurde u.a. ein Experiment in zwei Hochschulmensen durchgeführt. Forschungsleitend war die Frage, wie die Gäste dazu bewogen werden können, häufiger vegetarische oder vegane Gerichte zu wählen. Konkret wurde untersucht, wie die Gäste auf ein verändertes Menü-Angebot mit einem höheren Anteil an vegetarischen und veganen Gerichten reagieren. Das Experiment fand während 12 Wochen statt und bestand aus zwei Mensazyklen à 6 Wochen. Über den gesamten Untersuchungszeitraum werden insgesamt 90 verschiedene Gerichte angeboten. In den 6 Referenz- bzw. Basiswochen wurden zwei fleisch- oder fischhaltige Menüs und ein vegetarisches Menü angeboten. In den 6 Interventionswochen wurde das Verhältnis umgekehrt und es wurden ein veganes, ein vegetarisches und ein fleisch- oder fischhaltiges Gericht angeboten. Basis- und Interventionsangebote wechselten wöchentlich ab. Während der gesamten 12 Wochen konnten die Gäste jeweils auf ein Buffet ausweichen und ihre Mahlzeit aus warmen und kalten Komponenten selber zusammenstellen. Die Gerichte wurden über drei vorgegebene Menülinien  (F, K, W) randomisiert angeboten.
