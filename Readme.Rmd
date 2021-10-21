@@ -141,7 +141,8 @@ Um die Änderungen zu veröffentlichen (für die Studenten sichtbar zu machen) m
 *Achtung*: 
 
 - Um Änderungen, die ihr am  .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren (mit `Ctrl+Shift+K` oder dem button "Knit")
-- In gewissen Fällen^[v.a. Änderungen an `_site.yml`] muss man die gesamte Seite "builden" (mit `Ctrl+Shift+B` oder dem Button Build -> Build Website)
+- Eure Beitrag werden in einem html file gespeichert, welches gleich heisst wie euer Rmd file (aber eben mit der html Erweiterung)
+- Das "builden" der site passiert nach jedem Push via einer github action
 
 
 ## Anleitung 4 (Fortgeschritten): Listings editieren und veröffentlichen
@@ -158,8 +159,8 @@ Um eine *collection* zu erstellen:
 
 ```
 ---
-title: "InfoVis"      # <- Egal
-listing: infovis      # <- ordnername der collection ohne Underscore
+title: "InfoVis"      # <- der title kann selbst gewählt werden
+listing: infovis      # <- hier kommt der ordnername der "collection" ohne Underscore
 ---
 ```
 
@@ -168,6 +169,6 @@ listing: infovis      # <- ordnername der collection ohne Underscore
 ```
 navbar:
   right:
-    - text: "InfoVis1"     # <- Egal
-      href: InfoVis.html   # <- Name des Rmd files mit der Endung .html
+    - text: "InfoVis1"     # <- der Text kann frei gewählt werden
+      href: InfoVis.html   # <- hier kommt der Name des Rmd files mit der Endung .html
 ```
