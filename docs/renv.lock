@@ -61,8 +61,8 @@
       "RemoteRepo": "distill",
       "RemoteUsername": "ResearchMethods-ZHAW",
       "RemoteRef": "HEAD",
-      "RemoteSha": "56463329fcb3b16ae75c72abd58077783f72bd00",
-      "Hash": "5706c109e4e03a4a1681f275a55b0078"
+      "RemoteSha": "3b9f7eb064fa63534e638f3f33b3057dc6f32d7a",
+      "Hash": "52e18ac7478a7c2a036b42ade0dd5d9a"
     },
     "downlit": {
       "Package": "downlit",
@@ -192,10 +192,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "0.4.11",
+      "Version": "0.4.12",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "515f341d3affe0de9e4a7f762efb0456"
+      "Hash": "0879f5388fe6e4d56d7ef0b7ccb031e5"
     },
     "rmarkdown": {
       "Package": "rmarkdown",
@@ -262,10 +262,10 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.26",
+      "Version": "0.27",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a270216f7ffda25e53298293046d1d05"
+      "Hash": "12b69332f085d350fc1f2ea6cca58397"
     },
     "xml2": {
       "Package": "xml2",
