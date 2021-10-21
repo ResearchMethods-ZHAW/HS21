@@ -2379,7 +2379,8 @@ Interna
 <p><em>Achtung</em>:</p>
 <ul>
 <li>Um Änderungen, die ihr am .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren (mit <code>Ctrl+Shift+K</code> oder dem button “Knit”)</li>
-<li>In gewissen Fällen<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> muss man die gesamte Seite “builden” (mit <code>Ctrl+Shift+B</code> oder dem Button Build -&gt; Build Website)</li>
+<li>Eure Beitrag werden in einem html file gespeichert, welches gleich heisst wie euer Rmd file (aber eben mit der html Erweiterung)</li>
+<li>Das “builden” der site passiert nach jedem Push via einer github action</li>
 </ul>
 <h2 id="anleitung-4-fortgeschritten-listings-editieren-und-veröffentlichen">Anleitung 4 (Fortgeschritten): Listings editieren und veröffentlichen</h2>
 <p><em>(dieser Teil ist eher “advanced” und nicht für alle Interessant)</em></p>
@@ -2391,23 +2392,17 @@ Interna
 <li>das neue Rmd File mit einem Rmd-YAML Header verstehen mit mindestens folgendem Inhalt: <code>title</code> und <code>listing</code> (siehe unten)</li>
 </ol>
 <pre><code>---
-title: &quot;InfoVis&quot;      # &lt;- Egal
-listing: infovis      # &lt;- ordnername der collection ohne Underscore
+title: &quot;InfoVis&quot;      # &lt;- der title kann selbst gewählt werden
+listing: infovis      # &lt;- hier kommt der ordnername der &quot;collection&quot; ohne Underscore
 ---</code></pre>
 <ol start="4" type="1">
 <li>die Listing in <code>_site.yml</code> zugänglich machen:</li>
 </ol>
 <pre><code>navbar:
   right:
-    - text: &quot;InfoVis1&quot;     # &lt;- Egal
-      href: InfoVis.html   # &lt;- Name des Rmd files mit der Endung .html</code></pre>
+    - text: &quot;InfoVis1&quot;     # &lt;- der Text kann frei gewählt werden
+      href: InfoVis.html   # &lt;- hier kommt der Name des Rmd files mit der Endung .html</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>v.a. Änderungen an <code>_site.yml</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
