@@ -165,7 +165,7 @@ lines(weather_summary2$week, weather_summary2$year2001, type = "l",col = "red")
 ## Musterlösung
 
 ```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
-distill::mypurl()
+distill::mypurl("Uebung_PrePro3.Rmd")
 ```
 
 
