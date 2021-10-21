@@ -4,14 +4,7 @@ output: distill::distill_article
 categories:
 - Statistik1
 draft: true
-
 ---
-
-```{r echo = FALSE, results = "hide"}
-knitr::purl("aufgabe.Rmd", "Demo_Assoziationen.R", documentation = 0)
-
-```
-
 
 ###	Aufgabe 1.1: Assoziationstest
 
