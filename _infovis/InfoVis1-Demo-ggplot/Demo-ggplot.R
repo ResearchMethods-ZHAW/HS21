@@ -38,76 +38,106 @@ ggplot(temperature_long, aes(time,temp, colour = station)) +
 
 ggplot(temperature_long, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002")
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002",
+    color = "Station"
+    )
 
-ggplot(temperature_long, aes(time,temp, colour = station)) +
+temperature_day <- temperature_long %>%
+  mutate(time = as.Date(time)) 
+
+temperature_day
+
+temperature_day <- temperature_day %>%
+  group_by(station, time) %>%
+  summarise(temp = mean(temp))
+  
+
+
+ggplot(temperature_day, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002") +    
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002",
+    color = "Station"
+    ) +    
   scale_y_continuous(limits = c(-30,30))    # y-Achsenabschnitt bestimmen
 
 
-ggplot(temperature_long, aes(time,temp, colour = station)) +
+ggplot(temperature_day, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002") +    
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002",
+    color = "Station"
+    ) +    
   scale_y_continuous(limits = c(-30,30)) +
-  scale_x_datetime(date_breaks = "3 months", 
+  scale_x_date(date_breaks = "3 months", 
                    date_labels = "%b")
 
 
-ggplot(temperature_long, aes(time,temp, colour = station)) +
+ggplot(temperature_day, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002") +    
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002",
+    color = "Station"
+    ) +    
   scale_y_continuous(limits = c(-30,30)) +
-  scale_x_datetime(date_breaks = "3 months", 
+  scale_x_date(date_breaks = "3 months", 
                    date_labels = "%b") +
   theme_classic()
 
 theme_set(theme_classic())
 
-ggplot(temperature_long, aes(time,temp, colour = station)) +
+ggplot(temperature_day, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002") +    
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002",
+    color = "Station"
+    ) +    
   scale_y_continuous(limits = c(-30,30)) +
-  scale_x_datetime(date_breaks = "3 months", 
+  scale_x_date(date_breaks = "3 months", 
                    date_labels = "%b") +
   facet_wrap(station~.)
 
 
-ggplot(temperature_long, aes(time,temp, colour = station)) +
+ggplot(temperature_day, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002") +  
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002"
+    ) +  
   scale_y_continuous(limits = c(-30,30)) +
-  scale_x_datetime(date_breaks = "3 months", 
+  scale_x_date(date_breaks = "3 months", 
                    date_labels = "%b") +
   facet_wrap(~station,ncol = 1) +
   theme(legend.position="none")
 
-p <- ggplot(temperature_long, aes(time,temp, colour = station)) +
+p <- ggplot(temperature_day, aes(time,temp, colour = station)) +
   geom_line() +
-  labs(x = "Zeit",
-       y = "Temperatur in Grad C°", 
-       title = "Temperaturdaten Schweiz",
-       subtitle = "2001 bis 2002") +
+  labs(
+    x = "Zeit",
+    y = "Temperatur in Grad C°", 
+    title = "Temperaturdaten Schweiz",
+    subtitle = "2001 bis 2002"
+    ) +
   scale_y_continuous(limits = c(-30,30)) +
-  scale_x_datetime(date_breaks = "3 months", 
+  scale_x_date(date_breaks = "3 months", 
                    date_labels = "%b") +
   facet_wrap(~station,ncol = 1)
   # ich habe an dieser Stelle theme(legend.position="none") entfernt

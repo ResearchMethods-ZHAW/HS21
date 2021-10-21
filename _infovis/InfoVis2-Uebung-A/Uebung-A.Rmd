@@ -9,32 +9,16 @@ draft: true
 
 
 ```{r, message = F, echo = T}
-library(tidyverse)
+library(readr)
+library(dplyr)
 library(lubridate)
 ```
-
-
-Laden den `wetter`-Datensatz, bereinige ihn wenn nötig (`NA`-Werte entfernen) und importiere auch den Datensatz `order_52252_legend.csv` und verbinde die Datensätze mit einem join via dem Stationskürzel.
 
 
 
 ```{r, echo = T, message = F}
 
-wetter <- read_table("order_52252_data.txt",
-                     col_types = cols(
-                       col_character(),    
-                       col_datetime(format = "%Y%m%d%H"),
-                       col_double()
-                       )
-                     )
-
-wetter <- wetter %>%
-  filter(!is.na(stn)) %>%
-  filter(!is.na(time))
-
-station_meta <- read_delim("order_52252_legend.csv",";")
-
-wetter <- left_join(wetter,station_meta,by = "stn")
+temperature <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/temperature_SHA_ZER.csv")
 
 ```
 
@@ -42,6 +26,15 @@ wetter <- left_join(wetter,station_meta,by = "stn")
 
 
 ## Aufgabe 1
+
+Mache aus der *wide table* eine *long table* die wie folgt aussieht:
+
+```{r}
+temperature_long <- pivot_longer(temperature, -time, names_to = "station", values_to = "temperature")
+
+knitr::kable(head(temperature_long))
+```
+
 
 Erstelle zwei Hilfsspalten (convenience variables) "Jahr" und "Monat". Filtere auf ein beliebiges Jahr und zwei beliebige Monate. Speichere den gefilterten Datensatz in einer neuen Variablen ab. Verwende diesen Datensatz für alle folgenden Übungen.
 
@@ -60,7 +53,7 @@ wetter_fil <- wetter %>%
 
 ## Aufgabe 2
 
-Erstelle ein Scatterplot (`time` vs. `tre200h0`) wobei die Punkte aufgrund ihrer Meereshöhe eingefärbt werden sollen. Tiefe Werte sollen dabei blau eingefärbt werden und hohe Werte rot. Verkleinere die Punkte um übermässiges Überplotten der Punkten zu vermeiden. Weiter sollen im Abstand von zwei Wochen die Kalenderwochen auf der Achse erscheinen. 
+Erstelle ein Scatterplot (`time` vs. `temperature`) wobei die Punkte aufgrund ihrer Meereshöhe eingefärbt werden sollen. Tiefe Werte sollen dabei blau eingefärbt werden und hohe Werte rot. Verkleinere die Punkte um übermässiges Überplotten der Punkten zu vermeiden. Weiter sollen im Abstand von zwei Wochen die Kalenderwochen auf der Achse erscheinen. 
 
 Speichere den Plot in einer Variabel `p` ab.
 
@@ -68,11 +61,11 @@ Speichere den Plot in einer Variabel `p` ab.
 
 # Lösung Aufgabe 2
 
-p <- ggplot(wetter_fil, aes(time,tre200h0, colour = Meereshoehe)) +
+p <- ggplot(temperature_long, aes(time,temperature)) +
   geom_point(size = 0.5) +
   labs(x = "Kalenderwoche", y = "Temperatur in ° Celsius") +
   scale_color_continuous(low = "blue", high = "red") +
-  scale_x_datetime(date_breaks = "2 week", date_labels = "KW%W") 
+  scale_x_datetime(date_breaks = "3 months", date_labels = "%b") 
 
 p 
 
