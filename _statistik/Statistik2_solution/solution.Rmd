@@ -12,7 +12,7 @@ categories:
 ```{r echo = FALSE}
 
 # für export loesung aufgabe 2
-knitr::purl("_statistik/Statistik2_solution/index.Rmd", here::here("_statistik/Statistik2_solution/Solution_stat2.R"), documentation = 0)
+knitr::purl("_statistik/Statistik2_solution/solution.Rmd", here::here("_statistik/Statistik2_solution/Solution_stat2.R"), documentation = 0)
 # rmarkdown::render(input = "_statistik/Statistik2_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik2_solution/Solution_stat2.pdf"))
 
 

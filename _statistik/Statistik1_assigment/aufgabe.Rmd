@@ -4,10 +4,11 @@ output: distill::distill_article
 categories:
 - Statistik1
 draft: true
+
 ---
 
 ```{r echo = FALSE, results = "hide"}
-knitr::purl("index.Rmd", "Demo_Assoziationen.R", documentation = 0)
+knitr::purl("aufgabe.Rmd", "Demo_Assoziationen.R", documentation = 0)
 
 ```
 

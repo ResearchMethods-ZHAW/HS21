@@ -11,8 +11,8 @@ draft: true
 knitr::purl("demo.Rmd", "Statistik_1_Demo.R", documentation = 0)
 ```
 
-
 [Demoscript als Download](Statistik_1_Demo.R)
+
 
 ### Binomialtest
 
