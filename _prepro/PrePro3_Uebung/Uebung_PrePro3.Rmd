@@ -129,7 +129,7 @@ In der vorherigen Aufgabe haben wir die mittlere Temperatur pro Kalenderwoche ü
 ```{r}
 weather_summary2 <- weather %>%
   mutate(
-    week = isoweek(time),
+    week = week(time),
     year = year(time)
     ) %>%
   group_by(year, week) %>%
@@ -139,9 +139,8 @@ weather_summary2 <- weather %>%
 ```
 
 
-```{r, fig.cap="baseplot mag keine long tables und macht aus den beiden Jahren eine Kontinuierliche Linie"}
+```{r, fig.cap="baseplot mag keine long tables und macht aus den beiden Jahren eine kontinuierliche Linie"}
 plot(weather_summary2$week, weather_summary2$temp_mean, type = "l")
-
 ```
 
 
@@ -163,7 +162,9 @@ lines(weather_summary2$week, weather_summary2$year2001, type = "l",col = "red")
 ```
 
 
-```{r, echo = FALSE, results='hide'}
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
 distill::mypurl()
 ```
 
