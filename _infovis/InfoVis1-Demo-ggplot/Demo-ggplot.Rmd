@@ -115,6 +115,8 @@ ggplot(temperature_long, aes(time,temp, colour = station)) +
     )
 ```
 
+## Split Apply Combine
+
 Im obigen Plot fällt auf, dass stündliche Werte eine zu hohe Auflösung ist, wenn wir daten über 2 Jahre visualisieren. Mit *Split Apply Combine* (PrePro 3) können wir die Auflösung unserer Daten verändern: 
 
 ```{r}

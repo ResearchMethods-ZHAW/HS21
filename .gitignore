@@ -6,3 +6,4 @@
 /_infovis/**/*.csv
 /_rauman/**/*.csv
 /docs
+*.csv
