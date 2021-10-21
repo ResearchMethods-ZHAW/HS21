@@ -98,7 +98,7 @@ navbar:
         href: Distill_Quality_Control.html
       - text: "Readme"
         href: Readme.html
-      - icon: fab fa-github
+      - text: Github Repo
         href: https://github.com/ResearchMethods-ZHAW/HS21
 output: 
   distill::distill_article:
