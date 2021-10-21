@@ -1,5 +1,5 @@
 ---
-title: Uebung B (Optional)
+title: Übung B (Optional)
 output: 
   distill::distill_article:
     toc: true
