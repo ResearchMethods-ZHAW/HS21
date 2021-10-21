@@ -1,4 +1,0 @@
-Package: "ResearchMethods"
-Depends: 
-  distill
-  https://github.com/ratnanil/distill,
