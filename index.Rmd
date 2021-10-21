@@ -2,7 +2,7 @@
 title: "Modul Research Methods"
 site: distill::distill_website
 ---
-```{r echo = FASE}
+```{r echo = FALSE}
 now <- Sys.time()
 attr(now, "tzone") <- "Europe/Zurich"
 ```
