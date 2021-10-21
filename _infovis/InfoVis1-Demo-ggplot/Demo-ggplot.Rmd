@@ -23,7 +23,7 @@ library(tidyr)
 ```
 
 
-Als erstes laden wir den Temperaturdatensatz ein. Es handelt sich dabei um eine leicht modifizierte Variante der Daten aus PrePro1 und 2.
+Als erstes laden wir den Temperaturdatensatz ein. Es handelt sich dabei um eine leicht modifizierte Variante der Daten aus PrePro1 und PrePro2.
 
 ```{r}
 # Wir können den Datensatz direkt über den URL einladen oder aber ihr nutzt den 

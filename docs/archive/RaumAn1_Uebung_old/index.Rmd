@@ -1,5 +1,5 @@
 ---
-title: Uebung
+title: Übung
 output: distill::distill_article
 categories:
 - RaumAn1
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE
 ```
 
 
-## Uebung: Spatial Join, Puffer und MAUP
+## Übung: Spatial Join, Puffer und MAUP
 
 <!-- Für's nächste mal: Hier bessere Gliederung machen: Mehrere Level-2 Headers, theamtische Einbettung und Vorbereitung zusammen nehmen und übergeordnet (analog RaumAn2) -->
 
