@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-28" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-28" />
+  <meta property="article:published" itemprop="datePublished" content="2021-10-22" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-22" />
   <meta name="article:author" content="Gian-Andrea Egeler" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","date"]}},"value":[{"type":"character","attributes":{},"value":["Konsolidierung 3: Lineare Modelle"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik_Konsolidierung3","Statistik"]},{"type":"character","attributes":{},"value":["09-28-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Konsolidierung 3: Lineare Modelle"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik_Konsolidierung3"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["10-22-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Konsolidierung 3: Lineare Modelle","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-28T00:00:00.000+02:00","citationText":"Egeler, 2021"}
+{"title":"Konsolidierung 3: Lineare Modelle","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-22T00:00:00.000+02:00","citationText":"Egeler, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1470,7 +1470,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
 <div class="dt=tag">Statistik_Konsolidierung3</div>
-<div class="dt=tag">Statistik</div>
 </div>
 <!--/radix_placeholder_categories-->
 
@@ -1480,7 +1479,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   Gian-Andrea Egeler
   
-<br />09-28-2021
+<br />10-22-2021
 </div>
 
 <div class="d-article">
@@ -1489,36 +1488,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   |                                                                  
   |                                                            |   0%
   |                                                                  
-  |.....                                                       |   8%
+  |....................                                        |  33%
   |                                                                  
-  |.........                                                   |  15%
-  |                                                                  
-  |..............                                              |  23%
-  |                                                                  
-  |..................                                          |  31%
-  |                                                                  
-  |.......................                                     |  38%
-  |                                                                  
-  |............................                                |  46%
-  |                                                                  
-  |................................                            |  54%
-  |                                                                  
-  |.....................................                       |  62%
-  |                                                                  
-  |..........................................                  |  69%
-  |                                                                  
-  |..............................................              |  77%
-  |                                                                  
-  |...................................................         |  85%
-  |                                                                  
-  |.......................................................     |  92%
+  |........................................                    |  67%
   |                                                                  
   |............................................................| 100%</code></pre>
-<pre><code>[1] &quot;C:/Users/egel/switchdrive2/ZHAW/03_Lehre/research methods MSc/unterrichtsunterlagen_HS21/_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/Demo_LM_Konsolidierung3.R&quot;</code></pre>
+<pre><code>[1] &quot;Demo_LM_Konsolidierung3.R&quot;</code></pre>
 </div>
 <p>#Demo Lineare Modelle</p>
 <blockquote>
-<p>Download <a href="_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/Demo_LM_Konsolidierung3.R">R-Skript</a></p>
+<p>Download <a href="Demo_LM_Konsolidierung3.R">R-Skript</a></p>
 </blockquote>
 <h2 id="einfaktorielle-anova">Einfaktorielle ANOVA</h2>
 <div class="layout-chunk" data-layout="l-body">
@@ -1541,6 +1520,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class="co">#2. Responsevariable ~ Prediktorvariable</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span> <span class="co"># mögliches probel, da n&#39;s unterschiedlich gross</span>
+
 <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">hp</span> <span class="op">~</span> <span class="va">cars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span> <span class="co"># varianzheterogentität weniger das problem, </span>
 <span class="co"># aber normalverteilung der residuen problematisch</span>
 
@@ -1582,6 +1562,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class="fu">ggsave</span><span class="op">(</span>filename <span class="op">=</span> <span class="st">&quot;distill-preview.png&quot;</span>,
        device <span class="op">=</span> <span class="st">&quot;png&quot;</span><span class="op">)</span> <span class="co"># hier kann man festlegen, was für ein Bildformat</span>
 <span class="co">#exportiert werden möchte</span>
+
 
 <span class="co"># Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative </span>
 <span class="co"># nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche</span>
@@ -1732,6 +1713,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class="co">#############</span>
 <span class="co">#4. Modeldiagnostik</span>
 <span class="co">############</span>
+
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sinhrks/ggfortify">ggfortify</a></span><span class="op">)</span>
 <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span>
 </code></pre>
@@ -1796,10 +1778,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">train_data</span><span class="op">)</span>
 
 
+
 <span class="co">#weiterführende Infos zu &quot;machine learning&quot; Idee hier: https://stat-ata-asu.github.io/MachineLearningToolbox/regression-models-fitting-them-and-evaluating-their-performance.html</span>
 <span class="co">#wichtigstes Packet in dieser Hinsicht ist &quot;caret&quot;: https://topepo.github.io/caret/</span>
 <span class="co">#beste Philosophie ist tidymodels: https://www.tidymodels.org</span>
-
 
 
 

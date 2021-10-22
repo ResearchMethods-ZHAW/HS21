@@ -6,21 +6,24 @@ author:
 output: distill::distill_article
 categories:
 - Statistik_Konsolidierung2
+draft: true
 
 
 ---
 
 ```{r echo = FALSE, purl = FALSE}
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
+#TODO: check what you want to show, at the moment the output is very messi - easiest way, just add a picture and the download button
+
+knitr::opts_chunk$set(echo = T, collapse=TRUE, message = FALSE, results = "hide", warning = FALSE)
 
 #export files
-knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R"), documentation = 0)
-# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", "Demo_PCA_Konsolidierung2.R", documentation = 0)
+
 
 ```
 
 
-> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung2_Demo_ordinationen/Demo_PCA_Konsolidierung2.R)
+> Download [R-Skript](Demo_PCA_Konsolidierung2.R)
 
 # Demo Ordinationen (PCA)
 
@@ -67,16 +70,15 @@ ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice 
 library(vegan)
 
 # ebenfalls mit transformierten daten
-o.ca<-cca(cars)
-o.ca1 <- CA(sveg^0.5)
+o.ca<-vegan::cca(cars)
+o.ca1 <- FactoMineR::CA(cars) #blau: auots, rot: variablen
 
-#Arten (o) und Communities (+) plotten
+# plotten (schwarz: autos, rot: variablen)
 plot(o.ca)
-
+summary(o.ca)
 summary(o.ca1)
-plot(o.ca1)
 
-#Nur Arten plotten
+#Nur autos plotten; wieso?
 x<-o.ca$CA$u[,1]
 y<-o.ca$CA$u[,2]
 plot(x,y)
@@ -91,23 +93,22 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
 #Distanzmatrix als Start erzeugen
 library(MASS)
-library(vegan)
 
-mde <-vegdist(sveg,method="euclidean")
-mdm <-vegdist(sveg,method="manhattan")
+mde <-vegan::vegdist(cars,method="euclidean")
+mdm <-vegan::vegdist(cars,method="manhattan")
 
 #Zwei verschiedene NMDS-Methoden
 set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
-o.imds<-isoMDS(mde, k=2) # mit K = Dimensionen
+o.imds<-MASS::isoMDS(mde, k=2) # mit K = Dimensionen
 set.seed(1)
-o.mmds<-metaMDS(mde,k=3) # scheint nicht mit 2 Dimensionen zu konvergieren
+o.mmds<-vegan::metaMDS(mde,k=2) # scheint nicht mit 2 Dimensionen zu konvergieren
 
 plot(o.imds$points)
-plot(o.mmds$points)
+
 
 #Stress =  Abweichung der zweidimensionalen NMDS-Loesung von der originalen Distanzmatrix
 stressplot(o.imds,mde)
-stressplot(o.mmds,mde)
+
 
 ```
 
@@ -117,7 +118,7 @@ stressplot(o.mmds,mde)
 #Mit Beispieldaten aus Wildi (2013, 2017)
 library(labdsv)
 library(dave) # lade package für Daten sveg
-head(sveg)
+# head(sveg)
 
 
 #PCA-----------
@@ -294,7 +295,8 @@ plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achse
 
 ```{r CA, message=FALSE}
 library(vegan)
-library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
+library(dave) #for the dataset sveg
+library(FactoMineR)# siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
 
 # ebenfalls mit transformierten daten
 o.ca<-cca(sveg^0.5) #package vegan
@@ -304,7 +306,7 @@ o.ca1 <- CA(sveg^0.5) #package FactoMineR
 plot(o.ca)
 
 summary(o.ca1)
-plot(o.ca1)
+
 
 #Nur Arten plotten
 x<-o.ca$CA$u[,1]

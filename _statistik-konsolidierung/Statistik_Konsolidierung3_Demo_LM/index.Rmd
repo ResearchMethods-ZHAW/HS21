@@ -5,21 +5,21 @@ author:
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung3
+draft: true
 
 
 ---
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/index.Rmd", here::here("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/Demo_LM_Konsolidierung3.R"), documentation = 0)
-# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", "Demo_LM_Konsolidierung3.R", documentation = 0)
 
 ```
 
 
 #Demo Lineare Modelle
 
-> Download [R-Skript](_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/Demo_LM_Konsolidierung3.R)
+> Download [R-Skript](Demo_LM_Konsolidierung3.R)
 
 
 
@@ -28,13 +28,7 @@ knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/index.R
 knitr::opts_chunk$set(echo = TRUE, collapse=FALSE, message = FALSE, results = "hide", warning = FALSE)
 
 library(tidyverse)
-<<<<<<< HEAD
 if (!require("rosetta")) install.packages("rosetta")
-=======
-if (!require("userfriendlyscience")) install.packages("userfriendlyscience")
-library(userfriendlyscience)
-library(ggfortify)
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
 library(magrittr)
 
 mytheme <- 
@@ -50,13 +44,10 @@ mytheme <-
 ```
 
 
-<<<<<<< HEAD
+
 ## Einfaktorielle ANOVA
 ```{r, message=FALSE, eval=FALSE, purl=T}
 
-=======
-```{r prepare data for anova, message=FALSE, eval=FALSE}
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
 # für mehr infos
 #https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
 
@@ -75,12 +66,9 @@ boxplot(cars$hp)
 
 #2. Responsevariable ~ Prediktorvariable
 table(cars$cyl) # mögliches probel, da n's unterschiedlich gross
-<<<<<<< HEAD
+
 boxplot(cars$hp ~ cars$cyl) # varianzheterogentität weniger das problem, 
 # aber normalverteilung der residuen problematisch
-=======
-boxplot(cars$hp ~ d$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
 
 # definiere das modell für eine ein-faktorielle anova
 aov.1 <- aov(hp ~ cyl, data = cars)
@@ -121,28 +109,22 @@ ggsave(filename = "distill-preview.png",
        device = "png") # hier kann man festlegen, was für ein Bildformat
 #exportiert werden möchte
 
-<<<<<<< HEAD
+
 # Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative 
 # nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche
 # Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
 library(rosetta)
 welch1 <- oneway.test(hp ~ cyl, data = cars, var.equal = FALSE)
 rosetta::posthocTGH(cars$hp, cars$cyl, method = "games-howell")
-=======
-# Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
-welch1 <- oneway.test(hp ~ cyl, data = d, var.equal = FALSE)
-posthocTGH(d$hp, d$cyl, method = "games-howell")
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
+
 ```
 
 
 ## Mehrfaktorielle ANOVA
 
-<<<<<<< HEAD
+
 ```{r, message=FALSE, echo=FALSE}
-=======
-```{r define ANOVA with two factors}
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
+
 
 library(tidyverse)
 #1. Wähle zusätzliche Variable aus (wenn nicht in der Aufgabe steht), 
@@ -181,12 +163,10 @@ summary.lm(aov.2)
 
 
 
-<<<<<<< HEAD
+
 ## Einfache Regression
 ```{r, message=FALSE}
-=======
-```{r einfache regression, message=FALSE}
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
+
 
 # inspiriert von Simon Jackson: http s://drsimonj.svbtle.com/visualising-residuals
 cars <- mtcars %>% 
@@ -302,23 +282,19 @@ cor # disp weglassen, vgl. model2
 ############
 #3. Definiere das Model
 ############
-model1 <- lm(hp ~ kml + wt + disp, data = d) 
-model2 <- lm(hp ~ kml + wt, data = d)
-model3 <- lm(log10(hp) ~ kml + wt, data = d)
+model1 <- lm(hp ~ kml + wt + disp, data = cars) 
+model2 <- lm(hp ~ kml + wt, data = cars)
+model3 <- lm(log10(hp) ~ kml + wt, data = cars)
 
 #############
 #4. Modeldiagnostik
 ############
-<<<<<<< HEAD
+
 library(ggfortify)
 ggplot2::autoplot(model1)
 ggplot2::autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
 ggplot2::autoplot(model3)
-=======
-autoplot(model1)
-autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
-autoplot(model3)
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
+
 
 
 ############
@@ -348,7 +324,7 @@ cars$predicted_own <- predict(model2, newdata = new.data)
 cars <- mtcars %>% 
   mutate(id = 1:nrow(.)) %>%  # für das mergen der Datensätze
   mutate(kml = (235.214583/mpg)) %>% 
-  dplyr::select(kml, hp, wt, disp)
+  dplyr::select(kml, hp, wt, disp, id)
   
 train_data <- cars %>% 
   dplyr::sample_frac(.75) # für das Modellfitting
@@ -368,29 +344,12 @@ train_data$predicted_test <- predict(model2_train, newdata = test_data)
 train_data$residuals <- residuals(model2_train)
 head(train_data)
 
-<<<<<<< HEAD
+
 
 #weiterführende Infos zu "machine learning" Idee hier: https://stat-ata-asu.github.io/MachineLearningToolbox/regression-models-fitting-them-and-evaluating-their-performance.html
 #wichtigstes Packet in dieser Hinsicht ist "caret": https://topepo.github.io/caret/
 #beste Philosophie ist tidymodels: https://www.tidymodels.org
 
-
-=======
-# mehrere plots der Residual-Regression
-train_data %>% 
-    # Get data into shape
-    tidyr::pivot_longer(cols = c(-hp, -predicted_test, -residuals), names_to = "x") %>%  
-    ggplot(aes(x = value, y = hp)) +  # Note use of `x` here and next line
-    geom_segment(aes(xend = value, yend = predicted_test), alpha = .2) +
-    geom_point(aes(color = residuals)) +
-    scale_color_gradient2(low = "blue", mid = "white", high = "red") +
-    guides(color = FALSE) +
-    geom_point(aes(y = predicted_test), shape = 1) +
-    geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
-    facet_grid(~ x, scales = "free_x") +  # Split panels here by `iv`
-    labs(x = "") +
-    theme_bw()
->>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
 
 
 #----------------
