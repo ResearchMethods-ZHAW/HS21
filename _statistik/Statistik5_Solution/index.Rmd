@@ -1,18 +1,23 @@
 ---
-title: Loesung Aufgabe 5
+title: "Loesung Aufgabe 5"
 output: distill::distill_article
+author:
+  Gian-Andrea Egeler
+toc:
+  floating: true
 categories:
 - Statistik5
 ---
 
-```{r export files echo = FALSE}
+```{r export files, echo = FALSE}
 #export files
-knitr::purl("_statistik/Statistik5_solution/index.Rmd", here::here("_statistik/Statistik5_solution/Solution_stat5.R"), documentation = 0)
-# rmarkdown::render(input = "index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", "Solution_stat5.R", documentation = 0)
+
+#TODO: solve parsing failors
 
 ```
 
->Download [R-Skript](_statistik/Statistik5_solution/Solution_stat5.R) 
+>Download [R-Skript](Solution_stat5.R) 
 
 
 

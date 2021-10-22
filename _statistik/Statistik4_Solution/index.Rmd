@@ -7,16 +7,17 @@ author:
 categories:
 - Statistik4
 draft: true
+toc: 
+  floating: true
 ---
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("_statistik/Statistik4_solution/index.Rmd", here::here("_statistik/Statistik4_solution/Solution_stat4.R"), documentation = 0)
-# rmarkdown::render(input = "index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", "Solution_stat4.R", documentation = 0)
 
 ```
 
->Download [R-Skript](_statistik/Statistik4_solution/Solution_stat4.R) 
+>Download [R-Skript](Solution_stat4.R) 
 
 
 

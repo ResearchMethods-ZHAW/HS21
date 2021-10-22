@@ -16,7 +16,7 @@ draft: true
 
 # Aufgabe 4.1: Nicht-lineare Regression
 
-**Datensatz [Curonian_Spit.xlsx](16_Statistik4/data/Curonian_Spit.xlsx)**
+**Datensatz [Curonian_Spit.xlsx](Curonian_Spit.xlsx)**
 
 Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
 geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf

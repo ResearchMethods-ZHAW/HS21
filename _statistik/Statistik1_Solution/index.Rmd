@@ -3,14 +3,14 @@ title: "Loesung Aufgabe 1"
 output: distill::distill_article
 categories:
 - Statistik1
-draft: false
-autor: Gian-Andrea Egeler
+draft: true
+author: 
+	Gian-Andrea Egeler
 ---
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("_statistik/Statistik1_solution/index.Rmd", here::here("_statistik/Statistik1_solution/Solution_stat1.R"), documentation = 0)
-# rmarkdown::render(input = "index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", Solution_stat1.R", documentation = 0)
 
 ```
 
@@ -74,6 +74,9 @@ nova2 <- nova_survey %>%
     
 # mal anschauen
 table(nova2)
+
+#achtung chi_squre erwartet matrix
+xtabs(~ gender + milkcon ,data = nova) # da es in diesem fall keine kriteriumsvariable gibt, fehlt das y sozusagen
 
 
 #Chi-squared Test
