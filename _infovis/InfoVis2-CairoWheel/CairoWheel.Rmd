@@ -1,0 +1,122 @@
+---
+title: "Cairo Wheel"
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- InfoVis2
+draft: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r, fig.width=15}
+library(dplyr)
+library(ggplot2)
+library(purrr)
+library(tidyr)
+library(stringr)
+library(googlesheets4)
+# library(processx)
+# library(pander)
+
+spaceadd <- function(x){
+  if(x>0){
+    paste(rep(" ",x),collapse = "")
+  } else{
+    ""
+  }
+}
+
+gs4_deauth()
+
+mysheet <- "https://docs.google.com/spreadsheets/d/1H6WqAD3Lp5w8bq3eHD81ZpPzwIp85opiltuo8PPOkuk/edit?usp=sharing"
+
+sheets <- googlesheets4::gs4_get(mysheet)$sheets$name
+
+run_full <- FALSE
+
+allvals <- if(run_full){
+  retrieved <- map_dfr(sheets, function(x){
+    googlesheets4::read_sheet(mysheet,x) %>%
+      mutate(Gruppe = as.character(x))
+    })
+    
+  readr::write_csv(retrieved, "allvals.csv")
+  retrieved
+  } else{
+  readr::read_csv("allvals.csv")
+  }
+
+
+allvals <- allvals %>%
+  mutate(
+    Parameter = factor(Parameter),
+    Parameter2 = as.integer(Parameter)
+  ) %>%
+  fill(InfoVis)
+
+nspaces <- 2
+allvals <- allvals %>%
+  mutate(
+    lendiff = str_length(Parameter) -str_length(Antagonist),
+    leftadd = map_chr(lendiff*-1, spaceadd),
+    rightadd = map_chr(lendiff, spaceadd),
+    paragruppe = paste0(rightadd,"← ", Antagonist, paste0(rep(" ",nspaces),collapse = "")," ", paste0(rep(" ",nspaces),collapse = ""),Parameter," →",leftadd)
+  )
+
+
+allvals <- allvals %>%
+  mutate(gruppe_nr = readr::parse_number(Gruppe))
+
+```
+
+
+```{r, results="asis", fig.height=8}
+
+cairo_plot <- function(dataset, infovis){
+  dataset %>%
+    filter(InfoVis == infovis) %>%
+    mutate(
+      isna = is.na(Wert_Parameter),
+      Wert_Parameter = ifelse(isna,0.5,Wert_Parameter)
+    ) %>%
+    ggplot(aes(Wert_Parameter,gruppe_nr, color = 0.5-Wert_Parameter)) +
+    geom_vline(xintercept = 0.5, colour = "grey") +
+    geom_segment(aes(xend = 0.5, yend = gruppe_nr))+
+    geom_point(colour = "white", size = 3) +
+    geom_point() +
+    scale_y_reverse("Gruppe", labels = scales::number_format(1)) +
+    geom_point(data = ~filter(., isna), colour = "grey") +
+    labs(title = paste0("← more intelligible",paste0(rep(" ",nspaces),collapse = "")," ", paste0(rep(" ",nspaces),collapse = ""),"more complex →     ", "\n",
+                           "← shallower",paste0(rep(" ",nspaces),collapse = "")," ", paste0(rep(" ",nspaces),collapse = ""),"deeper    →")) +
+    scale_color_gradient(low = "blue", high = "red") +
+    facet_wrap(~paragruppe, ncol = 1) +
+    theme_light() +
+    scale_x_continuous("Einschätzung", limits = c(0,1), breaks = c(0,1),labels = c("Parameter","Antagonist")) +
+    theme(title = element_text(family = "mono"),
+          panel.grid = element_blank(),
+          legend.position = "none",
+          axis.text = element_blank(),
+          axis.ticks = element_blank(),
+          axis.title.x = element_blank(),
+          plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5)) 
+}
+
+
+
+map(unique(allvals$InfoVis), function(x){
+  
+  pander::pandoc.header(x, 3)
+
+  plo <- cairo_plot(allvals, x)
+  
+  print(plo)
+  pander::pandoc.horizontal.rule()
+}) %>%
+  invisible()
+
+
+```
