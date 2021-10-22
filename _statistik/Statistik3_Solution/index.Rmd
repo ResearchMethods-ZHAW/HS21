@@ -5,23 +5,20 @@ output:
     toc: true
 categories:
 - Statistik3
+draft: true
 ---
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("_statistik/Statistik3_solution/index.Rmd", here::here("_statistik/Statistik3_solution/Solution_stat3.R"), documentation = 0)
-# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", "Solution_stat3.R", documentation = 0)
+
 
 ```
 
 
-> Download [R-Skript](_statistik/Statistik3_solution/Solution_stat3.R)
-
-<!-- - [Lösungstext als Download](15_Statistik3/Statistik_3.1_Loesung_v.02.pdf) -->
+> Download [R-Skript](Solution_stat3.R)
 
 
-
-      
       
 ## Loesung Aufgabe 3.1
 

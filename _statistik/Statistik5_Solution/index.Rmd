@@ -7,13 +7,13 @@ toc:
   floating: true
 categories:
 - Statistik5
+draft: true
 ---
 
 ```{r export files, echo = FALSE}
 #export files
 knitr::purl("index.Rmd", "Solution_stat5.R", documentation = 0)
 
-#TODO: solve parsing failors
 
 ```
 
@@ -27,7 +27,7 @@ knitr::purl("index.Rmd", "Solution_stat5.R", documentation = 0)
 
 ****
 
-##kommentierter Loesungsweg
+## kommentierter Loesungsweg
 ```{r load data, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 library(dplyr)
 library(readr)
@@ -85,7 +85,7 @@ table(df$meat) # gibt die absoluten werte an
 #check out ICC: https://www.datanovia.com/en/lessons/intraclass-correlation-coefficient-in-r/
 #however data needs to be wide format
 #not working yet
-df %>% dplyr::select(ccrs, label_content) %>% pivot_wider(names_from = "ccrs", values_fill = "label_content") -> tt
+df %>% dplyr::select(ccrs, label_content) %>% tidyr::pivot_wider(names_from = "ccrs", values_fill = "label_content") -> tt
 
 
 library(lme4)
@@ -125,11 +125,11 @@ tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se,
 tab2 <- exp(tab1)
 ```
 
-##Methoden
+## Methoden
 
 Die Responsevariable “Fleischkonsum” ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren “Alter (Gruppen)”, “Geschlecht” und “Hochschulzugehörigkeit” gerechnet. Da in den Daten gewisse Individuen mehrmals vorkommen, wird das Individuum (Variable ccrs) als variabler Effekt in das Modell aufgenommen.
 
-##Ergebnisse
+## Ergebnisse
 
 Das Geschlecht und das Alter nehmen einen signifikanten Einfluss auf den Fleischkonsum (siehe Table 1): Männer kaufen signifikant häufiger ein fleischhaltiges Gericht als Frauen; junge Personen (15 bis 25-jährig) kaufen signifikant häufiger ein fleischhaltiges Gericht in der Mensa. Es sieht so aus, als ob die Hochschulzugehörigkeit auf den ersten Blick keinen Einfluss nimmt. Aber man müsste auch die Interaktion zwischen Geschlecht und Hochschulzugehörigkeit berücksichtigen, um ein abschliessendes Bild zu bekommen. Das kleine marginale Pseudo-R^2 zeigt auf, dass es nicht das "beste" Modell ist. Insbesondere die tiefe Varianzaufklärung für die randomisierte Variable (r2c; ccrs) scheint mit (nur) 4% sehr gering. Das sind Hinweise dafür, dass das Modell ggf. noch weitere Ebenen haben könnte (z.B. Standort Mensa).
 
