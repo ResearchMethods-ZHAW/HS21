@@ -1,14 +1,17 @@
 ---
-title: "Konsolidierung 1: Assoziationen"
+title: "Konsolidierung 1: Demo Assoziationen"
 output: distill::distill_article
+  toc: true
+  toc_float: true
 author:
-  Gian-Andrea Egeler
+  name: Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung1
-- Statistik
 ---
 
 ```{r, include=FALSE, purl=F}
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+
 #export R file
 knitr::purl(here::here("_statistik-konsolidierung/Statistik_Konsolidierung1_Demo_assoziationen/index.Rmd"), here::here("_statistik-konsolidierung/Statistik_Konsolidierung1_Demo_assoziationen/Demo_Assoziationen_Konsolidierung1.R"), documentation = 0)
 
@@ -21,8 +24,7 @@ knitr::purl(here::here("_statistik-konsolidierung/Statistik_Konsolidierung1_Demo
 
 
 
-
-```{r}
+```{r load packages}
 #lade Packages
 library(tidyverse)
 library(magrittr)
@@ -44,7 +46,7 @@ mytheme <-
 ```
 
 
-```{r, message=FALSE}
+```{r prepare data and define model, message=FALSE}
 #lade Daten
 # mehr Info darüber: https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html
 cars <- mtcars
@@ -60,13 +62,10 @@ summary(cars)
 glimpse(cars)
 
 #Assoziation zwischen Anzahl Zylinder und Motorentyp ()
-table(cars$vs_cat, cars$am_cat) # Achtung: sieht aus, 
-# als gäbe es weniger V-Motoren bei den Handgeschalteten Autos
+table(cars$vs_cat, cars$am_cat) # Achtung: sieht aus, als gäbe es weniger V-Motoren bei den Handgeschalteten Autos
 
 #lass und das überprüfen
-#achtung: bei chi-square test kommt es 
-#sehr auf das format drauf an (er erwartet entweder 
-#vektoren oder eine matrix!)
+#achtung: bei chi-square test kommt es sehr auf das format drauf an (er erwartet entweder vektoren oder eine matrix!)
 chi_sq <- chisq.test(cars$am, cars$vs)
 chi_sq
 
@@ -75,17 +74,16 @@ fisher.test(cars$am_cat, cars$vs_cat)
 
 ```
 
-## Ergebnis
+##Ergebnis
 
 Der $\chi^2$-Test sagt uns, dass das Art des Motors und Art des Fahrwerks statistisch nicht zusammenhängen. Es gibt keine signifikante Unterscheide zwischen den Variablen "VS" und "AM - Transmission" ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_sq$p.value[[1]], digits = 3)`. Der Fisher exacter Test bestätigt diesen Befund. 
 Die Odds Ratio (OR) sagt uns hingegen - unter der Prämisse, dass "normale" Motoren eher mit automatischen und V-Motoren eher mit handgeschalteten Fahrwerken ausgestattet sind - dass die Chance doppelt so hoch ist, dass ein Auto mit "normalem" Motor automatisch geschaltet ist, als dies bei einem Auto mit V-Motor der Fall wäre
 
 
 
-```{r}
+```{r prepare data and define model t-test}
 
-#bei t-Test immer zuerst visualisieren: in diesem Fall Boxplot
-#mit Variablen Getriebe (v- vs. s-motor) und Anzahl Pferdestärke
+# bei t-Test immer zuerst visualisieren: in diesem Fall Boxplot mit Variablen Getriebe (v- vs. s-motor) und Anzahl Pferdestärke
 ggplot(cars, aes(y = hp, x = vs_cat)) +
   # stat_boxplot(geom ='errorbar', width = .25) +
   # geom_boxplot() +
@@ -94,12 +92,9 @@ ggplot(cars, aes(y = hp, x = vs_cat)) +
   mytheme
   
 #alternativ     
-boxplot(cars$hp ~ cars$vs_cat) # sieht ganz ok aus, jedoch weist 
-#die Variable "normale Motoren" deutlich eine grössere Streuung aus
-#-> siehe aov.1 und deren Modelgüte-Plots
+boxplot(cars$hp~cars$vs_cat) # sieht ganz ok aus, jedoch weist die variable "normale Motoren" deutlich eine grössere Streuung aus -> siehe aov.1 und deren Modelgüte-Plots
 
-#Definiere Model: t-Test, wobei die AV metrisch 
-#(in unserem Fall eine Zählvariable) sein muss
+# Definiere Model: t-Test, wobei die AV metrisch (in unserem Fall eine Zählvariable) sein muss
 ttest <- t.test(cars$hp ~ cars$vs_cat)
 aov.1 <- aov(cars$hp ~ cars$vs_cat)
 
@@ -115,7 +110,7 @@ summary.lm(aov.1)
 ```
 
  
-```{r, eval=FALSE}
+```{r dino example, always check out the plots but also the means, slopes ect., eval=FALSE}
 # für mehr infos here: https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html
 
 library(datasauRus)
@@ -137,15 +132,19 @@ glimpse(dt)
 
 
 # plot two examples  
-dt = filter(datasaurus_dozen, dataset == "dino" | dataset == "slant_up")
+if(requireNamespace("ggplot2")){
+  library(ggplot2)
   
-ggplot(dt, aes(x=x, y=y, colour=dataset))+
+  dt = filter(datasaurus_dozen, dataset == "dino" | dataset == "slant_up")
+  
+  ggplot(dt, aes(x=x, y=y, colour=dataset))+
     geom_point()+
     theme_bw() +
     theme(legend.position = "none") +
     facet_wrap(~dataset) +
     geom_smooth(method = "lm", se = FALSE)
-
+  
+}
 
 ```
 

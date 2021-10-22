@@ -6,10 +6,18 @@ body.layout-listing p {
 }
 
 
-.sourceCode, d-article pre{
-    background-color: #f7f7f7;
+/* this should format the code blocks and inline code in a better way */
+code:not(.sourceCode){
+  font-size: .85em;
+  padding: .2em;
 }
 
+.sourceCode, code{
+  background: #f7f7f7;
+}
+d-article pre{
+  background: #f7f7f7;
+}
 
 
 /* stylign the footer (_footer.html) */
@@ -18,7 +26,7 @@ body.layout-listing p {
   padding-left: 100px;
 }
 
-.footer img{
+.footer-logo{
   max-height: 200px; 
   float: right;
 }
@@ -32,4 +40,12 @@ body.layout-listing p {
 /* reduce the space between bullet points */
 d-article li{
   margin-bottom: 0.5em;
+}
+
+
+.solution {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px;
+  text-align: center;
 }

@@ -1,0 +1,203 @@
+---
+title: Übung A
+output: distill::distill_article
+categories:
+- InfoVis2
+draft: false
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+Für die heutige Übung brauchst du den Datensatz [temperature_2005.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/temperature_2005.csv). Dabei handelt es sich wieder um Teperaturwerte verschiedener Stationen, diesmal aus dem Jahr 2005. Das Datum ist so formatiert, dass `R` (isbesondere `read_csv`) es korrekt als `datetime` erkennen und als `POSIXct` einlesen sollte.
+
+```{r, message = FALSE, echo = TRUE}
+library(readr)
+library(dplyr)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r purl = FALSE, echo = FALSE}
+if(!file.exists("temperature_2005.csv")){
+  download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/temperature_2005.csv","temperature_2005.csv")
+  }
+if(!file.exists("temperature_2005_metadata.csv")){
+  download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/temperature_2005_metadata.csv","temperature_2005_metadata.csv")
+  }
+```
+
+
+
+```{r, message = FALSE}
+temperature <- read_csv("temperature_2005.csv")
+```
+
+
+
+
+## Aufgabe 1
+
+Mache aus der *wide table* eine *long table* die wie folgt aussieht. 
+
+```{r}
+temperature_long <- pivot_longer(temperature, -time, names_to = "station", values_to = "temperature")
+
+knitr::kable(head(temperature_long))
+```
+
+Lade anschliessend [temperature_2005_metadata.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/infovis/temperature_2005_metadata.csv) herunter und verbinde die beiden Datensätze mit einem `left_join` via `station` (bzw. `stn`). 
+
+```{r}
+metadata <- read_csv("temperature_2005_metadata.csv")
+
+temperature_long <- left_join(temperature_long, metadata, by = c(station = "stn"))
+```
+
+
+## Aufgabe 2
+
+Erstelle ein Scatterplot (`time` vs. `temperature`) wobei die Punkte aufgrund ihrer Meereshöhe eingefärbt werden sollen. Tiefe Werte sollen dabei blau eingefärbt werden und hohe Werte rot (`scale_color_gradient`). Verkleinere die Punkte um übermässiges Überplotten der Punkten zu vermeiden (`size =`). Weiter sollen auf der x-Achse im Abstand von 3 Monaten der jeweilige Monat vermerkt sein (`date_breaks` bzw. `date_labels` von `scale_x_datetime()`).
+
+```{r}
+
+# Musterlösung
+
+ggplot(temperature_long, aes(time,temperature, color = Meereshoehe)) +
+  geom_point(size = 0.5) +
+  labs(x = "", y = "Temperatur in ° Celsius") +
+  scale_x_datetime(date_breaks = "3 months", date_labels = "%b")  +
+  scale_color_gradient(low = "blue", high = "red")
+```
+
+## Aufgabe 3
+
+Erstelle eine Zusatzvariabel `Date` mit dem Datum der jeweiligen Messung ( mit `as.Date`). Nutze diese Spalte um die Tagesmitteltemperatur pro Station zu berechnen (mit `summarise()`). 
+
+Um die Metadaten  (`Name`, `Meereshoehe`, `x`, `y`) nicht zu verlieren kannst du den Join aus der ersten Übung wieder ausführen. Alternativ (schneller aber auch schwerer zu verstehen) kannst du diese Variabeln innerhalb deines `group_by` verwenden.
+
+```{r}
+temperature_long <- temperature_long %>%
+  mutate(time = as.Date(time)) %>%
+  group_by(time, station, Name, Meereshoehe, x, y) %>%
+  summarise(temperature = mean(temperature))
+```
+
+
+## Aufgabe 4
+
+Wiederhole nun den Plot aus der ersten Aufgabe mit den aggregierten Daten aus der vorherigen Aufgabe. Um die labels korrekt zu setzen musst du `scale_x_datetime` mit `scale_x_date` ersetzen. 
+
+```{r}
+p <- ggplot(temperature_long, aes(time,temperature, color = Meereshoehe)) +
+  geom_point(size = 0.5) +
+  labs(x = "", y = "Temperatur in ° Celsius") +
+  scale_x_date(date_breaks = "3 months", date_labels = "%b")  +
+  scale_color_gradient(low = "blue", high = "red")
+
+p
+
+```
+
+
+## Aufgabe 5
+
+Füge am obigen Plot eine schwarze, gestrichelte Trendlinie hinzu.
+
+```{r, message=F}
+
+# Musterlösung
+
+p <- p +
+  stat_smooth(colour = "black",lty = 2)
+
+p
+```
+
+
+## Aufgabe 6
+
+Positioniere die Legende oberhalb des Plots (nutze dazu `theme()` mit `legend.position`). 
+
+```{r, message=F}
+
+# Musterlösung
+
+
+p <- p + 
+  theme(legend.position = "top")
+
+p
+    
+```
+
+
+
+## Aufgabe 7 (optional, fortgeschritten)
+
+Füge den Temperaturwerten auf der y-Ache ein `°C` hinzu (siehe unten und studiere [diesen Tipp](https://stackoverflow.com/a/35967126/4139249) zur Hilfe). 
+
+```{r, message=F}
+
+# Musterlösung
+
+p +
+  scale_y_continuous(labels = function(x)paste0(x,"°C")) +
+  labs(x = "Kalenderwoche", y = "Temperatur")
+
+
+```
+
+
+
+## Aufgabe 8
+
+Jetzt verlassen wir den scatterplot und machen einen Boxplot mit den Temperaturdaten. Färbe die Boxplots wieder in Abhängigkeit der Meereshöhe ein. 
+
+- Beachte den Unterschied zwischen `colour =` und `fill =`
+- Beachte den Unterschied zwischen `facet_wrap()` und `facet_grid()`
+- `facet_grid()` braucht übrigens noch einen Punkt (`.`) zur Tilde (`~`). 
+- Beachte den Unterschied zwischen "`.~`" und "`~.`" bei `facet_grid()`
+- verschiebe nach Bedarf die Legende
+
+```{r}
+
+# Musterlösung
+
+temperature_long <- mutate(temperature_long, monat = month(time,label = T,abbr = F))
+
+
+ggplot(temperature_long, aes(monat,temperature, fill = Meereshoehe)) +
+  geom_boxplot() +
+  labs(x = "Station", y = "Temperatur") +
+  facet_wrap(~station) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+
+## Aufgabe 9
+
+Als letzter wichtiger Plottyp noch zwei Übungen zum Histogramm. Erstelle ein Histogramm `geom_histogram()` mit den Temperaturwerten. Teile dazu die  Stationen in verschiedene Höhenlagen ein (Tieflage [< 400 m], Mittellage [400 - 600 m] und Hochlage [> 600 m]). Vergleiche die Verteilung der Temperaturwerte in den verschiedenen Lagen mit einem Histogramm. 
+
+Tip: Nutze `cut` um die Stationen in die drei Gruppen aufzuteilen
+
+```{r, warning=F}
+
+# Musterlösung
+
+temperature_long <- temperature_long %>%
+  mutate(lage = cut(Meereshoehe, c(0, 400, 600,1000),labels = c("Tieflage", "Mittellage", "Hochlage")))
+
+ggplot(temperature_long, aes(temperature)) +
+  geom_histogram() +
+  facet_grid(~lage) +
+  labs(x = "Lage", y = "Temperatur") +
+  theme(axis.text.x = element_text(angle = 45,hjust = 1))
+
+```
+

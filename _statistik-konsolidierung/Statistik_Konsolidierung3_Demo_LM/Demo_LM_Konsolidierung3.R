@@ -5,6 +5,7 @@ knitr::purl("_statistik-konsolidierung/Statistik_Konsolidierung3_Demo_LM/index.R
 
 
 
+<<<<<<< HEAD
 
 # für mehr infos
 #https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
@@ -72,6 +73,49 @@ ggsave(filename = "distill-preview.png",
 library(rosetta)
 welch1 <- oneway.test(hp ~ cyl, data = cars, var.equal = FALSE)
 rosetta::posthocTGH(cars$hp, cars$cyl, method = "games-howell")
+=======
+## # für mehr infos
+## #https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html
+## 
+## cars <- mtcars %>%
+##     mutate(cyl = as.factor(cyl)) %>%
+##     slice(-31) # lösch die 31ste Zeile
+## 
+## #Alternativ ginge auch das
+## cars[-31,]
+## 
+## # schaue daten zuerst mal an
+## #1. Responsevariable
+## hist(cars$hp) # nur sinnvoll bei grossem n
+## boxplot(cars$hp)
+## 
+## 
+## #2. Responsevariable ~ Prediktorvariable
+## table(cars$cyl) # mögliches probel, da n's unterschiedlich gross
+## boxplot(cars$hp ~ d$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
+## 
+## # definiere das modell für eine ein-faktorielle anova
+## aov.1 <- aov(hp ~ cyl, data = cars)
+## 
+## #3. Schaue Modelgüte an
+## par(mfrow = c(2,2))
+## plot(aov.1)
+## 
+## #4. Schaue output an und ordne es ein
+## summary.lm(aov.1)
+## 
+## 
+## #5. bei meheren Kategorien wende einen post-hoc Vergleichstest an
+## TukeyHSD(aov.1)
+## 
+## #6. Ergebnisse passend darstellen
+## #habt ihr Vorschläge?
+## 
+## 
+## # Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
+## welch1 <- oneway.test(hp ~ cyl, data = d, var.equal = FALSE)
+## posthocTGH(d$hp, d$cyl, method = "games-howell")
+>>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
 
 
 library(tidyverse)
@@ -218,17 +262,23 @@ cor # disp weglassen, vgl. model2
 ############
 #3. Definiere das Model
 ############
-model1 <- lm(hp ~ kml + wt + disp, data = cars) 
-model2 <- lm(hp ~ kml + wt, data = cars)
-model3 <- lm(log10(hp) ~ kml + wt, data = cars)
+model1 <- lm(hp ~ kml + wt + disp, data = d) 
+model2 <- lm(hp ~ kml + wt, data = d)
+model3 <- lm(log10(hp) ~ kml + wt, data = d)
 
 #############
 #4. Modeldiagnostik
 ############
+<<<<<<< HEAD
 library(ggfortify)
 ggplot2::autoplot(model1)
 ggplot2::autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
 ggplot2::autoplot(model3)
+=======
+autoplot(model1)
+autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
+autoplot(model3)
+>>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9
 
 
 ############
@@ -339,7 +389,12 @@ avgmodel<- MuMIn::model.avg(get.models(allmodels, subset=TRUE))
 summary(avgmodel)
 
 # adäquatest model gemäss multimodel inference
+<<<<<<< HEAD
 model_ad <- lm(hp ~ carb + disp + wt, data = mtcars)
 summary(model_ad)
 ```{.r .distill-force-highlighting-css}
 ```
+=======
+model_ad <- lm(hp ~ carb + disp + kml + wt, data = cars)
+
+>>>>>>> 83002ea7f3e2d069baf12d1119ec3ff7b6574cb9

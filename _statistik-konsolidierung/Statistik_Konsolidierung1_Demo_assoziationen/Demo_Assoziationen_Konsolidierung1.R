@@ -32,13 +32,10 @@ summary(cars)
 glimpse(cars)
 
 #Assoziation zwischen Anzahl Zylinder und Motorentyp ()
-table(cars$vs_cat, cars$am_cat) # Achtung: sieht aus, 
-# als gäbe es weniger V-Motoren bei den Handgeschalteten Autos
+table(cars$vs_cat, cars$am_cat) # Achtung: sieht aus, als gäbe es weniger V-Motoren bei den Handgeschalteten Autos
 
 #lass und das überprüfen
-#achtung: bei chi-square test kommt es 
-#sehr auf das format drauf an (er erwartet entweder 
-#vektoren oder eine matrix!)
+#achtung: bei chi-square test kommt es sehr auf das format drauf an (er erwartet entweder vektoren oder eine matrix!)
 chi_sq <- chisq.test(cars$am, cars$vs)
 chi_sq
 
@@ -47,8 +44,7 @@ fisher.test(cars$am_cat, cars$vs_cat)
 
 
 
-#bei t-Test immer zuerst visualisieren: in diesem Fall Boxplot
-#mit Variablen Getriebe (v- vs. s-motor) und Anzahl Pferdestärke
+# bei t-Test immer zuerst visualisieren: in diesem Fall Boxplot mit Variablen Getriebe (v- vs. s-motor) und Anzahl Pferdestärke
 ggplot(cars, aes(y = hp, x = vs_cat)) +
   # stat_boxplot(geom ='errorbar', width = .25) +
   # geom_boxplot() +
@@ -57,12 +53,9 @@ ggplot(cars, aes(y = hp, x = vs_cat)) +
   mytheme
   
 #alternativ     
-boxplot(cars$hp ~ cars$vs_cat) # sieht ganz ok aus, jedoch weist 
-#die Variable "normale Motoren" deutlich eine grössere Streuung aus
-#-> siehe aov.1 und deren Modelgüte-Plots
+boxplot(cars$hp~cars$vs_cat) # sieht ganz ok aus, jedoch weist die variable "normale Motoren" deutlich eine grössere Streuung aus -> siehe aov.1 und deren Modelgüte-Plots
 
-#Definiere Model: t-Test, wobei die AV metrisch 
-#(in unserem Fall eine Zählvariable) sein muss
+# Definiere Model: t-Test, wobei die AV metrisch (in unserem Fall eine Zählvariable) sein muss
 ttest <- t.test(cars$hp ~ cars$vs_cat)
 aov.1 <- aov(cars$hp ~ cars$vs_cat)
 
@@ -76,36 +69,38 @@ ttest
 summary.lm(aov.1)
 
 
-# für mehr infos here: https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html
-
-library(datasauRus)
-if(requireNamespace("dplyr")){
-  suppressPackageStartupMessages(library(dplyr))
-  dt <- datasaurus_dozen %>% 
-    group_by(dataset) %>% 
-    summarize(
-      mean_x    = mean(x),
-      mean_y    = mean(y),
-      std_dev_x = sd(x),
-      std_dev_y = sd(y),
-      corr_x_y  = cor(x, y)
-    )
-}
-
-# check data structure
-glimpse(dt)
-
-
-# plot two examples  
-dt = filter(datasaurus_dozen, dataset == "dino" | dataset == "slant_up")
-  
-ggplot(dt, aes(x=x, y=y, colour=dataset))+
-    geom_point()+
-    theme_bw() +
-    theme(legend.position = "none") +
-    facet_wrap(~dataset) +
-    geom_smooth(method = "lm", se = FALSE)
-
-
-```{.r .distill-force-highlighting-css}
-```
+## # für mehr infos here: https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html
+## 
+## library(datasauRus)
+## if(requireNamespace("dplyr")){
+##   suppressPackageStartupMessages(library(dplyr))
+##   dt <- datasaurus_dozen %>%
+##     group_by(dataset) %>%
+##     summarize(
+##       mean_x    = mean(x),
+##       mean_y    = mean(y),
+##       std_dev_x = sd(x),
+##       std_dev_y = sd(y),
+##       corr_x_y  = cor(x, y)
+##     )
+## }
+## 
+## # check data structure
+## glimpse(dt)
+## 
+## 
+## # plot two examples
+## if(requireNamespace("ggplot2")){
+##   library(ggplot2)
+## 
+##   dt = filter(datasaurus_dozen, dataset == "dino" | dataset == "slant_up")
+## 
+##   ggplot(dt, aes(x=x, y=y, colour=dataset))+
+##     geom_point()+
+##     theme_bw() +
+##     theme(legend.position = "none") +
+##     facet_wrap(~dataset) +
+##     geom_smooth(method = "lm", se = FALSE)
+## 
+## }
+## 

@@ -1,11 +1,9 @@
 ---
-title: "Suggested data sets"
+title: "Vorgeschlagene Datensätze für die Repetitionsübungen"
 output: distill::distill_article
-author:
-  Gian-Andrea Egeler
 categories:
-- Statistik_Konsolidierung1
-- Statistik
+- Statistik_Konsolidierung_1
+
 
 
 ---

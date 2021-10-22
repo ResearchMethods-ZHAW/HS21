@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+/_prepro/**/*.csv
+/_infovis/**/*.csv
+/_rauman/**/*.csv
+/docs
+*.csv

@@ -1,0 +1,188 @@
+---
+title: "Variablenselektion Fallstudie WPZ Loesungen"
+author: "B.Sigrist"
+date: "5 November 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
+
+## libraries laden
+
+```{r results='hide', warning=FALSE, message=FALSE}
+
+### Funktion um Packages direkt zu installieren und / oder zu laden
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+packages <- c("sp", "raster", "tidyverse", "PerformanceAnalytics", "pastecs", 
+              "lme4", "bbmle", "MuMIn", "magrittr")
+
+ipak(packages)
+
+```
+
+# Variablenselektion
+## Vorgehen analog Coppes et al. 
+
+
+## Aufgabe 1: Mit dem folgenden Code kann eine simple Korrelationsmatrix aufgebaut werden. forest (0/1) ignorieren wir, dies ist nur eine convenience variable, die angibt, ob der Kreis im Wald liegt oder nicht.
+
+```{r tidy=TRUE, message=FALSE}
+
+DF_mod <- read_delim("Data/Datensatz_Habitatnutzung_Modelle_20201102_moodle.csv", delim = ";")
+
+DF_mod_day <- DF_mod %>%
+  filter(time_of_day == "day")
+
+
+round(cor(DF_mod_day[,6:12], method = "kendall"),2)
+
+# hier kann die Schwelle fuer die Korrelation gesetzt werden, 0.7 ist liberal / 0.5 konservativ
+
+cor <- round(cor(DF_mod_day[,6:12], method = "kendall"),2) 
+cor[abs(cor)<0.7] <-0
+cor
+
+```
+
+## Selektion der Variablen in einem univariaten Model
+
+### Aufgabe 2: Skalieren der Variablen, damit ihr Einfluss vergleichbar wird (Problem verschiedene Skalen der Variablen (bspw. Neigung in Grad, Distanz in Metern))
+
+```{r, tidy=TRUE,tidy.opts=list(width.cutoff=50)}
+DF_mod_day %<>%
+  mutate(slope_scaled = scale(slope),
+         us_scaled = scale(us),
+         os_scaled = scale(os),
+         forest_prop_scaled = scale(forest_prop),
+         dist_road_all_scaled = scale(dist_road_all),
+         dist_road_only_scaled = scale(dist_road_only),
+         dist_build_scaled = scale(dist_build),
+         id = as.factor(id))
+```
+
+### Aufgabe 3: Ein erstes GLMM (Generalized Linear Mixed Effects Modell) aufbauen: Funktion und Modelformel
+
+### wichtige Seite auf der man viele Hilfestellungen zu GLMM’s finden kann:
+### https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html
+
+```{r tidy=TRUE}
+
+# wir werden das package lme4 mit der Funktion glmer verwenden 
+# ausserdem brauchen wir noch das package bbmle
+# --> installieren & laden
+
+# die Hilfe von glmer aufrufen: ?glmer
+
+# glmer(formula, data = , family = binomial)
+
+# 1) formula: 
+# Abhaengige Variable ~ Erklaerende Variable + Random Factor 
+# In unseren Modellen kontrollieren wir fuer individuelle Unterschiede bei den Rehen 
+# indem wir einen Random Factor definieren => (1 | id) 
+
+# 2) data: 
+# euer Datensatz
+
+# 3) family: 
+# hier binomial
+
+# warum binomial? Verteilung Daten der Abhaengigen Variable Präsenz/Absenz 
+
+ggplot(DF_mod_day, aes(pres_abs)) + geom_histogram()
+
+# --> Binaere Verteilung => Binomiale Verteilung mit n = 1 
+
+# und wie schaut es bei der Verteilung der Daten der Abhaengigen Variable Nutzungsintensitaet aus?
+
+ggplot(DF_mod_day, aes(nmb)) + geom_histogram()
+
+# --> Negativbinomiale Verteilung 
+
+```
+
+### Aufgabe 4: Mit der GLMM Formel bauen wir in einem ersten Schritt eine univariate Variablenselektion auf.
+
+### Als abhaengige Variable verwenden wir in der ersten Phase die Praesenz/Absenz der Rehe in den Kreisen
+
+
+```{r tidy=TRUE, eval=F}
+
+# Die erklaerende Variable in m1 ist die erste Variable der korrelierdenen Beziehung
+# Die erklaerende Variable in m2 ist die zweite Variable der korrelierdenen Beziehung
+
+m1 <- glmer(Abhaengige_Variable ~ Erklaerende_Variable + (1 | id), data = DF_mod_day, family = binomial)
+m2 <- glmer(Abhaengige_Variable ~ Erklaerende_Variable + (1 | id), data = DF_mod_day, family = binomial)
+
+# mit dieser Funktion koennen die Modellergebnisse inspiziert werden
+summary(m1)
+
+# Mit dieser Funktion kann der Informationgehalt der beiden Modelle gegeneinander abgeschaetzt werden
+bbmle::AICtab(m1, m2)
+
+# tieferer AIC -> besser (AIC = Akaike information criterion)
+
+# Hier ein Beispiel: Distanz zu Strassen und Wegen versus Distanz zu Strassen
+
+m1 <- glmer(pres_abs ~ dist_road_all_scaled + (1 | id), data = DF_mod_day, family = binomial)
+m2 <- glmer(pres_abs ~ dist_road_only_scaled + (1 | id), data = DF_mod_day, family = binomial)
+
+# summary(m1)  
+
+bbmle::AICtab(m1, m2)
+
+# --> tiefer AIC -> besser == Distanz zu Strassen und Wegen
+
+# ==> dieses Vorgehen muss nun für alle korrelierten Variablen für jeden Teildatensatz (Tag/Nacht) durchgeführt werden, um nur noch nicht (R < 0.7) korrelierte Variablen in das Modell einfliessen zu lassen 
+
+```
+
+## Selektion der Variablen in einem multivariaten Model
+
+### Aufgabe 5: Mit folgendem Code kann eine automatisierte Variablenselektion (dredge-Funktion) und ein Modelaveraging aufgebaut werden (siehe auch Vorlesung von J.Dengler vom 4.11. Vormittag)
+
+```{r tidy=TRUE, eval=T}
+
+# hier wird die Formel für die dredge-Funktion vorbereitet (die Variablen sind jene welche nach der univariaten Variablenselektion noch übrig bleiben)  
+
+f <- pres_abs ~ 
+  slope_scaled +
+  us_scaled +
+  os_scaled +
+  forest_prop_scaled +
+  dist_road_all_scaled +
+  dist_build_scaled 
+
+# inn diesem Befehl kommt der Random-Factor (das Reh) hinzu und es wird eine Formel daraus gemacht
+
+f_dredge <- paste(c(f, "+ (1 | id)"), collapse = " ") %>% as.formula()
+
+# Das Modell mit dieser Formel ausführen
+
+m <- glmer(f_dredge, data = DF_mod_day, family = binomial, na.action = "na.fail")
+
+# Das Modell in die dredge-Funktion einfügen (siehe auch unbedingt ?dredge)
+
+all_m <- dredge(m)
+
+# Importance values der einzelnen Variablen (Gibt an, wie bedeutsam eine bestimmte Variable ist, wenn man viele verschiedene Modelle vergleicht (multimodel inference))
+
+importance(all_m)
+
+# Schlussendlich wird ein Modelaverage durchgeführt (Schwellenwert für das delta-AIC = 2)
+
+avgmodel <- model.avg(all_m, rank="AICc", subset = delta < 2)
+summary(avgmodel)
+
+# ==> für den Nachtdatensatz muss der gleiche Prozess der Variablenselektion durchgespielt werden. 
+```
+
+

@@ -1,0 +1,193 @@
+---
+title: "Code Modeldiagnostics und Darstellung Resultate Uebung"
+author: "B.Sigrist"
+date: "09 November 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
+
+## Neue packages die wir fuer die Modelle und die Diagnostics brauchen
+
+```{r tidy= TRUE, results='hide', warning=FALSE, message=FALSE}
+
+# neue Packages: DHARMa, car, MASS, ROCR, sjPlot, sjstats, rms, ggeffects, cowplot
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+packages <- c("lme4", "bbmle", "MuMIn", "tidyverse", "DHARMa", "car", "MASS", "ROCR", "sjPlot", "rms", "ggeffects", "sjstats", "cowplot", "magrittr", "ggdraw")
+
+ipak(packages)
+```
+## Hier schnell schnell der Modellfit von letzter Woche als Ausgangspunkt für die heutige Übung
+
+```{r tidy=TRUE, fig.keep="none", warning=FALSE, message=FALSE, results='hide'}
+
+DF_mod_day <- read_delim("Data/Datensatz_Habitatnutzung_Modelle_20201102_moodle.csv", delim = ";") %>%
+  filter(time_of_day == "day") %>%
+  mutate(slope_scaled = scale(slope),
+         us_scaled = scale(us),
+         os_scaled = scale(os),
+         forest_prop_scaled = scale(forest_prop),
+         dist_road_all_scaled = scale(dist_road_all),
+         dist_road_only_scaled = scale(dist_road_only),
+         dist_build_scaled = scale(dist_build),
+         id = as.factor(id))
+
+f <- pres_abs ~
+  slope_scaled +
+  us_scaled +
+  os_scaled +
+  forest_prop_scaled +
+  dist_road_all_scaled +
+  dist_build_scaled
+
+f <- paste(c(f, "+ (1 | id)"), collapse = " ") %>% as.formula()
+
+m_day <- glmer(f, data= DF_mod_day, family = binomial, na.action = "na.fail")
+
+all_m <- dredge(m_day)
+
+avgmodel <- model.avg(all_m, rank="AICc", subset = delta < 2)
+summary(avgmodel)
+
+```
+
+## Die Modellresultate aus dem avgmodel sind grundaetzlich die finalen Resultate die bereits interpretiert werden koennten. Allerdings funktionieren die Diagnosetests und die Darstellung der Resultate mit diesem gemittelten Modell nicht sehr gut, weshalb wir einen re-fit mit glmer machen muessen (an den Resultaten aendert sich dadurch nichts) 
+
+```{r tidy=TRUE, fig.keep="none", warning=FALSE, message=FALSE, results='hide'}
+
+f_pres_abs <- pres_abs ~
+  dist_road_all_scaled +
+  forest_prop_scaled +
+  os_scaled +
+  us_scaled +
+  dist_build_scaled +
+  (1|id)
+
+m_day <- glmer(f_pres_abs, data= DF_mod_day, family = binomial, na.action = "na.fail")
+
+# hier noch zum Vergleich, dass die Resulate sich nur marginal veraendern 
+
+summary(avgmodel)
+summary(m_day)
+
+```
+
+## Aufgabe 1: Berechung der AUC (area under the receiver operating characteristic curve)
+### = Mass der Modellguete
+
+### Fuer die Berechnung des AUC findet ihr weiterfuehrende Informationen unter: https://www.wsl.ch/staff/niklaus.zimmermann/programs/progs/simtest.pdf) 
+
+```{r tidy=TRUE, eval=FALSE, fig.keep="none", warning=FALSE, message=FALSE}
+
+prob <- predict(m_day,type=c("response"))   
+pred <- prediction(prob, DF_mod_day$pres_abs)    
+
+?prediction
+
+# AUC
+
+auc <- performance(pred, measure = "auc")@y.values[[1]]
+auc
+
+```
+
+## Aufgabe 2: Interpretieren der Modell-Residuen mittels Tests auf verschiedene Aspekte
+
+## Model testing for over/underdispersion, zeroinflation and spatial autocorrelation following the DHARMa package.
+## unbedingt die Vignette des DHARMa-Package konsultieren: https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html
+
+```{r tidy=TRUE, eval=FALSE,results= 'hide', fig.keep="none", warning=FALSE, message=FALSE}
+
+# Residuals werden ueber eine Simulation auf eine Standard-Skala transformiert und kaennen anschliessend getestet werden. Dabei kann die Anzahl Simulationen eingestellt werden (dauert je nach dem sehr lange)
+
+simulationOutput <- simulateResiduals(fittedModel = m_day, n = 10000)
+
+# plotting and testing scaled residuals
+
+plot(simulationOutput)
+
+testResiduals(simulationOutput)
+
+# The most common concern for GLMMs is overdispersion, underdispersion and zero-inflation.
+
+# separate test for dispersion
+
+testDispersion(simulationOutput)
+
+# test for Zeroinflation
+
+testZeroInflation(simulationOutput)
+
+# test for spatial Autocorrelation
+
+dM = as.matrix(dist(cbind(DF_mod_day$x, DF_mod_day$y)))
+
+testSpatialAutocorrelation(simulationOutput, distMat = dM, plot = F)
+
+# Testen auf Multicollinearitaet (dh zu starke Korrelationen im finalen Modell, zB falls auf Grund der oekologsichen Plausibilitaet stark korrelierte Variablen im Modell)
+# use VIF values: if values less then 5 is ok (sometimes > 10), if mean of VIF values not substantially greater than 1 (say 5), no need to worry.
+
+car::vif(m_day)
+mean(car::vif(m_day))
+
+```
+
+## Aufgabe 3: Graphische Darstellung der Modellresultate
+
+```{r tidy=TRUE,eval=FALSE, fig.width=5, fig.height=3 , warning=FALSE, message=FALSE}
+
+# graphische Darstellung der gesamten Modellresultate
+
+plot_model(m_day,transform = NULL, show.values = TRUE, value.offset = .3)
+
+# Plotten der vorhergesagten Wahrscheinlichkeit, dass ein Kreis besetzt ist, in Abhaengigkeit der erklaerenden Variable basierend auf den Modellresultaten.
+
+plot_model(m_day,type = "pred", terms = "os_scaled [all]")
+
+# Problem: skalierte Variablen lassen sich nicht so ohne weiteres plotten, hier ein quick-and-dirty hack um das Problem zu umgehen. Die Einstellungen muessen fuer jede Variable geaendert werden
+
+p <- plot_model(m_day,type = "pred", terms = "os_scaled [all]") 
+
+labels <- round(seq(floor(min(DF_mod_day$os)), ceiling(max(DF_mod_day$os)), length.out = 7),2)
+
+# check this out: plyr::round_any(seq(floor(min(DF_mod_day$os)), ceiling(max(DF_mod_day$os)), length.out = 7),100)
+
+
+p <- p + scale_x_continuous(breaks=c(-1.5,-1,-0.5,0,0.5,1,1.5), labels=c(labels))
+
+p
+# Funktion um viele Plots auf einem zusammenbringen: cowplot-package (hat auch sonst gute Funktionen fuer gute layouts von Plots)
+
+
+
+title <- cowplot::ggdraw() + draw_label("MPG declines with displacement and horsepower", fontface='bold')
+
+plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1))
+
+
+
+```
+
+
+dies allenfalls weglassen, Sinn oder Unsinn nicht abschliessend nachvollziehbar. 
+
+## Aufgabe 4: Ermittlung des individuellen Beitrags der einzelen Variablen im Gesamtmodell
+
+### Bestimmen delta AIC nach Coppes et al. 2017 -> Vergleich des Gesamtmodells gegenüber einem Modell ohne die entsprechende Variable.
+
+
+
+
+
+# **Auftrag auf den 17.11.2020: Kurze Vorstellung der Modellresultate & Diagnostics im Plenum und Diskussion der Ergebnisse (keine PP-Praesentation noetig)**
+
+

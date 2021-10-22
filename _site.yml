@@ -21,7 +21,9 @@ navbar:
         href: PrePro.html#category:PrePro1
       - text: "PrePro2"
         href: PrePro.html#category:PrePro2
-    - text: "InforVis"
+      - text: "PrePro3"
+        href: PrePro.html#category:PrePro3
+    - text: "InfoVis"
       menu:
       - text: "Abstract"
         href: InfoVis_abstract.html
@@ -85,11 +87,19 @@ navbar:
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(S)
       - text: "Biodiversity and Ecosystems (Profil S): Musterloesung"
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(S)_Musterloesung
+      - text: "Biodiversity and Ecosystems (Profil N)"
+        href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)
+      - text: "Biodiversity and Ecosystems (Profil N): Musterloesung"
+        href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)_Musterloesung
   right:
-    - icon: fab fa-github
-      href: https://github.com/ResearchMethods-ZHAW/HS21
-    - icon: fa-solid fa-forward
-      href: Readme.html
+    - text: "Interna"
+      menu:
+      - text: "Quality Control"
+        href: Distill_Quality_Control.html
+      - text: "Readme"
+        href: Readme.html
+      - text: Github Repo
+        href: https://github.com/ResearchMethods-ZHAW/HS21
 output: 
   distill::distill_article:
     toc: true

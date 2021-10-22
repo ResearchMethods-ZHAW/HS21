@@ -1,0 +1,35 @@
+---
+title: Aufgabe 3
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik3
+---
+
+#Aufgabe 3: Multiple Regression
+
+- Bereiten Sie den Datensatz Ukraine.xlsx für das Einlesen in R vor und lesen Sie ihn dann ein. Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von 199
+10 m² grossen Plots (Vegetationsaufnahmen) von Steppenrasen in der Ukraine sowie zahlreiche Umweltvariablen, deren Bedeutung und Einheiten im Kopf der ExcelTabelle angegeben sind.
+- **Ermitteln Sie ein minimal adäquates Modell, das den Artenreichtum in den Plots durch die Umweltvariablen erklärt.**
+- Bitte erklären und begründen Sie die einzelnen Schritte, die Sie unternehmen, um zu diesem Ergebnis zu kommen. Dazu erstellen Sie bitte ein Word-Dokument, in das Sie Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, Ihre Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+  - Überprüfen der Datenstruktur nach dem Einlesen: welches sind die abhängige(n)
+    und welches die unabängige(n) Variablen, sind alle Variablen für die Analyse
+    geeignet?
+  - Explorative Datenanalyse, um zu sehen, ob die abhängige Variable in der
+    vorliegenden Form für die Analyse geeignet ist
+  - Definition eines globalen Modelles und dessen Reduktion zu einem minimal
+    adäquaten Modell
+  - Durchführen der Modelldiagnostik für dieses
+  - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
+    Ergebnisdarstellung benötigt werden
+  - Formulieren Sie abschliessend einen Methoden- und Ergebnisteil (ggf. incl.
+    adäquaten Abbildungen) zu dieser Untersuchung in der Form einer
+    wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je
+    einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und
+    Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige
+    Redundanz dagegen vermieden werden.
+  - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
+    (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
+    ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**

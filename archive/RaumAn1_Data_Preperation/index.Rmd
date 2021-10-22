@@ -3,7 +3,7 @@ title: Data Preperation
 output: distill::distill_article
 categories:
 - RaumAn1
-- RaumAn
+draft: true
 
 ---
 
