@@ -24,7 +24,8 @@ boxplot(cars$hp)
 
 #2. Responsevariable ~ Prediktorvariable
 table(cars$cyl) # mögliches probel, da n's unterschiedlich gross
-boxplot(cars$hp ~ cars$cyl) # varianzheterogentität weniger das problem, aber normalverteilung der residuen problematisch
+boxplot(cars$hp ~ cars$cyl) # varianzheterogentität weniger das problem, 
+# aber normalverteilung der residuen problematisch
 
 # definiere das modell für eine ein-faktorielle anova
 aov.1 <- aov(hp ~ cyl, data = cars)
@@ -41,15 +42,45 @@ summary.lm(aov.1)
 TukeyHSD(aov.1)
 
 #6. Ergebnisse passend darstellen
-#habt ihr Vorschläge?
+library(multcomp)
 
+#erstens die signifikanten Unterschiede mit Buchstaben versehen
+letters <- multcomp::cld(multcomp::glht(aov.1, linfct=multcomp::mcp(cyl="Tukey"))) # Achtung die kategoriale
+#Variable (unsere unabhängige Variable "cyl") muss als Faktor
+#definiert sein z.B. as.factor()
 
-# Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
+#einfachere Variante
+boxplot(hp ~ cyl, data = cars)
+mtext(letters$mcletters$Letters, at=1:3)
+
+#schönere Variante :)
+ggplot(cars, aes(x = cyl, y = hp)) +
+	stat_boxplot(geom = "errorbar", width = .5) +
+  geom_boxplot(size = 1) +
+	annotate("text", x = 1:3, y = 350, label = letters$mcletters$Letters, size = 7) +
+  labs(x = "\nAnzahl Zylinder", y = "Pferdestärke")  +
+  mytheme
+
+#Plot exportieren
+ggsave(filename = "distill-preview.png",
+       device = "png") # hier kann man festlegen, was für ein Bildformat
+#exportiert werden möchte
+
+# Sind die Voraussetzungen für eine Anova verletzt, überprüfe alternative 
+# nicht-parametische Tests z.B. oneway-Test mit Welch-korrektur für ungleiche
+# Varianzen (Achtung auch dieser Test hat Voraussetzungen -> siehe Skript XY)
+library(rosetta)
 welch1 <- oneway.test(hp ~ cyl, data = cars, var.equal = FALSE)
-posthocTGH(cars$hp, cars$cyl, method = "games-howell")
+rosetta::posthocTGH(cars$hp, cars$cyl, method = "games-howell")
 
 
-#1. Wähle zusätzliche Variable aus (wenn nicht in der Aufgabe steht), was für eine Skala muss die Variable aufweisen?
+library(tidyverse)
+#1. Wähle zusätzliche Variable aus (wenn nicht in der Aufgabe steht), 
+#was für eine Skala muss die Variable aufweisen?
+
+cars <- mtcars %>% 
+    mutate(cyl = as.factor(cyl)) %>% 
+    slice(-31)
 
 #2. definiere das Modell für eine zwei-faktorielle Anova
 #ACHTUNG: die Reihenfolge ist bei Anova relevant, siehe für mehr Infos: https://stats.stackexchange.com/questions/212496/why-do-p-values-change-in-significance-when-changing-the-order-of-covariates-in
@@ -67,29 +98,8 @@ plot(aov.2)
 #5. Interpretiere den Output
 summary.lm(aov.2)
 
-
-#6. Ergebnisse passend darstellen
-# plotte ergebnisse
-library(multcomp)
-
-#erstens die signifikanten Unterschiede mit Buchstaben versehen
-letters <- cld(glht(aov.1, linfct=mcp(cyl="Tukey"))) # Achtung die kategoriale Variable (unsere unabhängige Variable "cyl") muss als Faktor definiert sein z.B. as.factor()
-
-#einfachere Variante
-boxplot(hp ~ cyl, data = cars)
-mtext(letters$mcletters$Letters, at=1:3)
-
-#schönere Variante :)
-ggplot(cars, aes(x = cyl, y = hp)) +
-	stat_boxplot(geom = "errorbar", width = .5) +
-  geom_boxplot(size = 1) + 
-	annotate("text", x = 1:3, y = 350, label = letters$mcletters$Letters, size = 7) +
-  labs(x = "\nAnzahl Zylinder", y = "Pferdestärke")  + mytheme
-
-#Plot exportieren
-ggsave(filename = "distill-preview.png",
-       device = "png") # hier kann man festlegen, was für ein Bildformat exportiert werden möchte
-
+#6. Plotte Ergebnisse
+# Wie würdet ihr das machen?
 
 
 #Frage: was brauchts für ein Model, damit man von einer Ancova sprechen darf?
@@ -119,13 +129,13 @@ boxplot(cars$hp)
 
 # Korrelationen uv + av anschauen
 # Reihenfolge spielt hier keine Rolle, wieso?
-cor(cars$mpg, cars$hp) # hängen stark zusammen
+cor(cars$kml, cars$hp) # hängen stark zusammen
 
 
 ###################
 #2. Modell definieren: einfache regression
 ##################
-model <- lm(hp ~ mpg, data = cars)
+model <- lm(hp ~ kml, data = cars)
 summary.lm(model)
 
 ###############
@@ -133,7 +143,8 @@ summary.lm(model)
 ###############
 
 # semi schöne Ergebnisse
-autoplot(model) + mytheme # gitb einige Extremwerte => was tun? (Eingabe/Einlesen 
+library(ggfortify)
+ggplot2::autoplot(model) + mytheme # gitb einige Extremwerte => was tun? (Eingabe/Einlesen 
 #überprüfen, Transformation, Extremwerte nur ausschliessen mit guter Begründung)
 
 
@@ -143,15 +154,15 @@ cars$residuals <- residuals(model)
 
 # schaue es dir an, sieht man gut was die Residuen sind
 d <- cars %>%  
-    dplyr::select(hp, mpg, predicted, residuals)
+    dplyr::select(hp, kml, predicted, residuals)
 
 # schauen wir es uns an
 head(d, 4)
 
 #visualisiere residuen
-ggplot(d, aes(x = mpg, y = hp)) +
+ggplot(d, aes(x = kml, y = hp)) +
   # verbinde beobachtete werte mit vorausgesagte werte
-  geom_segment(aes(xend = mpg, yend = predicted)) + 
+  geom_segment(aes(xend = kml, yend = predicted)) + 
   geom_point() + # Plot the actual points
   geom_point(aes(y = predicted), shape = 4) + # plot geschätzten y-Werten
   # geom_line(aes(y = predicted), color = "lightgrey") # alternativ code
@@ -162,26 +173,23 @@ ggplot(d, aes(x = mpg, y = hp)) +
   scale_color_continuous(low = "blue", high = "red") +  
   scale_x_continuous(limits = c(0, 40)) +
   scale_y_continuous(limits = c(0, 300)) +
-  guides(color = FALSE) +  # Color legende entfernen
+  guides(color = "none") +  # Color legende entfernen
+  labs(x = "\nVerbraucht in Liter pro 100km", y = "Motorleistung in PS\n") +
   mytheme
 
 ##########
 #4. plotte Ergebnis
 ##########
-ggplot(d, aes(x = mpg, y = hp)) +
+ggplot(d, aes(x = kml, y = hp)) +
     geom_point(size = 4) +
     # geom_point(aes(y = predicted), shape = 1, size = 4) +
     # plot regression line
     geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
     #intercept
-    geom_line(aes(y = mean(d$hp)), color = "blue") +
+    geom_line(aes(y = mean(hp)), color = "blue") +
     mytheme
 
 
-
-###################
-#multiple regression
-###################
 
 # Select data
 cars <- mtcars %>% 
@@ -217,9 +225,10 @@ model3 <- lm(log10(hp) ~ kml + wt, data = cars)
 #############
 #4. Modeldiagnostik
 ############
-ggfortify::autoplot(model1)
-ggfortify::autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
-ggfortify::autoplot(model3)
+library(ggfortify)
+ggplot2::autoplot(model1)
+ggplot2::autoplot(model2) # besser, immernoch nicht ok => transformation? vgl. model3
+ggplot2::autoplot(model3)
 
 
 ############
@@ -231,7 +240,7 @@ ggfortify::autoplot(model3)
 # gebe dir predicted values aus für model2 (für vorzeigebeispiel einfacher :)
 # gibts unterschidliche varianten die predicted values zu berechnen
 # 1. default funktion predict(model) verwenden
-d$predicted <- predict(model2)
+cars$predicted <- predict(model2)
 
 # 2. datensatz selber zusammenstellen (nicht empfohlen): wichtig, die 
 # prädiktoren müssen denselben
@@ -241,7 +250,7 @@ d$predicted <- predict(model2)
 new.data <- tibble(kml = sample(seq(6.9384, 22.61, .3), 31),
                    wt = sample(seq(1.513, 5.424, 0.01), 31),
                    disp = sample(seq(71.1, 472.0, .1), 31)) 
-d$predicted_own <- predict(model2, newdata = new.data)
+cars$predicted_own <- predict(model2, newdata = new.data)
 
 # 3. train_test_split durchführen (empfohlen) muss jedoch von beginn an bereits 
 # gemacht werden - Logik findet ihr hier: https://towardsdatascience.com/train-test-split-and-cross-validation-in-python-80b61beca4b6 oder https://towardsdatascience.com/6-amateur-mistakes-ive-made-working-with-train-test-splits-916fabb421bb
@@ -249,7 +258,7 @@ d$predicted_own <- predict(model2, newdata = new.data)
 cars <- mtcars %>% 
   mutate(id = 1:nrow(.)) %>%  # für das mergen der Datensätze
   mutate(kml = (235.214583/mpg)) %>% 
-  dplyr::select(kml, hp, wt, disp)
+  dplyr::select(kml, hp, wt, disp, id)
   
 train_data <- cars %>% 
   dplyr::sample_frac(.75) # für das Modellfitting
@@ -269,34 +278,26 @@ train_data$predicted_test <- predict(model2_train, newdata = test_data)
 train_data$residuals <- residuals(model2_train)
 head(train_data)
 
-# mehrere plots der Residual-Regression
-train_data %>% 
-    # Get data into shape
-    tidyr::pivot_longer(cols = c(-hp, -predicted_test, -residuals), names_to = "x") %>%  
-    ggplot(aes(x = value, y = hp)) +  # Note use of `x` here and next line
-    geom_segment(aes(xend = value, yend = predicted_test), alpha = .2) +
-    geom_point(aes(color = residuals)) +
-    scale_color_gradient2(low = "blue", mid = "white", high = "red") +
-    guides(color = FALSE) +
-    geom_point(aes(y = predicted_test), shape = 1) +
-    geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
-    facet_grid(~ x, scales = "free_x") +  # Split panels here by `iv`
-    labs(x = "") +
-    theme_bw()
+
+#weiterführende Infos zu "machine learning" Idee hier: https://stat-ata-asu.github.io/MachineLearningToolbox/regression-models-fitting-them-and-evaluating-their-performance.html
+#wichtigstes Packet in dieser Hinsicht ist "caret": https://topepo.github.io/caret/
+#beste Philosophie ist tidymodels: https://www.tidymodels.org
+
+
 
 
 #----------------
 # Schnelle variante mit broom
-d <- lm(hp ~ kml + wt+ disp, data = mtcars) %>% 
+d <- lm(hp ~ kml + wt+ disp, data = cars) %>% 
     broom::augment()
 
 head(d)
 
-ggplot(d, aes(x = mpg, y = hp)) +
-    geom_segment(aes(xend = mpg, yend = .fitted), alpha = .2) +
+ggplot(d, aes(x = kml, y = hp)) +
+    geom_segment(aes(xend = kml, yend = .fitted), alpha = .2) +
     geom_point(aes(color = .resid)) +
     scale_color_gradient2(low = "blue", mid = "white", high = "red") +
-    guides(color = FALSE) +
+    guides(color = "none") +
     geom_point(aes(y = .fitted), shape = 4) +
     scale_y_continuous(limits = c(0,350)) +
     geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
@@ -312,17 +313,18 @@ ggplot(d, aes(x = mpg, y = hp)) +
 library(hier.part)
 cars <- mtcars %>% 
   mutate(kml = (235.214583/mpg)) %>% 
-  dplyr::select(kml, hp, wt, disp)
+  select(-mpg)
 
 
 names(cars) # finde "position" deiner Responsevariable
 
-X = cars[, -4] # definiere all die Prädiktorvariablen im Model (minus Responsevar)
+X = cars[, -3] # definiere all die Prädiktorvariablen im Model (minus Responsevar)
 
 # dauert ein paar sekunden
 hier.part(cars$hp, X, gof = "Rsqu")
 
-# alle Modelle miteinander vergleichen mit dredge Befehl: geht nur bis maximal 15 Variablen
+# alle Modelle miteinander vergleichen mit dredge Befehl: geht nur bis 
+# maximal 15 Variablen
 model2 <- lm(hp ~ ., data = cars)
 library(MuMIn)
 options(na.action = "na.fail")
@@ -337,7 +339,7 @@ avgmodel<- MuMIn::model.avg(get.models(allmodels, subset=TRUE))
 summary(avgmodel)
 
 # adäquatest model gemäss multimodel inference
-model_ad <- lm(hp ~ carb + disp + kml + wt, data = cars)
-
+model_ad <- lm(hp ~ carb + disp + wt, data = mtcars)
+summary(model_ad)
 ```{.r .distill-force-highlighting-css}
 ```
