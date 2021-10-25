@@ -8,7 +8,7 @@ draft: false
 
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Statistik_1_Demo.Rmd", "Demo-Statistik_1_Demo.R", documentation = 0)
+knitr::purl("Statistik_1_Demo.Rmd", "Statistik_1_Demo.R", documentation = 0)
 ```
 
 [Demoskript als Download](Statistik_1_Demo.R)
@@ -71,15 +71,18 @@ t.test(blume$a, blume$b, alternative = "less") #einseitig
 klassischer t-Test vs. Welch Test
 
 ```{r}
-t.test(blume$a, blume$b, var.equal = T) #Varianzen gleich, klassischer t-Test
-t.test(blume$a, blume$b, var.equal = F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgeführt. 
+# Varianzen gleich, klassischer t-Test
+t.test(blume$a, blume$b, var.equal = T) 
+
+# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
+t.test(blume$a, blume$b, var.equal = F) 
 ```
 
 gepaarter t-Test
 
 ```{r}
 t.test(blume$a, blume$b, paired = T)
-t.test(blume$a, blume$b, paired = T, alternative="greater")
+t.test(blume$a, blume$b, paired = T, alternative = "greater")
 ```
 
 Wilcoxon-Vorzeichen-Rang-Test
@@ -95,15 +98,10 @@ wilcox.test(blume$a, blume$b)
 
 Das gleiche mit einem “long table”
 
-
 ```{r}
 cultivar <- c(rep("a", 10), rep("b", 10))
 size <- c(a,b)
 blume.long <- data.frame(cultivar, size)
-
-rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
-rm(cultivar)
-
 
 rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
 rm(cultivar)
@@ -120,12 +118,14 @@ head(blume.long)
 boxplot(size~cultivar, data = blume.long)
 
 t.test(size~cultivar, blume.long, var.equal = T)
-t.test(size~cultivar, blume.long, var.equal = F)
+
+# gepaarter t-Test erster Wert von Cultivar a wird mit erstem Wert von Cultivar
+# b gepaart, zweiter Wert von a mit zweitem von b ect.
+t.test(size~cultivar, blume.long, paired = T)
 ```
 
 
 ### Base R vs. ggplot2
-
 
 ```{r}
 

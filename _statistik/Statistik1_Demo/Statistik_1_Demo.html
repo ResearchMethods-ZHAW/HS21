@@ -1665,7 +1665,8 @@ mean of x mean of y
 <p>klassischer t-Test vs. Welch Test</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">blume</span><span class="op">$</span><span class="va">a</span>, <span class="va">blume</span><span class="op">$</span><span class="va">b</span>, var.equal <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="co">#Varianzen gleich, klassischer t-Test</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Varianzen gleich, klassischer t-Test</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">blume</span><span class="op">$</span><span class="va">a</span>, <span class="va">blume</span><span class="op">$</span><span class="va">b</span>, var.equal <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> 
 </code></pre>
 </div>
 <pre><code>
@@ -1680,7 +1681,8 @@ sample estimates:
 mean of x mean of y 
      15.3      11.4 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">blume</span><span class="op">$</span><span class="va">a</span>, <span class="va">blume</span><span class="op">$</span><span class="va">b</span>, var.equal <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="co">#Varianzen ungleich, Welch&#39;s t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch&#39;s t-Test ausgeführt. </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Varianzen ungleich, Welch&#39;s t-Test, ist auch default, d.h. wenn var.equal nicht  definiert wird, wird ein Welch&#39;s t-Test ausgeführt. </span>
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">blume</span><span class="op">$</span><span class="va">a</span>, <span class="va">blume</span><span class="op">$</span><span class="va">b</span>, var.equal <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> 
 </code></pre>
 </div>
 <pre><code>
@@ -1713,7 +1715,7 @@ sample estimates:
 mean of the differences 
                     3.9 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">blume</span><span class="op">$</span><span class="va">a</span>, <span class="va">blume</span><span class="op">$</span><span class="va">b</span>, paired <span class="op">=</span> <span class="cn">T</span>, alternative<span class="op">=</span><span class="st">&quot;greater&quot;</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">blume</span><span class="op">$</span><span class="va">a</span>, <span class="va">blume</span><span class="op">$</span><span class="va">b</span>, paired <span class="op">=</span> <span class="cn">T</span>, alternative <span class="op">=</span> <span class="st">&quot;greater&quot;</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>
@@ -1786,10 +1788,6 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">size</span><span class="op">)</span> <span class="co">#Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">cultivar</span><span class="op">)</span>
-
-
-<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">size</span><span class="op">)</span> <span class="co">#Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace</span>
-<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">cultivar</span><span class="op">)</span>
 </code></pre>
 </div>
 </div>
@@ -1839,20 +1837,22 @@ sample estimates:
 mean in group a mean in group b 
            15.3            11.4 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">size</span><span class="op">~</span><span class="va">cultivar</span>, <span class="va">blume.long</span>, var.equal <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># gepaarter t-Test erster Wert von Cultivar a wird mit erstem Wert von Cultivar</span>
+<span class="co"># b gepaart, zweiter Wert von a mit zweitem von b ect.</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">size</span><span class="op">~</span><span class="va">cultivar</span>, <span class="va">blume.long</span>, paired <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>
-    Welch Two Sample t-test
+    Paired t-test
 
 data:  size by cultivar
-t = 2.0797, df = 13.907, p-value = 0.05654
-alternative hypothesis: true difference in means between group a and group b is not equal to 0
+t = 3.4821, df = 9, p-value = 0.006916
+alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -0.1245926  7.9245926
+ 1.366339 6.433661
 sample estimates:
-mean in group a mean in group b 
-           15.3            11.4 </code></pre>
+mean of the differences 
+                    3.9 </code></pre>
 </div>
 <h3 id="base-r-vs.-ggplot2">Base R vs. ggplot2</h3>
 <div class="layout-chunk" data-layout="l-body">
