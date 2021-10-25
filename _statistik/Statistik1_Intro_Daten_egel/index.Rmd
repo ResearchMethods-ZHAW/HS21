@@ -1,5 +1,5 @@
 ---
-title: Beschreibung Forschungsprojekt NOVANIMAL (NFP69)
+title: "Beschreibung Forschungsprojekt NOVANIMAL (NFP69)"
 output: distill::distill_article
 categories:
 - Statistik1
