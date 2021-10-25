@@ -1,88 +1,72 @@
 ---
-title: Uebung B (Optional)
+title: Übung B (Optional)
 output: 
   distill::distill_article:
     toc: true
 categories:
 - InfoVis2
-draft: true
+draft: false
 ---
 
 In dieser Übung bauen wir einige etwas unübliche Plots aus der Vorlesung nach. Dafür verwenden wir Datensätze, die in R bereits integriert sind. Eine Liste dieser Datensätze findet man [hier](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) oder mit der Hilfe `?datasets`.
 
-
-Dazu verwenden wir vor allem das Package `plotly` welches im Gegensatz zu `ggplot2` ein paar zusätzliche Plot-Typen kennt und zudem noch interaktiv ist.  Leider scheinen gewisse Browsers (z.B. Firefox) sowie der Viewer Pane mit `plotly` Mühe zu haben. Deshalb empfehlen wir folgendes:
-
-- [Übungsunterlagen für InfoVis2](http://oyster.zhaw.ch:3939/ResearchMethodsÜbungen/) in Chrome zu öffnen
-- Falls ihr auf dem [RStudio Server](http://oyster.zhaw.ch:8787) arbeitet: hier ebenfalls in Chrome arbeiten
-- Falls ihr lokal mit RStudio arbeitet: Mit der Option `options(viewer=NULL)` werden Plots mit dem Standart Browser. 
+Dazu verwenden wir nach wie vor `ggplot2`, aber mit einigen Tricks.
 
 
-
-```{r, echo = F,message=F}
-
-library(tidyverse)
-library(plotly)
-
-
+```{r, echo = TRUE,message=F}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 ```
 
 
 
 ## Aufgabe 1: Parallel coordinate plots
 
-Erstelle einen [parallel coordinate plot](https://en.wikipedia.org/wiki/Parallel_coordinates). Dafür eignet sich der integrierte Datensatz [`mtcars`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html):
+Erstelle einen [parallel coordinate plot](https://en.wikipedia.org/wiki/Parallel_coordinates). Dafür eignet sich der integrierte Datensatz [`mtcars`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html). Extrahiere die Fahrzeugnamen mit `rownames_to_column`. 
 
-```{r, echo = F, purl=F}
+Zudem müssen die Werte jeweiles auf eine gemeinsame Skala normalisiert werden. Hierfür kannst du die Funktion `scales::rescale` verwenden.
 
+```{r, echo = TRUE}
+mtcars2 <- mtcars %>%
+  tibble::rownames_to_column("car") %>%
+  pivot_longer(-car)
+
+mtcars2 <- mtcars2 %>%
+  group_by(name) %>%
+  mutate(value_scaled = scales::rescale(value))
+```
+
+
+```{r, echo = FALSE, purl=FALSE}
 knitr::kable(head(mtcars))
-
-```
-
-```{r, echo = T, eval=F}
-
-# Nur nötig, wenn ihr mit einer lokalen Installation von RStudio arbeitet
-# (also nicht auf dem Server).
-options(viewer=NULL)
-
 ```
 
 
-Parallel Coordinates lassen sich mit nativem `ggplot2` nicht herstellen. Es braucht dazu entweder Erweiterungen oder "standalone" Tools. Als "standalone" Tool kann ich `plotly` stark empfehlen. `Plotly` verfügt zwar über eine etwas eigenwillige Syntax, bietet dafür über sehr vielseitige zusätzliche Möglichkeiten. Vor allem aber sind sämtliche `plotly` Grafiken webbasiert und interaktiv. 
 
-Hier findet ihr eine Anleitung zur Herstellung eines Parallel Coordinates Plot mit `plotly`: https://plot.ly/r/parallel-coordinates-plot/
 
 So sieht der fertige Plot aus:
 
+
 ```{r}
-# Lösung Aufgabe 1
 
-p <- mtcars %>%
-  plot_ly(type = 'parcoords',
-          line = list(color = ~mpg,
-                      colorscale = list(c(0,'red'),c(1,'blue'))),
-          dimensions = list(
-            list(label = 'mpg', values = ~mpg),
-            list(label = 'disp', values = ~disp),
-            list(label = 'hp', values = ~hp),
-            list(label = 'drat', values = ~drat),
-            list(label = 'wt', values = ~wt),
-            list(label = 'qsec', values = ~qsec),
-            list(label = 'vs', values = ~vs),
-            list(label = 'am', values = ~am),
-            list(label = 'gear', values = ~gear),
-            list(label = 'carb', values = ~carb)
-          )
-  )
 
-p
+mtcars2 <- mtcars2 %>%
+  group_by(car) %>%
+  mutate(gear = value[name == "gear"])
+
+ggplot(mtcars2, aes(name, value_scaled, group = car, color = factor(gear))) +
+  geom_point() +
+  geom_line() +
+  theme_minimal() +
+  theme(legend.position = "none", axis.title.y = element_blank())
+  
 ```
 
----
 
 ## Aufgabe 2: Polar Plot mit Biber Daten
 
-Polar Plots (welche man ebenfalls mit Plotly erstellen kann) eignen sich unter anderem für Daten, die zyklischer Natur sind, wie zum Beispiel zeitlich geprägte Daten (Tages-, Wochen-, oder Jahresrhythmen). Aus den Beispiels-Datensätzen  habe ich zwei Datensätze gefunden, die zeitlich geprägt sind:
+Polar Plots eignen sich unter anderem für Daten, die zyklischer Natur sind, wie zum Beispiel zeitlich geprägte Daten (Tages-, Wochen-, oder Jahresrhythmen). Aus den Beispiels-Datensätzen  habe ich zwei Datensätze gefunden, die zeitlich geprägt sind:
 
 - [`beaver1` und `beaver2`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/beavers.html)
 [`AirPassenger`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/AirPassengers.html)
@@ -91,10 +75,7 @@ Beide Datensätze müssen noch etwas umgeformt werden, bevor wir sie für einen 
 
 Wenn wir die Daten von beiden Bibern verwenden wollen, müssen wir diese noch zusammenfügen:
 
-
 ```{r, echo = T}
-
-
 beaver1_new <- beaver1 %>%
   mutate(beaver = "nr1")
 
@@ -126,28 +107,26 @@ knitr::kable(head(beaver_new))
 #  formatRound(c("min_dec","hour_min_dec"), 2)
 ```
 
-So sieht der fertige Plot aus. Rekonstruiere dies mit `plotly`:
+So sieht der fertige Plot aus:
 
 ```{r}
 
 # Lösung Aufgabe 2
 
-p <- beaver_new %>%
-  plot_ly(r = ~temp, t = ~hour_min_dec, color = ~beaver,mode = "lines", type = "scatter") %>%
-  layout(
-    radialaxis = list(range = c(35,39)),
-    angularaxis = list(range = c(0,24)),
-    orientation = 270,
-    showlegend = F
-    )
+beaver_new %>%
+  ggplot(aes(hour_min_dec, temp, color = beaver)) +
+  geom_point() +
+  scale_x_continuous(breaks = seq(0,23,2)) +
+  coord_polar() +
+  theme_minimal() +
+  theme(axis.title =  element_blank())
 
-p
 ```
 
 
 ---
 
-## Aufgabe 3: Polar Plot mit Passagier-Daten
+## Aufgabe 3: Raster Visualisierung mit Flugpassagieren
 
 
 Analog Aufgabe 2, dieses Mal mit dem Datensatz [`AirPassanger`](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/AirPassengers.html)
@@ -174,67 +153,34 @@ Aus der `matrix` muss noch ein Dataframe her, zudem müssen wir aus der breiten 
 
 AirPassengers3 <- AirPassengers2 %>%
   as.data.frame() %>%
-  rownames_to_column("year") %>%
-  gather(month,n,-year) %>%
+  tibble::rownames_to_column("year") %>%
+  pivot_longer(-year, names_to = "month", values_to = "n") %>%
   mutate(
-    # ich nutze einen billigen Trick um ausgeschriebene Monate in Nummern umzuwandeln [1]
+    # ich nutze einen billigen Trick um ausgeschriebene Monate in Nummern umzuwandeln
     month = factor(month, levels = month.abb,ordered = T),
     month_numb = as.integer(month),
-    year = factor(year, ordered = T)
+    year = as.integer(year)
   )
 
 
-# [1] beachtet an dieser Stelle das Verhalten von as.integer() wenn es sich um factors() handelt. Hier wird das Verhalten genutzt, andersweitig kann es einem zum Verhngnis werden. Das Verhalten wir auch hier verdeutlicht:
-# as.integer(as.character("500"))
-# as.integer(as.factor("500"))
+
 
 ```
 
 
-Hier der fertige Plot. Rekonstruiere dies mit `plotly`:
+So sieht der fertige Plot aus: 
 
-```{r}
+```{r, purl = FALSE, echo=FALSE, fig.height=5, preview=TRUE}
 
-# Lösung Aufgabe 3
-
-p <- AirPassengers3 %>%
-  plot_ly(r = ~n, t = ~month_numb, color = ~year, mode = "markers", type = "scatter") %>%
-  layout(
-    showlegend = T,
-    angularaxis = list(range = c(0,12)),
-    orientation = 270,
-    legend = list(traceorder = "reversed")
-) 
+ggplot(AirPassengers3, aes(month, year, fill = n)) +
+  geom_raster() +
+  scale_y_reverse() +
+  scale_fill_viridis_c(guide = guide_colourbar(barwidth = 15, title.position = "top")) +
+  theme_minimal() +
+  labs(fill = "Anzahl Passagiere") +
+  coord_equal() +
+  theme(axis.title = element_blank(), legend.position = "bottom") 
 
 ```
 
-
-
-```{r, results="asis", purl = F, echo=F}
-
-
-p
-```
-
----
-
-## Aufgabe 4: 3D Scatterplot
-
-Erstelle einen 3D Scatterplot, ebenfalls mit `plotly`. Nutze dazu den Datensatz `trees`. Ein Beispiel für einen 3D Scatterplot findet ihr [hier](https://plot.ly/r/3d-scatter-plots/).
-
-
-```{r}
-
-# Lösung Aufgabe 4
-
-  p <- trees %>%
-  plot_ly(x = ~Girth, y = ~Height, z = ~Volume)
-```
-
-
-
-```{r, results="asis", purl = F, echo=F}
-p
-
-```
 

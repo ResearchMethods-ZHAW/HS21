@@ -92,10 +92,14 @@ navbar:
       - text: "Biodiversity and Ecosystems (Profil N): Musterloesung"
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)_Musterloesung
   right:
-    - icon: fab fa-github
-      href: https://github.com/ResearchMethods-ZHAW/HS21
-    - icon: fa-solid fa-forward
-      href: Readme.html
+    - text: "Interna"
+      menu:
+      - text: "Quality Control"
+        href: Distill_Quality_Control.html
+      - text: "Readme"
+        href: Readme.html
+      - text: Github Repo
+        href: https://github.com/ResearchMethods-ZHAW/HS21
 output: 
   distill::distill_article:
     toc: true

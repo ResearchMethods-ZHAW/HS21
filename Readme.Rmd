@@ -9,6 +9,11 @@ output: distill::distill_article
 
 ## Allgemeines
 
+Der Workflow in Kürze:
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBzdWJncmFwaCBZb3Ugb24gWU9VUiBjb21wdXRlclxuICAgIEFbXCJlZGl0IHlvdXIgUm1kXCJdXG4gICAgQltcImtuaXQgeW91ciBSbWRcIl1cbiAgICBDW1wiYWRkICsgY29tbWl0IHlvdSBsb2NhbCBjaGFuZ2VzXCJdXG4gICAgRFtcInB1bGwgdGhlIHJlbW90ZSBjaGFuZ2VzXCJdXG4gICAgRVtcInB1c2ggeW91ciBjaGFuZ2VzXCJdXG4gICAgQS0tPkItLT5DLS0-RC0tPkVcbiAgICBlbmRcbiAgICBzdWJncmFwaCBHaXRodWIgb24gdGhlIHNlcnZlclxuICAgIElbXCInYnVpbGRzJyB0aGUgcGFnZVwiXVxuICAgIEpbXCJwdXNoZXMgdGhlIGNoYW5nZXMgdG8gdGhlICdnaC1wYWdlcyctYnJhbmNoXCJdXG4gICAgRS0tPiBJIC0tPkpcbiAgICBlbmQiLCJtZXJtYWlkIjp7ImZsb3djaGFydCI6eyJodG1sTGFiZWxzIjp0cnVlfSwidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)](https://mermaid.live/edit#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBzdWJncmFwaCBZb3Ugb24gWU9VUiBjb21wdXRlclxuICAgIEFbXCJlZGl0IHlvdXIgUm1kXCJdXG4gICAgQltcImtuaXQgeW91ciBSbWRcIl1cbiAgICBDW1wiYWRkICsgY29tbWl0IHlvdSBsb2NhbCBjaGFuZ2VzXCJdXG4gICAgRFtcInB1bGwgdGhlIHJlbW90ZSBjaGFuZ2VzXCJdXG4gICAgRVtcInB1c2ggeW91ciBjaGFuZ2VzXCJdXG4gICAgQS0tPkItLT5DLS0-RC0tPkVcbiAgICBlbmRcbiAgICBzdWJncmFwaCBHaXRodWIgb24gdGhlIHNlcnZlclxuICAgIElbXCInYnVpbGRzJyB0aGUgcGFnZVwiXVxuICAgIEpbXCJwdXNoZXMgdGhlIGNoYW5nZXMgdG8gdGhlICdnaC1wYWdlcyctYnJhbmNoXCJdXG4gICAgRS0tPiBJIC0tPkpcbiAgICBlbmQiLCJtZXJtYWlkIjoie1xuICBcImZsb3djaGFydFwiOiB7XG4gICAgXCJodG1sTGFiZWxzXCI6IHRydWVcbiAgfSxcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)
+
+
 ### Distill 
 
 Bis und mit HS2020 haben wir für die Bereitstellung der Unterlagen [`bookdown`](https://bookdown.org/yihui/blogdown/) verwendet, im HS2021 wollen wir zu [`distill`](https://rstudio.github.io/distill/) wechseln. 
@@ -141,7 +146,8 @@ Um die Änderungen zu veröffentlichen (für die Studenten sichtbar zu machen) m
 *Achtung*: 
 
 - Um Änderungen, die ihr am  .Rmd gemacht habt, sichtbar zu machen müsst ihr das .Rmd File zuerst kompilieren (mit `Ctrl+Shift+K` oder dem button "Knit")
-- In gewissen Fällen^[v.a. Änderungen an `_site.yml`] muss man die gesamte Seite "builden" (mit `Ctrl+Shift+B` oder dem Button Build -> Build Website)
+- Eure Beitrag werden in einem html file gespeichert, welches gleich heisst wie euer Rmd file (aber eben mit der html Erweiterung)
+- Das "builden" der site passiert nach jedem Push via einer github action
 
 
 ## Anleitung 4 (Fortgeschritten): Listings editieren und veröffentlichen
@@ -158,8 +164,8 @@ Um eine *collection* zu erstellen:
 
 ```
 ---
-title: "InfoVis"      # <- Egal
-listing: infovis      # <- ordnername der collection ohne Underscore
+title: "InfoVis"      # <- der title kann selbst gewählt werden
+listing: infovis      # <- hier kommt der ordnername der "collection" ohne Underscore
 ---
 ```
 
@@ -168,6 +174,6 @@ listing: infovis      # <- ordnername der collection ohne Underscore
 ```
 navbar:
   right:
-    - text: "InfoVis1"     # <- Egal
-      href: InfoVis.html   # <- Name des Rmd files mit der Endung .html
+    - text: "InfoVis1"     # <- der Text kann frei gewählt werden
+      href: InfoVis.html   # <- hier kommt der Name des Rmd files mit der Endung .html
 ```

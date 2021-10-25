@@ -1,0 +1,188 @@
+---
+title: Loesung Aufgabe 3
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik3
+draft: true
+---
+
+```{r echo = FALSE}
+#export files
+knitr::purl("index.Rmd", "Solution_stat3.R", documentation = 0)
+
+
+```
+
+
+> Download [R-Skript](Solution_stat3.R)
+
+
+      
+## Loesung Aufgabe 3.1
+
+Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen so ab, dass sie noch eindeutig, aber nicht unnötig lang sind, etwa indem man die Einheiten wegstreicht
+
+```{r}
+
+library(readr)
+# Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
+ukraine <-read_delim("Ukraine_bearbeitet.csv", delim=";")
+attach(ukraine)
+
+ukraine
+
+# ukraine <- read.delim("Ukraine_bearbeitet.csv",sep=";")
+
+str(ukraine)
+summary(ukraine)
+```
+Man erkennt, dass alle Spalten bis auf die erste mit der Plot ID numerisch (num oder int) und
+dass die abhängige Variable in Spalte 2 sowie die Prediktorvariablen in den Spalten 3 bis 23
+stehen.
+
+```{r,eval=FALSE}
+#Explorative Datenanalyse der abhängigen Variablen
+boxplot(ukraine$`Species richness`)
+```
+
+Der Boxplot sieht sehr gut symmetrisch aus. Insofern gibt es keinen Anlass über eine
+Transformation nachzudenken. (Da es sich bei Artenzahlen um Zähldaten handelt, müsste man
+theoretisch ein glm mit Poisson-Verteilung rechnen; bei einem Mittelwert, der hinreichend von
+Null verschieden ist (hier: ca. 40), ist eine Poisson-Verteilung aber praktisch nicht von einer
+Normalverteilung zu unterscheiden und wir können uns den Aufwand auch sparen).
+
+```{r}
+cor <- cor(ukraine[,3:23])
+cor
+cor[abs(cor)<0.7] <- 0
+cor
+```
+Die Korrelationsanalyse dient dazu, zu entscheiden, ob die Prädiktorvariablen hinreichend
+voneinander unabhängig sind, um alle in das globale Modell hinein zu nehmen. Bei Pearson’s
+Korrelationskoeffizienten r, die betragsmässig grösser als 0.7 sind, würde es problematisch.
+Alternativ hätten wir auch den VIF (Variance Inflation Factor) als Kriterium für den möglichen
+Ausschluss von Variablen aus dem globalen Modell nehmen können.
+Diese initiale Korrelationsanalyse zeigt uns aber, dass unsere Daten noch ein anderes Problem
+haben: für die drei Korngrössenfraktionen des Bodens (Sand, Silt, Clay) stehen lauter NA’s. Um herauszufinden, was das Problem ist, geben wir ein:
+
+```{r}
+summary(ukraine$Sand)
+ukraine[!complete.cases(ukraine), ] # Zeigt zeilen mit NAs ein
+```
+Da gibt es offensichtlich je ein NA in jeder dieser Zeilen. Jetzt können wir entscheiden,
+entweder auf die drei Variablen oder auf die eine Beobachtung zu verzichten. Da wir eh schon
+eher mehr unabhängige Variablen haben als wir händeln können, entscheide ich pragmatisch
+für ersteres. Wir rechnen die Korrelation also noch einmal ohne diese drei Spalten (es sind die Nummern 12:14, wie wir aus der anfänglichen Variablenbetrachtung oben wissen).
+
+```{r}
+cor <- cor(ukraine[,c(3:11,15:23)])
+cor[abs(cor)<0.7] <- 0
+cor
+```
+Wenn man auf cor nun doppel-clickt und es in einem separaten Fenster öffnet, sieht man, wo
+es problematische Korrelationen zwischen Variablenpaaren gibt.
+Es sind dies Altitude vs. Temperature und N.total vs. C.org. Wir müssen aus jedem dieser Paare jetzt eine Variable rauswerfen, am besten jene, die weniger gut interpretierbar ist. Ich entscheide mich dafür Temperature statt Altitude (weil das der direktere ökologische
+Wirkfaktor ist) und C.org statt N.total zu behalten (weil es in der Literatur mehr Daten zum
+Humusgehalt als zum N-Gehalt gibt, damit eine bessere Vergleichbarkeit erzielt wird). Die
+Aussagen, die wir für die beibehaltene Variable erzielen, stehen aber +/- auch für die
+entfernte.
+Das Problem ist aber, dass wir immer noch 16 Variablen haben, was einen sehr
+leistungsfähigen Rechner oder sehr lange Rechenzeit erfordern würde. Wir sollten also unter
+15 Variablen kommen. Wir könnten uns jetzt überlegen, welche uns ökologisch am wichtigsten
+sind, oder ein noch strengeres Kriterium bei r verwenden, etwa 0.6
+
+```{r}
+cor <- cor(ukraine[,c(3:11,15:23)])
+cor[abs(cor)<0.6] <- 0
+cor
+```
+
+```{r include=FALSE}
+write.table(cor, file="Corrleation.csv", sep=";", dec=".")
+```
+
+Entsprechend „werfen“ wir auch noch die folgenden Variablen „raus“: Temperature.range
+(positiv mit Temperature), Precipitation (negativ mit Temperature) sowie Conductivity (positiv
+mit pH).
+
+Nun können wir das globale Modell definieren, indem wir alle verbleibenden Variablen
+aufnehmen, das sind 13. (Wenn das nicht eh schon so viele wären, dass es uns an die Grenze
+der Rechenleistung bringt, hätten wir auch noch darüber nachdenken können, einzelne
+quadratische Terme oder Interaktionsterme zu berücksichtigen).
+
+```{r}
+global.model <- lm(`Species richness` ~ Inclination+`Heat index`+`Microrelief`+`Grazing intensity`+
+                    `Litter`+`Stones and rocks`+ Gravel+`Fine soil`+pH+CaCO3+`C org`+`CN ratio`+Temperature, data = ukraine)
+
+```
+
+Nun gibt es im Prinzip zwei Möglichkeiten, vom globalen (vollen) Modell zu einem minimal
+adäquaten Modell zu kommen. (1) Der Ansatz der „frequentist statistic“, in dem man aus dem
+vollen Modell so lange schrittweise Variablen entfernt, bis nur noch signifikante Variablen
+verbleiben. (2) Den informationstheoretischen Ansatz, bei dem alle denkbaren Modelle
+berechnet und verglichen werden (also alle möglichen Kombinationen von 13,12,…, 1, 0
+Parametern). Diese Lösung stelle ich im Folgenden vor:
+
+```{r}
+#Multimodel inference
+if(!require(MuMIn)){install.packages("MuMIn")}
+library(MuMIn)
+
+options(na.action="na.fail")
+allmodels<-dredge(global.model)
+allmodels
+```
+
+Jetzt bekommen wir die besten der insgesamt 8192 möglichen Modelle gelistet mit ihren
+Parameterschätzungen und ihrem AICc.
+
+Das beste Modell umfasst 5 Parameter (CaCO3, CN.ratio, Grazing.intensity. Heat.index, Litter).
+Allerdings ist das nächstbeste Modell (mit 6 Parametern) nur wenig schlechter (delta AICc =
+0.71), was sich in fast gleichen (und zudem sehr niedrigen) Akaike weights bemerkbar macht.
+Nach dem Verständnis des Information theoretician approach, sollte man in einer solchen
+Situation nicht das eine „beste“ Modell benennen, sondern eine Aussage über die Gruppe der
+insgesamt brauchbaren Modelle treffen. Hierzu kann man (a) Importance der Parameter über
+alle Modelle hinweg berechnen (= Summe der Akaike weights aller Modelle, die den
+betreffenden Parameter enthalten) und/oder (b) ein nach Akaike weights gemitteltes Modell
+berechnen.
+
+```{r}
+#Importance values der Variablen
+importance(allmodels)
+```
+
+Demnach ist Heat.index die wichtigste Variable (in 100% aller relevanten Modelle), während
+ferner Litter, CaCO3, CN.ratio und Grazing.intensity in mehr als 50% der relevanten Modelle
+enthalten sind.
+
+```{r,eval=FALSE}
+#Modelaveraging (Achtung: dauert mit 13 Variablen einige Minuten)
+summary(model.avg(allmodels, rank="AICc"), subset=TRUE)
+
+```
+
+Aus dem gemittelten Modell können wir die Richtung der Beziehung (positiv oder negativ) und
+ggf. die Effektgrössen (wie verändert sich die Artenzahl, wenn die Prädiktorvariable um eine
+Einheit zunimmt?) ermitteln.
+
+```{r}
+#Modelldiagnostik nicht vergessen
+par(mfrow=c(2,2))
+plot(global.model)
+p <- plot(lm(`Species richness`~`Heat index`+Litter+CaCO3+`CN ratio`+ `Grazing intensity`))
+print(p)
+
+summary(global.model)
+
+ggsave(filename = "_statistik/Statistik3_solution/distill-preview.png",
+       plot = p,
+       device = "png")
+
+```
+
+Wie immer kommt am Ende die Modelldiagnostik. Wir können uns entweder das globale
+Modell oder das Modell mit den 5 Variablen mit importance > 50% anschauen. Das Bild sieht
+fast identisch aus und zeigt keinerlei problematische Abweichungen, d. h. links oben weder ein
+Keil, noch eine Banane, rechts oben eine nahezu perfekte Gerade. 
