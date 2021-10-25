@@ -6,8 +6,11 @@ categories:
 draft: false
 ---
 
-```{r echo = FALSE}
 
+```{r, include=F, purl=F}
+library(knitr)
+
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, message = FALSE, collapse=TRUE) 
 ```
 
 ***
