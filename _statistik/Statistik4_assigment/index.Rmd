@@ -5,18 +5,15 @@ output:
     toc: true
 categories:
 - Statistik4
-draft: true
+draft: false
 ---
 
 ```{r echo = FALSE}
-#achtung datensätze fehlen noch im ordner!
-#TODO: lade datensätze hoch
-
 ```
 
-# Aufgabe 4.1: Nicht-lineare Regression
+###	Aufgabe 4.1: Nicht-lineare Regression
 
-**Datensatz [Curonian_Spit.xlsx](Curonian_Spit.xlsx)**
+**Datensatz [Curonian_Spit.xlsx](Curonian_Spit.csv)**
 
 Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
 geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf
@@ -25,7 +22,7 @@ Flächengrössen (Area) von 0.0001 bis 900 m².
 **Ermittelt den funktionellen Zusammenhang (das beste Modell), der die Zunahme der Artenzahl mit der Flächengrösse am besten beschreibt.Berücksichtigt dabei mindestens die Potenzfunktion (power function, die logarithmische Funktion (logarithmic function,und eine Funktion mit Sättigung (saturation, asymptote) eurer Wahl.**
 
 
-# Aufgabe 4.2N: Logistische Regression (NatWis)
+### Aufgabe 4.2N: Logistische Regression (NatWis)
 
 **Datensatz [polis.csv](polis.csv)**
 
@@ -34,7 +31,7 @@ Der Datensatz polis.csv beschreibt für 19 Inseln im Golf von Kalifornien, ob Ei
 **Bitte prüft mit einer logistischen Regression, ob und ggf. wie die Inselform die Präsenz der Eidechsen beinflusst**
 
 
-# Aufgabe 4.2S: Multiple logistische Regression (SozWis)
+### Aufgabe 4.2S: Multiple logistische Regression (SozWis)
 
 Führt mit dem Datensatz der [Gästebefragung](https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1) eine logistische Regression durch. Kann der Mensabesuch druch die sozioökonomischen Variablen (Alter, Geschlecht, Hochschulzugehörigkeit), wahrgenommener Fleischkonsum und Einstellung zu ?? vorhergesagt werden?
 
