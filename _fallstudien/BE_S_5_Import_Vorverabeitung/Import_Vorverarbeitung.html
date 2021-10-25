@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-09-27"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-09-27"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-10-25"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-10-25"/>
   <meta name="article:author" content="Adrian Hochreutener"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 43: Aufgabe Import und Datenvorverarbeitung"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["09-27-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 43: Aufgabe Import und Datenvorverarbeitung"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["10-25-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1435,8 +1435,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="Import_Vorverarbeitung_files/header-attrs-2.10/header-attrs.js"></script>
-  <script src="Import_Vorverarbeitung_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="Import_Vorverarbeitung_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="Import_Vorverarbeitung_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="Import_Vorverarbeitung_files/popper-2.6.0/popper.min.js"></script>
   <link href="Import_Vorverarbeitung_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="Import_Vorverarbeitung_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW 43: Aufgabe Import und Datenvorverarbeitung","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-27T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
+{"title":"KW 43: Aufgabe Import und Datenvorverarbeitung","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-25T00:00:00.000+02:00","citationText":"Hochreutener, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,29 +1478,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Adrian Hochreutener  
   
-<br/>09-27-2021
+<br/>10-25-2021
 </div>
 
 <div class="d-article">
 <h1 id="aufgabe-1-zähldaten">Aufgabe 1: Zähldaten</h1>
-<p>Die Projektstruktur steht. Nun können die Daten eingelesen und die nötigen Datentypen definiert werden. Das tidyverse-Universum ist dazu ganz zentral.</p>
+<p>Die Projektstruktur steht. Nun können die Daten eingelesen und die nötigen Datentypen definiert werden. Das tidyverse-Universum (u.a. pipes, ggplot usw.) ist in unseren Auswertungen zentral.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="tidyverse.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<p>Die Zaehldaten des Wildnispark Zürich wurden vorgaengig bereinigt. Z.B. wurden Stundenwerte entfernt, an denen am Zaehler Wartungsarbeiten stattgefunden haben. Das macht es fuer uns einfach, denn wir koennen die Daten ohne vorgaengige Bereinigung einfach einlesen.</p>
-<p>Lest die Zaehlaten ein und sichtet den Datensatz.</p>
+<p>Die Zähldaten des Wildnispark Zürich wurden vorgängig bereinigt (z.B. wurden Stundenwerte entfernt, an denen am Zähler Wartungsarbeiten stattgefunden haben). Das macht es für uns einfach, denn wir können die Daten ohne vorgängige Bereinigung einlesen. Behaltet aber im Hinterkopf, dass die Datenaufbereitung, die Datenbereinigung mit viel Aufwand verbunden ist.</p>
+<ul>
+<li>Lest die Zählaten ein, speichert ihn unter der Variable <strong>depo</strong> und sichtet den Datensatz (z. B. str(), head(), view() usw.).</li>
+</ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>depo</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"./HIER RELATIVEN DATEIPFAD EINGEBEN"</span><span class='op'>)</span> 
-<span class='co'># Je nach Bedarf muss der Speicherort sowie der Dateiname angepasst werden</span>
+<span class='co'># Speicherort sowie Dateiname anpassen</span>
 </code></pre>
 </div>
 </div>
 <p><strong>Hinweis:</strong> Im Stundenformat zeigen die Werte um 11:00 die Zähldaten zwischen 11:00 und 12:00.</p>
 <h2 id="a">1a)</h2>
 <ul>
-<li><p>Im Datensatz des Wildnisparks sind Datum und Uhrzeit in einer Spalte. Diese muessen getrennt werden. Ich schlage hier den Ansatz des piping vor. Damit koennen in einem “Rutsch” mehrere Operationen ausgefuehrt werden.</p></li>
-<li><p>Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (format = "")?</p></li>
+<li><p>Im Datensatz des Wildnisparks sind Datum und Uhrzeit in einer Spalte. Diese müssen getrennt werden (Ich schlage hier den Ansatz des piping ( %&gt;% ) vor. Damit können in einem “Rutsch” mehrere Operationen ausgeführt werden).</p></li>
+<li><p>Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (im Code: format = “XXX”)?</p></li>
 <li><p>Schliesslich schneiden wir den Datensatz auf die Untersuchungsdauer zu.</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -1510,8 +1512,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Datum_Uhrzeit <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>DatumUhrzeit</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>separate</span><span class='op'>(</span><span class='va'>Datum_Uhrzeit</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Datum"</span>, <span class='st'>"Zeit"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span><span class='op'>%&gt;%</span> <span class='co'># mit seperate() trennt man</span>
                                                                    <span class='co'># 1 Spalte in 2.</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Datum <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>Datum</span>, format <span class='op'>=</span> <span class='st'>"HIER DATUMSFORMAT"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'># hier wird Text zum Datumsformat</span>
-  <span class='co'># Schneide das df auf den gewuenschten Zeitraum zu</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Datum <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>Datum</span>, format <span class='op'>=</span> <span class='st'>"HIER DATUMSFORMAT"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'># hier wird Text zum Datum</span>
+  <span class='co'># Schneide das df auf den gewünschten Zeitraum zu</span>
   <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Datum</span> <span class='op'>&gt;=</span> <span class='va'>depo_start</span>, <span class='va'>Datum</span> <span class='op'>&lt;=</span>  <span class='va'>depo_end</span><span class='op'>)</span> <span class='co'># das Komma hat die gleiche Funktion wie ein &amp;</span>
 </code></pre>
 </div>
@@ -1525,7 +1527,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li>Berechnen des Totals (IN + OUT), da dieses in den Daten nicht vorhanden ist (wiederum mit piping).</li>
 </ul>
-<p>Tipp: Wenn man R sagt: “addiere mir Spalte x mit Spalte y”, dann macht R das fuer alle Zeilen in diesen zwei Spalten. Wenn man nun noch sagt: “speichere mir das Ergebnis dieser Addition in einer neuen Spalte namens <strong>Total</strong>”, dann hat man die Aufgabe bereits geloest. Arbeitet mit <strong>mutate()</strong>).</p>
+<p>Tipp: Wenn man R sagt: “addiere mir Spalte x mit Spalte y”, dann macht R das für alle Zeilen in diesen zwei Spalten. Wenn man nun noch sagt: “speichere mir das Ergebnis dieser Addition in einer neuen Spalte namens <strong>Total</strong>”, dann hat man die Aufgabe bereits gelöst. Arbeitet mit <strong>mutate()</strong>).</p>
 <ul>
 <li>Entfernt nun alle NA-Werte mit <strong>na.omit()</strong>.</li>
 </ul>
@@ -1536,9 +1538,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 <h2 id="b-1">2b)</h2>
 <ul>
-<li>Auch hier muessen die Datentypen manuell gesetzt werden.</li>
+<li>Auch hier müssen die Datentypen manuell gesetzt werden.</li>
 </ul>
-<p>Tipp: Das Datum wird als Integer erkannt. Zuerst muss es in Text umgewaldelt werden aus dem dann das eigentliche Datum herausgelesen werden kann. Das ist muehsam - darum hier der Code.</p>
+<p>Tipp: Das Datum wird als Integer erkannt. Zuerst muss es in Text umgewandelt werden aus dem dann das eigentliche Datum herausgelesen werden kann. Das ist mühsam - darum hier der Code.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>meteo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/transform.data.table.html'>transform</a></span><span class='op'>(</span><span class='va'>meteo</span>, time <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>)</span>, <span class='st'>"%Y%m%d"</span><span class='op'>)</span><span class='op'>)</span>
@@ -1553,9 +1555,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 <h2 id="c-1">2c)</h2>
 <ul>
-<li>Jetzt muessen auch hier alle nicht verfuegbare Werte (NA’s) herausgefiltert werden.</li>
+<li>Jetzt müssen auch hier alle nicht verfügbare Werte (NA’s) herausgefiltert werden.</li>
 </ul>
-<p>Tipp: Entweder geht das mit <strong>na.omit()</strong> oder, etwas konservativer, koennen mit <strong>filter()</strong> die Spalten genauer definiert werden. Mit folgendem Codeblock koennen z.B. alle Werte gefiltert werden, die in der Spalte stn nicht gleich NA sind (es werden also die Werte behalten, die vorhanden sind). Der Code muss für die anderen relevanten Spalten noch ergaenzt werden.</p>
+<p>Tipp: Entweder geht das mit <strong>na.omit()</strong> für alle Spalten oder, etwas konservativer, können mit <strong>filter()</strong> die zu filternden Spalten definiert werden. Mit folgendem Codeblock können z.B. alle Werte gefiltert werden, die in der Spalte stn nicht gleich NA sind (es werden also die Werte behalten, die vorhanden sind). Der Code muss für die anderen relevanten Spalten noch ergänzt werden.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>meteo</span> <span class='op'>&lt;-</span> <span class='va'>meteo</span> <span class='op'>%&gt;%</span>
@@ -1566,15 +1568,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <ul>
-<li>Prueft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden. Stimmen alle Datentypen?</li>
+<li>Prüft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden. Stimmen alle Datentypen?</li>
 </ul>
 <h1 id="aufgabe-3-datenvorverarbeitung-mutationen">Aufgabe 3: Datenvorverarbeitung (Mutationen)</h1>
 <h2 id="a-2">3a)</h2>
-<p>Jetzt fügen wir wahnsinnig viele Convinience Variabeln hinzu. Wir brauchen:</p>
+<p>Jetzt fügen wir viele Convinience Variabeln hinzu. Wir brauchen:</p>
 <ul>
 <li>Wochentag, der Befehl dazu ist <strong>weekdays()</strong></li>
 </ul>
-<p>Tipp: R sortiert die Levels aplhabetisch. Da das in unserem Fall aber sehr unpraktisch ist, müssen die Levels manuell bestimmt werden</p>
+<p>Tipp: R sortiert die Levels alphabetisch. Da das in unserem Fall aber sehr unpraktisch ist, müssen die Levels manuell bestimmt werden</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r">  <span class='va'>...</span>
@@ -1585,6 +1587,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
+<p>Frage: Was bedeutet base:: vor den eigentlichen Befehl?</p>
 <ul>
 <li>Ist es ein Werktag oder Wochenende?</li>
 </ul>
@@ -1605,7 +1608,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>Jahr: <strong>year()</strong></p></li>
 <li><p>Phase Covid (Code untenstehend)</p></li>
 </ul>
-<p>Tipp: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen koennen. Hinweis II: Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte –&gt; long ist schöner als wide.</p>
+<p><strong>Hinweis I:</strong> ich mache das nachgelagert, da zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen können. <strong>Hinweis II:</strong> Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte –&gt; long-format ist schöner (und praktischer für das plotten) als wide-format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>depo</span> <span class='op'>&lt;-</span> <span class='va'>depo</span> <span class='op'>%&gt;%</span>
@@ -1627,7 +1630,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 <h2 id="b-2">3b)</h2>
 <ul>
-<li>Nun soll noch die volle Stunde als Integer im Datensatz stehen. Diese Angabe muss etwas muehsam aus den Daten gezogen werden (darum hier der fertige Code dazu):</li>
+<li>Nun soll noch die volle Stunde als Integer im Datensatz stehen. Diese Angabe muss etwas mühsam aus den Daten gezogen werden (darum hier der fertige Code dazu):</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1636,9 +1639,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h2 id="c-2">3c)</h2>
-<p>Die Daten wurden durch den WPZ kalibriert. Wir runden sie fuer unserer Analysen auf Ganzzahlen (unser Modell kann z. B. nicht mit Kommazahlen in der ahbängigen Variable umgehen).</p>
+<p>Die Daten wurden durch den WPZ kalibriert (Kommastellen).</p>
 <ul>
-<li><p>Definieren sie sicherheitshalber als Ganzzahl (Integer)</p></li>
+<li><p>Rundet sie auf 0 Nachkommastellen (Ganzzahl; unser Modell kann nicht mit Kommazahlen in der ahbängigen Variable umgehen).</p></li>
+<li><p>Definiert sie sicherheitshalber als Integer</p></li>
 <li><p>Macht das für IN, OUT und Total.</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -1650,11 +1654,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h1 id="aufgabe-4-aggregierung-der-stundendaten">Aufgabe 4: Aggregierung der Stundendaten</h1>
 <h2 id="a-3">4a)</h2>
-<p>Unsere Daten liegen im Stundenformat vor. Fuer einige Auswertungen muessen wir aber auf ganze Tage zurueckgreifen koennen.</p>
+<p>Unsere Daten liegen im Stundenformat vor. Für einige Auswertungen müssen wir aber auf ganze Tage zurückgreifen können.</p>
 <ul>
-<li>Die Stundendaten muessen zu ganzen Tagen aggregiert werden. Macht das wiederum mit piping. Bezieht folgende Gruppierungen mit ein: <strong>Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase</strong></li>
+<li>Die Stundendaten müssen zu ganzen Tagen aggregiert werden. Macht das wiederum einer Pipe Bezieht folgende Gruppierungen (<strong>group_by()</strong>) mit ein: <strong>Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase</strong>. Summiert die Zählmengen separat (Total, IN, OUT) auf und speichert das Resultat unter depo_d</li>
 </ul>
-<p>Tipp: Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in das neue df uebernommen und muessen nicht nochmals hinzugefuegt werden</p>
+<p>Tipp: Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in das neue df übernommen und müssen nicht nochmals hinzugefügt werden</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>depo_d <span class="ot">&lt;-</span> depo <span class="sc">%&gt;%</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(VARIABLE1, VARIABLE2, ...) <span class="sc">%&gt;%</span>   <span class="co"># Gruppieren nach den Variablen</span></span>
@@ -1664,29 +1668,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h2 id="b-3">4b)</h2>
 <ul>
-<li>Aggregiere die Stundenwerte nach dem Jahr und Monat.</li>
+<li>Aggregiere die Stundenwerte nach dem Monat (Gruppierungen <strong>Monat, Jahr</strong>) und speichert das neue df unter depo_m.</li>
 </ul>
 <p>Tipp: Braucht wiederum <strong>group_by()</strong> und <strong>summarise()</strong>. Nun brauchen wir nur noch das Total, keine Richtungstrennung mehr.</p>
 <ul>
-<li>Fügt den neu erstellten df eine Spalte mit Jahr und Monat hinzu. Das ist etwas mühsam, darum hier der fertige Code dazu:</li>
+<li>Fügt den neu erstellten df eine Spalte mit Jahr + Monat hinzu. Das ist etwas mühsam, darum hier der fertige Code dazu:</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># sortiere das df aufsteigend (nur das es sicher stimmt)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># vergewissere, dass sicher df</span>
 <span class='va'>depo_m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>depo_m</span><span class='op'>)</span>
-<span class='va'>depo_m</span><span class='op'>[</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>depo_m</span>, <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>order</a></span><span class='op'>(</span><span class='va'>Jahr</span>, <span class='va'>Monat</span><span class='op'>)</span><span class='op'>)</span>,<span class='op'>]</span>
-<span class='co'># mache dann aus Jahr und Monat faktoren</span>
+<span class='co'># sortiere das df anhand zwei Spalten aufsteigend (damit die Reihenfolge sicher stimmt)</span>
+<span class='va'>depo_m</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>depo_m</span>, <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>order</a></span><span class='op'>(</span><span class='va'>Jahr</span>, <span class='va'>Monat</span><span class='op'>)</span><span class='op'>)</span>,<span class='op'>]</span>
+
 <span class='va'>depo_m</span> <span class='op'>&lt;-</span> <span class='va'>depo_m</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Jahr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Jahr</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Jahr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Jahr</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'># mache dann aus Jahr und Monat Faktoren</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Monat <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Monat</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Ym <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>Jahr</span>, <span class='va'>Monat</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'># und mache eine neue Spalte, in der Jahr und</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Ym<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>Ym</span>, levels<span class='op'>=</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/duplicated.html'>unique</a></span><span class='op'>(</span><span class='va'>Ym</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># Monat in zusammen sind</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Ym <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>Jahr</span>, <span class='va'>Monat</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'># und mache eine neue Spalte, in der Jahr und Monat in zusammen sind</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Ym<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>Ym</span>, levels<span class='op'>=</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/duplicated.html'>unique</a></span><span class='op'>(</span><span class='va'>Ym</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># auch dass soll ein Faktor sein, </span>
+        <span class='co'># die Levels sind die einzelnen Einträge in der Spalte (welche ja bereits geordnet sind)</span>
 </code></pre>
 </div>
 </div>
 <h2 id="c-3">4c)</h2>
-<p>Macht euch mit den Daten vertraut. Plottet sie, sehr euch die df’s an, versteht, was sie repräsentieren.</p>
+<p>Macht euch mit den Daten vertraut. Plottet sie, seht euch die df’s an, versteht, was sie repräsentieren.</p>
 <p>Z.B. sind folgende Befehle und Plots wichtig:</p>
 <ul>
 <li><p>str()</p></li>
@@ -1694,8 +1699,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>head()</p></li>
 <li><p>Scatterplot, x = Datum, y = Anzahl pro Zeiteinheit</p></li>
 <li><p>Histrogram</p></li>
-<li><p>usw. <strong>Nun sind alle Daten vorbereitet. Der naechste Schritt ist die Analyse.</strong></p></li>
+<li><p>usw.</p></li>
 </ul>
+<p><strong>–&gt; Erklärt dem Plenum am 26.10.2021 was ihr gemacht habt, was eure Daten zeigen und präsentiert diese einfachen Plots. </strong></p>
+<p>Nachdem nun alle Daten vorbereitet sind folgt im nächsten Schritt die Analyse.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

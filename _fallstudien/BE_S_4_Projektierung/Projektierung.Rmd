@@ -1,5 +1,5 @@
 ---
-title: "KW 43: Aufgabe R Projekt vorbereiten"
+title: "KW 41: Aufgabe R Projekt vorbereiten"
 description:
 author:
   - name: Adrian Hochreutener
@@ -64,7 +64,8 @@ Ein Skript soll in R eigentlich immer (mehr oder weniger) nach dem selbem Schema
 Bereitet euer Sktipt mit diesen Kapitel vor.
 
 ```{r}
-#.########################################################################################### Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
+#.###########################################################################################
+# Einfluss von COVID19 auf das Naherholungsverhalten in WPZ ####
 # Fallstudie Modul Research Methods, HS21. Autor/in ####
 #.##########################################################################################
 
