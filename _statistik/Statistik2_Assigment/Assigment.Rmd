@@ -7,12 +7,9 @@ draft: false
 ---
 
 
-```{r, include=F, purl=F}
-library(knitr)
-
-knitr::opts_chunk$set(echo = FALSE, include = TRUE, message = FALSE, collapse=TRUE) 
+```{r include=FALSE, purl=F}
+knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
 ```
-
 ***
 
 **Abzugeben sind am Ende**
