@@ -8,9 +8,6 @@ categories:
 draft: false
 ---
 
-```{r echo = FALSE}
-```
-
 ###	Aufgabe 4.1: Nicht-lineare Regression
 
 **Datensatz [Curonian_Spit.xlsx](Curonian_Spit.csv)**
