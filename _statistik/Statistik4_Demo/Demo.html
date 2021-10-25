@@ -1875,7 +1875,7 @@ Achieved convergence tolerance: 4.371e-06</code></pre>
 
 <span class="co"># 1. Potenzfunktion</span>
 <span class="va">yv1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">power.model</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>AREA <span class="op">=</span> <span class="va">xv</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">xv</span><span class="op">)</span>, <span class="va">yv1</span>, col<span class="op">=</span><span class="st">&quot;green&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">xv</span><span class="op">)</span>, <span class="va">yv1</span>, col <span class="op">=</span> <span class="st">&quot;green&quot;</span><span class="op">)</span>
 
 <span class="co"># 2. Logistische Funktion</span>
 <span class="va">yv2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">logistic.model</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>AREA <span class="op">=</span> <span class="va">xv</span><span class="op">)</span><span class="op">)</span>

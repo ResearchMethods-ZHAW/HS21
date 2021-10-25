@@ -164,7 +164,7 @@ par(mfrow = c(1, 1))
 
 # 1. Potenzfunktion
 yv1 <- predict(power.model, list(AREA = xv))
-lines(log10(xv), yv1, col="green")
+lines(log10(xv), yv1, col = "green")
 
 # 2. Logistische Funktion
 yv2 <- predict(logistic.model, list(AREA = xv))

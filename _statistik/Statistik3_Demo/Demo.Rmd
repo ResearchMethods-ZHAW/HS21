@@ -33,13 +33,13 @@ boxplot(Fruit~Grazing, data = compensation)
 
 tapply(compensation$Fruit, compensation$Grazing, mean)
 
-aoc.1 <- lm(Fruit~Root*Grazing, data = compensation)
+aoc.1 <- lm(Fruit~Root * Grazing, data = compensation)
 summary.aov(aoc.1)
 
-aoc.2 <- lm(Fruit~Grazing*Root, data = compensation)
+aoc.2 <- lm(Fruit~Grazing * Root, data = compensation)
 summary.aov(aoc.2)
 
-aoc.3 <- lm(Fruit~Grazing+Root, data = compensation)
+aoc.3 <- lm(Fruit~Grazing + Root, data = compensation)
 summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
@@ -65,7 +65,7 @@ lm.quad <- lm(f~e + I(e^2))
 summary(lm.1)
 summary(lm.quad)
 
-par(mfrow=c(1,1))
+par(mfrow = c(1, 1))
 
 # 1. lineares Modell
 plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
@@ -103,12 +103,12 @@ par(mfrow = c(2,2))
 plot(lm.1)
 influence.measures(lm.1)
 
-cor <- cor(loyn[,2:7])
-print(cor, digits=2)
+cor <- cor(loyn[, 2:7])
+print(cor, digits = 2)
 
 cor[abs(cor)<0.6] <- 0
 cor
-print(cor, digits=3)
+print(cor, digits = 3)
 
 if(!require(car)){install.packages("car")} 
 library(car)
