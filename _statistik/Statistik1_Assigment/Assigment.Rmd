@@ -4,7 +4,12 @@ output: distill::distill_article
 categories:
 - Statistik1
 draft: false
----
+
+```{r, include=F, purl=F}
+library(knitr)
+
+knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE) 
+```
 
 ###	Aufgabe 1.1: Assoziationstest
 
