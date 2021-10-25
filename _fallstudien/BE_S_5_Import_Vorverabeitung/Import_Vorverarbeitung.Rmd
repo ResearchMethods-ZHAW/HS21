@@ -56,18 +56,19 @@ __Hinweis:__ Im Stundenformat zeigen die Werte bei 11:00 die Zähldaten zwischen
 
 - Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (im Code: format = "HIER DATUMSFORMAT")?
 
-- Schliesslich schneiden wir den Datensatz auf die Untersuchungsdauer zu.
+- Schliesslich schneiden wir den Datensatz auf die Untersuchungsdauer zu. Falls euer Datensatz von Anfang bis Ende verfügbare Messwerte hat, dann ist dieser letzte Schritt nicht nötig (da der erste Tag und der letzte Tag ja bereits = depo_start und depo_end). 
 
 ```{r eval=FALSE}
 str(depo)
 
 depo <- depo %>%
-  mutate(Datum_Uhrzeit = as.character(DatumUhrzeit)) %>%
-  separate(Datum_Uhrzeit, into = c("Datum", "Zeit"), sep = " ")%>% # mit seperate() trennt man
+  mutate(DatumUhrzeit = as.character(DatumUhrzeit)) %>%
+  separate(DatumUhrzeit, into = c("Datum", "Zeit"), sep = " ")%>% # mit seperate() trennt man
                                                                    # 1 Spalte in 2.
   mutate(Datum = as.Date(Datum, format = "HIER DATUMSFORMAT")) %>% # hier wird Text zum Datum
   # Schneide das df auf den gewünschten Zeitraum zu
   filter(Datum >= depo_start, Datum <=  depo_end) # das Komma hat die gleiche Funktion wie ein &
+                                                  # depo_start und depo_end wurden in der Projektierung definiert
 ```
 
 ## 1b) 
@@ -88,7 +89,7 @@ Tipp: Wenn man R sagt: "addiere mir Spalte x mit Spalte y", dann macht R das fü
 
 ## 2a) 
 
-- Lest die Meteodaten ein und speichert sie unter __meteo__.
+- Lest die Meteodaten (order_97149_data.txt) ein und speichert sie unter __meteo__.
 
 ## 2b) 
 

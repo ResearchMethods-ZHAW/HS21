@@ -52,14 +52,14 @@ KW_end <- week(depo_end)
 # Erster und letzter Tag der Ferien
 # je nach Untersuchungsdauer muessen hier weitere oder andere Ferienzeiten ergaenzt werden
 # (https://www.schulferien.org/schweiz/ferien/2020/)
-Fruehlingsferien_2019_start <- as.Date("2019-04-13")
-Fruehlingsferien_2019_ende <- as.Date("2019-04-28")
-Sommerferien_2019_start <- as.Date("2019-07-6")
+Fruehlingsferien_2019_start <- as.Date("2019-04-20")
+Fruehlingsferien_2019_ende <- as.Date("2019-05-05")
+Sommerferien_2019_start <- as.Date("2019-07-13")
 Sommerferien_2019_ende <- as.Date("2019-08-18")
 Herbstferien_2019_start <- as.Date("2019-10-05")
 Herbstferien_2019_ende <- as.Date("2019-10-20")
 Winterferien_2019_start <- as.Date("2019-12-21")
-Winterferien_2019_ende <- as.Date("2020-01-02")
+Winterferien_2019_ende <- as.Date("2020-01-04")
 
 Fruehlingsferien_2020_start <- as.Date("2020-04-11")
 Fruehlingsferien_2020_ende <- as.Date("2020-04-26")
@@ -435,18 +435,18 @@ ggarrange(abs,            # plot 1 aufrufen
 
 # Aufgabe 1: Verlauf der Besuchszahlen / m
 
-Nachdem wir die Projektstruktur aufgebaut haben und die Daten vorbereitet sind, machen wir uns an die deskriptive Analyse. Dies macht eigentlich immer Sinn. Bevor mach sich an die schliessende Statistik macht, muss man ein "Gefühl" für die Daten bekommen. Dies funktioniert am einfachsten mit deskriptiven, explorativen Analysen.
+Nachdem wir die Projektstruktur aufgebaut haben und die Daten importiert/vorbereitet sind, machen wir uns an die deskriptive Analyse (= offene, beschreibende Statistik). Dies macht eigentlich immer Sinn. Bevor mach sich an die schliessende Statistik macht, muss man ein "Gefühl" für die Daten bekommen. Dies funktioniert eben am einfachsten mit deskriptiven, explorativen Analysen. Was wir hier machen ist __Informations-Visualisierung.__
 
-Wir interessieren uns in den Analysen grundsätzlich für 4 Zeitabschnitte:
+Wir interessieren uns in den Analysen zum Einfluss von Covid-19 auf die Besuchszahlen für 4 Zeitabschnitte:
 
 1) Normal (vom Start der Erhebungen bis vor dem ersten Lockdown)
 2) Lockdown 1
 3) Lockdown 2
-4) Seit Covid, aber nicht während eines Lockdowns
+4) Seit Covid-19, aber nicht während eines Lockdowns
 
 Wir haben relativ lange Zeitreihen. Zur Visualisierung des generellen Trends greifen wir darum auf die aggregierten Daten zurück - das macht den Plot übersichtlicher und damit aussagekräftiger.
 
-- Plottet den Verlauf der monatlichen Besuchszahlen an eurer Zählstelle. Auf der x-Achse steht dabei dabei Jahr und Monat (gespeichert im df _depo_m_), auf der y-Achse die monatlichen Besuchszahlen. Zeichnet auch die beiden Lockdown ein.
+- Plottet den Verlauf der monatlichen Besuchszahlen an eurer Zählstelle. Auf der x-Achse steht dabei dabei Jahr und Monat (gespeichert im df _depo_m_), auf der y-Achse die monatlichen Besuchszahlen. Zeichnet auch die beiden Lockdowns ein.
 
 Haltet euch dabei an untenstehenden Plot:
 
@@ -463,7 +463,7 @@ ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass a
   geom_line(alpha = 0.6, size = 1.5)+
   scale_x_discrete(breaks = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"),
                    labels = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"))+
-  labs(title= "", y="Fussgänger:innen pro Monat", x = "Jahr")+
+  labs(title= "", y="Fussgänger:innen pro Monat", x = "Jahr / Monat")+
   theme_linedraw(base_size = 15)+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
@@ -473,13 +473,14 @@ __Hinweis:__
 - folgende Codeschnipsel helfen euch:
 
 ```{r eval = F}
-ggplot(data = depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
+ggplot(data = depo_m, mapping = aes(x=Ym, y=Total, group = 1))+ # für was braucht es group=1???
+  
   # zeichne Lockdown 1; ein einfaches Rechteck. bestimme mit min und max die Dimensionen
-  geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
-                          ymin =0, ymax=max(Total+(Total/100*10))), # das Rechteck soll 10 % grösser als die maximale Besuchszahl sein 
-            fill = "lightskyblue", alpha = 0.4, colour = NA)+
+  geom_rect(...)+ # das Rechteck soll 10 % grösser als die maximale Besuchszahl sein 
+  
   # zeichne Lockdown 2
-    ...+
+  ...+
+  
   # zeichne die Linie
   geom_line(...)+
   # bestimme manuell, wo auf der x-Achse die breaks sind und wie diese angeschrieben werden sollen
@@ -497,7 +498,7 @@ Nachdem wir nun wissen, wie sich die Besuchszahlen während der Untersuchungsdau
 
 ## 2a)
 
-- Berechnet zuerst die Totale Anzahl pro Wochentag pro Phase.
+- Berechnet zuerst die den Durchschnitt der Besuchszahlen pro Wochentag pro Phase.
 
 ```{r eval=F}
 mean_phase_wd <- depo_d %>% 
@@ -541,7 +542,13 @@ ggplot(data = depo_d)+
 
 Sind die Unterschiede zwischen Werktag und Wochenende wirklich signifikant? Falls ja, in allen Phasen oder nur während bestimmter?
 
-- Prüft das pro Phase mit einem einfachen t.test.
+- Prüft das pro Phase mit einem einfachen statistischen Test.
+
+__Hinweis:__ Die Website der UZH hilft sehr übersichtlich weiter, wenn man nicht weiss, welchen Test man anwenden kann:
+
+https://www.methodenberatung.uzh.ch/de.html
+
+Der dort gezeigte Entscheidbaum ist ein interaktiver Zugang zu Methoden der statistischen Datenanalyse.
 
 # Aufgabe 3: Tagesgang
 

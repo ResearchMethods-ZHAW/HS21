@@ -114,7 +114,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Projektierung_files/anchor-4.2.2/anchor.min.js","Projektierung_files/bowser-1.9.3/bowser.min.js","Projektierung_files/distill-2.2.21/template.v2.js","Projektierung_files/header-attrs-2.10/header-attrs.js","Projektierung_files/jquery-1.11.3/jquery.min.js","Projektierung_files/popper-2.6.0/popper.min.js","Projektierung_files/tippy-6.2.7/tippy-bundle.umd.min.js","Projektierung_files/tippy-6.2.7/tippy-light-border.css","Projektierung_files/tippy-6.2.7/tippy.css","Projektierung_files/tippy-6.2.7/tippy.umd.min.js","Projektierung_files/webcomponents-2.0.0/webcomponents.js","the-r-project-for-statistical-computing.png"]}
+  {"type":"character","attributes":{},"value":["Projektierung_files/anchor-4.2.2/anchor.min.js","Projektierung_files/bowser-1.9.3/bowser.min.js","Projektierung_files/distill-2.2.21/template.v2.js","Projektierung_files/header-attrs-2.10/header-attrs.js","Projektierung_files/header-attrs-2.11/header-attrs.js","Projektierung_files/jquery-1.11.3/jquery.min.js","Projektierung_files/jquery-3.6.0/jquery-3.6.0.js","Projektierung_files/jquery-3.6.0/jquery-3.6.0.min.js","Projektierung_files/jquery-3.6.0/jquery-3.6.0.min.map","Projektierung_files/popper-2.6.0/popper.min.js","Projektierung_files/tippy-6.2.7/tippy-bundle.umd.min.js","Projektierung_files/tippy-6.2.7/tippy-light-border.css","Projektierung_files/tippy-6.2.7/tippy.css","Projektierung_files/tippy-6.2.7/tippy.umd.min.js","Projektierung_files/webcomponents-2.0.0/webcomponents.js","the-r-project-for-statistical-computing.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1575,8 +1575,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Dafür müsst ihr in die Rohdaten eures Zählers schauen. Am einfachsten direkt in der .csv Datei.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>depo_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"YYYY-MM-DD"</span><span class='op'>)</span>
-<span class='va'>depo_end</span> <span class='op'>&lt;-</span> <span class='va'>...</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>depo_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"YYYY-MM-DD"</span><span class='op'>)</span> <span class='co'># hier das erste verfügbare Messdatum</span>
+<span class='va'>depo_end</span> <span class='op'>&lt;-</span> <span class='va'>...</span>                     <span class='co'># hier das letzte verfügbare Messdatum</span>
 </code></pre>
 </div>
 </div>
@@ -1596,14 +1596,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># (https://www.schulferien.org/schweiz/ferien/2020/)</span>
-<span class='va'>Fruehlingsferien_2019_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-04-13"</span><span class='op'>)</span>
-<span class='va'>Fruehlingsferien_2019_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-04-28"</span><span class='op'>)</span>
-<span class='va'>Sommerferien_2019_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-07-6"</span><span class='op'>)</span>
+<span class='va'>Fruehlingsferien_2019_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-04-20"</span><span class='op'>)</span>
+<span class='va'>Fruehlingsferien_2019_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-05-05"</span><span class='op'>)</span>
+<span class='va'>Sommerferien_2019_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-07-13"</span><span class='op'>)</span>
 <span class='va'>Sommerferien_2019_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-08-18"</span><span class='op'>)</span>
 <span class='va'>Herbstferien_2019_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-10-05"</span><span class='op'>)</span>
 <span class='va'>Herbstferien_2019_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-10-20"</span><span class='op'>)</span>
 <span class='va'>Winterferien_2019_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2019-12-21"</span><span class='op'>)</span>
-<span class='va'>Winterferien_2019_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-01-02"</span><span class='op'>)</span>
+<span class='va'>Winterferien_2019_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-01-04"</span><span class='op'>)</span>
 
 <span class='va'>Fruehlingsferien_2020_start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-04-11"</span><span class='op'>)</span>
 <span class='va'>Fruehlingsferien_2020_ende</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2020-04-26"</span><span class='op'>)</span>
@@ -1620,6 +1620,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
+<p><strong>Hinweis:</strong> In manchen Kantonen beginnen die Ferien jeweils an einem Montag und enden an einem Freitag. De facto starten die Ferien aber an einem Samstag und enden an einem Sonntag. Dies ist bei den obenstehenden Daten berücksichtigt. Die Angegebenen Zeiträume können darum von den offiziellen Angaben abweichen.</p>
 <p><strong>Nun sind alle Vorbereitungen gemacht, die Projektstruktur aufgebaut und die eigentliche Arbeit kann beginnen.</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

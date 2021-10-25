@@ -1,64 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Distill_Quality_Control.html</loc>
-    <lastmod>2021-10-21T11:49:07+02:00</lastmod>
-  </url>
-  <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/Fallstudien.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/InfoVis.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/InfoVis_abstract.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/PrePro.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/PrePro_abstract.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/RaumAn.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/RaumAn_abstract.html</loc>
-    <lastmod>2021-09-01T19:05:50+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Readme.html</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Statistik-Konsolidierung.html</loc>
-    <lastmod>2021-09-23T10:26:44+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Statistik-Konsolidierung_abstract.html</loc>
-    <lastmod>2021-09-27T10:36:40+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Statistik.html</loc>
-    <lastmod>2021-10-05T16:03:25+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/Statistik_abstract.html</loc>
-    <lastmod>2021-10-05T16:02:43+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_N_0_Vorbemerkung/</loc>
-    <lastmod>2021-10-13T11:57:05+02:00</lastmod>
+    <lastmod>2021-10-20T09:57:46+02:00</lastmod>
   </url>
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_N_1_Aufgabe3_Datenverarbeitung/</loc>
@@ -73,16 +17,8 @@
     <lastmod>2021-10-25T10:54:11+02:00</lastmod>
   </url>
   <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_1_Einleitung/</loc>
-    <lastmod>2021-10-05T15:56:52+02:00</lastmod>
-  </url>
-  <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_2_Felderhebung/</loc>
     <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_2_Felderhebung_Loesung/</loc>
-    <lastmod>2021-10-20T15:03:36+02:00</lastmod>
   </url>
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_3_Aufgabenstellung/</loc>
@@ -90,86 +26,22 @@
   </url>
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_4_Projektierung/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
+    <lastmod>2021-10-25T13:52:18+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_1_Einleitung/</loc>
+    <lastmod>2021-10-25T14:43:06+02:00</lastmod>
   </url>
   <url>
     <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_5_Import_Vorverabeitung/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
+    <lastmod>2021-10-25T14:47:06+02:00</lastmod>
   </url>
   <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/infovis/InfoVis1-Demo-EDA/</loc>
+    <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_S_2_Felderhebung_Loesung/</loc>
     <lastmod>2021-10-20T15:03:36+02:00</lastmod>
   </url>
   <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/infovis/InfoVis1-Demo-ggplot/</loc>
-    <lastmod>2021-10-21T11:49:07+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/infovis/InfoVis1-Uebung/</loc>
-    <lastmod>2021-10-20T15:03:39+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/infovis/InfoVis2-Uebung-A/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/infovis/InfoVis2-Uebung-B/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/PrePro1_Demo_Datentypen/</loc>
-    <lastmod>2021-10-20T15:03:36+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/PrePro1_Uebung/</loc>
-    <lastmod>2021-10-20T15:03:37+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/Prepro2_Demo/</loc>
-    <lastmod>2021-10-20T15:03:37+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/PrePro2_Uebung_A/</loc>
-    <lastmod>2021-10-20T15:03:37+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/PrePro2_Uebung_B/</loc>
-    <lastmod>2021-10-20T15:03:37+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/PrePro3_Demo_Split-Apply-Combine/</loc>
-    <lastmod>2021-10-20T15:03:37+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/prepro/PrePro3_Uebung/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik-konsolidierung/Statistik_Konsolidierung4_Demo_GLM/</loc>
-    <lastmod>2021-10-25T10:54:11+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik1_Assigment/</loc>
-    <lastmod>2021-10-25T11:50:53+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik1_Demo/</loc>
-    <lastmod>2021-10-25T11:46:38+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Assigment/</loc>
-    <lastmod>2021-10-25T11:53:31+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Demo/</loc>
-    <lastmod>2021-10-25T12:28:22+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_assigment/</loc>
-    <lastmod>2021-10-25T12:45:58+02:00</lastmod>
-  </url>
-  <url>
-    <loc>https://researchmethods-zhaw.github.io/HS21/statistik/Statistik4_assigment/</loc>
-    <lastmod>2021-10-25T12:46:12+02:00</lastmod>
+    <loc>https://researchmethods-zhaw.github.io/HS21/fallstudien/BE_N_0_Vorbemerkung/</loc>
+    <lastmod>2021-10-13T11:57:05+02:00</lastmod>
   </url>
 </urlset>

@@ -2314,7 +2314,7 @@ function init_posts_list() {
       var list_caption = $('.posts-list-caption');
       var caption = (page_category || '').toLowerCase() === "articles"
         ? list_caption.attr('data-caption')
-        : ('Thema: ' + page_category.replace(/_/g," "));
+        : ('Category: ' + page_category.replace(/_/g," "));
       list_caption.text(caption);
 
     } else {
@@ -2371,25 +2371,6 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Fallstudien">Fallstudien</h1>
-<a href="fallstudien/BE_N_0_Vorbemerkung/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (N)"]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 11, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Beni Sigrist</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="fallstudien/BE_N_0_Vorbemerkung/Reh_graf.jpg"/>
-</div>
-<div class="description">
-<h2>Vorbemerkung Fallstudie WPZ - Profil N</h2>
-<div class="dt-tags">
-<div class="dt-tag">Biodiversity &amp; Ecosystems (N)</div>
-</div>
-<p></p>
-</div>
-</a>
 <a href="fallstudien/BE_N_1_Aufgabe3_Datenverarbeitung/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (N)"]}</script>
 <div class="metadata">
@@ -2447,25 +2428,6 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
-<a href="fallstudien/BE_S_1_Einleitung/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (S)"]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 27, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Adrian Hochreutener</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="fallstudien/BE_S_1_Einleitung/Perimeter.png"/>
-</div>
-<div class="description">
-<h2>KW40: Einführung</h2>
-<div class="dt-tags">
-<div class="dt-tag">Biodiversity &amp; Ecosystems (S)</div>
-</div>
-<p></p>
-</div>
-</a>
 <a href="fallstudien/BE_S_2_Felderhebung/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (S)"]}</script>
 <div class="metadata">
@@ -2475,31 +2437,12 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img data-src="fallstudien/BE_S_2_Felderhebung/gruental.jpg"/>
+<img src="fallstudien/BE_S_2_Felderhebung/gruental.jpg"/>
 </div>
 <div class="description">
 <h2>KW40 + KW42: Aufgabe Felderhebung Grüntal</h2>
 <div class="dt-tags">
 <div class="dt-tag">Biodiversity &amp; Ecosystems (S)</div>
-</div>
-<p></p>
-</div>
-</a>
-<a href="fallstudien/BE_S_2_Felderhebung_Loesung/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (S) Musterloesung"]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 18, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Adrian Hochreutener</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="fallstudien/BE_S_2_Felderhebung_Loesung/Musterloesung_Felderhebung_files/figure-html5/unnamed-chunk-4-1.png"/>
-</div>
-<div class="description">
-<h2>KW42: Loesung Felderhebung Grüntal</h2>
-<div class="dt-tags">
-<div class="dt-tag">Biodiversity &amp; Ecosystems (S) Musterloesung</div>
 </div>
 <p></p>
 </div>
@@ -2513,7 +2456,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img data-src="fallstudien/BE_S_3_Aufgabenstellung/Aufbau_Fallstudie_Profil_S.png"/>
+<img src="fallstudien/BE_S_3_Aufgabenstellung/Aufbau_Fallstudie_Profil_S.png"/>
 </div>
 <div class="description">
 <h2>KW 43: Aufgabenstellung Wildnispark</h2>
@@ -2542,10 +2485,29 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
-<a href="fallstudien/BE_S_5_Import_Vorverabeitung/" class="post-preview">
+<a href="fallstudien/BE_S_1_Einleitung/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (S)"]}</script>
 <div class="metadata">
 <div class="publishedDate">Oct. 25, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Adrian Hochreutener</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="fallstudien/BE_S_1_Einleitung/Perimeter.png"/>
+</div>
+<div class="description">
+<h2>KW40: Einführung</h2>
+<div class="dt-tags">
+<div class="dt-tag">Biodiversity &amp; Ecosystems (S)</div>
+</div>
+<p></p>
+</div>
+</a>
+<a href="fallstudien/BE_S_5_Import_Vorverabeitung/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (S)"]}</script>
+<div class="metadata">
+<div class="publishedDate">Oct. 24, 2021</div>
 <div class="dt-authors">
 <div class="dt-author">Adrian Hochreutener</div>
 </div>
@@ -2561,13 +2523,51 @@ function init_posts_list() {
 <p></p>
 </div>
 </a>
+<a href="fallstudien/BE_S_2_Felderhebung_Loesung/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (S) Musterloesung"]}</script>
+<div class="metadata">
+<div class="publishedDate">Oct. 18, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Adrian Hochreutener</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="fallstudien/BE_S_2_Felderhebung_Loesung/Musterloesung_Felderhebung_files/figure-html5/unnamed-chunk-4-1.png"/>
+</div>
+<div class="description">
+<h2>KW42: Loesung Felderhebung Grüntal</h2>
+<div class="dt-tags">
+<div class="dt-tag">Biodiversity &amp; Ecosystems (S) Musterloesung</div>
+</div>
+<p></p>
+</div>
+</a>
+<a href="fallstudien/BE_N_0_Vorbemerkung/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Biodiversity & Ecosystems (N)"]}</script>
+<div class="metadata">
+<div class="publishedDate">Oct. 11, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Beni Sigrist</div>
+</div>
+</div>
+<div class="thumbnail">
+<img data-src="fallstudien/BE_N_0_Vorbemerkung/Reh_graf.jpg"/>
+</div>
+<div class="description">
+<h2>Vorbemerkung Fallstudie WPZ - Profil N</h2>
+<div class="dt-tags">
+<div class="dt-tag">Biodiversity &amp; Ecosystems (N)</div>
+</div>
+<p></p>
+</div>
+</a>
 </div>
 <div class="posts-sidebar">
 <div class="sidebar-section categories">
-<h3>Themen</h3>
+<h3>Categories</h3>
 <ul>
 <li>
-<a href="#category:Articles">Alle Themen</a>
+<a href="#category:Articles">Articles</a>
 <span class="category-count">(10)</span>
 </li>
 <li>
@@ -2589,7 +2589,7 @@ function init_posts_list() {
 <a href="#">More articles &raquo;</a>
 </div>
 </div>
-<!--/radix_placeholder_article_listing-->
+<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
 <h1>Fallstudien</h1>
@@ -2630,9 +2630,4 @@ function init_posts_list() {
 
 </div>
 </div>
-<!--/radix_placeholder_navigation_after_body-->
-
-
-</body>
-
-</html>
+<!--/radix_placeholder_na

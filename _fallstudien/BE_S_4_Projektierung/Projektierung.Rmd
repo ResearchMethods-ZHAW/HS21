@@ -113,8 +113,8 @@ library(lattice)   # einfaches plotten von Zusammenhängen zwischen Variablen
 Dafür müsst ihr in die Rohdaten eures Zählers schauen. Am einfachsten direkt in der .csv Datei.
 
 ```{r eval=FALSE}
-depo_start <- as.Date("YYYY-MM-DD")
-depo_end <- ...
+depo_start <- as.Date("YYYY-MM-DD") # hier das erste verfügbare Messdatum
+depo_end <- ...                     # hier das letzte verfügbare Messdatum
 ```
 
 Wichtiger Teil unserer Auswertungen ist der Einfluss des Lockdown auf das Besuchsverhalten. 
@@ -134,14 +134,14 @@ Ferienzeiten können einen grossen Einfluss auf das Besucheraufkommen haben. Die
 
 ```{r warning=FALSE, results="hide"}
 # (https://www.schulferien.org/schweiz/ferien/2020/)
-Fruehlingsferien_2019_start <- as.Date("2019-04-13")
-Fruehlingsferien_2019_ende <- as.Date("2019-04-28")
-Sommerferien_2019_start <- as.Date("2019-07-6")
+Fruehlingsferien_2019_start <- as.Date("2019-04-20")
+Fruehlingsferien_2019_ende <- as.Date("2019-05-05")
+Sommerferien_2019_start <- as.Date("2019-07-13")
 Sommerferien_2019_ende <- as.Date("2019-08-18")
 Herbstferien_2019_start <- as.Date("2019-10-05")
 Herbstferien_2019_ende <- as.Date("2019-10-20")
 Winterferien_2019_start <- as.Date("2019-12-21")
-Winterferien_2019_ende <- as.Date("2020-01-02")
+Winterferien_2019_ende <- as.Date("2020-01-04")
 
 Fruehlingsferien_2020_start <- as.Date("2020-04-11")
 Fruehlingsferien_2020_ende <- as.Date("2020-04-26")
@@ -156,5 +156,7 @@ Fruehlingsferien_2021_start <- as.Date("2021-04-24")
 Fruehlingsferien_2021_ende <- as.Date("2021-05-09")
 Sommerferien_2021_start <- as.Date("2021-07-17")
 ```
+
+__Hinweis:__ In manchen Kantonen beginnen die Ferien jeweils an einem Montag und enden an einem Freitag. De facto starten die Ferien aber an einem Samstag und enden an einem Sonntag. Dies ist bei den obenstehenden Daten berücksichtigt. Die Angegebenen Zeiträume können darum von den offiziellen Angaben abweichen.
 
 __Nun sind alle Vorbereitungen gemacht, die Projektstruktur aufgebaut und die eigentliche Arbeit kann beginnen.__

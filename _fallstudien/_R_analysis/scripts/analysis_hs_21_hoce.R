@@ -59,14 +59,14 @@ KW_end <- week(depo_end)
 # Erster und letzter Tag der Ferien
 # je nach Untersuchungsdauer muessen hier weitere oder andere Ferienzeiten ergaenzt werden
 # (https://www.schulferien.org/schweiz/ferien/2020/)
-Fruehlingsferien_2019_start <- as.Date("2019-04-13")
-Fruehlingsferien_2019_ende <- as.Date("2019-04-28")
-Sommerferien_2019_start <- as.Date("2019-07-6")
+Fruehlingsferien_2019_start <- as.Date("2019-04-20")
+Fruehlingsferien_2019_ende <- as.Date("2019-05-05")
+Sommerferien_2019_start <- as.Date("2019-07-13")
 Sommerferien_2019_ende <- as.Date("2019-08-18")
 Herbstferien_2019_start <- as.Date("2019-10-05")
 Herbstferien_2019_ende <- as.Date("2019-10-20")
 Winterferien_2019_start <- as.Date("2019-12-21")
-Winterferien_2019_ende <- as.Date("2020-01-02")
+Winterferien_2019_ende <- as.Date("2020-01-04")
 
 Fruehlingsferien_2020_start <- as.Date("2020-04-11")
 Fruehlingsferien_2020_ende <- as.Date("2020-04-26")

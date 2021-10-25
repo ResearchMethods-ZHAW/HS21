@@ -1,5 +1,3 @@
- 
-
 stn;time;tre200jx;rre150j0;sremaxdv
 WAE;20090101;2.1;0.0;55
 WAE;20090102;-0.7;0.0;0
