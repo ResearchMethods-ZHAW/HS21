@@ -130,7 +130,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Import_Vorverarbeitung_files/anchor-4.2.2/anchor.min.js","Import_Vorverarbeitung_files/bowser-1.9.3/bowser.min.js","Import_Vorverarbeitung_files/distill-2.2.21/template.v2.js","Import_Vorverarbeitung_files/header-attrs-2.10/header-attrs.js","Import_Vorverarbeitung_files/jquery-1.11.3/jquery.min.js","Import_Vorverarbeitung_files/popper-2.6.0/popper.min.js","Import_Vorverarbeitung_files/tippy-6.2.7/tippy-bundle.umd.min.js","Import_Vorverarbeitung_files/tippy-6.2.7/tippy-light-border.css","Import_Vorverarbeitung_files/tippy-6.2.7/tippy.css","Import_Vorverarbeitung_files/tippy-6.2.7/tippy.umd.min.js","Import_Vorverarbeitung_files/webcomponents-2.0.0/webcomponents.js","tidyverse.png"]}
+  {"type":"character","attributes":{},"value":["Import_Vorverarbeitung_files/anchor-4.2.2/anchor.min.js","Import_Vorverarbeitung_files/bowser-1.9.3/bowser.min.js","Import_Vorverarbeitung_files/distill-2.2.21/template.v2.js","Import_Vorverarbeitung_files/header-attrs-2.10/header-attrs.js","Import_Vorverarbeitung_files/header-attrs-2.11/header-attrs.js","Import_Vorverarbeitung_files/jquery-1.11.3/jquery.min.js","Import_Vorverarbeitung_files/jquery-3.6.0/jquery-3.6.0.js","Import_Vorverarbeitung_files/jquery-3.6.0/jquery-3.6.0.min.js","Import_Vorverarbeitung_files/jquery-3.6.0/jquery-3.6.0.min.map","Import_Vorverarbeitung_files/popper-2.6.0/popper.min.js","Import_Vorverarbeitung_files/tippy-6.2.7/tippy-bundle.umd.min.js","Import_Vorverarbeitung_files/tippy-6.2.7/tippy-light-border.css","Import_Vorverarbeitung_files/tippy-6.2.7/tippy.css","Import_Vorverarbeitung_files/tippy-6.2.7/tippy.umd.min.js","Import_Vorverarbeitung_files/webcomponents-2.0.0/webcomponents.js","tidyverse.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2283,7 +2283,7 @@ Interna
 </div>
 <p>Die Zähldaten des Wildnispark Zürich wurden vorgängig bereinigt (z.B. wurden Stundenwerte entfernt, an denen am Zähler Wartungsarbeiten stattgefunden haben). Das macht es für uns einfach, denn wir können die Daten ohne vorgängige Bereinigung einlesen. Behaltet aber im Hinterkopf, dass die Datenaufbereitung, die Datenbereinigung mit viel Aufwand verbunden ist.</p>
 <ul>
-<li>Lest die Zählaten ein, speichert ihn unter der Variable <strong>depo</strong> und sichtet den Datensatz (z. B. str(), head(), view() usw.).</li>
+<li>Lest die Zählaten ein, speichert ihn unter der Variable <strong>depo</strong> und sichtet den Datensatz (z.B. str(), head(), view() usw.).</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2292,16 +2292,17 @@ Interna
 </code></pre>
 </div>
 </div>
-<p><strong>Hinweis:</strong> Im Stundenformat zeigen die Werte um 11:00 die Zähldaten zwischen 11:00 und 12:00.</p>
+<p><strong>Hinweis:</strong> Im Stundenformat zeigen die Werte bei 11:00 die Zähldaten zwischen 11:00 bis 12:00 Uhr.</p>
 <h2 id="a">1a)</h2>
 <ul>
-<li><p>Im Datensatz des Wildnisparks sind Datum und Uhrzeit in einer Spalte. Diese müssen getrennt werden (Ich schlage hier den Ansatz des piping ( %&gt;% ) vor. Damit können in einem “Rutsch” mehrere Operationen ausgeführt werden).</p></li>
-<li><p>Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (im Code: format = “XXX”)?</p></li>
+<li><p>Im Datensatz des Wildnisparks sind Datum und Uhrzeit in einer Spalte. Diese müssen <strong>getrennt</strong> werden (Ich schlage hier den Ansatz des piping ( %&gt;% ) vor. Damit können in einem “Rutsch” mehrere Operationen ausgeführt werden).</p></li>
+<li><p>Ebenfalls muss das Datum als solches definiert werden. Welches Format hat es (im Code: format = “HIER DATUMSFORMAT”)?</p></li>
 <li><p>Schliesslich schneiden wir den Datensatz auf die Untersuchungsdauer zu.</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>depo</span><span class='op'>)</span>
+
 <span class='va'>depo</span> <span class='op'>&lt;-</span> <span class='va'>depo</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Datum_Uhrzeit <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>DatumUhrzeit</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>separate</span><span class='op'>(</span><span class='va'>Datum_Uhrzeit</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Datum"</span>, <span class='st'>"Zeit"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span><span class='op'>%&gt;%</span> <span class='co'># mit seperate() trennt man</span>
@@ -2313,7 +2314,7 @@ Interna
 </div>
 </div>
 <h2 id="b">1b)</h2>
-<p>Ihr könnt selbst wählen, ob ihr Fussgänger:innen oder Velos untersuchen wollt.</p>
+<p>Ihr könnt selbst wählen, ob ihr Fussgänger:innen oder Velos untersuchen wollt (je nachdem ob sie in eurem Datensatz vorhanden sind).</p>
 <ul>
 <li>Entfernt die überflüssigen Spalten aus dem Datensatz.</li>
 </ul>
@@ -2362,13 +2363,13 @@ Interna
 </div>
 </div>
 <ul>
-<li>Prüft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden. Stimmen alle Datentypen?</li>
+<li>Prüft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden (sum(is.na(df$Variable))). Stimmen alle Datentypen?</li>
 </ul>
 <h1 id="aufgabe-3-datenvorverarbeitung-mutationen">Aufgabe 3: Datenvorverarbeitung (Mutationen)</h1>
 <h2 id="a-2">3a)</h2>
 <p>Jetzt fügen wir viele Convinience Variabeln hinzu. Wir brauchen:</p>
 <ul>
-<li>Wochentag, der Befehl dazu ist <strong>weekdays()</strong></li>
+<li>Wochentag; der Befehl dazu ist <strong>weekdays()</strong></li>
 </ul>
 <p>Tipp: R sortiert die Levels alphabetisch. Da das in unserem Fall aber sehr unpraktisch ist, müssen die Levels manuell bestimmt werden</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2381,7 +2382,7 @@ Interna
 </code></pre>
 </div>
 </div>
-<p>Frage: Was bedeutet base:: vor den eigentlichen Befehl?</p>
+<p>Frage: Was bedeutet <strong>base::</strong> vor den eigentlichen Befehl?</p>
 <ul>
 <li>Ist es ein Werktag oder Wochenende?</li>
 </ul>
@@ -2395,14 +2396,14 @@ Interna
 </code></pre>
 </div>
 </div>
-<p>Frage: Was bedeuten die | (zu erstellen mit AltGr + 7)? Welches ist das if Argument, welches das else?</p>
+<p>Frage: Was bedeuten die <strong>|</strong> (zu erstellen mit AltGr + 7)? Welches ist das if Argument, welches das else?</p>
 <ul>
 <li><p>Kalenderwoche: <strong>week()</strong></p></li>
 <li><p>Monat: <strong>month()</strong></p></li>
 <li><p>Jahr: <strong>year()</strong></p></li>
 <li><p>Phase Covid (Code untenstehend)</p></li>
 </ul>
-<p><strong>Hinweis I:</strong> ich mache das nachgelagert, da zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen können. <strong>Hinweis II:</strong> Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte –&gt; long-format ist schöner (und praktischer für das plotten) als wide-format.</p>
+<p><strong>Hinweis I:</strong> ich mache den letzten Punkt nachgelagert, da zu viele Operationen in einem Schritt auch schon mal etwas durcheinander erzeugen können. <strong>Hinweis II:</strong> Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown) in eine Spalte –&gt; long-format ist schöner (und praktischer für das plotten) als wide-format.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>depo</span> <span class='op'>&lt;-</span> <span class='va'>depo</span> <span class='op'>%&gt;%</span>
@@ -2450,7 +2451,7 @@ Interna
 <h2 id="a-3">4a)</h2>
 <p>Unsere Daten liegen im Stundenformat vor. Für einige Auswertungen müssen wir aber auf ganze Tage zurückgreifen können.</p>
 <ul>
-<li>Die Stundendaten müssen zu ganzen Tagen aggregiert werden. Macht das wiederum einer Pipe Bezieht folgende Gruppierungen (<strong>group_by()</strong>) mit ein: <strong>Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase</strong>. Summiert die Zählmengen separat (Total, IN, OUT) auf und speichert das Resultat unter depo_d</li>
+<li>Die Stundendaten müssen zu ganzen Tagen aggregiert werden. Macht das wiederum einer Pipe Bezieht folgende Gruppierungen (<strong>group_by()</strong>) mit ein: <strong>Datum, Wochentag, Wochenende, KW, Monat, Jahr, Phase</strong>. Summiert die Zählmengen separat (Total, IN, OUT) auf und speichert das Resultat unter <strong>depo_d</strong>.</li>
 </ul>
 <p>Tipp: Wenn man die Convinience Variablen als grouping variable einspeisst, dann werden sie in das neue df übernommen und müssen nicht nochmals hinzugefügt werden</p>
 <div class="layout-chunk" data-layout="l-body">
