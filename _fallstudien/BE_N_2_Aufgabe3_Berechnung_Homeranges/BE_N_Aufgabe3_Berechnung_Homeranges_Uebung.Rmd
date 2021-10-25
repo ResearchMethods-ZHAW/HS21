@@ -153,7 +153,7 @@ legend.position="none"
 
 ```
 
-### Erstellen des Sampling Grids mit den Kreisen (Wird als Grundlage für Extraktion der Umweltvariablen innerhalb der Homeranges benötigt)
+### Nachbauen des Sampling Grids mit den Kreisen (Wird als Grundlage für Extraktion der Umweltvariablen innerhalb der Homeranges benötigt)
 
 ##### Xmin bzw. Ymin des Grids: c(684000, 234000)
 ##### cellsize des Grids: c(25, 25)
