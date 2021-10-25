@@ -10,7 +10,13 @@ draft: false
 
 ###	Aufgabe 4.1: Nicht-lineare Regression
 
-**Datensatz [Curonian_Spit.xlsx](Curonian_Spit.csv)**
+**Datensatz**
+```{r, echo = FALSE, purl = FALSE}
+download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Curonian_Spit.csv", "Curonian_Spit.csv")
+
+```
+
+
 
 Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
 geschachtelten Plots (Vegetationsaufnahmen) der Pflanzengesellschaft LolioCynosuretum im Nationalpark Kurische Nehrung (Russland) auf
