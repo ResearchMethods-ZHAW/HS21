@@ -1,30 +1,5 @@
----
-title: Demo Statistik 3
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik3
-draft: false
----
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Demo.Rmd", "Statistik_3_Demo.R", documentation = 0)
-```
-
-- [Demoscript als Download](Statistik_3_Demo.R)  
-- Datensatz [ipomopsis.csv](ipomopsis.csv)
-- Datensatz [loyn.csv](loyn.csv)
-
-## ANCOVA
-
-Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
-
-```{r}
 compensation <- read.table("ipomopsis.csv", header = T, sep = ",")
-```
 
-```{r}
 summary(compensation)
 compensation$Grazing <- as.factor(compensation$Grazing)
 
@@ -50,12 +25,7 @@ ggplot(compensation, aes(Fruit, Root, color = Grazing)) +
 # Ploten mit base R
 plot(Fruit~Root, pch = 16, col = Grazing, data = compensation)
 legend("topleft", c("grazed", "ungrazed"), col = c("black","red"), pch = 16) 
-```
 
-
-## 
-
-```{r}
 e <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14, 25, 39, 38, 28, 24)
 f <- c(12, 15, 10, 7, 2, 10, 12, 11, 13, 10, 9, 2, 4, 7, 13)
 
@@ -81,18 +51,10 @@ lines(xv, yv2, col = "red")
 par(mfrow = c(2, 2))
 plot(lm.1)
 #plot(lm.2)
-```
 
-## Multiple lineare Regression basierend auf Logan, Beispiel 9A 
-
-```{r}
 loyn <- read.table("loyn.csv", header = T, sep = ",")
-```
-```{r reval=FALSE}
 loyn
-```
 
-```{r}
 summary(loyn)
 
 lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
@@ -112,11 +74,7 @@ print(cor, digits=3)
 
 if(!require(car)){install.packages("car")} 
 library(car)
-```
 
-## Simulation Overfitting
-
-```{r eval=FALSE}
 test <- data.frame("x" = c(1, 2, 3, 4, 5, 6), "y" = c(34, 21, 70, 47, 23, 45))
 
 par(mfrow=c(1,1))
@@ -149,11 +107,7 @@ yv <- predict(lm.4, list(x=xv))
 lines(xv, yv, col = "orange", lwd = 3)
 yv <- predict(lm.5, list(x=xv))
 lines(xv, yv, col = "black", lwd = 3)
-```
 
-## Modellvereinfachung (mit Loyn-Datensatz)
-
-```{r}
 lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
 summary(lm.1)
 lm.2 <- update(lm.1,~.-YR.ISOL)
@@ -161,27 +115,15 @@ lm.2 <- update(lm.1,~.-YR.ISOL)
 summary(lm.2)
 
 anova(lm.1, lm.2)
-```
 
-## Hierarchical partitioning
-
-```{r}
 if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
 
 loyn.preds <-with(loyn, data.frame(YR.ISOL, ALT, GRAZE))
 hier.part(loyn$ABUND,loyn.preds, gof = "Rsqu")
-```
 
-## Partial regressions
-
-```{r}
 avPlots(lm.1, ask=F)
-```
 
-## Multimodel inference
-
-```{r}
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
 
@@ -194,4 +136,5 @@ importance(allmodels)
 
 avgmodel <- model.avg(allmodels, subset = TRUE)
 summary(avgmodel)
+```{.r .distill-force-highlighting-css}
 ```

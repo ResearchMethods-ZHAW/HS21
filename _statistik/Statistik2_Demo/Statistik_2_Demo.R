@@ -142,7 +142,7 @@ ggplot(df, aes(x = g, y = h)) +
     geom_smooth( method = "lm", color = "black", size = .5, se = F) + 
     theme_classic()
 
-par(mfrow=c(2,2))
+par(mfrow=c(2, 2))
 autoplot(lm(h~g))
 
 ```{.r .distill-force-highlighting-css}
