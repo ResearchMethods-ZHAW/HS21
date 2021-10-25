@@ -144,5 +144,6 @@ ggplot(df, aes(x = g, y = h)) +
 
 par(mfrow=c(2,2))
 autoplot(lm(h~g))
+
 ```{.r .distill-force-highlighting-css}
 ```
