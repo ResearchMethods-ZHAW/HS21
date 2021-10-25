@@ -113,8 +113,8 @@ wilcox.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == 
 summary(aov(size~cultivar, data = blume2))
 ```
 
-## Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen
 
+## Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen
 ## Kruskal-Wallis-Test
 
 ```{r}
