@@ -1,6 +1,8 @@
 ---
-title: Verschiedene
+title: "Open Datasets"
 output: distill::distill_article
+author:
+  Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung1
 
@@ -11,9 +13,11 @@ draft: true
 
 ```{r, echo=FALSE}
 library(tidyverse)
+
+#TODO: links are not working!
 ```
 
-## Verschiedene Datensaetze
+## Verschiedene Datensätze
 
 In diesem Dokument findet ihr verschiedene Wege und Quellen, um an Datensätze zu gelangen.
 
@@ -32,7 +36,7 @@ head(chickwts)
 str(chickwts)
 ```
 
-###Kaggle
+### Kaggle
 
 Auf [Kaggle](www.kaggle.com) findet ihr öffentlich zugängliche Datensätze. Einzig was ihr tun müsst, ist euch registrieren. Beispiele sind:
 
@@ -49,7 +53,7 @@ str(data_911)
 ```
 
 
-###Tidytuesday
+### Tidytuesday
 
 [Tidytuesday](https://github.com/rfordatascience/tidytuesday) ist eine Plattform, in der wöchentlich - jeden Dienstag - einen öffentlich zugänglichen Datensatz publiziert. Dieses Projekt ist aus der [R4DS](https://r4ds.had.co.nz/) Online Learning Community und dem R for Data Science Lehrbuch hervorgegangen. Beispiele sind:
 
@@ -73,23 +77,12 @@ str(data_911)
 
 ```{r}
 # Beachtet dabei, dass ihr die URL zum originalen (raw) Datensatz habt 
-star_wars <- read_delim("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-week7_starwars.csv", delim = ",", col_names = T)
-
+star_wars <- read_delim("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-14/week7_starwars.csv", delim = ",") #not working yet 
 
 ```
 
-**Download via Github - 3. Möglichkeit**
 
-```{r}
-# mehr Infos dazu findet ihr hier: https://rpubs.com/lokraj/github_csv
-urlfile = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-week7_starwars.csv" # definiere zuerst die URL auf der R zugreifen soll
-
-star_wars <- read_delim(url(urlfile), delim = ",", col_names = T) # lade die Datei von der obigen URL
-# head(star_wars)
-```
-
-
-###opendata.swiss
+### opendata.swiss
 
 Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare Daten der Schweizerischen Behörden zu finden. opendata.swiss ist ein gemeinsames Projekt von Bund, Kantonen, Gemeinden und weiteren Organisationen mit einem staatlichen Auftrag. Beispiele sind:
 
@@ -99,7 +92,7 @@ Auf [opendata.swiss](https://opendata.swiss/en/) sind offene, frei verfügbare D
 * ...
 
 
-###Open Data Katalog Stadt Zürich
+### Open Data Katalog Stadt Zürich
 
 Auf der Seite der [Stadt Zürich Open Data](https://data.stadt-zuerich.ch/) findet ihr verschiedene Datensätze der Stadt Zürich. Spannend daran ist, dass die veröffentlichten Daten kostenlos und zur freien - auch kommerziellen - Weiterverwendung zur Verfügung. Beispiele sind:
 

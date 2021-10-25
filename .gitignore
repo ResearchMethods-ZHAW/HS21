@@ -5,3 +5,5 @@
 /_prepro/**/*.csv
 /_infovis/**/*.csv
 /_rauman/**/*.csv
+/docs
+*.csv
