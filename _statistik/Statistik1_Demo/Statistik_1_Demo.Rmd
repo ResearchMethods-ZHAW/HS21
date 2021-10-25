@@ -55,11 +55,13 @@ hist(blume$a)
 hist(blume$b)
 ```
 
+
 zweiseitiger t-Test
 
 ```{r}
 t.test(blume$a, blume$b)
 ```
+
 
 einseitiger t-Test
 
@@ -78,6 +80,7 @@ t.test(blume$a, blume$b, var.equal = T)
 t.test(blume$a, blume$b, var.equal = F) 
 ```
 
+
 gepaarter t-Test
 
 ```{r}
@@ -95,6 +98,7 @@ library(car)
 leveneTest(blume$a, blume$b, center=mean)
 wilcox.test(blume$a, blume$b)
 ```
+
 
 Das gleiche mit einem “long table”
 
@@ -170,4 +174,3 @@ ggplot (blume.long, aes(cultivar,size)) +
   labs(x="Cultivar",y="Size (cm)")
 
 ```
-
