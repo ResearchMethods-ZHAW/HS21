@@ -2324,7 +2324,7 @@ Interna
 <pre><code>  Grazed Ungrazed 
  67.9405  50.8805 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">aoc.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Fruit</span><span class="op">~</span><span class="va">Root</span><span class="op">*</span><span class="va">Grazing</span>, data <span class="op">=</span> <span class="va">compensation</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">aoc.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Fruit</span><span class="op">~</span><span class="va">Root</span> <span class="op">*</span> <span class="va">Grazing</span>, data <span class="op">=</span> <span class="va">compensation</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="va">aoc.1</span><span class="op">)</span>
 </code></pre>
 </div>
@@ -2336,7 +2336,7 @@ Residuals    36   1680      47
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">aoc.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Fruit</span><span class="op">~</span><span class="va">Grazing</span><span class="op">*</span><span class="va">Root</span>, data <span class="op">=</span> <span class="va">compensation</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">aoc.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Fruit</span><span class="op">~</span><span class="va">Grazing</span> <span class="op">*</span> <span class="va">Root</span>, data <span class="op">=</span> <span class="va">compensation</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="va">aoc.2</span><span class="op">)</span>
 </code></pre>
 </div>
@@ -2348,7 +2348,7 @@ Residuals    36   1680      47
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">aoc.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Fruit</span><span class="op">~</span><span class="va">Grazing</span><span class="op">+</span><span class="va">Root</span>, data <span class="op">=</span> <span class="va">compensation</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">aoc.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Fruit</span><span class="op">~</span><span class="va">Grazing</span> <span class="op">+</span> <span class="va">Root</span>, data <span class="op">=</span> <span class="va">compensation</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/summary.lm.html">summary.lm</a></span><span class="op">(</span><span class="va">aoc.3</span><span class="op">)</span>
 </code></pre>
 </div>
@@ -2445,7 +2445,7 @@ Residual standard error: 2.555 on 12 degrees of freedom
 Multiple R-squared:  0.6499,    Adjusted R-squared:  0.5915 
 F-statistic: 11.14 on 2 and 12 DF,  p-value: 0.001842</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># 1. lineares Modell</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">f</span><span class="op">~</span><span class="va">e</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">40</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
@@ -2730,8 +2730,8 @@ Estimated effects may be unbalanced</code></pre>
 55 0.0555    
 56 0.2077   *</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">loyn</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cor</span>, digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">loyn</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cor</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>           AREA YR.ISOL  DIST  LDIST  GRAZE   ALT
@@ -2754,7 +2754,7 @@ LDIST      0  0.0000000    0     1  0.0000000   0
 GRAZE      0 -0.6355671    0     0  1.0000000   0
 ALT        0  0.0000000    0     0  0.0000000   1</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cor</span>, digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cor</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 </code></pre>
 </div>
 <pre><code>        AREA YR.ISOL DIST LDIST  GRAZE ALT

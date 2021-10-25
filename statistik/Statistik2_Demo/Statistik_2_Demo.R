@@ -32,7 +32,7 @@ summary(aov.1)
 summary.lm(aov.1)
 
 #Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
-aggregate(size~cultivar, blume2, function(x) c(Mean = mean(x), SD = sd(x), Min = min(x), Max=max(x)))
+aggregate(size~cultivar, blume2, function(x) c(Mean = mean(x), SD = sd(x), Min = min(x), Max = max(x)))
 
 lm.1 <- lm(size~cultivar, data = blume2)
 summary(lm.1)
@@ -45,7 +45,7 @@ HSD.test(aov.1, "cultivar", group = FALSE, console = T)
 aov.2 <- aov(Sepal.Width ~ Species, data = iris)
 HSD.test(aov.2, "Species", console = T)
 boxplot(Sepal.Width ~ Species, data = iris)
-boxplot(Sepal.Width ~ Species, ylim=c(2, 5), data = iris)
+boxplot(Sepal.Width ~ Species, ylim = c(2, 5), data = iris)
 text(1, 4.8, "a")
 text(2, 4.8, "c")
 text(3, 4.8, "b")
@@ -81,11 +81,11 @@ blume3 <- data.frame(cultivar=c(rep("a", 20), rep("b", 20), rep("c", 20)),
                   size = c(a, b, c, d, e, f))
 blume3
 
-boxplot(size~cultivar+house, data = blume3)
+boxplot(size~cultivar + house, data = blume3)
 
-summary(aov(size~cultivar+house, data = blume3))
-summary(aov(size~cultivar+house+cultivar:house, data = blume3)) 
-summary(aov(size~cultivar*house, data = blume3)) #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
+summary(aov(size~cultivar + house, data = blume3))
+summary(aov(size~cultivar + house+cultivar:house, data = blume3)) 
+summary(aov(size~cultivar * house, data = blume3)) #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
 
 summary.lm(aov(size~cultivar+house, data = blume3))
 
@@ -94,7 +94,7 @@ interaction.plot(blume3$cultivar, blume3$house, blume3$size)
 interaction.plot(blume3$house, blume3$cultivar, blume3$size)
 
 anova(lm(blume3$size~blume3$cultivar*blume3$house), lm(blume3$size~blume3$cultivar+blume3$house))
-anova(lm(blume3$size~blume3$house), lm(blume3$size~blume3$cultivar*blume3$house))
+anova(lm(blume3$size~blume3$house), lm(blume3$size~blume3$cultivar * blume3$house))
 
 library(car)
 
@@ -122,18 +122,18 @@ if(!require(ggfortify)){install.packages("ggfortify")}
 library(ggfortify)
 autoplot(lm(b~a))
 
-#Modellstatistik nicht OK
+# Modellstatistik nicht OK
 g <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14, 25, 39, 38, 28, 24)
 h <- c(12, 15, 10, 7, 8, 10, 12, 11, 13, 10, 25, 12, 30, 26, 13)
-par(mfrow=c(1, 1))
+par(mfrow = c(1, 1))
 
-plot(h~g,xlim = c(0,40), ylim = c(0, 30))
+plot(h~g,xlim = c(0, 40), ylim = c(0, 30))
 abline(lm(h~g))
 
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(lm(h~g))
 
-#Modelldiagnostik mit ggplot
+# Modelldiagnostik mit ggplot
 df <- data.frame(g, h)
 ggplot(df, aes(x = g, y = h)) + 
     # scale_x_continuous(limits = c(0,25)) +
