@@ -32,7 +32,7 @@ library(stringr)
 
 ## Aufgabe 1
 
-Lade die Wetterdaten von letzer Woche runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv)) und importiere sie in `R`. Sorge dafür, dass die Spalten korrekt formatiert sind (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `numeric`.)
+Lade die Wetterdaten von letzer Woche runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv), Quelle MeteoSchweiz) und importiere sie in `R`. Sorge dafür, dass die Spalten korrekt formatiert sind (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `numeric`.)
 
 ```{r, echo = FALSE, purl = FALSE}
 download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")

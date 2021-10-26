@@ -89,7 +89,7 @@ sensors_long %>%
 
 ## Aufgabe 5
 
-Lade jetzt nochmal den Datensatz [wetter.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) herunter und importiere ihn als CSV mit den Korrekten Spaltentypen (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `double`).
+Lade jetzt nochmal den Datensatz [wetter.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) (Quelle MeteoSchweiz) herunter und importiere ihn als CSV mit den Korrekten Spaltentypen (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `double`).
 
 ```{r, echo = FALSE, purl = FALSE}
 download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
