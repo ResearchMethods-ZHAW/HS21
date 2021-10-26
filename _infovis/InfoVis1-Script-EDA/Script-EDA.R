@@ -1,22 +1,4 @@
----
-title: Script EDA
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- InfoVis1
-draft: false
----
 
-
-```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
-distill::mypurl()
-```
-
-
-
-
-```{r,message=F}
 
 
 library(ggplot2)
@@ -144,6 +126,4 @@ peopleClean %>%
 pairs(peopleClean[,2:4], panel=panel.smooth)
 
 pairs(peopleClean[,2:4], panel=panel.smooth)
-```
-
 

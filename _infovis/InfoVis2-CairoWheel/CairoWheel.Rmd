@@ -34,14 +34,14 @@ spaceadd <- function(x){
 mysheet <- "https://docs.google.com/spreadsheets/d/1H6WqAD3Lp5w8bq3eHD81ZpPzwIp85opiltuo8PPOkuk/edit?usp=sharing"
 
 
-run_full <- TRUE
+run_full <- FALSE
 
 allvals <- if(run_full){
   gs4_deauth()
 
   sheets <- googlesheets4::gs4_get(mysheet)$sheets$name
   
-  sheets <- paste0("Gruppe",c(1, 3:7))
+  sheets <- paste0("Gruppe",c(1, 3:7)) # <- hardcode these values, since not all sheets were used
 
   retrieved <- map_dfr(sheets, function(x){
     googlesheets4::read_sheet(mysheet,x) %>%
@@ -56,71 +56,70 @@ allvals <- if(run_full){
 
 
 allvals <- allvals %>%
+  fill(InfoVis) %>%
+  rename_with(~paste("name", ., sep = "_"), c(Parameter, Antagonist))
+
+allvals_long <- allvals %>%
+  mutate(paragroup = paste(name_Parameter, name_Antagonist, sep = "-")) %>%
+  pivot_longer(cols = matches("^name|Wert"),names_to = c(".value", "type"), names_pattern =  "(.+)_(.+)")
+
+
+levs <- c("Abstraction","Functionality","Density","Multi_d","Originality","Novelty","Figuration","Decoration","Lightness","Uni_d","Familiarity","Redundancy")
+
+allvals_long <- allvals_long %>%
+  arrange(Gruppe, InfoVis, type, paragroup) %>%
   mutate(
-    Parameter = factor(Parameter),
-    Parameter2 = as.integer(Parameter)
-  ) %>%
-  fill(InfoVis)
-
-nspaces <- 2
-allvals <- allvals %>%
-  mutate(
-    lendiff = str_length(Parameter) -str_length(Antagonist),
-    leftadd = map_chr(lendiff*-1, spaceadd),
-    rightadd = map_chr(lendiff, spaceadd),
-    paragruppe = paste0(rightadd,"← ", Antagonist, paste0(rep(" ",nspaces),collapse = "")," ", paste0(rep(" ",nspaces),collapse = ""),Parameter," →",leftadd)
-  )
-
-
-allvals <- allvals %>%
-  mutate(gruppe_nr = readr::parse_number(Gruppe))
-
+    gruppe_nr = readr::parse_number(Gruppe),
+    name = factor(name, levels = levs),
+    name_int = as.integer(name)
+    )
 ```
 
 
-```{r, results="asis", fig.height=9}
+```{r}
 
-cairo_plot <- function(dataset, infovis){
-  dataset %>%
-    filter(InfoVis == infovis) %>%
-    mutate(
-      isna = is.na(Wert_Parameter),
-      Wert_Parameter = ifelse(isna,0.5,Wert_Parameter)
-    ) %>%
-    ggplot(aes(Wert_Parameter,gruppe_nr, color = 0.5-Wert_Parameter)) +
-    geom_vline(xintercept = 0.5, colour = "grey") +
-    geom_segment(aes(xend = 0.5, yend = gruppe_nr))+
-    geom_point(colour = "white", size = 3) +
-    geom_point() +
-    facet_wrap(~paragruppe, ncol = 1) +
-    scale_y_reverse("Gruppe", labels = scales::number_format(1)) +
-    geom_point(data = ~filter(., isna), colour = "grey") +
-    labs(title = paste0("← more intelligible",paste0(rep(" ",nspaces),collapse = "")," ", paste0(rep(" ",nspaces),collapse = ""),"more complex →     ", "\n",
-                           "← shallower",paste0(rep(" ",nspaces),collapse = "")," ", paste0(rep(" ",nspaces),collapse = ""),"deeper    →")) +
-    scale_color_gradient(low = "blue", high = "red") +
-    theme_light() +
-    scale_x_continuous("Einschätzung", limits = c(0,1), breaks = c(0,1),labels = c("Parameter","Antagonist")) +
-    theme(title = element_text(family = "mono"),
-          panel.grid = element_blank(),
-          legend.position = "none",
-          axis.text = element_blank(),
-          axis.ticks = element_blank(),
-          axis.title.x = element_blank(),
-          plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5)) 
+cairo_plot <- function(dataset){
+  arropos <- 2
+  text <- tibble(x = c(3.5, 9.5), text = c("more complex / deeper","more intelligible / shallower"))
+  ggplot(dataset, aes(name_int, Wert, fill = Wert)) +
+  geom_segment(aes(xend = name_int, y = 0, yend = 1), color = "lightgray", alpha = 0.5) +
+  geom_segment(aes(xend = name_int, y = 0, yend = Wert)) +
+  geom_point(aes(y = 1), color = "lightgray",size = .8, alpha = 0.5) +
+  geom_point(color = "red") +
+  scale_y_continuous(limits = c(0 ,arropos+.2)) +
+  scale_x_continuous(limits = c(1, 13)) +
+  geom_text(aes(y = 1.4, label = name))  +
+  geom_text(data = text, aes(x, y = 2.2, label = text), inherit.aes = FALSE) +
+  geom_segment(x = 1, xend = 6, y = arropos, yend = arropos, arrow = arrow(ends = "both", type = "closed")) +
+  geom_segment(x = 7, xend = 12, y = arropos, yend = arropos, arrow = arrow(ends = "both", type = "closed")) +
+  coord_polar(start = 4.974188) +
+  facet_wrap(~Gruppe) +
+  theme(
+    axis.title = element_blank(), 
+    axis.text = element_blank(), 
+    axis.ticks.y = element_blank(),
+    panel.background = element_blank(),
+    legend.position = "none",
+    )
 }
+```
 
 
+```{r, layout = "l-page", results="asis", fig.width=18, fig.height=12}
+allvals_long %>%
+  split(.$InfoVis) %>%
+  imap(function(x,y){
 
-map(unique(allvals$InfoVis), function(x){
-  
-  pander::pandoc.header(x, 3)
+    p <- cairo_plot(x) +
+      labs(title = y)
+    
+    print(p)
+    
+    cat("<hr>")
 
-  plo <- cairo_plot(allvals, x)
-  
-  print(plo)
-  pander::pandoc.horizontal.rule()
-}) %>%
+  }) %>%
   invisible()
 
 
 ```
+
