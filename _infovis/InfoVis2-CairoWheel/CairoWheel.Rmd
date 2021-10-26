@@ -41,7 +41,7 @@ allvals <- if(run_full){
 
   sheets <- googlesheets4::gs4_get(mysheet)$sheets$name
   
-  sheets <- paste0("Gruppe",c(1, 3:7))
+  sheets <- paste0("Gruppe",c(1, 3:7)) # <- hardcode these values, since not all sheets were used
 
   retrieved <- map_dfr(sheets, function(x){
     googlesheets4::read_sheet(mysheet,x) %>%
