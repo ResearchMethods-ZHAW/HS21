@@ -179,7 +179,7 @@ depo <- depo %>%
   mutate(Monat = month(Datum)) %>% 
   mutate(Jahr = year(Datum))
 
-#Lockdown 
+# Lockdown 
 # Hinweis: ich mache das nachgelagert, da ich die Erfahrung hatte, dass zu viele 
 # Operationen in einem Schritt auch schon mal durcheinander erzeugen koennen.
 # Hinweis II: Wir packen alle Phasen (normal, die beiden Lockdowns und Covid aber ohne Lockdown)
