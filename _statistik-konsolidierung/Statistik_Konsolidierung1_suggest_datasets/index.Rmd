@@ -1,9 +1,11 @@
 ---
-title: "Vorgeschlagene Datensätze für die Repetitionsübungen"
+title: "Vorgeschlagene Datensätze"
 output: distill::distill_article
+author:
+  Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung_1
-
+draft: true
 
 
 ---
@@ -12,13 +14,13 @@ categories:
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 ```
 
-## Vorgeschlagene Datensaetze zur Repetition der Übungen
+## Vorgeschlagene Datensätze zur Repetition der Übungen
 
 <span style="color:blue">R data sets</span> 
 
 * chickwts
 * iris
-* Titanic (achtung hat das table Datenformat)
+* Titanic (achtung hat das "table" Datenformat)
 * starwars (dplyr package)
 
 <span style="color:blue">Research Methods data sets</span>  
