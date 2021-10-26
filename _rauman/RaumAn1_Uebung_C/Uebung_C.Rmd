@@ -15,21 +15,16 @@ author:
 
 ```{r, echo = FALSE, purl = FALSE, results = "asis"}
 
-check_download <- function(file, folder, url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
-  full_url <- paste0(url,folder,"/",file)
-  if(!file.exists(file)){
-    download.file(full_url,file)
-  }
-  paste0("[",file,"](",full_url,")")
+check_download <- function(files, folder, url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,")"),sep = "\n")
 }
 
-check_download("kantone.gpkg", "rauman")
-check_download("bezirke.gpkg", "rauman")
-
-check_download("bodeneignung_skelett.gpkg", "rauman")
-
-check_download("bodeneignung_skelett.tif", "rauman")
-check_download("wasserverfuegbarkeit_boden.gpkg", "rauman")
+check_download(c("kantone.gpkg","bezirke.gpkg", "bodeneignung_skelett.gpkg", "bodeneignung_skelett.tif","wasserverfuegbarkeit_boden.gpkg"), "rauman")
 ```
 
 ```{r}
