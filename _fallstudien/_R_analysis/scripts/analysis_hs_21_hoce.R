@@ -8,8 +8,8 @@
 #.################################################################################################
 
 # save and load workspace
-save(file = "my_work_space.RData")
-load(file = "my_work_space.RData")
+save.image(file = "_fallstudien/_R_analysis/results/my_work_space.RData")
+load(file = "_fallstudien/_R_analysis/results/my_work_space.RData")
 
 # Datenherkunft ####
 # Saemtliche verwendeten Zaehdaten sind Eigentum des Wildnispark Zuerich und duerfen nur im Rahmen 
@@ -17,7 +17,7 @@ load(file = "my_work_space.RData")
 # Die Meteodaten sind Eigentum von MeteoSchweiz.
 
 # Verwendete Meteodaten
-# Lufttemperatur 2 m UEber Boden; Tagmaximum (6 UTC bis 18 UTC), tre200jx [°C ]
+# Lufttemperatur 2 m UEber Boden; Tagmaximum (6 UTC blis 18 UTC), tre200jx [°C ]
 # Niederschlag; Halbtagessumme 6 UTC - 18 UTC, rre150j0 [mm]
 # Sonnenscheindauer; Tagessumme, sre000d0 [min]
 
@@ -557,27 +557,16 @@ str(umwelt)
 sum(is.na(umwelt))
 
 
-
-
-
-
-
-
 #  Variablen skalieren
 # Skalieren der Variablen, damit ihr Einfluss vergleichbar wird 
 # (Problem verschiedene Skalen der Variablen (bspw. Temperatur in Grad Celsius, 
 # Niederschlag in Millimeter und Sonnenscheindauer in Minuten)
+
+# unser Datensatz muss ein df sein, damit scale funktioniert
 umwelt <- umwelt %>% 
   mutate(tre200jx_scaled = scale(tre200jx), 
          rre150j0_scaled = scale(rre150j0), 
          sremaxdv_scaled = scale(sremaxdv))
-
-
-
-
-
-
-
 
 # 4.2 Variablenselektion ####
 # Korrelierende Variablen koennen das Modelergebnis verfaelschen. Daher muss vor der
@@ -585,7 +574,7 @@ umwelt <- umwelt %>%
 
 # Erklaerende Variablen definieren
 # Hier wird die Korrelation zwischen den (nummerischen) erklaerenden Variablen berechnet
-cor <-  cor(umwelt[,18:(ncol(umwelt))]) # in den [] waehle ich die skalierten Spalten.
+cor <-  cor(umwelt[,16:(ncol(umwelt))]) # in den [] waehle ich die skalierten Spalten.
 # Mit dem folgenden Code kann eine simple Korrelationsmatrix aufgebaut werden
 # hier kann auch die Schwelle für die Korrelation gesetzt werden, 
 # 0.7 ist liberal / 0.5 konservativ
@@ -594,30 +583,30 @@ cor
 
 # Korrelationsmatrix erstellen
 # Zur Visualisierung kann ein einfacher Plot erstellt werden:
-chart.Correlation(umwelt[,18:(ncol(umwelt))], histogram=TRUE, pch=19)
+chart.Correlation(umwelt[,16:(ncol(umwelt))], histogram=TRUE, pch=19)
 
-# Automatisierte Variablenselektion 
-# fuehre die dredge-Funktion und ein Modelaveraging durch
-# Hier wird die Formel für die dredge-Funktion vorbereitet
-f <- Total ~ Wochentag + Ferien + Phase +
-  tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled
-# Jetzt kommt der Random-Factor hinzu und es wird eine Formel daraus gemacht
-f_dredge <- paste(c(f, "+ (1|KW)", "+ (1|Jahr)"), collapse = " ") %>% 
-  as.formula()
-# Das Modell mit dieser Formel ausführen
-m <- glmer(f_dredge, data = umwelt, family = poisson, na.action = "na.fail")
-# Das Modell in die dredge-Funktion einfügen (siehe auch ?dredge)
-all_m <- dredge(m)
-# suche das beste Modell
-print(all_m)
-# Importance values der Variablen 
-# hier wird die wichtigkeit der Variablen in den verschiedenen Modellen abgelesen
-MuMIn::importance(all_m) 
-
-# Schliesslich wird ein Modelaverage durchgeführt 
-# Schwellenwert für das delta-AIC = 2
-avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500) 
-summary(avgmodel)
+# # Automatisierte Variablenselektion 
+# # fuehre die dredge-Funktion und ein Modelaveraging durch
+# # Hier wird die Formel für die dredge-Funktion vorbereitet
+# f <- Total ~ Wochentag + Ferien + Phase +
+#   tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled
+# # Jetzt kommt der Random-Factor hinzu und es wird eine Formel daraus gemacht
+# f_dredge <- paste(c(f, "+ (1|KW)", "+ (1|Jahr)"), collapse = " ") %>% 
+#   as.formula()
+# # Das Modell mit dieser Formel ausführen
+# m <- glmer(f_dredge, data = umwelt, family = poisson, na.action = "na.fail")
+# # Das Modell in die dredge-Funktion einfügen (siehe auch ?dredge)
+# all_m <- dredge(m)
+# # suche das beste Modell
+# print(all_m)
+# # Importance values der Variablen 
+# # hier wird die wichtigkeit der Variablen in den verschiedenen Modellen abgelesen
+# MuMIn::importance(all_m) 
+# 
+# # Schliesslich wird ein Modelaverage durchgeführt 
+# # Schwellenwert für das delta-AIC = 2
+# avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500) 
+# summary(avgmodel)
 
 # 4.3 Pruefe Verteilung ####
 # pruefe zuerst nochmals, ob wir NA im df haben:
