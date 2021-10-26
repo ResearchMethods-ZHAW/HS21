@@ -10,3 +10,121 @@ categories:
   - Biodiversity & Ecosystems (S)
 draft: true
 ---
+
+Nachdem die deskriptiven Resultate vorliegen, kann jetzt die Berechnung eines multivariaten Modells angegangen werden. Das Ziel ist es, den Zusammenhang zwischen der gesamten Anzahl Besucher:innen (Total) und verschiedenen erklärenden Variablen (Wetter, Ferien, Phase Covid, Wochentag, KW, Jahr) aufzuzeigen.
+
+# Aufgabe 1: Join
+
+Aktuell haben wir noch zwei einzelne Datensätze von Interesse:
+
+1) einen mit den täglichen Besuchszahlen von Besucher:innen mit den dazugehörigen Datumsinformationen (Datensatz "depo_d" - zu Tagen aggregierte Stunden) 
+
+2) und einen mit den Wetterparametern ("meteo"). 
+
+- Diese beiden Datensätze muüssen miteinander verbunden werden. __Ziel__: Ein Datensatz mit den Zähldaten und Datumsinformationen angereichert mit Wetterdaten. Der neue Datensatz soll " __umwelt__ " heissen.
+
+- Sind durch das Zusammenführen NA's entstanden? Falls ja, müssen __alle__ für die weiteren Auswertungen ausgeschlossen werden.
+
+# Aufgabe 2: Convinience Variablen, Faktoren, Skalieren
+
+Wir haben bereits verschiedene Convinience Variablen definiert. Nun brauchen wir noch neu die Ferienzeiten als Faktor.
+
+## 2a) 
+
+- Definiert mit if_else() alle Ferienzeiträume in euren df umwelt. WENN Ferien waren, DANN = 1, SONST = 0
+
+__Hinweis:__ etwas ganz ähnliches habt ihr unter Import/Vorverarbeitung bereits für die Covid-Phasen gemacht.
+
+## 2b)
+
+- Macht aus den Ferien einen Faktor.
+
+- Auch das Jahr muss als Faktor vorliegen.
+
+- Unser Modell kann nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. 
+Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)
+
+## 2c) 
+
+Problem: verschiedene Skalen der Variablen (z.B. Temperatur in Grad Celsius, Niederschlag in Millimeter und Sonnenscheindauer in %)
+
+- Lösung: Skalieren aller Variablen mit Masseinheiten gemäss unterstehendem Code:
+
+```{r eval=FALSE}
+umwelt <- umwelt %>% 
+  mutate(tre200jx_scaled = scale(tre200jx)%>%
+  ...
+```
+
+# Aufgabe 3: Korrelationen und Variablenselektion
+
+## 3a) 
+Korrelierende Variablen können das Modellergebnis verfälschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden. Welches sind die erklärenden Variablen, welches ist die Abhängige? 
+
+- Teste mittels folgendem Code auf eine Korrelation zwischen den Messwerten.
+
+```{r eval=FALSE}
+cor <-  cor(umwelt[,ERSTE SPALTE MIT ERKLAERENDEN MESSWERTEN : 
+                     LETZTE SPALTE MIT ERKLAERENDEN MESSWERTEN)])
+```
+
+## 3b) 
+Korrelationsmatrix erstellen
+
+Mit dem folgenden Code kann eine simple Korrelationsmatrix (mit den Messwerten) aufgebaut werden. Hier kann auch die Schwelle für die Korrelation gesetzt werden (0.7 ist liberal / 0.5 konservativ).
+
+```{r eval=FALSE}
+cor[abs(cor) < 0.7] <-  0 #Setzt alle Werte kleiner 0.7 auf 0
+```
+
+Zur Visualisierung kann ein einfacher Plot erstellt werden.
+
+```{r eval=FALSE}
+chart.Correlation(umwelt[,ERSTE SPALTE MIT ERKLAERENDEN MESSWERTEN : 
+                     LETZTE SPALTE MIT ERKLAERENDEN MESSWERTEN)], histogram=TRUE, pch=19)
+```
+
+Wo kann eine kritische Korrelation beobachtet werden? Kann man es verantworten, trotzdem alle drei Wetterparameter in das Modell zu geben? 
+
+Falls ja: warum? Falls nein: schliesst den betreffenden Parameter aus. Wenn ihr Parameter ausschliesst: welchen der beiden korrelierenden Parameter behaltet ihr im Modell?
+
+# Aufgabe 4 (OPTIONAL): Automatische Variablenselektion
+
+Führe die dredge-Funktion und ein Modelaveraging durch. Der Code dazu ist untenstehend. 
+Was passiert in der Funktion? Macht es Sinn, die Funktion auszuführen?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r eval=FALSE}
+f <- Total ~ Wochentag + Ferien + Phase +
+  tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled
+# Jetzt kommt der Random-Factor hinzu und es wird eine Formel daraus gemacht
+f_dredge <- paste(c(f, "+ (1|KW)", "+ (1|Jahr)"), collapse = " ") %>% 
+  as.formula()
+# Das Modell mit dieser Formel ausführen
+m <- glmer(f_dredge, data = umwelt, family = poisson, na.action = "na.fail")
+# Das Modell in die dredge-Funktion einfügen (siehe auch ?dredge)
+all_m <- dredge(m)
+# suche das beste Modell
+print(all_m)
+# Importance values der Variablen 
+# hier wird die wichtigkeit der Variablen in den verschiedenen Modellen abgelesen
+MuMIn::importance(all_m) 
+
+# Schliesslich wird ein Modelaverage durchgeführt 
+# Schwellenwert für das delta-AIC = 2
+avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500) 
+summary(avgmodel)
+```
+
