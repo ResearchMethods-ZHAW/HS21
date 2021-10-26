@@ -93,19 +93,6 @@ Falls ja: warum? Falls nein: schliesst den betreffenden Parameter aus. Wenn ihr 
 Führe die dredge-Funktion und ein Modelaveraging durch. Der Code dazu ist untenstehend. 
 Was passiert in der Funktion? Macht es Sinn, die Funktion auszuführen?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```{r eval=FALSE}
 f <- Total ~ Wochentag + Ferien + Phase +
   tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled
@@ -128,3 +115,84 @@ avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500)
 summary(avgmodel)
 ```
 
+# Aufgabe 5: Verteilung der abhaengigen Variabel pruefen
+
+Die Verteilung der abhängigen Variabel bestimmt generell, was für ein Modell geschrieben werden kann. Die Modelle gehen von einer gegebenen Verteilung aus. Wenn diese Annahme verletzt wir, kann es sein, dass das Modellergebnis nicht valide ist.
+
+- Folgender Codeblock zeigt, wie die Daten auf verschiedene Verteilungen passen.
+
+__Hinweis:__ es kann sein, dass nicht jede Verteilung geplottet werden kann, es erscheint eine Fehlermeldung. Das ist nicht weiter schlimm, die betreffende Verteilung kann gelöscht werden. Analog muss das auch im Befehl gofstat passieren.
+
+- Die besten drei (gemäss AIC) sollen zur Visualisierung geplottet werden. 
+
+```{r eval=FALSE}
+f1<-fitdist(umwelt$Anzahl_Total,"norm")  # Normalverteilung
+f1_1<-fitdist(umwelt$Anzahl_Total,"lnorm")  # log-Normalvert. 
+f2<-fitdist(umwelt$Anzahl_Total,"pois")  # Poisson
+f3<-fitdist(umwelt$Anzahl_Total,"nbinom")  # negativ binomial
+f4<-fitdist(umwelt$Anzahl_Total,"exp")  # exponentiell
+f5<-fitdist(umwelt$Anzahl_Total,"gamma")  # gamma
+f6<-fitdist(umwelt$Anzahl_Total,"logis")  # logistisch
+f7<-fitdist(umwelt$Anzahl_Total,"geom")  # geometrisch
+f8<-fitdist(umwelt$Anzahl_Total,"weibull")  # Weibull
+
+gofstat(list(f1,f1_1,f2,f3,f4,f5,f6,f7,f8), 
+        fitnames = c("Normalverteilung", "log-Normalverteilung", "Poisson",
+                     "negativ binomial","exponentiell","gamma", "logistisch",
+                     "geometrisch","weibull"))
+
+# die 4 besten (gemaess Akaike's Information Criterion) als Plot, 
+plot.legend <- c("log norm", "weibull", "gamma ", "negativ binomial")
+# vergleicht mehrere theoretische Verteilungen mit den empirischen Daten
+cdfcomp(list(f1_1, f8, f5, f3), legendtext = plot.legend)
+```
+
+Wie sind unsere Daten also verteilt? Welche Modelle können wir anwenden?
+
+# Aufgabe 6: Multivariates Modell berechnen
+
+Ich verwende die Funktion __glmer()__ aus der Bibliothek __lme4__. glmer ist neuer, schneller und zuverlässiger als vergleichbare Funktionen (diese Bibliothek wird auch in vielen wissenschaftlichen Papern im Feld Biologie / Wildtiermamagement zitiert).
+
+## 6a) 
+
+- Die Totale Besucheranzahl soll durch die Wetterparameter, den Wochentag, die Ferien sowie die Covid-Phasen erklaert werden (Datensatz "umwelt"). Die Saisonalitaet (KW und Jahr) soll hierbei nicht beachtet werden, sie werden als "random factor" bestimmt. 
+
+Frage: Warum bestimmen wir KW und Jahr als Random Factor?
+
+__Hinweis:__ Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial (in meinem Fall) ist, berechne ich für den Vergleich zuerst ein "einfaches Modell" der Familie poisson.
+
+Die Modellformel lautet:
+
+```{r eval=FALSE}
+Tages_Model <- glmer(ABHAENGIGE VARIABLE ~ ERKLAERENDE VARIABLE 1 + ERKLAERENDE VARIABLE 2 +
+                      ERKLAERENDE VARIABLE 3 + ERKLAERENDE VARIABLE 4 + 
+                      ERKLAERENDE VARIABLE 5 + ERKLAERENDE VARIABLE 6 +
+                     (1|RANDOM FACTOR A)+ (1|RANDOM FACTOR B),
+                     family = poisson, data = DATENSATZ))
+
+summary(Tages_Model) #Zeigt das Resultat des Modells
+```
+
+Frage: Was bedeutet "family = poisson"?
+
+## 6b) Modelldiagnostik
+
+- Prüft optisch ob euer Modell valide ist.
+
+__Hinweis:__ glmer bringt einige eigene Funktionen mit, mit denen sich testen lässt, ob das Modell valide ist. Untenstehend sind sie aufgeführt (--> analog zu den Funktionen aus der Vorlesung, aber halt für glmer).
+
+```{r eval=FALSE}
+# Verteilung der Residuen
+plot(Tages_Model, type = c("p", "smooth"))
+# Pruefen auf Normalverteilung
+qqmath(Tages_Model)
+
+# Overdispersion describes the observation that variation is higher than would be expected.
+dispersion_glmer(Tages_Model) #it shouldn't be over 1.4
+# zeige die erklaerte Varianz (je hoeher r2m ist, desto besser!)
+r.squaredGLMM(Tages_Model) 
+```
+
+Sind die Voraussetzungen des Modells erfuellt?
+
+## 6c) Alternative Modelle

@@ -637,7 +637,6 @@ cdfcomp(list(f1, f4, f3), legendtext = plot.legend)
 # --> Verteilung ist gemäss AICc negativ binomial. --> ich entscheide 
 # mich für letztere.
 
-
 # 4.4 Berechne verschiedene Modelle ####
 
 # Hinweise zu GLMM: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html
@@ -663,6 +662,22 @@ qqmath(Tages_Model)
 dispersion_glmer(Tages_Model) #it shouldn't be over 1.4
 # wir gut erklaert das Modell?
 r.squaredGLMM(Tages_Model) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Berechne ein negativ binomiales Modell
