@@ -33,9 +33,7 @@ temperature <- read_csv("https://github.com/ResearchMethods-ZHAW/datasets/raw/ma
 
 
 ```{r, echo = F, eval = T, purl=F}
-
 knitr::kable(head(temperature))
-
 ```
 
 ## Base-plot vs. ggplot
