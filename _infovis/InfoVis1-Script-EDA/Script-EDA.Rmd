@@ -19,7 +19,8 @@ distill::mypurl()
 ```{r,message=F}
 
 
-library(tidyverse)
+library(ggplot2)
+library(dplyr)
 library(scales)
 
 # create some data about age and height of people
@@ -42,7 +43,12 @@ people <- data.frame(
 
 
 # build a scatterplot for a first inspection
-ggplot(people, aes(x=age, y=height)) + geom_point() + scale_y_continuous(limits=c(0.75, 2.0))
+ggplot(people, aes(x=age, y=height)) + 
+  geom_point() 
+
+ggplot(people, aes(x=age, y=height)) + 
+  geom_point() +
+  scale_y_continuous(limits = c(0.75, 2))
 
 # Go to help page: http://docs.ggplot2.org/current/ -> Search for icon of fit-line
 # http://docs.ggplot2.org/current/geom_smooth.html
@@ -51,9 +57,7 @@ ggplot(people, aes(x=age, y=height)) + geom_point() + scale_y_continuous(limits=
 ggplot(people, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="loess", fill='lightblue', size=0.5, alpha=0.5)
-
-?stem
+  geom_smooth()
 
 # stem and leaf plot
 stem(people$height)
@@ -67,12 +71,9 @@ boxplot(people$age)
 summary(people$height)
 boxplot(people$height)
 
-# boxplot(people$height) why twice the same
-
-
 # explore data with a histgram
 ggplot(people, aes(x=age)) + 
-  geom_histogram(stat="bin", fill='green', binwidth=20)  
+  geom_histogram(binwidth=20)  
 
 density(x = people$height)
 
@@ -88,35 +89,26 @@ density(x = people$height)
 ggplot(people, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
+  geom_smooth() +
   scale_x_log10()
 
-# logarithmic axis: show multiplicative factors, e.g. log2
-ggplot(people, aes(x=age, y=height)) + 
-  geom_point() + 
-  scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) +
-  scale_x_continuous(trans = log2_trans(),
-                   breaks = trans_breaks("log2", function(x) 2^x),
-                   labels = trans_format("log2", math_format(2^.x)))
-
-
 # outliers: Remove very small and very old people
-peopleTemp <- filter(people, ID != 27) # Diese Person war zu klein.
-peopleClean <- filter(peopleTemp, age < 100) # Fehler in der Erhebung des Alters
 
-# re-explore cleaned data with a histogram
+peopleClean <- people %>%
+  filter(ID != 27) %>%    # Diese Person war zu klein.
+  filter(age < 100)       # Fehler in der Erhebung des Alters
+
 ggplot(peopleClean, aes(x=age)) + 
-  geom_histogram(stat="bin", fill='#6baed6', binwidth=10)
+  geom_histogram(binwidth=10)
 
 ggplot(peopleClean, aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5)
+  geom_smooth()
 
 # with custom binwidth
 ggplot(peopleClean, aes(x=age)) + 
-  geom_histogram(stat="bin", fill='#6baed6', binwidth=10) + 
+  geom_histogram(binwidth=10) + 
   theme_bw() # specifying the theme
 
 
@@ -124,23 +116,23 @@ ggplot(peopleClean, aes(x=age)) +
 # quadratic axis
 ggplot(peopleClean, aes(x=age, y=height)) + 
   geom_point() + scale_y_continuous(limits=c(0, 2.0)) +
-  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) + scale_x_sqrt()
+  geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5) + 
+  scale_x_sqrt()
 
 
 
 
 # filter "teenies": No trend
-kids <- filter(peopleClean, age < 15)
-
-ggplot(kids, aes(x=age, y=height)) + 
+filter(peopleClean, age < 15) %>%
+  ggplot(aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
   geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5)
 
 # filter "teenies": No trend
-oldies <- filter(peopleClean, age > 55)
-
-ggplot(oldies, aes(x=age, y=height)) + 
+peopleClean %>%
+  filter(age > 55) %>%
+  ggplot(aes(x=age, y=height)) + 
   geom_point() + 
   scale_y_continuous(limits=c(0, 2.0)) +
   geom_smooth(method="lm", fill='lightblue', size=0.5, alpha=0.5)
@@ -152,13 +144,6 @@ ggplot(oldies, aes(x=age, y=height)) +
 pairs(peopleClean[,2:4], panel=panel.smooth)
 
 pairs(peopleClean[,2:4], panel=panel.smooth)
-
-# Or as a bubble chart
-peopleClean$radius <- sqrt( peopleClean$weight/ pi )
-symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
-
-symbols(peopleClean$age, peopleClean$height, circles=peopleClean$radius)
-
 ```
 
 
