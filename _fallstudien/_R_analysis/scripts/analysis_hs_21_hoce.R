@@ -546,7 +546,8 @@ umwelt <- umwelt%>%
 # Im GLMM wird die Kalenderwoche und das Jahr als random factor definiert. Dazu muss sie als
 # Faktor vorliegen.
 umwelt <- umwelt %>% 
-  mutate(Jahr = as.factor(Jahr))
+  mutate(Jahr = as.factor(Jahr)) %>% 
+  mutate(KW = as.factor(KW))
 
 # Unser Modell kann nur mit ganzen Zahlen umgehen. Zum Glueck habe wir die Zaehldaten
 # bereits gerundet.
@@ -557,12 +558,14 @@ str(umwelt)
 sum(is.na(umwelt))
 
 
+# unser Datensatz muss ein df sein, damit scale funktioniert
+umwelt <- as.data.frame(umwelt)
+
 #  Variablen skalieren
 # Skalieren der Variablen, damit ihr Einfluss vergleichbar wird 
 # (Problem verschiedene Skalen der Variablen (bspw. Temperatur in Grad Celsius, 
 # Niederschlag in Millimeter und Sonnenscheindauer in Minuten)
 
-# unser Datensatz muss ein df sein, damit scale funktioniert
 umwelt <- umwelt %>% 
   mutate(tre200jx_scaled = scale(tre200jx), 
          rre150j0_scaled = scale(rre150j0), 
@@ -662,22 +665,6 @@ qqmath(Tages_Model)
 dispersion_glmer(Tages_Model) #it shouldn't be over 1.4
 # wir gut erklaert das Modell?
 r.squaredGLMM(Tages_Model) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Berechne ein negativ binomiales Modell
