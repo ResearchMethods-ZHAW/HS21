@@ -87,32 +87,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Modul Research Methods: Übungen Statistik 2</title>
+<title>Modul Research Methods: Übung Statistik 3</title>
 
 
-<link rel="canonical" href="https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Assigment/"/>
+<link rel="canonical" href="https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_Uebungen_3/"/>
 
 <!--  https://schema.org/Article -->
 <meta property="article:published" itemprop="datePublished" content="2021-10-28"/>
 <meta property="article:created" itemprop="dateCreated" content="2021-10-28"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Modul Research Methods: Übungen Statistik 2"/>
+<meta property="og:title" content="Modul Research Methods: Übung Statistik 3"/>
 <meta property="og:type" content="article"/>
-<meta property="og:url" content="https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Assigment/"/>
+<meta property="og:url" content="https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_Uebungen_3/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Modul Research Methods"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Modul Research Methods: Übungen Statistik 2"/>
-<meta property="twitter:url" content="https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Assigment/"/>
+<meta property="twitter:title" content="Modul Research Methods: Übung Statistik 3"/>
+<meta property="twitter:url" content="https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_Uebungen_3/"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Übungen Statistik 2"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik2"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["10-28-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Assigment/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Assigment/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Übung Statistik 3"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik3"]},{"type":"character","attributes":{},"value":["10-28-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_Uebungen_3/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik3_Uebungen_3/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2118,7 +2118,7 @@ d-article li{
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Übungen Statistik 2","authors":[],"publishedDate":"2021-10-28T00:00:00.000+00:00"}
+{"title":"Übung Statistik 3","authors":[],"publishedDate":"2021-10-28T00:00:00.000+00:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2247,10 +2247,10 @@ Interna
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Übungen Statistik 2</h1>
+<h1>Übung Statistik 3</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-  <a href="../../Statistik.html#category:Statistik2" class="dt-tag">Statistik2</a>
+  <a href="../../Statistik.html#category:Statistik3" class="dt-tag">Statistik3</a>
 </div>
 <!--/radix_placeholder_categories-->
 
@@ -2258,72 +2258,17 @@ Interna
 
 
 <div class="d-article">
-<hr />
-<p><strong>Abzugeben sind am Ende</strong></p>
-<pre><code>a. lauffähiges R-Skript
-b. begründeter Lösungsweg (Kombination aus R-Code, R Output 
-   und dessen Interpretation)
-c. ausformulierter Methoden- und Ergebnisteil (für eine wiss.Arbeit).</code></pre>
+<h3 id="aufgabe-3.1-multiple-regression">Aufgabe 3.1: Multiple Regression</h3>
 <ul>
-<li><p>Bitte <strong>erklärt und begründet die einzelnen Schritte,</strong> die ihr unternehmt, um zu eurem Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in dem ihr Schritt für Schritt den verwendeten <strong>R-Code</strong>, die dazu gehörigen <strong>Ausgaben von R</strong>, eure <strong>Interpretation</strong> derselben und die sich ergebenden <strong>Schlussfolgerungen</strong> für das weitere Vorgehen dokumentiert.</p></li>
-<li><p>Dieser <strong>Ablauf</strong> sollte insbesondere beinhalten:</p>
-<ul>
-<li>Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n) und welches die unabängige(n) Variablen etc.</li>
-<li>Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder Datentransformationen vorgenommen werden sollten</li>
-<li>Auswahl und Begründung eines statistischen Verfahrens</li>
-<li>Bestimmung des vollständigen/maximalen Models</li>
-<li>Selektion des/der besten Models/Modelle</li>
-<li>Durchführen der Modelldiagnostik für dieses</li>
-<li>Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss. Ergebnisdarstellung benötigt werden</li>
-</ul></li>
-<li><p>Formuliert abschliessend einen <strong>Methoden- und Ergebnisteil</strong> (ggf. incl. adäquaten Abbildungen/Tabellen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (je einen ausformulierten Absatz von ca. 60-100 Worten bzw. 3-8 Sätzen). Alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.</p></li>
+<li><strong>Datensatz <a href="15_Statistik3/data/Ukraine_bearbeitet.xlsx">Ukraine_bearbeitet.xlsx</a></strong></li>
+<li><strong>Datensatz <a href="Ukraine_bearbeitet.csv">Ukraine_bearbeitet.csv</a></strong></li>
 </ul>
-<hr />
-<h3 id="aufgabe-2.1-regression">Aufgabe 2.1: Regression</h3>
-<p><strong>Regressionsanalyse mit <a href="SAR.csv">SAR.csv</a></strong></p>
-<p>Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in Trockenrasen der Schweiz in Abhängigkeit von der Probeflächengrösse (area, hier in m²). Diese Beziehung bezeichnet man als Artenzahl-Areal-Kurve (Species-area relationship = SAR).</p>
+<p>Artenzahlen von Vegetationsaufnahmen in der Ukraine vs. diverse Umweltparameter (farbig gruppiert nach Kategorien, aus Kuzemko et al. 2016)</p>
 <ul>
-<li>Ladet den Datensatz in R und macht eine explorative Datenanalyse.</li>
-<li>Wählt unter den schon gelernten Methoden der Regressionsanalyse ein adäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.</li>
-<li>Prüft anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren</li>
-<li>Falls die Modelldiagnostik negativ ausfällt, überlegt, welche Datentransformation helfen könnte, und rechnet neue Modelle mit einer oder ggf. mehreren Datentransformationen, bis ihr eine statistisch zufriedenstellende Lösung gefunden habt.</li>
-<li>Stellt die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).</li>
-<li>Kennt ihr ggf. noch eine andere geeignete Herangehensweise?</li>
+<li>Bestimmt ein minimal adäquates Modell für die Erklärung der Artenzahlen mit allen notwendigen Arbeitsschritten</li>
+<li>Wahlweise könnt ihr mit AICc und dredge oder mit p-Werten und schrittweiser Vereinfachung eines globalen Models arbeiten</li>
 </ul>
-<h3 id="aufgabe-2.2-einfaktorielle-anova">Aufgabe 2.2: Einfaktorielle ANOVA</h3>
-<p><strong>ANOVA mit <a href="https://zenodo.org/record/3890931/files/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv?download=1">novanimal_agg.csv</a></strong></p>
-<p>Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?</p>
-<p>Hinweise für die Analysen:</p>
-<ul>
-<li>Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit stringr::str_replace()).</li>
-<li>Danach muss der Datensatz gruppiert und zusammengefasst werden.</li>
-<li>Unbekannte Menüinhalte können vernachlässigt werden.</li>
-<li>Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?</li>
-<li>Führt anschliessend Post-hoc-Vergleiche durch.</li>
-<li>Fasst die Ergebnisse in wenigen Sätzen zusammen und stellst die angemessen dar (Text mit Abbildung und/oder Tabelle)</li>
-</ul>
-<h3 id="aufgabe-2.3n-mehrfaktorielle-anova-natwis">Aufgabe 2.3N: Mehrfaktorielle ANOVA (NatWis)</h3>
-<p><strong>ANOVA mit <a href="kormoran.csv">kormoran.csv</a></strong></p>
-<p>Der Datensatz enthält 40 Beobachtungen zu Tauchzeiten zweier Kormoranunterarten (C = <em>Phalocrocorax carbo carbo</em> und S = <em>Phalacrocorax carbo sinensis</em>) aus vier Jahreszeiten (F = Frühling, S = Sommer, H = Herbst, W = Winter).</p>
-<ul>
-<li>Lest den Datensatz nach R ein und führt eine adäquate Analyse durch, um beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen.</li>
-<li>Stellt eure Ergebnisse dann angemessen dar (Text mit Abbildung und/oder Tabelle).</li>
-<li>Gibt es eine Interaktion?</li>
-</ul>
-<h3 id="uebung-2.3s-mehrfaktorielle-anova-mit-interaktion-sozwis">Uebung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)</h3>
-<p><strong>ANOVA mit <a href="https://zenodo.org/record/3890949/files/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv?download=1">novanimal_indiv.csv</a></strong></p>
-<p>In der Mensa gibt es zwei unterschiedliche Preisniveaus bzgl. den Gerichten: eine preisgünstigere Menülinie (“World” &amp; “Favorite”) und eine teuere Menülinie (“Kitchen”). Gibt es Unterschiede zwischen dem Kauf von preisgünstigeren resp. teureren Menülinien betreffend Menüinhalt &amp; Hochschulzugehörigkeit?</p>
-<p>Hinweise für die Analysen:</p>
-<ul>
-<li>Fasst die zwei günstigeren Menülinien “Favorite” &amp; “World” zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit stringr::str_replace() oder base::sub()).</li>
-<li>Kleiner Hinweis: “Local” Gerichte könnt ihr zu den anderen Gerichten dazu zählen z.B. Local Favorite -&gt; Favorite</li>
-<li>Danach muss der Datensatz gruppiert (nach Menülinie &amp; Hochschulzugehörigkeit) und zusammengefasst werden.</li>
-<li>Unbekannte Menüinhalte können vernachlässigt werden.</li>
-<li>Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?</li>
-<li>Führt anschliessend Post-hoc-Vergleiche durch.</li>
-<li>Stellt eure Ergebnisse dann angemessen dar (Text mit Abbildung und/oder Tabelle).</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
