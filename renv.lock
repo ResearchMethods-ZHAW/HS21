@@ -55,14 +55,14 @@
       "Package": "distill",
       "Version": "1.2.7",
       "Source": "GitHub",
-      "Remotes": "rstudio/rmarkdown",
       "RemoteType": "github",
+      "Remotes": "rstudio/rmarkdown",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "distill",
       "RemoteUsername": "ResearchMethods-ZHAW",
       "RemoteRef": "HEAD",
-      "RemoteSha": "88278f1b236e6a0a66ab6a067f6be1b48d3bbf34",
-      "Hash": "afcf4dc0a8cea5e2ede6a421b36da687"
+      "RemoteSha": "b3d679b878c8b8b9b261c043c0a789df05082b01",
+      "Hash": "036b6873bcf770f899b0b5b878a4e6e6"
     },
     "downlit": {
       "Package": "downlit",
@@ -192,10 +192,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "0.4.12",
+      "Version": "0.4.11",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "0879f5388fe6e4d56d7ef0b7ccb031e5"
+      "Hash": "515f341d3affe0de9e4a7f762efb0456"
     },
     "rmarkdown": {
       "Package": "rmarkdown",
@@ -262,10 +262,10 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.27",
+      "Version": "0.26",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "12b69332f085d350fc1f2ea6cca58397"
+      "Hash": "a270216f7ffda25e53298293046d1d05"
     },
     "xml2": {
       "Package": "xml2",
