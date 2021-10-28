@@ -11,7 +11,6 @@ categories:
 **Datensatz Ukraine_bearbeitet.csv [Ukraine_bearbeitet.csv](Ukraine_bearbeitet.csv)**
 
 
-
 ###	Aufgabe 3: Multiple Regression
 
 - Bereiten Sie den Datensatz Ukraine.xlsx für das Einlesen in R vor und lesen Sie ihn dann ein. Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von 199
