@@ -16,7 +16,6 @@ knitr::purl("Demo.Rmd", "Statistik_4_Demo.R", documentation = 0)
 - Datensatz [loyn.csv](loyn.csv)
 
 
-
 ## von LMs zu GLMs
 
 ```{r}
