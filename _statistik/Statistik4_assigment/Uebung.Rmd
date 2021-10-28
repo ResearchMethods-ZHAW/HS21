@@ -10,12 +10,8 @@ draft: false
 
 ###	Aufgabe 4.1: Nicht-lineare Regression
 
-**Datensatz**
-```{r, echo = FALSE, purl = FALSE}
-download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Curonian_Spit.csv", "Curonian_Spit.csv")
 
-```
-
+**Datensatz [Curonian_Spit.csv](Curonian_Spit.csv)**
 
 
 Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
