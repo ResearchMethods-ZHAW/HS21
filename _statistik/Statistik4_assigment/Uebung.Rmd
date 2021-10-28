@@ -1,5 +1,5 @@
 ---
-title: Uebungen Statistik 4
+title: Übungen Statistik 4
 output: 
   distill::distill_article:
     toc: true
