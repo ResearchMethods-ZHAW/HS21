@@ -39,7 +39,6 @@ knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
 
 **Regressionsanalyse mit [SAR.csv](SAR.csv)**
 
-
 Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in Trockenrasen der Schweiz in Abhängigkeit von der Probeflächengrösse (area, hier in m²). Diese Beziehung bezeichnet man als Artenzahl-Areal-Kurve (Species-area relationship = SAR).
 
 -	Ladet den Datensatz in R und macht eine explorative Datenanalyse.
