@@ -12,7 +12,9 @@ draft: false
 knitr::purl("Demo.Rmd", "Statistik_4_Demo.R", documentation = 0)
 ```
 
-- [Demoscript als Download](Statistik_4_Demo.R)  
+- [Demoscript als Download](Statistik_4_Demo.R)
+- Datensatz [loyn.csv](loyn.csv)
+
 
 
 ## von LMs zu GLMs
