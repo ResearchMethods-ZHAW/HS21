@@ -1,11 +1,16 @@
 ---
-title: Aufgabe 3
+title: Übung Statistik 3
 output: 
   distill::distill_article:
     toc: false
 categories:
 - Statistik3
 ---
+
+**Datensatz Ukraine_bearbeitet.xlsx [Ukraine_bearbeitet.xlsx](Ukraine_bearbeitet.xlsx)**
+**Datensatz Ukraine_bearbeitet.csv [Ukraine_bearbeitet.csv](Ukraine_bearbeitet.csv)**
+
+
 
 ###	Aufgabe 3: Multiple Regression
 
