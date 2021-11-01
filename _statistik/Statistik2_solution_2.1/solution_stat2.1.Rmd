@@ -46,15 +46,15 @@ summary(lm.1)
 
 **Modelldiagnostik**
 ```{r}
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(lm.1)
 ```
 
 **Ergebnisplot**
 ```{r}
 par(mfrow=c(1,1))
-plot(SAR$area, SAR$richness, xlab="Area [m²]", ylab="Species richness")
-abline(lm(richness~area, data=SAR), col="red") #Alternative 1
+plot(SAR$area, SAR$richness, xlab = "Area [m²]", ylab="Species richness")
+abline(lm(richness~area, data=SAR), col = "red") #Alternative 1
 abline(lm.1,col="red") #Alternative 2
 ```
 
@@ -74,7 +74,7 @@ summary(lm.2)
 
 **Modelldiagnostik**
 ```{r}
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(lm.2)
 ```
 #sieht noch schlechter aus
@@ -106,7 +106,7 @@ das sieht jetzt sehr gut aus, bis auf zwei Ausreisser im QQ-Plot
 **Ergebnisplots C **
 
 ```{r}
-par(mfrow=c(1,1))
+par(mfrow = c(1, 1))
 xv <- seq(0, 100, 0.1)
 
 
@@ -115,7 +115,7 @@ xv <- seq(0, 100, 0.1)
 
 **Modelldiagnostik**
 ```{r, eval=FALSE}
-model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100, b=1)), data = decay)
+model.nls <- nls(amount~a*exp(-b*time), start = (list(a = 100, b = 1)), data = decay)
 summary(model.nls)
 ```
 
@@ -136,25 +136,25 @@ xv <- seq(0,100,0.1)
 
 A. lineares Modell mit log-transformierter Abhaengiger
 ```{r}
-plot(SAR$area,SAR$richness)
-yv1a <- 10^predict(lm.2, list(area=xv))
-lines(xv, yv1a, col="blue")
+plot(SAR$area, SAR$richness)
+yv1a <- 10^predict(lm.2, list(area= xv))
+lines(xv, yv1a, col = "blue")
 ```
 
 B. lineares Modell mit log-Transformation beider Variablen
 ```{r}
 xvlog <- seq(-4,2,0.1)
-plot(SAR$log_area, SAR$log_richness, xlab="log10 (Fläche [m²])", ylab="log10 (Artenreichtum)")
+plot(SAR$log_area, SAR$log_richness, xlab = "log10 (Fläche [m²])", ylab = "log10 (Artenreichtum)")
 yv1b <- predict(lm.3, list(log_area=xvlog))
-lines(xvlog, yv1b, col="green")
+lines(xvlog, yv1b, col = "green")
 ```
 
 
 B. lineares Modell mit log-Transformation beider Variablen (zurücktransformiert)
 
 ```{r}
-plot(SAR$area, SAR$richness, xlab="Fläche [m²]", ylab="Artenreichtum")
-yv1b <- predict(lm.3, list(log_area=xv))
+plot(SAR$area, SAR$richness, xlab = "Fläche [m²]", ylab = "Artenreichtum")
+yv1b <- predict(lm.3, list(log_area = xv))
 lines(10^xv, 10^yv1b, col = "green")
 ```
 
