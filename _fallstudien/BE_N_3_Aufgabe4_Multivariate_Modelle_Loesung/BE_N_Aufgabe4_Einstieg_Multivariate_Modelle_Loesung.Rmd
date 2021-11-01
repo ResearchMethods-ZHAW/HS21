@@ -1,15 +1,23 @@
 ---
-title: "Einstieg Multivariate Modelle Fallstudie WPZ Loesungen"
-author: "B.Sigrist"
-date: "2 November 2019"
-output: pdf_document
+title: "KW44: Einstieg Multivariate Modelle Fallstudie WPZ - Profil N - Loesung"
+description:
+author:
+  - name: Beni Sigrist
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (N)
+draft: false
 ---
+
+## Einstieg Habitatselektionsmodell / Multivariate Modelle
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
 ```
 
-## libraries laden
+### libraries laden
 
 ```{r results='hide', warning=FALSE, message=FALSE}
 
@@ -28,13 +36,13 @@ ipak(packages)
 
 ```
 
-## Aufgabe 1: Einlesen des Gesamtdatensatzes von Moodle
-### - Sichtung des Datensatzes und der Datentypen
-### - Kontrolle wieviele Rehe in diesem Datensatz enthalten sind
+### Aufgabe 1: Einlesen des Gesamtdatensatzes von Moodle
+##### - Sichtung des Datensatzes und der Datentypen
+##### - Kontrolle wieviele Rehe in diesem Datensatz enthalten sind
 
 ```{r tidy=TRUE, warning=FALSE, message=FALSE}
 
-DF_mod <- read_delim("Data/Datensatz_Habitatnutzung_Modelle_20201102_moodle.csv", delim = ";")
+DF_mod <- read_delim("Datensatz_Habitatnutzung_Modelle_20211101_moodle.csv", delim = ";")
 
 str(DF_mod)
 class(DF_mod$time_of_day)
@@ -44,7 +52,7 @@ table(DF_mod$id)
 
 ```
 
-## Aufgabe 2: Unterteilung des Datensatzes in Teildatensätze entsprechend der Tageszeit
+### Aufgabe 2: Unterteilung des Datensatzes in Teildatensätze entsprechend der Tageszeit
 
 ```{r tidy=TRUE, eval=TRUE}
 
@@ -61,7 +69,7 @@ table(DF_mod_day$time_of_day)
 
 ```
 
-## Aufgabe 3: Erstellen von Density Plots der Praesenz / Absenz in Abhaengigkeit der unabhaengigen Variablen
+### Aufgabe 3: Erstellen von Density Plots der Praesenz / Absenz in Abhaengigkeit der unabhaengigen Variablen
 
 ```{r tidy=TRUE, results="hide"}
 
@@ -82,7 +90,7 @@ for (i in 6:12) {                           # innerhalb des for()-loops die Numm
 
 ```
 
-## Aufgabe 4: Testen der Verteilung eurer Variablen (nur kontinuierliche) 
+### Aufgabe 4: Testen der Verteilung eurer Variablen (nur kontinuierliche) 
 
 ```{r tidy=TRUE, message=FALSE, warning = FALSE}
 
@@ -101,9 +109,9 @@ ggplot(DF_mod_day, aes(slope)) + geom_histogram(aes(y=..density..), color = "bla
 
 ```
 
-## Aufgabe 5: Explorative Analysen der Variablen (Scatterplots, Scatterplotmatrizen)
-### 1) Zu Scatterplots und Scatterplotmatrizen gibt es viele verschiedene Funktionen / Packages, schaut im Netz und sucht euch eines welches euch passt.
-### 2) Testen der Korrelation zwischen den Variablen (Parametrisch oder nicht-parametrische Methode? Ausserdem: gewisse Scatterplotmatrizen zeigen euch die Koeffizenten direkt an)
+### Aufgabe 5: Explorative Analysen der Variablen mit Scatterplots, Scatterplotmatrizen
+##### 1) Zu Scatterplots und Scatterplotmatrizen gibt es viele verschiedene Funktionen / Packages, schaut im Internet und sucht euch eines welches euch passt.
+##### 2) Testen der Korrelation zwischen den Variablen (Parametrisch oder nicht-parametrische Methode? Ausserdem: gewisse Scatterplotmatrizen zeigen euch die Koeffizenten direkt an)
 
 ```{r tidy=TRUE, message=FALSE,warning=FALSE}
 
