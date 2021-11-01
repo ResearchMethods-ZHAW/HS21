@@ -12,21 +12,35 @@ author:
   - name: Nikolaos Bakogiannis
 ---
 
-```{r echo = FALSE}
-
-```
+https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/zweitwohnung_gemeinden.gpkg
 ```{r, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
+
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+}
+```
+
+
+```{r, include=FALSE, purl = FALSE, results='asis'}
+check_download(c("zweitwohnung_gemeinden.gpkg"), "rauman", "(Quelle: [Swisstopo](https://www.swisstopo.admin.ch/en/geodata/landscape/boundaries3d.html))")
 ```
 
 Datensatz importieren und Libraries laden:
 
-- [zweitwohnungen_gemeinden.gpkg](zweitwohnung_gemeinden.gpkg)
 
 
 ```{r, echo = TRUE}
 library(sf)
-library(tidyverse)
+library(dplyr)
+library(biscale)
+library(cowplot)
+library(ggplot2)
 
 gemeinden_zweitwohnung <- read_sf("zweitwohnung_gemeinden.gpkg")
 ```
