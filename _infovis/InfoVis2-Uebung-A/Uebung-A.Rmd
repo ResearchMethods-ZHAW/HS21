@@ -6,7 +6,7 @@ categories:
 draft: false
 ---
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -199,5 +199,12 @@ ggplot(temperature_long, aes(temperature)) +
   labs(x = "Lage", y = "Temperatur") +
   theme(axis.text.x = element_text(angle = 45,hjust = 1))
 
+```
+
+
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
 ```
 
