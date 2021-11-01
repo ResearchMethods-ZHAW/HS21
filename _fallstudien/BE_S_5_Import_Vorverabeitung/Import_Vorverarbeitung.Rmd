@@ -121,6 +121,8 @@ meteo <- meteo %>%
   ...
 ```
 
+__Hinweis:__ __...__ steht im Code für folgende oder vorhergehende Zeilen im Code (in einer Pipe)
+
 - Prüft nun, wie die Struktur des data.frame (df) aussieht und ob alle NA Werte entfernt wurden (sum(is.na(df$Variable))). Stimmen alle Datentypen?
 
 # Aufgabe 3: Datenvorverarbeitung (Mutationen)
