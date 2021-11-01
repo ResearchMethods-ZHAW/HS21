@@ -18,9 +18,9 @@ knitr::purl("Statistik_2_Demo.Rmd", "Statistik_2_Solution_2.1.R", documentation 
 
 
 
-**Lösungsweg**
+## Lösungsweg
 
-```{r eval=TRUE}
+```{r}
 SAR <- read.delim("SAR.csv", sep = ";")
 SAR
 ```
