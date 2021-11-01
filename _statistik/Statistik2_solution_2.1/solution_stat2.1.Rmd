@@ -15,7 +15,7 @@ knitr::purl("Statistik_2_Demo.Rmd", "Statistik_2_Solution_2.1.R", documentation 
 
 
 - [RCode als Download](Statistik_2_Solution_2.1.R)
-- [Lösungstext als Download](14_Statistik2/Statistik_Loesung_2.1.pdf)
+- [Lösungstext als Download](Statistik_Loesung_2.1.pdf)
 
 
 
