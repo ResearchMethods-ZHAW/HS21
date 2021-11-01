@@ -1,6 +1,5 @@
-## Musterloesung Aufgabe 2.1: Regression
 ---
-title: Musterlösung Übung 2
+title: Musterlösung Übung 2.1: Regression
 output: 
   distill::distill_article:
     toc: true
@@ -22,12 +21,13 @@ knitr::purl("Statistik_2_Demo.Rmd", "Statistik_2_Solution_2.1.R", documentation 
 **Lösungsweg**
 
 ```{r eval=TRUE}
-SAR <- read.delim("14_Statistik2/data/SAR.csv",sep = ";")
+SAR <- read.delim("SAR.csv",sep = ";")
 SAR
 ```
 
 
 **Explorative Datenanalyse**
+
 ```{r}
 summary(SAR)
 boxplot(SAR$area) # extrem rechtsschief
