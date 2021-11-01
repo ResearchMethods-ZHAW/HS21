@@ -1,6 +1,8 @@
 ---
 title: Übung
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - InfoVis1
 draft: false
