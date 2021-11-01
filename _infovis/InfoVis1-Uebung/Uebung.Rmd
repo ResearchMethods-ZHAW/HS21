@@ -38,8 +38,8 @@ Rekonstruiere [Grafik 1](https://blog.tagesanzeiger.ch/datenblog/wp-content/uplo
 - nutze `ggplot(kanton, aes(auslanderanteil, ja_anteil))` um den ggplot zu initiieren. Füge danach ein einen Punkte Layer hinzu (`geom_point()`)
 - nutze `coord_fixed()` um die beiden Achsen in ein fixes Verhältnis zu setzen (1:1).
 - Optional: 
-  - setze die Achsen Start- und Endwerte mittels `lims()` oder `scale_y_continuous` bzw. `scale_x_continuous`.
-  - Setze analog @kovic2014 die `breaks` (`0.0`, `0.1`...`0.7`) manuell
+  - setze die Achsen Start- und Endwerte mittels `scale_y_continuous` bzw. `scale_x_continuous`.
+  - Setze analog @kovic2014 die `breaks` (0.0, 0.1...0.7) manuell (innerhalb `scale_*_continuous`)
 
 Rekonstruktion:
 
@@ -190,7 +190,7 @@ korr_tab <- gemeinde %>%
 
 
 ```{r,echo=F, purl=F}
-knitr::kable(korr_tab)
+knitr::kable(korr_tab,caption = "Legende: * = p<0.05, ** = p<0.01, ***=p<0.001.")
 ```
 
 

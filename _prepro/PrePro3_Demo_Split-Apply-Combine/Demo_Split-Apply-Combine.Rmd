@@ -93,10 +93,9 @@ summarise(by_cyl_2,mean_mpg = mean(mpg))
 
 ### Daten Laden
 
-Wir laden die Wetterdaten von der letzten Übung.
+Wir laden die Wetterdaten (Quelle MeteoSchweiz) von der letzten Übung.
 
 ```{r, echo = FALSE, purl = FALSE}
-
 download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")
 ```
 

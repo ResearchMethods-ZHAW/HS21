@@ -1,0 +1,125 @@
+---
+title: "Cairo Wheel"
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- InfoVis2
+draft: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r, fig.width=15}
+library(dplyr)
+library(ggplot2)
+library(purrr)
+library(tidyr)
+library(stringr)
+library(googlesheets4)
+
+spaceadd <- function(x){
+  if(x>0){
+    paste(rep(" ",x),collapse = "")
+  } else{
+    ""
+  }
+}
+```
+
+
+```{r, fig.width=15}
+mysheet <- "https://docs.google.com/spreadsheets/d/1H6WqAD3Lp5w8bq3eHD81ZpPzwIp85opiltuo8PPOkuk/edit?usp=sharing"
+
+
+run_full <- FALSE
+
+allvals <- if(run_full){
+  gs4_deauth()
+
+  sheets <- googlesheets4::gs4_get(mysheet)$sheets$name
+  
+  sheets <- paste0("Gruppe",c(1, 3:7)) # <- hardcode these values, since not all sheets were used
+
+  retrieved <- map_dfr(sheets, function(x){
+    googlesheets4::read_sheet(mysheet,x) %>%
+      mutate(Gruppe = as.character(x))
+    })
+    
+  readr::write_csv(retrieved, "allvals.csv")
+  retrieved
+  } else{
+  readr::read_csv("allvals.csv")
+  }
+
+
+allvals <- allvals %>%
+  fill(InfoVis) %>%
+  rename_with(~paste("name", ., sep = "_"), c(Parameter, Antagonist))
+
+allvals_long <- allvals %>%
+  mutate(paragroup = paste(name_Parameter, name_Antagonist, sep = "-")) %>%
+  pivot_longer(cols = matches("^name|Wert"),names_to = c(".value", "type"), names_pattern =  "(.+)_(.+)")
+
+
+levs <- c("Abstraction","Functionality","Density","Multi_d","Originality","Novelty","Figuration","Decoration","Lightness","Uni_d","Familiarity","Redundancy")
+
+allvals_long <- allvals_long %>%
+  arrange(Gruppe, InfoVis, type, paragroup) %>%
+  mutate(
+    gruppe_nr = readr::parse_number(Gruppe),
+    name = factor(name, levels = levs),
+    name_int = as.integer(name)
+    )
+```
+
+
+```{r}
+
+cairo_plot <- function(dataset){
+  arropos <- 2
+  text <- tibble(x = c(3.5, 9.5), text = c("more complex / deeper","more intelligible / shallower"))
+  ggplot(dataset, aes(name_int, Wert, fill = Wert)) +
+  geom_segment(aes(xend = name_int, y = 0, yend = 1), color = "lightgray", alpha = 0.5) +
+  geom_segment(aes(xend = name_int, y = 0, yend = Wert)) +
+  geom_point(aes(y = 1), color = "lightgray",size = .8, alpha = 0.5) +
+  geom_point(color = "red") +
+  scale_y_continuous(limits = c(0 ,arropos+.2)) +
+  scale_x_continuous(limits = c(1, 13)) +
+  geom_text(aes(y = 1.4, label = name))  +
+  geom_text(data = text, aes(x, y = 2.2, label = text), inherit.aes = FALSE) +
+  geom_segment(x = 1, xend = 6, y = arropos, yend = arropos, arrow = arrow(ends = "both", type = "closed")) +
+  geom_segment(x = 7, xend = 12, y = arropos, yend = arropos, arrow = arrow(ends = "both", type = "closed")) +
+  coord_polar(start = 4.974188) +
+  facet_wrap(~Gruppe) +
+  theme(
+    axis.title = element_blank(), 
+    axis.text = element_blank(), 
+    axis.ticks.y = element_blank(),
+    panel.background = element_blank(),
+    legend.position = "none",
+    )
+}
+```
+
+
+```{r, layout = "l-page", results="asis", fig.width=18, fig.height=12}
+allvals_long %>%
+  split(.$InfoVis) %>%
+  imap(function(x,y){
+
+    p <- cairo_plot(x) +
+      labs(title = y)
+    
+    print(p)
+    
+    cat("<hr>")
+
+  }) %>%
+  invisible()
+
+
+```
+

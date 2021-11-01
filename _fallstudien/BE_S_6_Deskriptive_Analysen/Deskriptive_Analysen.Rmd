@@ -8,7 +8,7 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S)
-draft: true
+draft: false
 ---
 
 ```{r setup, include=FALSE}
@@ -446,7 +446,7 @@ Wir interessieren uns in den Analysen grundsätzlich für 4 Zeitabschnitte:
 
 Wir haben relativ lange Zeitreihen. Zur Visualisierung des generellen Trends greifen wir darum auf die aggregierten Daten zurück - das macht den Plot übersichtlicher und damit aussagekräftiger.
 
-- Plottet den Verlauf der monatlichen Besuchszahlen an eurer Zählstelle. Auf der x-Achse steht dabei dabei Jahr und Monat (gespeichert im df _depo_m_), auf der y-Achse die monatlichen Besuchszahlen. Zeichnet auch die beiden Lockdown ein.
+- Plottet den Verlauf der monatlichen Besuchszahlen an eurer Zählstelle. Auf der x-Achse steht dabei dabei Jahr und Monat (gespeichert im df _depo_m_), auf der y-Achse die monatlichen Besuchszahlen. Zeichnet auch die beiden Lockdown ein (Hinweis: rundet das Start- und Enddatum des Lockdowns auf den Monat, da im Plot die monatlichen Zahlen gezeigt werden).
 
 Haltet euch dabei an untenstehenden Plot:
 

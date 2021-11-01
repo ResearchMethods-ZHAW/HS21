@@ -1,15 +1,15 @@
 ---
-title: "Aufgabe 2"
+title: Übungen Statistik 2
 output: distill::distill_article
 categories:
 - Statistik2
-draft: true
+draft: false
 ---
 
-```{r echo = FALSE}
 
+```{r include=FALSE, purl=F}
+knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
 ```
-
 ***
 
 **Abzugeben sind am Ende**

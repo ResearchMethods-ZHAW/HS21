@@ -1,0 +1,72 @@
+---
+title: Übungen A
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- RaumAn1
+draft: true
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+---
+
+Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbeiten, die ihrerseits wiederum auf weiteren Packages basieren (Stichwort `dependencies`). 
+
+- Für *Vektordaten* dominierte lange das Package [`sp`](https://cran.r-project.org/package=sp), welches nun durch [`sf`](https://r-spatial.github.io/sf/) abgelöst wurde. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
+- Für *Rasterdaten* dominierte lange das Packge [`raster`](https://rspatial.org/raster/), welches aber nur Schrittweise durch [`terra`](https://rspatial.org/terra) abgelöst wird. Wir werden wenn immer möglich mit `terra` arbeiten und nur in Ausnahmefällen auf `terra` zurück greifen.
+
+
+```{r warning=FALSE, echo = TRUE}
+library(sf)
+library(dplyr)
+library(terra)
+library(ggplot2)
+```
+
+
+
+
+### Aufgabe 1: Vektor Daten runterladen und importieren
+
+Lade zunächst die Datensätze unter folgenden Links herunter:
+
+```{r, echo = FALSE, purl = FALSE, results = "asis"}
+
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+}
+
+check_download(c("kantone.gpkg","bezirke.gpkg"), "rauman", "(Quelle: [Swisstopo](https://www.swisstopo.admin.ch/en/geodata/landscape/boundaries3d.html))")
+```
+
+Es handelt sich um Geodatensätze im Format Geopackage ("\*.gpkg"), eine alternatives Datenformat zum bekannteren Format "Shapefiles". Importiere die Datensätze wie folgt:
+
+```{r, echo = TRUE}
+kantone <- read_sf("kantone.gpkg")
+bezirke <- read_sf("bezirke.gpkg") 
+```
+
+Schau Dir die importierten Datensätze an. Am meisten Informationen zu `sf` Objekten bekommst du, wenn du dir den Datensatz in der Konsole anschaust (in dem du den Variabel-Name in der Konsole eintippst). Mit dem RStudio Viewer werden `sf` Objekte nur sehr langsam geladen und die Metadaten werden nicht angezeigt.
+
+### Aufgabe 2: Daten Visualisieren
+
+Vektordaten (`sf` Objekte) lassen sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren. Das merkt man schnell, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()` Vektordaten direkt und sehr einfach zu plotten. Führe die angegebenen R-Befehle aus und studiere die entstehenden Plots. Welche Unterschiede findest Du? Wie erklärst Du diese Unterschiede?
+
+```{r echo = TRUE}
+ggplot(bezirke) + 
+  geom_sf()
+```
+
+```{r echo = TRUE}
+ggplot(kantone) + 
+  geom_sf()
+```
+
+

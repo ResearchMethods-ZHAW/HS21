@@ -1,16 +1,18 @@
 ---
-title: "Aufgabe 1"
+title: "Übungen Statistik 1"
 output: distill::distill_article
 categories:
 - Statistik1
-draft: true
+draft: false
 ---
+
 
 ###	Aufgabe 1.1: Assoziationstest
 
 Bitte führt einen Assoziationstest zweier kategorialer Variablen (mit je zwei Ausprägungen) mit Chi-Quadrat und Fishers exaktem Test durch. Ihr habt zwei Möglichkeiten: (1) Ihr erhebt dazu selbst die Daten (wozu ihr euch auch in Teams zusammenschliessen könnt). Dabei könnt ihr sowohl Befragungen/Datenerhebung unter Mitstudierenden durchführen (etwa Nutzung Mac/Windows vs. männlich/weiblich) oder Daten zu anderen Objekten erheben. (2) Ihr nehmt zwei kategoriale Variablen aus einem der Novanimal-Datensätze
 ([Feldexperiment](https://zenodo.org/record/3890931/files/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv?download=1') oder [Gästebefragung](https://zenodo.org/record/3554884/files/2019_ZHAW_vonRickenbach_cleaned_recorded_survey_dataset_NOVANIMAL_anonym.csv?download=1)). <br>
 Bitte formuliert in beiden Fällen vor der Datenerhebung/Datenextraktion eine Hypothese, d.h. eine Erwartungshaltung, ob und welche Assoziation vorliegt und wenn ja warum. Bitte beachtet, dass ihr für die Form des Assoziationstests aus dem Kurs zwei binäre Variablen benötigt; wenn ihr also kategoriale Variablen mit mehr als zwei Ausprägungen habt, könnt ihr entweder Ausprägungen sinnvoll zusammenfassen oder seltene Ausprägungen im Test unberücksichtigt lassen.
+
 
 ###	Aufgabe 1.2: t-Test
 

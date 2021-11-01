@@ -3,6 +3,7 @@ title: Übung A
 output: 
   distill::distill_article:
     toc: true
+draft: false
 categories:
 - PrePro2
 author:
@@ -10,7 +11,6 @@ author:
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
 preview: weather.jpg # https://commons.wikimedia.org/wiki/File:%27a_sign_of_good_weather_to_come%27%3F_(10955230055).jpg
-
 ---
 
 ```{r include=FALSE, purl=F}
@@ -32,7 +32,7 @@ library(stringr)
 
 ## Aufgabe 1
 
-Lade die Wetterdaten von letzer Woche runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv)) und importiere sie in `R`. Sorge dafür, dass die Spalten korrekt formatiert sind (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `numeric`.)
+Lade die Wetterdaten von letzer Woche runter ([weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv), Quelle MeteoSchweiz) und importiere sie in `R`. Sorge dafür, dass die Spalten korrekt formatiert sind (`stn` als `factor`, `time` als `POSIXct`, `tre200h0` als `numeric`.)
 
 ```{r, echo = FALSE, purl = FALSE}
 download.file("https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv", "weather.csv")

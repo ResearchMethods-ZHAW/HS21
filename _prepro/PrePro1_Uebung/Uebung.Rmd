@@ -133,7 +133,7 @@ df$Gewichtsklasse[df$Gewicht <= 5] <- "leicht"
 
 ## Aufgabe 4
 
-Importiere den Datensatz [weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) (Rechtsklick -> Speichern Unter). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz. Wir empfehlen [`read_csv()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.csv()`. 
+Importiere den Datensatz [weather.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/prepro/weather.csv) (Rechtsklick -> Speichern Unter, Quelle MeteoSchweiz). Es handelt sich dabei um die stündlich gemittelten Temperaturdaten an verschiedenen Standorten in der Schweiz. Wir empfehlen [`read_csv()`]( http://r4ds.had.co.nz/data-import.html) anstelle von `read.csv()`. 
 
 Achtung! `read_csv` erwartet leicht andere inputs als `read.csv`, schaut euch die Hilfe dazu an (`?read_csv`).
 

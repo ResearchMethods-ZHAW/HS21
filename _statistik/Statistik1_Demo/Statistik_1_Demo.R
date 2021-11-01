@@ -3,14 +3,14 @@ binom.test(57, 100)
 
 qchisq(0.95, 1)
 
-count<-matrix(c(38, 14, 11, 51), nrow = 2)
+count <- matrix(c(38, 14, 11, 51), nrow = 2)
 count
 chisq.test(count)
 fisher.test(count)
 
 a <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
 b <- c(12, 15, 16,7, 8, 10, 12, 11, 13, 10)
-blume<-data.frame(a,b)
+blume <- data.frame(a,b)
 blume
 summary(blume)
 boxplot(blume$a, blume$b)
@@ -23,11 +23,14 @@ t.test(blume$a, blume$b)
 t.test(blume$a, blume$b, alternative = "greater") #einseitig
 t.test(blume$a, blume$b, alternative = "less") #einseitig
 
-t.test(blume$a, blume$b, var.equal = T) #Varianzen gleich, klassischer t-Test
-t.test(blume$a, blume$b, var.equal = F) #Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht                        # definiert wird, wird ein Welch's t-Test ausgeführt. 
+# Varianzen gleich, klassischer t-Test
+t.test(blume$a, blume$b, var.equal = T) 
+
+# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
+t.test(blume$a, blume$b, var.equal = F) 
 
 t.test(blume$a, blume$b, paired = T)
-t.test(blume$a, blume$b, paired = T, alternative="greater")
+t.test(blume$a, blume$b, paired = T, alternative = "greater")
 
 shapiro.test(blume$b)
 var.test(blume$a, blume$b)
@@ -43,18 +46,17 @@ blume.long <- data.frame(cultivar, size)
 rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
 rm(cultivar)
 
-
-rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
-rm(cultivar)
-
-blume.long <- data.frame(cultivar=c(rep("a", 10), rep("b", 10)), size=c(a, b))
+blume.long <- data.frame(cultivar = c(rep("a", 10), rep("b", 10)), size = c(a, b))
 summary(blume.long)             
 head(blume.long)
 
 boxplot(size~cultivar, data = blume.long)
 
 t.test(size~cultivar, blume.long, var.equal = T)
-t.test(size~cultivar, blume.long, var.equal = F)
+
+# gepaarter t-Test erster Wert von Cultivar a wird mit erstem Wert von Cultivar
+# b gepaart, zweiter Wert von a mit zweitem von b ect.
+t.test(size~cultivar, blume.long, paired = T)
 
 
 library(tidyverse)
