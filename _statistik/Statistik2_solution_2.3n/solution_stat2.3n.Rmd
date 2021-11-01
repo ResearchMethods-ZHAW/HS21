@@ -1,7 +1,19 @@
-## Musterloesung Aufgabe 2.3N: Mehrfaktorielle ANOVA
+---
+title: Musterlösung Übung 2.3n: Mehrfaktorielle ANOVA
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik2
+draft: true
+---
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution_stat2.3n.Rmd", "Statistik_2_Solution_2.3n.R", documentation = 0)
+```
+
 
 - [RCode als Download](14_Statistik2/RFiles/Loesung_2.3N_v.03.R)
-- [Loesungstext 2.3](14_Statistik2/Statistik_Uebung_2.3N_Loesung_v.02.pdf)
+- [Loesungstext 2.3](Statistik_Loesung_2.3N_v.02.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -42,7 +54,7 @@ Vorgehen dokumentieren.
 **kommentierter Lösungsweg**
 
 ```{r}
-kormoran <- read.delim("14_Statistik2/data/kormoran.csv", sep = ";", stringsAsFactors = T)  #Working directory muss angepasst werden
+kormoran <- read.delim("kormoran.csv", sep = ";", stringsAsFactors = T)  #Working directory muss angepasst werden
 
 ## Ueberpruefen, ob Einlesen richtig funktioniert hat und welche Datenstruktur vorliegt
 str(kormoran)
@@ -54,7 +66,7 @@ summary(kormoran)
 
 
 # Umsortieren der Faktoren, damit sie in den Boxplots eine sinnvolle Reihung haben
-levels(kormoran$Jahreszeit) <- c("F","S","H","W")
+levels(kormoran$Jahreszeit) <- c("F", "S", "H", "W")
 
 # Explorative Datenanalyse (zeigt uns die Gesamtverteilung)
 boxplot(kormoran$Tauchzeit)
@@ -80,7 +92,7 @@ summary(aov.1)
 #Das volle (maximale) Modell zeigt, dass es keine signifikante Interaktion zwischen Jahreszeit und Unterart gibt. Wir können das Modell also vereinfachen, indem wir die Interaktion herausnehmen (+ statt * in der Modellspezifikation)
 
 #Modellvereinfachung
-aov.2 <- aov(Tauchzeit~Unterart+Jahreszeit, data = kormoran)
+aov.2 <- aov(Tauchzeit~Unterart + Jahreszeit, data = kormoran)
 aov.2
 summary(aov.2)
 
@@ -91,7 +103,7 @@ anova(aov.1, aov.2)
 #in diesem Fall bekommen wir den gleichen p-Wert wie oben (0.266)
 
 #Modelldiagnostik
-par(mfrow=c(2,2)) #alle vier Abbildungen in einem 2 x 2 Raster
+par(mfrow = c(2, 2)) #alle vier Abbildungen in einem 2 x 2 Raster
 plot(aov.2)
 influence.measures(aov.2) # kann man sich zusätzlich zum "plot" ansehen, um herauszufinden, ob es evtl. sehr einflussreiche Werte mit Cook's D von 1 oder grösser gibt
 
@@ -100,7 +112,7 @@ influence.measures(aov.2) # kann man sich zusätzlich zum "plot" ansehen, um her
 #Rechts unten: kein Punkt hat einen problematischen Einfluss (die roten Linien für Cook’s D > 0.5 und > 1 sind noch nicht einmal im Bildausschnitt.
 
 #Alternative mit log10
-aov.3 <-aov(log10(Tauchzeit)~Unterart+Jahreszeit, data=kormoran)
+aov.3 <-aov(log10(Tauchzeit)~Unterart + Jahreszeit, data=kormoran)
 aov.3
 summary(aov.3)
 plot(aov.3)
@@ -115,20 +127,20 @@ par(mfrow=c(1,1)) #Zurückschalten auf Einzelplots
 if(!require(multcomp)){install.packages("multcomp")} 
 library(multcomp)
 
-boxplot(Tauchzeit~Unterart, xlab="Unterart", ylab="Tauchzeit", data=kormoran)
-letters<-cld(glht(aov.2, linfct=mcp(Unterart="Tukey")))
-mtext(letters$mcletters$Letters,at=1:2)
+boxplot(Tauchzeit~Unterart, xlab = "Unterart", ylab = "Tauchzeit", data = kormoran)
+letters <- cld(glht(aov.2, linfct=mcp(Unterart = "Tukey")))
+mtext(letters$mcletters$Letters,at = 1:2)
 #genaugenommen braucht man bei nur zwei Kategorien keinen post hoc-Test
 
-letters<-cld(glht(aov.2, linfct=mcp(Jahreszeit="Tukey")))
-boxplot(Tauchzeit~Jahreszeit, xlab="Jahreszeit", ylab="Tauchzeit", data=kormoran) #Achsenbeschriftung nicht vergessen!
+letters<-cld(glht(aov.2, linfct=mcp(Jahreszeit = "Tukey")))
+boxplot(Tauchzeit~Jahreszeit, xlab = "Jahreszeit", ylab = "Tauchzeit", data = kormoran) #Achsenbeschriftung nicht vergessen!
 
 #Jetzt brauchen wir noch die Mittelwerte bzw. Effektgroessen
 
 #Für den Ergebnistext brauchen wir auch noch Angaben zu den Effektgrössen. Hier sind zwei Möglichkeiten, um an sie zu gelangen.
-aggregate(Tauchzeit~Jahreszeit, FUN=mean, data=kormoran)
-aggregate(Tauchzeit~Unterart, FUN=mean, data=kormoran)
+aggregate(Tauchzeit~Jahreszeit, FUN = mean, data = kormoran)
+aggregate(Tauchzeit~Unterart, FUN = mean, data = kormoran)
 
-summary(lm(Tauchzeit~Jahreszeit, data=kormoran))
-summary(lm(Tauchzeit~Unterart, data=kormoran))
+summary(lm(Tauchzeit~Jahreszeit, data = kormoran))
+summary(lm(Tauchzeit~Unterart, data = kormoran))
 ```

@@ -9,7 +9,7 @@ draft: true
 ---
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Statistik_2_Demo.Rmd", "Statistik_2_Solution_2.1.R", documentation = 0)
+knitr::purl("solution_stat2.1.Rmd", "Statistik_2_Solution_2.1.R", documentation = 0)
 ```
 
 
