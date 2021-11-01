@@ -1,6 +1,20 @@
 ## Musterloesung Aufgabe 2.1: Regression
+---
+title: Musterlösung Übung 2
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik2
+draft: true
+---
 
-- [RCode als Download](14_Statistik2/RFiles/Loesung_2.1_v.06.R)
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("Statistik_2_Demo.Rmd", "Statistik_2_Solution_2.1.R", documentation = 0)
+```
+
+
+- [RCode als Download](Statistik_2_Solution_2.1.R)
 - [Lösungstext als Download](14_Statistik2/Statistik_Loesung_2.1.pdf)
 
 
