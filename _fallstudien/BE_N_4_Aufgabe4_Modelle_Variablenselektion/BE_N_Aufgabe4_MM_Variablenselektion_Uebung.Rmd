@@ -131,8 +131,8 @@ ggplot(DF_mod_day, aes(nmb)) + geom_histogram()
 
 ```{r tidy=TRUE, eval=FALSE, message=FALSE}
 
-# Die erklaerende Variable in m1 ist die erste Variable der korrelierdenen Beziehung
-# Die erklaerende Variable in m2 ist die zweite Variable der korrelierdenen Beziehung
+# Die erklaerende Variable in m1 ist die erste Variable der korrelierenden Beziehung
+# Die erklaerende Variable in m2 ist die zweite Variable der korrelierenden Beziehung
 
 m1 <- glmer(Abhaengige_Variable ~ Erklaerende_Variable + (1 | id), data = DF_mod_day, 
             family = binomial)
