@@ -366,15 +366,11 @@ Mean_h <- depo %>%
   group_by(Wochentag, Stunde, Phase) %>% 
   summarise(Total = mean(Total)) 
 
-# transformiere fuer Plotting
-Mean_h_long<- reshape2::melt(Mean_h,measure.vars = c("Total"),
-                             value.name = "Durchschnitt",variable.name = "Gruppe")
-
 # Plotte den Tagesgang, unterteilt nach Wochentagen
 
 # Normal
-tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
-                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+tag_norm <- ggplot(subset(Mean_h, Phase %in% c("Normal")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
   scale_linetype_manual(values = c(rep("solid", 5),  "twodash", "twodash"))+
@@ -386,8 +382,8 @@ tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")),
 
 # Lockdown 1
 
-tag_lock_1 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_1")), 
-                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+tag_lock_1 <- ggplot(subset(Mean_h, Phase %in% c("Lockdown_1")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
@@ -398,8 +394,8 @@ tag_lock_1 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_1")),
   theme(legend.position = "right")
 
 # Lockdown 2
-tag_lock_2 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_2")), 
-                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+tag_lock_2 <- ggplot(subset(Mean_h, Phase %in% c("Lockdown_2")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
@@ -410,8 +406,8 @@ tag_lock_2 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_2")),
   theme(legend.position = "right")
 
 # Covid
-tag_covid <- ggplot(subset(Mean_h_long, Phase %in% c("Covid")), 
-                     mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
+tag_covid <- ggplot(subset(Mean_h, Phase %in% c("Covid")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
   geom_line(size = 2)+
   scale_colour_viridis_d()+
   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
@@ -470,19 +466,19 @@ write.csv(mean_phase_d, "_fallstudien/_R_analysis/results/mean_phase_d.csv")
 
 # selektiere absolute Zahlen
 # behalte rel. Spalten (nur die relativen Prozentangaben)
-mean_phase_d_abs <- mean_phase_d[,-c(2,5,6), drop=FALSE]
+mean_phase_d_abs <- mean_phase_d %>% dplyr::select(-c(Total, Proz_IN, Proz_OUT))
+
 # transformiere fuer Plotting
-mean_phase_d_abs <- reshape2::melt(mean_phase_d_abs, 
-                                     measure.vars = c("IN","OUT"),
-                                     value.name = "Durchschnitt",variable.name = "Gruppe")
+mean_phase_d_abs <- pivot_longer(mean_phase_d_abs, cols = c("IN","OUT"), 
+             names_to = "Gruppe", values_to = "Durchschnitt")
 
 # selektiere relative Zahlen
 # behalte rel. Spalten (nur die relativen Prozentangaben)
-mean_phase_d_proz <- mean_phase_d[,-c(2:4), drop=FALSE]
+mean_phase_d_proz <- mean_phase_d %>% dplyr::select(-c(Total:OUT))
+
 # transformiere fuer Plotting
-mean_phase_d_proz <- reshape2::melt(mean_phase_d_proz, 
-                                 measure.vars = c("Proz_IN","Proz_OUT"),
-                                 value.name = "Durchschnitt",variable.name = "Gruppe")
+mean_phase_d_proz <- pivot_longer(mean_phase_d_proz, cols = c("Proz_IN","Proz_OUT"), 
+                                  names_to = "Gruppe", values_to = "Durchschnitt")
 
 # Visualisierung abs
 abs <- ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
