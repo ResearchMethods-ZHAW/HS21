@@ -519,6 +519,10 @@ ggsave("Verteilung.png", width=20, height=15, units="cm", dpi=1000,
 # 4.1 Einflussfaktoren Besucherzahl ####
 # Erstelle ein df indem die taeglichen Zaehldaten und Meteodaten vereint sind
 umwelt <- inner_join(depo_d, meteo, by = c("Datum" = "time"))
+
+# entferne ueberfluessige Spalten 
+umwelt <- umwelt %>% dplyr::select(-c(stn, Fuss_IN, Fuss_OUT))
+
 # Das zusammenfuehren folgt evtl. in NA-Werten bei gewissen Tagen
 sum(is.na(umwelt))
 
