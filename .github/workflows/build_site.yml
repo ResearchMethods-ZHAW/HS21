@@ -2,7 +2,7 @@ on:
   push:
     branches: main
 
-name: Render & Deploy Site
+name: Build & Deploy Site
 env:
   RENV_PATHS_ROOT: ~/.local/share/renv
 

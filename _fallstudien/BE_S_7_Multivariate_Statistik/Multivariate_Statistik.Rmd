@@ -8,7 +8,7 @@ output:
     self_contained: false
 categories:
   - Biodiversity & Ecosystems (S)
-draft: true
+draft: false
 ---
 
 
@@ -937,7 +937,7 @@ t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Wochenta
 
 Nachdem die deskriptiven Resultate vorliegen, kann jetzt die Berechnung eines multivariaten Modells angegangen werden. Das Ziel ist es, den Zusammenhang zwischen der gesamten Anzahl Besucher:innen (Total) und verschiedenen erklärenden Variablen (Wetter, Ferien, Phase Covid, Wochentag, KW, Jahr) aufzuzeigen.
 
-# Aufgabe 1: Join
+# Aufgabe 1: Verbinden von Daten (Join)
 
 Aktuell haben wir noch zwei einzelne Datensätze von Interesse:
 
@@ -945,7 +945,7 @@ Aktuell haben wir noch zwei einzelne Datensätze von Interesse:
 
 2) und einen mit den Wetterparametern ("meteo"). 
 
-- Diese beiden Datensätze muüssen miteinander verbunden werden. __Ziel__: Ein Datensatz mit den Zähldaten und Datumsinformationen angereichert mit Wetterdaten. Der neue Datensatz soll " __umwelt__ " heissen.
+- Diese beiden Datensätze müssen miteinander verbunden werden. __Ziel__: Ein Datensatz mit den täglichen Zähldaten und Datumsinformationen angereichert mit Wetterdaten. Der neue Datensatz soll " __umwelt__ " heissen.
 
 - Sind durch das Zusammenführen NA's entstanden? Falls ja, müssen __alle__ für die weiteren Auswertungen ausgeschlossen werden.
 
@@ -965,10 +965,9 @@ __Hinweis:__ etwas ganz ähnliches habt ihr unter Import/Vorverarbeitung bereits
 
 - Auch das Jahr und die KW müssen als Faktor vorliegen.
 
-- Nachfolgende Schritte funktionieren nur, wenn __umwelt__ als data.frame vorliegt. Prüft das und ändert das, falls noch kein data.frame.
+- Nachfolgende Schritte funktionieren nur, wenn __umwelt__ als data.frame vorliegt. Prüft das und ändert das, falls noch kein __data.frame__.
 
-- Unser Modell kann nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. 
-Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)
+- Unser Modell kann nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)
 
 ## 2c) 
 
@@ -985,6 +984,7 @@ umwelt <- umwelt %>%
 # Aufgabe 3: Korrelationen und Variablenselektion
 
 ## 3a) 
+
 Korrelierende Variablen können das Modellergebnis verfälschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden. Welches sind die erklärenden Variablen, welches ist die Abhängige? 
 
 - Teste mittels folgendem Code auf eine Korrelation zwischen den Messwerten.
@@ -995,9 +995,10 @@ cor <-  cor(umwelt[,ERSTE SPALTE MIT ERKLAERENDEN MESSWERTEN :
 ```
 
 ## 3b) 
-Korrelationsmatrix erstellen
 
-Mit dem folgenden Code kann eine simple Korrelationsmatrix (mit den Messwerten) aufgebaut werden. Hier kann auch die Schwelle für die Korrelation gesetzt werden (0.7 ist liberal / 0.5 konservativ).
+- Korrelationsmatrix erstellen
+
+Mit dem folgenden Code kann eine Korrelationsmatrix (mit den Messwerten) aufgebaut werden. Hier kann auch die Schwelle für die Korrelation gesetzt werden (0.7 ist liberal / 0.5 konservativ).
 
 ```{r eval=FALSE}
 cor[abs(cor) < 0.7] <-  0 #Setzt alle Werte kleiner 0.7 auf 0
@@ -1016,8 +1017,10 @@ Falls ja: warum? Falls nein: schliesst den betreffenden Parameter aus. Wenn ihr 
 
 # Aufgabe 4 (OPTIONAL): Automatische Variablenselektion
 
-Führe die dredge-Funktion und ein Modelaveraging durch. Der Code dazu ist untenstehend. 
+Führe die dredge-Funktion und ein Modelaveraging durch. Der Code dazu ist unten. 
 Was passiert in der Funktion? Macht es Sinn, die Funktion auszuführen?
+
+__Hinweis:__ untenstehender Code ist rechenentensiv.
 
 ```{r eval=FALSE}
 f <- Total ~ Wochentag + Ferien + Phase +
@@ -1037,19 +1040,19 @@ MuMIn::importance(all_m)
 
 # Schliesslich wird ein Modelaverage durchgeführt 
 # Schwellenwert für das delta-AIC = 2
-avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500) 
+avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 2) 
 summary(avgmodel)
 ```
 
 # Aufgabe 5: Verteilung der abhaengigen Variabel pruefen
 
-Die Verteilung der abhängigen Variabel bestimmt generell, was für ein Modell geschrieben werden kann. Die Modelle gehen von einer gegebenen Verteilung aus. Wenn diese Annahme verletzt wir, kann es sein, dass das Modellergebnis nicht valide ist.
+Die Verteilung der abhängigen Variabel bestimmt generell, was für ein Modell geschrieben werden kann. Die Modelle gehen von einer gegebenen Verteilung aus. Wenn diese Annahme verletzt wird, kann es sein, dass das Modellergebnis nicht valide ist.
 
 - Folgender Codeblock zeigt, wie die Daten auf verschiedene Verteilungen passen.
 
-__Hinweis:__ es kann sein, dass nicht jede Verteilung geplottet werden kann, es erscheint eine Fehlermeldung. Das ist nicht weiter schlimm, die betreffende Verteilung kann gelöscht werden. Analog muss das auch im Befehl gofstat passieren.
+__Hinweis:__ es kann sein, dass nicht jede Verteilung geplottet werden kann, es erscheint eine Fehlermeldung. Das ist nicht weiter schlimm, die betreffende Verteilung kann gelöscht werden. Analog muss das auch im Befehl __gofstat()__ passieren.
 
-- Die besten drei (gemäss AIC) sollen zur Visualisierung geplottet werden. 
+- Die besten drei Verteilungen (gemäss AIC) sollen zur Visualisierung geplottet werden. 
 
 ```{r eval=FALSE}
 f1<-fitdist(umwelt$Anzahl_Total,"norm")  # Normalverteilung
@@ -1073,7 +1076,7 @@ plot.legend <- c("log norm", "weibull", "gamma ", "negativ binomial")
 cdfcomp(list(f1_1, f8, f5, f3), legendtext = plot.legend)
 ```
 
-Wie sind unsere Daten also verteilt? Welche Modelle können wir anwenden?
+Wie sind unsere Daten verteilt? Welche Modelle können wir anwenden?
 
 # Aufgabe 6: Multivariates Modell berechnen
 
@@ -1081,9 +1084,11 @@ Ich verwende die Funktion __glmer()__ aus der Bibliothek __lme4__. glmer ist neu
 
 ## 6a) 
 
-- Die Totale Besucheranzahl soll durch die Wetterparameter, den Wochentag, die Ferien sowie die Covid-Phasen erklaert werden (Datensatz "umwelt"). Die Saisonalitaet (KW und Jahr) soll hierbei nicht beachtet werden, sie werden als "random factor" bestimmt. 
+- Die Totale Besucheranzahl soll durch die Wetterparameter, den Wochentag, die Ferien sowie die Covid-Phasen erklärt werden (Datensatz "umwelt"). Die Saisonalität (KW und Jahr) soll hierbei nicht beachtet werden, sie werden als "random factor" bestimmt. 
 
-Frage: Warum bestimmen wir KW und Jahr als Random Factor?
+Frage: Warum bestimmen wir KW und Jahr als random factor?
+
+Falls ihr der Meinung seid, KW und / oder Jahr sind keine "guten" random factor, dann nehmt sie nicht an random factor ins Modell sondern als erklärende Variable. Begründet das unbedingt in eurer Methodik.
 
 __Hinweis:__ Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial (in meinem Fall) ist, berechne ich für den Vergleich zuerst ein "einfaches Modell" der Familie poisson.
 
@@ -1105,7 +1110,7 @@ Frage: Was bedeutet "family = poisson"?
 
 - Prüft optisch ob euer Modell valide ist.
 
-__Hinweis:__ glmer bringt einige eigene Funktionen mit, mit denen sich testen lässt, ob das Modell valide ist. Untenstehend sind sie aufgeführt (--> analog zu den Funktionen aus der Vorlesung, aber halt für glmer).
+__Hinweis:__ glmer bringt einige eigene Funktionen mit, mit denen sich testen lässt, ob das Modell valide ist. Unten sind sie aufgeführt (--> analog zu den Funktionen aus der Vorlesung, aber halt für glmer).
 
 ```{r eval=FALSE}
 # Verteilung der Residuen
@@ -1123,7 +1128,7 @@ Sind die Voraussetzungen des Modells erfuellt?
 
 ## 6c) Alternative Modelle
 
-Wir sind auf der Suche nach dem minimalen adäquaten Modell. Das ist ein iterativer Weg. Wir schreiben ein Modell, prüfen ob die Voraussetzungen erfüllt sind und ob die abhängige Variable besser erklärt wird als im vorhergehenden.
+Wir sind auf der Suche nach dem minimalen adäquaten Modell. Das ist ein iterativer Prozess. Wir schreiben ein Modell, prüfen ob die Voraussetzungen erfüllt sind und ob die abhängige Variable besser erklärt wird als im vorhergehenden. Und machen das nochmals und nochmals...
 
 - Unsere (meine) Daten sind negativ binomial verteilt. Daher sollte wir unbedingt ein solches Modell programmieren. --> Funktion __glmer.nb()__
 
@@ -1244,10 +1249,12 @@ labels <- round(seq(floor(min(umwelt$tre200jx)), ceiling(max(umwelt$tre200jx)),
                        labels = c(labels))+
     
     # fuege die y- Achsenbeschriftung hinzu. Hier transformieren wir die Werte zurueck
+    # Hinweis: falls ihr keine Transformation gemacht habt, muessen die y-Werte auch nicht 
+    # zuruecktransformiert werden.
     scale_y_continuous(breaks = c(0,0.5,1,1.5,2),
                        labels = round(c(10^0, 10^0.5, 10^1, 10^1.5, 10^2),0),
                        limits = c(0, 2))+ 
-    theme_classic(base_size = 20))
+    theme_classic(base_size = 15))
 
 # Exportiere das Resultat
 ggsave("temp.png", width=15, height=15, units="cm", dpi=1000, 
@@ -1258,5 +1265,4 @@ __Hinweis:__ damit unsere Plots verglichen werden können, sollen sie alle diese
 
 # Abschluss
 
-Nun habt ihr verschiedenste Ergebnisse vorliegen. In einem wissenschaftlichen Bericht sollen aber niemals alle Ergebnisse abgebildet werden --> Eine Faustregel besagt, dass nur signifikante Ergebnisse visualisiert werden.
-Entscheidet euch also, was ihr in eurem Bericht abbilden wollt und was lediglich besprochen werden soll.
+Nun habt ihr verschiedenste Ergebnisse vorliegen. In einem wissenschaftlichen Bericht sollen aber niemals alle Ergebnisse abgebildet werden. Eine Faustregel besagt, dass nur signifikante Ergebnisse visualisiert werden. Entscheidet euch daher, was ihr in eurem Bericht abbilden wollt und was lediglich besprochen werden soll.
