@@ -550,7 +550,6 @@ Vom Grossen zum Kleinen, von der Übersicht ins Detail. Jetzt widmen wir uns dem
 
 - Berechnet zuerst den Mittelwert der Totalen Besuchszahlen pro Wochentag pro Stunde pro Phase. (ganz ähnlich wie unter 2a) und speichert das df unter __Mean_h__.
 
-ggplots haben Daten lieber im Format long als wide. 
 
 ## 3b)
 
