@@ -2372,8 +2372,8 @@ Interna
 <h5 id="als-abhaengige-variable-verwenden-wir-in-der-ersten-phase-die-praesenzabsenz-der-rehe-in-den-kreisen">Als abhaengige Variable verwenden wir in der ersten Phase die Praesenz/Absenz der Rehe in den Kreisen</h5>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Die erklaerende Variable in m1 ist die erste Variable der korrelierdenen Beziehung</span>
-<span class='co'># Die erklaerende Variable in m2 ist die zweite Variable der korrelierdenen Beziehung</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Die erklaerende Variable in m1 ist die erste Variable der korrelierenden Beziehung</span>
+<span class='co'># Die erklaerende Variable in m2 ist die zweite Variable der korrelierenden Beziehung</span>
 
 <span class='va'>m1</span> <span class='op'>&lt;-</span> <span class='fu'>glmer</span><span class='op'>(</span><span class='va'>Abhaengige_Variable</span> <span class='op'>~</span> <span class='va'>Erklaerende_Variable</span> <span class='op'>+</span> <span class='op'>(</span><span class='fl'>1</span> <span class='op'>|</span> <span class='va'>id</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>DF_mod_day</span>, 
             family <span class='op'>=</span> <span class='va'>binomial</span><span class='op'>)</span>
