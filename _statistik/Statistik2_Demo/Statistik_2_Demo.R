@@ -4,7 +4,7 @@ b <- c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
 blume <- data.frame(cultivar = c(rep("a", 10), rep("b" , 10)), size = c(a, b))
 
 par(mfrow=c(1,1))
-boxplot(size~cultivar, xlab = "Sorte", ylab = "Bluetengroesse [cm]", data=blume)
+boxplot(size~cultivar, xlab = "Sorte", ylab = "Bluetengroesse [cm]", data = blume)
 
 t.test(size~cultivar, blume, var.equal = T)
 
@@ -14,7 +14,7 @@ summary.lm(aov(size~cultivar, data = blume))
 
 c <- c(30, 19, 31, 23, 18, 25, 26, 24, 17, 20)
 
-blume2 <- data.frame(cultivar = c(rep("a", 10), rep("b", 10), rep("c", 10)), size=c(a, b, c))
+blume2 <- data.frame(cultivar = c(rep("a", 10), rep("b", 10), rep("c", 10)), size = c(a, b, c))
 blume2$cultivar <- as.factor(blume2$cultivar)
 
 summary(blume2)             
@@ -68,7 +68,8 @@ summary(aov(size~cultivar, data = blume2))
 kruskal.test(size~cultivar, data = blume2)
 if(!require(FSA)){install.packages("FSA")} 
 library(FSA)
-dunnTest(size~cultivar, method = "bh", data = blume2) #korrigierte p-Werte nach Bejamini-Hochberg
+#korrigierte p-Werte nach Bejamini-Hochberg
+dunnTest(size~cultivar, method = "bh", data = blume2) 
 
 oneway.test(size~cultivar, var.equal = F, data = blume2)
 
@@ -79,13 +80,15 @@ f <- c(10, 12, 11, 13, 10, 9, 2, 4, 7, 13)
 blume3 <- data.frame(cultivar=c(rep("a", 20), rep("b", 20), rep("c", 20)),
                    house = c(rep(c(rep("yes", 10), rep("no", 10)), 3)),
                   size = c(a, b, c, d, e, f))
+
 blume3
 
 boxplot(size~cultivar + house, data = blume3)
 
 summary(aov(size~cultivar + house, data = blume3))
-summary(aov(size~cultivar + house+cultivar:house, data = blume3)) 
-summary(aov(size~cultivar * house, data = blume3)) #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
+summary(aov(size~cultivar + house + cultivar:house, data = blume3)) 
+#Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
+summary(aov(size~cultivar * house, data = blume3)) 
 
 summary.lm(aov(size~cultivar+house, data = blume3))
 

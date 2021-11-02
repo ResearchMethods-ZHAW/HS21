@@ -6,18 +6,19 @@ categories:
 draft: false
 ---
 
-
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
 knitr::purl("Statistik_1_Demo.Rmd", "Statistik_1_Demo.R", documentation = 0)
 ```
 
-[Demoskript als Download](Statistik_1_Demo.R)
+[Demoskript als Download](Statistik_1_Demo_v.06.R)
 
 
 ### Binomialtest
 
+In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+
 ```{r}
-binom.test(43, 100) #In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+binom.test(43, 100)
 binom.test(57, 100)
 ```
 
@@ -45,7 +46,7 @@ fisher.test(count)
 
 ```{r}
 a <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14)
-b <- c(12, 15, 16,7, 8, 10, 12, 11, 13, 10)
+b <- c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
 blume <- data.frame(a,b)
 blume
 summary(blume)
@@ -76,7 +77,8 @@ klassischer t-Test vs. Welch Test
 # Varianzen gleich, klassischer t-Test
 t.test(blume$a, blume$b, var.equal = T) 
 
-# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
+# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal 
+# nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
 t.test(blume$a, blume$b, var.equal = F) 
 ```
 
@@ -88,23 +90,12 @@ t.test(blume$a, blume$b, paired = T)
 t.test(blume$a, blume$b, paired = T, alternative = "greater")
 ```
 
-Wilcoxon-Vorzeichen-Rang-Test
-
-```{r}
-shapiro.test(blume$b)
-var.test(blume$a, blume$b)
-if(!require(car)){install.packages("car")} # installiert das Zusatzpacket car (wenn nicht bereits installiert)
-library(car)
-leveneTest(blume$a, blume$b, center=mean)
-wilcox.test(blume$a, blume$b)
-```
-
 
 Das gleiche mit einem “long table”
 
 ```{r}
 cultivar <- c(rep("a", 10), rep("b", 10))
-size <- c(a,b)
+size <- c(a, b)
 blume.long <- data.frame(cultivar, size)
 
 rm(size) #Befehl rm entfernt die nicht mehr benötitgten Objekte aus dem Workspace
@@ -132,15 +123,14 @@ t.test(size~cultivar, blume.long, paired = T)
 ### Base R vs. ggplot2
 
 ```{r}
-
 library(tidyverse)
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot() + theme_classic()
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size = 1) + theme_classic()+
-theme(axis.line = element_line(size=1)) + theme(axis.title = element_text(size = 14))+
-theme(axis.text = element_text(size=14))
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot(size=1) + theme_classic()+
-  theme(axis.line = element_line(size=1), axis.ticks = element_line(size = 1), 
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot()
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot() + theme_classic()
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot(size = 1) + theme_classic()+
+theme(axis.line = element_line(size = 1)) + theme(axis.title = element_text(size = 14))+
+theme(axis.text = element_text(size = 14))
+ggplot(blume.long, aes(cultivar, size)) + geom_boxplot(size=1) + theme_classic()+
+  theme(axis.line = element_line(size = 1), axis.ticks = element_line(size = 1), 
        axis.text = element_text(size = 20), axis.title = element_text(size = 20))
 ```
 
@@ -166,7 +156,8 @@ t_test <- t.test(size~cultivar, blume.long)
 ggplot(blume.long, aes(cultivar, size)) + 
   geom_boxplot(size = 1) + 
   mytheme +
-  annotate("text", x = "b", y = 24, label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
+  annotate("text", x = "b", y = 24, 
+  label = paste0("italic(p) == ", round(t_test$p.value, 3)), parse = TRUE, size = 8)
 
 ggplot (blume.long, aes(cultivar,size)) + 
   geom_boxplot(size = 1) + 

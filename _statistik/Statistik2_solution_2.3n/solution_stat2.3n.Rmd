@@ -12,12 +12,12 @@ knitr::purl("solution_stat2.3n.Rmd", "Statistik_2_Solution_2.3n.R", documentatio
 ```
 
 
-- [RCode als Download](14_Statistik2/RFiles/Loesung_2.3N_v.03.R)
+- [RCode als Download](Statistik_2_Solution_2.3n.R)
 - [Loesungstext 2.3](Statistik_Loesung_2.3N_v.02.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
-- Laden Sie den Datensatz kormoran.txt mit read.table. Dieser enthält Tauchzeiten
+- Laden Sie den Datensatz kormoran.csv mit ein Dieser enthält Tauchzeiten
 (hier ohne Einheit) von Kormoranen in Abhängigkeit von Jahreszeit und Unterart.
 Unterarten: Phalacrocorax carbo carbo (C) und Phalacrocorax carbo sinensis (S);
 Jahreszeiten: F = Frühling, S = Sommer, H = Herbst, W = Winter.
@@ -123,13 +123,13 @@ plot(aov.3)
 
 #Da wir keine Interaktion zwischen Unterart und Jahreszeit festgestellt haben, brauchen wir auch keinen Interaktionsplot (unnötig kompliziert), statt dessen können wir die Ergebnisse am besten mit zwei getrennten Plots für die beiden Faktoren darstellen. Bitte die Achsenbeschriftungen und den Tukey post-hoc-Test nicht vergessen.
 
-par(mfrow=c(1,1)) #Zurückschalten auf Einzelplots
+par(mfrow=c(1, 1)) #Zurückschalten auf Einzelplots
 if(!require(multcomp)){install.packages("multcomp")} 
 library(multcomp)
 
 boxplot(Tauchzeit~Unterart, xlab = "Unterart", ylab = "Tauchzeit", data = kormoran)
-letters <- cld(glht(aov.2, linfct=mcp(Unterart = "Tukey")))
-mtext(letters$mcletters$Letters,at = 1:2)
+letters <- cld(glht(aov.2, linfct = mcp(Unterart = "Tukey")))
+mtext(letters$mcletters$Letters, at = 1:2)
 #genaugenommen braucht man bei nur zwei Kategorien keinen post hoc-Test
 
 letters<-cld(glht(aov.2, linfct=mcp(Jahreszeit = "Tukey")))
