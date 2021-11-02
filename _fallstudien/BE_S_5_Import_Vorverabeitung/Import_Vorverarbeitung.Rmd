@@ -259,6 +259,8 @@ Z.B. sind folgende Befehle und Plots wichtig:
 - Histrogram
 - usw.
 
+__Hinweis:__ Geht noch nicht zu weit mit euren Plots. Die Idee ist, dass man sich einen Überblick über die Daten verschafft und noch keine "analysierenden" Plots erstellt.
+
 __--> Erklärt dem Plenum am 26.10.2021 was ihr gemacht habt, was eure Daten zeigen und präsentiert diese einfachen Plots. __
 
 Nachdem nun alle Daten vorbereitet sind folgt im nächsten Schritt die Analyse.
