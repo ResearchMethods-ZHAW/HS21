@@ -15,8 +15,10 @@ knitr::purl("Statistik_1_Demo.Rmd", "Statistik_1_Demo.R", documentation = 0)
 
 ### Binomialtest
 
+In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+
 ```{r}
-binom.test(43, 100) #In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+binom.test(43, 100)
 binom.test(57, 100)
 ```
 
@@ -75,7 +77,8 @@ klassischer t-Test vs. Welch Test
 # Varianzen gleich, klassischer t-Test
 t.test(blume$a, blume$b, var.equal = T) 
 
-# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
+# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal 
+# nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
 t.test(blume$a, blume$b, var.equal = F) 
 ```
 
@@ -120,7 +123,6 @@ t.test(size~cultivar, blume.long, paired = T)
 ### Base R vs. ggplot2
 
 ```{r}
-
 library(tidyverse)
 ggplot(blume.long, aes(cultivar, size)) + geom_boxplot()
 ggplot(blume.long, aes(cultivar, size)) + geom_boxplot() + theme_classic()
