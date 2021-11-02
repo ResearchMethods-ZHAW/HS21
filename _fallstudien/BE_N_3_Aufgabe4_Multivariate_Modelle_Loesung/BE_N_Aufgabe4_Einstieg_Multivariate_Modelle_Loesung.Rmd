@@ -1,5 +1,5 @@
 ---
-title: "KW44: Einstieg Multivariate Modelle Fallstudie WPZ - Profil N - Loesung"
+title: "KW44: Einstieg Multivariate Modelle - Loesung"
 description:
 author:
   - name: Beni Sigrist

@@ -1,5 +1,5 @@
 ---
-title: "KW44: Variablenselektion Multivariate Modelle Fallstudie WPZ - Profil N"
+title: "KW44: Variablenselektion Multivariate Modelle"
 description:
 author:
   - name: Beni Sigrist

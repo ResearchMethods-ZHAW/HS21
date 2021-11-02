@@ -1,5 +1,5 @@
 ---
-title: "KW43: Homeranges Fallstudie WPZ - Profil N - Loesung"
+title: "KW43: Homeranges - Loesung"
 description:
 author:
   - name: Beni Sigrist

@@ -1,5 +1,5 @@
 ---
-title: "KW42 Daten(vor)verarbeitung Fallstudie WPZ - Profil N - Loesung"
+title: "KW42 Daten(vor)verarbeitung - Loesung"
 description:
 author:
   - name: Beni Sigrist
