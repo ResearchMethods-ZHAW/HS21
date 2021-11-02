@@ -1,4 +1,5 @@
-binom.test(43, 100) #In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+# In Klammern übergibt man die Anzahl der Erfolge und die Stichprobengrösse
+binom.test(43, 100)
 binom.test(57, 100)
 
 qchisq(0.95, 1)
@@ -26,7 +27,8 @@ t.test(blume$a, blume$b, alternative = "less") #einseitig
 # Varianzen gleich, klassischer t-Test
 t.test(blume$a, blume$b, var.equal = T) 
 
-# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
+# Varianzen ungleich, Welch's t-Test, ist auch default, d.h. wenn var.equal 
+# nicht  definiert wird, wird ein Welch's t-Test ausgeführt. 
 t.test(blume$a, blume$b, var.equal = F) 
 
 t.test(blume$a, blume$b, paired = T)
