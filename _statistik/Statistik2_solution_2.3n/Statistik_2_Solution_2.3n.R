@@ -1,59 +1,3 @@
----
-title: Musterlösung Übung 2.3n Mehrfaktorielle ANOVA
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik2
-draft: true
----
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("solution_stat2.3n.Rmd", "Statistik_2_Solution_2.3n.R", documentation = 0)
-```
-
-
-- [RCode als Download](Statistik_2_Solution_2.3n.R)
-- [Loesungstext 2.3](Statistik_Loesung_2.3N_v.02.pdf)
-
-**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
-wird)**
-- Laden Sie den Datensatz kormoran.csv mit ein Dieser enthält Tauchzeiten
-(hier ohne Einheit) von Kormoranen in Abhängigkeit von Jahreszeit und Unterart.
-Unterarten: Phalacrocorax carbo carbo (C) und Phalacrocorax carbo sinensis (S);
-Jahreszeiten: F = Frühling, S = Sommer, H = Herbst, W = Winter.
-- **Ihre Gesamtaufgabe ist es, aus diesen Daten ein minimal adäquates Modell zu
-ermitteln, das diese Abhängigkeit beschreibt.**
-- Bitte erklären und begründen Sie die einzelnen Schritte, die Sie unternehmen, um zu
-diesem Ergebnis zu kommen. Dazu erstellen Sie bitte ein Word-Dokument, in das Sie
-Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, Ihre
-Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
-Vorgehen dokumentieren.
-- Dieser Ablauf sollte insbesondere beinhalten:
-  - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
-    und welches die unabängige(n) Variablen, welches statistische Verfahren wenden Sie
-    an?
-  - Explorative Datenanalyse, um zu sehen, ob schon vor dem Start der Analysen
-    Transformationen o.ä. vorgenommen werden sollten
-  - Definition eines vollen Modelles, das nach statistischen Kritierien zum minimal
-    adäquaten Modell reduziert wird
-  - Durchführen der Modelldiagnostik, um zu entscheiden, ob das gewählte Vorgehen
-    korrekt war oder ggf. angepasst werden muss
-  - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
-    Ergebnisdarstellung benötigt werden
-- Formulieren Sie abschliessend einen Methoden- und Ergebnisteil (ggf. incl.
-  adäquaten Abbildungen) zu dieser Untersuchung in der Form einer
-  wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je
-  einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und
-  Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige
-  Redundanz dagegen vermieden werden.
-- **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
-  (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
-  ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
-
-
-**kommentierter Lösungsweg**
-
-```{r}
 kormoran <- read.delim("kormoran.csv", sep = ";", stringsAsFactors = T)  #Working directory muss angepasst werden
 
 ## Ueberpruefen, ob Einlesen richtig funktioniert hat und welche Datenstruktur vorliegt
@@ -143,4 +87,5 @@ aggregate(Tauchzeit~Unterart, FUN = mean, data = kormoran)
 
 summary(lm(Tauchzeit~Jahreszeit, data = kormoran))
 summary(lm(Tauchzeit~Unterart, data = kormoran))
+```{.r .distill-force-highlighting-css}
 ```
