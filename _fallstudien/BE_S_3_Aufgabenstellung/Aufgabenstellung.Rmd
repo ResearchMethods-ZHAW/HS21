@@ -21,7 +21,7 @@ Im Rahmen dessen programmieren wir multivariate Modelle, welche den Zusammenhang
 
 Konkret sollen folgende Fragestellungen beantwortet werden:
 
->1) Welchen Einfluss haben neben den Lockdowns auch die Wetterparameter (Sonnenscheindauer, Tageshöchsttemperatur, Niederschlagssumme) sowie der Wochentag, die Ferien, die Kalenderwoche und das Jahr auf die Besuchszahlen?
+>1) Welchen Einfluss haben neben den Phasen der Covid-Pandemie auch die Wetterparameter (Sonnenscheindauer, Tageshöchsttemperatur, Niederschlagssumme) sowie der Wochentag, die Ferien, die Kalenderwoche und das Jahr auf die Besuchszahlen?
 >
 >2) Dabei interessiert uns besonders, wie stark die jeweiligen Einflüsse sind, welche Effektrichtungen beobachtbar sind und welche der untersuchten Parameter signifikant sind.
 >

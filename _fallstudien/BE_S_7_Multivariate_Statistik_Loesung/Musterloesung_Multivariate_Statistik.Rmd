@@ -16,36 +16,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = "hide", fig.al
 ```
 
 
-```{r include = FALSE}
-#.################################################################################################
-# Einfluss von COID19 auf die Besucherzahlen im WPZ ####
-# Modul Research Methods, HS21. Adrian Hochreutener ####
-#.################################################################################################
-
-#.################################################################################################
-# METADATA UND DEFINITIONEN ####
-#.################################################################################################
-
-# save and load workspace
-# save.image(file = "_fallstudien/_R_analysis/results/my_work_space.RData")
-# load(file = "_fallstudien/_R_analysis/results/my_work_space.RData")
-
-# Datenherkunft ####
-# Saemtliche verwendeten Zaehdaten sind Eigentum des Wildnispark Zuerich und duerfen nur im Rahmen 
-# des Moduls verwendet werden. Sie sind vertraulich zu behandeln.
-# Die Meteodaten sind Eigentum von MeteoSchweiz.
-
-# Verwendete Meteodaten
-# Lufttemperatur 2 m UEber Boden; Tagmaximum (6 UTC blis 18 UTC), tre200jx [°C ]
-# Niederschlag; Halbtagessumme 6 UTC - 18 UTC, rre150j0 [mm]
-# Sonnenscheindauer; Tagessumme, sre000d0 [min]
-
-# Ordnerstruktur ####
-# Im Ordner in dem das R-Projekt abgelegt ist muessen folgende Unterordner bestehen:
-# - data (Rohdaten hier ablegen)
-# - results
-# - results_compare
-# - scripts
+```{r include=FALSE}
 
 # Benoetigte Bibliotheken ####
 library(tidyverse) # Data wrangling und piping
@@ -231,47 +202,6 @@ depo$Total <- round(depo$Total, digits = 0)
 depo$Fuss_IN <- round(depo$Fuss_IN, digits = 0)
 depo$Fuss_OUT <- round(depo$Fuss_OUT, digits = 0)
 
-# 2.2 Pruefen auf Ausreisser (OPTIONAL) ####
-# Grundsaetzlich ist es schwierig Ausreisser in einem df zu finden. Gerade die Extremwerte 
-# koennen entweder falsche Werte, oder aber die wichtigsten Werte im ganzen df sein.
-# Ausreisser koennen in einem ersten Schritt optisch relativ einfach gefunden werden.
-# Dazu werden die Zaehlmengen auf der y-Achse und die einzelne Datenpunkte auf der x-Achse
-# geplottet. Wenn einzelne Werte nun die umliegenden bei weiten ueberragen, sollten diese
-# genauer angeschaut werden. Sind sie an einem Wochenende? Ist die Tageszeit realisitsch?
-# Wie mit Ausreissern umgegangen wird, muss von Fall zu Fall individuell entschieden werden.
-
-# Verteilung mittels Histogram pruefen
-hist(depo$Total[!depo$Total==0] , breaks = 100) 
-# hier schliesse ich die Nuller aus der Visualisierung aus
-
-# Verteilung mittels Scatterplot pruefen
-plot(x=depo$Datum, y=depo$Total)
-# Dem Scatterplot kann nun eine horizontale Linie hinzugefuegt werden, die bei 95 % der
-# Werte liegt. Berchnet wird die Linie mittels dem 95 % Quartil
-qts <- quantile(depo$Total,probs=c(0,.95))
-abline(h=qts[2], col="red")
-
-# Werte ueber 95 % auflisten
-# Nun koennen diese optisch identifizierten Werte aufgelistet werden. Jeder einzele Wert
-# sollte nun auf die Plausibilitaet geprueft werden. Dies sowohl bei Total als auch in
-# den einzelnen Richtungen (IN, OUT)
-(
-  Ausreisser <- depo %>%
-    filter(Total > qts[2])%>% 
-    arrange(desc(Total))
-)
-
-# Werte ausschliessen; Aufgrund manueller Inspektion
-# Die Werte, welche als Ausreisser identifiziert wurden, werden nun aufgrund der Zeilennummer 
-# ausgeschlossen. Das muss individuell angepasst werden.
-# depo <- depo[-c(Zeilennummer),] # ersetze "Zeilennummer" mit Zahlen, Kommagetrennt
-
-# Da der WPZ die Daten aber bereits bereinigte, koennen wir uns diesen Schritt eigentlich sparen... ;)
-
-# pruefe das df
-str(depo)
-head(depo)
-
 # 2.3 Aggregierung der Stundendaten zu ganzen Tagen ####
 # Zur Berechnung von Kennwerten ist es hilfreich, wenn neben den Stundendaten auch auf Ganztagesdaten
 # zurueckgegriffen werden kann
@@ -302,249 +232,224 @@ depo_m <- depo_m %>%
   mutate(Ym = paste(Jahr, Monat)) %>% # und mache eine neue Spalte, in der Jahr und
   mutate(Ym= factor(Ym, levels=unique(Ym))) # Monat in zusammen sind
 
-# 2.4 Explorative Darstellung Meteodaten ####
-# ausschliesslich zur optischen validierung, kein wichtiges Resultat!
-# Temperaturmaximum
-# ggplot(data=meteo, mapping=aes(x=time, y=tre200jx))+
-#   geom_point()+
-#   geom_smooth(col="red")
-# # Niederschlagsumme
-# ggplot(data=meteo, mapping=aes(x=time, y=rre150j0))+
-#   geom_point()+
-#   geom_smooth(col="blue")
-# # Sonnenminuten
-# ggplot(data=meteo, mapping=aes(x=time, y=sremaxdv))+
-#   geom_point()+
-#   geom_smooth(col="yellow")
-
-# Pruefe das df
-head(meteo)
-str(meteo)
 
 #.################################################################################################
 # 3. DESKRIPTIVE ANALYSE UND VISUALISIERUNG #####
 #.################################################################################################
-# 
-# # 3.1 Verlauf der Besuchszahlen / m ####
-# # Monatliche Summen am Standort
-# 
-# # wann beginnt die Datenreihe schon wieder?
-# first(depo_m$Ym)
-# # und wann ist die fertig?
-# last(depo_m$Ym)
-# 
-# # Plotte
-# ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group = 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
-#   #zeichne Lockdown 1
-#   geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
-#                           ymin =0, ymax=max(Total+(Total/100*10))),
-#             fill = "lightskyblue", alpha = 0.4, colour = NA)+
-#   #zeichne Lockdown 2
-#     geom_rect(mapping = aes(xmin="2020 12", xmax="2021 3", 
-#                           ymin =0, ymax=max(Total+(Total/100*10))), 
-#             fill = "lightskyblue", alpha = 0.4, colour = NA)+
-#   geom_line(alpha = 0.6, size = 1.5)+
-#   scale_x_discrete(breaks = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"),
-#                    labels = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"))+
-#   labs(title= "", y="Fussgänger:innen pro Monat", x = "Jahr")+
-#   theme_linedraw(base_size = 15)+
-#   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
-# 
-# ggsave("Entwicklung_Zaehlstelle.png", width=20, height=10, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
-# 
-# # 3.2 Wochengang ####
-# 
-# # mean / d / phase
-# mean_phase_wd <- depo_d %>% 
-#   group_by(Wochentag, Phase) %>% 
-#   summarise(Total = mean(Total))
-# 
-# write.csv(mean_phase_wd, "_fallstudien/_R_analysis/results/mean_phase_wd.csv")
-# 
-# #plot
-# ggplot(data = depo_d)+
-#   geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
-#   labs(title="", y= "Fussgänger:innen pro Tag")+
-#   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"))+
-#   theme_classic(base_size = 15)+
-#   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
-#         legend.title = element_blank())
-# 
-# ggsave("Wochengang_Lockdown.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/")
-# 
-# # Statistik: Unterschied WE und WO während Lockdown 1
-# t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
-#        depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
-# 
-# # 3.3 Tagesgang ####
-# # Bei diesen Berechnungen wird jeweils der Mittelwert pro Stunde berechnet. 
-# # wiederum nutzen wir dafuer "pipes"
-# Mean_h <- depo %>% 
-#   group_by(Wochentag, Stunde, Phase) %>% 
-#   summarise(Total = mean(Total)) 
-# 
-# # transformiere fuer Plotting
-# Mean_h_long<- reshape2::melt(Mean_h,measure.vars = c("Total"),
-#                              value.name = "Durchschnitt",variable.name = "Gruppe")
-# 
-# # Plotte den Tagesgang, unterteilt nach Wochentagen
-# 
-# # Normal
-# tag_norm <- ggplot(subset(Mean_h_long, Phase %in% c("Normal")), 
-#                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
-#   geom_line(size = 2)+
-#   scale_colour_viridis_d()+
-#   scale_linetype_manual(values = c(rep("solid", 5),  "twodash", "twodash"))+
-#   scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
-#   labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
-#   lims(y = c(0,25))+
-#   theme_linedraw(base_size = 15)+
-#   theme(legend.position = "right")
-# 
-# # Lockdown 1
-# 
-# tag_lock_1 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_1")), 
-#                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
-#   geom_line(size = 2)+
-#   scale_colour_viridis_d()+
-#   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
-#   scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
-#   labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
-#   lims(y = c(0,25))+
-#   theme_linedraw(base_size = 15)+
-#   theme(legend.position = "right")
-# 
-# # Lockdown 2
-# tag_lock_2 <- ggplot(subset(Mean_h_long, Phase %in% c("Lockdown_2")), 
-#                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
-#   geom_line(size = 2)+
-#   scale_colour_viridis_d()+
-#   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
-#   scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
-#   labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
-#   lims(y = c(0,25))+
-#   theme_linedraw(base_size = 15)+
-#   theme(legend.position = "right")
-# 
-# # Covid
-# tag_covid <- ggplot(subset(Mean_h_long, Phase %in% c("Covid")), 
-#                      mapping=aes(x = Stunde, y = Durchschnitt, colour = Wochentag, linetype = Wochentag))+
-#   geom_line(size = 2)+
-#   scale_colour_viridis_d()+
-#   scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
-#   scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
-#   labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
-#   lims(y = c(0,25))+
-#   theme_linedraw(base_size = 15)+
-#   theme(legend.position = "right")
-# 
-# # Arrange und Export Tagesgang
-# ggarrange(tag_lock_1+            # plot 1 aufrufen
-#             rremove("x.text")+   # plot 1 braucht es nicht alle Achsenbeschriftungen
-#             rremove("x.title"),            
-#           tag_lock_2+            # plot 2 aufrufen
-#             rremove("y.text")+   # bei plot 2 brauchen wir keine Achsenbeschriftung
-#             rremove("y.title")+
-#             rremove("x.text")+
-#             rremove("x.title"),
-#           tag_norm,
-#           tag_covid+
-#             rremove("y.text")+   
-#             rremove("y.title"),
-#           ncol = 2, nrow = 2,    # definieren, wie die plots angeordnet werden
-#           heights = c(0.9, 1),  # beide plots sind wegen der fehlenden Beschriftung nicht gleich hoch
-#           widths = c(1,0.9),    
-#           labels = c("a) Lockdown 1", "b) Lockdown 2", "c) Normal", "d) Covid"),
-#           label.x = 0.1,        # wo stehen die Plottitel
-#           label.y = 0.99,
-#           common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
-# 
-# ggsave("Tagesgang.png", width=25, height=25, units="cm", dpi=1000,
-#        path = "_fallstudien/_R_analysis/results/")
-# 
-# # 3.4 Kennzahlen ####
-# total_phase <- depo_d %>% 
-#   # gruppiere nach Phasen inkl. Normal. Diese Levels haben wir bereits definiert
-#   group_by(Phase) %>% 
-#   summarise(Total = sum(Total),
-#             IN = sum(Fuss_IN),
-#             OUT = sum(Fuss_OUT))
-# 
-# write.csv(total_phase, "_fallstudien/_R_analysis/results/total_phase.csv")
-# 
-# # mean besser Vergleichbar, da Zeitreihen unterschiedlich lange
-# mean_phase_d <- depo_d %>% 
-#   group_by(Phase) %>% 
-#   summarise(Total = mean(Total),
-#             IN = mean(Fuss_IN),
-#             OUT = mean(Fuss_OUT))
-# # berechne prozentuale Richtungsverteilung
-# mean_phase_d <- mean_phase_d %>% 
-#   mutate(Proz_IN = round(100/Total*IN, 1)) %>% # berechnen und auf eine Nachkommastelle runden
-#   mutate(Proz_OUT = round(100/Total*OUT,1))
-# 
-# write.csv(mean_phase_d, "_fallstudien/_R_analysis/results/mean_phase_d.csv")
-# 
-# # selektiere absolute Zahlen
-# # behalte rel. Spalten (nur die relativen Prozentangaben)
-# mean_phase_d_abs <- mean_phase_d[,-c(2,5,6), drop=FALSE]
-# # transformiere fuer Plotting
-# mean_phase_d_abs <- reshape2::melt(mean_phase_d_abs, 
-#                                      measure.vars = c("IN","OUT"),
-#                                      value.name = "Durchschnitt",variable.name = "Gruppe")
-# 
-# # selektiere relative Zahlen
-# # behalte rel. Spalten (nur die relativen Prozentangaben)
-# mean_phase_d_proz <- mean_phase_d[,-c(2:4), drop=FALSE]
-# # transformiere fuer Plotting
-# mean_phase_d_proz <- reshape2::melt(mean_phase_d_proz, 
-#                                  measure.vars = c("Proz_IN","Proz_OUT"),
-#                                  value.name = "Durchschnitt",variable.name = "Gruppe")
-# 
-# # Visualisierung abs
-# abs <- ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
-#   geom_col(position = "dodge", width = 0.8)+
-#   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
-#   scale_x_discrete(labels = c("IN", "OUT"))+
-#   labs(y = "Durchschnitt [mean]", x= "Bewegungsrichtung")+
-#   theme_classic(base_size = 15)+
-#   theme(legend.position = "bottom")
-# 
-# # Visualisierung %
-# proz <- ggplot(data = mean_phase_d_proz, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
-#   geom_col(position = "dodge", width = 0.8)+
-#   scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
-#   scale_x_discrete(labels = c("IN", "OUT"))+
-#   labs(y = "Durchschnitt [%]", x= "Bewegungsrichtung")+
-#   theme_classic(base_size = 15)+
-#   theme(legend.position = "bottom")
-# 
-# # Arrange und Export Verteilung
-# ggarrange(abs,            # plot 1 aufrufen
-#           proz,            # plot 2 aufrufen
-#           ncol = 2, nrow = 1,    # definieren, wie die plots angeordnet werden
-#           heights = c(1),        # beide sind bleich hoch
-#           widths = c(1,0.95),    # plot 2 ist aufgrund der fehlenden y-achsenbesch. etwas schmaler
-#           labels = c("a) Absolute Verteilung", "b) Relative Verteilung"),
-#           label.x = 0,        # wo stehen die labels
-#           label.y = 1.0,
-#           common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
-# 
-# ggsave("Verteilung.png", width=20, height=15, units="cm", dpi=1000,
-#        path = "_fallstudien/_R_analysis/results/")
 
-#.################################################################################################
-# 4. MULTIFAKTORIELLE ANALYSE UND VISUALISIERUNG #####
-#.################################################################################################
+# 3.1 Verlauf der Besuchszahlen / m ####
+# Monatliche Summen am Standort
 
+# wann beginnt die Datenreihe schon wieder?
+first(depo_m$Ym)
+# und wann ist die fertig?
+last(depo_m$Ym)
+
+# Plotte
+ggplot(depo_m, mapping = aes(Ym, Total, group = 1))+ # group 1 braucht R, dass aus den Einzelpunkten ein Zusammenhang hergestellt wird
+  #zeichne Lockdown 1
+  geom_rect(mapping = aes(xmin="2020 3", xmax="2020 5",
+                          ymin =0, ymax=max(Total+(Total/100*10))),
+            fill = "lightskyblue", alpha = 0.4, colour = NA)+
+  #zeichne Lockdown 2
+    geom_rect(mapping = aes(xmin="2020 12", xmax="2021 3", 
+                          ymin =0, ymax=max(Total+(Total/100*10))), 
+            fill = "lightskyblue", alpha = 0.4, colour = NA)+
+  geom_line(alpha = 0.6, size = 1.5)+
+  scale_x_discrete(breaks = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"),
+                   labels = c("2019 1", "2019 7","2019 1","2020 1","2020 7","2021 1","2021 7"))+
+  labs(title= "", y="Fuss pro Monat", x = "Jahr")+
+  theme_linedraw(base_size = 15)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+
+
+# 3.2 Wochengang ####
+
+# mean / d / phase
+mean_phase_wd <- depo_d %>% 
+  group_by(Wochentag, Phase) %>% 
+  summarise(Total = mean(Total))
+
+#plot
+ggplot(data = depo_d)+
+  geom_boxplot(mapping = aes(x= Wochentag, y = Total, fill = Phase))+
+  labs(title="", y= "Anzahl pro Tag")+
+  scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"))+
+  theme_classic(base_size = 15)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+        legend.title = element_blank())
+
+
+# Statistik: Unterschied WE und WO während Lockdown 1
+t.test(depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Werktag"], 
+       depo_d$Total [depo_d$Phase == "Lockdown_1" & depo_d$Wochenende=="Wochenende"])
+
+# 3.3 Tagesgang ####
+# Bei diesen Berechnungen wird jeweils der Mittelwert pro Stunde berechnet. 
+# wiederum nutzen wir dafuer "pipes"
+Mean_h <- depo %>% 
+  group_by(Wochentag, Stunde, Phase) %>% 
+  summarise(Total = mean(Total)) 
+
+# transformiere fuer Plotting
+Mean_h<- reshape2::melt(Mean_h,measure.vars = c("Total"),
+                             value.name = "Total",variable.name = "Gruppe")
+
+# Plotte den Tagesgang, unterteilt nach Wochentagen
+
+# Normal
+tag_norm <- ggplot(subset(Mean_h, Phase %in% c("Normal")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5),  "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Lockdown 1
+
+tag_lock_1 <- ggplot(subset(Mean_h, Phase %in% c("Lockdown_1")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Lockdown 2
+tag_lock_2 <- ggplot(subset(Mean_h, Phase %in% c("Lockdown_2")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Covid
+tag_covid <- ggplot(subset(Mean_h, Phase %in% c("Covid")), 
+                     mapping=aes(x = Stunde, y = Total, colour = Wochentag, linetype = Wochentag))+
+  geom_line(size = 2)+
+  scale_colour_viridis_d()+
+  scale_linetype_manual(values = c(rep("solid", 5), "twodash", "twodash"))+
+  scale_x_continuous(breaks = c(seq(0, 23, by = 2)), labels = c(seq(0, 23, by = 2)))+
+  labs(x="Uhrzeit [h]", y= "∅ Fussganger_Innen / h", title = "")+
+  lims(y = c(0,25))+
+  theme_linedraw(base_size = 15)+
+  theme(legend.position = "right")
+
+# Arrange und Export Tagesgang
+ggarrange(tag_lock_1+            # plot 1 aufrufen
+            rremove("x.text")+   # plot 1 braucht es nicht alle Achsenbeschriftungen
+            rremove("x.title"),            
+          tag_lock_2+            # plot 2 aufrufen
+            rremove("y.text")+   # bei plot 2 brauchen wir keine Achsenbeschriftung
+            rremove("y.title")+
+            rremove("x.text")+
+            rremove("x.title"),
+          tag_norm,
+          tag_covid+
+            rremove("y.text")+   
+            rremove("y.title"),
+          ncol = 2, nrow = 2,    # definieren, wie die plots angeordnet werden
+          heights = c(0.9, 1),  # beide plots sind wegen der fehlenden Beschriftung nicht gleich hoch
+          widths = c(1,0.9),    
+          labels = c("a) Lockdown 1", "b) Lockdown 2", "c) Normal", "d) Covid"),
+          label.x = 0.1,        # wo stehen die Plottitel
+          label.y = 0.99,
+          common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
+
+# 3.4 Kennzahlen ####
+total_phase <- depo_d %>% 
+  # gruppiere nach Phasen inkl. Normal. Diese Levels haben wir bereits definiert
+  group_by(Phase) %>% 
+  summarise(Total = sum(Total),
+            IN = sum(Fuss_IN),
+            OUT = sum(Fuss_OUT))
+
+# mean besser Vergleichbar, da Zeitreihen unterschiedlich lange
+mean_phase_d <- depo_d %>% 
+  group_by(Phase) %>% 
+  summarise(Total = mean(Total),
+            IN = mean(Fuss_IN),
+            OUT = mean(Fuss_OUT))
+# berechne prozentuale Richtungsverteilung
+mean_phase_d <- mean_phase_d %>% 
+  mutate(Proz_IN = round(100/Total*IN, 1)) %>% # berechnen und auf eine Nachkommastelle runden
+  mutate(Proz_OUT = round(100/Total*OUT,1))
+
+# selektiere absolute Zahlen
+# behalte rel. Spalten (nur die relativen Prozentangaben)
+mean_phase_d_abs <- mean_phase_d[,-c(2,5,6), drop=FALSE]
+# transformiere fuer Plotting
+mean_phase_d_abs <- reshape2::melt(mean_phase_d_abs, 
+                                     measure.vars = c("IN","OUT"),
+                                     value.name = "Durchschnitt",variable.name = "Gruppe")
+
+# selektiere relative Zahlen
+# behalte rel. Spalten (nur die relativen Prozentangaben)
+mean_phase_d_proz <- mean_phase_d[,-c(2:4), drop=FALSE]
+# transformiere fuer Plotting
+mean_phase_d_proz <- reshape2::melt(mean_phase_d_proz, 
+                                 measure.vars = c("Proz_IN","Proz_OUT"),
+                                 value.name = "Durchschnitt",variable.name = "Gruppe")
+
+# Visualisierung abs
+abs <- ggplot(data = mean_phase_d_abs, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
+  geom_col(position = "dodge", width = 0.8)+
+  scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
+  scale_x_discrete(labels = c("IN", "OUT"))+
+  labs(y = "Durchschnitt [mean]", x= "Bewegungsrichtung")+
+  theme_classic(base_size = 15)+
+  theme(legend.position = "bottom")
+
+# Visualisierung %
+proz <- ggplot(data = mean_phase_d_proz, mapping = aes(x = Gruppe, y = Durchschnitt, fill = Phase))+
+  geom_col(position = "dodge", width = 0.8)+
+  scale_fill_manual(values = c("royalblue", "red4", "orangered", "gold2"), name = "Phase")+
+  scale_x_discrete(labels = c("IN", "OUT"))+
+  labs(y = "Durchschnitt [%]", x= "Bewegungsrichtung")+
+  theme_classic(base_size = 15)+
+  theme(legend.position = "bottom")
+
+# Arrange und Export Verteilung
+ggarrange(abs,            # plot 1 aufrufen
+          proz,            # plot 2 aufrufen
+          ncol = 2, nrow = 1,    # definieren, wie die plots angeordnet werden
+          heights = c(1),        # beide sind bleich hoch
+          widths = c(1,0.95),    # plot 2 ist aufgrund der fehlenden y-achsenbesch. etwas schmaler
+          labels = c("a) Absolute Verteilung", "b) Relative Verteilung"),
+          label.x = 0,        # wo stehen die labels
+          label.y = 1.0,
+          common.legend = TRUE, legend = "bottom") # wir brauchen nur eine Legende, unten
+
+```
+
+# Aufgabe 1
+
+```{r}
 # 4.1 Einflussfaktoren Besucherzahl ####
 # Erstelle ein df indem die taeglichen Zaehldaten und Meteodaten vereint sind
 umwelt <- inner_join(depo_d, meteo, by = c("Datum" = "time"))
+
+# entferne ueberfluessige Spalten 
+umwelt <- umwelt %>% dplyr::select(-c(stn, Fuss_IN, Fuss_OUT))
+
 # Das zusammenfuehren folgt evtl. in NA-Werten bei gewissen Tagen
 sum(is.na(umwelt))
+```
 
+# Aufgabe 2
+
+```{r}
 # nochmals einige Convinience Variablen
 umwelt <- umwelt%>%
   mutate(Ferien = if_else(  
@@ -589,24 +494,31 @@ umwelt <- umwelt %>%
   mutate(tre200jx_scaled = scale(tre200jx), 
          rre150j0_scaled = scale(rre150j0), 
          sremaxdv_scaled = scale(sremaxdv))
+```
 
+# Aufgabe 3
+```{r}
 # 4.2 Variablenselektion ####
 # Korrelierende Variablen koennen das Modelergebnis verfaelschen. Daher muss vor der
 # Modelldefinition auf Korrelation getestet werden.
 
 # Erklaerende Variablen definieren
 # Hier wird die Korrelation zwischen den (nummerischen) erklaerenden Variablen berechnet
-# cor <-  cor(umwelt[,16:(ncol(umwelt))]) # in den [] waehle ich die skalierten Spalten.
-# # Mit dem folgenden Code kann eine simple Korrelationsmatrix aufgebaut werden
-# # hier kann auch die Schwelle für die Korrelation gesetzt werden, 
-# # 0.7 ist liberal / 0.5 konservativ
-# cor[abs(cor)<0.7] <-  0 #Setzt alle Werte kleiner 0.7 auf 0 (diese sind dann ok, alles groesser ist problematisch!)
-# cor
-# 
-# # Korrelationsmatrix erstellen
-# # Zur Visualisierung kann ein einfacher Plot erstellt werden:
-# chart.Correlation(umwelt[,16:(ncol(umwelt))], histogram=TRUE, pch=19)
+cor <-  cor(umwelt[,16:(ncol(umwelt))]) # in den [] waehle ich die skalierten Spalten.
+# Mit dem folgenden Code kann eine simple Korrelationsmatrix aufgebaut werden
+# hier kann auch die Schwelle für die Korrelation gesetzt werden, 
+# 0.7 ist liberal / 0.5 konservativ
+cor[abs(cor)<0.7] <-  0 #Setzt alle Werte kleiner 0.7 auf 0 (diese sind dann ok, alles groesser ist problematisch!)
+cor
 
+# Korrelationsmatrix erstellen
+# Zur Visualisierung kann ein einfacher Plot erstellt werden:
+chart.Correlation(umwelt[,16:(ncol(umwelt))], histogram=TRUE, pch=19)
+
+```
+
+# Aufgabe 4
+```{r}
 # # Automatisierte Variablenselektion 
 # # fuehre die dredge-Funktion und ein Modelaveraging durch
 # # Hier wird die Formel für die dredge-Funktion vorbereitet
@@ -629,36 +541,42 @@ umwelt <- umwelt %>%
 # # Schwellenwert für das delta-AIC = 2
 # avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 500) 
 # summary(avgmodel)
+```
 
+# Aufgabe 5
+```{r}
 # 4.3 Pruefe Verteilung ####
 # pruefe zuerst nochmals, ob wir NA im df haben:
-# sum(is.na(umwelt$Total))
-# 
-# f1<-fitdist(umwelt$Total,"norm")  # Normalverteilung
-# # f1_1<-fitdist((umwelt$Total + 1),"lnorm")  # log-Normalvert (beachte, dass ich +1 rechne. 
-# # log muss positiv sein; allerdings kann man die
-# # Verteilungen dann nicht mehr miteinander vergleichen). 
-# f2<-fitdist(umwelt$Total,"pois")  # Poisson
-# f3<-fitdist(umwelt$Total,"nbinom")  # negativ binomial
-# f4<-fitdist(umwelt$Total,"exp")  # exponentiell
-# # f5<-fitdist(umwelt$Total,"gamma")  # gamma (berechnung mit meinen Daten nicht möglich)
-# f6<-fitdist(umwelt$Total,"logis")  # logistisch
-# f7<-fitdist(umwelt$Total,"geom")  # geometrisch
-# # f8<-fitdist(umwelt$Total,"weibull")  # Weibull (berechnung mit meinen Daten nicht möglich)
-# 
-# gofstat(list(f1,f2,f3,f4,f6,f7), 
-#         fitnames = c("Normalverteilung", "Poisson",
-#                      "negativ binomial","exponentiell", "logistisch",
-#                      "geometrisch"))
-# 
-# # die 2 besten (gemaess Akaike's Information Criterion) als Plot + normalverteilt, 
-# plot.legend <- c("Normalverteilung", "exponentiell", "negativ binomial")
-# # vergleicht mehrere theoretische Verteilungen mit den empirischen Daten
-# cdfcomp(list(f1, f4, f3), legendtext = plot.legend)
+sum(is.na(umwelt$Total))
+
+f1<-fitdist(umwelt$Total,"norm")  # Normalverteilung
+# f1_1<-fitdist((umwelt$Total + 1),"lnorm")  # log-Normalvert (beachte, dass ich +1 rechne. 
+# log muss positiv sein; allerdings kann man die
+# Verteilungen dann nicht mehr miteinander vergleichen). 
+f2<-fitdist(umwelt$Total,"pois")  # Poisson
+f3<-fitdist(umwelt$Total,"nbinom")  # negativ binomial
+f4<-fitdist(umwelt$Total,"exp")  # exponentiell
+# f5<-fitdist(umwelt$Total,"gamma")  # gamma (berechnung mit meinen Daten nicht möglich)
+f6<-fitdist(umwelt$Total,"logis")  # logistisch
+f7<-fitdist(umwelt$Total,"geom")  # geometrisch
+# f8<-fitdist(umwelt$Total,"weibull")  # Weibull (berechnung mit meinen Daten nicht möglich)
+
+gofstat(list(f1,f2,f3,f4,f6,f7), 
+        fitnames = c("Normalverteilung", "Poisson",
+                     "negativ binomial","exponentiell", "logistisch",
+                     "geometrisch"))
+
+# die 2 besten (gemaess Akaike's Information Criterion) als Plot + normalverteilt, 
+plot.legend <- c("Normalverteilung", "exponentiell", "negativ binomial")
+# vergleicht mehrere theoretische Verteilungen mit den empirischen Daten
+cdfcomp(list(f1, f4, f3), legendtext = plot.legend)
 
 # --> Verteilung ist gemäss AICc negativ binomial. --> ich entscheide 
 # mich für letztere.
+```
 
+# Aufgabe 6
+```{r}
 # 4.4 Berechne verschiedene Modelle ####
 
 # Hinweise zu GLMM: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html
@@ -669,96 +587,96 @@ umwelt <- umwelt %>%
 # Die saisonalitaet (KW, Jahr) soll hierbei nicht beachtet werden, 
 # sie wird als random Faktor bestimmt --> Saisonbereinigung.
 
-# # Einfacher Start
-# # Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial ist,
-# # berechne ich für den Vergleich zuerst ein einfaches Modell der Familie poisson.
-# Tages_Model <- glmer(Total ~ Wochentag + Ferien + Phase +
-#                        tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled +
-#                        (1|KW) + (1|Jahr), family = poisson, data = umwelt)
+# Einfacher Start
+# Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial ist,
+# berechne ich für den Vergleich zuerst ein einfaches Modell der Familie poisson.
+Tages_Model <- glmer(Total ~ Wochentag + Ferien + Phase +
+                       tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled +
+                       (1|KW) + (1|Jahr), family = poisson, data = umwelt)
+
+summary(Tages_Model)
+# Inspektionsplots
+plot(Tages_Model, type = c("p", "smooth"))
+qqmath(Tages_Model)
+# pruefe auf Overdispersion
+dispersion_glmer(Tages_Model) #it shouldn't be over 1.4
+# wir gut erklaert das Modell?
+r.squaredGLMM(Tages_Model) 
+
+
+# Berechne ein negativ binomiales Modell
+# gemäss AICc die beste Verteilung
+Tages_Model_nb <- glmer.nb(Total ~ Wochentag + Ferien + Phase +
+                             tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled +
+                             (1|KW) + (1|Jahr), data = umwelt)
+
+summary(Tages_Model_nb)
+plot(Tages_Model_nb, type = c("p", "smooth"))
+qqmath(Tages_Model_nb)
+dispersion_glmer(Tages_Model_nb)
+r.squaredGLMM(Tages_Model_nb) 
+
+
+# auf quadratischen Term testen ("es gehen weniger Leute in den Wald, wenn es zu heiss ist")
+Tages_Model_nb_quad <- glmer.nb(Total ~ Wochentag + Ferien + Phase +
+                                  tre200jx_scaled + I(tre200jx_scaled^2) + 
+                                  rre150j0_scaled + sremaxdv_scaled +
+                                  (1|KW) + (1|Jahr), data = umwelt)
+
+summary(Tages_Model_nb_quad)
+plot(Tages_Model_nb_quad, type = c("p", "smooth"))
+qqmath(Tages_Model_nb_quad)
+dispersion_glmer(Tages_Model_nb_quad)
+r.squaredGLMM(Tages_Model_nb_quad) 
+
+
+# Interaktion testen, da Ferien und / oder Wochentage einen Einfluss auf
+# die Besuchszahlen waehrend des Lockown haben koennen!
+# (Achtung: Rechenintensiv!)
+# Tages_Model_nb_int <- glmer.nb(Anzahl_Total ~  Wochentag  * Ferien + Phase +
+#                                  tre200jx_scaled + I(tre200jx_scaled^2) * 
+#                                  rre150j0_scaled + sremaxdv_scaled +
+#                                  (1|KW) + (1|Jahr), data = umwelt)
 # 
-# summary(Tages_Model)
-# # Inspektionsplots
-# plot(Tages_Model, type = c("p", "smooth"))
-# qqmath(Tages_Model)
-# # pruefe auf Overdispersion
-# dispersion_glmer(Tages_Model) #it shouldn't be over 1.4
-# # wir gut erklaert das Modell?
-# r.squaredGLMM(Tages_Model) 
-# 
-# 
-# # Berechne ein negativ binomiales Modell
-# # gemäss AICc die beste Verteilung
-# Tages_Model_nb <- glmer.nb(Total ~ Wochentag + Ferien + Phase +
-#                              tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled +
-#                              (1|KW) + (1|Jahr), data = umwelt)
-# 
-# summary(Tages_Model_nb)
-# plot(Tages_Model_nb, type = c("p", "smooth"))
-# qqmath(Tages_Model_nb)
-# dispersion_glmer(Tages_Model_nb)
-# r.squaredGLMM(Tages_Model_nb) 
-# 
-# 
-# # auf quadratischen Term testen ("es gehen weniger Leute in den Wald, wenn es zu heiss ist")
-# Tages_Model_nb_quad <- glmer.nb(Total ~ Wochentag + Ferien + Phase +
-#                                   tre200jx_scaled + I(tre200jx_scaled^2) + 
-#                                   rre150j0_scaled + sremaxdv_scaled +
-#                                   (1|KW) + (1|Jahr), data = umwelt)
-# 
-# summary(Tages_Model_nb_quad)
-# plot(Tages_Model_nb_quad, type = c("p", "smooth"))
-# qqmath(Tages_Model_nb_quad)
-# dispersion_glmer(Tages_Model_nb_quad)
-# r.squaredGLMM(Tages_Model_nb_quad) 
-# 
-# 
-# # Interaktion testen, da Ferien und / oder Wochentage einen Einfluss auf
-# # die Besuchszahlen waehrend des Lockown haben koennen!
-# # (Achtung: Rechenintensiv!)
-# # Tages_Model_nb_int <- glmer.nb(Anzahl_Total ~  Wochentag  * Ferien + Phase +
-# #                                  tre200jx_scaled + I(tre200jx_scaled^2) * 
-# #                                  rre150j0_scaled + sremaxdv_scaled +
-# #                                  (1|KW) + (1|Jahr), data = umwelt)
-# # 
-# # summary(Tages_Model_nb_int)
-# # plot(Tages_Model_nb_int, type = c("p", "smooth"))
-# # qqmath(Tages_Model_nb_int)
-# # dispersion_glmer(Tages_Model_nb_int)
-# # r.squaredGLMM(Tages_Model_nb_int) 
-# 
-# 
-# # Vergleich der Modellguete mittels AICc
-# cand.models<-list()
-# cand.models[[1]] <- Tages_Model
-# cand.models[[2]] <- Tages_Model_nb
-# cand.models[[3]] <- Tages_Model_nb_quad
-# 
-# Modnames<-c("Tages_Model","Tages_Model_nb", 
-#             "Tages_Model_nb_quad")
-# aictab(cand.set=cand.models,modnames=Modnames)
-# #K = Anzahl geschaetzter Parameter (2 Funktionsparameter und die Varianz)
-# #Delta_AICc <2 = Statistisch gleichwertig
-# #AICcWt =  Akaike weight in %
-# 
-# # --> Ich entscheide mich bei diesen drei Modellen für das Tages_Model_nb_quad
-# # Warum: statistisch gleichwertig und ich denke die Quadratur macht Sinn!
-# 
-# 
-# # Berechne ein Modell mit exponentieller Verteilung:
-# # gemäss AICc der Verteilung die zweitbeste
-# # https://stats.stackexchange.com/questions/240455/fitting-exponential-regression-model-by-mle
-# Tages_Model_exp <- glmer((Total+1) ~ Wochentag + Ferien + Phase +
-#                            tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled +
-#                            (1|KW) + (1|Jahr), family = Gamma(link="log"), data = umwelt)
-# 
-# summary(Tages_Model_exp, dispersion=1)
-# # Inspektionsplots
-# plot(Tages_Model_exp, type = c("p", "smooth"))
-# qqmath(Tages_Model_exp)
-# # pruefe auf Overdispersion
-# dispersion_glmer(Tages_Model_exp) #it shouldn't be over 1.4
-# # wir gut erklaert das Modell?
-# r.squaredGLMM(Tages_Model_exp) 
+# summary(Tages_Model_nb_int)
+# plot(Tages_Model_nb_int, type = c("p", "smooth"))
+# qqmath(Tages_Model_nb_int)
+# dispersion_glmer(Tages_Model_nb_int)
+# r.squaredGLMM(Tages_Model_nb_int) 
+
+
+# Vergleich der Modellguete mittels AICc
+cand.models<-list()
+cand.models[[1]] <- Tages_Model
+cand.models[[2]] <- Tages_Model_nb
+cand.models[[3]] <- Tages_Model_nb_quad
+
+Modnames<-c("Tages_Model","Tages_Model_nb", 
+            "Tages_Model_nb_quad")
+aictab(cand.set=cand.models,modnames=Modnames)
+#K = Anzahl geschaetzter Parameter (2 Funktionsparameter und die Varianz)
+#Delta_AICc <2 = Statistisch gleichwertig
+#AICcWt =  Akaike weight in %
+
+# --> Ich entscheide mich bei diesen drei Modellen für das Tages_Model_nb_quad
+# Warum: statistisch gleichwertig und ich denke die Quadratur macht Sinn!
+
+
+# Berechne ein Modell mit exponentieller Verteilung:
+# gemäss AICc der Verteilung die zweitbeste
+# https://stats.stackexchange.com/questions/240455/fitting-exponential-regression-model-by-mle
+Tages_Model_exp <- glmer((Total+1) ~ Wochentag + Ferien + Phase +
+                           tre200jx_scaled + rre150j0_scaled + sremaxdv_scaled +
+                           (1|KW) + (1|Jahr), family = Gamma(link="log"), data = umwelt)
+
+summary(Tages_Model_exp, dispersion=1)
+# Inspektionsplots
+plot(Tages_Model_exp, type = c("p", "smooth"))
+qqmath(Tages_Model_exp)
+# pruefe auf Overdispersion
+dispersion_glmer(Tages_Model_exp) #it shouldn't be over 1.4
+# wir gut erklaert das Modell?
+r.squaredGLMM(Tages_Model_exp) 
 
 # --> Die zweitbeste Verteilung (exp) führt auch nicht dazu, dass die Modellvoraussetzungen besser
 # erfüllt werden
@@ -774,8 +692,8 @@ umwelt <- umwelt %>%
 # mehr unter: https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/
 
 # berechne skewness coefficient 
-# library(moments)
-# skewness(umwelt$Total)
+library(moments)
+skewness(umwelt$Total)
 # A positive value means the distribution is positively skewed (rechtsschief).
 # The most frequent values are low; tail is toward the high values (on the right-hand side)
 
@@ -784,22 +702,22 @@ Tages_Model_nb_quad_Jahr_log10 <- glmer.nb(log10(Total+1) ~ Wochentag + Ferien +
                                              tre200jx_scaled + I(tre200jx_scaled^2) + 
                                              rre150j0_scaled + sremaxdv_scaled +
                                              (1|KW) + (1|Jahr), data = umwelt)
-# summary(Tages_Model_nb_quad_Jahr_log10)
-# plot(Tages_Model_nb_quad_Jahr_log10, type = c("p", "smooth"))
-# qqmath(Tages_Model_nb_quad_Jahr_log10)
-# dispersion_glmer(Tages_Model_nb_quad_Jahr_log10)
-# r.squaredGLMM(Tages_Model_nb_quad_Jahr_log10) 
+summary(Tages_Model_nb_quad_Jahr_log10)
+plot(Tages_Model_nb_quad_Jahr_log10, type = c("p", "smooth"))
+qqmath(Tages_Model_nb_quad_Jahr_log10)
+dispersion_glmer(Tages_Model_nb_quad_Jahr_log10)
+r.squaredGLMM(Tages_Model_nb_quad_Jahr_log10) 
 
 # natural log, da stark rechtsschief
-# Tages_Model_nb_quad_Jahr_ln <- glmer.nb(log(Total+1) ~ Wochentag + Ferien + Phase +
-#                                           tre200jx_scaled + I(tre200jx_scaled^2) + 
-#                                           rre150j0_scaled + sremaxdv_scaled +
-#                                           (1|KW) + (1|Jahr), data = umwelt)
-# summary(Tages_Model_nb_quad_Jahr_ln)
-# plot(Tages_Model_nb_quad_Jahr_ln, type = c("p", "smooth"))
-# qqmath(Tages_Model_nb_quad_Jahr_ln)
-# dispersion_glmer(Tages_Model_nb_quad_Jahr_ln)
-# r.squaredGLMM(Tages_Model_nb_quad_Jahr_ln) 
+Tages_Model_nb_quad_Jahr_ln <- glmer.nb(log(Total+1) ~ Wochentag + Ferien + Phase +
+                                          tre200jx_scaled + I(tre200jx_scaled^2) + 
+                                          rre150j0_scaled + sremaxdv_scaled +
+                                          (1|KW) + (1|Jahr), data = umwelt)
+summary(Tages_Model_nb_quad_Jahr_ln)
+plot(Tages_Model_nb_quad_Jahr_ln, type = c("p", "smooth"))
+qqmath(Tages_Model_nb_quad_Jahr_ln)
+dispersion_glmer(Tages_Model_nb_quad_Jahr_ln)
+r.squaredGLMM(Tages_Model_nb_quad_Jahr_ln) 
 
 
 # --> Die Modellvoraussetzungen sind deutlich besser erfüllt jetzt wo wir Transformationen 
@@ -814,12 +732,16 @@ Tages_Model_nb_quad_Jahr_log10 <- glmer.nb(log10(Total+1) ~ Wochentag + Ferien +
 
 # 4.6 Exportiere die Modellresultate ####
 # (des besten Modells)
-# tab_model(Tages_Model_nb_quad_Jahr_log10, transform = NULL, show.se = TRUE)
+tab_model(Tages_Model_nb_quad_Jahr_log10, transform = NULL, show.se = TRUE)
 # The marginal R squared values are those associated with your fixed effects, 
 # the conditional ones are those of your fixed effects plus the random effects. 
 # Usually we will be interested in the marginal effects.
 
+```
 
+# Aufgabe 7
+
+```{r}
 # 4.7 Visualisiere Modellresultate ####
 
 # ZUSATZ: Wir haben die Wetterparameter skaliert. 
@@ -860,8 +782,8 @@ labels <- round(seq(floor(min(umwelt$tre200jx)), ceiling(max(umwelt$tre200jx)),
                        limits = c(0, 2))+ 
     theme_classic(base_size = 20))
 
-# ggsave("temp.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
+ggsave("temp.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
 
 # Regen
 t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "rre150j0_scaled", 
@@ -875,8 +797,8 @@ labels <- round(seq(floor(min(umwelt$rre150j0)), ceiling(max(umwelt$rre150j0)),
                        limits = c(0, 2))+ 
     theme_classic(base_size = 20))
 
-# ggsave("rain.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
+ggsave("rain.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
 
 # Sonne
 t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "sremaxdv_scaled", 
@@ -890,8 +812,8 @@ labels <- round(seq(floor(min(umwelt$sremaxdv)), ceiling(max(umwelt$sremaxdv)),
                        limits = c(0, 2))+ 
     theme_classic(base_size = 20))
 
-# ggsave("sun.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
+ggsave("sun.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
 
 
 # Phase
@@ -904,8 +826,8 @@ t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Phase",
                        limits = c(0, 2))+ 
     theme_classic(base_size = 20))
 
-# ggsave("phase.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
+ggsave("phase.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
 
 # Ferien
 t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Ferien", 
@@ -917,8 +839,8 @@ t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Ferien",
                        limits = c(0, 2))+ 
     theme_classic(base_size = 20))
 
-# ggsave("ferien.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
+ggsave("ferien.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
 
 # Wochentag
 t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Wochentag", 
@@ -929,9 +851,8 @@ t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Wochenta
     theme_classic(base_size = 20))+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
-# ggsave("wd.png", width=15, height=15, units="cm", dpi=1000, 
-#        path = "_fallstudien/_R_analysis/results/") 
+ggsave("wd.png", width=15, height=15, units="cm", dpi=1000, 
+       path = "_fallstudien/_R_analysis/results/") 
 
 ```
-
 

@@ -1,30 +1,23 @@
 ---
 title: Musterloesung Beispiel
 output: distill::distill_article
-draft: true
+draft: false
 categories:
 - Statistik2
 ---
 
-```{r echo = FALSE}
 
+
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution_Stat_Beispiel.Rmd", "Statistik_2_Solution_Beispiel.R", documentation = 0)
 ```
 
-<!-- # --- -->
-<!-- # title: "MSc. Research Methods - Statistikteil Loesungen Beispiel" -->
-<!-- # author: "Juergen Dengler" -->
-<!-- # date: "`r format(Sys.Date(), '%B %Y')`" -->
-<!-- # output: -->
-<!-- #   pdf_document: default -->
-<!-- #   html_document: -->
-<!-- #     df_print: paged -->
-<!-- # --- -->
 
 
 ## Musterloesung Beispiel
-
-- [RCode als Download](14_Statistik2/RFiles/Loesung_Beispiel_v.01.R)  
-- [Loesungstext Beispiel](14_Statistik2/Statistik_Loesung_Beispiel_v.02.pdf)
+- Datensatz [decy.csv](decay.csv)
+- [RCode als Download](Statistik_2_Solution_Beispiel.R)
+- [Loesungstext Beispiel](Statistik_Loesung_Beispiel_v.02.pdf)
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
 wird)**
@@ -87,7 +80,7 @@ Während der Boxplot für time wunderbar symmetrisch ohne Ausreisser ist, zeigt 
 **Einfaches lineares Modell**
 
 ```{r}
-lm.1 <- lm(amount~time, data=decay)
+lm.1 <- lm(amount~time, data = decay)
 summary(lm.1)
 ```
 Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
@@ -95,7 +88,7 @@ Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit ein
 **Modelldiagnostik**
 
 ```{r}
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(lm.1)
 ```
 
@@ -106,9 +99,9 @@ Um eine Idee zu bekommen, was falsch ist, plotten wir noch, wie das Ergebnis die
 **Ergebnisplot**
 
 ```{r}
-par(mfrow=c(1,1))
+par(mfrow = c(1, 1))
 plot(decay$time, decay$amount)
-abline(lm.1, col="red")
+abline(lm.1, col = "red")
 ```
 
 Die Punkte links liegen alle über der Regressionslinie, die in der Mitte darunter und die ganz rechts wieder systematisch darüber (darum im Diagnostikplot oben die „Banane“). Es liegt also offensichtlich keine lineare Beziehung vor, sondern eine curvilineare.
@@ -122,7 +115,7 @@ Dass die Verteilung der abhängigen Variable nicht normal ist, haben wir ja scho
 **Loesung 1: log-Transformation der abhaengigen Variablen**
 
 ```{r} 
-par(mfrow=c(1,2))
+par(mfrow = c(1, 2))
 boxplot(decay$amount)
 boxplot(log(decay$amount))
 hist(decay$amount)
@@ -132,7 +125,7 @@ hist(log(decay$amount))
 _Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell_
 
 ```{r} 
-lm.2 <- lm(log(amount)~time, data=decay)
+lm.2 <- lm(log(amount)~time, data = decay)
 summary(lm.2)
 ```
 
@@ -141,7 +134,7 @@ Jetzt ist der R²-Wert noch höher und der p-Wert noch niedriger als im ursprün
 **Modelldiagnostik**
 
 ```{r}
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(lm.2)
 ```
 
@@ -156,7 +149,7 @@ _**koente fuer die Datenverteilung passen, entspricht aber nicht der physikalisc
 **Gesetzmaessigkeit**
 
 ```{r}
-model.quad <- lm(amount~time+I(time^2), data=decay)
+model.quad <- lm(amount~time + I(time^2), data=  decay)
 summary(model.quad)
 ```
 
@@ -174,7 +167,7 @@ In der Tat ist das komplexere Modell (jenes mit dem quadratischen Term) höchsts
 **Modelldiagnostik**
 
 ```{r}
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(model.quad)
 ```
 
@@ -183,7 +176,7 @@ plot(model.quad)
 _**mit Startwerten muss man ggf. ausprobieren)**_
 
 ```{r}
-model.nls <- nls(amount~a*exp(-b*time), start=(list(a=100,b=1)),data=decay)
+model.nls <- nls(amount~a*exp(-b*time), start=(list(a = 100, b = 1)),data = decay)
 summary(model.nls)
 ```
 
@@ -204,32 +197,32 @@ Da alle drei Lösungen zumindest statistisch OK waren, sollen jetzt noch die zug
 **Ergebnisplots**
 
 ```{r}
-par(mfrow=c(1,1))
-xv <- seq(0,30,0.1)
+par(mfrow = c(1, 1))
+xv <- seq(0, 30, 0.1)
 ```
 
 1. lineares Modell mit log-transformierter Abhaengiger
 
 ```{r}
 plot(decay$time, decay$amount)
-yv1 <- exp(predict(lm.2, list(time=xv)))
-lines(xv, yv1, col="red")
+yv1 <- exp(predict(lm.2, list(time = xv)))
+lines(xv, yv1, col = "red")
 ```
 
 2. quadratisches Modell
 
 ```{r}
 plot(decay$time, decay$amount)
-yv2 <- predict(model.quad, list(time=xv))
-lines(xv, yv2, col="blue")
+yv2 <- predict(model.quad, list(time = xv))
+lines(xv, yv2, col=  "blue")
 ```
 
 3. nicht-lineares Modell
 
 ```{r}
 plot(decay$time, decay$amount)
-yv3 <- predict(model.nls, list(time=xv))
-lines(xv, yv3, col="green")
+yv3 <- predict(model.nls, list(time = xv))
+lines(xv, yv3, col = "green")
 ```
 
 Optisch betrachtet, geben (2) und (3) den empirischen Zusammenhang etwas besser wieder als (1), da sie im linken Bereich die hohen Werte besser treffen. Man könnte sogar meinen, bei Betrachtung der Daten, dass die Werte ab time = 28 wieder leicht ansteigen, was die quadratische Funktion wiedergibt. Wer sich aber mit Physik etwas auskennt, weiss, dass Version (2) physikalisch nicht zutrifft, da die Zerfallsrate mit der Zeit immer weiter abfällt. Aufgrund der kurzen Messreihe wäre eine quadratische Funktion trotzdem eine statistisch korrekte Interpretation. Mit längeren Messreihen würde sich jedoch schnell zeigen, dass sie nicht zutrifft.

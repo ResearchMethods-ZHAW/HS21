@@ -12,7 +12,7 @@ categories:
 ```{r echo = FALSE}
 
 # für export loesung aufgabe 2
-knitr::purl("index.Rmd", "Statistik2_solution/Solution_stat2.R", documentation = 0)
+knitr::purl("index.Rmd", "Solution_stat2.R", documentation = 0)
 
 
 ```

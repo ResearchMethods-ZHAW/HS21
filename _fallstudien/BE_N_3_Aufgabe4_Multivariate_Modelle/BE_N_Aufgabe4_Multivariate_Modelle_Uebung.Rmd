@@ -1,5 +1,5 @@
 ---
-title: "KW44: Einstieg Multivariate Modelle Fallstudie WPZ - Profil N"
+title: "KW44: Einstieg Multivariate Modelle"
 description:
 author:
   - name: Beni Sigrist
@@ -48,7 +48,7 @@ ipak(packages)
 
 # Ein Satz Density Plots für den Tagesdatensatz und einer für den Nachtdatensatz 
 
-par(mfrow=c(4,3), mar=c(5, 5, 3, 3))
+par(mfrow=c(3,3), mar=c(4, 4, 3, 3))
 for (i in 6:12) {          # innerhalb des for()-loops die Nummern der gewuenschten 
                            # Spalten einstellen
   d  <-  DF_mod_day %>% pull(i)
@@ -66,7 +66,7 @@ for (i in 6:12) {          # innerhalb des for()-loops die Nummern der gewuensch
 
 ```
 
-### Aufgabe 4: Testen der Verteilung eurer Variablen (nur kontinuierliche) 
+### Aufgabe 4: Testen eurer erklärenden Variablen auf Normalverteilung (nur kontinuierliche) 
 
 ### Aufgabe 5: Explorative Analysen der Variablen mit Scatterplots / Scatterplotmatrizen 
 ##### 1) Zu Scatterplots und Scatterplotmatrizen gibt es viele verschiedene Funktionen / Packages, schaut im Internet und sucht euch eines welches euch passt.
