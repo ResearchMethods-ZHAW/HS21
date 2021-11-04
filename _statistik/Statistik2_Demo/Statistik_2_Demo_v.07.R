@@ -1,23 +1,11 @@
----
-title: Demo Statistik 2
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik2
-draft: false
----
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Statistik_2_Demo.Rmd", "Statistik_2_Demo.R", documentation = 0)
-```
+#__________________________________________________________________________
+# Research Methods, Teil Statistik
+# Statistik 2: Demo
+# Statistik_2_Demo.R | Version 0.7
+#__________________________________________________________________________
 
 
-[Demoscript als Download](Statistik_2_Demo_v.07.R)
-
-## t-test als ANOVA 
-
-```{r}
+# t-test als ANOVA --------------------------------------------------------
 a <- c(20, 19, 25, 10, 8, 15, 13 ,18, 11, 14)
 b <- c(12, 15, 16, 7, 8, 10, 12, 11, 13, 10)
 
@@ -31,14 +19,10 @@ t.test(size~cultivar, blume, var.equal = T)
 aov(size~cultivar, data = blume)
 summary(aov(size~cultivar, data = blume))
 summary.lm(aov(size~cultivar, data = blume))
-```
 
 
-## Echte ANOVA
-
-```{r}
+# Echte ANOVA -------------------------------------------------------------
 c <- c(30, 19, 31, 23, 18, 25, 26, 24, 17, 20)
-
 blume2 <- data.frame(cultivar = c(rep("a", 10), rep("b", 10), rep("c", 10)), size = c(a, b, c))
 blume2$cultivar <- as.factor(blume2$cultivar)
 
@@ -50,33 +34,25 @@ boxplot(size~cultivar, xlab = "Sorte", ylab = "Blütengrösse [cm]", data = blum
 
 aov(size~cultivar, data = blume2)
 summary(aov(size~cultivar, data = blume2))
-summary.lm(aov(size~cultivar, data=blume2))
+summary.lm(aov(size~cultivar, data = blume2))
 
 aov.1 <- aov(size~cultivar, data = blume2)
 summary(aov.1)
 summary.lm(aov.1)
 
-#Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
+# Berechnung Mittelwerte usw. zur Charakterisierung der Gruppen
 aggregate(size~cultivar, blume2, function(x) c(Mean = mean(x), SD = sd(x), Min = min(x), Max = max(x)))
 
 lm.1 <- lm(size~cultivar, data = blume2)
 summary(lm.1)
-```
 
-
-## Tukeys Posthoc-Test
-
-```{r}
+#Tukeys Posthoc-Test
 if(!require(agricolae)){install.packages("agricolae")}
 library(agricolae)
 
 HSD.test(aov.1, "cultivar", group = FALSE, console = T)
-```
 
-
-## Beispiel Posthoc-Labels in Plot
-
-```{r}
+#Beispiel Posthoc-Labels in Plot
 aov.2 <- aov(Sepal.Width ~ Species, data = iris)
 HSD.test(aov.2, "Species", console = T)
 boxplot(Sepal.Width ~ Species, data = iris)
@@ -88,13 +64,13 @@ text(3, 4.8, "b")
 library(tidyverse)
 ggplot(iris, aes(Species, Sepal.Width)) + geom_boxplot(size = 1) +
   annotate("text", y = 5, x = 1:3, label = c("a", "c", "b"))
-```
 
 
-## Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!) 
-
-```{r}
+# Klassische Tests der Modellannahmen (NICHT EMPFOHLEN!!!)  --------
 shapiro.test(blume2$size[blume2$cultivar == "a"])
+shapiro.test(blume2$a)
+
+
 var.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"])
 
 if(!require(car)){install.packages("car")}
@@ -102,40 +78,29 @@ library(car)
 leveneTest(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"], center=mean)
 
 wilcox.test(blume2$size[blume2$cultivar == "a"], blume2$size[blume2$cultivar == "b"])
-```
 
 
-## Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA massiv verletzt sind
+# Nicht-parametrische Alternativen, wenn Modellannahmen der ANVOA  --------
 
-## Zum Vergleich normale ANOVA noch mal
+# Zum Vergleich normale ANOVA noch mal
 
-```{r}
 summary(aov(size~cultivar, data = blume2))
-```
 
-
-## Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen
-## Kruskal-Wallis-Test
-
-```{r}
+# Bei starken Abweichungen von der Normalverteilung, aber ähnlichen Varianzen
+# Kruskal-Wallis-Test
 kruskal.test(size~cultivar, data = blume2)
 if(!require(FSA)){install.packages("FSA")} 
 library(FSA)
-#korrigierte p-Werte nach Bejamini-Hochberg
-dunnTest(size~cultivar, method = "bh", data = blume2) 
-```
+dunnTest(size~cultivar, method = "bh", data = blume2) # korrigierte p-Werte nach Bejamini-Hochberg
 
-## Bei erheblicher Heteroskedastizität, aber relative normal/symmetrisch verteilten Residuen
 
-## Welch-Test
+#Bei erheblicher Heteroskedastizitaet, aber relative normal/symmetrisch verteilten Residuen
 
-```{r}
+#Welch-Test
 oneway.test(size~cultivar, var.equal = F, data = blume2)
-```
 
-## 2-faktorielle ANOVA
 
-```{r}
+# 2-faktorielle ANOVA -----------------------------------------------------
 d <- c(10, 12, 11, 13, 10, 25, 12, 30, 26, 13)
 e <- c(15, 13, 18, 11, 14, 25, 39, 38, 28, 24)
 f <- c(10, 12, 11, 13, 10, 9, 2, 4, 7, 13)
@@ -143,34 +108,26 @@ f <- c(10, 12, 11, 13, 10, 9, 2, 4, 7, 13)
 blume3 <- data.frame(cultivar=c(rep("a", 20), rep("b", 20), rep("c", 20)),
                    house = c(rep(c(rep("yes", 10), rep("no", 10)), 3)),
                   size = c(a, b, c, d, e, f))
-```
-
-```{r, eval = FALSE}
 blume3
-```
 
-```{r}
 boxplot(size~cultivar + house, data = blume3)
 
 summary(aov(size~cultivar + house, data = blume3))
 summary(aov(size~cultivar + house + cultivar:house, data = blume3)) 
 #Kurzschreibweise: "*" bedeutet, dass Interaktion zwischen cultivar und house eingeschlossen wird
 summary(aov(size~cultivar * house, data = blume3)) 
-
-summary.lm(aov(size~cultivar+house, data = blume3))
+summary.lm(aov(size~cultivar + house, data = blume3))
 
 
 interaction.plot(blume3$cultivar, blume3$house, blume3$size)
 interaction.plot(blume3$house, blume3$cultivar, blume3$size)
 
-anova(lm(blume3$size~blume3$cultivar*blume3$house), lm(blume3$size~blume3$cultivar+blume3$house))
+anova(lm(blume3$size~blume3$cultivar*blume3$house), lm(blume3$size~blume3$cultivar + blume3$house))
 anova(lm(blume3$size~blume3$house), lm(blume3$size~blume3$cultivar * blume3$house))
-```
 
 
-## Korrelationen
+# Korrelationen -----------------------------------------------------------
 
-```{r}
 library(car)
 
 blume <- data.frame(a, b)
@@ -189,12 +146,10 @@ summary(lm.2)
 if(!require(lmodel2)){install.packages("lmodel2")} 
 library(lmodel2)
 lmodel2(b~a)
-```
 
-## Beispiele Modelldiagnostik
+# Beispiele Modelldiagnostik ----------------------------------------------
 
-```{r}
-par(mfrow=c(2, 2)) #4 Plots in einem Fenster
+par(mfrow=c(2, 2)) # 4 Plots in einem Fenster
 plot(lm(b~a))
 
 if(!require(ggfortify)){install.packages("ggfortify")}
@@ -223,5 +178,3 @@ ggplot(df, aes(x = g, y = h)) +
 
 par(mfrow=c(2, 2))
 autoplot(lm(h~g))
-
-```
