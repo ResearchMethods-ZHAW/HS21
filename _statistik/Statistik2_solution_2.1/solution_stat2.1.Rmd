@@ -22,9 +22,11 @@ knitr::purl("solution_stat2.1.Rmd", "Statistik_2_Solution_2.1.R", documentation 
 
 ```{r}
 SAR <- read.delim("SAR.csv", sep = ";")
-SAR
 ```
 
+```{r, eval = FALSE}
+SAR
+```
 
 **Explorative Datenanalyse**
 
@@ -52,10 +54,10 @@ plot(lm.1)
 
 **Ergebnisplot**
 ```{r}
-par(mfrow=c(1,1))
-plot(SAR$area, SAR$richness, xlab = "Area [m²]", ylab="Species richness")
-abline(lm(richness~area, data=SAR), col = "red") #Alternative 1
-abline(lm.1,col="red") #Alternative 2
+par(mfrow = c(1, 1))
+plot(SAR$area, SAR$richness, xlab = "Area [m²]", ylab = "Species richness")
+abline(lm(richness~area, data = SAR), col = "red") #Alternative 1
+abline(lm.1, col = "red") #Alternative 2
 ```
 
 
@@ -97,7 +99,7 @@ summary(lm.3)
 
 **Modelldiagnostik**
 ```{r}
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 plot(lm.3)
 ```
 das sieht jetzt sehr gut aus, bis auf zwei Ausreisser im QQ-Plot
@@ -108,36 +110,20 @@ das sieht jetzt sehr gut aus, bis auf zwei Ausreisser im QQ-Plot
 ```{r}
 par(mfrow = c(1, 1))
 xv <- seq(0, 100, 0.1)
-
-
 ```
 
 
-**Modelldiagnostik**
-```{r, eval=FALSE}
-model.nls <- nls(amount~a*exp(-b*time), start = (list(a = 100, b = 1)), data = decay)
-summary(model.nls)
-```
-
-**Modelldiagnostik**
-```{r eval=FALSE, include=FALSE}
-if(!require(nlstools)){install.packages("nlstools")}
-library(nlstools)
-
-residuals.nls <- nlsResiduals(model.nls)
-plot(residuals.nls)
-```
 
 **Ergebnisplots**
 ```{r}
-par(mfrow=c(1,1))
+par(mfrow = c(1,1))
 xv <- seq(0,100,0.1)
 ```
 
 A. lineares Modell mit log-transformierter Abhaengiger
 ```{r}
 plot(SAR$area, SAR$richness)
-yv1a <- 10^predict(lm.2, list(area= xv))
+yv1a <- 10^predict(lm.2, list(area = xv))
 lines(xv, yv1a, col = "blue")
 ```
 
@@ -145,7 +131,7 @@ B. lineares Modell mit log-Transformation beider Variablen
 ```{r}
 xvlog <- seq(-4,2,0.1)
 plot(SAR$log_area, SAR$log_richness, xlab = "log10 (Fläche [m²])", ylab = "log10 (Artenreichtum)")
-yv1b <- predict(lm.3, list(log_area=xvlog))
+yv1b <- predict(lm.3, list(log_area = xvlog))
 lines(xvlog, yv1b, col = "green")
 ```
 
@@ -160,9 +146,10 @@ lines(10^xv, 10^yv1b, col = "green")
 
 Modelle im Vergleich
 ```{r}
+#Modelle im Vergleich
 plot(SAR$area, SAR$richness)
-abline(lm.1, col = "red")
-lines(xv, yv1a, col = "blue")
-lines(10^xv, 10^yv1b, col = "green")
+abline(lm.1, col="red")
+lines(xv, yv1a, col="blue")
+lines(10^xv, 10^yv1b, col="green")
 ```
 
