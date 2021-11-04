@@ -1,7 +1,6 @@
-compensation <- read.table("ipomopsis.csv", header = T, sep = ",")
+compensation <- read.delim("ipomopsis.csv", sep = ",", stringsAsFactors = T)
 
 summary(compensation)
-compensation$Grazing <- as.factor(compensation$Grazing)
 
 plot(Fruit~Root, data = compensation)
 boxplot(Fruit~Grazing, data = compensation)
@@ -20,7 +19,7 @@ summary.lm(aoc.3)
 # Plotten der Ergebnisse
 library(tidyverse)
 ggplot(compensation, aes(Fruit, Root, color = Grazing)) +
-  geom_point()
+  geom_point() + theme_classic()
 
 # Ploten mit base R
 plot(Fruit~Root, pch = 16, col = Grazing, data = compensation)
@@ -42,18 +41,17 @@ plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
 abline(lm(f~e), col = "blue")
 
 # 2. quadratisches Modell
-xv <- seq(0,40,0.1)
-plot(f~e, xlim = c(0,40), ylim = c(0,20))
+xv <- seq(0, 40, 0.1)
+plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
 yv2 <- predict(lm.quad, list(e = xv))
 lines(xv, yv2, col = "red")
 
 # Residualplots
 par(mfrow = c(2, 2))
 plot(lm.1)
-#plot(lm.2)
+plot(lm.quad)
 
-loyn <- read.table("loyn.csv", header = T, sep = ",")
-loyn
+loyn <- read.delim("loyn.csv", sep = ",")
 
 summary(loyn)
 
@@ -74,6 +72,7 @@ print(cor, digits = 3)
 
 if(!require(car)){install.packages("car")} 
 library(car)
+vif(lm.1)
 
 test <- data.frame("x" = c(1, 2, 3, 4, 5, 6), "y" = c(34, 21, 70, 47, 23, 45))
 
@@ -96,16 +95,16 @@ summary(lm.5)
 
 xv <- seq(from = 0, to = 10, by = 0.1)
 
-plot(y~x,cex = 2, col = "black", lwd = 3, data = test)
-yv <- predict(lm.1, list(x=xv))
+plot(y~x, cex = 2, col = "black", lwd = 3, data = test)
+yv <- predict(lm.1, list(x = xv))
 lines(xv, yv, col = "red", lwd = 3)
 yv <- predict(lm.2, list(x = xv))
 lines(xv, yv, col = "blue", lwd = 3)
 yv<-predict(lm.3, list(x = xv))
 lines(xv, yv, col = "green", lwd =3)
-yv <- predict(lm.4, list(x=xv))
+yv <- predict(lm.4, list(x = xv))
 lines(xv, yv, col = "orange", lwd = 3)
-yv <- predict(lm.5, list(x=xv))
+yv <- predict(lm.5, list(x = xv))
 lines(xv, yv, col = "black", lwd = 3)
 
 lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
@@ -120,7 +119,7 @@ if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
 
 loyn.preds <-with(loyn, data.frame(YR.ISOL, ALT, GRAZE))
-hier.part(loyn$ABUND,loyn.preds, gof = "Rsqu")
+hier.part(loyn$ABUND, loyn.preds, gof = "Rsqu")
 
 avPlots(lm.1, ask=F)
 

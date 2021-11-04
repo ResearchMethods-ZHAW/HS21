@@ -32,7 +32,7 @@ summary.lm(aoc.3)
 # Plotten der Ergebnisse
 library(tidyverse)
 ggplot(compensation, aes(Fruit, Root, color = Grazing)) +
-  geom_point()
+  geom_point() + theme_classic()
 
 # Ploten mit base R
 plot(Fruit~Root, pch = 16, col = Grazing, data = compensation)
@@ -57,7 +57,7 @@ plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
 abline(lm(f~e), col = "blue")
 
 # 2. quadratisches Modell
-xv <- seq(0,40, 0.1)
+xv <- seq(0, 40, 0.1)
 plot(f~e, xlim = c(0,40), ylim = c(0, 20))
 yv2 <- predict(lm.quad, list(e = xv))
 lines(xv, yv2, col = "red")
