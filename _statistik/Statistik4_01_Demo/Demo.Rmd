@@ -9,7 +9,7 @@ draft: false
 ---
 
 
-- [Demoscript als Download](Statistik_4_Demo_v.07)
+- [Demoscript als Download](Statistik_4_Demo_v.07.R)
 - Datensatz [loyn.csv](loyn.csv)
 
 
