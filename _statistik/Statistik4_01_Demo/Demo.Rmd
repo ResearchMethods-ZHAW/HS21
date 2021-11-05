@@ -40,8 +40,12 @@ glm.poisson <- glm(Besucher~Temperatur, family = poisson, data = strand)
 summary(glm.gaussian)
 summary(glm.poisson)
 
-#Rücktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion da family=possion als Link-Funktion den natürlichen Logarithmus (log) verwendet)
-#Besucher = exp(3.50 + 0.11 Temperatur/°C)
+```
+
+Rücktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion da family=possion als Link-Funktion den natürlichen Logarithmus (log) verwendet)
+Besucher = exp(3.50 + 0.11 Temperatur/°C)
+
+```{r}
 exp(3.500301) #Anzahl besucher bei 0°C
 exp(3.500301 + 30*0.112817) #Anzahl besucher bei 30°C
 
@@ -77,41 +81,45 @@ lines(xv, exp(yv3), lwd = 3, col = "green")
 ## Logistische Regression
 
 ```{r}
-bathing <- data.frame("temperature" = c(1, 2, 5, 9, 14, 14, 15, 19, 22, 24, 25, 26, 27, 28, 29), 
-                      "bathing" = c(0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1))
+bathing <- data.frame(
+  "temperature" = c(1, 2, 5, 9, 14, 14, 15, 19, 22, 24, 25, 26, 27, 28, 29),
+  "bathing" = c(0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1))
 plot(bathing~temperature, data = bathing)
 
 glm.1<-glm(bathing~temperature, family = "binomial", data = bathing)
 summary(glm.1)
 
-#Modeldiagnostik (wenn nicht signifikant, dann OK)
+# Modeldiagnostik (wenn nicht signifikant, dann OK)
 1 - pchisq (glm.1$deviance,glm.1$df.resid)
 
-#Modellgüte (pseudo-R²)
+# Modellgüte (pseudo-R²)
 1 - (glm.1$dev / glm.1$null)
 
-#Steilheit der Beziehung (relative Änderung der odds bei x + 1 vs. x)
+# Steilheit der Beziehung (relative Änderung der odds bei x + 1 vs. x)
 exp(glm.1$coefficients[2])
 
-#LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
+# LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
 -glm.1$coefficients[1]/glm.1$coefficients[2]
 
-#Vorhersagen
+# Vorhersagen
 predicted <- predict(glm.1, type = "response")
 
-#Konfusionsmatrix
+# Konfusionsmatrix
 km <- table(bathing$bathing, predicted > 0.5)
 km
 
-#Missklassifizierungsrate
+# Missklassifizierungsrate
 1 - sum(diag(km) / sum(km))
 
 
 
 #Plotting
-xs <- seq(0,30,l=1000)
-model.predict <- predict(glm.1, type = "response", se = T, newdata = data.frame(temperature = xs))
-plot(bathing~temperature, data = bathing, xlab = "Temperature (°C)", ylab = "% Bathing", pch = 16, col = "red")
+xs <- seq(0, 30, l = 1000)
+model.predict <- predict(glm.1, type = "response", se = T, 
+                         newdata = data.frame(temperature = xs))
+
+plot(bathing~temperature, xlab = "Temperature (°C)", 
+     ylab = "% Bathing", pch = 16, col = "red", data = bathing)
 points(model.predict$fit ~ xs, type="l")
 lines(model.predict$fit+model.predict$se.fit ~ xs, type = "l", lty = 2)
 lines(model.predict$fit-model.predict$se.fit ~ xs, type = "l", lty = 2)
@@ -125,7 +133,7 @@ if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
 library(nlstools)
 
-loyn <- read.delim("loyn.csv", sep = ",") # Achtung Verzeichnis muss dort gesetzt sein wo Daten sind
+loyn <- read.delim("loyn.csv", sep = ",") # Verzeichnis muss dort gesetzt sein wo Daten sind
 
 #Selbstdefinierte Funktion, hier Potenzfunktion
 power.model <- nls(ABUND~c*AREA^z, start = (list(c = 1, z = 0)), data = loyn)
