@@ -10,7 +10,7 @@ author:
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("index.Rmd", Solution_stat1.R", documentation = 0)
+knitr::purl("index.Rmd", "Solution_stat1.R", documentation = 0)
 
 ```
 
