@@ -1,0 +1,74 @@
+---
+title: "KW44: Einstieg Multivariate Modelle"
+description:
+author:
+  - name: Beni Sigrist
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (N)
+draft: false
+---
+
+## Einstieg Multivariate Modelle / Habitatselektionsmodell
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
+
+### libraries laden
+
+```{r results='hide', warning=FALSE, message=FALSE}
+
+### Funktion um Packages direkt zu installieren und / oder zu laden
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+packages <- c("sp", "raster", "tidyverse", "PerformanceAnalytics", "pastecs", "car")
+
+ipak(packages)
+
+```
+
+### Aufgabe 1: Einlesen des Gesamtdatensatzes für die Multivariate Analyse von Moodle
+##### 1) Sichtung des Datensatzes, der Variablen und der Datentypen
+##### 2) Kontrolle wieviele Rehe in diesem Datensatz enthalten sind
+
+### Aufgabe 2: Unterteilung des Datensatzes in Teildatensätze entsprechend der Tageszeit 
+
+### Aufgabe 3: Erstellen von Density Plots der Praesenz / Absenz in Abhaengigkeit der unabhaengigen Variablen
+
+```{r tidy=TRUE, results="hide", eval=FALSE, fig.keep="none"}
+
+# Ein Satz Density Plots für den Tagesdatensatz und einer für den Nachtdatensatz 
+
+par(mfrow=c(3,3), mar=c(4, 4, 3, 3))
+for (i in 6:12) {          # innerhalb des for()-loops die Nummern der gewuenschten 
+                           # Spalten einstellen
+  d  <-  DF_mod_day %>% pull(i)
+  d  <-  density(d)
+  dp  <-  DF_mod_day %>% filter(pres_abs == 1) %>% pull(i)
+  dp <- density(dp)
+  da  <-  DF_mod_day %>% filter(pres_abs == 0) %>% pull(i)
+  da <- density(da)
+  plot(0,0, type="l", xlim=range(c(dp$x,da$x)), ylim=range(dp$y,da$y), 
+       xlab=names(DF_mod_day[i]), ylab="Density")
+  lines(dp$x, dp$y, col="blue")             # Praesenz
+  lines(da$x, da$y, col="red")              # Absenz
+}
+
+
+```
+
+### Aufgabe 4: Testen eurer erklärenden Variablen auf Normalverteilung (nur kontinuierliche) 
+
+### Aufgabe 5: Explorative Analysen der Variablen mit Scatterplots / Scatterplotmatrizen 
+##### 1) Zu Scatterplots und Scatterplotmatrizen gibt es viele verschiedene Funktionen / Packages, schaut im Internet und sucht euch eines welches euch passt.
+##### 2) Testen der Korrelation zwischen den Variablen (Parametrisch oder nicht-parametrische Methode? Ausserdem: gewisse Scatterplotmatrizen zeigen euch die Koeffizenten direkt an)
+

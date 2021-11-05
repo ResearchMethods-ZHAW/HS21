@@ -1,5 +1,5 @@
 ---
-title: "KW43: Homeranges Fallstudie WPZ - Profil N"
+title: "KW43: Homeranges"
 description:
 author:
   - name: Beni Sigrist
@@ -15,7 +15,7 @@ draft: false
 knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
 ```
 
-# R-Skript zur Berechung der Home-Ranges der Rehe 
+## Berechung der Home-Ranges der Rehe 
 
 ### Benötigte Libraries laden
 

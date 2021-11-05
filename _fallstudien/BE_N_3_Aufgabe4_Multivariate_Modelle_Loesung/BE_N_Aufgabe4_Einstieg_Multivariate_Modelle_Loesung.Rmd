@@ -1,0 +1,146 @@
+---
+title: "KW44: Einstieg Multivariate Modelle - Loesung"
+description:
+author:
+  - name: Beni Sigrist
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Biodiversity & Ecosystems (N) Musterloesung
+draft: false
+---
+
+## Einstieg Habitatselektionsmodell / Multivariate Modelle
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=60),tidy=TRUE)
+```
+
+### libraries laden
+
+```{r results='hide', warning=FALSE, message=FALSE}
+
+### Funktion um Packages direkt zu installieren und / oder zu laden
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+packages <- c("tidyverse", "PerformanceAnalytics", "pastecs", "psych", "car")
+
+ipak(packages)
+
+```
+
+### Aufgabe 1: Einlesen des Gesamtdatensatzes von Moodle
+##### - Sichtung des Datensatzes und der Datentypen
+##### - Kontrolle wieviele Rehe in diesem Datensatz enthalten sind
+
+```{r tidy=TRUE, warning=FALSE, message=FALSE}
+
+DF_mod <- read_delim("Aufgabe4_Datensatz_Habitatnutzung_Modelle_20211101_moodle.csv", 
+                     delim = ";")
+
+str(DF_mod)
+
+class(DF_mod$time_of_day)
+
+table(DF_mod$id)
+
+DF_mod %>% group_by(id) %>% summarize(anzahl = n())
+
+length(unique(DF_mod$id))
+
+
+```
+
+### Aufgabe 2: Unterteilung des Datensatzes in Teildatensätze entsprechend der Tageszeit
+
+```{r tidy=TRUE, eval=TRUE}
+
+DF_mod_night <- DF_mod %>%
+  filter(time_of_day == "night")
+
+DF_mod_day <- DF_mod %>%
+  filter(time_of_day == "day")
+
+# Kontrolle
+
+table(DF_mod_night$time_of_day)
+table(DF_mod_day$time_of_day)
+
+```
+
+### Aufgabe 3: Erstellen von Density Plots der Praesenz / Absenz in Abhaengigkeit der unabhaengigen Variablen (für Tag und Nacht)
+
+```{r tidy=TRUE, results="hide"}
+
+# Ein Satz Density Plots für den Tagesdatensatz und einer für den Nachtdatensatz 
+
+par(mfrow=c(3,3), mar=c(4, 4, 3, 3))
+for (i in 6:12) {                           # innerhalb des for()-loops die Nummern der 
+                                            # gewuenschten Spalten einstellen
+  d  <-  DF_mod_day %>% pull(i)
+  d  <-  density(d)
+  dp  <-  DF_mod_day %>% filter(pres_abs == 1) %>% pull(i)
+  dp <- density(dp)
+  da  <-  DF_mod_day %>% filter(pres_abs == 0) %>% pull(i)
+  da <- density(da)
+  plot(0,0, type="l", xlim=range(c(dp$x,da$x)), ylim=range(dp$y,da$y), 
+       xlab=names(DF_mod_day[i]), ylab="Density")
+  lines(dp$x, dp$y, col="blue")             # Praesenz
+  lines(da$x, da$y, col="red")              # Absenz
+}
+
+```
+
+### Aufgabe 4: Testen erklärenden Variablen auf Normalverteilung (nur kontinuierlichen) 
+
+```{r tidy=TRUE, message=FALSE, warning = FALSE}
+
+# klassischer Weg mit shapiro-wilk (mehrere Spalten, verschiedenene statistische
+# Kenngrössen werden angezeigt. Normalverteilung: Wert ganz unten. p>0.05 = ja)
+
+round(stat.desc(DF_mod_day[6:12], basic= F, norm= T), 3)
+
+# empfohlener Weg
+
+ggplot(DF_mod_day, aes(slope)) + geom_histogram(aes(y=..density..), color = "black", 
+                                                fill = "white") + 
+  stat_function(fun = dnorm, args = list(mean = mean(DF_mod_day$slope, na.rm = T), 
+                                         sd = sd(DF_mod_day$slope, na.rm = T)), 
+                color = "black",size = 1)
+
+# Aufgabe 4: die Korrelation bei einem Teildatensatz testen reicht, 
+# denn die verwendeten Kreise sind die selben am Tag und in der Nacht, 
+# nur die Nutzung durch das Reh nicht
+
+
+```
+
+### Aufgabe 5: Explorative Analysen der Variablen mit Scatterplots, Scatterplotmatrizen
+##### 1) Zu Scatterplots und Scatterplotmatrizen gibt es viele verschiedene Funktionen / Packages, schaut im Internet und sucht euch eines welches euch passt.
+##### 2) Testen der Korrelation zwischen den Variablen (Parametrisch oder nicht-parametrische Methode? Ausserdem: gewisse Scatterplotmatrizen zeigen euch die Koeffizenten direkt an)
+
+```{r tidy=TRUE, message=FALSE,warning=FALSE}
+
+chart.Correlation(DF_mod_day[6:12], histogram=TRUE, pch=19, method = "kendall")
+
+#?chart.Correlation
+
+pairs.panels(DF_mod_day[6:12], 
+             method = "kendall", # correlation method
+             hist.col = "#00AFBB",
+             density = TRUE,  # show density plots
+             ellipses = TRUE # show correlation ellipses
+             )
+
+# Aufgabe 5: die Korrelation bei einem Teildatensatz testen reicht, 
+# denn die verwendeten Kreise sind die selben am Tag und in der Nacht, 
+# nur die Nutzung durch das Reh nicht.
+
+```   

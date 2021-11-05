@@ -8,12 +8,10 @@ bibliography: bibliography.bib
 ---
 
 
-```{r, include=F, purl=F}
+```{r, include=FALSE, purl=FALSE}
 library(knitr)
 
 knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE) 
-
-
 ```
 
 
@@ -193,4 +191,11 @@ korr_tab <- gemeinde %>%
 knitr::kable(korr_tab,caption = "Legende: * = p<0.05, ** = p<0.01, ***=p<0.001.")
 ```
 
+
+
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
+```
 
