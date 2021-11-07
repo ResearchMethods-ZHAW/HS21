@@ -13,7 +13,7 @@ knitr::purl("Demo.Rmd", "Statistik_3_Demo.R", documentation = 0)
 ```
 
 - [Demoscript als Download](Statistik_3_Demo_v.06.R)  
-- Datensatz [ipomopsis.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/ipomopsis.csv)
+- Datensatz [ipomopsis.csv](https:///ResearchMethods-ZHAW/datasets/raw/main/statistik/ipomopsis.csv)
 - Datensatz [loyn.csv](https://github.com/ResearchMethods-ZHAW/datasets/blob/main/statistik/loyn.csv)
 
 
