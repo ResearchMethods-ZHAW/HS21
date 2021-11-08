@@ -12,9 +12,8 @@ author:
   - name: Nikolaos Bakogiannis
 ---
 
-https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/zweitwohnung_gemeinden.gpkg
 ```{r, include=FALSE, purl = FALSE}
-knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
+knitr::opts_chunk$set(echo = FALSE) 
 
 check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
   full_url <- paste0(url,folder,"/",files)

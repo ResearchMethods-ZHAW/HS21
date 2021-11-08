@@ -14,26 +14,36 @@ author:
 
   <!-- # Zum Abschluss des Themenblockes Spatial Data Science berechnen wir mit dem Moran’s I einen Index zur Berechnung der räumlichen Autokorrelation einer Choroplethenkarte. Wir verwenden nochmals die aggregierten Choroplethenkarten zur Wasserverfügbarkeit aus der ersten Übung und schauen uns an, wie stark die Werte für die Kantone und die Bezirke autokorreliert sind. Anstatt einfach eine Funktion zur Berechnung von Moran’s I aufzurufen und diese dann wie eine Black Box anzuwenden, wollen wir Formel für die Berechnung des Index in Ihre Bausteine zerlegen und diese Schritt für Schritt selber nachrechnen. So seht Ihr, wie  Moran’s I wirklich funktioniert und könnte dabei erst noch die zuvor gelernten Data Science Techniken repetieren.  -->
 
-```{r echo = FALSE}
 
-```
-```{r, include=FALSE, purl = FALSE}
-knitr::opts_chunk$set(echo = FALSE,include = TRUE,message = FALSE, collapse=TRUE, warning=FALSE, results = "markup", fig.width = 7, fig.height = 5) 
-```
 
 Für die Berechnung von Morans $I$ benutzen wir kein externes Package, sondern erarbeiten uns alles selber, basierend auf der Formel von Moran's $I$: 
 
 $$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
 
+
 Diese sieht sehr beeindruckend aus, aber wenn wir die Formel in ihre Einzelbestandteile aufteilen, sehen wir, dass diese in sich gar nicht so komplex sind.
 
 Als erster Schritt müssen wir die notwendigen Libraries und Geodaten laden:
 
-- [bezirke.gpkg](bezirke.gpkg)
-- [wasserverfuegbarkeit_bode.gpkg](wasserverfuegbarkeit_boden.gpkg)
+```{r, echo = FALSE, purl = FALSE, results = "asis"}
+knitr::opts_chunk$set(echo = FALSE, eval = FALSE) 
+
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ", source),sep = "\n")
+}
+
+check_download(c("wasserverfuegbarkeit_boden.gpkg","bezirke.gpkg"), "rauman", "(Quelle: [Swisstopo](https://www.swisstopo.admin.ch/en/geodata/landscape/boundaries3d.html))")
+```
+
+
 
 ```{r, echo = TRUE}
-library(tidyverse)
+library(dplyr)
 library(sf)
 
 bezirke <- read_sf("bezirke.gpkg")
@@ -45,26 +55,9 @@ wasser <- wasser %>%
   st_transform(2056)
 
 bezirke <- st_set_crs(bezirke, 2056)
-
-
-
-
 ```
 
 Nun können wir die mittlere Wasserverfügbarkeit pro Bezirk berechnen. Visualisiert dies in einem ersten Schritt und notiert Euch, was für einen Wert Ihr von Moran's $I$ erwartet (eher -1 oder eher 1 oder nahe bei 0?). Der Plot muss nicht genau so aussehen wie der unsere.
-
-```{r, echo = TRUE}
-wasser_bezirke <- aggregate(wasser,bezirke, mean)
-```
-
-```{r}
- ggplot(wasser_bezirke) +
-  geom_sf(aes(fill = wasserverfuegbarkeit), colour = "white",lwd = 0.2) +
-  scale_fill_viridis_c() +
-  labs(title = "Mittlere Wasserverfügbarkeit",subtitle = "nach Bezirk",fill = "") +
-  theme_void() +
-  theme(legend.position = "bottom",legend.direction = "horizontal")
-```
 
 
 
@@ -73,7 +66,14 @@ wasser_bezirke <- aggregate(wasser,bezirke, mean)
 In der ersten Übung wollen wir Moran's $I$ für eine gegebene Choroplethenkarte nachrechnen. Dazu nehmen wir die Formel für Moran's $I$ und zerlegen sie in Einzelteile, die wir dann Schritt für Schritt für unsere Daten berechnen. So teilen wir ein vermeintlich komplexes Problem in überschaubare Einzelteile. Dieses Vorgehen illustriert ausserdem sehr schön ein generelles (Spatial) Data Science Prinzip. Divide and Conquer - Teile und Herrsche: Teile ein komplexes Probelm in kleinere, beherrschbare Unterprobleme. Wir beginnen mit dem ersten Bruch und berechnen dabei zuerst den Zähler, dann dem Nenner. So können wir den Bruch auflösen und uns danach dem zweiten Bruch zuwenden:
 
 
-$$I = \frac{n}{\sum_{i=1}^n (y_i - \bar{y})^2} \times \frac{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}$$
+$$I = \frac{\color{cyan}{n}}{\color{SkyBlue}{\sum_{i=1}^n (y_i - \bar{y})^2}} \times \frac{\color{LimeGreen}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})}}{\color{Violet}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}}}$$
+
+
+where:
+
+$$\color{cyan}{n} = \text{Anzahl Messwerte in unserem Datensatz (also die Anzahl Bezirke)}$$
+$$\color{SkyBlue}{\sum_{i=1}^n (y_i - \bar{y})^2} = \text{Summe aus den quadrierten Differenzen zwischen Messwerten und dem Mittelwert}$$
+$$\color{LimeGreen}{\sum_{i=1}^n \sum_{j=1}^n w_{ij}(y_i - \bar{y})(y_j - \bar{y})} = \text{}$$
 
 
 **Bruch 1**
@@ -224,7 +224,7 @@ ggplot(wasser_bezirke) +
 ```
 
 
-Der nächste Teil sollte Euch nun bekannt vorkommen. Die Differenz aller Werte vom Mittelwert aller Werte $(y_i - \bar{y})$ kennen wir schon vom ersten Bruch und haben wir auch bereits gelöst. Nun gilt es paarweise das Produkt der Abweichungen vom Mittelwert (die Covarianz) zu berechnen $(y_i - \bar{y})(y_j - \bar{y})$.  DAzu müssen wir *das Produkt aller Wertekombinationen* berechnen. Dies erreichen wir mit der Funktion `tcrossprod()`:
+Der nächste Teil sollte Euch nun bekannt vorkommen. Die Differenz aller Werte vom Mittelwert aller Werte $(y_i - \bar{y})$ kennen wir schon vom ersten Bruch und haben wir auch bereits gelöst. Nun gilt es paarweise das Produkt der Abweichungen vom Mittelwert (die Covarianz) zu berechnen $(y_i - \bar{y})(y_j - \bar{y})$.  Dazu müssen wir *das Produkt aller Wertekombinationen* berechnen. Dies erreichen wir mit der Funktion `tcrossprod()`:
 
 ```{r, echo = TRUE}
 pm <- tcrossprod(dy)

@@ -48,7 +48,7 @@ my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp =
   }
   
   samples <- st_make_grid(extent,cellsize,what = "centers") %>% st_as_sf()
-  my_formula <- formula(paste(column,"~1"))
+  my_formula <- formula(paste0(column,"~1"))
   idw_sf <- gstat::idw(formula = my_formula,groundtruth,newdata = samples,nmin = 1, maxdist = maxdist, idp = idp)
   
   idw_matrix <- cbind(st_coordinates(idw_sf),idw_sf$var1.pred)
