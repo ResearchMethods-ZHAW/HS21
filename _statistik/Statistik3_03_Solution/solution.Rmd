@@ -10,7 +10,7 @@ draft: true
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("index.Rmd", "Solution_stat3.R", documentation = 0)
+knitr::purl("solution.Rmd", "Solution_stat3.R", documentation = 0)
 
 
 ```
