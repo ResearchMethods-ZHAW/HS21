@@ -1,10 +1,8 @@
 ---
-title: "Loesung Aufgabe 2"
+title: "Musterlösung Übung 2.2 & 2.3s"
 output: distill::distill_article
 author: 
   Gian-Andrea Egeler
-  Stefan Widmer
-draft: true
 categories:
 - Statistik2
 ---
@@ -12,25 +10,21 @@ categories:
 ```{r echo = FALSE}
 
 # für export loesung aufgabe 2
-knitr::purl("index.Rmd", "Solution_stat2.R", documentation = 0)
+knitr::purl("index.Rmd", "Solution_stat2.2_2.3s.R", documentation = 0)
 
 
 ```
 
 ******
 
-> Download [R-Skript](Solution_stat2.R)
+> Download [R-Skript](Solution_stat2.1_2.3s.R)
 
-
-*****
-
-# Loesung Aufgabe 2.1
 
 
 # Loesung Aufgabe 2.2
 
 ## kommentierter Loesungsweg
-```{r load data, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r load data 2.2, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 library(tidyverse)
 # library(ggfortify) # zur Testung der Voraussetzungen
@@ -56,7 +50,7 @@ mytheme <-
 
 
 
-```{r prepare data, message=FALSE}
+```{r prepare data 2.2, message=FALSE}
 
 df <- nova # klone den originaler Datensatz
 
@@ -164,7 +158,7 @@ Weil die Voraussetzungen schwer verletzt sind, wurde eine log-Transformation der
 Die Menüinhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den wöchentlichen Verkaufszahlen signifikant (F(2,15) = `r round(summary.lm(model_log)[[10]]["value"][[1]], 2)`, p < .001). Die Abbildung 1 zeigt die wöchentlichen Verkaufszahlen pro Menüinhalt.
 
 
-```{r plot results, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menüinhalt stark. Das Modell wurde mit den log-tranformierten Daten gerechnet.", tidy=TRUE}
+```{r plot results 2.3s, echo=F, fig.cap="Die wöchentlichen Verkaufzahlen unterscheiden sich je nach Menüinhalt stark. Das Modell wurde mit den log-tranformierten Daten gerechnet.", tidy=TRUE}
 
 # plottet die originalen Beobachtungen, die nicht tranformierten Daten werden 
 # hier aufgezeigt
@@ -216,7 +210,7 @@ ggplot(df, aes(x = label_content, y= tot_sold)) +
 
 ##kommentierter Loesungsweg
 
-```{r load data, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r load data 2.3, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
@@ -238,7 +232,7 @@ nova <- read_delim("https://zenodo.org/record/3890949/files/2017_ZHAW_individual
 ```
 
 
-```{r prepare data, message=FALSE}
+```{r prepare data 2.3, message=FALSE}
 # klone den originaler Datensatz
 df <- nova 
 
@@ -358,7 +352,7 @@ Kleiner Exkurs: Verkaufsdaten sind Zähldaten und perse binomial-Verteilt, da es
 Die wöchentlichen Verkaufszahlen der Menülinien unterscheiden sich nach Hochschulzugehörigkeit signifikant (F(3,44) = `r round(summary.lm(model_log)[[10]]["value"][[1]], 2)`, p < .001). Inhaltich bedeutet dies, dass Studierende signifikant häufiger die preisgünstigere Menülinie "Favorite & World" als Mitarbeitende kaufen. Entgegen der Annahme gibt es aber keine signifikanten Unterschiede zwischen Studierende und Mitarbeitende bei dem Kauf der teureren Menülinie "Kitchen". Über die möglichen Gründe können nur spekuliert werden, hierfür bedarf es weiteren Analysen z.B. mit dem Prädiktor "Menüinhalt".
 
 
-```{r plot results, message=F, echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."}
+```{r plot results 2.2, message=F, echo=F, fig.cap="Box-Whisker-Plots der wöchentlichen Verkaufszahlen pro Menü-Inhalte. Kleinbuchstaben bezeichnen homogene Gruppen auf *p* < .05 nach Tukeys post-hoc-Test."}
 
 # zeigt die Ergebnisse anhand eines Boxplots
 library(multcomp)
@@ -389,5 +383,3 @@ ggsave("_statistik/Statistik2_solution/distill-preview.png",
 
 ``` 
 
-
-#Loesung Aufgabe 2.3N

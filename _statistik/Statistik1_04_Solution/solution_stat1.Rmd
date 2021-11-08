@@ -1,11 +1,8 @@
 ---
-title: "Loesung Aufgabe 1"
+title: "Lösung Aufgabe 1"
 output: distill::distill_article
 categories:
 - Statistik1
-draft: true
-author: 
-	Gian-Andrea Egeler
 ---
 
 ```{r echo = FALSE}
@@ -18,7 +15,7 @@ knitr::purl("index.Rmd", "Solution_stat1.R", documentation = 0)
 
 
 ##kommentierte Loesung
-```{r load data, message=T, purl = F, include=FALSE}
+```{r, message=T, purl = F, include=FALSE}
 ## ladet die nötigen Packete und die novanimal.csv Datei in R
 
 library(tidyverse)
@@ -76,15 +73,23 @@ nova2 <- nova_survey %>%
 table(nova2)
 
 #achtung chi_squre erwartet matrix
-xtabs(~ gender + milkcon ,data = nova) # da es in diesem fall keine kriteriumsvariable gibt, fehlt das y sozusagen
+nova_mtx <- xtabs(~ gender + milkcon ,data = nova2) # da es in diesem fall keine kriteriumsvariable gibt, fehlt das y sozusagen
+
 
 
 #Chi-squared Test
 chi_sq <- chisq.test(nova2$gender, nova2$milkcon)
 chi_sq
 
+
+#visualisierung
+OP <- par(mfrow=c(1,2), "mar"=c(1,1,3,1))
+mosaicplot(chi_sq$observed, cex.axis =1 , main = "Observed counts")
+mosaicplot(chi_sq$expected, cex.axis =1 , main = "Expected counts\n(wenn geschlecht keinen einfluss hat)")
+par(OP)
+
 #Fisher's Test nur mit 2X2 Kontingenztabelle möglich
-fisher.test(nova2$gender, nova2$milkcon)
+fisher.test(nova_mtx)
 ```
 
 
@@ -174,8 +179,7 @@ p <- ggplot2::ggplot(df, aes(x = condit, y= tot_sold)) +
 
 print(p)
 
-ggplot2::ggsave(filename = here::here("_statistik/Statistik1_solution/distill-preview.png"),
-                device = "png")
+# ggplot2::ggsave(filename = here::here("_statistik/Statistik1_solution/distill-preview.png"), device = "png")
 
 ```
 
