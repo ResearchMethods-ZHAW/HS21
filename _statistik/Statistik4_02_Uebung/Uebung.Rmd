@@ -11,7 +11,7 @@ draft: false
 ###	Aufgabe 4.1: Nicht-lineare Regression
 
 
-**Datensatz [Curonian_Spit.csv](Curonian_Spit.csv)**
+**Datensatz [Curonian_Spit.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Curonian_Spit.csv)**
 
 
 Dieser enthält gemittelte Pflanzenartenzahlen (Species.richness) von
@@ -23,7 +23,7 @@ Flächengrössen (Area) von 0.0001 bis 900 m².
 
 ### Aufgabe 4.2N: Logistische Regression (NatWis)
 
-**Datensatz [polis.csv](polis.csv)**
+**Datensatz [polis.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/polis.csv)**
 
 Der Datensatz polis.csv beschreibt für 19 Inseln im Golf von Kalifornien, ob Eidechsen der Gattung Uta vorkommen (presence/absence: PA) in Abhängigkeit von der Form der Inseln (Verhältnis Umfang zu Fläche: RATIO). 
 

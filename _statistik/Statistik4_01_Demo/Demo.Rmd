@@ -10,7 +10,7 @@ draft: false
 
 
 - [Demoscript als Download](Statistik_4_Demo_v.07.R)
-- Datensatz [loyn.csv](https://github.com/ResearchMethods-ZHAW/datasets/blob/main/statistik/loyn.csv)
+- Datensatz [loyn.csv](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/loyn.csv)
 
 
 
