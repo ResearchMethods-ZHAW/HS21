@@ -15,7 +15,7 @@ knitr::purl("solution_Stat_Beispiel.Rmd", "Statistik_2_Solution_Beispiel.R", doc
 
 
 ## Musterloesung Beispiel
-- Datensatz [decy.csv](decay.csv)
+- Datensatz [decy.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/decay.csv)
 - [RCode als Download](Statistik_2_Solution_Beispiel.R)
 - [Loesungstext Beispiel](Statistik_Loesung_Beispiel_v.02.pdf)
 

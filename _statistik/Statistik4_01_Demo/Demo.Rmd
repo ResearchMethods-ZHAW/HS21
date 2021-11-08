@@ -10,7 +10,7 @@ draft: false
 
 
 - [Demoscript als Download](Statistik_4_Demo_v.07.R)
-- Datensatz [loyn.csv](loyn.csv)
+- Datensatz [loyn.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/loyn.csv)
 
 
 ## von LMs zu GLMs

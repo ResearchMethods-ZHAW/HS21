@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
 
 ### Aufgabe 2.1: Regression
 
-**Regressionsanalyse mit [SAR.csv](SAR.csv)**
+**Regressionsanalyse mit [SAR.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/SAR.csv)**
 
 Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in Trockenrasen der Schweiz in Abhängigkeit von der Probeflächengrösse (area, hier in m²). Diese Beziehung bezeichnet man als Artenzahl-Areal-Kurve (Species-area relationship = SAR).
 
@@ -69,7 +69,7 @@ werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführ
 
 ### Aufgabe 2.3N: Mehrfaktorielle ANOVA (NatWis)
 
-**ANOVA mit [kormoran.csv](kormoran.csv)**
+**ANOVA mit [kormoran.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/kormoran.csv)**
 
 Der Datensatz enthält 40 Beobachtungen zu Tauchzeiten zweier Kormoranunterarten (C = *Phalocrocorax carbo carbo* und S = *Phalacrocorax carbo sinensis*) aus vier Jahreszeiten (F = Frühling, S = Sommer, H = Herbst, W = Winter).
 
