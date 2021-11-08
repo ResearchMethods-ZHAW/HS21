@@ -1,8 +1,7 @@
 ---
 title: Übung Statistik 3
 output: 
-  distill::distill_article:
-    toc: false
+  distill::distill_article
 categories:
 - Statistik3
 ---

@@ -87,7 +87,7 @@ nova_mtx <- xtabs(~ gender + milkcon ,data = nova2)
 
 
 #Chi-squared Test
-chi_sq <- chisq.test(nova2$gender, nova2$milkcon)
+chi_sq <- chisq.test(nova_mtx)
 chi_sq
 
 
