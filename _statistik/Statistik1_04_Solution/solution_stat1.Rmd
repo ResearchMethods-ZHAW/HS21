@@ -12,13 +12,18 @@ author:
   
 ---
 
-```{r echo = FALSE}
+```{r echo = FALSE, results='hide',  message=FALSE}
 #export files
 knitr::purl("index.Rmd", "Solution_stat1.R", documentation = 0)
 
 ```
 
+
+
+
 #  Musterlösung Übung 1.1
+
+> Download [R-Skript](Solution_stat1.R)
 
 
 ## kommentierter Weg

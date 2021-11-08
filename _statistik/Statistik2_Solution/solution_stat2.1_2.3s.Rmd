@@ -10,7 +10,7 @@ categories:
 - Statistik2
 ---
 
-```{r echo = FALSE}
+```{r, echo = FALSE, results='hide', message=FALSE}
 
 # für export loesung aufgabe 2
 knitr::purl("index.Rmd", "Solution_stat2.2_2.3s.R", documentation = 0)
@@ -18,10 +18,8 @@ knitr::purl("index.Rmd", "Solution_stat2.2_2.3s.R", documentation = 0)
 
 ```
 
-******
 
-> Download [R-Skript](Solution_stat2.1_2.3s.R)
-
+> Download [R-Skript](Solution_stat2.2_2.3s.R)
 
 
 # Musterlösung Übung 2.2
