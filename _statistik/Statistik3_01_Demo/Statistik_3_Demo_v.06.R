@@ -31,7 +31,7 @@ summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
 library(tidyverse)
-ggplot(compensation, aes(Fruit, Root, color = Grazing)) +
+ggplot(compensation, aes(Root, Fruit, color = Grazing)) +
   geom_point() + theme_classic()
 
 # Ploten mit base R
@@ -58,7 +58,7 @@ abline(lm(f~e), col = "blue")
 
 # 2. quadratisches Modell
 xv <- seq(0, 40, 0.1)
-plot(f~e, xlim = c(0,40), ylim = c(0, 20))
+plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
 yv2 <- predict(lm.quad, list(e = xv))
 lines(xv, yv2, col = "red")
 
@@ -102,11 +102,11 @@ plot(y~x, data = test)
 
 lm.0 <- lm(y~1, data = test)
 lm.1 <- lm(y~x, data = test)
-lm.2 <- lm(y~x+ I(x^2), data = test)
-lm.3 <- lm(y~x+ I(x^2) + I(x^3), data = test)
-lm.4 <- lm(y~x+ I(x^2) + I(x^3) + I(x^4), data = test)
-lm.5 <- lm(y~x+ I(x^2) + I(x^3) + I(x^4) + I(x^5), data = test)
-lm.6 <- lm(y~x+ I(x^2) + I(x^3) + I(x^4) + I(x^5) + I(x^6), data = test)
+lm.2 <- lm(y~x + I(x^2), data = test)
+lm.3 <- lm(y~x + I(x^2) + I(x^3), data = test)
+lm.4 <- lm(y~x + I(x^2) + I(x^3) + I(x^4), data = test)
+lm.5 <- lm(y~x + I(x^2) + I(x^3) + I(x^4) + I(x^5), data = test)
+lm.6 <- lm(y~x + I(x^2) + I(x^3) + I(x^4) + I(x^5) + I(x^6), data = test)
 summary(lm.0)
 summary(lm.1)
 summary(lm.2)
@@ -123,9 +123,9 @@ yv <- predict(lm.2, list(x = xv))
 lines(xv, yv, col = "blue", lwd = 3)
 yv <- predict(lm.3, list(x = xv))
 lines(xv, yv, col = "green", lwd =3)
-yv <- predict(lm.4, list(x=xv))
+yv <- predict(lm.4, list(x = xv))
 lines(xv, yv, col = "orange", lwd = 3)
-yv <- predict(lm.5, list(x=xv))
+yv <- predict(lm.5, list(x = xv))
 lines(xv, yv, col = "black", lwd = 3)
 
 # Modellvereinfachung (mit Loyn-Datensatz)

@@ -44,7 +44,7 @@ summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
 library(tidyverse)
-ggplot(compensation, aes(Fruit, Root, color = Grazing)) +
+ggplot(compensation, aes(Root, Fruit, color = Grazing)) +
   geom_point() + theme_classic()
 
 # Ploten mit base R
