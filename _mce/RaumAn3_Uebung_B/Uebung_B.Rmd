@@ -1,0 +1,37 @@
+---
+title: Übung B
+output: distill::distill_article
+categories:
+- RaumAn3
+draft: true
+description: |
+  Weitere "mapping" libraries
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+---
+
+```{r echo = FALSE}
+
+```
+
+
+
+
+## Aufgabe 2: Hintergrundkarten mit `tmap`
+
+Was aus kartographischer Hinsicht sowohl bei `ggplot` als auch bei `plolty` fehlt, ist eine Hintergrundkarte. Diese Funktionalität wird von `tmap` zur Verfügung gestellt. Auf den erste Blick erscheint `tmap` nicht viel anders zu sein als `ggplot`: Die Syntax ist sehr ähnlich und auch output ist vergleichbar.
+
+```{r, echo = TRUE}
+library(tmap)
+tm_shape(wasser_kantone) + tm_polygons(col = "wasserverfuegbarkeit", alpha = 0.3,palette = "viridis",midpoint = NA)
+```
+
+Setzt man jedoch `tmap_mode()` zu `view`, wird statt einer statischen Karte eine interaktive Karte mit Basemap generiert. 
+```{r, echo = TRUE}
+tmap_mode("view")
+
+tm_shape(wasser_kantone) + tm_polygons(col = "wasserverfuegbarkeit", alpha = 0.3,palette = "viridis",midpoint = NA)
+```
+
