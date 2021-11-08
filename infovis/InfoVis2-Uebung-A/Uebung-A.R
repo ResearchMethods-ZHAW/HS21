@@ -1,3 +1,4 @@
+knitr::opts_chunk$set(echo = FALSE)
 
 library(readr)
 library(dplyr)
