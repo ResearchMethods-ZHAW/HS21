@@ -7,7 +7,7 @@ str(ukraine)
 summary(ukraine)
 
 #Explorative Datenanalyse der abhängigen Variablen
-boxplot(ukraine$Species richness)
+boxplot(ukraine$Species_richness)
 
 cor <- cor(ukraine[,3:23])
 cor

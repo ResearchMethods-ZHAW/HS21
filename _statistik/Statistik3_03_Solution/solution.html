@@ -1589,8 +1589,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>Man erkennt, dass alle Spalten bis auf die erste mit der Plot ID numerisch (num oder int) und dass die abhängige Variable in Spalte 2 sowie die Prediktorvariablen in den Spalten 3 bis 23 stehen.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Explorative Datenanalyse der abhängigen Variablen</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ukraine<span class="sc">$</span>Species richness)</span></code></pre></div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Explorative Datenanalyse der abhängigen Variablen</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">ukraine</span><span class="op">$</span><span class="va">Species_richness</span><span class="op">)</span>
+</code></pre>
+</div>
 </div>
 <p>Der Boxplot sieht sehr gut symmetrisch aus. Insofern gibt es keinen Anlass über eine Transformation nachzudenken. (Da es sich bei Artenzahlen um Zähldaten handelt, müsste man theoretisch ein glm mit Poisson-Verteilung rechnen; bei einem Mittelwert, der hinreichend von Null verschieden ist (hier: ca. 40), ist eine Poisson-Verteilung aber praktisch nicht von einer Normalverteilung zu unterscheiden und wir können uns den Aufwand auch sparen).</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1845,7 +1848,7 @@ Multiple R-squared:  0.2349,    Adjusted R-squared:  0.1812
 F-statistic:  4.37 on 13 and 185 DF,  p-value: 2.027e-06</code></pre>
 </div>
 <p>Wie immer kommt am Ende die Modelldiagnostik. Wir können uns entweder das globale Modell oder das Modell mit den 5 Variablen mit importance &gt; 50% anschauen. Das Bild sieht fast identisch aus und zeigt keinerlei problematische Abweichungen, d. h. links oben weder ein Keil, noch eine Banane, rechts oben eine nahezu perfekte Gerade.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

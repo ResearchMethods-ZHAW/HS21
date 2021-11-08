@@ -40,7 +40,7 @@ stehen.
 
 ```{r, eval=FALSE}
 #Explorative Datenanalyse der abhängigen Variablen
-boxplot(ukraine$Species richness)
+boxplot(ukraine$Species_richness)
 ```
 
 Der Boxplot sieht sehr gut symmetrisch aus. Insofern gibt es keinen Anlass über eine
