@@ -947,8 +947,6 @@ Aktuell haben wir noch zwei einzelne Datensätze von Interesse:
 
 - Diese beiden Datensätze müssen miteinander verbunden werden. __Ziel__: Ein Datensatz mit den täglichen Zähldaten und Datumsinformationen angereichert mit Wetterdaten. Der neue Datensatz soll " __umwelt__ " heissen.
 
-- selektiert die relevanten Spalten mit __dplyr::selct()__, d.h. entfernt Stationsname, IN und OUT.
-
 - Sind durch das Zusammenführen NA's entstanden? Falls ja, müssen __alle__ für die weiteren Auswertungen ausgeschlossen werden.
 
 # Aufgabe 2: Convinience Variablen, Faktoren, Skalieren
