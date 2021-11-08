@@ -125,7 +125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Musterlösung Übung 2.2 & 2.3s"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik2"]},{"type":"character","attributes":{},"value":["11-08-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Solution/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Solution/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Musterlösung Übung 2.2 & 2.3s"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik2"]},{"type":"character","attributes":{},"value":["11-08-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Solution/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/statistik/Statistik2_Solution/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2277,6 +2277,25 @@ Interna
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#musterlösung-übung-2.2">Musterlösung Übung 2.2</a>
+<ul>
+<li><a href="#kommentierter-lösungsweg">kommentierter Lösungsweg</a></li>
+<li><a href="#methoden">Methoden</a></li>
+<li><a href="#ergebnisse">Ergebnisse</a></li>
+</ul></li>
+<li><a href="#musterlösung-übung-2.3s-sozwis">Musterlösung Übung 2.3S (SozWis)</a>
+<ul>
+<li><a href="#kommentierter-lösungsweg-1">kommentierter Lösungsweg</a></li>
+<li><a href="#methode">Methode</a></li>
+<li><a href="#ergebnisse-1">Ergebnisse</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code>
   |                                                                  
@@ -2293,8 +2312,8 @@ Interna
 <blockquote>
 <p>Download <a href="Solution_stat2.1_2.3s.R">R-Skript</a></p>
 </blockquote>
-<h1 id="loesung-aufgabe-2.2">Loesung Aufgabe 2.2</h1>
-<h2 id="kommentierter-loesungsweg">kommentierter Loesungsweg</h2>
+<h1 id="musterlösung-übung-2.2">Musterlösung Übung 2.2</h1>
+<h2 id="kommentierter-lösungsweg">kommentierter Lösungsweg</h2>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2490,9 +2509,9 @@ Vegetarisch-Hot and Cold  0.3632910  0.2735780  0.4530041 0.0e+00</code></pre>
 <pre><code>(Intercept) 
    709.8501 </code></pre>
 </div>
-<p>##Methoden</p>
+<h2 id="methoden">Methoden</h2>
 <p>Ziel war es, die Unterschiede in den wöchentlichen Verkaufszahlen pro Menüinhalt aufzuzeigen. Da die Responsevariable (Verkaufszahlen) “metrisch” und die Prädiktorvariable kategorial sind, wurde eine einfaktorielle ANOVA gerechnet. Die visuelle Inspektion des Modells zeigte insbesondere schwere Verletzungen der Homoskedastizität. Der Boxplot bestätigt dieser Befund. Weil die Voraussetzungen schwer verletzt sind, wurde eine log-Transformation der Responsevariable vorgenommen. Anschliessend wurde erneut eine ANOVA gerechnet und die Modelvoraussetzungen visuell inspiziert: Homoskedastizität und Normalverteilung der Residuen sind gegeben. Für mehr Informatinen zu log-Transformationen und Darstellung der Ergebnisse findet ihr <a href="https://dzchilds.github.io/stats-for-bio/data-transformations.html#presenting-results-from-analyses-of-transformed-data">hier</a></p>
-<p>##Ergebnisse</p>
+<h2 id="ergebnisse">Ergebnisse</h2>
 <p>Die Menüinhalte (Fleisch, Vegetarisch und Buffet) unterscheiden sich in den wöchentlichen Verkaufszahlen signifikant (F(2,15) = 121.22, p &lt; .001). Die Abbildung 1 zeigt die wöchentlichen Verkaufszahlen pro Menüinhalt.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure">
@@ -2502,13 +2521,13 @@ Vegetarisch-Hot and Cold  0.3632910  0.2735780  0.4530041 0.0e+00</code></pre>
 </p>
 </div>
 </div>
-<h1 id="loesung-aufgabe-2.3s-sozwis">Loesung Aufgabe 2.3S (SozWis)</h1>
+<h1 id="musterlösung-übung-2.3s-sozwis">Musterlösung Übung 2.3S (SozWis)</h1>
 <hr />
 <ul>
 <li><strong>Lese-Empfehlung</strong> Kapitel 7 von <a href="https://mgimond.github.io/Stats-in-R/ANOVA.html">Manny Gimond</a></li>
 </ul>
 <hr />
-<p>##kommentierter Loesungsweg</p>
+<h2 id="kommentierter-lösungsweg-1">kommentierter Lösungsweg</h2>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2742,7 +2761,7 @@ Kitchen:Studierende-Kitchen:Mitarbeitende      0.09114541 0.6726112
 Kitchen:Studierende-Fav_World:Studierende     -0.71840920 0.0000000</code></pre>
 </div>
 <hr />
-<p>##Methode</p>
+<h2 id="methode">Methode</h2>
 <p>Ziel war es die Unterschiede zwischen den preisgünstigeren und teureren Menülinien und der Hochschulzugehörigkeit herauszufinden: Hierfür wurde eine ANOVA mit Interaktion gerechnet, da wir eine (quasi)-metrische Responsevariable und zwei Prädiktorvariablen (Menülinie und Hochschulzugehörigkeit) haben.</p>
 <p>Die Voraussetzungen für eine ANOVA waren im ersten Model nicht stark verletzt, lediglich die Normalverteilung der Residuen: Deshalb habe wurde auf eine log-Transformation der Responsevariable verzichtet. Anschliessend wurden noch post-hoc Einzelvergleiche nach Tukey durchgeführt.</p>
 <p>Kleiner Exkurs: Verkaufsdaten sind Zähldaten und perse binomial-Verteilt, da es keine negativen Werte geben kann. Ich versuche immer folgende Fragen zu beantworten:</p>
@@ -2750,7 +2769,7 @@ Kitchen:Studierende-Fav_World:Studierende     -0.71840920 0.0000000</code></pre>
 <li>Wie weit ist der Mittelwert von “Null entfernt”? -&gt; Wenn ja uns keine Voraussetzungen zur Normalverteilung gibt, kann auch eine Normalverteilung angenommen werden</li>
 <li>Beinhalten die Daten viele “Null’s”? -&gt; Wenn ja muss eine spezielle binomial Verteilung angenommen werden, z.B. negative binomiale Transformation mit GLM (see Skript XY)</li>
 </ul>
-<p>##Ergebnisse</p>
+<h2 id="ergebnisse-1">Ergebnisse</h2>
 <p>Die wöchentlichen Verkaufszahlen der Menülinien unterscheiden sich nach Hochschulzugehörigkeit signifikant (F(3,44) = 561.42, p &lt; .001). Inhaltich bedeutet dies, dass Studierende signifikant häufiger die preisgünstigere Menülinie “Favorite &amp; World” als Mitarbeitende kaufen. Entgegen der Annahme gibt es aber keine signifikanten Unterschiede zwischen Studierende und Mitarbeitende bei dem Kauf der teureren Menülinie “Kitchen”. Über die möglichen Gründe können nur spekuliert werden, hierfür bedarf es weiteren Analysen z.B. mit dem Prädiktor “Menüinhalt”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure">
