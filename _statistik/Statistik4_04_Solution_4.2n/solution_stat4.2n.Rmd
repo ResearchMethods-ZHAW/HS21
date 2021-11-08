@@ -1,27 +1,30 @@
-<!-- # --- -->
-<!-- # title: "MSc. Research Methods - Statistikteil Loesung Aufgabe 4.2N 2019" -->
-<!-- # author: "Juergen Dengler" -->
-<!-- # output: -->
-<!-- #   html_document: -->
-<!-- #     df_print: paged -->
-<!-- #   pdf_document: default -->
-<!-- # --- -->
+---
+title: Loesung Aufgabe 4.2n
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik
+draft: true
+---
 
-```{r,include=FALSE, purl=FALSE}
-knitr::opts_chunk$set(echo = T,fig.width = 20, fig.height = 12, warning = F, message = F, fig.pos = 'H',results = "show")
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentation = 0)
 ```
+
+
 
 ## Musterloesung Aufgabe 4.2N: Multiple logistische Regression
 
-- [R-Skript als Download](16_Statistik4/RFiles/solution_stat4.2n.R)
-- [Loesungstext](16_Statistik4/Statistik_Loesungstext_4.2N.pdf)
+- [R-Skript als Download](Statistik_4_Solution_4.2n.R)
+- [Loesungstext](Statistik_Loesungs_4.2N.pdf)
 
 
 
 ### Uebung 4.2 - Multiple logistische Regression
 
 ```{r}
-polis <- read.csv("16_Statistik4/data/polis.csv")
+polis <- read.csv("polis.csv")
 polis
 
 str(polis)
@@ -32,8 +35,7 @@ Man erkennt, dass polis 19 Beobachtungen von drei Parametern enthält, wobei ISL
 
 
 ```{r}
-#Explorative Datenanalyse
-par(mfrow=c(1,1))
+# Explorative Datenanalyse
 boxplot(polis$RATIO)
 ```
 
@@ -41,20 +43,20 @@ Der Boxplot  zeigt zwei starke Ausreisser, ist also etwas rechtsschief. Da es si
 
 
 ```{r}
-#Definition des logistischen Modells
-glm.1 <- glm(PA~RATIO, data=polis,binomial)
+# Definition des logistischen Modells
+glm.1 <- glm(PA~RATIO, family = "binomial", data = polis)
 summary (glm.1)
 ```
 
 Modell ist signifikant (p-Wert in Zeile RATIO ist < 0.05). Jetzt müssen wir noch prüfen, ob es auch valide ist:
 
 ```{r}
-#Modelldiagnostik für das gewählte Modell (wenn nicht signifikant, dann OK)
+# Modelldiagnostik für das gewählte Modell (wenn nicht signifikant, dann OK)
 1 - pchisq(glm.1$deviance, glm.1$df.resid)
 
-#Visuelle Inspektion der Linearität
+# Visuelle Inspektion der Linearität
 library(car)
-crPlots(glm.1, ask=F)
+crPlots(glm.1, ask = F)
 ```
 
 Beide Aspekte sind OK, d.h. der Test war nicht signifikant und die pinkfarbene Linie liegt fast auf der theoretischen Linie (blau gestrichelt).
@@ -62,14 +64,14 @@ Beide Aspekte sind OK, d.h. der Test war nicht signifikant und die pinkfarbene L
 Jetzt brauchen wir noch die Modellgüte (Pseudo-R2):
 
 ```{r}
-#Modellgüte (pseudo-R²)
+# Modellgüte (pseudo-R²)
 1 - (glm.1$dev / glm.1$null)
 ```
 
 Um zu unser Modell zu interpretieren müssen wir noch in Betracht ziehen, dass wir nicht die Vorkommenswahrscheinlichkeit selbst, sondern logit (Vorkommenswahrscheinlichkeit) modelliert haben. Unser Ergebnis (die beiden Parameterschätzungen von oben, also 3.6061 und -0.2196) muss also zunächst in etwas Interpretierbares übersetzt werden:
 
 ```{r}
-#Steilheit der Beziehung in Modellen mit nur einem Parameter
+# Steilheit der Beziehung in Modellen mit nur einem Parameter
 exp(glm.1$coef[2])
 ```
 
@@ -77,8 +79,8 @@ exp(glm.1$coef[2])
 
 
 ```{r}
-#LD50 für 1-Parameter-Modelle (hier also x-Werte, bei der 50% der Inseln besiedelt sind)
--glm.1$coef[1]/glm.1$coef[2]
+# LD50 für 1-Parameter-Modelle (hier also x-Werte, bei der 50% der Inseln besiedelt sind)
+-glm.1$coef[1] / glm.1$coef[2]
 ```
 
 Am besten stellen wir auch unsere Funktionsgleichung dar. Dazu müssen wir das „Rohergebnis“ (mit P = Vorkommenswahrscheinlichkeit)
@@ -93,16 +95,16 @@ Das ist also unsere vorhergesagte Regressionsfunktion, die wir in einem letzten 
 
 
 ```{r}
-#Ergebnisplots
-par(mfrow=c(1,1))
+# Ergebnisplots
+par(mfrow = c(1, 1))
 
-xs <- seq(0, 70, l=1000)
-glm.predict <- predict(glm.1, type="response", se=T, newdata = data.frame(RATIO=xs))
+xs <- seq(0, 70, l = 1000)
+glm.predict <- predict(glm.1, type = "response", se = T, newdata = data.frame(RATIO=xs))
 
-plot(PA~RATIO, data = polis, xlab="Umfang-Flächen-Verhältnis", ylab="Vorkommenswahrscheinlichkeit",pch=16, col="red")
+plot(PA~RATIO, data = polis, xlab = "Umfang-Flächen-Verhältnis", ylab="Vorkommenswahrscheinlichkeit", pch = 16, col = "red")
      points(glm.predict$fit ~ xs,type="l")
-     lines(glm.predict$fit+glm.predict$se.fit ~ xs, type="l", lty=2)
-     lines(glm.predict$fit-glm.predict$se.fit ~ xs, type="l", lty=2)
+     lines(glm.predict$fit + glm.predict$se.fit ~ xs, type = "l", lty = 2)
+     lines(glm.predict$fit - glm.predict$se.fit ~ xs, type = "l", lty = 2)
 
 ```
 

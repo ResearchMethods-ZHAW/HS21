@@ -14,6 +14,8 @@ knitr::purl("solution.Rmd", "Statistik_3_Solution_3.R", documentation = 0)
 
 
 - Download [R-Skript](Solution_stat3.R)
+- [Lösungstext als Download](Statistik_Loesung_3.1_v.02.pdf)
+
 
 
       
