@@ -8,15 +8,14 @@ categories:
 draft: true
 ---
 
-```{r echo = FALSE}
-#export files
-knitr::purl("index.Rmd", "Solution_stat3.R", documentation = 0)
-
-
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution.Rmd", "Statistik_3_Solution_3.R", documentation = 0)
 ```
 
 
-> Download [R-Skript](Solution_stat3.R)
+- Download [R-Skript](Solution_stat3.R)
+- [Lösungstext als Download](Statistik_Loesung_3.1_v.02.pdf)
+
 
 
       
@@ -25,16 +24,15 @@ knitr::purl("index.Rmd", "Solution_stat3.R", documentation = 0)
 Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen so ab, dass sie noch eindeutig, aber nicht unnötig lang sind, etwa indem man die Einheiten wegstreicht
 
 ```{r}
-
-library(readr)
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
-ukraine <-read_delim("Ukraine_bearbeitet.csv", delim=";")
-attach(ukraine)
+ukraine <- read.delim("Ukraine_bearbeitet.csv", sep=";")
+```
 
+```{r, eval= F}
 ukraine
+```
 
-# ukraine <- read.delim("Ukraine_bearbeitet.csv",sep=";")
-
+```{r}
 str(ukraine)
 summary(ukraine)
 ```
@@ -42,9 +40,9 @@ Man erkennt, dass alle Spalten bis auf die erste mit der Plot ID numerisch (num 
 dass die abhängige Variable in Spalte 2 sowie die Prediktorvariablen in den Spalten 3 bis 23
 stehen.
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 #Explorative Datenanalyse der abhängigen Variablen
-boxplot(ukraine$`Species richness`)
+boxplot(ukraine$Species_richness)
 ```
 
 Der Boxplot sieht sehr gut symmetrisch aus. Insofern gibt es keinen Anlass über eine
@@ -53,7 +51,7 @@ theoretisch ein glm mit Poisson-Verteilung rechnen; bei einem Mittelwert, der hi
 Null verschieden ist (hier: ca. 40), ist eine Poisson-Verteilung aber praktisch nicht von einer
 Normalverteilung zu unterscheiden und wir können uns den Aufwand auch sparen).
 
-```{r}
+```{r, eval=FALSE}
 cor <- cor(ukraine[,3:23])
 cor
 cor[abs(cor)<0.7] <- 0
@@ -76,8 +74,8 @@ entweder auf die drei Variablen oder auf die eine Beobachtung zu verzichten. Da 
 eher mehr unabhängige Variablen haben als wir händeln können, entscheide ich pragmatisch
 für ersteres. Wir rechnen die Korrelation also noch einmal ohne diese drei Spalten (es sind die Nummern 12:14, wie wir aus der anfänglichen Variablenbetrachtung oben wissen).
 
-```{r}
-cor <- cor(ukraine[,c(3:11,15:23)])
+```{r, eval=FALSE}
+cor <- cor(ukraine[, c(3:11, 15:23)])
 cor[abs(cor)<0.7] <- 0
 cor
 ```
@@ -94,13 +92,13 @@ leistungsfähigen Rechner oder sehr lange Rechenzeit erfordern würde. Wir sollt
 sind, oder ein noch strengeres Kriterium bei r verwenden, etwa 0.6
 
 ```{r}
-cor <- cor(ukraine[,c(3:11,15:23)])
+cor <- cor(ukraine[,c(3:11, 15:23)])
 cor[abs(cor)<0.6] <- 0
 cor
 ```
 
 ```{r include=FALSE}
-write.table(cor, file="Corrleation.csv", sep=";", dec=".")
+write.table(cor, file = "Corrleation.csv", sep = ";", dec = ".")
 ```
 
 Entsprechend „werfen“ wir auch noch die folgenden Variablen „raus“: Temperature.range
@@ -113,8 +111,8 @@ der Rechenleistung bringt, hätten wir auch noch darüber nachdenken können, ei
 quadratische Terme oder Interaktionsterme zu berücksichtigen).
 
 ```{r}
-global.model <- lm(`Species richness` ~ Inclination+`Heat index`+`Microrelief`+`Grazing intensity`+
-                    `Litter`+`Stones and rocks`+ Gravel+`Fine soil`+pH+CaCO3+`C org`+`CN ratio`+Temperature, data = ukraine)
+global.model <- lm(Species_richness ~ Inclination + Heat_index + Microrelief + Grazing_intensity +
+                    Litter + Stones_and_rocks + Gravel + Fine_soil + pH + CaCO3 + C_org + CN_ratio + Temperature, data = ukraine)
 
 ```
 
@@ -126,12 +124,15 @@ berechnet und verglichen werden (also alle möglichen Kombinationen von 13,12,�
 Parametern). Diese Lösung stelle ich im Folgenden vor:
 
 ```{r}
-#Multimodel inference
+# Multimodel inference
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
 
-options(na.action="na.fail")
-allmodels<-dredge(global.model)
+options(na.action = "na.fail")
+allmodels <- dredge(global.model)
+```
+
+```{r,eval=FALSE}
 allmodels
 ```
 
@@ -149,18 +150,17 @@ betreffenden Parameter enthalten) und/oder (b) ein nach Akaike weights gemittelt
 berechnen.
 
 ```{r}
-#Importance values der Variablen
+# Importance values der Variablen
 importance(allmodels)
 ```
 
 Demnach ist Heat.index die wichtigste Variable (in 100% aller relevanten Modelle), während
-ferner Litter, CaCO3, CN.ratio und Grazing.intensity in mehr als 50% der relevanten Modelle
+ferner Litter, CaCO3, CN_ratio und Grazing_intensity in mehr als 50% der relevanten Modelle
 enthalten sind.
 
 ```{r,eval=FALSE}
-#Modelaveraging (Achtung: dauert mit 13 Variablen einige Minuten)
-summary(model.avg(allmodels, rank="AICc"), subset=TRUE)
-
+# Modelaveraging (Achtung: dauert mit 13 Variablen einige Minuten)
+summary(model.avg(allmodels, rank = "AICc"), subset = TRUE)
 ```
 
 Aus dem gemittelten Modell können wir die Richtung der Beziehung (positiv oder negativ) und
@@ -168,18 +168,12 @@ ggf. die Effektgrössen (wie verändert sich die Artenzahl, wenn die Prädiktorv
 Einheit zunimmt?) ermitteln.
 
 ```{r}
-#Modelldiagnostik nicht vergessen
-par(mfrow=c(2,2))
+# Modelldiagnostik nicht vergessen
+par(mfrow = c(2, 2))
 plot(global.model)
-p <- plot(lm(`Species richness`~`Heat index`+Litter+CaCO3+`CN ratio`+ `Grazing intensity`))
-print(p)
+plot(lm(Species_richness ~ Heat_index + Litter + CaCO3 + CN_ratio + Grazing_intensity, data = ukraine))
 
 summary(global.model)
-
-ggsave(filename = "_statistik/Statistik3_solution/distill-preview.png",
-       plot = p,
-       device = "png")
-
 ```
 
 Wie immer kommt am Ende die Modelldiagnostik. Wir können uns entweder das globale

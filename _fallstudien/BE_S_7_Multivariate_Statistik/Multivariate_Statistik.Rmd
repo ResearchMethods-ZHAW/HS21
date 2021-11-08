@@ -965,9 +965,9 @@ __Hinweis:__ etwas ganz ähnliches habt ihr unter Import/Vorverarbeitung bereits
 
 - Auch das Jahr und die KW müssen als Faktor vorliegen.
 
-- Nachfolgende Schritte funktionieren nur, wenn __umwelt__ als data.frame vorliegt. Prüft das und ändert das, falls noch kein __data.frame__.
+- Nachfolgende Schritte funktionieren nur, wenn __umwelt__ als data.frame vorliegt! Prüft das und ändert das, falls noch kein __data.frame__ (Hinweis: auch ein "tibble" funktioniert nicht, obwohl bei der Abfrage __is.data.frame()__ TRUE angegeben wird. Damit ihr beim scalen keine NaN Werte erhaltet, wendet ihr darum am besten in allen Fällen zuerst den Befehl __as.dada.frame()__ an).
 
-- Unser Modell kann nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)
+- Unser Modell kann in der abhängigen Variabel nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)
 
 ## 2c) 
 
@@ -985,7 +985,7 @@ umwelt <- umwelt %>%
 
 ## 3a) 
 
-Korrelierende Variablen können das Modellergebnis verfälschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden. Welches sind die erklärenden Variablen, welches ist die Abhängige? 
+Korrelierende Variablen können das Modellergebnis verfälschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden. Welches sind die erklärenden Variablen, welches ist die Abhängige? (Ihr müsst nicht prüfen, ob die Voraussetzungen zur Berechnung von Korrelationen erfüllt sind)
 
 - Teste mittels folgendem Code auf eine Korrelation zwischen den Messwerten.
 
