@@ -2295,18 +2295,12 @@ Interna
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>
-  |                                                                  
-  |                                                            |   0%
-  |                                                                  
-  |....................                                        |  33%
-  |                                                                  
-  |........................................                    |  67%
-  |                                                                  
-  |............................................................| 100%</code></pre>
-<pre><code>[1] &quot;Solution_stat1.R&quot;</code></pre>
+
 </div>
 <h1 id="musterlösung-übung-1.1">Musterlösung Übung 1.1</h1>
+<blockquote>
+<p>Download <a href="Solution_stat1.R">R-Skript</a></p>
+</blockquote>
 <h2 id="kommentierter-weg">kommentierter Weg</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2345,14 +2339,14 @@ gender viel wenig
 
 
 <span class="co">#Chi-squared Test</span>
-<span class="va">chi_sq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">nova2</span><span class="op">$</span><span class="va">gender</span>, <span class="va">nova2</span><span class="op">$</span><span class="va">milkcon</span><span class="op">)</span>
+<span class="va">chi_sq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">nova_mtx</span><span class="op">)</span>
 <span class="va">chi_sq</span>
 </code></pre>
 </div>
 <pre><code>
     Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 
-data:  nova2$gender and nova2$milkcon
+data:  nova_mtx
 X-squared = 0.28223, df = 1, p-value = 0.5952</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#visualisierung</span>
@@ -2489,7 +2483,7 @@ mean of x mean of y
 </p>
 </div>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
