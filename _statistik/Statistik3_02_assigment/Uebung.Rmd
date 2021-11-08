@@ -8,7 +8,7 @@ categories:
 ---
 
 **Datensatz Ukraine_bearbeitet.xlsx [Ukraine_bearbeitet.xlsx](Ukraine_bearbeitet.xlsx)**
-**Datensatz Ukraine_bearbeitet.csv [Ukraine_bearbeitet.csv](Ukraine_bearbeitet.csv)**
+**Datensatz Ukraine_bearbeitet.csv [Ukraine_bearbeitet.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Ukraine_bearbeitet.csv)**
 
 
 ###	Aufgabe 3: Multiple Regression
