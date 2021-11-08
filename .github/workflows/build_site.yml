@@ -31,7 +31,10 @@ jobs:
           renv::restore()
       - name: Setup Pandoc
         uses: r-lib/actions/setup-pandoc@v1
-        
+
+      - name: Remove multiple html files
+        run: Rscript -e 'knitr::knit("Distill_Quality_Control.Rmd")'
+  
       - name: Render Site
         run: Rscript -e 'rmarkdown::render_site(encoding = "UTF-8")'
         
