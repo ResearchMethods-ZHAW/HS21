@@ -1,26 +1,34 @@
 ---
-title: Übung A
+title: Übungen A
 output: 
   distill::distill_article:
     toc: true
 categories:
 - RaumAn1
-draft: false
+draft: true
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
   - name: Nikolaos Bakogiannis
 ---
 
-Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbeiten, die ihrerseits wiederum auf weiteren Packages basieren (Stichwort `dependencies`). Für *Vektordaten* dominierte lange das Package [`sp`](https://cran.r-project.org/package=sp), welches nun durch [`sf`](https://r-spatial.github.io/sf/) abgelöst wurde. 
+Es gibt bereits eine Vielzahl von Packages um in R mit räumlichen Daten zu arbeiten, die ihrerseits wiederum auf weiteren Packages basieren (Stichwort `dependencies`). 
+
+- Für *Vektordaten* dominierte lange das Package [`sp`](https://cran.r-project.org/package=sp), welches nun durch [`sf`](https://r-spatial.github.io/sf/) abgelöst wurde. Wir werden wenn immer möglich mit `sf` arbeiten und nur in Ausnahmefällen auf andere Packages zurück greifen.
+- Für *Rasterdaten* dominierte lange das Packge [`raster`](https://rspatial.org/raster/), welches aber nur Schrittweise durch [`terra`](https://rspatial.org/terra) abgelöst wird. Wir werden wenn immer möglich mit `terra` arbeiten und nur in Ausnahmefällen auf `terra` zurück greifen.
+
 
 ```{r warning=FALSE, echo = TRUE}
 library(sf)
 library(dplyr)
+library(terra)
 library(ggplot2)
 ```
 
-### Aufgabe 1: Daten runterladen und importieren
+
+
+
+### Aufgabe 1: Vektor Daten runterladen und importieren
 
 Lade zunächst die Datensätze unter folgenden Links herunter:
 
@@ -32,7 +40,7 @@ check_download <- function(files, folder, source = "", url = "https://github.com
   if(sum(exists_bool)>0){
     download.file(full_url[exists_bool],files[exists_bool])
     }
-  cat(paste0("- [",files,"](",full_url,") ", source),sep = "\n")
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
 }
 
 check_download(c("kantone.gpkg","bezirke.gpkg"), "rauman", "(Quelle: [Swisstopo](https://www.swisstopo.admin.ch/en/geodata/landscape/boundaries3d.html))")
@@ -60,111 +68,5 @@ ggplot(bezirke) +
 ggplot(kantone) + 
   geom_sf()
 ```
-
-
-### Aufgabe 3: Koordinatensysteme *zuweisen*
-
-In der vorherigen Aufgabe habt ihr `kantone.gpkg` und `bezirke.gpgk` visualisiert. Dabei fällt folgendes auf:
-
-- die X/Y Achsen weisen zwei ganz unterschiedlichen Zahlenbereiche auf (vergleiche die Achsenbeschriftungen)
-- der Umriss der Schweiz sieht in den beiden Datensätzen unterschiedlich aus (`kantone` ist gegenüber `bezirke` gestaucht)
-
-Dies hat natürlich damit zu tun, dass die beiden Datensätze in unterschiedlichen Koordinatensystemen erfasst wurden. Koordinatensysteme werden mit CRS (**C**oordinate **R**eference **S**ystem) abgekürzt. Mit `st_crs()` könnnen die zugewiesenen Koordinatensysteme abgefragt werden.
-
-```{r, echo = TRUE}
-st_crs(kantone)
-st_crs(bezirke)
-```
-
-Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man hierzulande eines der drei folgenden Koordinatensysteme an:
-
-- [CH1903 LV03](https://epsg.io/21781): das alte Koordinatensystem der Schweiz
-- [CH1903+ LV95](https://epsg.io/2056): das neue Koordinatensystem der Schweiz
-- [WGS84](https://epsg.io/4326): ein häufig genutztes weltumspannendes geodätisches Koordinatensystem, sprich die Koordinaten werden in Länge und Breite angegeben (Lat/Lon).
-
-Nun gilt es, anhand der Koordinaten die in der Spalte `geometry` ersichtlich sind das korrekte Koordinatensystem festzustellen. Wenn man sich auf [epsg.io/map](https://epsg.io/map#srs=4326&x=8.407288&y=46.773731&z=9&layer=streets) die Schweiz anschaut, kann man die Koordinaten in verschiedenen Koordinatensystem betrachten.
-
-**Bedienungshinweise**:
-
-<div style = "display: grid;grid-template-columns: auto auto auto;">
-  <div>
-    <fig>
-    <img src = "koordinatenpaar.jpg" width = 100%>
-    <figcaption>Koordinanten (des Fadenkreuzes) werden im ausgewählten Koordinatensystem dargestellt</figcaption>
-    </fig>
-  </div>
-  
-  <div>
-    <fig>
-    <img src = "koordinatensystem.jpg" width = 100%>
-    <figcaption>Das Koordinatensystem, in welchem die Koordinaten dargestellt werden sollen, kann mit "Change" angepasst werden</figcaption>
-    </fig>
-  </div>
-  <div>
-    <fig>
-    <img src = "reproject.jpg" width = 50%>
-    <figcaption>Für Enthusiasten: Schau Dir die Schweiz in verschiedenen Koordinatensystemen an, in dem Du auf "Reproject Map" klickst</figcaption>
-    </fig>
-  </div>
-</div>
-
-Wenn man diese Koordinaten mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `kantone` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
-
-```{r, echo = TRUE}
-kantone <- st_set_crs(kantone, 4326)
-bezirke <- st_set_crs(bezirke, 2056)
-
-# zuweisen mit st_set_crs(), abfragen mit st_crs()
-st_crs(kantone)
-```
-
-Jetzt wo das CRS der Datensätze bekannt ist, können diese in einem gemeinsamen Plot visualisiert werden, `ggplot` kümmert sich darum die unterschiedlichen Koordinatensysteme zu vereinheitlichen. Probier das aus, indem du `kantone` und `bezirke` in einem `ggplot` kombinierst.
-
-Die Achsen werden weiterhin in WGS84 beschriftet. Wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
-
-```{r, out.width="30%", echo = FALSE}
-ggplot() + 
-  geom_sf(data = bezirke) +
-  geom_sf(data = kantone)
-
-ggplot() + 
-  geom_sf(data = bezirke) +
-  geom_sf(data = kantone) +
-  coord_sf(datum = 2056)
-
-ggplot() + 
-  geom_sf(data = bezirke) +
-  geom_sf(data = kantone) +
-  theme_void()
-```
-
-
-
-
-### Aufgabe 4: Koordinatensyteme *transformieren*
-
-
-In der vorherigen Übung haben wir das bestehende Koordinatensystem *zugewiesen*. Dabei haben wir die bestehenden Koordinaten (in der Spalte `geom`) *nicht* manipuliert. Ganz anders ist eine *Transformation* der Daten von einem Koordinatensystem in das andere. Bei einer Transformation werden die Koordinaten in das neue Koordinatensystem umgerechnet und somit manipuliert. Aus praktischen Gründen wollen <!-- Was sind diese Gründe? genauer erläutern? -->
-wir all unsere Daten ins neue Schweizer Koordinatensystem CH1903+ LV95 transfomieren. Transformiere den Datensatz `kantone` mit `st_transform()`in CH1903+ LV95, nutze dafür den korrekten EPSG-Code.
-
-Vor der Transformation (betrachte die Attribute `Bounding box` sowie `CRS`-Information): 
-
-```{r, echo = TRUE}
-kantone
-```
-
-
-```{r}
-kantone <- st_transform(kantone, 2056)
-```
-
-
-Nach der Transformation (betrachte die Attribute `Bounding box` sowie `CRS`-Information):
-
-```{r, echo = TRUE}
-kantone
-```
-
-
 
 

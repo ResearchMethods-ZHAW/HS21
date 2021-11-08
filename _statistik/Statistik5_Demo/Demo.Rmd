@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo = TRUE,include = T, results = "hide",collapse=TRUE)
 
 
 - [Demoscript als Download](17_Statistik5/RFiles/Statistik_5_Demo_v.05.R)
-- Datensatz [spf.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/spf.csv)
-- Datensatz [DeerEcervi.txt](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/DeerEcervi.txt)
+- Datensatz [spf.csv](spf.csv)
+- Datensatz [DeerEcervi.txt](DeerEcervi.txt)
 
 
 ## Split-plot ANOVA

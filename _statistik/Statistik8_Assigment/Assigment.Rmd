@@ -10,7 +10,7 @@ draft: true
 
 ## Uebung 8.1: Clusteranalyse (sozioökonomisch)
 
-- Datensatz [crime2.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/crime2.csv)
+- Datensatz [crime2.csv](crime2.csv)
 
 Raten von 7 Kriminalitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA
 
