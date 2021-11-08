@@ -14,7 +14,7 @@ author:
 
 ```{r echo = FALSE, results='hide',  message=FALSE}
 #export files
-knitr::purl("index.Rmd", "Solution_stat1.R", documentation = 0)
+knitr::purl("solution_stat1.Rmd", "solution_stat1.R", documentation = 0)
 
 ```
 
@@ -23,7 +23,7 @@ knitr::purl("index.Rmd", "Solution_stat1.R", documentation = 0)
 
 #  Musterlösung Übung 1.1
 
-> Download [R-Skript](Solution_stat1.R)
+> Download [R-Skript](solution_stat1.R)
 
 
 ## kommentierter Weg
@@ -62,7 +62,7 @@ mytheme <-
 
 
 
-```{r prepare model and interpret}
+```{r}
 # Als eine Möglichkeit, die Aufgabe 1.1 zu bearbeiten, nehmen wir hier den 
 # Datensatz  der Gästebefragung NOVANIMAL und gehen der folgenden Frage nach: 
 # Gibt es einen Zusammenhang zwischen Geschlecht und dem wahrgenommenen 
@@ -111,7 +111,7 @@ fisher.test(nova_mtx)
 
 Der $\chi^2$-Test sagt uns, dass das Geschlecht und der wahrgenommene Milchkonsum nicht zusammenhängen. Es gibt keine signifikante Unterscheide zwischen dem Geschlecht und dem wahrgenommenen Milchkonsum ($\chi^2$(`r chi_sq$parameter`) = `r round(chi_sq$statistic[[1]], digits = 3)`, *p* = `r round(chi_sq$p.value[[1]], digits = 3)`. Es sieht so aus, dass Männer leicht mehr angeben weniger Milch zu konsumieren (Tabelle 1). Die Ergebnisse müssen jedoch mit Vorsicht interpretiert werden, denn der $\chi^2$-Test gibt uns nur an, dass ein signifikanter Unterschied zwischen Geschlecht und wahrgenommener Milchkonsum vorliegt. Um die Unterschiede innerhalb einer Gruppen (z.B. Geschlecht nach Alter) festzustellen bedarf es weiterer Analysen z. B. mit einer mehrfaktorieller ANOVA mit anschliessenden Post-hoc Tests (siehe Statistik 3).
 
-```{r print results, echo=F}
+```{r, echo=F}
 table <- nova2 %>%
   group_by(gender, milkcon) %>% 
   summarise(tot = n()) %>% 
@@ -136,7 +136,7 @@ $H_0$: Es gibt keine Unterschiede in den Verkaufszahlen zwischen Basis- und Inte
 $H_1$: Es gibt Unterschiede in den Verkaufszahlen zwischen Basis- und Interventionswochen.
 
 
-```{r prepare data}
+```{r}
 # Gemäss Aufgabenstellung müsset die Daten zuerst nach Kalenderwochen "week" 
 # und Bedingungen "condition" zusammengefasst werden
 
@@ -157,7 +157,7 @@ ggplot2::ggplot(df, aes(x = condit, y= tot_sold)) + # achtung 0 Punkt fehlt
 ```
 
 
-```{r model interpretation}
+```{r}
 
 # führt einen t-Tests durch; 
 # es wird angenommen, dass die Verkaufszahlen zwischen den Bedingungen 
@@ -182,7 +182,7 @@ Ziel war es die aggregierten Verkaufszahlen zwischen den Interventions- und Basi
 In den Basiswochen werden mehr Gerichte pro Woche verkauft als in den Interventionsowochen (siehe Abbildung 1). Die wöchentlichen Verkaufszahlen zwischen den Bedigungen (Basis oder Intervention) unterscheiden sich gemäss Welch t-Test jedoch nicht signifikant (*t*(`r round(t_test$parameter[[1]],digits = 0)`) = `r round(t_test$statistic, digits = 3)` , *p* = `r round(t_test$p.value, digits=3)`). Die Ergebnisse könnten mit einem $Chi/{2}$-Test nochmals validiert werden, da die Gruppengrösse mit n = 6 doch eher klein ist.
 
 
-```{r plot results, purl=F, message=T, echo = F,  fig.cap="Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant.", out.width = "80%"}
+```{r, purl=F, message=T, echo = F,  fig.cap="Die wöchentlichen Verkaufszahlen für die Interventions- und Basiswochen unterscheiden sich nicht signifikant.", out.width = "80%"}
 # zeigt die Ergebnisse mit einer Abbildung
 p <- ggplot2::ggplot(df, aes(x = condit, y= tot_sold)) + 
   # erzeugt sogenannte Whiskers mit Strichen, achtung reihenfloge zählt hier

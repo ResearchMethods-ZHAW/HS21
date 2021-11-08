@@ -10,7 +10,7 @@ categories:
 **Datensatz Ukraine_bearbeitet.csv [Ukraine_bearbeitet.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Ukraine_bearbeitet.csv)**
 
 
-###	Aufgabe 3: Multiple Regression
+###	Übung 3: Multiple Regression
 
 - Bereiten Sie den Datensatz Ukraine.xlsx für das Einlesen in R vor und lesen Sie ihn dann ein. Dieser enthält Pflanzenartenzahlen (Species.richness) von 199
 10 m² grossen Plots (Vegetationsaufnahmen) von Steppenrasen in der Ukraine sowie zahlreiche Umweltvariablen, deren Bedeutung und Einheiten im Kopf der ExcelTabelle angegeben sind.
