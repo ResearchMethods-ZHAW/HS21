@@ -4,15 +4,8 @@ knitr::purl("_statistik/Statistik3_solution/index.Rmd", here::here("_statistik/S
 
 
 
-library(readr)
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
 ukraine <-read_delim("Ukraine_bearbeitet.csv", delim=";")
-attach(ukraine)
-
-ukraine
-
-# ukraine <- read.delim("Ukraine_bearbeitet.csv",sep=";")
-
 str(ukraine)
 summary(ukraine)
 

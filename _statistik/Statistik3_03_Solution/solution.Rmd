@@ -25,16 +25,16 @@ knitr::purl("solution.Rmd", "Solution_stat3.R", documentation = 0)
 Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen so ab, dass sie noch eindeutig, aber nicht unnötig lang sind, etwa indem man die Einheiten wegstreicht
 
 ```{r}
-
-library(readr)
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
-ukraine <-read_delim("Ukraine_bearbeitet.csv", delim=";")
-attach(ukraine)
+ukraine <-read.delim("Ukraine_bearbeitet.csv", sep=";")
+```
 
+
+```{r, eval= F}
 ukraine
+```
 
-# ukraine <- read.delim("Ukraine_bearbeitet.csv",sep=";")
-
+```{r}
 str(ukraine)
 summary(ukraine)
 ```
@@ -42,7 +42,7 @@ Man erkennt, dass alle Spalten bis auf die erste mit der Plot ID numerisch (num 
 dass die abhängige Variable in Spalte 2 sowie die Prediktorvariablen in den Spalten 3 bis 23
 stehen.
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 #Explorative Datenanalyse der abhängigen Variablen
 boxplot(ukraine$`Species richness`)
 ```
