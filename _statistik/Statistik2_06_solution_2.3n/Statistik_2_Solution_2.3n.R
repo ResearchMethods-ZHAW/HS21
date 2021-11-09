@@ -6,7 +6,8 @@ str(kormoran)
 summary(kormoran)
 
 # Umsortieren der Faktoren, damit sie in den Boxplots eine sinnvolle Reihung haben
-levels(kormoran$Jahreszeit) <- c("F", "S", "H", "W")
+kormoran$Jahreszeit <- ordered(kormoran$Jahreszeit, levels = c("F", "S", "H", "W"))
+kormoran$Jahreszeit
 
 # Explorative Datenanalyse (zeigt uns die Gesamtverteilung)
 boxplot(kormoran$Tauchzeit)
@@ -53,14 +54,11 @@ par(mfrow = c(1, 1)) #Zurückschalten auf Einzelplots
 if(!require(multcomp)){install.packages("multcomp")} 
 library(multcomp)
 
-boxplot(Tauchzeit~Unterart, xlab = "Unterart", ylab = "Tauchzeit", data = kormoran)
-letters <- cld(glht(aov.2, linfct = mcp(Unterart = "Tukey")))
-mtext(letters$mcletters$Letters, at = 1:2)
-# genaugenommen braucht man bei nur zwei Kategorien keinen post hoc-Test
+boxplot(Tauchzeit~Unterart, data = kormoran)
+
 
 letters <- cld(glht(aov.2, linfct = mcp(Jahreszeit = "Tukey")))
-# Achsenbeschriftung nicht vergessen
-boxplot(Tauchzeit~Jahreszeit, xlab = "Jahreszeit", ylab = "Tauchzeit", data = kormoran)
+boxplot(Tauchzeit~Jahreszeit, data = kormoran)
 mtext(letters$mcletters$Letters, at = 1:4)
 
 aggregate(Tauchzeit~Jahreszeit, FUN = mean, data = kormoran)
