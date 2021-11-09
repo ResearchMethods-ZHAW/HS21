@@ -12,7 +12,7 @@ draft: false
 knitr::purl("Demo.Rmd", "Statistik_3_Demo.R", documentation = 0)
 ```
 
-- [Demoscript als Download](Statistik_3_Demo_v.06.R)  
+- [Demoscript als Download](Statistik_3_Demo_v.07.R)  
 - Datensatz [ipomopsis.csv](https:///ResearchMethods-ZHAW/datasets/raw/main/statistik/ipomopsis.csv)
 - Datensatz [loyn.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/loyn.csv)
 
@@ -83,36 +83,10 @@ plot(lm.1)
 plot(lm.quad)
 ```
 
-## Multiple lineare Regression basierend auf Logan, Beispiel 9A 
+## Multiple lineare Regression
 
-```{r}
-loyn <- read.delim("loyn.csv", sep = ",")
-```
 
-```{r}
-summary(loyn)
-
-lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
-summary(lm.1)
-
-aov(lm.1)
-par(mfrow = c(2,2))
-plot(lm.1)
-influence.measures(lm.1)
-
-cor <- cor(loyn[, 2:7])
-print(cor, digits = 2)
-
-cor[abs(cor)<0.6] <- 0
-cor
-print(cor, digits = 3)
-
-if(!require(car)){install.packages("car")} 
-library(car)
-vif(lm.1)
-```
-
-## Simulation Overfitting
+### Simulation Overfitting
 
 ```{r eval=FALSE}
 test <- data.frame("x" = c(1, 2, 3, 4, 5, 6), "y" = c(34, 21, 70, 47, 23, 45))
@@ -149,19 +123,52 @@ yv <- predict(lm.5, list(x = xv))
 lines(xv, yv, col = "black", lwd = 3)
 ```
 
-## Modellvereinfachung (mit Loyn-Datensatz)
+
+
+### Multiple lineare Regression basierend auf Logan, Beispiel 9A 
+
+```{r}
+loyn <- read.delim("loyn.csv", sep = ",")
+summary(loyn)
+```
+
+### Korrelation zwischen den Prädiktoren
+```{r}
+cor <- cor(loyn[, 2:7])
+print(cor, digits = 2)
+
+cor[abs(cor)<0.6] <- 0
+cor
+print(cor, digits = 3)
+
+lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
+if(!require(car)){install.packages("car")} 
+library(car)
+vif(lm.1)
+
+influence.measures(lm.1)
+```
+
+
+### Modellvereinfachung
 
 ```{r}
 lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
 summary(lm.1)
-lm.2 <- update(lm.1,~.-YR.ISOL)
 
+lm.2 <- update(lm.1,~.-YR.ISOL)
+anova(lm.1, lm.2)
 summary(lm.2)
 
-anova(lm.1, lm.2)
+lm.3 <- update(lm.2,~.-ALT)
+anova(lm.2, lm.3)
+summary(lm.3)
+
+par(mfrow = c(2, 2))
+plot(lm.1)
 ```
 
-## Hierarchical partitioning
+### Hierarchical partitioning
 
 ```{r}
 if(!require(hier.part)){install.packages("hier.part")}
@@ -171,10 +178,10 @@ loyn.preds <-with(loyn, data.frame(YR.ISOL, ALT, GRAZE))
 hier.part(loyn$ABUND, loyn.preds, gof = "Rsqu")
 ```
 
-## Partial regressions
+### Partial regressions
 
 ```{r}
-avPlots(lm.1, ask=F)
+avPlots(lm.1, ask = F)
 ```
 
 ## Multimodel inference
