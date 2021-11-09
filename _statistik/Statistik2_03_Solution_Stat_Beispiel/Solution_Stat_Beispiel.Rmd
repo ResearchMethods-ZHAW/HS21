@@ -15,7 +15,7 @@ knitr::purl("solution_Stat_Beispiel.Rmd", "Statistik_2_Solution_Beispiel.R", doc
 
 
 ## Musterloesung Beispiel
-- Datensatz [decy.csv](decay.csv)
+- Datensatz [decay.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/decay.csv)
 - [RCode als Download](Statistik_2_Solution_Beispiel.R)
 - [Loesungstext Beispiel](Statistik_Loesung_Beispiel_v.02.pdf)
 
@@ -33,7 +33,7 @@ Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R,
 Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
 Vorgehen dokumentieren.
 - Dieser Ablauf sollte insbesondere beinhalten:
-    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n) und welches die             unabängige(n) Variablen
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n) und welches die unabängige(n) Variablen
     - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
       Datentransformationen vorgenommen werden sollten
     - Auswahl und Begründung eines statistischen Verfahrens (es gibt hier mehrere
