@@ -48,9 +48,9 @@ Besucher = exp(3.50 + 0.11 Temperatur/°C)
 
 ```{r}
 exp(3.500301) # Anzahl besucher bei 0°C
-exp(glm.poisson$coefficients[1])
+exp(glm.poisson$coefficients[1]) # Werte aus Modell
 exp(3.500301 + 30*0.112817) # Anzahl besucher bei 30°C
-exp(glm.poisson$coefficients[1] * glm.poisson$coefficients[2])
+exp(glm.poisson$coeff[1] * glm.poisson$coeff[2]) #coefficients kann mit coeff abgekürzt werden
 
 # Test Overdispersion
 if(!require(AER)){install.packages("AER")}
