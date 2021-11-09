@@ -36,7 +36,7 @@ summary(glm.poisson)
 exp(3.500301) # Anzahl besucher bei 0°C
 exp(glm.poisson$coefficients[1])
 exp(3.500301 + 30*0.112817) # Anzahl besucher bei 30°C
-exp(glm.poisson$coefficients[1] * glm.poisson$coefficients[2])
+exp(glm.poisson$coeff[1] * glm.poisson$coeff[2])
 
 
 # Test Overdispersion
