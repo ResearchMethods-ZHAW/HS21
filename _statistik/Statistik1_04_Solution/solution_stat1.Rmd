@@ -1,5 +1,5 @@
 ---
-title: "Lösung Aufgabe 1"
+title: "Musterlösung Übung 1"
 output: 
   distill::distill_article:
     toc: true

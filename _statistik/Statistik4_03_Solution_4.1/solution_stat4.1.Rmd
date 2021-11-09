@@ -1,5 +1,5 @@
 ---
-title: Loesung Aufgabe 4.1
+title: Musterlösung Aufgabe 4.1
 output: 
   distill::distill_article:
     toc: true

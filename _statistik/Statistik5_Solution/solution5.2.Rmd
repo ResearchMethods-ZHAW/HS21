@@ -1,10 +1,11 @@
 ---
-title: "Loesung Aufgabe 5"
-output: distill::distill_article
+title: "Musterlösung Übung 5.2"
+output: 
+  distill::distill_article:
+    toc: true
 author:
   Gian-Andrea Egeler
-toc:
-  floating: true
+
 categories:
 - Statistik5
 draft: true
@@ -12,14 +13,14 @@ draft: true
 
 ```{r export files, echo = FALSE}
 #export files
-knitr::purl("index.Rmd", "Solution_stat5.R", documentation = 0)
+knitr::purl("solution5.2.Rmd", "Solution_stat5.2.R", documentation = 0)
 
 
 ```
 
->Download [R-Skript](Solution_stat5.R) 
+>Download [R-Skript](Solution_stat5.2.R) 
 
-
+# Musterlösung Übung 5.2: GLMM
 
 *****
 > Lese-Empfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
@@ -27,7 +28,7 @@ knitr::purl("index.Rmd", "Solution_stat5.R", documentation = 0)
 
 ****
 
-## kommentierter Loesungsweg
+## kommentierter Lösungsweg
 ```{r load data, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 library(dplyr)
 library(readr)

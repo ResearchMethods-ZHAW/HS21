@@ -1,32 +1,27 @@
 ---
-title: Loesung Aufgabe 4
-output: distill::distill_article
+title: Musterlösung Übung 4
+output: 
+  distill::distill_article:
+    toc: true
 author:
-  Stefan Widmer
   Gian-Andrea Egeler
 categories:
 - Statistik4
 draft: true
-toc: 
-  floating: true
+
 ---
 
 ```{r echo = FALSE}
 #export files
-knitr::purl("index.Rmd", "Solution_stat4.R", documentation = 0)
+knitr::purl("solution4.2s.Rmd", "Solution_stat4.2s.R", documentation = 0)
 
 ```
 
->Download [R-Skript](Solution_stat4.R) 
+>Download [R-Skript](Solution_stat4.4s.R) 
 
 
 
-# Loesung 4.1: Nicht-lineare Regression
-
-
-# Loesung 4.2N: Logistische Regression (NatWis)
-
-# Loesung 4.2S: Multiple logistische Regression (SozWis)
+# Musterlösung Übung 4.2S: Multiple logistische Regression (SozWis)
 
 *****
 
