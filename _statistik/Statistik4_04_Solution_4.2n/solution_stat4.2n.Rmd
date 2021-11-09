@@ -101,7 +101,7 @@ par(mfrow = c(1, 1))
 xs <- seq(0, 70, l = 1000)
 glm.predict <- predict(glm.1, type = "response", se = T, newdata = data.frame(RATIO=xs))
 
-plot(PA~RATIO, data = polis, xlab = "Umfang-Flächen-Verhältnis", ylab="Vorkommenswahrscheinlichkeit", pch = 16, col = "red")
+plot(PA~RATIO, data = polis, xlab = "Umfang-Flächen-Verhältnis", ylab = "Vorkommenswahrscheinlichkeit", pch = 16, col = "red")
      points(glm.predict$fit ~ xs,type="l")
      lines(glm.predict$fit + glm.predict$se.fit ~ xs, type = "l", lty = 2)
      lines(glm.predict$fit - glm.predict$se.fit ~ xs, type = "l", lty = 2)
