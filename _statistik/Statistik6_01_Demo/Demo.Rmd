@@ -27,7 +27,7 @@ library(labdsv)
 # Für Ordinationen benötigen wir Matrizen, nicht Data.frames
 
 # Generieren von Daten
-raw <- matrix(c(1, 2, 2.5, 2.5, 1, 0.5, 0, 1, 2,4, 3,1), nrow = 6)
+raw <- matrix(c(1, 2, 2.5, 2.5, 1, 0.5, 0, 1, 2, 4, 3, 1), nrow = 6)
 colnames(raw) <- c("spec.1", "spec.2")
 rownames(raw) <- c("r1", "r2", "r3", "r4", "r5", "r6")
 raw
@@ -42,11 +42,11 @@ z <- c(rep(1:6))
 plot(c(x1, y1)~c(z, z), type = "n", axes = T, bty = "l", 
      las = 1, xlim = c(1,6), ylim = c(0,5),
      xlab = "Umweltgradient", ylab = "Deckung der Arten")
-points(x1~z, pch=21, type="b")
-points(y1~z, pch=16, type="b")
+points(x1~z, pch = 21, type = "b")
+points(y1~z, pch = 16, type = "b")
 
 # zentrierte Daten
-cent <- scale(raw, scale=F)
+cent <- scale(raw, scale = F)
 x2 <- cent[,1]
 y2 <- cent[,2]
 
@@ -120,13 +120,13 @@ pca.5$loadings
 
 ```{r}
 # Erklärte Varianz der Achsen in Prozent (sdev ist die Wurzel daraus)
-E <- pca.5$sdev^2 / pca.5$totdev*100
+E <- pca.5$sdev^2 / pca.5$totdev * 100
 E
 E[1:5]
 
 # PCA-Plot der Lage der Beobachtungen im Ordinationsraum
 plot(pca.5$scores[,1], pca.5$scores[,2], type = "n", asp = 1, xlab = "PC1", ylab = "PC2")
-points(pca.5$scores[,1], pca.5$scores[,2], pch=18)
+points(pca.5$scores[,1], pca.5$scores[,2], pch = 18)
 
 # Subjektive Auswahl von Arten zur Darstellung
 sel.sp <- c(3, 11, 23, 39, 46, 72, 77, 96)
@@ -158,7 +158,11 @@ y <- scores[,2]
 plot(x, y, type = "n", asp = 1)
 arrows(0,0, x[sel.sp], y[sel.sp], length = 0.08)
 text(x[sel.sp], y[sel.sp], snames, pos = 1, cex = 0.6)
-plot(x, y, type = "n", asp = 1, xlim = c(-1, 1), ylim = c(-0.6, 0.6)) # angepasste Achsen
+
+# Mit angepassten Achsen
+plot(x, y, type = "n", asp = 1, xlim = c(-1, 1), ylim = c(-0.6, 0.6))
+arrows(0,0, x[sel.sp], y[sel.sp], length = 0.08)
+text(x[sel.sp], y[sel.sp], snames, pos = 1, cex = 0.6)
 ```
 
 ## CA
