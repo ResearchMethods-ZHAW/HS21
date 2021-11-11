@@ -1,28 +1,3 @@
----
-title: Demo Statistik 5
-output: distill::distill_article
-categories:
-- Statistik5
-draft: true
-
----
-`
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Demo.Rmd", "Statistik_5_Demo.R", documentation = 0)
-```
-
-**Von linearen Modellen zu GLMMs**
-
-
-- [Demoscript als Download](Statistik_5_Demo.R)
-- Datensatz [spf.csv](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/spf.csv)
-- Datensatz [DeerEcervi.txt](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/DeerEcervi.txt)
-
-
-## Split-plot ANOVA
-Based on Logan (2010), Chapter 14
-
-```{r}
 spf <- read.delim("spf.csv", sep = ";") 
 spf.aov <- aov(Reaktion~Signal * Messung + Error(VP), data = spf)
 summary(spf.aov)
@@ -40,12 +15,7 @@ anova(spf.lme.2)
 
 summary(spf.lme.1)
 summary(spf.lme.2)
-```
 
-## GLMM
-Based on Zuur et al. (2009), chapter 13
-
-```{r}
 DeerEcervi <- read.delim("DeerEcervi.txt", sep = "", stringsAsFactors = T)
 
 
@@ -55,11 +25,7 @@ DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0] <- 1
 
 #Numerische Geschlechtscodierung als Factor
 DeerEcervi$fSex <- as.factor(DeerEcervi$Sex)
-```
 
-Hirschlänge hier standardisiert, sonst würde der Achsenabschnitt im Modell für einen Hirsch der Länge 0 modelliert, was schlecht interpretierbar ist, jetzt ist der Achsenabschnitt für einen durschnittlich langen Hirsch
-
-```{r}
 DeerEcervi$CLength <- DeerEcervi$Length - mean(DeerEcervi$Length)
 
 # Zunächst als GLM
@@ -87,11 +53,7 @@ for (j in AllFarms){
     lines(mydata$CLength[I], P.DE2[I])
   }}
 
-```
 
-## GLMM
-
-```{r}
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
 DE.PQL <- glmmPQL(Ecervi.01 ~ CLength * fSex,
@@ -121,4 +83,5 @@ library(glmmML)
 DE.glmmML <- glmmML(Ecervi.01 ~ CLength * fSex,
                   cluster = Farm, family = binomial, data = DeerEcervi)
 summary(DE.glmmML)
+```{.r .distill-force-highlighting-css}
 ```
