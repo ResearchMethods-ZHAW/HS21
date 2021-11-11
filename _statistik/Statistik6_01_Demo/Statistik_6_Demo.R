@@ -1,14 +1,14 @@
 if(!require(labdsv)){install.packages("labdsv")}
 library(labdsv)
-# Für Ordinationen benötigen wir Matrizen, nicht Data.frames
 
+# Für Ordinationen benötigen wir Matrizen, nicht Data.frames
 # Generieren von Daten
 raw <- matrix(c(1, 2, 2.5, 2.5, 1, 0.5, 0, 1, 2, 4, 3, 1), nrow = 6)
 colnames(raw) <- c("spec.1", "spec.2")
 rownames(raw) <- c("r1", "r2", "r3", "r4", "r5", "r6")
 raw
 
-# originale Daten im zweidimensionalen Raum
+# Originale Daten im zweidimensionalen Raum
 x1 <- raw[,1]
 y1 <- raw[,2]
 z <- c(rep(1:6))

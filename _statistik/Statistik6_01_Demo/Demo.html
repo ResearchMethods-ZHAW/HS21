@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","author","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Demo Statistik 6"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik6"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Jürgen Dengler"]}]}]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["11-11-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","author","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Demo Statistik 6"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik6"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Jürgen Dengler"]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-11-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1492,8 +1492,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://ecology.msu.montana.edu/labdsv/R">labdsv</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">&quot;labdsv&quot;</span><span class="op">)</span><span class="op">}</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ecology.msu.montana.edu/labdsv/R">labdsv</a></span><span class="op">)</span>
-<span class="co"># Für Ordinationen benötigen wir Matrizen, nicht Data.frames</span>
 
+<span class="co"># Für Ordinationen benötigen wir Matrizen, nicht Data.frames</span>
 <span class="co"># Generieren von Daten</span>
 <span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;spec.1&quot;</span>, <span class="st">&quot;spec.2&quot;</span><span class="op">)</span>
@@ -1509,7 +1509,7 @@ r4    2.5      4
 r5    1.0      3
 r6    0.5      1</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># originale Daten im zweidimensionalen Raum</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Originale Daten im zweidimensionalen Raum</span>
 <span class="va">x1</span> <span class="op">&lt;-</span> <span class="va">raw</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
 <span class="va">y1</span> <span class="op">&lt;-</span> <span class="va">raw</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>
 <span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span>

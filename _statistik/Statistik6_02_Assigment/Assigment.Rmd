@@ -3,11 +3,9 @@ title: Uebung Statistik 6
 output: distill::distill_article
 categories:
 - Statistik6
+draft: false
 ---
 
-```{r echo = FALSE}
-
-```
 
 **Übung 6.1: PCA (naturwissenschaftlich)**
 
