@@ -7,7 +7,7 @@ categories:
 - Statistik7
 author:
   - name: Jürgen Dengler
-draft: true
+draft: false
 ---
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
@@ -17,7 +17,7 @@ knitr::purl("Demo.Rmd", "Statistik_7_Demo.R", documentation = 0)
 - **Ordinationen II**
 
 
-- [Demoscript als Download](Statistik_7_Demo_v.05.R)
+- [Demoscript als Download](Statistik_7_Demo_v.06.R)
 - Datensatz [Doubs.RData](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Doubs.RData)
 - Funktion [triplot.rda.R](triplot.rda.R)
 
@@ -196,7 +196,7 @@ coef(spe.rda)
 
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
-dev.new(title = "RDA scaling 1 and 2 + lc", width = 12, height = 6, noRStudioGD = TRUE)
+# dev.new(title = "RDA scaling 1 and 2 + lc", width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 # Scaling 1
 plot(spe.rda,scaling = 1, display = c("sp", "lc", "cn"), main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores")
@@ -213,7 +213,7 @@ text(-0.82, 0.55, "b", cex = 1.5)
 ## Triplots of the rda results (wa scores)
 ## Site scores as weighted averages (vegan's default)
 # Scaling 1 :  distance triplot
-dev.new(title = "RDA plot", width = 12, height = 6, noRStudioGD = TRUE)
+#dev.new(title = "RDA plot", width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 plot(spe.rda, scaling = 1, main = "Triplot RDA spe.hel ~ env3 - scaling 1 - wa scores")
 arrows(0, 0, spe.sc1[, 1] * 0.92, spe.sc1[, 2] * 0.92, length = 0, lty = 1, col = "red")
@@ -229,7 +229,7 @@ sel.sp
 
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
 source("triplot.rda.R")
-dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
+#dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 triplot.rda(spe.rda, site.sc = "lc", scaling = 1, cex.char2 = 0.7, pos.env = 3, 
             pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
@@ -255,7 +255,7 @@ anova(spe.rda, by = "axis", permutations = how(nperm = 999))
 summary(spechem.physio)
 ```
 
-```{r, eval=FALSE}
+```{r}
 # Formula interface; X and W variables must be in the same 
 # data frame
 (spechem.physio2 <- rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod 
@@ -283,7 +283,7 @@ text(-3.34, 3.64, "b", cex = 2)
 
 ## Variation partioning
 
-```{r eval=FALSE}
+```{r}
 ## Variation partitioning with two sets of explanatory variables
 
 # Explanation of fraction labels (two, three and four explanatory 
