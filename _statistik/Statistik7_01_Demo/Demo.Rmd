@@ -28,7 +28,7 @@ knitr::purl("Demo.Rmd", "Statistik_7_Demo.R", documentation = 0)
 
 Wildi pp. 96 et seq.
 
-```{r, eval=FALSE}
+```{r}
 # Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
@@ -87,7 +87,9 @@ ssit5 <- ssit[s5]
 
 data(sveg)
 summary(sveg)
+```
 
+```{r, eval=FALSE}
 # RDA = constrained PCA
 rda <- rda(sveg~., ssit5)
 plot(rda)
@@ -106,24 +108,28 @@ constr / tot
 
 Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
 
-```{r eval=FALSE}
+```{r}
 # Datensatz Doubs
 # Doubs Datensatz in den workspace laden
-load("dataDoubs.RData")  
+load("Doubs.RData")  
+```
+
+```{r, eval=FALSE}
 spe
 env
 spa
 summary(spe)
 summary(env)
 summary(spa)
+```
 
+```{r}
 # Entfernen der Untersuchungsfläche ohne Arten
 spe <- spe[-8, ]
 env <- env[-8, ]
 spa <- spa[-8, ]
 
 # Karten für 4 Fischarten
-dev.new(title = "Four fish species", noRStudioGD = TRUE)
 par(mfrow = c(2, 2))
 plot(spa, asp = 1, col = "brown", cex = spe$Satr, xlab = "x (km)", ylab = "y (km)", main = "Brown trout")
 lines(spa, col = "light blue")
@@ -164,14 +170,24 @@ names(envchem)
 # Hellinger-transform the species dataset
 library(vegan)
 spe.hel <- decostand(spe, "hellinger")
-spe.hel
+```
 
+```{r, eval=FALSE}
+spe.hel
+```
+```{r}
 # Redundancy analysis (RDA)
 ## RDA of the Hellinger-transformed fish species data, constrained
 ## by all the environmental variables contained in env3
-(spe.rda <- rda(spe.hel ~ ., env3)) # Observe the shortcut formula
-summary(spe.rda)	# Scaling 2 (default)
+spe.rda <- rda(spe.hel ~ ., env3) # Observe the shortcut formula
+```
 
+```{r, eval=FALSE}
+spe.rda
+summary(spe.rda)	# Scaling 2 (default)
+```
+
+```{r}
 # Canonical coefficients from the rda object
 coef(spe.rda)
 # Unadjusted R^2 und Adjusted R^2
@@ -212,9 +228,7 @@ sel.sp
 
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
 source("triplot.rda.R")
-dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
-
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 triplot.rda(spe.rda, site.sc = "lc", scaling = 1, cex.char2 = 0.7, pos.env = 3, 
             pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
 text(-0.92, 0.72, "a", cex = 2)
@@ -233,8 +247,13 @@ anova(spe.rda, by = "axis", permutations = how(nperm = 999))
 # Simple syntax; X and W may be in separate tables of quantitative 
 # variables
 (spechem.physio <- rda(spe.hel, envchem, envtopo))
-summary(spechem.physio)
+```
 
+```{r, eval=FALSE}
+summary(spechem.physio)
+```
+
+```{r, eval=FALSE}
 # Formula interface; X and W variables must be in the same 
 # data frame
 (spechem.physio2 <- rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod 
@@ -248,7 +267,7 @@ anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 # Partial RDA triplots (with fitted site scores) 
 # with function triplot.rda
 # Scaling 1
-dev.new(title = "Partial RDA",width = 12, height = 6, noRStudioGD = TRUE)
+#dev.new(title = "Partial RDA",width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 triplot.rda(spechem.physio, site.sc = "lc", scaling = 1, 
             cex.char2 = 0.8, pos.env = 3, mar.percent = 0)
@@ -279,7 +298,6 @@ showvarparts(4, bg = c("red", "blue", "yellow", "green"))
 
 # Plot of the partitioning results
 par(mfrow = c(1, 1))
-dev.new(title = "Variation partitioning - all variables", noRStudioGD = TRUE)
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      Xnames = c("Chemistry", "Physiography"), 
      id.size = 0.7)
