@@ -1,25 +1,12 @@
----
-title: Demo Statistik 5
-output: distill::distill_article
-categories:
-- Statistik5
-draft: false
+#__________________________________________________________________________
+# Research Methods, Teil Statistik
+# Statistik 5: Demo
+# Statistik_5_Demo_v.06.R | Version 0.6
+#__________________________________________________________________________
 
----
+# Split-plot ANOVA --------------------------------------------------------
+# Based on Logan (2010), Chapter 14
 
-**Von linearen Modellen zu GLMMs**
-
-
-- [Demoscript als Download](Statistik_5_Demo_v.06.R)
-- Datensatz [spf.csv](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/spf.csv)
-- Datensatz [DeerEcervi.txt](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/DeerEcervi.txt)
-
-
-
-## Split-plot ANOVA
-Based on Logan (2010), Chapter 14
-
-```{r}
 spf <- read.delim("spf.csv", sep = ";") 
 spf.aov <- aov(Reaktion~Signal * Messung + Error(VP), data = spf)
 summary(spf.aov)
@@ -37,14 +24,13 @@ anova(spf.lme.2)
 
 summary(spf.lme.1)
 summary(spf.lme.2)
-```
 
-## GLMM
-Based on Zuur et al. (2009), chapter 13
 
-```{r}
+
+# GLMM --------------------------------------------------------------------
+#  Based on Zuur et al. (2009), Kapitel 13
+
 DeerEcervi <- read.delim("DeerEcervi.txt", sep = "", stringsAsFactors = T)
-
 
 # Anzahl Larven hier in Presence/Absence übersetzt
 DeerEcervi$Ecervi.01 <- DeerEcervi$Ecervi
@@ -52,15 +38,11 @@ DeerEcervi$Ecervi.01[DeerEcervi$Ecervi>0] <- 1
 
 #Numerische Geschlechtscodierung als Factor
 DeerEcervi$fSex <- as.factor(DeerEcervi$Sex)
-```
 
-Hirschlänge hier standardisiert, sonst würde der Achsenabschnitt im Modell für einen Hirsch der Länge 0 modelliert, was schlecht interpretierbar ist, jetzt ist der Achsenabschnitt für einen durschnittlich langen Hirsch
-
-```{r}
 DeerEcervi$CLength <- DeerEcervi$Length - mean(DeerEcervi$Length)
 
 # Zunächst als GLM
-# Interaktionen mit fFarm nicht berücksichtigt, da zu viele Freiheitsgrade verbraucht würden
+# Interaktionen mit Farm nicht berücksichtigt, da zu viele Freiheitsgrade verbraucht würden
 DE.glm <- glm(Ecervi.01 ~ CLength * fSex + Farm, family = binomial, data = DeerEcervi)
 
 drop1(DE.glm, test = "Chi")
@@ -84,11 +66,8 @@ for (j in AllFarms){
     lines(mydata$CLength[I], P.DE2[I])
   }}
 
-```
 
-## GLMM
-
-```{r}
+# GLMM
 if(!require(MASS)){install.packages("MASS")}
 library(MASS)
 DE.PQL <- glmmPQL(Ecervi.01 ~ CLength * fSex,
@@ -118,4 +97,4 @@ library(glmmML)
 DE.glmmML <- glmmML(Ecervi.01 ~ CLength * fSex,
                   cluster = Farm, family = binomial, data = DeerEcervi)
 summary(DE.glmmML)
-```
+
