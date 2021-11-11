@@ -1,27 +1,3 @@
----
-title: Demo Statistik 6
-output: distill::distill_article
-categories:
-- Statistik6
-author:
-  - name: Jürgen Dengler
-draft: true
----
-
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Demo.Rmd", "Statistik_6_Demo.R", documentation = 0)
-```
-
-
-# Ordinationen I
-
-
-[Demoscript als Download](Statistik_6_Demo.R)
-
-## PCA
-
-```{r}
 if(!require(labdsv)){install.packages("labdsv")}
 library(labdsv)
 # Für Ordinationen benötigen wir Matrizen, nicht Data.frames
@@ -97,28 +73,20 @@ biplot(pca.3, scaling = "species") # scaling = species macht das selbe wie scali
 if(!require(dave)){install.packages("dave")}
 library(dave)
 data(sveg)
-```
 
-```{r eval=FALSE}
 str(sveg)
 summary(sveg)
 names(sveg)
-```
 
-```{r}
 # PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
 pca.5 <- pca(sveg^0.25, cor = T)
-```
 
-```{r eval=FALSE}
 # Koordinaten im Ordinationsraum
 pca.5$scores
 
 # Korrelationen der Variablen mit den Ordinationsachsen
 pca.5$loadings
-```
 
-```{r}
 # Erklärte Varianz der Achsen in Prozent (sdev ist die Wurzel daraus)
 E <- pca.5$sdev^2 / pca.5$totdev*100
 E
@@ -159,11 +127,7 @@ plot(x, y, type = "n", asp = 1)
 arrows(0,0, x[sel.sp], y[sel.sp], length = 0.08)
 text(x[sel.sp], y[sel.sp], snames, pos = 1, cex = 0.6)
 plot(x, y, type = "n", asp = 1, xlim = c(-1, 1), ylim = c(-0.6, 0.6)) # angepasste Achsen
-```
 
-## CA
-
-```{r}
 ca.1 <- cca(sveg^0.5)
 # Arten (o) und Communities (+) plotten
 plot(ca.1)
@@ -175,22 +139,14 @@ plot(ca.1, display = "species", type = "points")
 # Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
 ca.1$CA$eig[1:2] / sum(ca.1$CA$eig)
 summary(eigenvals(ca.1))
-```
 
-## DCA
- 
-```{r}
 library(vegan)
 dca.1 <- decorana(sveg, mk = 10)
 plot(dca.1, display = "sites", type = "point")
 
 dca.2 <- decorana(sveg, mk = 100)
 plot(dca.2, display = "sites", type = "point")
-```
 
-## NMDS
- 
-```{r}
 # Distanzmatrix als Start erzeugen
 mde <- vegdist(sveg, method = "euclidean")
 
@@ -211,4 +167,5 @@ plot(mmds$points)
 #Stress = S² = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
 stressplot(imds, mde)
 stressplot(mmds, mde)
+```{.r .distill-force-highlighting-css}
 ```
