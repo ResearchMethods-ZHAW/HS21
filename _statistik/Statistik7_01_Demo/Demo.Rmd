@@ -14,8 +14,7 @@ draft: false
 knitr::purl("Demo.Rmd", "Statistik_7_Demo.R", documentation = 0)
 ```
 
-- **Ordinationen II**
-
+# Ordinationen II
 
 - [Demoscript als Download](Statistik_7_Demo_v.06.R)
 - Datensatz [Doubs.RData](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Doubs.RData)
@@ -113,9 +112,6 @@ load("Doubs.RData")
 ```
 
 ```{r, eval=FALSE}
-spe
-env
-spa
 summary(spe)
 summary(env)
 summary(spa)

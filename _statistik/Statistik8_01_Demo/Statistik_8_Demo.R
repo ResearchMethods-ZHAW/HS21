@@ -1,31 +1,3 @@
----
-title: Demo Statistik 8
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik8
-author:
-  - name: Jürgen Dengler
-draft: true
----
-
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Demo.Rmd", "Statistik_8_Demo.R", documentation = 0)
-```
-
-# Cluster-Analysen
-
-- [Demoscript als Download](Statistik_8_Demo_v.04.R)
-- Datensatz [Doubs.RData](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Doubs.RData)
-- Funktion drawmap.R [drawmap.R](drawmap.R)
-- Funktion hcoplot.R [hcoplot.R](hcoplot.R)
-
-
-## k-means clustering
-
-```{r}
 # das Moordatenset aus Wildi...
 if(!require(dave)){install.packages("dave")}
 library(dave)
@@ -52,26 +24,15 @@ KM.cascade$partition
 
 # k-means visualisation
 plot(KM.cascade, sortg = TRUE)
-```
 
-
-## Agglomarative Clusteranalyse
-mit Daten und Skripten aus Borcard et al. (2018)
-
-```{r}
 load("Doubs.RData")  
-```
 
-```{r eval=FALSE}
 # Remove empty site 8
 spe <- spe[-8, ]
 env <- env[-8, ]
 spa <- spa[-8, ]
 latlong <- latlong[-8, ]
-```
 
-## Dendogramme berechnen und ploten
-```{r}
 ## Hierarchical agglomerative clustering of the species abundance 
 
 # Compute matrix of chord distance among sites
@@ -126,12 +87,7 @@ plot(spe.ch.beta3,  labels = rownames(spe),  main = "Chord - Beta-flexible (beta
 # Compute Ward's minimum variance clustering
 spe.ch.ward <- hclust(spe.ch, method = "ward.D2")
 plot(spe.ch.ward, labels = rownames(spe), main = "Chord - Ward")
-```
 
-
-## Cophenetic correlations
-
-```{r}
 # Single linkage clustering
 spe.ch.single.coph <- cophenetic(spe.ch.single)
 cor(spe.ch, spe.ch.single.coph)
@@ -181,11 +137,7 @@ plot(spe.ch, spe.ch.ward.coph,
                          round(cor(spe.ch, spe.ch.ward.coph), 3))))
 abline(0, 1)
 lines(lowess(spe.ch, spe.ch.ward.coph), col = "red")
-```
 
-
-## Optimale Anzahl Cluster
-```{r}
 ## Select a dendrogram (Ward/chord) and apply three criteria
 ## to choose the optimal number of clusters
 
@@ -278,11 +230,7 @@ axis(1,k.best,paste("optimum", k.best, sep = "\n"),
      col = "red", font = 2, col.axis = "red")
 points(k.best,max(ng), pch = 16, col = "red", cex = 1.5)
 text(28, 0.98, "b", cex = 1.8)
-```
 
-
-## Final dendrogram with the selected clusters
-```{r, eval=FALSE}
 # Choose the number of clusters
 k <- 4
 # Silhouette plot of the final partition
@@ -319,10 +267,7 @@ hcoplot(spe.ch.ward, spe.ch, lab = rownames(spe), k = 4)
 # (see Chapter 2)
 source("drawmap.R")
 drawmap(xy = spa, clusters = spech.ward.g, main = "Four Ward clusters along the Doubs River")
-```
 
-## Miscellaneous graphical outputs
-```{r, eval=FALSE}
 # Heat map of the dissimilarity matrix ordered with the dendrogram
 heatmap(as.matrix(spe.ch), Rowv = NULL, symm = TRUE, margin = c(3, 3))
 
@@ -331,4 +276,5 @@ heatmap(as.matrix(spe.ch), Rowv = NULL, symm = TRUE, margin = c(3, 3))
 # Dots represent absences.
 library(vegan)
 or <- vegemite(spe, spe.chwo)
+```{.r .distill-force-highlighting-css}
 ```

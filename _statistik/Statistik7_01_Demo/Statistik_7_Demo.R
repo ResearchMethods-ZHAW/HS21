@@ -69,9 +69,6 @@ constr / tot
 # Doubs Datensatz in den workspace laden
 load("Doubs.RData")  
 
-spe
-env
-spa
 summary(spe)
 summary(env)
 summary(spa)

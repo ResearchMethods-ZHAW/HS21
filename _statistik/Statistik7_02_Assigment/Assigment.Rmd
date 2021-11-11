@@ -1,5 +1,5 @@
 ---
-title: Übung 7
+title: Übung Statistik 7
 output: distill::distill_article
 categories:
 - Statistik7
