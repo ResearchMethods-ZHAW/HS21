@@ -4,10 +4,9 @@ output: distill::distill_article
 categories:
 - Statistik5
 draft: false
-
 ---
 
-**Von linearen Modellen zu GLMMs**
+# Von linearen Modellen zu GLMMs
 
 
 - [Demoscript als Download](Statistik_5_Demo_v.06.R)
