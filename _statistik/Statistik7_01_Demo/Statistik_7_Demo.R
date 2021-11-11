@@ -1,34 +1,3 @@
----
-title: Demo Statistik 7
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik7
-author:
-  - name: Jürgen Dengler
-draft: true
----
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Demo.Rmd", "Statistik_7_Demo.R", documentation = 0)
-```
-
-- **Ordinationen II**
-
-
-- [Demoscript als Download](Statistik_7_Demo_v.05.R)
-- Datensatz [Doubs.RData](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Doubs.RData)
-- Funktion [triplot.rda.R](triplot.rda.R)
-
-- [Demoskript extended](19_Statistik7/Statistik_7_Demo_extended_v.03.R)
-
-
-## Interpretation von Ordinationen
-
-Wildi pp. 96 et seq.
-
-```{r, eval=FALSE}
 # Plot Arten
 if(!require(dave)){install.packages("dave")}
 library(dave)
@@ -36,15 +5,15 @@ ca <- cca(sveg^0.5)
 
 # Plot mit ausgewählten Arten
 sel.spec <- c(3, 11, 23, 31, 39, 46, 72, 77, 96)
-snames <- names(sveg[,sel.spec])
+snames<-names(sveg[,sel.spec])
 snames
 scores <- scores(ca, display = "species", scaling = "sites")
 sx <- scores[sel.spec, 1]
 sy <- scores[sel.spec, 2]
 plot(ca, display = "sites", type = "point")
-points(sx, sy, pch = 16)
+points(sx, sy, pch=16)
 snames <- make.cepnames(snames)
-text(sx, sy, snames, pos = c(1,2,1,1,3,2,4,3,1), cex = 0.8)
+text(sx, sy, snames, pos=c(1,2,1,1,3,2,4,3,1), cex=0.8)
 
 # Plot "response surfaces" in der CA
 plot(ca, display = "sites", type = "point")
@@ -73,12 +42,7 @@ ordisurf(mmds, ssit$Waterlev.av,add = T, col = "blue")
 plot(imds$points)
 ordisurf(imds, ssit$pH.peat, add = T)
 ordisurf(imds, ssit$Waterlev.av, add = T, col = "blue")
-```
 
-
-## Constrained ordination
-
-```{r, eval=FALSE}
 # 5 Umweltvariablen gewählt, durch die die Ordination constrained werden soll
 ssit
 summary(ssit)
@@ -99,14 +63,8 @@ plot(cca)
 # Unconstrained and constrained variance
 tot <- cca$tot.chi
 constr <- cca$CCA$tot.chi
-constr / tot
-```
+constr/tot
 
-## Redundancy analysis (RDA)
-
-Mehr Details zu RDA aus Borcard et al. (Numerical ecology with R)
-
-```{r eval=FALSE}
 # Datensatz Doubs
 # Doubs Datensatz in den workspace laden
 load("dataDoubs.RData")  
@@ -258,11 +216,7 @@ text(-0.58, 0.64, "a", cex = 2)
 triplot.rda(spechem.physio, site.sc = "lc", scaling = 2, cex.char2 = 0.8, 
             pos.env = 3, mult.spe = 1.1, mar.percent = 0.04)
 text(-3.34, 3.64, "b", cex = 2)
-```
 
-## Variation partioning
-
-```{r eval=FALSE}
 ## Variation partitioning with two sets of explanatory variables
 
 # Explanation of fraction labels (two, three and four explanatory 
@@ -283,4 +237,5 @@ dev.new(title = "Variation partitioning - all variables", noRStudioGD = TRUE)
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      Xnames = c("Chemistry", "Physiography"), 
      id.size = 0.7)
+```{.r .distill-force-highlighting-css}
 ```
