@@ -1,7 +1,7 @@
 #__________________________________________________________________________
 # Research Methods, Teil Statistik
 # Statistik 7: Demo
-# Statistik_6_Demo_v.06.R | Version 0.6
+# Statistik_7_Demo_v.06.R | Version 0.6
 #__________________________________________________________________________
 
 
