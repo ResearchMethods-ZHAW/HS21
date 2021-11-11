@@ -11,7 +11,7 @@ categories:
 
 **Übung 6.1: PCA (naturwissenschaftlich)**
 
-**Datensatz [Doubs.RData](Doubs.RData)**
+**Datensatz [Doubs.RData](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/Doubs.RData)**
 
 Lädt den Datensatz Doubs.RData mit dem folgenden Befehl ins R:
 load("Doubs.RData")
