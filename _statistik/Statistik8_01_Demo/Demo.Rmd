@@ -33,7 +33,12 @@ pca <- rda(sveg^0.25, scale = TRUE)
 ca <- cca(sveg^0.5)
 
 kmeans.1 <- kmeans(sveg, 4)
+```
+
+```{r eval=FALSE}
 kmeans.1
+```
+```{r}
 plot(ca, type = "n")
 points(ca, display = "sites", col = kmeans.1[[1]])
 
@@ -282,7 +287,7 @@ text(28, 0.98, "b", cex = 1.8)
 
 
 ## Final dendrogram with the selected clusters
-```{r, eval=FALSE}
+```{r}
 # Choose the number of clusters
 k <- 4
 # Silhouette plot of the final partition
@@ -322,7 +327,7 @@ drawmap(xy = spa, clusters = spech.ward.g, main = "Four Ward clusters along the 
 ```
 
 ## Miscellaneous graphical outputs
-```{r, eval=FALSE}
+```{r}
 # Heat map of the dissimilarity matrix ordered with the dendrogram
 heatmap(as.matrix(spe.ch), Rowv = NULL, symm = TRUE, margin = c(3, 3))
 
