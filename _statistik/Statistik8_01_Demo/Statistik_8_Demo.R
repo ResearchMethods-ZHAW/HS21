@@ -7,7 +7,6 @@ ca <- cca(sveg^0.5)
 kmeans.1 <- kmeans(sveg, 4)
 
 kmeans.1
-
 plot(ca, type = "n")
 points(ca, display = "sites", col = kmeans.1[[1]])
 
@@ -15,8 +14,8 @@ kmeans.2 <- kmeans(sveg, 3)
 plot(pca, type = "n")
 points(pca, display = "sites", pch=19, col = kmeans.2[[1]])
 
-plot(pca, choices=c(1,3), type = "n")
-points(pca, choices=c(1,3), display = "sites", pch=19, col=kmeans.2[[1]])
+plot(pca, choices = c(1, 3), type = "n")
+points(pca, choices = c(1, 3), display = "sites", pch = 19, col=kmeans.2[[1]])
 
 # k-means partitioning, 2 to 10 groups
 KM.cascade <- cascadeKM(sveg,  inf.gr = 2, sup.gr = 10, iter = 100, criterion = "ssi")
@@ -28,7 +27,6 @@ KM.cascade$partition
 plot(KM.cascade, sortg = TRUE)
 
 load("Doubs.RData")  
-
 # Remove empty site 8
 spe <- spe[-8, ]
 env <- env[-8, ]

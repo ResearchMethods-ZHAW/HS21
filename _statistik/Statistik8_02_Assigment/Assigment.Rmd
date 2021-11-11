@@ -1,16 +1,16 @@
 ---
-title: Übungen 8
+title: Übung Statistik 8
 output: distill::distill_article
 categories:
 - Statistik8
-draft: true
+draft: false
 ---
 
 
 
 ## Uebung 8.1: Clusteranalyse (sozioökonomisch)
 
-- Datensatz [crime2.csv](crime2.csv)
+- Datensatz [crime2.csv](https://raw.githubusercontent.com/ResearchMethods-ZHAW/datasets/main/statistik/crime2.csv)
 
 Raten von 7 Kriminalitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA
 
