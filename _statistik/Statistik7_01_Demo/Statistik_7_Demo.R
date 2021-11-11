@@ -134,12 +134,13 @@ summary(spe.rda)	# Scaling 2 (default)
 
 # Canonical coefficients from the rda object
 coef(spe.rda)
+
 # Unadjusted R^2 und Adjusted R^2
 (R2 <- RsquareAdj(spe.rda))
 
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
-#dev.new(title = "RDA scaling 1 and 2 + lc", width = 12, height = 6, noRStudioGD = TRUE)
+dev.new(title = "RDA scaling 1 and 2 + lc", width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 # Scaling 1
 plot(spe.rda,scaling = 1, display = c("sp", "lc", "cn"), main = "Triplot RDA spe.hel ~ env3 - scaling 1 - lc scores")
@@ -172,6 +173,7 @@ sel.sp
 
 # Triplots with homemade function triplot.rda(), scalings 1 and 2
 source("triplot.rda.R")
+dev.new(title = "RDA plot with triplot.rda", width = 12, height = 6, noRStudioGD = TRUE)
 par(mfrow = c(1, 2))
 triplot.rda(spe.rda, site.sc = "lc", scaling = 1, cex.char2 = 0.7, pos.env = 3, 
             pos.centr = 1, mult.arrow = 1.1, mar.percent = 0.05, select.spe = sel.sp)
@@ -222,7 +224,6 @@ text(-3.34, 3.64, "b", cex = 2)
 
 # Explanation of fraction labels (two, three and four explanatory 
 # matrices) with optional colours
-dev.new(title = "Symbols of variation partitioning fractions", width = 6, height = 2.3, noRStudioGD = TRUE)
 par(mfrow = c(1, 3), mar = c(1, 1, 1, 1))
 showvarparts(2, bg = c("red", "blue"))
 showvarparts(3, bg = c("red", "blue", "yellow"))
