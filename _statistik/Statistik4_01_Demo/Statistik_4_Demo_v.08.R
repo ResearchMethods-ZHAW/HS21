@@ -1,22 +1,11 @@
----
-title: Demo Statistik 4
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik4
-draft: false
----
+#__________________________________________________________________________
+# Research Methods, Teil Statistik
+# Statistik 4: Demo
+# Statistik_Demo_v.08.R | Version 0.8
+#__________________________________________________________________________
 
+# von LMs zu GLMs ---------------------------------------------------------
 
-- [Demoscript als Download](Statistik_4_Demo_v.08.R)
-- Datensatz [loyn.csv](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/loyn.csv)
-
-
-
-## von LMs zu GLMs
-
-```{r}
 temp <- c(10, 12 ,16, 20, 24, 25, 30, 33, 37)
 besucher <- c(40, 12, 50, 500, 400, 900, 1500, 900, 2000)
 strand <- data.frame("Temperatur" = temp, "Besucher" = besucher)
@@ -29,11 +18,11 @@ summary(lm.strand)
 par(mfrow = c(2, 2))
 plot(lm.strand)
 
-par(mfrow = c(1 ,1))
+par(mfrow = c(1, 1))
 xv <- seq(0, 40, by = .1)
-yv <- predict(lm.strand, list(Temperatur = xv))
-plot(strand$Temperatur, strand$Besucher, xlim = c(0, 40))
-lines(xv, yv, lwd = 3, col=  "blue")
+yv <- predict(lm.strand, list(Temperatur = xv), data = strand)
+plot(strand$Temperatur, strand$Besucher, xlim = c(0,40))
+lines(xv, yv, lwd = 3, col = "blue")
 
 glm.gaussian <- glm(Besucher~Temperatur, family = gaussian, data = strand)
 glm.poisson <- glm(Besucher~Temperatur, family = poisson, data = strand)
@@ -41,16 +30,14 @@ glm.poisson <- glm(Besucher~Temperatur, family = poisson, data = strand)
 summary(glm.gaussian)
 summary(glm.poisson)
 
-```
-
-Rücktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion da family=possion als Link-Funktion den natürlichen Logarithmus (log) verwendet)
-Besucher = exp(3.50 + 0.11 Temperatur/°C)
-
-```{r}
+# Rücktranformation der Werte auf die orginale Skale (Hier Exponentialfunktion) 
+# da family=possion als Link-Funktion den natürlichen Logarithmus (log) verwendet)
+# Besucher = exp(3.50 + 0.11 Temperatur/°C)
 exp(3.500301) # Anzahl besucher bei 0°C
-exp(glm.poisson$coefficients[1]) # Werte aus Modell
+exp(glm.poisson$coefficients[1])
 exp(3.500301 + 30*0.112817) # Anzahl besucher bei 30°C
-exp(glm.poisson$coeff[1] * glm.poisson$coeff[2]) #coefficients kann mit coeff abgekürzt werden
+exp(glm.poisson$coeff[1] * glm.poisson$coeff[2])
+
 
 # Test Overdispersion
 if(!require(AER)){install.packages("AER")}
@@ -66,7 +53,7 @@ plot(glm.poisson)
 plot(glm.quasi)
 
 par(mfrow = c(1, 1))
-plot(strand$Temperatur, strand$Besucher, xlim=c(0, 40))
+plot(strand$Temperatur, strand$Besucher, xlim = c(0, 40))
 xv <- seq(0, 40, by = .1)
 
 yv <- predict(lm.strand, list(Temperatur = xv))
@@ -78,15 +65,11 @@ lines(xv, exp(yv2), lwd = 3, col = "red")
 yv3 <- predict(glm.quasi, list(Temperatur = xv))
 lines(xv, exp(yv3), lwd = 3, col = "green")
 
-```
 
+# Logistische Regression --------------------------------------------------
 
-## Logistische Regression
-
-```{r}
-bathing <- data.frame(
-  "temperature" = c(1, 2, 5, 9, 14, 14, 15, 19, 22, 24, 25, 26, 27, 28, 29),
-  "bathing" = c(0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1))
+bathing <- data.frame("temperature" = c(1, 2, 5, 9, 14, 14, 15, 19, 22, 24, 25, 26, 27, 28, 29), 
+                      "bathing" = c(0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1))
 plot(bathing~temperature, data = bathing)
 
 glm.1<-glm(bathing~temperature, family = "binomial", data = bathing)
@@ -115,47 +98,42 @@ km
 1 - sum(diag(km) / sum(km))
 
 
-
-#Plotting
+# Plotting
 xs <- seq(0, 30, l = 1000)
-model.predict <- predict(glm.1, type = "response", se = T, 
-                         newdata = data.frame(temperature = xs))
-
-plot(bathing~temperature, xlab = "Temperature (°C)", 
-     ylab = "% Bathing", pch = 16, col = "red", data = bathing)
-points(model.predict$fit ~ xs, type="l")
+model.predict <- predict(glm.1, type = "response", se = T, newdata = data.frame(temperature = xs))
+plot(bathing~temperature, data = bathing, xlab = "Temperature (°C)", ylab = "% Bathing", pch = 16, col = "red")
+points(model.predict$fit ~ xs, type = "l")
 lines(model.predict$fit+model.predict$se.fit ~ xs, type = "l", lty = 2)
 lines(model.predict$fit-model.predict$se.fit ~ xs, type = "l", lty = 2)
-```
 
-## Nicht-lineare Regression 
 
-```{r}
+# Nicht-lineare Regression ------------------------------------------------
+
 if(!require(AICcmodavg)){install.packages("AICcmodavg")}
 if(!require(nlstools)){install.packages("nlstools")}
 library(AICcmodavg)
 library(nlstools)
 
-loyn <- read.delim("loyn.csv", sep = ",") # Verzeichnis muss dort gesetzt sein wo Daten sind
+loyn <- read.delim("loyn.csv", sep = ",") 
 
-#Selbstdefinierte Funktion, hier Potenzfunktion
+# Selbstdefinierte Funktion, hier Potenzfunktion
 power.model <- nls(ABUND~c*AREA^z, start = (list(c = 1, z = 0)), data = loyn)
 summary(power.model)
 AICc(power.model)
 
-#Modeldiagnostik (in nlstools)
+# Modeldiagnostik (in nlstools)
 plot(nlsResiduals(power.model))
 
-#Vordefinierte "Selbststartfunktionen"#
+# Vordefinierte "Selbststartfunktionen"#
 ?selfStart
 logistic.model <- nls(ABUND~SSlogis(AREA, Asym, xmid, scal), data = loyn)
 summary(logistic.model)
 AICc(logistic.model)
 
-#Modeldiagnostik (in nlstools)
+# Modeldiagnostik (in nlstools)
 plot(nlsResiduals(logistic.model))
 
-#Visualisierung
+# Visualisierung
 plot(ABUND~AREA, data = loyn)
 par(mfrow = c(1, 1))
 xv <- seq(0, 2000, 0.01)
@@ -189,21 +167,17 @@ cand.models[[2]] <- logistic.model
 Modnames <- c("Power", "Logistic")
 
 aictab(cand.set = cand.models, modnames = Modnames)
-```
 
-## Smoother
 
-```{r}
+# Smoother ----------------------------------------------------------------
 loyn$log_AREA<-log10(loyn$AREA)       
 plot(ABUND~log_AREA, data = loyn)
 lines(lowess(loyn$log_AREA, loyn$ABUND, f = 0.25), lwd = 2, col = "red")
 lines(lowess(loyn$log_AREA, loyn$ABUND, f = 0.5), lwd = 2, col = "blue")
 lines(lowess(loyn$log_AREA, loyn$ABUND, f = 1), lwd = 2, col = "green")
-```
 
-## GAMs
 
-```{r}
+# GAMs --------------------------------------------------------------------
 if(!require(mgcv)){install.packages("mgcv")}
 library(mgcv)
 
@@ -218,4 +192,3 @@ lines(xv, yv, lwd = 2, col = "red")
 
 AICc(gam.1)
 summary(gam.1)
-```

@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-08" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-08" />
+  <meta property="article:published" itemprop="datePublished" content="2021-11-12" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-12" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Loesung Aufgabe 4.2n" />
@@ -108,7 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Loesung Aufgabe 4.2n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["Statistik"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["11-08-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Loesung Aufgabe 4.2n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["Statistik"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-12-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1455,7 +1455,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Loesung Aufgabe 4.2n","authors":[],"publishedDate":"2021-11-08T00:00:00.000+01:00"}
+{"title":"Loesung Aufgabe 4.2n","authors":[],"publishedDate":"2021-11-12T00:00:00.000+01:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1480,10 +1480,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#musterloesung-aufgabe-4.2n-multiple-logistische-regression">Musterloesung Aufgabe 4.2N: Multiple logistische Regression</a>
-<ul>
-<li><a href="#uebung-4.2---multiple-logistische-regression">Uebung 4.2 - Multiple logistische Regression</a></li>
-</ul></li>
+<li><a href="#musterloesung-aufgabe-4.2n-multiple-logistische-regression">Musterloesung Aufgabe 4.2N: Multiple logistische Regression</a></li>
 </ul>
 </nav>
 </div>
@@ -1495,7 +1492,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="Statistik_4_Solution_4.2n.R">R-Skript als Download</a></li>
 <li><a href="Statistik_Loesungs_4.2N.pdf">Loesungstext</a></li>
 </ul>
-<h3 id="uebung-4.2---multiple-logistische-regression">Uebung 4.2 - Multiple logistische Regression</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">polis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">&quot;polis.csv&quot;</span><span class="op">)</span>
@@ -1641,7 +1637,7 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <span class="va">xs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">70</span>, l <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
 <span class="va">glm.predict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">glm.1</span>, type <span class="op">=</span> <span class="st">&quot;response&quot;</span>, se <span class="op">=</span> <span class="cn">T</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>RATIO<span class="op">=</span><span class="va">xs</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">PA</span><span class="op">~</span><span class="va">RATIO</span>, data <span class="op">=</span> <span class="va">polis</span>, xlab <span class="op">=</span> <span class="st">&quot;Umfang-Flächen-Verhältnis&quot;</span>, ylab<span class="op">=</span><span class="st">&quot;Vorkommenswahrscheinlichkeit&quot;</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">&quot;red&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">PA</span><span class="op">~</span><span class="va">RATIO</span>, data <span class="op">=</span> <span class="va">polis</span>, xlab <span class="op">=</span> <span class="st">&quot;Umfang-Flächen-Verhältnis&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Vorkommenswahrscheinlichkeit&quot;</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">&quot;red&quot;</span><span class="op">)</span>
      <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">glm.predict</span><span class="op">$</span><span class="va">fit</span> <span class="op">~</span> <span class="va">xs</span>,type<span class="op">=</span><span class="st">&quot;l&quot;</span><span class="op">)</span>
      <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">glm.predict</span><span class="op">$</span><span class="va">fit</span> <span class="op">+</span> <span class="va">glm.predict</span><span class="op">$</span><span class="va">se.fit</span> <span class="op">~</span> <span class="va">xs</span>, type <span class="op">=</span> <span class="st">&quot;l&quot;</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
      <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">glm.predict</span><span class="op">$</span><span class="va">fit</span> <span class="op">-</span> <span class="va">glm.predict</span><span class="op">$</span><span class="va">se.fit</span> <span class="op">~</span> <span class="va">xs</span>, type <span class="op">=</span> <span class="st">&quot;l&quot;</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>

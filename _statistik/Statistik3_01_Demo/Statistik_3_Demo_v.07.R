@@ -1,31 +1,18 @@
----
-title: Demo Statistik 3
-output: 
-  distill::distill_article:
-    toc: true
-categories:
-- Statistik3
-draft: false
----
+#__________________________________________________________________________
+# Research Methods, Teil Statistik
+# Statistik 3: Demo
+# Statistik_3_Demo_v.06.R | Version 0.6
+#__________________________________________________________________________
 
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Demo.Rmd", "Statistik_3_Demo.R", documentation = 0)
-```
+# ANCOVA ------------------------------------------------------------------
+# Basierend auf Crawley (2017)
 
-- [Demoscript als Download](Statistik_3_Demo_v.07.R)  
-- Datensatz [ipomopsis.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/ipomopsis.csv)
-- Datensatz [loyn.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/loyn.csv)
+# Experiment zur Fruchtproduktion ("Fruit") von Ipomopsis sp. ("Fruit") in 
+# Abhaengigkeit von der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) 
+# und korrigiert fuer die Pflanzengroesse vor der Beweidung (hier ausgedrueckt 
+# als Durchmesser an der Spitze des Wurzelstock: "Root")
 
-
-## ANCOVA
-
-Experiment zur Fruchtproduktion (“Fruit”) von Ipomopsis sp. (“Fruit”) in Abhängigkeit Ungrazedvon der Beweidung (Grazing mit 2 Levels: Grazed, Ungrazed) und korrigiert für die Pflanzengrösse vor der Beweidung (hier ausgedrückt als Durchmesser an der Spitze des Wurzelstock: “Root”)
-
-```{r}
 compensation <- read.delim("ipomopsis.csv", sep = ",", stringsAsFactors = T)
-```
-
-```{r}
 summary(compensation)
 
 plot(Fruit~Root, data = compensation)
@@ -44,18 +31,16 @@ summary.lm(aoc.3)
 
 # Plotten der Ergebnisse
 library(tidyverse)
-ggplot(compensation, aes(Root, Fruit, color = Grazing)) +
+ggplot(compensation, aes(Fruit, Root, color = Grazing)) +
   geom_point() + theme_classic()
 
 # Ploten mit base R
 plot(Fruit~Root, pch = 16, col = Grazing, data = compensation)
-legend("topleft", c("grazed", "ungrazed"), col = c("black","red"), pch = 16) 
-```
+legend("topleft", c("grazed", "ungrazed"), col = c("black", "red"), pch = 16) 
 
 
-## 
+# Polynomische Regression -------------------------------------------------
 
-```{r}
 e <- c(20, 19, 25, 10, 8, 15, 13, 18, 11, 14, 25, 39, 38, 28, 24)
 f <- c(12, 15, 10, 7, 2, 10, 12, 11, 13, 10, 9, 2, 4, 7, 13)
 
@@ -72,8 +57,8 @@ plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
 abline(lm(f~e), col = "blue")
 
 # 2. quadratisches Modell
-xv <- seq(0, 40, 0.1)
-plot(f~e, xlim = c(0, 40), ylim = c(0, 20))
+xv <- seq(0,40, 0.1)
+plot(f~e, xlim = c(0,40), ylim = c(0, 20))
 yv2 <- predict(lm.quad, list(e = xv))
 lines(xv, yv2, col = "red")
 
@@ -81,14 +66,13 @@ lines(xv, yv2, col = "red")
 par(mfrow = c(2, 2))
 plot(lm.1)
 plot(lm.quad)
-```
-
-## Multiple lineare Regression
 
 
-### Simulation Overfitting
+# Multiple lineare Regression ---------------------------------------------
 
-```{r eval=FALSE}
+
+# Simulation Overfitting
+
 test <- data.frame("x" = c(1, 2, 3, 4, 5, 6), "y" = c(34, 21, 70, 47, 23, 45))
 
 par(mfrow=c(1,1))
@@ -110,30 +94,25 @@ summary(lm.5)
 
 xv <- seq(from = 0, to = 10, by = 0.1)
 
-plot(y~x, cex = 2, col = "black", lwd = 3, data = test)
+plot(y~x,cex = 2, col = "black", lwd = 3, data = test)
 yv <- predict(lm.1, list(x = xv))
 lines(xv, yv, col = "red", lwd = 3)
 yv <- predict(lm.2, list(x = xv))
 lines(xv, yv, col = "blue", lwd = 3)
-yv<-predict(lm.3, list(x = xv))
+yv <- predict(lm.3, list(x = xv))
 lines(xv, yv, col = "green", lwd =3)
-yv <- predict(lm.4, list(x = xv))
+yv <- predict(lm.4, list(x=xv))
 lines(xv, yv, col = "orange", lwd = 3)
-yv <- predict(lm.5, list(x = xv))
+yv <- predict(lm.5, list(x=xv))
 lines(xv, yv, col = "black", lwd = 3)
-```
 
 
+# Multiple lineare Regression basierend auf Logan, Beispiel 9A ------------
 
-### Multiple lineare Regression basierend auf Logan, Beispiel 9A 
-
-```{r}
 loyn <- read.delim("loyn.csv", sep = ",")
 summary(loyn)
-```
 
-### Korrelation zwischen den Prädiktoren
-```{r}
+# Korrelation zwischen den Prädiktoren
 cor <- cor(loyn[, 2:7])
 print(cor, digits = 2)
 
@@ -147,12 +126,10 @@ library(car)
 vif(lm.1)
 
 influence.measures(lm.1)
-```
 
 
-### Modellvereinfachung
+# Modellvereinfachung (mit Loyn-Datensatz)
 
-```{r}
 lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
 summary(lm.1)
 
@@ -166,27 +143,20 @@ summary(lm.3)
 
 par(mfrow = c(2, 2))
 plot(lm.1)
-```
 
-### Hierarchical partitioning
-
-```{r}
+# Hierarchical partitioning -----------------------------------------------
 if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
 
 loyn.preds <-with(loyn, data.frame(YR.ISOL, ALT, GRAZE))
-hier.part(loyn$ABUND, loyn.preds, gof = "Rsqu")
-```
+hier.part(loyn$ABUND,loyn.preds, gof = "Rsqu")
 
-### Partial regressions
 
-```{r}
+# Partial regressions -----------------------------------------------------
 avPlots(lm.1, ask = F)
-```
 
-## Multimodel inference
 
-```{r}
+# Multimodel inference ----------------------------------------------------
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)
 
@@ -199,4 +169,3 @@ importance(allmodels)
 
 avgmodel <- model.avg(allmodels, subset = TRUE)
 summary(avgmodel)
-```

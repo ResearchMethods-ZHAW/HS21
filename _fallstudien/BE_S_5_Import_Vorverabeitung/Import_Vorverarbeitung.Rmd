@@ -180,7 +180,7 @@ unique(depo$Phase)
 
 Frage: Welches ist das if Argument, welches das else?
 
-- Ändert die Datentypen der Spalten Wochenende, KW, Phase zu factor.
+- Ändert die Datentypen der Spalten Wochenende, KW, Phase zu factor und sortiert die Levels, so dass diese Sinn machen (z.B. in Phase = Normal, Lockdown 1, Lockdown 2, Covid).
 
 ## 3b)
 

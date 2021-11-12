@@ -51,29 +51,6 @@ par(mfrow = c(2, 2))
 plot(lm.1)
 plot(lm.quad)
 
-loyn <- read.delim("loyn.csv", sep = ",")
-
-summary(loyn)
-
-lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
-summary(lm.1)
-
-aov(lm.1)
-par(mfrow = c(2,2))
-plot(lm.1)
-influence.measures(lm.1)
-
-cor <- cor(loyn[, 2:7])
-print(cor, digits = 2)
-
-cor[abs(cor)<0.6] <- 0
-cor
-print(cor, digits = 3)
-
-if(!require(car)){install.packages("car")} 
-library(car)
-vif(lm.1)
-
 test <- data.frame("x" = c(1, 2, 3, 4, 5, 6), "y" = c(34, 21, 70, 47, 23, 45))
 
 par(mfrow=c(1,1))
@@ -107,13 +84,36 @@ lines(xv, yv, col = "orange", lwd = 3)
 yv <- predict(lm.5, list(x = xv))
 lines(xv, yv, col = "black", lwd = 3)
 
+loyn <- read.delim("loyn.csv", sep = ",")
+summary(loyn)
+
+cor <- cor(loyn[, 2:7])
+print(cor, digits = 2)
+
+cor[abs(cor)<0.6] <- 0
+cor
+print(cor, digits = 3)
+
+lm.1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
+if(!require(car)){install.packages("car")} 
+library(car)
+vif(lm.1)
+
+influence.measures(lm.1)
+
 lm.1 <- lm(ABUND ~ YR.ISOL + ALT + GRAZE, data = loyn)
 summary(lm.1)
-lm.2 <- update(lm.1,~.-YR.ISOL)
 
+lm.2 <- update(lm.1,~.-YR.ISOL)
+anova(lm.1, lm.2)
 summary(lm.2)
 
-anova(lm.1, lm.2)
+lm.3 <- update(lm.2,~.-ALT)
+anova(lm.2, lm.3)
+summary(lm.3)
+
+par(mfrow = c(2, 2))
+plot(lm.1)
 
 if(!require(hier.part)){install.packages("hier.part")}
 library(hier.part)
@@ -121,7 +121,7 @@ library(hier.part)
 loyn.preds <-with(loyn, data.frame(YR.ISOL, ALT, GRAZE))
 hier.part(loyn$ABUND, loyn.preds, gof = "Rsqu")
 
-avPlots(lm.1, ask=F)
+avPlots(lm.1, ask = F)
 
 if(!require(MuMIn)){install.packages("MuMIn")}
 library(MuMIn)

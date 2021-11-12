@@ -5,7 +5,7 @@ output:
     toc: true
 categories:
 - Statistik3
-draft: true
+draft: false
 ---
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
@@ -15,7 +15,6 @@ knitr::purl("solution.Rmd", "Statistik_3_Solution_3.R", documentation = 0)
 
 - Download [R-Skript](Solution_stat3.R)
 - [Lösungstext als Download](Statistik_Loesung_3.1_v.02.pdf)
-
 
 
       
@@ -158,7 +157,7 @@ Demnach ist Heat.index die wichtigste Variable (in 100% aller relevanten Modelle
 ferner Litter, CaCO3, CN_ratio und Grazing_intensity in mehr als 50% der relevanten Modelle
 enthalten sind.
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # Modelaveraging (Achtung: dauert mit 13 Variablen einige Minuten)
 summary(model.avg(allmodels, rank = "AICc"), subset = TRUE)
 ```

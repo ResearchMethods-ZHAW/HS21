@@ -5,7 +5,7 @@ output:
     toc: true
 categories:
 - Statistik
-draft: true
+draft: false
 ---
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
@@ -20,8 +20,6 @@ knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentatio
 - [Loesungstext](Statistik_Loesungs_4.2N.pdf)
 
 
-
-### Uebung 4.2 - Multiple logistische Regression
 
 ```{r}
 polis <- read.csv("polis.csv")
@@ -101,7 +99,7 @@ par(mfrow = c(1, 1))
 xs <- seq(0, 70, l = 1000)
 glm.predict <- predict(glm.1, type = "response", se = T, newdata = data.frame(RATIO=xs))
 
-plot(PA~RATIO, data = polis, xlab = "Umfang-Flächen-Verhältnis", ylab="Vorkommenswahrscheinlichkeit", pch = 16, col = "red")
+plot(PA~RATIO, data = polis, xlab = "Umfang-Flächen-Verhältnis", ylab = "Vorkommenswahrscheinlichkeit", pch = 16, col = "red")
      points(glm.predict$fit ~ xs,type="l")
      lines(glm.predict$fit + glm.predict$se.fit ~ xs, type = "l", lty = 2)
      lines(glm.predict$fit - glm.predict$se.fit ~ xs, type = "l", lty = 2)

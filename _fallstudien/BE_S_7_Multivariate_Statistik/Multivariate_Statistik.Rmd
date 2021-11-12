@@ -965,7 +965,14 @@ __Hinweis:__ etwas ganz ähnliches habt ihr unter Import/Vorverarbeitung bereits
 
 - Auch das Jahr und die KW müssen als Faktor vorliegen.
 
-- Nachfolgende Schritte funktionieren nur, wenn __umwelt__ als data.frame vorliegt! Prüft das und ändert das, falls noch kein __data.frame__ (Hinweis: auch ein "tibble" funktioniert nicht, obwohl bei der Abfrage __is.data.frame()__ TRUE angegeben wird. Damit ihr beim scalen keine NaN Werte erhaltet, wendet ihr darum am besten in allen Fällen zuerst den Befehl __as.dada.frame()__ an).
+Hinweis: Im Modell werden die Levels der Variablen (z.B. bei der Phase: Normal, Lockdown 1 und 2, Covid) alphabetisch geordnet und die Effektstärken der einzelnen Levels gegenüber dem ersten Level gerechnet. Das macht wenig Sinn, den in diesem Fall zeigt es uns die Effekte von Lockdown 1, Lockdown 2 und Normal gegenüber Covid an. 
+
+Besser wäre aber Lockdown 1, Lockdown 2 und Covid __gegenüber Normal__.
+
+Das ändert man, indem ihr die Phase zu einem Faktor macht und die Levels entsprechend ändert (gut möglich, dass ihr das bereits so definiert habt).
+
+
+- Nachfolgende Schritte funktionieren nur, wenn __umwelt__ als data.frame vorliegt! Prüft das und ändert das, falls noch kein __data.frame__ (Hinweis: auch ein "tibble" funktioniert nicht, obwohl bei der Abfrage __is.data.frame()__ TRUE angegeben wird. Damit ihr beim scalen keine NaN Werte erhaltet, wendet ihr darum am besten in allen Fällen zuerst den Befehl __as.data.frame()__ an).
 
 - Unser Modell kann in der abhängigen Variabel nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)
 
