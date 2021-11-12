@@ -1,0 +1,228 @@
+---
+title: Musterloesung Beispiel
+output: distill::distill_article
+draft: false
+categories:
+- Statistik2
+---
+
+
+
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution_Stat_Beispiel.Rmd", "Statistik_2_Solution_Beispiel.R", documentation = 0)
+```
+
+
+
+## Musterloesung Beispiel
+- Datensatz [decay.csv](https://github.com/ResearchMethods-ZHAW/datasets/raw/main/statistik/decay.csv)
+- [RCode als Download](Statistik_2_Solution_Beispiel.R)
+- [Loesungstext Beispiel](Statistik_Loesung_Beispiel_v.02.pdf)
+
+**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
+wird)**
+
+
+- Laden Sie den Datensatz decay.csv. Dieser enthält die Zahl radioaktiver Zerfälle pro
+Zeiteinheit (amount) für Zeitpunkte (time) nach dem Start des Experimentes.
+- **Ermitteln Sie ein statistisches Modell, dass die Zerfallshäufigkeit in Abhängigkeit
+von der Zeit beschreibt.**
+- Bitte erklären und begründen Sie die einzelnen Schritte, die Sie unternehmen, um zu
+diesem Ergebnis zu kommen. Dazu erstellen Sie bitte ein Word-Dokument, in das Sie
+Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, Ihre
+Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
+Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n) und welches die unabängige(n) Variablen
+    - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder
+      Datentransformationen vorgenommen werden sollten
+    - Auswahl und Begründung eines statistischen Verfahrens (es gibt hier mehrere
+      statistisch korrekte Möglichkeiten!)
+    - Ermittlung eines Modells
+    - Durchführen der Modelldiagnostik für das gewählte Modell
+    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
+      Ergebnisdarstellung benötigt werden
+    - Formulieren Sie abschliessend einen Methoden- und Ergebnisteil (ggf. incl.
+      adäquaten Abbildungen) zu dieser Untersuchung in der Form einer
+      wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je
+      einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und
+      Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige
+      Redundanz dagegen vermieden werden.
+    - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
+      (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
+      ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+      
+
+**kommentierter Loesungsweg**
+
+```{r include=FALSE}
+decay <- read.delim("decay.csv",sep = ",")
+decay
+```
+
+```{r}
+summary(decay)
+str(decay)
+```
+
+Man erkennt, dass es 31 Beobachtungen für die Zeit als Integer von Zerfällen gibt, die als rationale Zahlen angegeben werden (dass die Zahl der Zerfälle nicht ganzzahlig ist, deutet darauf hin, dass sie möglicherweise nur in einem Teil des Zeitintervalls oder für einen Teil des betrachteten Raumes gemessen und dann hochgerechnet wurde.
+
+**Explorative Datenanalyse**
+
+```{r}
+boxplot(decay$time)
+boxplot(decay$amount)
+plot(amount~time, data=decay)
+```
+
+Während der Boxplot für time wunderbar symmetrisch ohne Ausreisser ist, zeigt amount eine stark rechtsschiefe (linkssteile) Verteilung mit einem Ausreiser. Das deutet schon an, dass ein einfaches lineares Modell vermutlich die Modellannahmen verletzen wird. Auch der einfache Scatterplot zeigt, dass ein lineares Modell wohl nicht adäquat ist. Wir rechnen aber erst einmal weiter.
+
+**Einfaches lineares Modell**
+
+```{r}
+lm.1 <- lm(amount~time, data = decay)
+summary(lm.1)
+```
+Das sieht erst einmal nach einem Supermodell aus, höchstsignifikant und mit einem hohen R² von fast 77%. ABER: wir müssen uns noch die Modelldiagnostik ansehen...
+
+**Modelldiagnostik**
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm.1)
+```
+
+Hier zeigen die wichtigen oberen Plots beide massive Abweichungen vom „Soll“. Der Plot oben links zeigt eine „Banane“ und beim Q-Q-Plot oben rechts weichen die Punkte rechts der Mitte alle stark nach oben von der Solllinie ab. Wir haben unser Modell also offensichtlich falsch spezifiziert.
+Um eine Idee zu bekommen, was falsch ist, plotten wir noch, wie das Ergebnis dieses Modells aussähe:
+
+
+**Ergebnisplot**
+
+```{r}
+par(mfrow = c(1, 1))
+plot(decay$time, decay$amount)
+abline(lm.1, col = "red")
+```
+
+Die Punkte links liegen alle über der Regressionslinie, die in der Mitte darunter und die ganz rechts wieder systematisch darüber (darum im Diagnostikplot oben die „Banane“). Es liegt also offensichtlich keine lineare Beziehung vor, sondern eine curvilineare.
+
+Um diese korrekt zu analysieren, gibt es im Prinzip drei Möglichkeiten, wovon am zweiten Kurstag nur eine hatten, während die zweite und dritte in Statistik 3 und 4 folgten. Im Folgenden sind alle drei nacheinander dargestellt (in der Klausur würde es aber genügen, eine davon darzustellen, wenn die Aufgabenstellung wie oben lautet).
+
+**Variante (1): Lineares Modell nach Transformation der abhängigen Variablen**
+
+Dass die Verteilung der abhängigen Variable nicht normal ist, haben wir ja schon bei der explorativen Datenanalyse am Anfang gesehen. Da sie stark linkssteil ist, zugleich aber keine Nullwerte enthält, bietet sich eine Logarithmustransformation an, hier z. B. mit dem natürlichen Logarithmus.
+
+**Loesung 1: log-Transformation der abhaengigen Variablen**
+
+```{r} 
+par(mfrow = c(1, 2))
+boxplot(decay$amount)
+boxplot(log(decay$amount))
+hist(decay$amount)
+hist(log(decay$amount))
+```
+
+_Die log-transformierte Variante rechts sieht sowohl im Boxplot als auch im #Histogramm viel symmetrischer/besser normalverteilt aus. Damit ergibt sich #dann folgendes lineares Modell_
+
+```{r} 
+lm.2 <- lm(log(amount)~time, data = decay)
+summary(lm.2)
+```
+
+Jetzt ist der R²-Wert noch höher und der p-Wert noch niedriger als im ursprünglichen linearen Modell ohne Transformation. Das erlaubt aber keine Aussage, da wir Äpfel mit Birnen vergleichen, da die abhängige Variable einmal untransformiert und einmal log-transformiert ist. Entscheidend ist die Modelldiagnostik.
+
+**Modelldiagnostik**
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm.2)
+```
+
+Der Q-Q-Plot sieht jetzt exzellent aus, der Plot rechts oben hat kaum noch eine Banane, nur noch einen leichten Keil. Insgesamt deutlich besser und auf jeden Fall ein statistisch korrektes Modell.
+
+
+Lösungen 2 und 3 greifen auf Methoden von Statistik 3 und 4 zurück, sie sind hier nur zum Vergleich angeführt
+
+**Loesung 2: quadratische Regression (kam erst in Statistik 3;**
+_**koente fuer die Datenverteilung passen, entspricht aber nicht der physikalischen**_
+
+**Gesetzmaessigkeit**
+
+```{r}
+model.quad <- lm(amount~time + I(time^2), data=  decay)
+summary(model.quad)
+```
+
+Hier können wir R² mit dem ursprünglichen Modell vergleichen (beide haben amount als abhängige Grösse) und es sieht viel besser aus. Sowohl der lineare als auch der quadratische Term sind hochsignifikant. Sicherheitshalber vergleichen wir die beiden Modelle aber noch mittels ANOVA.
+
+**Vergleich mit dem einfachen Modell mittels ANOVA (es ginge auch AICc)**
+
+```{r}
+anova(lm.1, model.quad)
+```
+
+In der Tat ist das komplexere Modell (jenes mit dem quadratischen Term) höchstsignifikant besser. Jetzt brauchen wir noch die Modelldiagnostik.
+
+
+**Modelldiagnostik**
+
+```{r}
+par(mfrow = c(2, 2))
+plot(model.quad)
+```
+
+**Loesung 3 (die beste, hatten wir aber am 2. Tag noch nicht; mit Startwerten muss man ggf. ausprobieren)**
+
+_**mit Startwerten muss man ggf. ausprobieren)**_
+
+```{r}
+model.nls <- nls(amount~a*exp(-b*time), start=(list(a = 100, b = 1)),data = decay)
+summary(model.nls)
+```
+
+**Modelldiagnostik**
+
+```{r}
+if(!require(nlstools)){install.packages("nlstools")}
+library(nlstools)
+residuals.nls <- nlsResiduals(model.nls)
+plot(residuals.nls)
+```
+
+Für nls kann man nicht den normalen Plotbefehl für die Residualdiagnostik nehmen, sondern verwendet das Äquivalent aus nlstools. Die beiden entscheidenden Plots sind jetzt links oben und rechts unten. Der QQ-Plot hat im unteren Bereich einen kleinen Schönheitsfehler, aber ansonsten ist alles OK.
+
+Da alle drei Lösungen zumindest statistisch OK waren, sollen jetzt noch die zugehörigen Ergebnisplots erstellt werden.
+
+
+**Ergebnisplots**
+
+```{r}
+par(mfrow = c(1, 1))
+xv <- seq(0, 30, 0.1)
+```
+
+1. lineares Modell mit log-transformierter Abhaengiger
+
+```{r}
+plot(decay$time, decay$amount)
+yv1 <- exp(predict(lm.2, list(time = xv)))
+lines(xv, yv1, col = "red")
+```
+
+2. quadratisches Modell
+
+```{r}
+plot(decay$time, decay$amount)
+yv2 <- predict(model.quad, list(time = xv))
+lines(xv, yv2, col=  "blue")
+```
+
+3. nicht-lineares Modell
+
+```{r}
+plot(decay$time, decay$amount)
+yv3 <- predict(model.nls, list(time = xv))
+lines(xv, yv3, col = "green")
+```
+
+Optisch betrachtet, geben (2) und (3) den empirischen Zusammenhang etwas besser wieder als (1), da sie im linken Bereich die hohen Werte besser treffen. Man könnte sogar meinen, bei Betrachtung der Daten, dass die Werte ab time = 28 wieder leicht ansteigen, was die quadratische Funktion wiedergibt. Wer sich aber mit Physik etwas auskennt, weiss, dass Version (2) physikalisch nicht zutrifft, da die Zerfallsrate mit der Zeit immer weiter abfällt. Aufgrund der kurzen Messreihe wäre eine quadratische Funktion trotzdem eine statistisch korrekte Interpretation. Mit längeren Messreihen würde sich jedoch schnell zeigen, dass sie nicht zutrifft.

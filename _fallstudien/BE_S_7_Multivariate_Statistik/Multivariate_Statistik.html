@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-02"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-02"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-10"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-10"/>
   <meta name="article:author" content="Adrian Hochreutener"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-02-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-10-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-02T00:00:00.000+01:00","citationText":"Hochreutener, 2021"}
+{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-10T00:00:00.000+01:00","citationText":"Hochreutener, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,7 +1478,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Adrian Hochreutener  
   
-<br/>11-02-2021
+<br/>11-10-2021
 </div>
 
 <div class="d-article">
@@ -1504,8 +1504,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><p>Macht aus den Ferien einen Faktor.</p></li>
 <li><p>Auch das Jahr und die KW müssen als Faktor vorliegen.</p></li>
-<li><p>Nachfolgende Schritte funktionieren nur, wenn <strong>umwelt</strong> als data.frame vorliegt. Prüft das und ändert das, falls noch kein <strong>data.frame</strong>.</p></li>
-<li><p>Unser Modell kann nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)</p></li>
+</ul>
+<p>Hinweis: Im Modell werden die Levels der Variablen (z.B. bei der Phase: Normal, Lockdown 1 und 2, Covid) alphabetisch geordnet und die Effektstärken der einzelnen Levels gegenüber dem ersten Level gerechnet. Das macht wenig Sinn, den in diesem Fall zeigt es uns die Effekte von Lockdown 1, Lockdown 2 und Normal gegenüber Covid an.</p>
+<p>Besser wäre aber Lockdown 1, Lockdown 2 und Covid <strong>gegenüber Normal</strong>.</p>
+<p>Das ändert man, indem ihr die Phase zu einem Faktor macht und die Levels entsprechend ändert (gut möglich, dass ihr das bereits so definiert habt).</p>
+<ul>
+<li><p>Nachfolgende Schritte funktionieren nur, wenn <strong>umwelt</strong> als data.frame vorliegt! Prüft das und ändert das, falls noch kein <strong>data.frame</strong> (Hinweis: auch ein “tibble” funktioniert nicht, obwohl bei der Abfrage <strong>is.data.frame()</strong> TRUE angegeben wird. Damit ihr beim scalen keine NaN Werte erhaltet, wendet ihr darum am besten in allen Fällen zuerst den Befehl <strong>as.data.frame()</strong> an).</p></li>
+<li><p>Unser Modell kann in der abhängigen Variabel nur mit Ganzzahlen (Integer) umgehen. Daher müssen Kommazahlen in Integer umgewandelt werden. Zum Glück haben wir das schon gemacht und uns bleibt nichts weiter zu tun. =)</p></li>
 </ul>
 <h2 id="c">2c)</h2>
 <p>Problem: verschiedene Skalen der Variablen (z.B. Temperatur in Grad Celsius, Niederschlag in Millimeter und Sonnenscheindauer in %)</p>
@@ -1519,7 +1524,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h1 id="aufgabe-3-korrelationen-und-variablenselektion">Aufgabe 3: Korrelationen und Variablenselektion</h1>
 <h2 id="a-1">3a)</h2>
-<p>Korrelierende Variablen können das Modellergebnis verfälschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden. Welches sind die erklärenden Variablen, welches ist die Abhängige?</p>
+<p>Korrelierende Variablen können das Modellergebnis verfälschen. Daher muss vor der Modelldefinition auf Korrelation zwischen den Messwerten getestet werden. Welches sind die erklärenden Variablen, welches ist die Abhängige? (Ihr müsst nicht prüfen, ob die Voraussetzungen zur Berechnung von Korrelationen erfüllt sind)</p>
 <ul>
 <li>Teste mittels folgendem Code auf eine Korrelation zwischen den Messwerten.</li>
 </ul>

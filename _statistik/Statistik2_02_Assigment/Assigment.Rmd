@@ -1,0 +1,98 @@
+---
+title: Übungen Statistik 2
+output: distill::distill_article
+categories:
+- Statistik2
+draft: false
+---
+
+
+```{r include=FALSE, purl=F}
+knitr::opts_chunk$set(echo = TRUE, include = F, collapse=TRUE)
+```
+***
+
+**Abzugeben sind am Ende**
+    
+    a. lauffähiges R-Skript
+    b. begründeter Lösungsweg (Kombination aus R-Code, R Output 
+       und dessen Interpretation)
+    c. ausformulierter Methoden- und Ergebnisteil (für eine wiss.Arbeit).
+    
+- Bitte **erklärt und begründet die einzelnen Schritte,** die ihr unternehmt, um zu eurem Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in dem ihr Schritt für Schritt den verwendeten **R-Code**, die dazu      gehörigen **Ausgaben von R**, eure **Interpretation** derselben und die sich ergebenden **Schlussfolgerungen** für das weitere Vorgehen dokumentiert.
+  
+- Dieser **Ablauf** sollte insbesondere beinhalten:
+    - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n) und welches die unabängige(n) Variablen etc.
+    - Explorative Datenanalyse, um zu sehen, ob evtl. Dateneingabefehler vorliegen oder Datentransformationen vorgenommen werden sollten
+    - Auswahl und Begründung eines statistischen Verfahrens
+    - Bestimmung des vollständigen/maximalen Models
+    - Selektion des/der besten Models/Modelle
+    - Durchführen der Modelldiagnostik für dieses
+    - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss. Ergebnisdarstellung benötigt werden
+    
+- Formuliert abschliessend einen **Methoden- und Ergebnisteil** (ggf. incl. adäquaten Abbildungen/Tabellen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (je einen ausformulierten Absatz von ca. 60-100 Worten bzw. 3-8 Sätzen). Alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
+
+***
+
+
+### Aufgabe 2.1: Regression
+
+**Regressionsanalyse mit [SAR.csv](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/SAR.csv)**
+
+Der Datensatz beschreibt die Zunahme der Artenzahlen (richness) von Pflanzen in Trockenrasen der Schweiz in Abhängigkeit von der Probeflächengrösse (area, hier in m²). Diese Beziehung bezeichnet man als Artenzahl-Areal-Kurve (Species-area relationship = SAR).
+
+-	Ladet den Datensatz in R und macht eine explorative Datenanalyse.
+-	Wählt unter den schon gelernten Methoden der Regressionsanalyse ein adäquates Vorgehen zur Analyse dieser Daten und führt diese dann durch.
+-	Prüft anhand der Residuen, ob die Modellvoraussetzungen erfüllt waren
+-	Falls die Modelldiagnostik negativ ausfällt, überlegt, welche Datentransformation helfen könnte, und rechnet neue Modelle mit einer oder ggf. mehreren Datentransformationen, bis ihr eine statistisch zufriedenstellende Lösung gefunden habt.
+-	Stellt die erhaltenen Ergebnisse angemessen dar (Text, Abbildung und/oder Tabelle).
+-	Kennt ihr ggf. noch eine andere geeignete Herangehensweise?
+
+
+
+### Aufgabe 2.2: Einfaktorielle ANOVA
+
+**ANOVA mit [novanimal_agg.csv](https://zenodo.org/record/3890931/files/2017_ZHAW_aggregated_menu_sales_NOVANIMAL.csv?download=1)**
+
+Führt mit dem Datensatz novanimal.csv eine einfaktorielle ANOVA durch. Gibt es Unterschiede zwischen der Anzahl verkaufter Gerichte (Buffet, Fleisch oder Vegetarisch) pro Woche?
+
+Hinweise für die Analysen:
+
+- Fasst die vier Inhalte der Gerichte zu drei Inhalten zusammen. Das heisst, dass die pflanzlichen Gerichte neu zu den vegetarischen Gerichten gezählt
+werden. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit stringr::str_replace()).
+- Danach muss der Datensatz gruppiert und zusammengefasst werden.
+- Unbekannte Menüinhalte können vernachlässigt werden.
+- Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls auch nicht-parametrische Analysen zulässig?
+- Führt anschliessend Post-hoc-Vergleiche durch.
+- Fasst die Ergebnisse in wenigen Sätzen zusammen und stellst die angemessen dar (Text mit Abbildung und/oder Tabelle)
+
+
+### Aufgabe 2.3N: Mehrfaktorielle ANOVA (NatWis)
+
+**ANOVA mit [kormoran.csv](https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/kormoran.csv)**
+
+Der Datensatz enthält 40 Beobachtungen zu Tauchzeiten zweier Kormoranunterarten (C = *Phalocrocorax carbo carbo* und S = *Phalacrocorax carbo sinensis*) aus vier Jahreszeiten (F = Frühling, S = Sommer, H = Herbst, W = Winter).
+
+- Lest den Datensatz nach R ein und führt eine adäquate Analyse durch, um
+beantworten zu können, wie Unterart und Jahreszeit die Tauchzeit beeinflussen.
+- Stellt eure Ergebnisse dann angemessen dar (Text mit Abbildung und/oder Tabelle).
+- Gibt es eine Interaktion?
+
+### Uebung 2.3S: Mehrfaktorielle ANOVA mit Interaktion (SozWis)
+
+**ANOVA mit [novanimal_indiv.csv](https://zenodo.org/record/3890949/files/2017_ZHAW_individual_menu_sales_NOVANIMAL.csv?download=1)**
+
+In der Mensa gibt es zwei unterschiedliche Preisniveaus bzgl. den Gerichten: eine preisgünstigere Menülinie ("World" & "Favorite") und eine teuere Menülinie ("Kitchen").
+Gibt es Unterschiede zwischen dem Kauf von preisgünstigeren resp. teureren Menülinien betreffend Menüinhalt & Hochschulzugehörigkeit?
+
+Hinweise für die Analysen:
+
+- Fasst die zwei günstigeren Menülinien "Favorite" & "World" zu einer Menülinie zusammen. Konkret könnt ihr das in R mit einer Umbenennung der Inhalte durchführen (z. B. mit stringr::str_replace() oder base::sub()).
+- Kleiner Hinweis: "Local" Gerichte könnt ihr zu den anderen Gerichten dazu zählen z.B. Local Favorite -> Favorite
+- Danach muss der Datensatz gruppiert (nach Menülinie & Hochschulzugehörigkeit) und zusammengefasst werden.
+- Unbekannte Menüinhalte können vernachlässigt werden.
+- Wie gut sind die Voraussetzungen für eine ANOVA erfüllt? Wären allenfalls
+auch nicht-parametrische Analysen zulässig?
+- Führt anschliessend Post-hoc-Vergleiche durch.
+- Stellt eure Ergebnisse dann angemessen dar (Text mit Abbildung und/oder Tabelle).
+

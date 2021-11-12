@@ -1,0 +1,173 @@
+---
+title: Musterlösung Übung 2.3n Mehrfaktorielle ANOVA
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik2
+draft: false
+---
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution_stat2.3n.Rmd", "Statistik_2_Solution_2.3n.R", documentation = 0)
+```
+
+
+- [RCode als Download](Statistik_2_Solution_2.3n.R)
+- [Loesungstext 2.3](Statistik_Loesung_2.3N_v.02.pdf)
+
+**Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein
+wird)**
+- Laden Sie den Datensatz kormoran.csv mit ein Dieser enthält Tauchzeiten
+(hier ohne Einheit) von Kormoranen in Abhängigkeit von Jahreszeit und Unterart.
+Unterarten: Phalacrocorax carbo carbo (C) und Phalacrocorax carbo sinensis (S);
+Jahreszeiten: F = Frühling, S = Sommer, H = Herbst, W = Winter.
+- **Ihre Gesamtaufgabe ist es, aus diesen Daten ein minimal adäquates Modell zu
+ermitteln, das diese Abhängigkeit beschreibt.**
+- Bitte erklären und begründen Sie die einzelnen Schritte, die Sie unternehmen, um zu
+diesem Ergebnis zu kommen. Dazu erstellen Sie bitte ein Word-Dokument, in das Sie
+Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, Ihre
+Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere
+Vorgehen dokumentieren.
+- Dieser Ablauf sollte insbesondere beinhalten:
+  - Überprüfen der Datenstruktur nach dem Einlesen, welches sind die abhängige(n)
+    und welches die unabängige(n) Variablen, welches statistische Verfahren wenden Sie
+    an?
+  - Explorative Datenanalyse, um zu sehen, ob schon vor dem Start der Analysen
+    Transformationen o.ä. vorgenommen werden sollten
+  - Definition eines vollen Modelles, das nach statistischen Kritierien zum minimal
+    adäquaten Modell reduziert wird
+  - Durchführen der Modelldiagnostik, um zu entscheiden, ob das gewählte Vorgehen
+    korrekt war oder ggf. angepasst werden muss
+  - Generieren aller Zahlen, Statistiken und Tabellen, die für eine wiss.
+    Ergebnisdarstellung benötigt werden
+- Formulieren Sie abschliessend einen Methoden- und Ergebnisteil (ggf. incl.
+  adäquaten Abbildungen) zu dieser Untersuchung in der Form einer
+  wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je
+  einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und
+  Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige
+  Redundanz dagegen vermieden werden.
+- **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg
+  (Kombination aus R-Code, R Output und dessen Interpretation) und (c)
+  ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
+
+
+**kommentierter Lösungsweg**
+
+```{r}
+# Working directory muss angepasst werden
+kormoran <- read.delim("kormoran.csv", sep = ";", stringsAsFactors = T)  # 
+
+# Ueberpruefen, ob Einlesen richtig funktioniert hat und welche Datenstruktur vorliegt
+str(kormoran)
+summary(kormoran)
+```
+
+Man erkennt, dass es sich um einen Dataframe mit einer metrischen (Tauchzeit) und zwei kategorialen (Unterart, Jahreszeit) Variablen handelt.
+Die adäquate Analyse (1 metrische Abhängige vs. 2 kategoriale Unabhängige) ist damit eine zweifaktorielle ANOVA
+Die Sortierung der Jahreszeiten (default: alphabetisch) ist inhaltlich aber nicht sinnvoll und sollte angepasst werden.
+
+```{r}
+# Umsortieren der Faktoren, damit sie in den Boxplots eine sinnvolle Reihung haben
+kormoran$Jahreszeit <- ordered(kormoran$Jahreszeit, levels = c("F", "S", "H", "W"))
+kormoran$Jahreszeit
+
+# Explorative Datenanalyse (zeigt uns die Gesamtverteilung)
+boxplot(kormoran$Tauchzeit)
+```
+
+Das ist noch OK für parametrische Verfahren (Box ziemlich symmetrisch um Median, Whisker etwas asymmetrisch aber nicht kritisch). Wegen der leichten Asymmetrie (Linksschiefe) könnte man eine log-Transformation ausprobieren.
+
+```{r}
+boxplot(log10(kormoran$Tauchzeit))
+```
+
+Der Gesamtboxplot für log10 sieht perfekt symmetrisch aus, das spräche also für eine log10-Transformation. De facto kommt es aber nicht auf den Gesamtboxplot an, sondern auf die einzelnen.
+
+```{r}
+# Explorative Datenanalyse 
+# (Check auf Normalverteilung der Residuen und Varianzhomogenitaet)
+boxplot(Tauchzeit~Jahreszeit * Unterart, data = kormoran)
+boxplot(log10(Tauchzeit)~Jahreszeit * Unterart, data = kormoran)
+```
+
+Hier sieht mal die Verteilung für die untransformierten Daten, mal für die transformierten besser aus. Da die Transformation keine klare Verbesserung bringt, bleiben wir im Folgenden bei den untransformierten Daten, da diese leichter (direkter) interpretiert werden können
+
+```{r}
+# Vollständiges Modell mit Interaktion
+aov.1 <- aov(Tauchzeit~Unterart * Jahreszeit, data = kormoran)
+aov.1
+summary(aov.1)
+# p-Wert der Interaktion ist 0.266
+```
+
+Das volle (maximale) Modell zeigt, dass es keine signifikante Interaktion zwischen Jahreszeit und Unterart gibt. Wir können das Modell also vereinfachen, indem wir die Interaktion herausnehmen (+ statt * in der Modellspezifikation)
+
+```{r}
+# Modellvereinfachung
+aov.2 <- aov(Tauchzeit~Unterart + Jahreszeit, data = kormoran)
+aov.2
+summary(aov.2)
+```
+
+Im so vereinfachten Modell sind alle verbleibenden Terme signifikant, wir sind also beim „minimal adäquaten Modell“ angelangt
+
+```{r}
+# Anderer Weg, um zu pruefen, ob man das komplexere Modell mit Interaktion behalten soll
+anova(aov.1, aov.2)
+# In diesem Fall bekommen wir den gleichen p-Wert wie oben (0.266)
+
+# Modelldiagnostik
+par(mfrow = c(2, 2)) #alle vier Abbildungen in einem 2 x 2 Raster
+plot(aov.2)
+```
+
+```{r, eval=FALSE}
+influence.measures(aov.2) # 
+# kann man sich zusätzlich zum "plot" ansehen, um herauszufinden, 
+# ob es evtl. sehr einflussreiche Werte mit Cook's D von 1 oder grösser gibt
+```
+
+Links oben ist alles bestens, d. h. keine Hinweise auf Varianzheterogenität („Keil“) oder Nichtlinearität („Banane“)
+Rechts oben ganz gut, allerdings weichen Punkte 1 und 20 deutlich von der optimalen Gerade ab -> aus diesem Grund können wir es doch noch mal mit der log10-Transformation versuchen (s.u.)
+Rechts unten: kein Punkt hat einen problematischen Einfluss (die roten Linien für Cook’s D > 0.5 und > 1 sind noch nicht einmal im Bildausschnitt.
+
+```{r}
+# Alternative mit log10
+aov.3 <-aov(log10(Tauchzeit)~Unterart + Jahreszeit, data=kormoran)
+aov.3
+summary(aov.3)
+plot(aov.3)
+```
+
+Rechts oben: Punkt 20 jetzt auf der Linie, aber Punkt 1 weicht umso deutlicher ab -> keine Verbesserung -> wir bleiben bei den untransformierten Daten.
+
+```{r}
+# Ergebnisdarstellung
+```
+
+Da wir keine Interaktion zwischen Unterart und Jahreszeit festgestellt haben, brauchen wir auch keinen Interaktionsplot (unnötig kompliziert), statt dessen können wir die Ergebnisse am besten mit zwei getrennten Plots für die beiden Faktoren darstellen. Bitte die Achsenbeschriftungen und den Tukey post-hoc-Test nicht vergessen.
+
+```{r}
+par(mfrow = c(1, 1)) #Zurückschalten auf Einzelplots
+if(!require(multcomp)){install.packages("multcomp")} 
+library(multcomp)
+
+boxplot(Tauchzeit~Unterart, data = kormoran)
+
+
+letters <- cld(glht(aov.2, linfct = mcp(Jahreszeit = "Tukey")))
+boxplot(Tauchzeit~Jahreszeit, data = kormoran)
+mtext(letters$mcletters$Letters, at = 1:4)
+```
+
+Jetzt brauchen wir noch die Mittelwerte bzw. Effektgroessen
+
+Für den Ergebnistext brauchen wir auch noch Angaben zu den Effektgrössen. Hier sind zwei Möglichkeiten, um an sie zu gelangen.
+
+```{r}
+aggregate(Tauchzeit~Jahreszeit, FUN = mean, data = kormoran)
+aggregate(Tauchzeit~Unterart, FUN = mean, data = kormoran)
+
+summary(lm(Tauchzeit~Jahreszeit, data = kormoran))
+summary(lm(Tauchzeit~Unterart, data = kormoran))
+```
