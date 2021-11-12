@@ -7,17 +7,17 @@ author:
   Gian-Andrea Egeler
 categories:
 - Statistik4
-draft: true
+draft: false
 
 ---
 
-```{r echo = FALSE}
+```{r echo = FALSE, message=FALSE, results="hide"}
 #export files
 knitr::purl("solution4.2s.Rmd", "Solution_stat4.2s.R", documentation = 0)
 
 ```
 
->Download [R-Skript](Solution_stat4.4s.R) 
+>Download [R-Skript](Solution_stat4.2s.R) 
 
 
 
@@ -27,13 +27,13 @@ knitr::purl("solution4.2s.Rmd", "Solution_stat4.2s.R", documentation = 0)
 
 - **Lese-Empfehlung** Kapitel 6 von [Manny Gimond]( https://mgimond.github.io/Stats-in-R/Logistic.html)
 - **Lese-Empfehlung** Kapitel 4 von [Gareth (2016)](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf)
-
+- **Lese-Empfehlung** Vorlesungsfolien von Oscar Torres-Reyna [Princeton University](https://www.princeton.edu/~otorres/LogitR101.pdf)
 
 *****
 
 
 ##kommentierter Loesungsweg
-```{r load data and packages, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
+```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 
 library(dplyr)
@@ -68,7 +68,7 @@ mytheme <-
 ```
 
 
-```{r prepare data}
+```{r }
 
 # Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0
 df <- nova_survey %>%  # kopiert originaler Datensatz
@@ -205,7 +205,7 @@ In der Aufgabe war es das Ziel zu schauen, ob wir einen potenziellen Besuch eine
 ##Ergebnisse
 
 
-```{r print results, message=FALSE, echo=FALSE,fig.cap="Konfusionsmatrix"}
+```{r , message=FALSE, echo=FALSE,fig.cap="Konfusionsmatrix"}
 knitr::kable(km)
 ```
 
@@ -221,3 +221,4 @@ Es gibt verschiedene Gründe für diesen schlechten Modelfit:
 - eine bessere Link-Funktion für das GLM suchen z.B. probit 
 - [polynomiale Kontraste](https://stats.stackexchange.com/questions/195246/how-to-handle-ordinal-categorical-variable-as-independent-variable)
 - Smooth Splines [hier](https://www.frontiersin.org/articles/10.3389/fams.2017.00015/full)
+- multinomiale Regression z.M. nnet::mulitom()[hier](https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/) 

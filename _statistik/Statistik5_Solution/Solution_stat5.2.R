@@ -1,35 +1,8 @@
----
-title: "Musterlösung Übung 5.2"
-output: 
-  distill::distill_article:
-    toc: true
-author:
-  Gian-Andrea Egeler
-
-categories:
-- Statistik5
-draft: true
----
-
-```{r, echo = FALSE, message=FALSE, results="hide"}
 #export files
 knitr::purl("solution5.2.Rmd", "Solution_stat5.2.R", documentation = 0)
 
 
-```
 
->Download [R-Skript](Solution_stat5.2.R) 
-
-# Musterlösung Übung 5.2: GLMM
-
-*****
-> Lese-Empfehlung Kapitel 4.3.1 von [Christopher Molnar](https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm)
-- Interessierte [hier](https://rpsychologist.com/r-guide-longitudinal-lme-lmer) oder [hier](https://rpubs.com/kaz_yos/glmm1)
-
-****
-
-## kommentierter Lösungsweg
-```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 library(dplyr)
 library(readr)
 library(stringr)
@@ -49,10 +22,7 @@ mytheme <-
     axis.ticks.length = unit(.5, "cm")
     )
 
-```
 
-
-```{r, error=FALSE}
 
 df <- nova # kopiert originaler Datensatz
 
@@ -124,17 +94,7 @@ tab1 <- cbind(Est = fixef(mod0), LL = fixef(mod0) - 1.96 * se,
 
 # erzeugt die Odds Ratios
 tab2 <- exp(tab1)
-```
 
-## Methoden
-
-Die Responsevariable “Fleischkonsum” ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren “Alter (Gruppen)”, “Geschlecht” und “Hochschulzugehörigkeit” gerechnet. Da in den Daten gewisse Individuen mehrmals vorkommen, wird das Individuum (Variable ccrs) als variabler Effekt in das Modell aufgenommen.
-
-## Ergebnisse
-
-Das Geschlecht und das Alter nehmen einen signifikanten Einfluss auf den Fleischkonsum (siehe Table 1): Männer kaufen signifikant häufiger ein fleischhaltiges Gericht als Frauen; junge Personen (15 bis 25-jährig) kaufen signifikant häufiger ein fleischhaltiges Gericht in der Mensa. Es sieht so aus, als ob die Hochschulzugehörigkeit auf den ersten Blick keinen Einfluss nimmt. Aber man müsste auch die Interaktion zwischen Geschlecht und Hochschulzugehörigkeit berücksichtigen, um ein abschliessendes Bild zu bekommen. Das kleine marginale Pseudo-R^2 zeigt auf, dass es nicht das "beste" Modell ist. Insbesondere die tiefe Varianzaufklärung für die randomisierte Variable (r2c; ccrs) scheint mit (nur) 4% sehr gering. Das sind Hinweise dafür, dass das Modell ggf. noch weitere Ebenen haben könnte (z.B. Standort Mensa).
-
-```{r, message=FALSE, echo=FALSE}
 
 #replace rownames
 rownames(tab1) <-  c("Intercept", "Männer", "Mitarbeitende",
@@ -146,12 +106,7 @@ knitr::kable(tab1, col.names = c("Coefficients", "Lower Limit (LL)", "Uppewr Lim
              caption = "Modellschätzer (Coefficients) mit dazugehörigem 95% Konfidenzintervall", digits = 2)
              
 
-```
 
-
-Die Chance, dass Männer ein fleischhaltiges Gericht kaufen ist 2.36mal (+136%) höher als bei Frauen (siehe Table 2). Die Chance, dass 26 bis 34-jährige Personen ein fleischhaltiges Gericht kaufen ist kleiner (-21%) als bei den 15 bis 25-jährigen Personen.
-
-```{r, message=FALSE, echo=FALSE}
 
 # ersetze row names
 rownames(tab2) <-  c("Intercept", "Männer", "Mitarbeitende",
@@ -163,6 +118,5 @@ knitr::kable(tab2, col.names = c("OR", "Lower Limit (LL)", "Uppewr Limit (UL)"),
              caption = "Odds Ratio (OR) mit dazugehörigem 95% Konfidenzintervall", 
              digits = 2)
 
+```{.r .distill-force-highlighting-css}
 ```
-
-

@@ -87,29 +87,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Loesung Aufgabe 5</title>
+  <title>Musterlösung Übung 5.2</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-22" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-22" />
+  <meta property="article:published" itemprop="datePublished" content="2021-11-09" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-09" />
   <meta name="article:author" content="Gian-Andrea Egeler" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Loesung Aufgabe 5" />
+  <meta property="og:title" content="Musterlösung Übung 5.2" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="Loesung Aufgabe 5" />
+  <meta property="twitter:title" content="Musterlösung Übung 5.2" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","toc","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Loesung Aufgabe 5"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["floating"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]},{"type":"character","attributes":{},"value":["Statistik5"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["10-22-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterlösung Übung 5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik5"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["11-09-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Loesung Aufgabe 5","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-22T00:00:00.000+02:00","citationText":"Egeler, 2021"}
+{"title":"Musterlösung Übung 5.2","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-09T00:00:00.000+01:00","citationText":"Egeler, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1466,7 +1466,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Loesung Aufgabe 5</h1>
+<h1>Musterlösung Übung 5.2</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
 <div class="dt=tag">Statistik5</div>
@@ -1479,37 +1479,36 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   Gian-Andrea Egeler
   
-<br />10-22-2021
+<br />11-09-2021
 </div>
 
 <div class="d-article">
 <div class="d-contents d-contents-float">
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
-
+<ul>
+<li><a href="#musterlösung-übung-5.2-glmm">Musterlösung Übung 5.2: GLMM</a>
+<ul>
+<li><a href="#kommentierter-lösungsweg">kommentierter Lösungsweg</a></li>
+<li><a href="#methoden">Methoden</a></li>
+<li><a href="#ergebnisse">Ergebnisse</a></li>
+</ul></li>
+</ul>
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>
-  |                                                                  
-  |                                                            |   0%
-  |                                                                  
-  |....................                                        |  33%
-  |                                                                  
-  |........................................                    |  67%
-  |                                                                  
-  |............................................................| 100%</code></pre>
-<pre><code>[1] &quot;Solution_stat5.R&quot;</code></pre>
+
 </div>
 <blockquote>
-<p>Download <a href="Solution_stat5.R">R-Skript</a></p>
+<p>Download <a href="Solution_stat5.2.R">R-Skript</a></p>
 </blockquote>
+<h1 id="musterlösung-übung-5.2-glmm">Musterlösung Übung 5.2: GLMM</h1>
 <hr />
 <blockquote>
 <p>Lese-Empfehlung Kapitel 4.3.1 von <a href="https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm">Christopher Molnar</a> - Interessierte <a href="https://rpsychologist.com/r-guide-longitudinal-lme-lmer">hier</a> oder <a href="https://rpubs.com/kaz_yos/glmm1">hier</a></p>
 </blockquote>
 <hr />
-<h2 id="kommentierter-loesungsweg">kommentierter Loesungsweg</h2>
+<h2 id="kommentierter-lösungsweg">kommentierter Lösungsweg</h2>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -1650,7 +1649,7 @@ delta       0.03240612 0.2326719</code></pre>
 <p>Das Geschlecht und das Alter nehmen einen signifikanten Einfluss auf den Fleischkonsum (siehe Table 1): Männer kaufen signifikant häufiger ein fleischhaltiges Gericht als Frauen; junge Personen (15 bis 25-jährig) kaufen signifikant häufiger ein fleischhaltiges Gericht in der Mensa. Es sieht so aus, als ob die Hochschulzugehörigkeit auf den ersten Blick keinen Einfluss nimmt. Aber man müsste auch die Interaktion zwischen Geschlecht und Hochschulzugehörigkeit berücksichtigen, um ein abschliessendes Bild zu bekommen. Das kleine marginale Pseudo-R^2 zeigt auf, dass es nicht das “beste” Modell ist. Insbesondere die tiefe Varianzaufklärung für die randomisierte Variable (r2c; ccrs) scheint mit (nur) 4% sehr gering. Das sind Hinweise dafür, dass das Modell ggf. noch weitere Ebenen haben könnte (z.B. Standort Mensa).</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
-<caption>(#tab:print results coefficients)Modellschätzer (Coefficients) mit dazugehörigem 95% Konfidenzintervall</caption>
+<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Modellschätzer (Coefficients) mit dazugehörigem 95% Konfidenzintervall</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -1702,7 +1701,7 @@ delta       0.03240612 0.2326719</code></pre>
 <p>Die Chance, dass Männer ein fleischhaltiges Gericht kaufen ist 2.36mal (+136%) höher als bei Frauen (siehe Table 2). Die Chance, dass 26 bis 34-jährige Personen ein fleischhaltiges Gericht kaufen ist kleiner (-21%) als bei den 15 bis 25-jährigen Personen.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
-<caption>(#tab:print results OR)Odds Ratio (OR) mit dazugehörigem 95% Konfidenzintervall</caption>
+<caption><span id="tab:unnamed-chunk-5">Table 2: </span>Odds Ratio (OR) mit dazugehörigem 95% Konfidenzintervall</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -1751,7 +1750,7 @@ delta       0.03240612 0.2326719</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
