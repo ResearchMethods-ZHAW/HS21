@@ -6,7 +6,7 @@ author:
 categories:
 - Statistik_Konsolidierung1
 
-draft: true
+draft: false
 
 ---
 
@@ -14,7 +14,6 @@ draft: true
 ```{r, echo=FALSE}
 library(tidyverse)
 
-#TODO: links are not working!
 ```
 
 ## Verschiedene Datensätze
@@ -66,18 +65,21 @@ str(data_911)
 
 
 **Download via Github - 1. Möglichkeit**
+
 1. Geht zum File, welches ihr herunterladen wollt
-2. Klickt auf das File (.csv, .xlsx etc.), um den Inhalt innerhalb der GitHub Benutzeroberfläche anzuzeigen
-![](17_Statistik_Konsolidierung1/1_github.PNG){width=70%} 
+
+2. Klickt auf das File (.csv, .xlsx etc.), um den Inhalt innerhalb der GitHub Benutzeroberfläche anzuzeigen ![](1_github.PNG){width=70%} 
+
 3. Klickt mit der rechten Maustaste auf den Knopf "raw"
-![](17_Statistik_Konsolidierung1/2_github.PNG){width=70%}
+![](2_github.PNG){width=70%}
+
 4. (Ziel) Speichern unter...
 
 **Download via Github - 2. Möglichkeit**
 
 ```{r}
 # Beachtet dabei, dass ihr die URL zum originalen (raw) Datensatz habt 
-star_wars <- read_delim("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-14/week7_starwars.csv", delim = ",") #not working yet 
+star_wars <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-05-14/week7_starwars.csv", locale = readr::locale(encoding = "latin1")) #not working yet 
 
 ```
 
@@ -103,7 +105,7 @@ Auf der Seite der [Stadt Zürich Open Data](https://data.stadt-zuerich.ch/) find
 
 ```{r}
 # lade die Datei "Häufigste Sprachen"
-urlfile = "https://data.stadt-zuerich.ch/dataset/14f0e561-78a5-4f47-8ccf-9ae93d37e990/resource/91aa31e3-3272-4f8e-8763-bev301od3011.csv"
+urlfile = "https://data.stadt-zuerich.ch/dataset/bfs_ste_bev_hauptsprachen_top50_od3011/download/BEV301OD3011.csv"
 
 dat_lang <- read_delim(url(urlfile), delim = ",", col_names = T)
 head(dat_lang)

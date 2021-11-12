@@ -22,39 +22,27 @@ o.pca <- PCA(mtcars[,c(1:7,10,11)], scale.unit = TRUE) # entweder korrelations o
 summary(o.pca) # generiert auch automatische plots
 
 
-#plote das ganze, für dieses packet 
-#brauchts ein paar schritte für die installation
-library(devtools)
-install_github("vqv/ggbiplot")
-
+# plote das ganze
 library(ggbiplot)
 ggbiplot(o.pca,choices = c(1,2))
 
 # nehme noch die autonamen hinzu
-ggbiplot(o.pca, labels=rownames(cars), choices = c(1,2)) # + mytheme # choice gibt die axen an
-
-
-# man kann noch einen schritt weiter denken
-cars$mtcars.country <- c(rep("Japan", 3), rep("US",4), rep("Europe", 7),rep("US",3), "Europe", rep("Japan", 3), rep("US",4), rep("Europe", 3), "US", rep("Europe", 3))
-
-ggbiplot(o.pca,ellipse=TRUE,  labels = rownames(mtcars), groups = cars$mtcars.country)
-
+ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice gibt die axen an
 
 
 
 library(vegan)
 
 # ebenfalls mit transformierten daten
-o.ca<-cca(cars)
-o.ca1 <- CA(sveg^0.5)
+o.ca<-vegan::cca(cars)
+o.ca1 <- FactoMineR::CA(cars) #blau: auots, rot: variablen
 
-#Arten (o) und Communities (+) plotten
+# plotten (schwarz: autos, rot: variablen)
 plot(o.ca)
-
+summary(o.ca)
 summary(o.ca1)
-plot(o.ca1)
 
-#Nur Arten plotten
+#Nur autos plotten; wieso?
 x<-o.ca$CA$u[,1]
 y<-o.ca$CA$u[,2]
 plot(x,y)
@@ -66,30 +54,29 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
 #Distanzmatrix als Start erzeugen
 library(MASS)
-library(vegan)
 
-mde <-vegdist(sveg,method="euclidean")
-mdm <-vegdist(sveg,method="manhattan")
+mde <-vegan::vegdist(cars,method="euclidean")
+mdm <-vegan::vegdist(cars,method="manhattan")
 
 #Zwei verschiedene NMDS-Methoden
 set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
-o.imds<-isoMDS(mde, k=2) # mit K = Dimensionen
+o.imds<-MASS::isoMDS(mde, k=2) # mit K = Dimensionen
 set.seed(1)
-o.mmds<-metaMDS(mde,k=3) # scheint nicht mit 2 Dimensionen zu konvergieren
+o.mmds<-vegan::metaMDS(mde,k=2) # scheint nicht mit 2 Dimensionen zu konvergieren
 
 plot(o.imds$points)
-plot(o.mmds$points)
+
 
 #Stress =  Abweichung der zweidimensionalen NMDS-Loesung von der originalen Distanzmatrix
 stressplot(o.imds,mde)
-stressplot(o.mmds,mde)
+
 
 
 
 #Mit Beispieldaten aus Wildi (2013, 2017)
 library(labdsv)
 library(dave) # lade package für Daten sveg
-head(sveg)
+# head(sveg)
 
 
 #PCA-----------
@@ -256,7 +243,8 @@ text(x[sel.sp], y[sel.sp], snames,pos=1,cex=0.6)
 plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achsen
 
 library(vegan)
-library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
+library(dave) #for the dataset sveg
+library(FactoMineR)# siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
 
 # ebenfalls mit transformierten daten
 o.ca<-cca(sveg^0.5) #package vegan
@@ -266,7 +254,7 @@ o.ca1 <- CA(sveg^0.5) #package FactoMineR
 plot(o.ca)
 
 summary(o.ca1)
-plot(o.ca1)
+
 
 #Nur Arten plotten
 x<-o.ca$CA$u[,1]
