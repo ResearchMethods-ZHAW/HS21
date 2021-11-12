@@ -1,4 +1,4 @@
-polis <- read.csv("polis.csv")
+polis <- read.csv("https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/polis.csv")
 polis
 
 str(polis)
