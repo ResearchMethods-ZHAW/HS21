@@ -5,12 +5,9 @@ author:
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung_1
-draft: false
-
-
 ---
 
-```{r, include=FALSE, purl=F}
+```{r, include=FALSE, purl=F, message=FALSE, results="hide"}
 knitr::opts_chunk$set(echo = T, collapse=TRUE)
 ```
 
