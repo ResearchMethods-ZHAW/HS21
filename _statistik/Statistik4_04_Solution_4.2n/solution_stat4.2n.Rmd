@@ -5,7 +5,7 @@ output:
     toc: true
 categories:
 - Statistik
-draft: true
+draft: false
 ---
 
 ```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
@@ -20,8 +20,6 @@ knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentatio
 - [Loesungstext](Statistik_Loesungs_4.2N.pdf)
 
 
-
-### Uebung 4.2 - Multiple logistische Regression
 
 ```{r}
 polis <- read.csv("polis.csv")
