@@ -1,17 +1,19 @@
 ---
 title: "Konsolidierung 4: GLM"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 author:
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung4
-draft: true
+draft: false
 
 
 
 ---
 
-```{r echo = FALSE}
+```{r echo = FALSE, message=FALSE, results='hide'}
 #TODO: transformation back noch ergänzen!
 
 #export files
@@ -42,7 +44,7 @@ mytheme <-
 
 ```
 
-
+## Poisson Regression
 
 ```{r quasi-poisson regression, message=FALSE}
 ############
@@ -88,7 +90,7 @@ glm.quasi.back %>%
 
 
 
-
+## logistische Regression
 
 ```{r logistische regression, message=FALSE}
 ############
@@ -159,7 +161,7 @@ logit2prob <- function(logit){
 
 ```
 
-
+## GAM's
 
 ```{r glm m& gam, message=FALSE}
 
