@@ -24,7 +24,7 @@ Schon vor dem Einlesen kürzt man am besten bereits in Excel die Variablennamen 
 
 ```{r}
 # Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
-ukraine <- read.delim("Ukraine_bearbeitet.csv", sep=";")
+ukraine <- read.delim("Ukraine_bearbeitet.csv", sep = ";")
 ```
 
 ```{r, eval= F}
@@ -97,7 +97,7 @@ cor
 ```
 
 ```{r include=FALSE}
-write.table(cor, file = "Corrleation.csv", sep = ";", dec = ".")
+write.table(cor, file = "Corrleation.csv", sep = ";", dec = ".", col.names = NA)
 ```
 
 Entsprechend „werfen“ wir auch noch die folgenden Variablen „raus“: Temperature.range

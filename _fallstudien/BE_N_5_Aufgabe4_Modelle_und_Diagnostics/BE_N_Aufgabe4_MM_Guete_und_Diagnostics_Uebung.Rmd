@@ -119,7 +119,7 @@ auc
 ### Model testing for over/underdispersion, zeroinflation and spatial autocorrelation following the DHARMa package.
 ### unbedingt die Vignette des DHARMa-Package konsultieren: https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html
 
-```{r tidy=TRUE, eval=FALSE,results= 'hide', fig.keep="none", warning=FALSE, message=FALSE}
+```{r tidy=TRUE, eval=FALSE,warning=FALSE, message=FALSE}
 
 # Residuals werden ueber eine Simulation auf eine Standard-Skala transformiert und 
 # koennen anschliessend getestet werden. Dabei kann die Anzahl Simulationen eingestellt 
