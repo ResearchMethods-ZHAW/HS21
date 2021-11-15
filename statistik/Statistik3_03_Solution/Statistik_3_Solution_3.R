@@ -25,7 +25,7 @@ cor <- cor(ukraine[,c(3:11, 15:23)])
 cor[abs(cor)<0.6] <- 0
 cor
 
-write.table(cor, file = "Corrleation.csv", sep = ";", dec = ".")
+write.table(cor, file = "Corrleation.csv", sep = ";", dec = ".", col.names = NA)
 
 global.model <- lm(Species_richness ~ Inclination + Heat_index + Microrelief + Grazing_intensity +
                     Litter + Stones_and_rocks + Gravel + Fine_soil + pH + CaCO3 + C_org + CN_ratio + Temperature, data = ukraine)
