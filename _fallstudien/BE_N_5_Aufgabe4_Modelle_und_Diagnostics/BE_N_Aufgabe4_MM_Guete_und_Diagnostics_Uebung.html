@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-12"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-12"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-15"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-15"/>
   <meta name="article:author" content="Beni Sigrist"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW46: Modellgüte und -diagnostics"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Beni Sigrist"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (N)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-12-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW46: Modellgüte und -diagnostics"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Beni Sigrist"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (N)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-15-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW46: Modellgüte und -diagnostics","authors":[{"author":"Beni Sigrist","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-12T00:00:00.000+01:00","citationText":"Sigrist, 2021"}
+{"title":"KW46: Modellgüte und -diagnostics","authors":[{"author":"Beni Sigrist","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-15T00:00:00.000+01:00","citationText":"Sigrist, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,7 +1478,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Beni Sigrist  
   
-<br/>11-12-2021
+<br/>11-15-2021
 </div>
 
 <div class="d-article">
@@ -1631,8 +1631,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class='fu'>plot_model</span><span class='op'>(</span><span class='va'>m_day</span>,transform <span class='op'>=</span> <span class='cn'>NULL</span>, show.values <span class='op'>=</span> <span class='cn'>TRUE</span>, value.offset <span class='op'>=</span> <span class='fl'>.3</span><span class='op'>)</span>
 
-<span class='co'># Plotten der vorhergesagten Wahrscheinlichkeit, dass ein Kreis besetzt ist, in Abhaengigkeit </span>
-<span class='co'># der erklaerenden Variable basierend auf den Modellresultaten.</span>
+<span class='co'># Plotten der vorhergesagten Wahrscheinlichkeit, dass ein Kreis besetzt ist, in </span>
+<span class='co'># Abhaengigkeit der erklaerenden Variable basierend auf den Modellresultaten.</span>
 
 <span class='fu'>plot_model</span><span class='op'>(</span><span class='va'>m_day</span>,type <span class='op'>=</span> <span class='st'>"pred"</span>, terms <span class='op'>=</span> <span class='st'>"us_scaled [all]"</span><span class='op'>)</span>
 
