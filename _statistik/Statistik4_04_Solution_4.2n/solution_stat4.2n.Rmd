@@ -1,10 +1,10 @@
 ---
-title: Loesung Aufgabe 4.2n
+title: Musterlösung Übung 4.2n
 output: 
   distill::distill_article:
     toc: true
 categories:
-- Statistik
+- Statistik4
 draft: false
 ---
 
@@ -14,7 +14,7 @@ knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentatio
 
 
 
-## Musterloesung Aufgabe 4.2N: Multiple logistische Regression
+## Musterlösung Aufgabe 4.2N: Multiple logistische Regression
 
 - [R-Skript als Download](Statistik_4_Solution_4.2n.R)
 - [Loesungstext](Statistik_Loesungs_4.2N.pdf)
@@ -22,7 +22,7 @@ knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentatio
 
 
 ```{r}
-polis <- read.csv("polis.csv")
+polis <- read.csv("https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/polis.csv")
 polis
 
 str(polis)

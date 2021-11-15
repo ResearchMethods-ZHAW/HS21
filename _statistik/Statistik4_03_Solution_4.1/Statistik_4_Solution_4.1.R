@@ -1,4 +1,4 @@
-SAR <- read.delim("Curonian_Spit.csv", sep=";")
+SAR <- read.delim("https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/Curonian_Spit.csv", sep=";")
 str(SAR)
 summary(SAR)
 

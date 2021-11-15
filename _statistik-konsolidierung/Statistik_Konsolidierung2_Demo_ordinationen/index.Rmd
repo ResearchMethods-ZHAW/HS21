@@ -6,13 +6,12 @@ author:
 output: distill::distill_article
 categories:
 - Statistik_Konsolidierung2
-draft: true
+draft: false
 
 
 ---
 
-```{r echo = FALSE, purl = FALSE}
-#TODO: check what you want to show, at the moment the output is very messi - easiest way, just add a picture and the download button
+```{r, echo = FALSE, purl = FALSE, message=FALSE, results='hide'}
 
 knitr::opts_chunk$set(echo = T, collapse=TRUE, message = FALSE, results = "hide", warning = FALSE)
 
@@ -29,7 +28,7 @@ knitr::purl("index.Rmd", "Demo_PCA_Konsolidierung2.R", documentation = 0)
 
 
 
-```{r Beispiel pca mtcars, message=FALSE}
+```{r, message=FALSE}
 
 #Beispiel inspiriert von Luke Hayden: https://www.datacamp.com/community/tutorials/pca-analysis-r
 
@@ -65,7 +64,7 @@ ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice 
 
 
 
-```{r CA mit mcars}
+```{r}
 
 library(vegan)
 
@@ -89,7 +88,7 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 ```
 
 
-```{r NMDS mit mcars}
+```{r}
 
 #Distanzmatrix als Start erzeugen
 library(MASS)
@@ -113,7 +112,7 @@ stressplot(o.imds,mde)
 ```
 
 
-```{r pca aus Wildi, message=FALSE}
+```{r, message=FALSE}
 
 #Mit Beispieldaten aus Wildi (2013, 2017)
 library(labdsv)
@@ -168,7 +167,7 @@ text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 ```
 
 
-```{r einfaches Beispiel mit Daten aus Wildi: visualisierung der methodik}
+```{r}
 #Idee von Ordinationen aus Wildi p. 73-74
 library(labdsv)
 
@@ -239,7 +238,7 @@ biplot(pca.3, scaling="species")#scaling=species macht das selbe wie scaling=2
 ```
 
 
-```{r zweites Beispiel aus Wildi 2013}
+```{r}
 #PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
 pca.5 <- pca(sveg^0.25, cor=T)
 
@@ -293,7 +292,7 @@ plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achse
 
 
 
-```{r CA, message=FALSE}
+```{r, message=FALSE}
 library(vegan)
 library(dave) #for the dataset sveg
 library(FactoMineR)# siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
@@ -321,7 +320,7 @@ o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
 
 
 
-```{r NMDS, message=FALSE, eval=FALSE}
+```{r, message=FALSE, eval=FALSE}
 #NMDS----------
 
 #Distanzmatrix als Start erzeugen

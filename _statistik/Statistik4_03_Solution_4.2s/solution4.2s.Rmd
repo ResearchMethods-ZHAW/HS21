@@ -1,5 +1,5 @@
 ---
-title: Musterlösung Übung 4
+title: Musterlösung Übung 4.2s
 output: 
   distill::distill_article:
     toc: true
@@ -32,7 +32,7 @@ knitr::purl("solution4.2s.Rmd", "Solution_stat4.2s.R", documentation = 0)
 *****
 
 
-##kommentierter Loesungsweg
+## kommentierter Loesungsweg
 ```{r, message=FALSE, echo=FALSE, results='hide', warning=FALSE}
 
 
@@ -196,13 +196,13 @@ sens
 
 
 
-##Methode
+## Methode
 
 In der Aufgabe war es das Ziel zu schauen, ob wir einen potenziellen Besuch eines Mensagasts vorhersagen können und zwar in Abhängigkeit von den sozioökonimischen Variablen, wahrgenommene Fleischkonsum und der Umwelteinstellung. Die Kriteriumsvariable "Mensa" weist eine binäre Verteilung auf: Deshalb rechnen wir eine multiple logistische Regression mit den Prädiktoren “Alter”, “Geschlecht”, “Hochschulzugehörigkeit”, "Fleischkonsum" und "Umwelteinstellung. Mehr Informatinen zu den logistischen Regressinen findet ihr im Buch von Crawley (2015) oder auch im Buch von [Gareth (2016)](http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf), Kapitel 4.3; passendes Video [hier](https://www.youtube.com/watch?v=31Q5FGRnxt4&list=PL5-da3qGB5IC4vaDba5ClatUmFppXLAhE&index=2).
 
 
 
-##Ergebnisse
+## Ergebnisse
 
 
 ```{r , message=FALSE, echo=FALSE,fig.cap="Konfusionsmatrix"}

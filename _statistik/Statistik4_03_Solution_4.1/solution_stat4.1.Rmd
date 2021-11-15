@@ -1,10 +1,10 @@
 ---
-title: Musterlösung Aufgabe 4.1
+title: Musterlösung Übung 4.1
 output: 
   distill::distill_article:
     toc: true
 categories:
-- Statistik
+- Statistik4
 draft: false
 ---
 
@@ -15,7 +15,7 @@ knitr::purl("solution_stat4.1.Rmd", "Statistik_4_Solution_4.1.R", documentation 
 
 ## Musterloesung Aufgabe 4.1: Nicht-lineare Regression
 
-- [R-Code als Download](Statistik_2_Solution_4.1.R)
+- [R-Code als Download](Statistik_4_Solution_4.1.R)
 - [Loesungstext Beispiel](Statistik_Loesung_4.1_v.02.pdf)
 
 
@@ -53,12 +53,12 @@ knitr::purl("solution_stat4.1.Rmd", "Statistik_4_Solution_4.1.R", documentation 
 - **Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg       (Kombination aus R-Code, R Output und dessen Interpretation) und (c)                  ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
 
 
-### Uebung 4.1 - Nicht-lineare Regression -- Loesung
+### Musterlösung Aufgabe 4.1 - Nicht-lineare Regression
 
 Aus der Excel-Tabelle wurde das relevante Arbeitsblatt als csv gespeichert
 
 ```{r}
-SAR <- read.delim("Curonian_Spit.csv", sep=";")
+SAR <- read.delim("https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/Curonian_Spit.csv", sep=";")
 str(SAR)
 summary(SAR)
 
