@@ -16,7 +16,10 @@ interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
 # nun als LMM
 if(!require(nlme)){install.packages("nlme")}
 library(nlme)
+
+# mit random intercept (VP) und random slope (Messung)
 spf.lme.1 <- lme(Reaktion~Signal * Messung, random = ~Messung | VP, data = spf)
+# #nur random intercept
 spf.lme.2 <- lme(Reaktion~Signal * Messung, random = ~1 | VP, data = spf)
 
 anova(spf.lme.1)
