@@ -13,10 +13,14 @@ cor<- cor(cars[,c(1:7,10,11)])
 cor[abs(cor)<.7] <- 0
 cor
 
+#definiere Datei für PCA
+cars <- mtcars[,c(1:7,10,11)]
+
+
 # pca
 # achtung unterschiedliche messeinheiten, wichtig es muss noch einheitlich transfomiert werden
 library(FactoMineR) # siehe Beispiel hier: https://www.youtube.com/watch?v=vP4korRby0Q
-o.pca <- PCA(mtcars[,c(1:7,10,11)], scale.unit = TRUE) # entweder korrelations oder covarianzmatrix
+o.pca <- PCA(cars, scale.unit = TRUE) # entweder korrelations oder covarianzmatrix
 
 # schaue output an
 summary(o.pca) # generiert auch automatische plots
@@ -27,7 +31,7 @@ library(ggbiplot)
 ggbiplot(o.pca,choices = c(1,2))
 
 # nehme noch die autonamen hinzu
-ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # + mytheme # choice gibt die axen an
+ggbiplot(o.pca, labels=rownames(mtcars), choices = c(1,2)) # (+ mytheme) # choice gibt die axen an
 
 
 
@@ -48,7 +52,7 @@ y<-o.ca$CA$u[,2]
 plot(x,y)
 
 #Anteilige Varianz, die durch die ersten beiden Achsen erklaert wird
-o.ca$CA$eig[1:63]/sum(o.ca$CA$eig)
+o.ca$CA$eig[1:8]/sum(o.ca$CA$eig)
 
 
 
@@ -60,24 +64,34 @@ mdm <-vegan::vegdist(cars,method="manhattan")
 
 #Zwei verschiedene NMDS-Methoden
 set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
-o.imds<-MASS::isoMDS(mde, k=2) # mit K = Dimensionen
-set.seed(1)
-o.mmds<-vegan::metaMDS(mde,k=2) # scheint nicht mit 2 Dimensionen zu konvergieren
+o.mde.mass <- MASS::isoMDS(mde, k=2) # mit K = Dimensionen
+o.mdm.mass <- MASS::isoMDS(mdm)
 
-plot(o.imds$points)
+set.seed(1)
+o.mde.vegan <- vegan::metaMDS(mde,k=1) # scheint nicht mit 2 Dimensionen zu konvergieren
+o.mdm.vegan <- vegan::metaMDS(mdm, k = 2)
+
+#plot euclidean distance
+plot(o.mde.mass$points)
+plot(o.mde.vegan$points)
+
+#plot manhattan distance
+plot(o.mdm.mass$points)
+plot(o.mdm.vegan$points)
 
 
 #Stress =  Abweichung der zweidimensionalen NMDS-Loesung von der originalen Distanzmatrix
-stressplot(o.imds,mde)
-
+vegan::stressplot(o.mde.vegan, mde)
+vegan::stressplot(o.mde.mass, mde)
 
 
 
 #Mit Beispieldaten aus Wildi (2013, 2017)
 library(labdsv)
 library(dave) # lade package für Daten sveg
-# head(sveg)
-
+head(sveg)
+str(sveg)
+View(sveg)
 
 #PCA-----------
 #Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
@@ -98,9 +112,11 @@ head(o.pca2$rotation)
 E<-o.pca$sdev^2/o.pca$totdev*100
 E[1:5] # erste fünf PCA
 
+#package stats funktioniert summary()
+summary(o.pca2)
 
 #PCA-Plot der Lage der Beobachtungen im Ordinationsraum
-plot(o.pca$scores[,1],o.pca$scores[,2],type="n", asp=1, xlab="PC1", ylab="PC2")
+plot(o.pca$scores[,1],o.pca$scores[,2], type="n", asp=1, xlab="PC1", ylab="PC2")
 points(o.pca$scores[,1],o.pca$scores[,2],pch=18)
 
 plot(o.pca$scores[,1],o.pca$scores[,3],type="n", asp=1, xlab="PC1", ylab="PC3")
@@ -111,7 +127,8 @@ sel.sp <- c(3,11,23,39,46,72,77,96, 101, 119)
 snames <- names(sveg[ , sel.sp])
 snames
 
-#PCA-Plot der Korrelationen der Variablen (hier Arten) mit den Achsen (h)
+#PCA-Plot der Korrelationen der Variablen (hier Arten) mit den Achsen
+#(hier reduction der observationen)
 x <- o.pca$loadings[,1]
 y <- o.pca$loadings[,2]
 plot(x,y,type="n",asp=1)
@@ -125,7 +142,7 @@ text(x[sel.sp],y[sel.sp],snames,pos=1,cex=0.6)
 
 
 #Idee von Ordinationen aus Wildi p. 73-74
-library(labdsv)
+
 
 #Für Ordinationen benötigen wir Matrizen, nicht Data.frames
 #Generieren von Daten
@@ -164,6 +181,9 @@ points(y1~x1, pch=21, type="b", col="green", lwd=2)
 points(y2~x2, pch=16, type="b",col="red", lwd=2)
 points(y3~x3, pch=17, type="b", col="blue", lwd=2)
 
+
+#zusammengefasst:-------
+
 #Durchführung der PCA
 pca <- pca(raw)
 
@@ -177,70 +197,22 @@ pca$loadings
 E <- pca$sdev^2/pca$totdev*100
 E
 
+
+### excurs für weitere r-packages####
+
 #mit prcomp, ein weiteres Package für Ordinationen
-pca.2 <- prcomp(raw, scale=F)
+pca.2 <- stats::prcomp(raw, scale=F)
 summary(pca.2)
 plot(pca.2)
 biplot(pca.2)
 
 #mit vegan, ein anderes Package für Ordinationen
-library("vegan")
-pca.3 <- rda(raw, scale=FALSE) #Die Funktion rda führt ein PCA aus an wenn nicht Umwelt und Artdaten definiert werden
+pca.3 <- vegan::rda(raw, scale=FALSE) #Die Funktion rda führt ein PCA aus an wenn nicht Umwelt- und Artdaten definiert werden
 #scores(pca.3,display=c("sites"))
 #scores(pca.3,display=c("species"))
 summary(pca.3, axes=0)
 biplot(pca.3, scaling=2)
 biplot(pca.3, scaling="species")#scaling=species macht das selbe wie scaling=2
-
-#PCA: Deckungen Wurzeltransformiert, cor=T erzwingt Nutzung der Korrelationsmatrix
-pca.5 <- pca(sveg^0.25, cor=T)
-
-#Koordinaten im Ordinationsraum
-pca.5$scores
-
-#Korrelationen der Variablen mit den Ordinationsachsen
-pca.5$loadings
-
-#Erklärte Varianz der Achsen in Prozent (sdev ist die Wurzel daraus)
-E<-pca.5$sdev^2/pca.5$totdev*100
-E
-E[1:5]
-
-#PCA-Plot der Lage der Beobachtungen im Ordinationsraum
-plot(pca.5$scores[,1], pca.5$scores[,2], type="n", asp=1, xlab="PC1", ylab="PC2")
-points(pca.5$scores[,1], pca.5$scores[,2], pch=18)
-
-#Subjektive Auswahl von Arten zur Darstellung
-sel.sp <- c(3,11,23,39,46,72,77,96)
-snames <- names(sveg[,sel.sp])
-snames
-
-#PCA-Plot der Korrelationen der Variablen (hier Arten) mit den Achsen (h)
-x <- pca.5$loadings[,1]
-y <- pca.5$loadings[,2]
-plot(x,y,type="n", asp=1)
-arrows(0,0, x[sel.sp], y[sel.sp], length=0.08)
-text(x[sel.sp], y[sel.sp], snames,pos=1, cex=0.6)
-
-
-# Mit vegan
-pca.6 <- rda(sveg^0.25, scale=TRUE)
-#Erklärte Varianz der Achsen
-summary(pca.6, axes=0)
-#PCA-Plot der Lage der Beobachtungen im Ordinationsraum
-biplot(pca.6, display = "sites", type = "points", scaling=1)
-#Subjektive Auswahl von Arten zur Darstellung
-sel.sp <- c(3,11,23,39,46,72,77,96)
-snames <- names(sveg[,sel.sp])
-snames
-#PCA-Plot der Korrelationen der Variablen (hier Arten) mit den Achsen (h)
-scores <- scores(pca.6, display="species")
-x <- scores[,1]
-y <- scores[,2]
-plot(x, y, type="n", asp=1)
-arrows(0,0, x[sel.sp], y[sel.sp], length=0.08)
-text(x[sel.sp], y[sel.sp], snames,pos=1,cex=0.6)
-plot(x, y, type="n", asp=1, xlim=c(-1, 1), ylim=c(-0.6, 0.6)) # angepasste Achsen
 
 library(vegan)
 library(dave) #for the dataset sveg
@@ -252,7 +224,6 @@ o.ca1 <- CA(sveg^0.5) #package FactoMineR
 
 #Arten (o) und Communities (+) plotten
 plot(o.ca)
-
 summary(o.ca1)
 
 

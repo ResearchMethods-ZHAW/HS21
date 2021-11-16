@@ -1,23 +1,25 @@
 ---
 title: "Konsolidierung 3: Lineare Modelle"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 author: 
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung3
-draft: true
+draft: false
 
 
 ---
 
-```{r echo = FALSE}
+```{r echo = FALSE, message=FALSE, results='hide'}
 #export files
 knitr::purl("index.Rmd", "Demo_LM_Konsolidierung3.R", documentation = 0)
 
 ```
 
 
-#Demo Lineare Modelle
+# Demo Lineare Modelle
 
 > Download [R-Skript](Demo_LM_Konsolidierung3.R)
 

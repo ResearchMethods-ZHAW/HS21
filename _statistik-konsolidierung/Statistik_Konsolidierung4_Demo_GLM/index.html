@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-28" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-28" />
+  <meta property="article:published" itemprop="datePublished" content="2021-11-15" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-15" />
   <meta name="article:author" content="Gian-Andrea Egeler" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Konsolidierung 4: GLM"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik_Konsolidierung4"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["10-28-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Konsolidierung 4: GLM"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik_Konsolidierung4"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-15-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Konsolidierung 4: GLM","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-10-28T00:00:00.000+02:00","citationText":"Egeler, 2021"}
+{"title":"Konsolidierung 4: GLM","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-15T00:00:00.000+01:00","citationText":"Egeler, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1479,10 +1479,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   Gian-Andrea Egeler
   
-<br />10-28-2021
+<br />11-15-2021
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#demo-glm">Demo GLM</a>
+<ul>
+<li><a href="#poisson-regression">Poisson Regression</a></li>
+<li><a href="#logistische-regression">logistische Regression</a></li>
+<li><a href="#gams">GAM’s</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <pre><code>
   |                                                                  
@@ -1499,6 +1512,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <blockquote>
 <p>Download <a href="Demo_GLM_Konsolidierung4.R">R-Skript</a></p>
 </blockquote>
+<h2 id="poisson-regression">Poisson Regression</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">############</span>
@@ -1617,6 +1631,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </code></pre>
 </div>
 </div>
+<h2 id="logistische-regression">logistische Regression</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">############</span>
@@ -1746,6 +1761,7 @@ M:V-type 0.1666667 0.8571429</code></pre>
 </code></pre>
 </div>
 </div>
+<h2 id="gams">GAM’s</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r">
