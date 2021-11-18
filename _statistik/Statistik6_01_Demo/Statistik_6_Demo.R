@@ -65,9 +65,7 @@ pca.3 <- rda(raw, scale = FALSE)
 #scores(pca.3, display = c("sites"))
 #scores(pca.3, display = c("species"))
 summary(pca.3, axes = 0)
-biplot(pca.3, scaling = 2)
-biplot(pca.3, scaling = "species") # scaling = species macht das selbe wie scaling = 2
-
+biplot(pca.3)
 
 # Mit Beispieldaten aus Wildi
 if(!require(dave)){install.packages("dave")}

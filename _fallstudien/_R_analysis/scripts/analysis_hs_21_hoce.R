@@ -538,6 +538,20 @@ umwelt <- umwelt%>%
         "1", "0"))%>%
   mutate(Ferien = factor(Ferien))
 
+
+
+
+################ anpassen für HS22
+for (i in 1:nrow(ferien)){
+  umwelt$Ferien[umwelt$Datum >= ferien[i,"Start"] & umwelt$Datum <= ferien[i,"End"]] <- 1
+}
+umwelt$Ferien[is.na(umwelt$Ferien)] <- 0
+###################################
+
+
+
+
+
 # Faktor und integer
 # Im GLMM wird die Kalenderwoche und das Jahr als random factor definiert. Dazu muss sie als
 # Faktor vorliegen.
@@ -577,6 +591,7 @@ cor <-  cor(umwelt[,16:(ncol(umwelt))]) # in den [] waehle ich die skalierten Sp
 # Mit dem folgenden Code kann eine simple Korrelationsmatrix aufgebaut werden
 # hier kann auch die Schwelle für die Korrelation gesetzt werden, 
 # 0.7 ist liberal / 0.5 konservativ
+# https://researchbasics.education.uconn.edu/r_critical_value_table/
 cor[abs(cor)<0.7] <-  0 #Setzt alle Werte kleiner 0.7 auf 0 (diese sind dann ok, alles groesser ist problematisch!)
 cor
 
@@ -745,6 +760,7 @@ r.squaredGLMM(Tages_Model_exp)
 # Die Modellvoraussetzungen waren überall mehr oder weniger verletzt.
 # Das ist ein Problem, allerdings auch nicht ein so grosses.
 # (man sollte es aber trotzdem ernst nehmen)
+# Schielzeth et al. Robustness of linear mixed‐effects models to violations of distributional assumptions
 # https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434
 
 # die Lösung ist nun, die Daten zu transformieren:
@@ -766,6 +782,28 @@ plot(Tages_Model_nb_quad_Jahr_log10, type = c("p", "smooth"))
 qqmath(Tages_Model_nb_quad_Jahr_log10)
 dispersion_glmer(Tages_Model_nb_quad_Jahr_log10)
 r.squaredGLMM(Tages_Model_nb_quad_Jahr_log10) 
+
+
+
+
+
+
+
+Tages_Model_quad_Jahr_log10 <- lmer(log10(Total+1) ~ Wochentag + Ferien + Phase +
+                                             tre200jx_scaled + I(tre200jx_scaled^2) + 
+                                             rre150j0_scaled + sremaxdv_scaled +
+                                             (1|KW) + (1|Jahr), data = umwelt)
+summary(Tages_Model_quad_Jahr_log10)
+plot(Tages_Model_nb_quad_Jahr_log10, type = c("p", "smooth"))
+qqmath(Tages_Model_nb_quad_Jahr_log10)
+dispersion_glmer(Tages_Model_nb_quad_Jahr_log10)
+r.squaredGLMM(Tages_Model_nb_quad_Jahr_log10) 
+
+
+
+
+
+
 
 # natural log, da stark rechtsschief
 Tages_Model_nb_quad_Jahr_ln <- glmer.nb(log(Total+1) ~ Wochentag + Ferien + Phase +

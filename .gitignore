@@ -5,6 +5,7 @@
 /_prepro/**/*.csv
 /_infovis/**/*.csv
 /_rauman/**/*.csv
+/_statistik/**/*.csv
 /docs
 *.csv
 *.gpkg
