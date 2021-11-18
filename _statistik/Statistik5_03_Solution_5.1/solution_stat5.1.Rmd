@@ -1,3 +1,19 @@
+---
+title: Musterlösung Übung 5.1
+output: 
+  distill::distill_article:
+    toc: true
+categories:
+- Statistik5
+draft: true
+---
+
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("solution_stat5.1.Rmd", "Statistik_5_Solution_5.1.R", documentation = 0)
+```
+
+
+
 ## Musterloesung Aufgabe 5.1: Split-plot ANOVA
 
 **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
@@ -38,16 +54,18 @@
       Methoden- und Ergebnisteil (für eine wiss. Arbeit).**
       
       
-- [R-Skript als Download](17_Statistik5/RFiles/Loesung_5.1_v.03.R)
-- [Loesungstext](17_Statistik5/Statistik_Loesung_5.1_v.02.pdf)
+- [R-Skript als Download](Statistik_5_Solution_5.1.R)
+- [Loesungstext](Statistik_Loesung_5.1_v.02.pdf)
 
+      
       
 
 **kommentierter Lösungsweg**
 ```{r}
-splityield <- read.delim("17_Statistik5/data/splityield.csv", sep=",", stringsAsFactors = T)
-
-#Checken der eingelesenen Daten
+splityield <- read.delim("splityield.csv", sep = ",", stringsAsFactors = T)
+```
+```{r}
+# Checken der eingelesenen Daten
 splityield
 ```
 Man sieht, dass das Design vollkommen balanciert ist, d.h. jede Kombination irrigation *
@@ -56,18 +74,18 @@ density * fertilizer kommt genau 4x vor (in jedem der vier Blöcke A-D einmal).
 ```{r}
 str(splityield)
 summary(splityield)
-levels(splityield$density) <- c("low", "medium", "high")
+splityield$density <- ordered(splityield$density, levels = c("low", "medium", "high"))
+splityield$density
 ```
 Man sieht, dass die Variable yield metrisch ist, während die vier anderen Variablen schon
 korrekt als kategoriale Variablen (factors) kodiert sind
 
 ```{r}
-#Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
-boxplot(splityield$yield)
+# Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
 boxplot(yield~fertilizer, data = splityield)
 boxplot(yield~irrigation, data = splityield)
 boxplot(yield~density, data = splityield)
-boxplot(yield~irrigation*density*fertilizer, data = splityield)
+boxplot(yield~irrigation * density * fertilizer, data = splityield)
 ```
 Die Boxplots sind generell hinreichend symmetrisch, so dass man davon ausgehen kann, dass
 keine problematische Abweichung von der Normalverteilung vorliegt. Die Varianzhomogenität
@@ -82,8 +100,8 @@ grossen Mittelwerten aufgetreten wären, hätten wir eine log- oder Wurzeltransf
 yield in Betracht ziehen müssen).
 
 ```{r}
-boxplot(log10(yield)~irrigation*density*fertilizer, data = splityield) #bringt keine Verbesserung
-aov.1 <- aov(yield~irrigation*density*fertilizer+Error(block/irrigation/density), data = splityield)
+boxplot(log10(yield)~irrigation * density * fertilizer, data = splityield)# bringt keine Verbesserung
+aov.1 <- aov(yield~irrigation * density * fertilizer + Error(block/irrigation/density), data = splityield)
 ```
 
 Das schwierigste an der Analyse ist hier die Definition des Splitt-Plot ANOVA-Modells. Hier
@@ -110,8 +128,8 @@ irrigation:density und irrigation:fertilizer.
 
 ```{r}
 # Modelvereinfachung
-aov.2<-aov(yield~irrigation+density+fertilizer+irrigation:density+irrigation:fertilizer+
-             Error(block/irrigation/density), data = splityield)
+aov.2 <- aov(yield~irrigation + density + fertilizer + irrigation:density + 
+               irrigation:fertilizer + Error(block/irrigation/density), data = splityield)
 summary(aov.2)
 ```
 
@@ -119,10 +137,12 @@ Jetzt muss man nur noch herausfinden, wie irrigation und fertilizer wirken und w
 Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:
 
 ```{r}
-#Visualisierung der Ergebnisse
+# Visualisierung der Ergebnisse
 boxplot(yield~fertilizer, data = splityield)
 boxplot(yield~irrigation, data = splityield)
 
-interaction.plot(splityield$fertilizer, splityield$irrigation, splityield$yield)
-interaction.plot(splityield$density, splityield$irrigation, splityield$yield)
+interaction.plot(splityield$fertilizer, splityield$irrigation, splityield$yield, 
+                 xlab= "fertilizer", ylab = "mean of splityield", trace.label = "irrigation")
+interaction.plot(splityield$density, splityield$irrigation, splityield$yield, 
+                 xlab= "fertilizer", ylab = "mean of splityield", trace.label = "irrigation")
 ```
