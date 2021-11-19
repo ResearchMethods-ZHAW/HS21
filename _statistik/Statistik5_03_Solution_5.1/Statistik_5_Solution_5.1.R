@@ -7,7 +7,7 @@ summary(splityield)
 splityield$density <- ordered(splityield$density, levels = c("low", "medium", "high"))
 splityield$density
 
-#Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
+# Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)
 boxplot(yield~fertilizer, data = splityield)
 boxplot(yield~irrigation, data = splityield)
 boxplot(yield~density, data = splityield)
@@ -23,7 +23,7 @@ aov.2 <- aov(yield~irrigation + density + fertilizer + irrigation:density +
                irrigation:fertilizer + Error(block/irrigation/density), data = splityield)
 summary(aov.2)
 
-#Visualisierung der Ergebnisse
+# Visualisierung der Ergebnisse
 boxplot(yield~fertilizer, data = splityield)
 boxplot(yield~irrigation, data = splityield)
 

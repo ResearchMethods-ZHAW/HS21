@@ -52,6 +52,7 @@ glm.pc.1 <- glm(species_richness ~ PC1 + PC2 + PC3 + PC4, family = "poisson", da
 summary(glm.pc.1)
 glm.pc.2 <- glm(species_richness ~ PC1 + PC2 + PC3, family = "poisson", data = doubs)
 summary(glm.pc.2)
+par(mfrow = c(2, 2))
 plot(glm.pc.2) # sieht nicht besser aus als LM, die Normalverteilung ist sogar schlechter
 
 # Korrelationen zwischen Prädiktoren

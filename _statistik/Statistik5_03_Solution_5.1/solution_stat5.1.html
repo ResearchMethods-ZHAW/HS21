@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-18" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-18" />
+  <meta property="article:published" itemprop="datePublished" content="2021-11-19" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-19" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Musterlösung Übung 5.1" />
@@ -108,7 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterlösung Übung 5.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["Statistik5"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["11-18-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterlösung Übung 5.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["Statistik5"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-19-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1455,7 +1455,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Musterlösung Übung 5.1","authors":[],"publishedDate":"2021-11-18T00:00:00.000+01:00"}
+{"title":"Musterlösung Übung 5.1","authors":[],"publishedDate":"2021-11-19T00:00:00.000+01:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1636,7 +1636,7 @@ Levels: low &lt; medium &lt; high</code></pre>
 <p>Man sieht, dass die Variable yield metrisch ist, während die vier anderen Variablen schon korrekt als kategoriale Variablen (factors) kodiert sind</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Explorative Datenanalyse (auf Normalverteilung, Varianzhomogenität)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">yield</span><span class="op">~</span><span class="va">fertilizer</span>, data <span class="op">=</span> <span class="va">splityield</span><span class="op">)</span>
 </code></pre>
 </div>
@@ -1746,7 +1746,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <p>Jetzt muss man nur noch herausfinden, wie irrigation und fertilizer wirken und wie die Interaktionen aussehen. Bei multiplen ANOVAs macht man das am besten visuell:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Visualisierung der Ergebnisse</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualisierung der Ergebnisse</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">yield</span><span class="op">~</span><span class="va">fertilizer</span>, data <span class="op">=</span> <span class="va">splityield</span><span class="op">)</span>
 </code></pre>
 </div>
