@@ -7,14 +7,14 @@ author:
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung3
-draft: false
+
 
 
 ---
 
 ```{r echo = FALSE, message=FALSE, results='hide'}
 #export files
-knitr::purl("index.Rmd", "Demo_LM_Konsolidierung3.R", documentation = 0)
+knitr::purl("Demo_LM_Konsolidierung3.Rmd", "Demo_LM_Konsolidierung3.R", documentation = 0)
 
 ```
 
@@ -25,7 +25,7 @@ knitr::purl("index.Rmd", "Demo_LM_Konsolidierung3.R", documentation = 0)
 
 
 
-```{r load data and packages, message=FALSE, include=FALSE, purl=F}
+```{r, message=FALSE, include=FALSE, purl=F}
 
 knitr::opts_chunk$set(echo = TRUE, collapse=FALSE, message = FALSE, results = "hide", warning = FALSE)
 
@@ -169,7 +169,7 @@ summary.lm(aov.2)
 
 
 ## Einfache Regression
-```{r einfache regressino, message=FALSE}
+```{r, message=FALSE}
 
 
 # inspiriert von Simon Jackson: http s://drsimonj.svbtle.com/visualising-residuals
@@ -257,7 +257,7 @@ ggplot(d, aes(x = kml, y = hp)) +
 
 ## Multiple regression
 
-```{r multiple regression, message=FALSE}
+```{r, message=FALSE}
 
 # Select data
 cars <- mtcars %>% 

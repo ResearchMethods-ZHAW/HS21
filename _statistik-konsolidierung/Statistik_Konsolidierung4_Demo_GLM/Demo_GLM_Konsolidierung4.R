@@ -1,52 +1,11 @@
----
-title: "Konsolidierung 4: GLM"
-output: 
-  distill::distill_article:
-    toc: true
-author:
-  Gian-Andrea Egeler
-categories:
-- Statistik_Konsolidierung4
-
-
-
-
----
-
-```{r echo = FALSE, message=FALSE, results='hide'}
 #TODO: transformation back noch ergänzen!
 
 #export files
 knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
 
-```
-
-# Demo GLM
-
-> Download [R-Skript](Demo_GLM_Konsolidierung4.R)
 
 
-```{r, include=FALSE, purl=F}
 
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
-
-library(tidyverse)
-
-mytheme <- 
-  theme_classic() + 
-  theme(
-    axis.line = element_line(color = "black"), 
-    axis.text = element_text(size = 12, color = "black"), 
-    axis.title = element_text(size = 12, color = "black"), 
-    axis.ticks = element_line(size = .75, color = "black"), 
-    axis.ticks.length = unit(.5, "cm")
-    )
-
-```
-
-## Poisson Regression
-
-```{r, message=FALSE}
 ############
 # quasipoisson regression
 ############
@@ -86,13 +45,7 @@ glm.quasi.back %>%
 #here: https://rcompanion.org/handbook/J_01.html
 
 
-```
 
-
-
-## logistische Regression
-
-```{r , message=FALSE}
 ############
 # logistische regression
 ############
@@ -159,11 +112,7 @@ logit2prob <- function(logit){
 }
 
 
-```
 
-## GAM's
-
-```{r, message=FALSE}
 
 ###########
 # LOESS & GAM
@@ -189,7 +138,5 @@ ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) +
   mytheme
 
 
+```{.r .distill-force-highlighting-css}
 ```
-
-
-
