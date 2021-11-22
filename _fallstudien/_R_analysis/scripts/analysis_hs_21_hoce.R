@@ -762,6 +762,8 @@ r.squaredGLMM(Tages_Model_exp)
 # (man sollte es aber trotzdem ernst nehmen)
 # Schielzeth et al. Robustness of linear mixed‐effects models to violations of distributional assumptions
 # https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434
+# Lo and Andrews, To transform or not to transform: using generalized linear mixed models to analyse reaction time data
+# https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01171/full
 
 # die Lösung ist nun, die Daten zu transformieren:
 # mehr unter: https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/
@@ -773,48 +775,31 @@ skewness(umwelt$Total)
 # The most frequent values are low; tail is toward the high values (on the right-hand side)
 
 # log 10, da stark rechtsschief
-Tages_Model_nb_quad_Jahr_log10 <- glmer.nb(log10(Total+1) ~ Wochentag + Ferien + Phase +
-                                             tre200jx_scaled + I(tre200jx_scaled^2) + 
-                                             rre150j0_scaled + sremaxdv_scaled +
-                                             (1|KW) + (1|Jahr), data = umwelt)
-summary(Tages_Model_nb_quad_Jahr_log10)
-plot(Tages_Model_nb_quad_Jahr_log10, type = c("p", "smooth"))
-qqmath(Tages_Model_nb_quad_Jahr_log10)
-dispersion_glmer(Tages_Model_nb_quad_Jahr_log10)
-r.squaredGLMM(Tages_Model_nb_quad_Jahr_log10) 
-
-
-
-
-
-
-
 Tages_Model_quad_Jahr_log10 <- lmer(log10(Total+1) ~ Wochentag + Ferien + Phase +
                                              tre200jx_scaled + I(tre200jx_scaled^2) + 
                                              rre150j0_scaled + sremaxdv_scaled +
                                              (1|KW) + (1|Jahr), data = umwelt)
 summary(Tages_Model_quad_Jahr_log10)
-plot(Tages_Model_nb_quad_Jahr_log10, type = c("p", "smooth"))
-qqmath(Tages_Model_nb_quad_Jahr_log10)
-dispersion_glmer(Tages_Model_nb_quad_Jahr_log10)
-r.squaredGLMM(Tages_Model_nb_quad_Jahr_log10) 
-
-
-
-
-
+plot(Tages_Model_quad_Jahr_log10, type = c("p", "smooth"))
+qqmath(Tages_Model_quad_Jahr_log10)
+dispersion_glmer(Tages_Model_quad_Jahr_log10)
+r.squaredGLMM(Tages_Model_quad_Jahr_log10) 
+# lmer zeigt keine p-Werte, da diese schwer zu berechnen sind. Alternative Packages berechnen diese
+# anhand der Teststatistik. Achtung: die Werte sind wahrscheinlich nicht präzise!
+# https://stat.ethz.ch/pipermail/r-sig-mixed-models/2008q2/000904.html
+tab_model(Tages_Model_quad_Jahr_log10, transform = NULL, show.se = TRUE)
 
 
 # natural log, da stark rechtsschief
-Tages_Model_nb_quad_Jahr_ln <- glmer.nb(log(Total+1) ~ Wochentag + Ferien + Phase +
+Tages_Model_quad_Jahr_ln <- lmer(log(Total+1) ~ Wochentag + Ferien + Phase +
                                           tre200jx_scaled + I(tre200jx_scaled^2) + 
                                           rre150j0_scaled + sremaxdv_scaled +
                                           (1|KW) + (1|Jahr), data = umwelt)
-summary(Tages_Model_nb_quad_Jahr_ln)
-plot(Tages_Model_nb_quad_Jahr_ln, type = c("p", "smooth"))
-qqmath(Tages_Model_nb_quad_Jahr_ln)
-dispersion_glmer(Tages_Model_nb_quad_Jahr_ln)
-r.squaredGLMM(Tages_Model_nb_quad_Jahr_ln) 
+summary(Tages_Model_quad_Jahr_ln)
+plot(Tages_Model_quad_Jahr_ln, type = c("p", "smooth"))
+qqmath(Tages_Model_quad_Jahr_ln)
+dispersion_glmer(Tages_Model_quad_Jahr_ln)
+r.squaredGLMM(Tages_Model_quad_Jahr_ln) 
 
 
 # --> Die Modellvoraussetzungen sind deutlich besser erfüllt jetzt wo wir Transformationen 
@@ -829,7 +814,7 @@ r.squaredGLMM(Tages_Model_nb_quad_Jahr_ln)
 
 # 4.6 Exportiere die Modellresultate ####
 # (des besten Modells)
-tab_model(Tages_Model_nb_quad_Jahr_log10, transform = NULL, show.se = TRUE)
+tab_model(Tages_Model_quad_Jahr_log10, transform = NULL, show.se = TRUE)
 # The marginal R squared values are those associated with your fixed effects, 
 # the conditional ones are those of your fixed effects plus the random effects. 
 # Usually we will be interested in the marginal effects.
@@ -855,7 +840,7 @@ tab_model(Tages_Model_nb_quad_Jahr_log10, transform = NULL, show.se = TRUE)
 
 
 # Temperatur
-t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = 
+t <- plot_model(Tages_Model_quad_Jahr_log10, type = "pred", terms = 
                   "tre200jx_scaled [all]", # [all] = Model contains polynomial or cubic / 
                 #quadratic terms. Consider using `terms="tre200jx_scaled [all]"` 
                 # to get smooth plots. See also package-vignette 
@@ -879,7 +864,7 @@ ggsave("temp.png", width=15, height=15, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/") 
 
 # Regen
-t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "rre150j0_scaled", 
+t <- plot_model(Tages_Model_quad_Jahr_log10, type = "pred", terms = "rre150j0_scaled", 
                 title = "", axis.title = c("Halbtagessumme Niederschlag [mm]", 
                                            "Fussgaenger:innen pro Tag [log]"))
 labels <- round(seq(floor(min(umwelt$rre150j0)), ceiling(max(umwelt$rre150j0)),
@@ -894,7 +879,7 @@ ggsave("rain.png", width=15, height=15, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/") 
 
 # Sonne
-t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "sremaxdv_scaled", 
+t <- plot_model(Tages_Model_quad_Jahr_log10, type = "pred", terms = "sremaxdv_scaled", 
                 title = "", axis.title = c("Sonnenscheindauer [min]", 
                                            "Fussgaenger:innen pro Tag [log]"))
 labels <- round(seq(floor(min(umwelt$sremaxdv)), ceiling(max(umwelt$sremaxdv)),
@@ -910,7 +895,7 @@ ggsave("sun.png", width=15, height=15, units="cm", dpi=1000,
 
 
 # Phase
-t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Phase", 
+t <- plot_model(Tages_Model_quad_Jahr_log10, type = "pred", terms = "Phase", 
                 title = "", axis.title = c("Phase", 
                                            "Fussgaenger:innen pro Tag [log]"))
 (lockplot <- t + 
@@ -923,7 +908,7 @@ ggsave("phase.png", width=15, height=15, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/") 
 
 # Ferien
-t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Ferien", 
+t <- plot_model(Tages_Model_quad_Jahr_log10, type = "pred", terms = "Ferien", 
                 title = "", axis.title = c("Ferien", 
                                            "Fussgaenger:innen pro Tag [log]"))
 (ferienplot <- t + scale_x_continuous(breaks = c(0,1), labels = c("Nein", "Ja"))+
@@ -936,7 +921,7 @@ ggsave("ferien.png", width=15, height=15, units="cm", dpi=1000,
        path = "_fallstudien/_R_analysis/results/") 
 
 # Wochentag
-t <- plot_model(Tages_Model_nb_quad_Jahr_log10, type = "pred", terms = "Wochentag", 
+t <- plot_model(Tages_Model_quad_Jahr_log10, type = "pred", terms = "Wochentag", 
                 title = "", axis.title = c("Wochentag", "Fussgaenger:innen pro Tag [log]"))
 (wdplot <- t + scale_y_continuous(breaks = c(0,0.5,1,1.5,2),
                                   labels = round(c(10^0, 10^0.5, 10^1, 10^1.5, 10^2),0),
