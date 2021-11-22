@@ -77,7 +77,7 @@ mytheme <-
 #alles grösser als 3 (4 inklusive) == hoher wahrgenommener Milchkonsum
 nova2 <- nova_survey %>% 
   filter(gender != "x") %>% # x aus der Variable Geschlecht entfernen 
-  mutate(milkcon = if_else(milk >= 3, "wenig", "viel")) %>% 
+  mutate(milkcon = if_else(milk <= 3, "wenig", "viel")) %>% 
   select(gender, milkcon) %>% 
   drop_na() # alle Missings können gestrichen werden
  

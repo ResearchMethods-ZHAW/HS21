@@ -1,23 +1,25 @@
 ---
 title: "Konsolidierung 3: Lineare Modelle"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 author: 
   Gian-Andrea Egeler
 categories:
 - Statistik_Konsolidierung3
-draft: true
+draft: false
 
 
 ---
 
-```{r echo = FALSE}
+```{r echo = FALSE, message=FALSE, results='hide'}
 #export files
 knitr::purl("index.Rmd", "Demo_LM_Konsolidierung3.R", documentation = 0)
 
 ```
 
 
-#Demo Lineare Modelle
+# Demo Lineare Modelle
 
 > Download [R-Skript](Demo_LM_Konsolidierung3.R)
 
@@ -71,7 +73,7 @@ boxplot(cars$hp ~ cars$cyl) # varianzheterogentität weniger das problem,
 # aber normalverteilung der residuen problematisch
 
 # definiere das modell für eine ein-faktorielle anova
-aov.1 <- aov(hp ~ cyl, data = cars)
+aov.1 <- aov(log10(hp) ~ cyl, data = cars)
 
 #3. Schaue Modelgüte an
 par(mfrow = c(2,2))
@@ -100,7 +102,9 @@ mtext(letters$mcletters$Letters, at=1:3)
 ggplot(cars, aes(x = cyl, y = hp)) +
 	stat_boxplot(geom = "errorbar", width = .5) +
   geom_boxplot(size = 1) +
-	annotate("text", x = 1:3, y = 350, label = letters$mcletters$Letters, size = 7) +
+	annotate("text", x = 1, y = 350, label = "a", size = 7)+
+annotate("text", x = 2, y = 350, label = "b", size = 7)+
+  annotate("text", x = 3, y = 350, label = "c", size = 7)
   labs(x = "\nAnzahl Zylinder", y = "Pferdestärke")  +
   mytheme
 
@@ -165,7 +169,7 @@ summary.lm(aov.2)
 
 
 ## Einfache Regression
-```{r, message=FALSE}
+```{r einfache regressino, message=FALSE}
 
 
 # inspiriert von Simon Jackson: http s://drsimonj.svbtle.com/visualising-residuals
@@ -266,7 +270,7 @@ cars <- mtcars %>%
 # Korrelation zwischen Prädiktoren kleiner .7
 cor <- cor(cars[, -2])
 cor[abs(cor)<0.7] <- 0  
-cor # disp weglassen, vgl. model2
+cor # 
 
 ##### info zu Variablen
 #wt = gewicht
