@@ -1,0 +1,142 @@
+#TODO: transformation back noch ergänzen!
+
+#export files
+knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
+
+
+
+
+############
+# quasipoisson regression
+############
+
+cars <- mtcars %>% 
+   mutate(kml = (235.214583/mpg))
+
+glm.poisson <- glm(hp ~ kml, data = cars, family = poisson(link = log))
+
+summary(glm.poisson) # klare overdisperion
+
+# deshalb quasipoisson
+glm.quasipoisson <- glm(hp ~ kml, data = cars, family = quasipoisson(link = log))
+
+summary(glm.quasipoisson)
+
+
+# visualisiere
+ggplot2::ggplot(cars, aes(x = kml, y = hp)) + 
+    geom_point(size = 8) + 
+    geom_smooth(method = "glm", method.args = list(family = "poisson"), se = F,
+                color = "green", size = 2) + 
+    scale_x_continuous(limits = c(0,35)) + 
+    scale_y_continuous(limits = c(0,400)) + 
+    theme_classic()
+
+
+#Rücktransformation meines Outputs für ein besseres Verständnis
+glm.quasi.back <- exp(coef(glm.quasipoisson))
+
+#für ein schönes ergebnis
+glm.quasi.back %>%
+  broom::tidy() %>% 
+  knitr::kable(digits = 3)
+
+#for more infos, also for posthoc tests
+#here: https://rcompanion.org/handbook/J_01.html
+
+
+
+############
+# logistische regression
+############
+cars <- mtcars
+
+# erstelle das modell
+glm.binar <- glm(vs ~ hp, data = cars, family = binomial(link = logit)) 
+
+
+#achtung Model gibt Koeffizienten als logit() zurück
+summary(glm.binar)
+
+
+# überprüfe das modell
+cars$predicted <- predict(glm.binar, type = "response")
+
+
+# visualisiere
+ggplot(cars, aes(x = hp, y = vs)) +    
+    geom_point(size = 8) +
+    geom_point(aes(y = predicted), shape  = 1, size = 6) +
+    guides(color = "none") +
+    geom_smooth(method = "glm", method.args = list(family = 'binomial'), 
+                se = FALSE,
+                size = 2) +
+    # geom_smooth(method = "lm", color = "red", se = FALSE) +
+    mytheme
+
+#Modeldiagnostik (wenn nicht signifikant, dann OK)
+1 - pchisq(glm.binar$deviance,glm.binar$df.resid)  
+
+
+#Modellgüte (pseudo-R²)
+1 - (glm.binar$dev / glm.binar$null)  
+
+#Steilheit der Beziehung (relative Änderung der odds von x + 1 vs. x)
+exp(glm.binar$coefficients[2])
+
+
+#LD50 (wieso negativ: weil zweiter koeffizient negative steigung hat)
+abs(glm.binar$coefficients[1]/glm.binar$coefficients[2])
+
+
+# kreuztabelle (confusion matrix): fasse die ergebnisse aus predict und 
+# "gegebenheiten, realität" zusammen
+tab1 <- table(cars$predicted>.5, cars$vs)
+dimnames(tab1) <- list(c("M:S-type","M:V-type"), c("T:S-type", "T:V-type"))
+tab1 
+
+
+prop.table(tab1, 2) 
+#was könnt ihr daraus ablesen? Ist unser Modell genau?
+
+
+
+
+# Funktion die die logits in Wahrscheinlichkeiten transformiert
+# mehr infos hier: https://sebastiansauer.github.io/convert_logit2prob/
+# dies ist interessant, falls ihr mal ein kategorialer Prädiktor habt
+logit2prob <- function(logit){
+  odds <- exp(logit)
+  prob <- odds / (1 + odds)
+  return(prob)
+}
+
+
+
+
+###########
+# LOESS & GAM
+###########
+
+ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) + 
+  geom_point(size = 8) + 
+  geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
+  geom_smooth(method = "loess", se = F, color = "red", size = 2) + 
+  geom_smooth(method = "glm", size = 2, color = "blue", se = F) + 
+  scale_x_continuous(limits = c(0,35)) + 
+    scale_y_continuous(limits = c(0,400)) + 
+    mytheme
+
+
+ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) + 
+  geom_point(size = 8) + 
+  geom_smooth(method = "gam", se = F, color = "green", size = 2, formula = y ~ s(x, bs = "cs")) + 
+    # geom_smooth(method = "loess", se = F, color = "red", size = 2) + 
+  geom_smooth(method = "glm", size = 2, color = "grey", se = F) + 
+  scale_x_continuous(limits = c(0,35)) + 
+  scale_y_continuous(limits = c(0,400)) + 
+  mytheme
+
+
+```{.r .distill-force-highlighting-css}
+```
