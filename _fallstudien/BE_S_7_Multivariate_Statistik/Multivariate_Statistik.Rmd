@@ -1089,6 +1089,9 @@ Wie sind unsere Daten verteilt? Welche Modelle können wir anwenden?
 
 Ich verwende die Funktion __glmer()__ aus der Bibliothek __lme4__. glmer ist neuer, schneller und zuverlässiger als vergleichbare Funktionen (diese Bibliothek wird auch in vielen wissenschaftlichen Papern im Feld Biologie / Wildtiermamagement zitiert).
 
+Hinweise zu GLMM: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html
+
+
 ## 6a) 
 
 __Hinweis:__ Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial (in meinem Fall) ist, berechne ich für den Vergleich zuerst ein "einfaches Modell" der Familie poisson. Alternative Modelle rechnen wir in 6c.
@@ -1183,13 +1186,17 @@ aictab(cand.set=cand.models,modnames=Modnames)
 Bei meinen Daten waren die Modellvoraussetzungen überall mehr oder weniger verletzt. Das ist ein Problem, allerdings auch nicht ein so grosses (man sollte es aber trotzdem ernst nehmen).
 Mehr dazu unter:
 
+Schielzeth et al. Robustness of linear mixed‐effects models to violations of distributional assumptions
 https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434
+Lo and Andrews, To transform or not to transform: using generalized linear mixed models to analyse reaction time data
+https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01171/full
 
 Falls die Voraussetzungen stark verletzt werden, wäre eine Transformation angezeigt.
 
 Mehr dazu unter:
 
 https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/
+
 
 - Berechne den skewness coefficient 
 

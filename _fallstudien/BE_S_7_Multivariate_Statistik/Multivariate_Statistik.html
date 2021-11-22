@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-17"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-17"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-22"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-22"/>
   <meta name="article:author" content="Adrian Hochreutener"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-17-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-22-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-17T00:00:00.000+01:00","citationText":"Hochreutener, 2021"}
+{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-22T00:00:00.000+01:00","citationText":"Hochreutener, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,7 +1478,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Adrian Hochreutener  
   
-<br/>11-17-2021
+<br/>11-22-2021
 </div>
 
 <div class="d-article">
@@ -1613,6 +1613,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Wie sind unsere Daten verteilt? Welche Modelle können wir anwenden?</p>
 <h1 id="aufgabe-6-multivariates-modell-berechnen">Aufgabe 6: Multivariates Modell berechnen</h1>
 <p>Ich verwende die Funktion <strong>glmer()</strong> aus der Bibliothek <strong>lme4</strong>. glmer ist neuer, schneller und zuverlässiger als vergleichbare Funktionen (diese Bibliothek wird auch in vielen wissenschaftlichen Papern im Feld Biologie / Wildtiermamagement zitiert).</p>
+<p>Hinweise zu GLMM: <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html" class="uri">https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html</a></p>
 <h2 id="a-2">6a)</h2>
 <p><strong>Hinweis:</strong> Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial (in meinem Fall) ist, berechne ich für den Vergleich zuerst ein “einfaches Modell” der Familie poisson. Alternative Modelle rechnen wir in 6c.</p>
 <ul>
@@ -1695,7 +1696,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h2 id="d-optional-transformationen">6d) (OPTIONAL) Transformationen</h2>
 <p>Bei meinen Daten waren die Modellvoraussetzungen überall mehr oder weniger verletzt. Das ist ein Problem, allerdings auch nicht ein so grosses (man sollte es aber trotzdem ernst nehmen). Mehr dazu unter:</p>
-<p><a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434" class="uri">https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434</a></p>
+<p>Schielzeth et al. Robustness of linear mixed‐effects models to violations of distributional assumptions <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434" class="uri">https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434</a> Lo and Andrews, To transform or not to transform: using generalized linear mixed models to analyse reaction time data <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01171/full" class="uri">https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01171/full</a></p>
 <p>Falls die Voraussetzungen stark verletzt werden, wäre eine Transformation angezeigt.</p>
 <p>Mehr dazu unter:</p>
 <p><a href="https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/" class="uri">https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/</a></p>
