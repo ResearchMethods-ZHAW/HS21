@@ -1,9 +1,22 @@
-#TODO: transformation back noch ergänzen!
+
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
 #export files
 knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
 
 
+
+library(tidyverse)
+
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 12, color = "black"), 
+    axis.title = element_text(size = 12, color = "black"), 
+    axis.ticks = element_line(size = .75, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
 
 
 ############
@@ -13,7 +26,7 @@ knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
 cars <- mtcars %>% 
    mutate(kml = (235.214583/mpg))
 
-glm.poisson <- glm(hp ~ kml, data = cars, family = poisson(link = log))
+glm.poisson <- glm(hp ~ kml, data = cars, family = "poisson")
 
 summary(glm.poisson) # klare overdisperion
 
