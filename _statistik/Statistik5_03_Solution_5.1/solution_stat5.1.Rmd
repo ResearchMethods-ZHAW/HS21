@@ -128,9 +128,14 @@ irrigation:density und irrigation:fertilizer.
 
 ```{r}
 # Modelvereinfachung
-aov.2 <- aov(yield~irrigation + density + fertilizer + irrigation:density + 
-               irrigation:fertilizer + Error(block/irrigation/density), data = splityield)
+aov.2 <- aov(yield ~ irrigation + density + fertilizer + irrigation:density + 
+               irrigation:fertilizer + density:fertilizer + Error(block/irrigation/density), data = splityield)
 summary(aov.2)
+
+
+aov.3 <- aov(yield ~ irrigation + density + fertilizer + irrigation:density + 
+               irrigation:fertilizer+ Error(block/irrigation/density), data = splityield)
+summary(aov.3)
 ```
 
 Jetzt muss man nur noch herausfinden, wie irrigation und fertilizer wirken und wie die
