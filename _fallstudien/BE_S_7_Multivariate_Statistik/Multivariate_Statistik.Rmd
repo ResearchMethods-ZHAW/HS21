@@ -1051,7 +1051,7 @@ avgmodel <- model.avg(all_m, rank = "AICc", subset = delta < 2)
 summary(avgmodel)
 ```
 
-# Aufgabe 5: Verteilung der abhaengigen Variabel pruefen
+# Aufgabe 5: Verteilung der abhängigen Variabel pruefen
 
 Die Verteilung der abhängigen Variabel bestimmt generell, was für ein Modell geschrieben werden kann. Die Modelle gehen von einer gegebenen Verteilung aus. Wenn diese Annahme verletzt wird, kann es sein, dass das Modellergebnis nicht valide ist.
 
@@ -1059,7 +1059,9 @@ Die Verteilung der abhängigen Variabel bestimmt generell, was für ein Modell g
 
 __Hinweis:__ es kann sein, dass nicht jede Verteilung geplottet werden kann, es erscheint eine Fehlermeldung. Das ist nicht weiter schlimm, die betreffende Verteilung kann gelöscht werden. Analog muss das auch im Befehl __gofstat()__ passieren.
 
-- Die besten drei Verteilungen (gemäss AIC) sollen zur Visualisierung geplottet werden. 
+- Die besten drei Verteilungen (gemäss AIC) sollen zur Visualisierung geplottet werden. Dabei gilt, je besser die schwarze Punktlinie (eure Daten) auf die farbigen Linien (theoretische Verteilungen) passen, desto besser ist diese Verteilung geeignet.
+
+__Hinweis:__ CDF =  Cumulative distribution function; Wikipedia = "Anschaulich entspricht dabei der Wert der Verteilungsfunktion an der Stelle x der Wahrscheinlichkeit, dass die zugehörige Zufallsvariable X einen Wert kleiner oder gleich x annimmt." 
 
 ```{r eval=FALSE}
 f1<-fitdist(umwelt$Anzahl_Total,"norm")  # Normalverteilung
