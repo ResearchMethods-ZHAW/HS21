@@ -14,7 +14,8 @@ categories:
 ---
 
 ```{r echo = FALSE, message=FALSE, results='hide'}
-#TODO: transformation back noch ergänzen!
+
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
 
 #export files
 knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
@@ -26,9 +27,7 @@ knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
 > Download [R-Skript](Demo_GLM_Konsolidierung4.R)
 
 
-```{r, include=FALSE, purl=F}
-
-knitr::opts_chunk$set(echo = T, collapse=TRUE)
+```{r, include=TRUE}
 
 library(tidyverse)
 
@@ -54,7 +53,7 @@ mytheme <-
 cars <- mtcars %>% 
    mutate(kml = (235.214583/mpg))
 
-glm.poisson <- glm(hp ~ kml, data = cars, family = poisson(link = log))
+glm.poisson <- glm(hp ~ kml, data = cars, family = "poisson")
 
 summary(glm.poisson) # klare overdisperion
 
