@@ -31,11 +31,12 @@ summary(KM.cascade)
 KM.cascade$results
 KM.cascade$partition
 
+# k-means visualisation
+plot(KM.cascade, sortg = TRUE)
+
 
 # Agglomarative Clusteranalyse --------------------------------------------
 #mit Daten und Skripten aus Borcard
-# k-means visualisation
-plot(KM.cascade, sortg = TRUE)
 
 load("Doubs.RData")  
 # Remove empty site 8
@@ -266,7 +267,7 @@ spe.chwo <- reorder.hclust(spe.ch.ward, spe.ch)
 
 # Plot reordered dendrogram with group labels
 par(mfrow = c(1, 1))
-plot(spe.chwo,hang = -1, xlab = "4 groups", ylab = "Height", sub = "",
+plot(spe.chwo, hang = -1, xlab = "4 groups", ylab = "Height", sub = "",
   main = "Chord - Ward (reordered)", labels = cutree(spe.chwo, k = k))
 rect.hclust(spe.chwo, k = k)
 
@@ -289,8 +290,11 @@ drawmap(xy = spa, clusters = spech.ward.g, main = "Four Ward clusters along the 
 
 
 # Miscellaneous graphical outputs -----------------------------------------
+# konvertieren von "hclust" Objekt in ein Dendogram Objekt
+dend <- as.dendrogram(spe.ch.ward)
+
 # Heat map of the dissimilarity matrix ordered with the dendrogram
-heatmap(as.matrix(spe.ch), Rowv = NULL, symm = TRUE, margin = c(3, 3))
+heatmap(as.matrix(spe.ch), Rowv = dend, symm = TRUE, margin = c(3, 3))
 
 # Ordered community table
 # Species are ordered by their weighted averages on site scores.
