@@ -66,17 +66,50 @@ axis(1, k.best, paste("optimum", k.best, sep = "\n"), col = "red",
 points(k.best, max(Si), pch = 16, col = "red", cex = 1.5)
 
 library(multcomp)
-par(mfrow = c(2, 2))
+if(!require(multcomp)){install.packages("multcomp")}
+library(multcomp)
+par(mfrow = c(3,3))
+
 ANOVA.Murder <- aov(Murder~cluster, data = crime.KM4)
-summary (ANOVA.Murder)
+summary(ANOVA.Murder)
 letters <- cld(glht(ANOVA.Murder, linfct = mcp(cluster = "Tukey")))
-boxplot(Murder~cluster, data = crime.KM4, xlab = "Cluster", ylab = "Murder")
-mtext(letters$mcletters$Letters, at = 1:4)
+boxplot(Murder~cluster, xlab = "Cluster", ylab = "Murder", data = crime.KM4)
+mtext(letters$mcletters$Letters, at = 1:6)
+
+ANOVA.Rape <- aov(Rape~cluster,data = crime.KM4)
+summary(ANOVA.Rape)
+letters <- cld(glht(ANOVA.Rape, linfct = mcp(cluster = "Tukey")))
+boxplot(Rape~cluster, xlab = "Cluster", ylab = "Rape", data = crime.KM4)
+mtext(letters$mcletters$Letters, at = 1:6)
+
+ANOVA.Robbery <- aov(Robbery~cluster, data = crime.KM4)
+summary(ANOVA.Robbery)
+letters <- cld(glht(ANOVA.Robbery, linfct = mcp(cluster = "Tukey")))
+boxplot(Robbery~cluster, xlab = "Cluster", ylab = "Robbery", data = crime.KM4)
+mtext(letters$mcletters$Letters, at = 1:6)
+
+ANOVA.Assault <- aov(Assault~cluster, data = crime.KM4)
+summary(ANOVA.Assault)
+letters <- cld(glht(ANOVA.Assault, linfct = mcp(cluster = "Tukey")))
+boxplot(Assault~cluster, xlab = "Cluster", ylab = "Assault",  data = crime.KM4)
+mtext(letters$mcletters$Letters, at = 1:6)
+
+ANOVA.Burglary <- aov(Burglary~cluster, data = crime.KM4)
+summary (ANOVA.Burglary)
+letters <- cld(glht(ANOVA.Burglary, linfct=mcp(cluster = "Tukey")))
+boxplot(Burglary~cluster, data = crime.KM4, xlab = "Cluster", ylab = "Burglary")
+mtext(letters$mcletters$Letters, at=1:6)
+
+ANOVA.Theft <- aov(Theft~cluster, data = crime.KM4)
+summary(ANOVA.Theft)
+letters <- cld(glht(ANOVA.Theft, linfct = mcp(cluster = "Tukey")))
+boxplot(Theft~cluster, xlab = "Cluster", ylab = "Theft", data = crime.KM4)
+mtext(letters$mcletters$Letters, at = 1:6)
 
 ANOVA.Vehicle <- aov(Vehicle~cluster, data = crime.KM4)
-summary (ANOVA.Vehicle)
+summary(ANOVA.Vehicle)
 letters <- cld(glht(ANOVA.Vehicle, linfct = mcp(cluster = "Tukey")))
 boxplot(Vehicle~cluster, data = crime.KM4, xlab = "Cluster", ylab = "Vehicle")
-mtext(letters$mcletters$Letters, at = 1:4)
+mtext(letters$mcletters$Letters, at = 1:6)
 ```{.r .distill-force-highlighting-css}
 ```
