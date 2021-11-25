@@ -1,19 +1,20 @@
 ---
-title: Musterloesung
+title: Musterloesung Übung 8
 output: distill::distill_article
 categories:
 - Statistik8
-draft: true
+draft: false
 ---
 
-```{r echo = FALSE}
-
+```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
+knitr::purl("Solution.Rmd", "Statistik_8_Solution.R", documentation = 0)
 ```
+
 
 ## Musterloesung Aufgabe 8.1: Clusteranalysen
 
-- [R-Skript als Download](20_Statistik8/Loesung_8.1_v.03.R)
-- [Loesungstext](20_Statistik8/Statistik_Loesungstext_8.1.pdf)
+- [R-Skript als Download](Statistik_8_Solution.R)
+- [Loesungstext](Statistik_Loesungstext_8.1.pdf)
 
 
 ## Übungsaufgabe 
@@ -32,14 +33,16 @@ erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Clu
 
 ### Uebung 8.1 - Clusteranalysen -- Loesung
 
+```{r}
+crime <- read.csv("crime2.csv", sep = ";")
+```
 ```{r eval=FALSE}
-crime <- read.csv("crime2.csv",sep=";")
 crime
 ```
 
 Im mitgelieferten R-Skript habe ich die folgenden Analysen zunächst mit untransformierten, dann mit standardisierten Kriminalitätsraten berechnet. Ihr könnt die Ergebnisse vergleichen und seht, dass sie sehr unterschiedlich ausfallen.
 
-```{r eval=FALSE}
+```{r}
 crimez <- crime
 crimez[,c(2:8)] <- lapply(crime[, c(2:8)], scale)
 crimez
@@ -48,17 +51,12 @@ crimez
 „scale“ führt eine Standardisierung (z-Transformation) durch, so dass alle Variablen anschiessen einen Mittelwert von 0 und eine SD von 1 haben, ausgenommen natürlich die 1. Spalte mit den Kürzeln der Bundesstaaten.
 Anschliessend wird das SSI-Kriterium getestet und zwar für Partitionierungen von 2 bis 6 Gruppen (wie viele Gruppen man maximal haben will, muss man pragmatisch nach der jeweiligen Fragestelltung entscheiden).
 
-```{r eval=FALSE}
+```{r}
 library(vegan)
-crimez.KM.cascade <-
- cascadeKM(
- crimez[,c(2:8)],
- inf.gr = 2,
- sup.gr = 6,
- iter = 100,
- criterion = "ssi"
- )
+crimez.KM.cascade <- cascadeKM(crimez[,c(2:8)],
+                        inf.gr = 2, sup.gr = 6, iter = 100, criterion = "ssi")
 summary(crimez.KM.cascade)
+
 crimez.KM.cascade$results
 crimez.KM.cascade$partition
 
@@ -69,9 +67,9 @@ plot(crimez.KM.cascade, sortg = TRUE)
 
 Nach SSI ist die 4-Gruppenlösung die beste, mit dieser wird also weitergerechnet.
 
-```{r eval=FALSE}
+```{r}
 # 4 Kategorien sind nach SSI offensichtlich besonders gut
-modelz <- kmeans(crimez[,c(2:8)],4)
+modelz <- kmeans(crimez[,c(2:8)], 4)
 modelz
 
 #File für ANOVA (Originaldaten der Vorfälle, nicht die ztransformierten)
@@ -97,20 +95,13 @@ attr(crime.ch, "Labels") <- crime[,1]
 #Ward's minimum variance clustering
 crime.ch.ward <- hclust(crime.ch, method = "ward.D2")
 par(mfrow = c(1, 1))
-plot(crime.ch.ward,
- labels = crime[,1],
- main = "Chord - Ward")
+plot(crime.ch.ward, labels = crime[,1], main = "Chord - Ward")
 
 # Choose and rename the dendrogram ("hclust" object)
 hc <- crime.ch.ward
 # hc <- spe.ch.beta2
 # hc <- spe.ch.complete
-dev.new(
- title = "Optimal number of clusters",
- width = 12,
- height = 8,
- noRStudioGD = TRUE
-)
+dev.new(title = "Optimal number of clusters", width = 12, height = 8, noRStudioGD = TRUE)
 dev.off()
 par(mfrow = c(1, 2))
 
@@ -124,28 +115,13 @@ for (k in 2:(nrow(crime) - 1))
  Si[k] <- summary(sil)$avg.width
 }
 k.best <- which.max(Si)
-plot(
- 1:nrow(crime),
- Si,
- type = "h",
+plot( 1:nrow(crime), Si, type = "h",
  main = "Silhouette-optimal number of clusters",
- xlab = "k (number of clusters)",
- ylab = "Average silhouette width"
-)
-axis(
- 1,
- k.best,
- paste("optimum", k.best, sep = "\n"),
- col = "red",
- font = 2,
- col.axis = "red"
-)
-points(k.best,
- max(Si),
- pch = 16,
- col = "red",
- cex = 1.5
-)
+ xlab = "k (number of clusters)", ylab = "Average silhouette width")
+
+axis(1, k.best, paste("optimum", k.best, sep = "\n"), col = "red",
+ font = 2, col.axis = "red")
+points(k.best, max(Si), pch = 16, col = "red", cex = 1.5)
 ```
 
 Demnach wären beim Ward’s-Clustering nur zwei Gruppen die optimale Lösung.
@@ -156,22 +132,20 @@ Damit die Boxplots und die ANOVA direkt interpretierbar sind, werden für diese,
 
 Anschliessend kann man die 7 ANOVAs rechnen, die Posthoc-Vergleiche durchführen und die zugehörigen Boxplots mit Buchstaben für die homogenen Gruppen erzeugen. Sinnvollerweise gruppiert man die Abbildungen gleich, z. B. je 2 x 2. Das Skript ist hier simple für jede Verbrechensart wiederholt (nur die erste und letzte gezeigt). Erfahrenere R-Nutzer können das Ganze hier natürlich durch eine Schleife abkürzen.
 
-```{r eval=FALSE}
+```{r}
 library(multcomp)
-par(mfrow=c(2,2))
-ANOVA.Murder <- aov(Murder~cluster, data=crime.KM4)
+par(mfrow = c(2, 2))
+ANOVA.Murder <- aov(Murder~cluster, data = crime.KM4)
 summary (ANOVA.Murder)
-letters <- cld(glht(ANOVA.Murder, linfct=mcp(cluster="Tukey")))
-boxplot(Murder~cluster, data=crime.KM4, xlab="Cluster",
-ylab="Murder")
-mtext(letters$mcletters$Letters, at=1:4)
+letters <- cld(glht(ANOVA.Murder, linfct = mcp(cluster = "Tukey")))
+boxplot(Murder~cluster, data = crime.KM4, xlab = "Cluster", ylab = "Murder")
+mtext(letters$mcletters$Letters, at = 1:4)
 
-ANOVA.Vehicle <- aov(Vehicle~cluster, data=crime.KM4)
+ANOVA.Vehicle <- aov(Vehicle~cluster, data = crime.KM4)
 summary (ANOVA.Vehicle)
-letters <- cld(glht(ANOVA.Vehicle, linfct=mcp(cluster="Tukey")))
-boxplot(Vehicle~cluster, data=crime.KM4, xlab="Cluster",
-ylab="Vehicle")
-mtext(letters$mcletters$Letters, at=1:4)
+letters <- cld(glht(ANOVA.Vehicle, linfct = mcp(cluster = "Tukey")))
+boxplot(Vehicle~cluster, data = crime.KM4, xlab = "Cluster", ylab = "Vehicle")
+mtext(letters$mcletters$Letters, at = 1:4)
 ```
 
 Die Boxplots erlauben jetzt auch eine Beurteilung der Modelldiagnostik: sind die Residuen hinreichen normalverteilt (symmetrisch) und sind die Varianzen zwischen den Kategorien einigermassen ähnlich. Mit der Symmetrie/Normalverteilung sieht es OK aus. Die Varianzhomogenität ist nicht optimal – meist deutlich grössere Varianz bei höheren Mittelwerten. Eine log-Transformation hätte das verbessert und könnte hier gut begründet werden. Da die p-Werte sehr niedrig waren und die Varianzheterogenität noch nicht extrem war, habe ich aber von einer Transformation abgesehen, da jede Transformation die Interpretation der Ergebnisse erschwert. Jetzt muss man nur noch herausfinden, welche Bundesstaaten überhaupt zu welchem der vier

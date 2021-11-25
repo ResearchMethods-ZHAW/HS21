@@ -1,22 +1,3 @@
----
-title: Muserlösung Übung 6
-output: distill::distill_article
-categories:
-- Statistik6
-draft: false
----
-
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Solution.Rmd", "Statistik_6_Solution.R", documentation = 0)
-```
-
-
-
-- [R-Skript als Download](Statistik_6_Solution.R)
-- [Loesungstext](Statistik_Loesungstext_6.1.pdf)
-
-```{r eval=TRUE}
 load("Doubs.RData")
 summary(env)
 summary(spe)
@@ -25,11 +6,7 @@ summary(spe)
 
 if(!require(vegan)){install.packages("vegan")}
 library("vegan")
-```
 
-Die PCA wird im Package vegan mit dem Befehl rda ausgeführt, wobei in diesem scale = TRUE gesetzt werden muss, da die Umweltdaten mit ganz unterschiedlichen Einheiten und Wertebereichen daherkommen
-
-```{r}
 env.pca <- rda(env, scale = TRUE)
 env.pca
 # In env.pca sieht man, dass es bei 11 Umweltvariablen logischerweise 11 orthogonale Principle Components gibt
@@ -43,26 +20,12 @@ summary(env.pca)
 
 screeplot(env.pca, bstick = TRUE, npcs = length(env.pca$CA$eig))
 # Visualisierung der Anteile erklärter Varianz, auch im Vergleich zu einem Broken-Stick-Modell
-```
 
-- Die Anteile fallen steil ab. Nur die ersten vier Achsen erklären jeweils mehr als 5 % (und zusammen über 90 %)
-- Das Broken-stick-Modell würde sogar nur die ersten beiden Achsen als relevant vorschlagen
-- Da die Relevanz für das Datenmuster in den Umweltdaten nicht notwendig die Relevanz für die Erklärung der Artenzahlen ist,    nehmen wir ins globale Modell grosszügig die ersten vier Achsen rein (PC1-PC4)
-Die Bedeutung der Achsen (benötigt man später für die Interpretation!) findet man in den “species scores” (da so, wie wir die PCA hier gerechnet haben, die Umweltdaten die Arten sind. Zusätzlich oder alternative kann man sich die ersten vier Achsen auch visualisieren, indem man PC2 vs. PC1 (ohne choices), PC3 vs. PC1 oder PC4 vs. PC1 plottet.
-
-```{r}
 par(mfrow = c(2, 2))
 biplot(env.pca, scaling = 1)
 biplot(env.pca, choices = c(1, 3), scaling = 1)
 biplot(env.pca, choices = c(1, 4), scaling = 1)
-```
 
--	PC1 steht v.a. für Nitrat (positiv), Sauerstoff (negativ)
--	PC2 steht v.a. für pH (positiv)
--	PC3 steht v.a. für pH (positiv) und slo (negativ)
-- PC4 steht v.a. für pH (negativ) und slo (negativ)
-
-```{r}
 #Wir extrahieren nun die ersten vier PC-Scores aller Aufnahmeflächen
 
 scores <- scores(env.pca, c(1:4), display = c("sites"))
@@ -84,36 +47,19 @@ summary(lm.pc.1) # jetzt sind alle Achsen signifikant und werden in das minimal 
 # Modelldiagnostik/Modellvalidierung
 par(mfrow = c(2, 2))
 plot(lm.pc.1) 
-```
 
-Nicht besonders toll, ginge aber gerade noch. Da wir aber ohnehin Zähldaten haben, können wir es mit einem Poisson-GLM versuchen
-
-#Alternativ mit glm
-```{r}
 glm.pc.1 <- glm(species_richness ~ PC1 + PC2 + PC3 + PC4, family = "poisson", data = doubs)
 summary(glm.pc.1)
 glm.pc.2 <- glm(species_richness ~ PC1 + PC2 + PC3, family = "poisson", data = doubs)
 summary(glm.pc.2)
 par(mfrow = c(2, 2))
 plot(glm.pc.2) # sieht nicht besser aus als LM, die Normalverteilung ist sogar schlechter
-```
 
-LM oder GLM sind für die Analyse möglich, Modellwahl nach Gusto. Man muss jetzt noch die Ergebnisse adäquat aus all den erzielten Outputs zusammenstellen (siehe Ergebnistext). In dieser Aufgabe haben wir ja die PC-Achsen als Alternative zur direkten Modellierung mit den originalen Umweltvariablen ausprobiert. Deshalb (war nicht Teil der Aufgabe), kommt hier noch eine Lösung, wie wir es bisher gemacht hätten.
-
-
-**Zum Vergleich die Modellierung mit den Originaldaten**
-
-```{r eval=FALSE}
 # Korrelationen zwischen Prädiktoren
 cor <- cor(doubs[, 1:11])
 cor[abs(cor)<.7] <- 0
 cor 
-```
 
-Die Korrelationsmatrix betrachtet man am besten in Excel.
-Es zeigt sich, dass es zwei grosse Gruppen von untereinander hochkorrelierten Variablen gibt: zum einen dfs-ele-dis-har-nit, zum anderen pho-nit-amm-oxy-bod, während slo und pH mit jeweils keiner anderen Variablen hochkorreliert sind. Insofern behalten wir eine aus der ersten Gruppe (ele), eine aus der zweiten Gruppe (pho) und die beiden «unabhängigen».
-
-```{r}
 # Globalmodell (als hinreichend unabhängige Variablen werden ele, slo, pH und pho aufgenommen)
 lm.orig.1 <- lm(species_richness ~ ele + slo + pH + pho, data = doubs)
 summary(lm.orig.1)
@@ -158,9 +104,5 @@ summary(glmq.orig.3)
 
 # Parameterschätzung bleiben gleich, aber Signifikanzen sind niedriger als beim GLM ohne Overdispersion.
 plot(glmq.orig.3)
+```{.r .distill-force-highlighting-css}
 ```
-
-Sieht gut aus, wir hätten hier also unser finales Modell.
-
-Im Vergleich der beiden Vorgehensweisen (PC-Achsen vs. Umweltdaten direkt) scheint in diesem Fall die direkte Modellierung der Umweltachsen informativer: Man kommt mit zwei Prädiktoren aus, die jeweils direkt für eine der Hauptvariablen stehen – Meereshöhe und Phosphor – zugleich aber jeweils eine grössere Gruppe von Variablen mit hohen Korrelationen inkludieren, im ersten Fall Variablen, die sich im Flusslauf von oben nach unten systematisch ändern, im zweiten Masse der Nährstoffbelastung des Gewässers. Bei der PCA-Lösung kamen drei signifikante Komponenten heraus, die allerdings nicht so leicht zu interpretieren sind. Dies insbesondere, weil in diesem Fall auf der Ebene PC2 vs. PC1 die Mehrzahl der Umweltparameter ungefähr in 45-Grad-Winkeln angeordnet sind. Im allgemeinen Fall kann aber die Nutzung von PC-Achsen durchaus eine gute Lösung sein.
-

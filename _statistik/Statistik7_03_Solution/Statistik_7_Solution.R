@@ -1,51 +1,13 @@
----
-title: Musterloesung Übung 7
-output: distill::distill_article
-categories:
-- Statistik7
-draft: false
-
----
-
-```{r, echo = FALSE, message=FALSE, results = "hide", purl = FALSE}
-knitr::purl("Solution.Rmd", "Statistik_7_Solution.R", documentation = 0)
-```
-
-## Musterloesung Aufgabe 7.1: RDA
-
-- [R-Skript als Download](Statistik_7_Solution.R)
-- [Loesungstext](Statistik_Loesungstext_7.1.pdf)
-
-
-- **Übungsaufgabe (hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)**
-
-- Ladet die library dave, welche den Moordatensatz enthält. sveg beinhaltet presenceabsence-Daten  aller untersuchten Arten in den Plots; ssit beinhaltet 18 metrische Umweltdaten sowie Koordinaten der Plots
-- **Führt eine RDA und eine Varianzpartizionierung in die Variablengruppen Physiographie**  (Waterlev.max, Waterlev.av, Waterlev.min, log.peat.lev, log
-  slope.deg) **und Chemie** (alle übrigen) **durch.**
-- Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.
-- Während im Text normalerweise die Variablen ausgeschrieben werden solltet, genügt es hier (da ihr die entsprechenden Infos nicht bekommen habt und nur raten könntet), wenn ihr die Abkürzungen aus dem dataframe nehmt.
-
-
-
-__Moordatensatz laden__ 
-```{r}
 if(!require(dave)){install.packages("dave")}
 library(dave)
 data(sveg)
 data(ssit)
-```
-```{r eval=FALSE}
 summary(sveg)
 summary(ssit)
 str(ssit)
-```
-```{r}
 # x.axis and y.axis vom data frame data frame ssit entfernen
 env2 <- ssit[, -c(19, 20)]
-```
-Betrachtung der Daten zeigt, dass die Koordinaten in Spalten 19 und 20 sind, die daraufhin entfernt werden.
 
-```{r}
 # Generiere zwei subset der erklärenden Variablen
 # Physiografie (upstream-downstream-Gradient)
 envtopo <- env2[, c(11 : 15)]
@@ -57,37 +19,18 @@ names(envchem)
 # Hellinger-transform the species dataset
 library(vegan)
 spe.hel <- decostand(sveg, "hellinger")
-```
 
-Vorstehend wurden die Variablen in die zwei Gruppen Chemistry und Physiography aufgteilt. Die Hellilnger-Transformation wird gemeinhin empfohlen (wobei dahingestellt sei, ob sie auch bei presence-absence-Daten nötig ist).
-Die weiteren Analysen führen wir mit der default-Einstellung „Scaling 2“ durch. (Je nach Bedarf bzw. persönlichen Vorlieben könnte auch Scaling 1 genommen werden).
-
-
-__Redundancy analysis (RDA)__
-
-RDA of the Hellinger-transformed mire species data, constrained by all the environmental variables contained in env2
-
-```{r}
 ## RDA der Hellinger-transformireten Moorarten-Daten, constrained
 ## mit allen Umweltvarialben die in env2 enthalten sind
 (spe.rda <- rda(spe.hel ~ ., env2)) # Observe the shortcut formula
-```
-```{r eval=FALSE}
 summary(spe.rda)	# Skalierung 2 (default)
-```
-```{r}
 # Canonical coefficients from the rda object
 coef(spe.rda)
 # Unadjusted R^2 retrieved from the rda object
 (R2 <- RsquareAdj(spe.rda)$r.squared)
 # Adjusted R^2 retrieved from the rda object
 (R2adj <- RsquareAdj(spe.rda)$adj.r.squared)
-```
 
-Man erhält R²adj. = 0.376
-Jetzt kann man den Triplot erstellen
-
-```{r}
 ## Triplots of the rda results (lc scores)
 ## Site scores as linear combinations of the environmental variables
 dev.new(title = "RDA scaling 1 and 2 + lc", width = 15, height = 6, noRStudioGD = TRUE)
@@ -118,11 +61,7 @@ dev.new(title = "RDA scaling 2 + wa",width = 7, height = 6, noRStudioGD = TRUE)
 # Scaling 2 (default) :  correlation triplot
 plot(spe.rda, main = "Triplot RDA spe.hel ~ env3 - scaling 2 - wa scores")
 arrows(0, 0, spe.sc2[, 1] * 0.92, spe.sc2[, 2] * 0.92, length = 0, lty = 1, col = "red")
-```
 
-Auswahl der höchstkorrelierten Arten (Grenzwert kann subjektiv nach Bedarf gesetzt werden, hier 0.5).
-
-```{r eval=FALSE}
 # Select species with goodness-of-fit at least 0.6 in the 
 # ordination plane formed by axes 1 and 2
 spe.good <- goodness(spe.rda)
@@ -143,16 +82,7 @@ anova(spe.rda, permutations = how(nperm = 999))
 # Tests of all canonical axes
 anova(spe.rda, permutations = how(nperm = 999))
 anova(spe.rda, by = "axis", permutations = how(nperm = 999))
-```
 
-Die ersten drei RDA-Achsen sind also signifikant. Man könnte also auch noch eine
-Visualisierung von RDA 3 vs. RDA 1 machen.
-
-- **Partielle RDA**
-- **Simple syntax; X and W may be in separate tables of quantitative** 
-- **variables**
-
-```{r eval=FALSE}
 spechem.physio <- rda(spe.hel, envchem, envtopo)
 summary(spechem.physio)
 
@@ -177,11 +107,7 @@ dev.new(title = "Partial RDA", width = 7, height = 6, noRStudioGD = TRUE)
 triplot.rda(spechem.physio, site.sc = "lc", scaling = 2, 
             cex.char2 = 0.8, pos.env = 3, mult.spe = 1.1, mar.percent = 0.04)
 text(-3.34, 3.64, "b", cex = 2)
-```
 
-__Varianzpartitionierung__
-
-```{r}
 ## 1. Variation partitioning with all explanatory variables
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
 
@@ -190,5 +116,5 @@ dev.new(title = "Variation partitioning", width = 7, height = 7, noRStudioGD = T
 
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      Xnames = c("Chemistry", "Physiography"), id.size = 0.7)
+```{.r .distill-force-highlighting-css}
 ```
-Die durch die erhobenen Umweltvariablen insgesamt erklärte Varianz (37.6%, s.o.) entfällt zu 19.4% auf chemische Variablen, 3.6% auf physiographische Variablen und zu 14.6% auf gemeinsame Erklärung.
