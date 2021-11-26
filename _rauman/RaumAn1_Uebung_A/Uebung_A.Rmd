@@ -1,11 +1,11 @@
 ---
-title: Übungen A
+title: "Übungen A: Einführung"
 output: 
   distill::distill_article:
     toc: true
 categories:
 - RaumAn1
-draft: true
+draft: false
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
