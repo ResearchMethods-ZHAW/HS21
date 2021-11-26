@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-10"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-10"/>
+  <meta property="article:published" itemprop="datePublished" content="2021-11-22"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-22"/>
   <meta name="article:author" content="Adrian Hochreutener"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-10-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["KW 45 Aufgabe Multivariate Statistik"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Adrian Hochreutener"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Biodiversity & Ecosystems (S)"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-22-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-10T00:00:00.000+01:00","citationText":"Hochreutener, 2021"}
+{"title":"KW 45 Aufgabe Multivariate Statistik","authors":[{"author":"Adrian Hochreutener","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-22T00:00:00.000+01:00","citationText":"Hochreutener, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1478,7 +1478,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Adrian Hochreutener  
   
-<br/>11-10-2021
+<br/>11-22-2021
 </div>
 
 <div class="d-article">
@@ -1613,13 +1613,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Wie sind unsere Daten verteilt? Welche Modelle können wir anwenden?</p>
 <h1 id="aufgabe-6-multivariates-modell-berechnen">Aufgabe 6: Multivariates Modell berechnen</h1>
 <p>Ich verwende die Funktion <strong>glmer()</strong> aus der Bibliothek <strong>lme4</strong>. glmer ist neuer, schneller und zuverlässiger als vergleichbare Funktionen (diese Bibliothek wird auch in vielen wissenschaftlichen Papern im Feld Biologie / Wildtiermamagement zitiert).</p>
+<p>Hinweise zu GLMM: <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html" class="uri">https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html</a></p>
 <h2 id="a-2">6a)</h2>
+<p><strong>Hinweis:</strong> Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial (in meinem Fall) ist, berechne ich für den Vergleich zuerst ein “einfaches Modell” der Familie poisson. Alternative Modelle rechnen wir in 6c.</p>
 <ul>
 <li>Die Totale Besucheranzahl soll durch die Wetterparameter, den Wochentag, die Ferien sowie die Covid-Phasen erklärt werden (Datensatz “umwelt”). Die Saisonalität (KW und Jahr) soll hierbei nicht beachtet werden, sie werden als “random factor” bestimmt.</li>
 </ul>
 <p>Frage: Warum bestimmen wir KW und Jahr als random factor?</p>
 <p>Falls ihr der Meinung seid, KW und / oder Jahr sind keine “guten” random factor, dann nehmt sie nicht an random factor ins Modell sondern als erklärende Variable. Begründet das unbedingt in eurer Methodik.</p>
-<p><strong>Hinweis:</strong> Auch wenn wir gerade herausgefunden haben, dass die Verteilung negativ binomial (in meinem Fall) ist, berechne ich für den Vergleich zuerst ein “einfaches Modell” der Familie poisson.</p>
 <p>Die Modellformel lautet:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Tages_Model <span class="ot">&lt;-</span> <span class="fu">glmer</span>(ABHAENGIGE VARIABLE <span class="sc">~</span> ERKLAERENDE VARIABLE <span class="dv">1</span> <span class="sc">+</span> ERKLAERENDE VARIABLE <span class="dv">2</span> <span class="sc">+</span></span>
@@ -1631,6 +1632,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Tages_Model) <span class="co">#Zeigt das Resultat des Modells</span></span></code></pre></div>
 </div>
 <p>Frage: Was bedeutet “family = poisson”?</p>
+<p>Löst zuerst Aufgabe 6b bevor ihr alternative Modelle rechnet; das kommt in Aufgabe 6c!</p>
 <h2 id="b-modelldiagnostik">6b) Modelldiagnostik</h2>
 <ul>
 <li>Prüft optisch ob euer Modell valide ist.</li>
@@ -1638,9 +1640,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><strong>Hinweis:</strong> glmer bringt einige eigene Funktionen mit, mit denen sich testen lässt, ob das Modell valide ist. Unten sind sie aufgeführt (–&gt; analog zu den Funktionen aus der Vorlesung, aber halt für glmer).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verteilung der Residuen</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verteilung der Residuen (Varainzhomogenitaet)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Tages_Model</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"p"</span>, <span class='st'>"smooth"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'># Pruefen auf Normalverteilung</span>
+<span class='co'># Pruefen auf Normalverteilung der Residuen</span>
 <span class='fu'><a href='https://rdrr.io/pkg/lattice/man/qqmath.html'>qqmath</a></span><span class='op'>(</span><span class='va'>Tages_Model</span><span class='op'>)</span>
 
 <span class='co'># Overdispersion describes the observation that variation is higher than would be expected.</span>
@@ -1654,7 +1656,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="c-alternative-modelle">6c) Alternative Modelle</h2>
 <p>Wir sind auf der Suche nach dem minimalen adäquaten Modell. Das ist ein iterativer Prozess. Wir schreiben ein Modell, prüfen ob die Voraussetzungen erfüllt sind und ob die abhängige Variable besser erklärt wird als im vorhergehenden. Und machen das nochmals und nochmals…</p>
 <ul>
+<li><p>Über <strong>family =</strong> kann in der Funktion _glmer()__ einiges (aber leider nicht alles so einfach [z.B. negativ binomiale Modelle]) angepasst werden: <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/family.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/stats/html/family.html</a></p></li>
+<li><p>Auch über <strong>link =</strong> kann man anpassen: <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/make.link.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/stats/html/make.link.html</a></p></li>
 <li><p>Unsere (meine) Daten sind negativ binomial verteilt. Daher sollte wir unbedingt ein solches Modell programmieren. –&gt; Funktion <strong>glmer.nb()</strong></p></li>
+<li><p>Falls die Daten exponentiell Verteilt sind, hier der Link zu einem Blogeintrag dazu: <a href="https://stats.stackexchange.com/questions/240455/fitting-exponential-regression-model-by-mle" class="uri">https://stats.stackexchange.com/questions/240455/fitting-exponential-regression-model-by-mle</a></p></li>
 <li><p>Hypothese: “Es gehen weniger Leute in den Wald, wenn es zu heiss ist” –&gt; auf quadratischen Term Temperatur testen (Codeblock unten).</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
@@ -1691,7 +1696,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h2 id="d-optional-transformationen">6d) (OPTIONAL) Transformationen</h2>
 <p>Bei meinen Daten waren die Modellvoraussetzungen überall mehr oder weniger verletzt. Das ist ein Problem, allerdings auch nicht ein so grosses (man sollte es aber trotzdem ernst nehmen). Mehr dazu unter:</p>
-<p><a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434" class="uri">https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434</a></p>
+<p>Schielzeth et al. Robustness of linear mixed‐effects models to violations of distributional assumptions <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434" class="uri">https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434</a> Lo and Andrews, To transform or not to transform: using generalized linear mixed models to analyse reaction time data <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01171/full" class="uri">https://www.frontiersin.org/articles/10.3389/fpsyg.2015.01171/full</a></p>
 <p>Falls die Voraussetzungen stark verletzt werden, wäre eine Transformation angezeigt.</p>
 <p>Mehr dazu unter:</p>
 <p><a href="https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/" class="uri">https://www.datanovia.com/en/lessons/transform-data-to-normal-distribution-in-r/</a></p>

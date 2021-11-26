@@ -5,7 +5,6 @@ pca <- rda(sveg^0.25, scale = TRUE)
 ca <- cca(sveg^0.5)
 
 kmeans.1 <- kmeans(sveg, 4)
-
 kmeans.1
 plot(ca, type = "n")
 points(ca, display = "sites", col = kmeans.1[[1]])
@@ -268,8 +267,11 @@ hcoplot(spe.ch.ward, spe.ch, lab = rownames(spe), k = 4)
 source("drawmap.R")
 drawmap(xy = spa, clusters = spech.ward.g, main = "Four Ward clusters along the Doubs River")
 
+# konvertieren von "hclust" Objekt in ein Dendogram Objekt
+dend <- as.dendrogram(spe.ch.ward)
+
 # Heat map of the dissimilarity matrix ordered with the dendrogram
-heatmap(as.matrix(spe.ch), Rowv = NULL, symm = TRUE, margin = c(3, 3))
+heatmap(as.matrix(spe.ch), Rowv = dend, symm = TRUE, margin = c(3, 3))
 
 # Ordered community table
 # Species are ordered by their weighted averages on site scores.

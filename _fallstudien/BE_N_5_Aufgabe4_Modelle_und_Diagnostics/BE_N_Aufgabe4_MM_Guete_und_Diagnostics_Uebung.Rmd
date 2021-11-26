@@ -154,7 +154,7 @@ groupLocations$group <- paste(groupLocations$Group.1,groupLocations$Group.2)
 res2 = recalculateResiduals(simulationOutput, group = groupLocations$group)
 
 # running the spatial test on grouped residuals
-testSpatialAutocorrelation(res2, groupLocations$x, groupLocations$y)
+testSpatialAutocorrelation(res2, groupLocations$x, groupLocations$y, plot = F)
 
 # Testen auf Multicollinearitaet (dh zu starke Korrelationen im finalen Modell, zB falls 
 # auf Grund der oekologischen Plausibilitaet stark korrelierte Variablen im Modell)
@@ -163,7 +163,6 @@ testSpatialAutocorrelation(res2, groupLocations$x, groupLocations$y)
 
 car::vif(m_day)
 mean(car::vif(m_day))
-
 ```
 
 ### Aufgabe 3: Graphische Darstellung der Modellresultate

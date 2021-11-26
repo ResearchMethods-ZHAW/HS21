@@ -87,29 +87,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Musterlösung Übung 5.2</title>
+  <title>Musterloesung Übung 8</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-11-09" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-11-09" />
-  <meta name="article:author" content="Gian-Andrea Egeler" />
+  <meta property="article:published" itemprop="datePublished" content="2021-11-25" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-25" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Musterlösung Übung 5.2" />
+  <meta property="og:title" content="Musterloesung Übung 8" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="Musterlösung Übung 5.2" />
+  <meta property="twitter:title" content="Musterloesung Übung 8" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","author","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterlösung Übung 5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Gian-Andrea Egeler"]}]}]},{"type":"character","attributes":{},"value":["Statistik5"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["11-09-2021"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","categories","draft","date"]}},"value":[{"type":"character","attributes":{},"value":["Musterloesung Übung 8"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["Statistik8"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["11-25-2021"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1456,7 +1455,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Musterlösung Übung 5.2","authors":[{"author":"Gian-Andrea Egeler","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-09T00:00:00.000+01:00","citationText":"Egeler, 2021"}
+{"title":"Musterloesung Übung 8","authors":[],"publishedDate":"2021-11-25T00:00:00.000+01:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1466,291 +1465,510 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Musterlösung Übung 5.2</h1>
+<h1>Musterloesung Übung 8</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">Statistik5</div>
+<div class="dt=tag">Statistik8</div>
 </div>
 <!--/radix_placeholder_categories-->
 
 </div>
 
-<div class="d-byline">
-  
-  Gian-Andrea Egeler
-  
-<br />11-09-2021
-</div>
 
 <div class="d-article">
-<div class="d-contents d-contents-float">
-<nav class="l-text toc figcaption" id="TOC">
-<h3>Contents</h3>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h2 id="musterloesung-aufgabe-8.1-clusteranalysen">Musterloesung Aufgabe 8.1: Clusteranalysen</h2>
 <ul>
-<li><a href="#musterlösung-übung-5.2-glmm">Musterlösung Übung 5.2: GLMM</a>
-<ul>
-<li><a href="#kommentierter-lösungsweg">kommentierter Lösungsweg</a></li>
-<li><a href="#methoden">Methoden</a></li>
-<li><a href="#ergebnisse">Ergebnisse</a></li>
-</ul></li>
+<li><a href="Statistik_8_Solution.R">R-Skript als Download</a></li>
+<li><a href="Statistik_Loesungstext_8.1.pdf">Loesungstext</a></li>
 </ul>
-</nav>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
-<blockquote>
-<p>Download <a href="Solution_stat5.2.R">R-Skript</a></p>
-</blockquote>
-<h1 id="musterlösung-übung-5.2-glmm">Musterlösung Übung 5.2: GLMM</h1>
-<hr />
-<blockquote>
-<p>Lese-Empfehlung Kapitel 4.3.1 von <a href="https://christophm.github.io/interpretable-ml-book/extend-lm.html#glm">Christopher Molnar</a> - Interessierte <a href="https://rpsychologist.com/r-guide-longitudinal-lme-lmer">hier</a> oder <a href="https://rpubs.com/kaz_yos/glmm1">hier</a></p>
-</blockquote>
-<hr />
-<h2 id="kommentierter-lösungsweg">kommentierter Lösungsweg</h2>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
+<h2 id="übungsaufgabe">Übungsaufgabe</h2>
+<p><em>(hier so ausführlich formuliert, wie dies auch in der Klausur der Fall sein wird)</em></p>
+<ul>
+<li>Ladet den Datensatz crime2.csv. Dieser enthält Raten von 7 Kriminatlitätsformen pro 100000 Einwohner und Jahr für die Bundesstaaten der USA.</li>
+<li>Führt eine k-means- und eine agglomerative Clusteranalyse eurer Wahl durch. Bitte beachet, dass wegen der sehr ungleichen Varianzen in jedem Fall eine Standardisierung stattfinden muss, damit die Distanzen zwischen den verschiedenen Kriminalitätsraten sinnvoll berechnet werden können.</li>
+<li><strong>Überlegt in beiden Fällen, wie viele Cluster sinnvoll sind</strong> (k-means: z. B. visuelle Betrachtung einer PCA, agglomertive Clusteranalyse: z. B. Silhoutte-Plot).</li>
+<li>Entscheidet euch dann für eine der beiden Clusterungen und vergleicht dann die erhaltenen Cluster bezüglich der Kriminalitätsformen und interpretiert die Cluster entsprechend.</li>
+<li>Bitte erklärt und begründet die einzelnen Schritte, die ihr unternehmt, um zu diesem Ergebnis zu kommen. Dazu erstellt bitte ein Word-Dokument, in das ihr Schritt für Schritt den verwendeten R-Code, die dazu gehörigen Ausgaben von R, eure Interpretation derselben und die sich ergebenden Schlussfolgerungen für das weitere Vorgehen dokumentieren.</li>
+<li>Formuliert abschliessend einen Methoden- und Ergebnisteil (ggf. incl. adäquaten Abbildungen) zu dieser Untersuchung in der Form einer wissenschaftlichen Arbeit (ausformulierte schriftliche Zusammenfassung, mit je einem Absatz von ca. 60-100 Worten, resp. 3-8 Sätzen für den Methoden- und Ergebnisteil). D. h. alle wichtigen Informationen sollten enthalten sein, unnötige Redundanz dagegen vermieden werden.</li>
+<li><strong>Abzugeben sind am Ende (a) Ein lauffähiges R-Skript; (b) begründeter Lösungsweg (Kombination aus R-Code, R Output und dessen Interpretation) und (c) ausformulierter Methoden- und Ergebnisteil (für eine wiss. Arbeit).</strong></li>
+</ul>
+<h3 id="uebung-8.1---clusteranalysen-loesung">Uebung 8.1 - Clusteranalysen – Loesung</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">nova</span> <span class="co"># kopiert originaler Datensatz</span>
-
-<span class="co"># Genereiert eine Dummyvariable: Fleisch 1, kein Fleisch 0</span>
-<span class="va">df</span> <span class="op">%&lt;&gt;%</span>
-  <span class="co"># entfernt Personen die sich ein Buffet Teller gekauft</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">label_content</span> <span class="op">!=</span> <span class="st">&quot;Hot and Cold&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># ihr könnt keine Angabe vernachlässigen, sind (nur) 54 Personen</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">age_group</span> <span class="op">!=</span> <span class="st">&quot;keine Angaben&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>label_content <span class="op">=</span> <span class="fu">str_replace_all</span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">label_content</span>, 
-                                         <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;Fisch|Geflügel&quot;</span><span class="op">)</span>,<span class="st">&quot;Fleisch&quot;</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>   
-  <span class="fu">mutate</span><span class="op">(</span>meat <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">label_content</span> <span class="op">==</span> <span class="st">&quot;Fleisch&quot;</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="co"># setzt andere Reihenfolge für die Hochschulzugehörigkeit, nur für die Interpretation</span>
-  <span class="co"># nützlich: neu Referenzkategorie Studierende (vorher Mitarbeitende)</span>
-  <span class="fu">mutate</span><span class="op">(</span>member <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">member</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;Studierende&quot;</span>, <span class="st">&quot;Mitarbeitende&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>  
-
-
-<span class="co"># wie viele NA&#39;s hat es dirn (uns interessiert v.a. die responsevariable: meat)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">meat</span><span class="op">)</span><span class="op">)</span> <span class="co">#Amelia::missmap(df_)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">crime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">&quot;crime2.csv&quot;</span>, sep <span class="op">=</span> <span class="st">&quot;;&quot;</span><span class="op">)</span>
 </code></pre>
 </div>
-<pre><code>[1] 0</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sieht euch die Verteilung zwischen Fleisch und  kein Fleisch an, </span>
-<span class="co"># beide kategorien kommen nicht gleich häufig vor, aber nicht super tragisch</span>
-<span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">meat</span><span class="op">)</span><span class="op">)</span> <span class="co"># gibt die prozente an</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">crime</span>
 </code></pre>
 </div>
-<pre><code>
-        0         1 
-0.4782123 0.5217877 </code></pre>
+</div>
+<p>Im mitgelieferten R-Skript habe ich die folgenden Analysen zunächst mit untransformierten, dann mit standardisierten Kriminalitätsraten berechnet. Ihr könnt die Ergebnisse vergleichen und seht, dass sie sehr unterschiedlich ausfallen.</p>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">meat</span><span class="op">)</span> <span class="co"># gibt die absoluten werte an</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">crimez</span> <span class="op">&lt;-</span> <span class="va">crime</span>
+<span class="va">crimez</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">crime</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="va">scale</span><span class="op">)</span>
+<span class="va">crimez</span>
 </code></pre>
 </div>
-<pre><code>
-   0    1 
-8560 9340 </code></pre>
+<pre><code>    X      Murder        Rape       Robbery     Assault     Burglary
+1  ME -1.38246619 -1.31559240 -1.0464120463 -1.24765744 -0.938630226
+2  NH -1.32457397 -0.85298774 -1.0830960795 -1.31950227 -1.053079880
+3  VT -1.38246619 -0.83227410 -1.1014380961 -1.24047295 -0.590512528
+4  MA -0.91932843 -0.28681488  0.4668043222  0.39758933 -0.299619657
+5  RI -0.94827454 -0.85989229 -0.2118502916 -0.60105391  0.232094361
+6  CT -0.62986734 -0.69418316  0.4576333139 -0.50765562  0.003195053
+7  NY  1.13584533 -0.23157851  3.4106979845  1.11603770  0.058035512
+8  NJ -0.45619068 -0.04515574  1.1638009525 -0.07658660 -0.299619657
+9  PA -0.36935236 -0.60442405  0.0907929821 -0.71600564 -1.100767236
+10 OH -0.36935236  0.32768980 -0.0009171008 -0.29212111 -0.497522184
+11 IN -0.22462181 -0.54918767 -0.4778095321 -0.64416081 -0.738343331
+12 IL  0.61481536 -0.10039211  1.6773774169  1.13759115 -0.039723567
+13 MI  1.30952199  2.31619936  1.4572732179  1.06574631  0.744733437
+14 WI -1.06405898 -0.94965140 -0.6337166731 -0.81658842 -0.986317582
+15 MN -1.23773564 -0.14181940 -0.3677574326 -0.91717119 -0.459372299
+16 IA -1.44035840 -1.47439698 -0.9180179302 -0.69445219 -0.573821954
+17 MO  0.70165369 -0.32133762  0.2558711314  0.67778419 -0.144635750
+18 ND -1.67192728 -1.53653790 -1.2390032205 -1.75057130 -1.935295964
+19 SD -0.80354400 -1.11536053 -1.1564641459 -1.35542469 -1.532337807
+20 NE -1.06405898 -0.63894678 -0.8354788556 -0.65852977 -1.069770455
+21 KS -0.68775956 -0.06586938 -0.5695196150 -0.16998488 -0.020648625
+22 DE -0.54302901  1.59122191 -0.1659952501 -0.24901420 -0.368766323
+23 MD  0.64376147  0.67291716  1.4847862428  1.43933946  0.236863097
+24 VA  0.09378539 -0.50776039 -0.3310733994 -0.78066600 -0.914786548
+25 WV -0.25356792 -1.03250597 -0.9271889385 -1.26921089 -1.363047694
+26 NC  0.38324649 -0.51466494 -0.4961515487  0.56283245  0.067572983
+27 SC  0.52797704  0.51411257 -0.3952704575  1.79137916  0.341775280
+28 GA  1.28057588  0.69363080  0.6593954963  0.31137552  0.611208841
+29 FL  1.42530643  1.30123094  2.0625597653  2.36613786  2.442403307
+30 KY -0.02199904 -0.74251499 -0.5420065902 -0.38551939 -0.888558502
+31 TN  1.04900701  0.90767176  0.6043694466 -0.01192624  0.306009763
+32 AL  0.96216868 -0.37657400 -0.2760473496  0.95079457 -0.089795291
+33 MS  1.28057588 -0.55609222 -0.7070847395 -0.74474358 -0.287697818
+34 AR  0.38324649 -0.34205126 -0.5695196150  0.01681169 -0.397378737
+35 LA  1.74371363  0.43125801  0.7511055793  1.48244636  0.630283783
+36 OK  0.38324649  0.17578977 -0.3219023911  0.06710308  1.407587684
+37 TX  1.94633640  1.22528092  0.8978417120  0.56283245  2.032292046
+38 MT -1.12195120 -1.14297872 -1.1197801127 -1.13270570 -0.986317582
+39 ID -1.03511287 -0.95655595 -1.1106091044 -0.70163668 -0.461756667
+40 WY -0.42724457 -0.82536956 -1.1014380961 -0.23464524 -0.905249077
+41 CO  0.06483929  0.58315804  0.0265959241  0.38322036  1.419509523
+42 NM  1.36741421  0.90076721 -0.1109692004  1.88477745  1.545881016
+43 AZ  0.73059980  0.63148987  0.2467001231  1.15914460  1.696096187
+44 UT -1.03511287 -0.59061496 -0.7621107892 -0.68726771 -0.671581033
+45 NV  1.68582141  2.14358568  1.3288791018  0.56283245  0.971248378
+46 WA -0.51408290  1.34956277 -0.0651141589 -0.22746075  1.584030901
+47 OR -0.05094515  1.19075819  0.5860274300  0.07428756  1.836773887
+48 CA  1.30952199  0.76267627  1.8424555662  1.76264123  1.190610215
+49 AK  0.52797704  2.68214035 -0.4961515487  0.90050319 -0.082642188
+50 HI -0.57197512 -0.19705577 -0.3310733994 -1.24047295  0.339390912
+          Theft     Vehicle
+1  -0.759700660 -1.04035426
+2  -0.944578268 -0.73523707
+3  -0.294181505 -0.95930750
+4  -0.969849308  2.49709812
+5  -0.465758565  1.53883946
+6  -0.213048167  0.30883580
+7   0.007740919  1.21465245
+8  -0.127924664  1.87732884
+9  -1.681428588 -0.13453761
+10 -0.457778237 -0.02965358
+11 -0.778321427 -0.25849147
+12  0.026361685  1.17174535
+13  0.611585766  1.99174778
+14 -0.154525758 -0.61128321
+15 -0.177136689 -0.44918971
+16 -0.155855813 -1.06895899
+17 -0.556202287  0.27069615
+18 -1.156056970 -1.25012232
+19 -1.302362990 -1.35023890
+20 -0.320782600 -1.02128443
+21  0.119465516 -0.59221339
+22  0.228530004 -0.52546900
+23  0.079563874  0.77604649
+24 -0.526941083 -0.77814417
+25 -2.075124788 -1.01651698
+26 -0.658616501 -0.83058619
+27 -0.096003350 -0.50163172
+28  0.087544202  0.22778905
+29  1.934990222  1.02872166
+30 -1.567043881 -0.90209803
+31 -1.053642756  0.77127904
+32 -0.816893014 -0.54930628
+33 -1.427388135 -1.10709864
+34 -0.815562959 -0.89256312
+35  0.663457900  0.28499852
+36  0.297692850  1.27186192
+37  1.421589096  1.58174656
+38  0.526462263 -0.79721400
+39 -0.157185868 -0.95930750
+40  0.212569347 -1.01651698
+41  1.746122450  0.49476659
+42  1.055824046 -0.18697963
+43  1.887108252  0.17534703
+44  1.537303858 -0.75907435
+45  0.759221841  0.45662694
+46  1.794004420 -0.32046839
+47  1.655678729  0.09430028
+48  0.619566094  1.81058445
+49  1.319174882  1.05732640
+50  1.118336618 -0.25849147</code></pre>
+</div>
+<p>„scale“ führt eine Standardisierung (z-Transformation) durch, so dass alle Variablen anschiessen einen Mittelwert von 0 und eine SD von 1 haben, ausgenommen natürlich die 1. Spalte mit den Kürzeln der Bundesstaaten. Anschliessend wird das SSI-Kriterium getestet und zwar für Partitionierungen von 2 bis 6 Gruppen (wie viele Gruppen man maximal haben will, muss man pragmatisch nach der jeweiligen Fragestelltung entscheiden).</p>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># definiert das logistische Modell mit ccrs als random intercept und </span>
-<span class="co"># wendet es auf den Datensatz an</span>
-
-
-<span class="co">#check out ICC: https://www.datanovia.com/en/lessons/intraclass-correlation-coefficient-in-r/</span>
-<span class="co">#however data needs to be wide format</span>
-<span class="co">#not working yet</span>
-<span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ccrs</span>, <span class="va">label_content</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">&quot;ccrs&quot;</span>, values_fill <span class="op">=</span> <span class="st">&quot;label_content&quot;</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">tt</span>
-
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
-<span class="co">#dauert ein paar sekunden</span>
-<span class="va">mod0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html">glmer</a></span><span class="op">(</span><span class="va">meat</span> <span class="op">~</span> <span class="va">gender</span> <span class="op">+</span> <span class="va">member</span> <span class="op">+</span> <span class="va">age_group</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">ccrs</span><span class="op">)</span>,
-              data <span class="op">=</span> <span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="st">&quot;logit&quot;</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="co"># lasst euch das Modell anzeigen: sieht so aus, als ob v.a. Geschlecht eine </span>
-<span class="co"># Rolle spielt</span>
-<span class="co"># wahrnmeldung kann vernachlässigt werden (aufgrund der unicode resp. </span>
-<span class="co"># umlaute in den variablen)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod0</span><span class="op">)</span> 
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org">vegan</a></span><span class="op">)</span>
+<span class="va">crimez.KM.cascade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cascadeKM.html">cascadeKM</a></span><span class="op">(</span><span class="va">crimez</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>,
+                        inf.gr <span class="op">=</span> <span class="fl">2</span>, sup.gr <span class="op">=</span> <span class="fl">6</span>, iter <span class="op">=</span> <span class="fl">100</span>, criterion <span class="op">=</span> <span class="st">&quot;ssi&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">crimez.KM.cascade</span><span class="op">)</span>
 </code></pre>
 </div>
-<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
-  Approximation) [glmerMod]
- Family: binomial  ( logit )
-Formula: meat ~ gender + member + age_group + (1 | ccrs)
-   Data: df
+<pre><code>          Length Class  Mode     
+partition 250    -none- numeric  
+results    10    -none- numeric  
+criterion   1    -none- character
+size       30    -none- numeric  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">crimez.KM.cascade</span><span class="op">$</span><span class="va">results</span>
+</code></pre>
+</div>
+<pre><code>      2 groups   3 groups   4 groups   5 groups  6 groups
+SSE 174.959159 144.699605 124.437221 108.119280 95.316398
+ssi   1.226057   1.304674   1.555594   1.539051  1.351146</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">crimez.KM.cascade</span><span class="op">$</span><span class="va">partition</span>
+</code></pre>
+</div>
+<pre><code>   2 groups 3 groups 4 groups 5 groups 6 groups
+1         1        2        3        1        6
+2         1        2        3        1        6
+3         1        2        3        1        6
+4         2        1        1        4        1
+5         1        1        2        4        1
+6         1        1        2        4        2
+7         2        1        1        2        3
+8         2        1        1        4        1
+9         1        2        2        5        2
+10        1        1        2        5        2
+11        1        2        2        5        2
+12        2        1        1        2        3
+13        2        3        4        2        5
+14        1        2        3        1        6
+15        1        2        3        1        6
+16        1        2        3        1        6
+17        2        1        2        5        3
+18        1        2        3        1        6
+19        1        2        3        1        6
+20        1        2        3        1        6
+21        1        2        2        5        2
+22        1        1        2        5        2
+23        2        1        1        2        3
+24        1        2        2        5        2
+25        1        2        3        1        6
+26        1        1        2        5        2
+27        2        1        2        5        3
+28        2        1        4        2        3
+29        2        3        4        2        5
+30        1        2        2        5        2
+31        2        1        1        5        3
+32        1        1        2        5        2
+33        1        2        2        5        2
+34        1        2        2        5        2
+35        2        3        4        2        3
+36        2        1        4        3        4
+37        2        3        4        2        5
+38        1        2        3        1        6
+39        1        2        3        1        6
+40        1        2        3        1        6
+41        2        3        4        3        4
+42        2        3        4        3        4
+43        2        3        4        3        4
+44        1        2        3        1        6
+45        2        3        4        2        5
+46        2        3        4        3        4
+47        2        3        4        3        4
+48        2        3        4        2        5
+49        2        3        4        3        4
+50        1        2        2        1        2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># k-means visualisation</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">cclust</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">crimez.KM.cascade</span>, sortg <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+</code></pre>
+</div>
+<p><img src="data:image/png;base64,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" width="624" /></p>
+</div>
+<p>Nach SSI ist die 4-Gruppenlösung die beste, mit dieser wird also weitergerechnet.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 4 Kategorien sind nach SSI offensichtlich besonders gut</span>
+<span class="va">modelz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cclust/man/cclust.html">kmeans</a></span><span class="op">(</span><span class="va">crimez</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span>, <span class="fl">4</span><span class="op">)</span>
+<span class="va">modelz</span>
+</code></pre>
+</div>
+<pre><code>K-means clustering with 4 clusters of sizes 6, 16, 14, 14
 
-     AIC      BIC   logLik deviance df.resid 
- 22611.1  22665.6 -11298.5  22597.1    17893 
+Cluster means:
+        Murder       Rape    Robbery    Assault     Burglary
+1  0.344651676  0.1527746  1.4679727  0.6670075 -0.006342418
+2 -0.002098593 -0.2436615 -0.2668763 -0.1457373 -0.279054485
+3 -1.088869933 -0.9575423 -0.9573223 -1.0018455 -0.966220768
+4  0.943560464  1.1705377  0.6331926  0.8825420  1.287858358
+       Theft    Vehicle
+1 -0.3396250  1.3846917
+2 -0.5371659 -0.3276196
+3 -0.3729397 -0.9310433
+4  1.1323972  0.7120264
 
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--2.9879 -0.8253  0.4831  0.7618  3.2980 
+Clustering vector:
+ [1] 3 3 3 1 2 2 1 1 2 2 2 1 4 3 3 3 2 3 3 3 2 2 1 2 3 2 2 4 4 2 1 2 2
+[34] 2 4 4 4 3 3 3 4 4 4 3 4 4 4 4 4 2
 
-Random effects:
- Groups Name        Variance Std.Dev.
- ccrs   (Intercept) 1.047    1.023   
-Number of obs: 17900, groups:  ccrs, 1427
+Within cluster sum of squares by cluster:
+[1] 16.59050 39.51883 19.37307 48.95481
+ (between_SS / total_SS =  63.7 %)
 
-Fixed effects:
-                           Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)                -0.61178    0.07146  -8.561  &lt; 2e-16 ***
-genderM                     0.85769    0.07384  11.615  &lt; 2e-16 ***
-memberMitarbeitende         0.14252    0.11044   1.290  0.19690    
-age_group26 bis 34-jÃ¤hrig -0.23126    0.08914  -2.594  0.00948 ** 
-age_group35 bis 49-jÃ¤hrig -0.07394    0.13687  -0.540  0.58905    
-age_group50 bis 64-jÃ¤hrig -0.01069    0.17538  -0.061  0.95138    
+Available components:
+
+[1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+[5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+[9] &quot;ifault&quot;      </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#File für ANOVA (Originaldaten der Vorfälle, nicht die ztransformierten)</span>
+<span class="va">crime.KM4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">crime</span>,<span class="va">modelz</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+<span class="va">crime.KM4</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">crime.KM4</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span>
+<span class="va">crime.KM4</span>
+</code></pre>
+</div>
+<pre><code>    X Murder Rape Robbery Assault Burglary Theft Vehicle cluster
+1  ME    2.0 14.8      28     102      803  2347     164       3
+2  NH    2.2 21.5      24      92      755  2208     228       3
+3  VT    2.0 21.8      22     103      949  2697     181       3
+4  MA    3.6 29.7     193     331     1071  2189     906       1
+5  RI    3.5 21.4     119     192     1294  2568     705       2
+6  CT    4.6 23.8     192     205     1198  2758     447       2
+7  NY   10.7 30.5     514     431     1221  2924     637       1
+8  NJ    5.2 33.2     269     265     1071  2822     776       1
+9  PA    5.5 25.1     152     176      735  1654     354       2
+10 OH    5.5 38.6     142     235      988  2574     376       2
+11 IN    6.0 25.9      90     186      887  2333     328       2
+12 IL    8.9 32.4     325     434     1180  2938     628       1
+13 MI   11.3 67.4     301     424     1509  3378     800       4
+14 WI    3.1 20.1      73     162      783  2802     254       3
+15 MN    2.5 31.8     102     148     1004  2785     288       3
+16 IA    1.8 12.5      42     179      956  2801     158       3
+17 MO    9.2 29.2     170     370     1136  2500     439       2
+18 ND    1.0 11.6       7      32      385  2049     120       3
+19 SD    4.0 17.7      16      87      554  1939      99       3
+20 NE    3.1 24.6      51     184      748  2677     168       3
+21 KS    4.4 32.9      80     252     1188  3008     258       2
+22 DE    4.9 56.9     124     241     1042  3090     272       2
+23 MD    9.0 43.6     304     476     1296  2978     545       1
+24 VA    7.1 26.5     106     167      813  2522     219       2
+25 WV    5.9 18.9      41      99      625  1358     169       3
+26 NC    8.1 26.4      88     354     1225  2423     208       2
+27 SC    8.6 41.3      99     525     1340  2846     277       2
+28 GA   11.2 43.9     214     319     1453  2984     430       4
+29 FL   11.7 52.7     367     605     2221  4373     598       4
+30 KY    6.7 23.1      83     222      824  1740     193       2
+31 TN   10.4 47.0     208     274     1325  2126     544       1
+32 AL   10.1 28.4     112     408     1159  2304     267       2
+33 MS   11.2 25.8      65     172     1076  1845     150       2
+34 AR    8.1 28.9      80     278     1030  2305     195       2
+35 LA   12.8 40.1     224     482     1461  3417     442       4
+36 OK    8.1 36.4     107     285     1787  3142     649       4
+37 TX   13.5 51.6     240     354     2049  3987     714       4
+38 MT    2.9 17.3      20     118      783  3314     215       3
+39 ID    3.2 20.0      21     178     1003  2800     181       3
+40 WY    5.3 21.9      22     243      817  3078     169       3
+41 CO    7.0 42.3     145     329     1792  4231     486       4
+42 NM   11.5 46.9     130     538     1845  3712     343       4
+43 AZ    9.3 43.0     169     437     1908  4337     419       4
+44 UT    3.2 25.3      59     180      915  4074     223       3
+45 NV   12.6 64.9     287     354     1604  3489     478       4
+46 WA    5.0 53.4     135     244     1861  4267     315       4
+47 OR    6.6 51.1     206     286     1967  4163     402       4
+48 CA   11.3 44.9     343     521     1696  3384     762       4
+49 AK    8.6 72.7      88     401     1162  3910     604       4
+50 HI    4.8 31.0     106     103     1339  3759     328       2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">crime.KM4</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>&#39;data.frame&#39;:   50 obs. of  9 variables:
+ $ X       : chr  &quot;ME&quot; &quot;NH&quot; &quot;VT&quot; &quot;MA&quot; ...
+ $ Murder  : num  2 2.2 2 3.6 3.5 4.6 10.7 5.2 5.5 5.5 ...
+ $ Rape    : num  14.8 21.5 21.8 29.7 21.4 23.8 30.5 33.2 25.1 38.6 ...
+ $ Robbery : int  28 24 22 193 119 192 514 269 152 142 ...
+ $ Assault : int  102 92 103 331 192 205 431 265 176 235 ...
+ $ Burglary: int  803 755 949 1071 1294 1198 1221 1071 735 988 ...
+ $ Theft   : int  2347 2208 2697 2189 2568 2758 2924 2822 1654 2574 ...
+ $ Vehicle : int  164 228 181 906 705 447 637 776 354 376 ...
+ $ cluster : Factor w/ 4 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;: 3 3 3 1 2 2 1 1 2 2 ...</code></pre>
+</div>
+<p><strong>Von den agglomerativen Clusterverfahren habe ich mich für Ward’s minimum variance clustering entschieden, da dieses allgemein als besonders geeignet gilt.</strong></p>
+<p>Vor der Berechnung von crime.norm und crime.ch muss man die Spalte mit den Bundesstaatenkürzeln entfern.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Agglomerative Clusteranalyse</span>
+<span class="va">crime2</span> <span class="op">&lt;-</span> <span class="va">crime</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">crime.norm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">crime2</span>, <span class="st">&quot;normalize&quot;</span><span class="op">)</span>
+<span class="va">crime.ch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">crime.norm</span>, <span class="st">&quot;euc&quot;</span><span class="op">)</span>
+<span class="co"># Attach site names to object of class &#39;dist&#39;</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">crime.ch</span>, <span class="st">&quot;Labels&quot;</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">crime</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
+
+<span class="co">#Ward&#39;s minimum variance clustering</span>
+<span class="va">crime.ch.ward</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">crime.ch</span>, method <span class="op">=</span> <span class="st">&quot;ward.D2&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">crime.ch.ward</span>, labels <span class="op">=</span> <span class="va">crime</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">&quot;Chord - Ward&quot;</span><span class="op">)</span>
+
+<span class="co"># Choose and rename the dendrogram (&quot;hclust&quot; object)</span>
+<span class="va">hc</span> <span class="op">&lt;-</span> <span class="va">crime.ch.ward</span>
+<span class="co"># hc &lt;- spe.ch.beta2</span>
+<span class="co"># hc &lt;- spe.ch.complete</span>
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.new</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">&quot;Optimal number of clusters&quot;</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, noRStudioGD <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+
+
+<span class="co"># Average silhouette widths (Rousseeuw quality index)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">cluster</a></span><span class="op">)</span>
+<span class="va">Si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="op">{</span>
+ <span class="va">sil</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/silhouette.html">silhouette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span><span class="op">(</span><span class="va">hc</span>, k <span class="op">=</span> <span class="va">k</span><span class="op">)</span>, <span class="va">crime.ch</span><span class="op">)</span>
+ <span class="va">Si</span><span class="op">[</span><span class="va">k</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">sil</span><span class="op">)</span><span class="op">$</span><span class="va">avg.width</span>
+<span class="op">}</span>
+<span class="va">k.best</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">Si</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">crime</span><span class="op">)</span>, <span class="va">Si</span>, type <span class="op">=</span> <span class="st">&quot;h&quot;</span>,
+ main <span class="op">=</span> <span class="st">&quot;Silhouette-optimal number of clusters&quot;</span>,
+ xlab <span class="op">=</span> <span class="st">&quot;k (number of clusters)&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Average silhouette width&quot;</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">k.best</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">&quot;optimum&quot;</span>, <span class="va">k.best</span>, sep <span class="op">=</span> <span class="st">&quot;\n&quot;</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">&quot;red&quot;</span>,
+ font <span class="op">=</span> <span class="fl">2</span>, col.axis <span class="op">=</span> <span class="st">&quot;red&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">k.best</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">Si</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="st">&quot;red&quot;</span>, cex <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
+</code></pre>
+</div>
+</div>
+<p>Demnach wären beim Ward’s-Clustering nur zwei Gruppen die optimale Lösung.</p>
+<p><strong>Für die Vergleiche der Bundesstaatengruppen habe ich mich im Folgenden für die k-means Clusterung mit 4 Gruppen entschieden.</strong></p>
+<p>Damit die Boxplots und die ANOVA direkt interpretierbar sind, werden für diese, anders als für die Clusterung, die untransformierten Incidenz-Werte verwendet (also crime statt crimez). Die Spalte mit der Clusterzugehörigkeit im Fall von k-means mit 4 Clustern hängt man als Spalte an (Achtung: muss als Faktor definiert werden!).</p>
+<p>Anschliessend kann man die 7 ANOVAs rechnen, die Posthoc-Vergleiche durchführen und die zugehörigen Boxplots mit Buchstaben für die homogenen Gruppen erzeugen. Sinnvollerweise gruppiert man die Abbildungen gleich, z. B. je 2 x 2. Das Skript ist hier simple für jede Verbrechensart wiederholt. Erfahrenere R-Nutzer können das Ganze hier natürlich durch eine Schleife abkürzen.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://multcomp.R-forge.R-project.org">multcomp</a></span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://multcomp.R-forge.R-project.org">multcomp</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">&quot;multcomp&quot;</span><span class="op">)</span><span class="op">}</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://multcomp.R-forge.R-project.org">multcomp</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">ANOVA.Murder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Murder</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ANOVA.Murder</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+cluster      3  355.4  118.46   23.75 1.96e-09 ***
+Residuals   46  229.4    4.99                     
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Correlation of Fixed Effects:
-            (Intr) gendrM mmbrMt a_26b3 a_35b4
-genderM     -0.658                            
-mmbrMtrbtnd -0.076  0.029                     
-ag_26b34-Ã¤ -0.411 -0.025 -0.353              
-ag_35b49-Ã¤ -0.281  0.041 -0.663  0.467       
-ag_50b64-Ã¤ -0.208  0.020 -0.598  0.393  0.517</code></pre>
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## erste Interpretation: Geschlecht (Mann) und Alter (junge Personen) scheinen den Fleischkonsum positiv zu beeinflussen + Hochschulzugehörigkeit spielt keien Rolle</span>
-<span class="co"># d.h. könnte man vernachlässigen. Ich lasse aus inhaltlichen Gründen aber im Modell drin</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Murder</span>, linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Murder</span><span class="op">~</span><span class="va">cluster</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Murder&quot;</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
 
-<span class="co"># Pseudo R^2</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">MuMIn</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/MuMIn/man/r.squaredGLMM.html">r.squaredGLMM</a></span><span class="op">(</span><span class="va">mod0</span><span class="op">)</span> 
+<span class="va">ANOVA.Rape</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Rape</span><span class="op">~</span><span class="va">cluster</span>,data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ANOVA.Rape</span><span class="op">)</span>
 </code></pre>
 </div>
-<pre><code>                   R2m       R2c
-theoretical 0.03760018 0.2699647
-delta       0.03240612 0.2326719</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+cluster      3   6945  2315.0   31.95 2.58e-11 ***
+Residuals   46   3333    72.5                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># das marginale R^2 (r2m) gibt uns die erklärte Varianz der fixen Effekte: hier 4% (das ist sehr wenig)</span>
-<span class="co"># das conditionale R^2 (r2c) gibt uns die erklärte Varianz für das ganze Modell </span>
-<span class="co"># (mit fixen und variablen Effekten): hier 27% (ganz ok, aber auch nicht super mega)</span>
-<span class="co"># für weitere Informationen: https://rdrr.io/cran/MuMIn/man/r.squaredGLMM.html </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Rape</span>, linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Rape</span><span class="op">~</span><span class="va">cluster</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Rape&quot;</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
 
-<span class="co"># zusätzliche Informationen, welche für die Interpretation gut sein kann</span>
-<span class="co"># berechnet den Standardfehler (mehr infos: https://www.youtube.com/watch?v=r-txC-dpI-E oder hier: https://mgimond.github.io/Stats-in-R/CI.html)</span>
-<span class="co"># weitere info: https://stats.stackexchange.com/questions/26650/how-do-i-reference-a-regression-models-coefficients-standard-errors</span>
-<span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html">vcov</a></span><span class="op">(</span><span class="va">mod0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># zeigt eine Tabelle der Schätzer mit 95% Konfidenzintervall (KI)</span>
-<span class="co"># =&gt; Faustregel: falls 0 im KI enthalten ist, dann ist der Unterschied statistisch NICHT signifikant</span>
-<span class="va">tab1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Est <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/fixef.html">fixef</a></span><span class="op">(</span><span class="va">mod0</span><span class="op">)</span>, LL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/fixef.html">fixef</a></span><span class="op">(</span><span class="va">mod0</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">se</span>,
-              UL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/fixef.html">fixef</a></span><span class="op">(</span><span class="va">mod0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">se</span><span class="op">)</span>
-
-<span class="co"># erzeugt die Odds Ratios</span>
-<span class="va">tab2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">tab1</span><span class="op">)</span>
+<span class="va">ANOVA.Robbery</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Robbery</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ANOVA.Robbery</span><span class="op">)</span>
 </code></pre>
 </div>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+cluster      3 386563  128854   30.24 5.96e-11 ***
+Residuals   46 196025    4261                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Robbery</span>, linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Robbery</span><span class="op">~</span><span class="va">cluster</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Robbery&quot;</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+
+<span class="va">ANOVA.Assault</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Assault</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ANOVA.Assault</span><span class="op">)</span>
+</code></pre>
 </div>
-<h2 id="methoden">Methoden</h2>
-<p>Die Responsevariable “Fleischkonsum” ist eine binäre Variable. Demnach wird eine multiple logistische Regression mit den Prädiktoren “Alter (Gruppen)”, “Geschlecht” und “Hochschulzugehörigkeit” gerechnet. Da in den Daten gewisse Individuen mehrmals vorkommen, wird das Individuum (Variable ccrs) als variabler Effekt in das Modell aufgenommen.</p>
-<h2 id="ergebnisse">Ergebnisse</h2>
-<p>Das Geschlecht und das Alter nehmen einen signifikanten Einfluss auf den Fleischkonsum (siehe Table 1): Männer kaufen signifikant häufiger ein fleischhaltiges Gericht als Frauen; junge Personen (15 bis 25-jährig) kaufen signifikant häufiger ein fleischhaltiges Gericht in der Mensa. Es sieht so aus, als ob die Hochschulzugehörigkeit auf den ersten Blick keinen Einfluss nimmt. Aber man müsste auch die Interaktion zwischen Geschlecht und Hochschulzugehörigkeit berücksichtigen, um ein abschliessendes Bild zu bekommen. Das kleine marginale Pseudo-R^2 zeigt auf, dass es nicht das “beste” Modell ist. Insbesondere die tiefe Varianzaufklärung für die randomisierte Variable (r2c; ccrs) scheint mit (nur) 4% sehr gering. Das sind Hinweise dafür, dass das Modell ggf. noch weitere Ebenen haben könnte (z.B. Standort Mensa).</p>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Modellschätzer (Coefficients) mit dazugehörigem 95% Konfidenzintervall</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">Coefficients</th>
-<th style="text-align: right;">Lower Limit (LL)</th>
-<th style="text-align: right;">Uppewr Limit (UL)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Intercept</td>
-<td style="text-align: right;">-0.61</td>
-<td style="text-align: right;">-0.75</td>
-<td style="text-align: right;">-0.47</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Männer</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">0.71</td>
-<td style="text-align: right;">1.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mitarbeitende</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">-0.07</td>
-<td style="text-align: right;">0.36</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">26 bis 34-jährig</td>
-<td style="text-align: right;">-0.23</td>
-<td style="text-align: right;">-0.41</td>
-<td style="text-align: right;">-0.06</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">35 bis 49-jährig</td>
-<td style="text-align: right;">-0.07</td>
-<td style="text-align: right;">-0.34</td>
-<td style="text-align: right;">0.19</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">50 bis 64-jährig</td>
-<td style="text-align: right;">-0.01</td>
-<td style="text-align: right;">-0.35</td>
-<td style="text-align: right;">0.33</td>
-</tr>
-</tbody>
-</table>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+cluster      3 541786  180595   20.39 1.51e-08 ***
+Residuals   46 407517    8859                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Assault</span>, linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Assault</span><span class="op">~</span><span class="va">cluster</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Assault&quot;</span>,  data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+
+<span class="va">ANOVA.Burglary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Burglary</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> <span class="op">(</span><span class="va">ANOVA.Burglary</span><span class="op">)</span>
+</code></pre>
 </div>
-<p>Die Chance, dass Männer ein fleischhaltiges Gericht kaufen ist 2.36mal (+136%) höher als bei Frauen (siehe Table 2). Die Chance, dass 26 bis 34-jährige Personen ein fleischhaltiges Gericht kaufen ist kleiner (-21%) als bei den 15 bis 25-jährigen Personen.</p>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<caption><span id="tab:unnamed-chunk-5">Table 2: </span>Odds Ratio (OR) mit dazugehörigem 95% Konfidenzintervall</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">OR</th>
-<th style="text-align: right;">Lower Limit (LL)</th>
-<th style="text-align: right;">Uppewr Limit (UL)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Intercept</td>
-<td style="text-align: right;">0.54</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.62</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Männer</td>
-<td style="text-align: right;">2.36</td>
-<td style="text-align: right;">2.04</td>
-<td style="text-align: right;">2.72</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mitarbeitende</td>
-<td style="text-align: right;">1.15</td>
-<td style="text-align: right;">0.93</td>
-<td style="text-align: right;">1.43</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">26 bis 34-jährig</td>
-<td style="text-align: right;">0.79</td>
-<td style="text-align: right;">0.67</td>
-<td style="text-align: right;">0.95</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">35 bis 49-jährig</td>
-<td style="text-align: right;">0.93</td>
-<td style="text-align: right;">0.71</td>
-<td style="text-align: right;">1.21</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">50 bis 64-jährig</td>
-<td style="text-align: right;">0.99</td>
-<td style="text-align: right;">0.70</td>
-<td style="text-align: right;">1.40</td>
-</tr>
-</tbody>
-</table>
+<pre><code>            Df  Sum Sq Mean Sq F value  Pr(&gt;F)    
+cluster      3 6602474 2200825   50.21 1.5e-14 ***
+Residuals   46 2016382   43834                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Burglary</span>, linfct<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Burglary</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Burglary&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+
+<span class="va">ANOVA.Theft</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Theft</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ANOVA.Theft</span><span class="op">)</span>
+</code></pre>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<pre><code>            Df   Sum Sq Mean Sq F value   Pr(&gt;F)    
+cluster      3 14249791 4749930   16.25 2.44e-07 ***
+Residuals   46 13448760  292364                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Theft</span>, linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Theft</span><span class="op">~</span><span class="va">cluster</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Theft&quot;</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+
+<span class="va">ANOVA.Vehicle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Vehicle</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ANOVA.Vehicle</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>            Df  Sum Sq Mean Sq F value   Pr(&gt;F)    
+cluster      3 1427939  475980   30.08 6.46e-11 ***
+Residuals   46  727932   15825                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/cld.html">cld</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">ANOVA.Vehicle</span>, linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">mcp</a></span><span class="op">(</span>cluster <span class="op">=</span> <span class="st">&quot;Tukey&quot;</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Vehicle</span><span class="op">~</span><span class="va">cluster</span>, data <span class="op">=</span> <span class="va">crime.KM4</span>, xlab <span class="op">=</span> <span class="st">&quot;Cluster&quot;</span>, ylab <span class="op">=</span> <span class="st">&quot;Vehicle&quot;</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="va">letters</span><span class="op">$</span><span class="va">mcletters</span><span class="op">$</span><span class="va">Letters</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+</code></pre>
+</div>
+<p><img src="data:image/png;base64,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" width="624" /></p>
+</div>
+<p>Die Boxplots erlauben jetzt auch eine Beurteilung der Modelldiagnostik: sind die Residuen hinreichen normalverteilt (symmetrisch) und sind die Varianzen zwischen den Kategorien einigermassen ähnlich. Mit der Symmetrie/Normalverteilung sieht es OK aus. Die Varianzhomogenität ist nicht optimal – meist deutlich grössere Varianz bei höheren Mittelwerten. Eine log-Transformation hätte das verbessert und könnte hier gut begründet werden. Da die p-Werte sehr niedrig waren und die Varianzheterogenität noch nicht extrem war, habe ich aber von einer Transformation abgesehen, da jede Transformation die Interpretation der Ergebnisse erschwert. Jetzt muss man nur noch herausfinden, welche Bundesstaaten überhaupt zu welchem der vier Cluster gehören, sonst ist das ganze schöne Ergebnis nutzlos. Z. B. kann man in R auf den Dataframe clicken und ihn nach cluster sortieren.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

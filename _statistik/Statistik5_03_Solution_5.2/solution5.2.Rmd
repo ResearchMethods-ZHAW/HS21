@@ -8,7 +8,7 @@ author:
 
 categories:
 - Statistik5
-draft: true
+
 ---
 
 ```{r, echo = FALSE, message=FALSE, results="hide"}

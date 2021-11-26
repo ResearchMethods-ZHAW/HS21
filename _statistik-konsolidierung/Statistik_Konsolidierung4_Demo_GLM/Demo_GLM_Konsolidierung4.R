@@ -1,28 +1,43 @@
+
+knitr::opts_chunk$set(echo = T, collapse=TRUE)
+
 #export files
-knitr::purl("_statistik-konsolidierung/Statistik-Konsolidierung4_Demo_GLM/index.Rmd", here::here("_statistik-konsolidierung/Statistik-Konsolidierung4_Demo_GLM/Demo_GLM_Konsolidierung.R"), documentation = 0)
-# rmarkdown::render(input = "_statistik/Statistik3_solution/index.rmd", output_format = "pdf_document", output_file = here::here("_statistik/Statistik1_solution/Solution_stat1.pdf"))
+knitr::purl("index.Rmd", "Demo_GLM_Konsolidierung4.R", documentation = 0)
 
 
+
+library(tidyverse)
+
+mytheme <- 
+  theme_classic() + 
+  theme(
+    axis.line = element_line(color = "black"), 
+    axis.text = element_text(size = 12, color = "black"), 
+    axis.title = element_text(size = 12, color = "black"), 
+    axis.ticks = element_line(size = .75, color = "black"), 
+    axis.ticks.length = unit(.5, "cm")
+    )
 
 
 ############
 # quasipoisson regression
 ############
 
-d <- mtcars
+cars <- mtcars %>% 
+   mutate(kml = (235.214583/mpg))
 
-glm.poisson <- glm(hp ~ mpg, data = d, family = poisson(link = log))
+glm.poisson <- glm(hp ~ kml, data = cars, family = "poisson")
 
 summary(glm.poisson) # klare overdisperion
 
 # deshalb quasipoisson
-glm.quasipoisson <- glm(hp ~ mpg, data = d, family = quasipoisson(link = log))
+glm.quasipoisson <- glm(hp ~ kml, data = cars, family = quasipoisson(link = log))
 
 summary(glm.quasipoisson)
 
 
 # visualisiere
-ggplot2::ggplot(d, aes(x = mpg, y = hp)) + 
+ggplot2::ggplot(cars, aes(x = kml, y = hp)) + 
     geom_point(size = 8) + 
     geom_smooth(method = "glm", method.args = list(family = "poisson"), se = F,
                 color = "green", size = 2) + 
@@ -31,28 +46,41 @@ ggplot2::ggplot(d, aes(x = mpg, y = hp)) +
     theme_classic()
 
 
+#Rücktransformation meines Outputs für ein besseres Verständnis
+glm.quasi.back <- exp(coef(glm.quasipoisson))
+
+#für ein schönes ergebnis
+glm.quasi.back %>%
+  broom::tidy() %>% 
+  knitr::kable(digits = 3)
+
+#for more infos, also for posthoc tests
+#here: https://rcompanion.org/handbook/J_01.html
+
+
 
 ############
 # logistische regression
 ############
-d <- mtcars
+cars <- mtcars
 
 # erstelle das modell
-glm.binar <- glm(vs ~ hp, data = d, family = binomial(link = logit)) 
+glm.binar <- glm(vs ~ hp, data = cars, family = binomial(link = logit)) 
 
 
+#achtung Model gibt Koeffizienten als logit() zurück
 summary(glm.binar)
 
 
 # überprüfe das modell
-d$predicted <- predict(glm.binar, type = "response")
+cars$predicted <- predict(glm.binar, type = "response")
 
 
 # visualisiere
-ggplot(d, aes(x = hp, y = vs)) +    
+ggplot(cars, aes(x = hp, y = vs)) +    
     geom_point(size = 8) +
     geom_point(aes(y = predicted), shape  = 1, size = 6) +
-    guides(color = F) +
+    guides(color = "none") +
     geom_smooth(method = "glm", method.args = list(family = 'binomial'), 
                 se = FALSE,
                 size = 2) +
@@ -74,12 +102,28 @@ exp(glm.binar$coefficients[2])
 abs(glm.binar$coefficients[1]/glm.binar$coefficients[2])
 
 
-# kreuztabelle (confusion matrix): fasse die ergebnisse aus predict und "gegebenheiten, realität" zusammen
-tab1 <- table(d$predicted>.5, d$vs)
+# kreuztabelle (confusion matrix): fasse die ergebnisse aus predict und 
+# "gegebenheiten, realität" zusammen
+tab1 <- table(cars$predicted>.5, cars$vs)
 dimnames(tab1) <- list(c("M:S-type","M:V-type"), c("T:S-type", "T:V-type"))
-tab1
+tab1 
 
-prop.table(tab1, 2)
+
+prop.table(tab1, 2) 
+#was könnt ihr daraus ablesen? Ist unser Modell genau?
+
+
+
+
+# Funktion die die logits in Wahrscheinlichkeiten transformiert
+# mehr infos hier: https://sebastiansauer.github.io/convert_logit2prob/
+# dies ist interessant, falls ihr mal ein kategorialer Prädiktor habt
+logit2prob <- function(logit){
+  odds <- exp(logit)
+  prob <- odds / (1 + odds)
+  return(prob)
+}
+
 
 
 
@@ -107,3 +151,5 @@ ggplot2::ggplot(mtcars, aes(x = mpg, y = hp)) +
   mytheme
 
 
+```{.r .distill-force-highlighting-css}
+```
