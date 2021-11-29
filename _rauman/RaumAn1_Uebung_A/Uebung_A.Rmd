@@ -31,6 +31,9 @@ Lade zunächst die Datensätze unter folgenden Links herunter:
 
 ```{r, echo = FALSE, purl = FALSE, results = "asis"}
 
+knitr::opts_chunk$set(echo = FALSE)
+
+
 check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
   full_url <- paste0(url,folder,"/",files)
   exists_bool <- !file.exists(files)
@@ -40,14 +43,14 @@ check_download <- function(files, folder, source = "", url = "https://github.com
   cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
 }
 
-check_download(c("kantone.gpkg","bezirke.gpkg"), "rauman", "(Quelle: [Swisstopo](https://www.swisstopo.admin.ch/en/geodata/landscape/boundaries3d.html))")
+check_download(c("kantone.gpkg","gemeinden.gpkg"), "rauman", "(Quelle: [Swisstopo](https://www.swisstopo.admin.ch/en/geodata/landscape/boundaries3d.html))")
 ```
 
 Es handelt sich um Geodatensätze im Format Geopackage ("\*.gpkg"), eine alternatives Datenformat zum bekannteren Format "Shapefiles". Importiere die Datensätze wie folgt:
 
 ```{r, echo = TRUE}
 kantone <- read_sf("kantone.gpkg")
-bezirke <- read_sf("bezirke.gpkg") 
+gemeinden <- read_sf("gemeinden.gpkg") 
 ```
 
 Schau Dir die importierten Datensätze an. Am meisten Informationen zu `sf` Objekten bekommst du, wenn du dir den Datensatz **in der Konsole** anschaust (in dem du den Variabel-Name in der Konsole eintippst). Mit dem RStudio Viewer werden `sf` Objekte nur sehr langsam geladen und die Metadaten werden nicht angezeigt.
@@ -57,11 +60,9 @@ Schau Dir die importierten Datensätze an. Am meisten Informationen zu `sf` Obje
 Vektordaten (`sf` Objekte) lassen sich teilweise sehr schön in die bekannten Tidyverse workflows integrieren. Das merkt man schnell, wenn man die Daten visualisieren möchte. In InfoVis 1 & 2 haben wir intensiv mit `ggplot2` gearbeitet und dort die Layers `geom_point()` und `geom_line()` kennen gelernt. Zusätzlich beinhaltet `ggplot` die Möglichkeit, mit `geom_sf()` Vektordaten direkt und sehr einfach zu plotten. Führe die angegebenen R-Befehle aus und studiere die entstehenden Plots. Welche Unterschiede findest Du? Wie erklärst Du diese Unterschiede?
 
 ```{r echo = TRUE}
-ggplot(bezirke) + 
+ggplot(gemeinden) + 
   geom_sf()
-```
 
-```{r echo = TRUE}
 ggplot(kantone) + 
   geom_sf()
 ```
@@ -72,13 +73,13 @@ ggplot(kantone) +
 In der obigen visualierung fällt folgendes auf:
 
 - die X/Y Achsen weisen zwei ganz unterschiedlichen Zahlenbereiche auf (vergleiche die Achsenbeschriftungen)
-- der Umriss der Schweiz sieht in den beiden Datensätzen unterschiedlich aus (`kantone` ist gegenüber `bezirke` gestaucht)
+- der Umriss der Schweiz sieht in den beiden Datensätzen unterschiedlich aus (`kantone` ist gegenüber `gemeinden` gestaucht)
 
 Dies hat natürlich damit zu tun, dass die beiden Datensätze in unterschiedlichen Koordinatensystemen erfasst wurden. Koordinatensysteme werden mit CRS (**C**oordinate **R**eference **S**ystem) abgekürzt. Mit `st_crs()` könnnen die zugewiesenen Koordinatensysteme abgefragt werden.
 
 ```{r, echo = TRUE}
 st_crs(kantone)
-st_crs(bezirke)
+st_crs(gemeinden)
 ```
 
 Leider sind in unserem Fall keine Koordinatensysteme zugewiesen. Mit etwas Erfahrung kann man das Koordinatensystem aber erraten, so viele kommen nämlich gar nicht in Frage. Am häufigsten trifft man hierzulande eines der drei folgenden Koordinatensysteme an:
@@ -105,24 +106,22 @@ Nun gilt es, anhand der Koordinaten die in der Spalte `geometry` ersichtlich sin
 <figcaption>Für Enthusiasten: Schau Dir die Schweiz in verschiedenen Koordinatensystemen an, in dem Du auf "Reproject Map" klickst</figcaption>
 </fig>
 
-Wenn man diese Koordinaten mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `kantone` um das Koordinatensystem WGS84 handelt und bei `bezirke` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
+Wenn man diese Koordinaten mit den Koordinaten unserer Datensätze vergleicht, dann ist schnell klar, dass es sich beim Datensatz `kantone` um das Koordinatensystem WGS84 handelt und bei `gemeinden` das Koordinatensystem CH1903+ LV95. Diese Koordinatensyteme weisen wir nun mit `st_set_crs()` und dem entsprechenden *EPSG*-Code (siehe die jeweiligen Links) zu.
 
 ```{r, echo = TRUE}
 kantone <- st_set_crs(kantone, 4326)
-bezirke <- st_set_crs(bezirke, 2056)
+gemeinden <- st_set_crs(gemeinden, 2056)
 
 # zuweisen mit st_set_crs(), abfragen mit st_crs()
 st_crs(kantone)
 ```
 
-Jetzt wo das CRS der Datensätze bekannt ist, können diese in einem gemeinsamen Plot visualisiert werden, `ggplot` kümmert sich darum die unterschiedlichen Koordinatensysteme zu vereinheitlichen. Probier das aus, indem du `kantone` und `bezirke` in einem `ggplot` kombinierst.
-
-Die Achsen werden dann immer in WGS84 beschriftet. Wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
+Auch wenn das CRS der Datensätze bekannt ist, nutzt ggplot immer noch `EPSG 4326` um die Achsen zu beschriften.  Wenn das stört, kann man `coord_sf(datum = 2056)` in einem weiteren Layer spezifizieren. Oder aber man blendet die Achsenbeschriftung mit `theme_void()` komplett aus. Versuche beide Varianten.
 
 ```{r}
 ggplot() + 
-  geom_sf(data = bezirke) +
-  geom_sf(data = kantone)
+  geom_sf(data = kantone) +
+  coord_sf(datum = 2056)
 ```
 
 
@@ -151,4 +150,36 @@ Nach der Transformation (betrachte die Attribute `Bounding box` sowie `Projected
 ```{r, echo = TRUE}
 kantone
 ```
+
+
+### Aufgabe 4: Chloroplethen Karte
+
+Nun wollen wir die Gemeinden respektive die Kantone nach ihrer Einwohnerzahl einfärben. Dafür verwenden wir wie gewohnt die Methode `aes(fill = ...)` von `ggplot`. 
+
+
+Tipps: 
+
+- um die *scientific notation* (z.B. `3e+03`) zu verhindern, könnt ihr den Befehl `options(scipen = 999)` ausführen
+- um die Darstellung der Gemeinde- (bzw. Kantons-) Grenzen zu verhindern, könnt ihr im entsprechenden Layer `color = NA` setzen
+
+
+```{r, fig.show="hold", out.width="49%", fig.cap="Der Vergleich dieser beiden Darstellungen veranschaulicht die MAUP Problematik sehr deutlich"}
+
+
+ggplot(kantone, aes(fill = EINWOHNERZ/1e6)) +
+  geom_sf(color = NA) +
+  scale_fill_continuous("Einwohner (in Mio)") +
+  theme(legend.position = "bottom",
+        legend.text = element_text(angle = 90,hjust = 0.5),
+        legend.text.align = 1)
+
+
+ggplot(gemeinden,aes(fill = EINWOHNERZ/1e6)) +
+  geom_sf(color= NA) +
+  scale_fill_continuous("Einwohner (in Mio)") +
+  theme(legend.position = "bottom",
+        legend.text = element_text(angle = 90,hjust = 0.5),
+        legend.text.align = 1)
+```
+
 
