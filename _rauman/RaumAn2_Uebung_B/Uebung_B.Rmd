@@ -1,9 +1,9 @@
 ---
-title: Übung B
+title: "Übung B: Räumliche Interpolation"
 output: distill::distill_article
 categories:
 - RaumAn2
-draft: true
+draft: false
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
@@ -12,25 +12,45 @@ description: |
   Räumliche Interpolationen
 ---
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In dieser Übung geht es darum, zwei verschiedene Interpolationsverfahren in R umzusetzen. Im ersten Interpolationsverfahren verwenden wir die *inverse distance weighted interpolation*, später verwenden wir die *nearest neighbour* methode. Dazu braucht ihr die folgenden Packages:
+
+
 ```{r, echo = TRUE}
-library(gstat)
 library(sf)
-library(tidyverse)
-library(lubridate)
-library(stars)
+library(dplyr)
+library(ggplot2)
+library(gstat)
+```
+
+Weiter benötigt ihr die nachstehenden Datensätze:
+
+
+```{r, echo = FALSE, results='asis'}
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+}
+
+check_download(c("schweiz.gpkg", "luftqualitaet.gpkg"),"rauman")
+
 
 luftqualitaet <- read_sf("luftqualitaet.gpkg")
-kantone <- read_sf("kantone.gpkg")
-rotmilan <- read_sf("rotmilan.gpkg")
+
+schweiz <- read_sf("schweiz.gpkg") 
 
 
-luftqualitaet <- st_set_crs(luftqualitaet,2056)
-kantone <- st_set_crs(kantone, 2056)
-rotmilan <- st_set_crs(rotmilan, 2056)
 ```
 
 
-### Aufgabe 2: Raeumliche Interpolation mit IDW
+### Aufgabe 1: Raeumliche Interpolation mit IDW
 
 
 Die Library `gstat` bietet verschiedene Möglichkeiten, Datenpunkte zu interpolieren, unter anderem auch den **IDW**. Leider ist das Package *noch* nicht so benutzerfreundlich wie `sf`: Das Package wird aber aktuell überarbeitet und in mittlerer Zukunft sollte es ebenso einfach  zugänglich sein. Damit Ihr Euch nicht mit den Eigenheiten dieser Library umschlagen müsst, haben wir eine Function vorbereitet, die Euch die Verwendung der IDW-Interpolation erleichtern soll.
@@ -40,26 +60,19 @@ Wir nehmen Euch damit etwas Komplexität weg und liefern Euch ein pfannenfertige
 
 ```{r, echo = TRUE}
 my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp = 2, extent = NULL){
-  require(gstat)
-  require(sf)
-  require(raster)
+  library(gstat)
+  library(sf)
+  
   if(is.null(extent)){
     extent <- groundtruth
   }
   
-  samples <- st_make_grid(extent,cellsize,what = "centers") %>% st_as_sf()
+  samples <- st_make_grid(extent,cellsize,what = "centers")
   my_formula <- formula(paste(column,"~1"))
-  idw_sf <- gstat::idw(formula = my_formula,groundtruth,newdata = samples,nmin = 1, maxdist = maxdist, idp = idp)
+  idw_sf <- gstat::idw(formula = my_formula,groundtruth, newdata = samples, nmin = 1, maxdist = maxdist, idp = idp)
   
-  idw_matrix <- cbind(st_coordinates(idw_sf),idw_sf$var1.pred)
-  
-  
-  ras <- raster::rasterFromXYZ(idw_matrix)
-  
-  if(all(grepl("polygon",st_geometry_type(extent),ignore.case = TRUE))){
-    ras <- raster::mask(ras,st_as_sf(st_zm(extent)))
-  }
-  ras
+  idw_matrix <- cbind(as.data.frame(st_coordinates(idw_sf)),pred = st_drop_geometry(idw_sf)[,1])
+  idw_matrix
 }
 ```
 
@@ -67,8 +80,7 @@ my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp =
 Nun könnt Ihr mit `my_idw()` den Datensatz `luftqualitaet` folgendermassen interpolieren. 
 
 ```{r, echo = TRUE, eval = FALSE}
-my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 1000)
-
+my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 10000, extent = schweiz)
 ```
 
 Folgende Parameter stehen Euch zur Verfügung:
@@ -84,111 +96,37 @@ Folgende Parameter stehen Euch zur Verfügung:
   - `idp`: **I**nverse **D**istance **P**ower: die Potenz, mit der der Nenner gesteigert werden soll. Default: `2`. Werte werden im Kehrwert des Quadrates gewichtet: $\frac{1}{dist^{idp}}$.
   - `extent`: Gebiet, für welches die Interpolation durchgeführt werden soll. Default `NULL` (die Ausdehnung von `groundtruth`). Wenn `extent` ein Polygon ist, wird die Interpolation für dieses Gebiet "geclipped"
 
-
-Rechnet so den IDW für die Luftqualitätsmessungen mit verschiedenen Parametern und visualisiert jeweils die Resultate (die Beschriftung der Werte ist fakultativ).
-
-```{r}
+Rechnet so den IDW für die Luftqualitätsmessungen mit verschiedenen Parametern und visualisiert jeweils die Resultate. Der Output aus `my_idw` ist eine `data.frame` mit X und Y Koordinaten sowie eine Spalte `pred`. Nutzt diese drei Spalten mit `geom_raster()` um eure Daten mit `ggplot` zu visualisieren (`aes(x = X, y = Y, fill = pred)`. 
 
 
-nmax = Inf
-maxdist = 40000
-idp = 2
+```{r, layout = "l-page", message=FALSE, warning=FALSE}
+library(purrr)
+library(tidyr)
 
-idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
+p <- lapply(1:4, function(idp){
+  idw <- my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 1000,nmax = Inf,maxdist = Inf,idp = idp)
+  ggplot(idw, aes(X,Y, fill = pred)) +
+      geom_raster() +
+      scale_fill_gradientn(colours = RColorBrewer::brewer.pal(11,"RdYlBu"),limits = c(0, 60), na.value = NA) +
+      labs(fill = "μg/m3",
+           title = paste("Inverse Distance Power (IDP):",idp)) +
+      theme_void() +
+      coord_equal() +
+      theme(legend.position = "bottom", legend.title = element_blank(),
+        legend.key.width = unit(0.10, 'npc'),
+        legend.key.height = unit(0.02, 'npc'))
+}) %>%
+  cowplot::plot_grid(plotlist = .)
 
-luftqualitaet_extreme <- luftqualitaet %>%
-  arrange(value) %>%
-  slice(c(1:5,(n()-4):n()))
+ggsave("idw.png", p, height = 18, width = 20, units = "cm")
 
-ggplot() +
-  geom_stars(data = st_as_stars(idw)) +
-  ggrepel::geom_text_repel(
-    data = luftqualitaet_extreme,
-    aes(label = value, geometry = geom),
-    stat = "sf_coordinates",
-    min.segment.length = 0
-  ) +
-  scale_fill_viridis_c(na.value = NA) +
-  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
-       fill = "μg/m3",
-       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
-  ) +
-  theme_void() +
-  coord_equal()
-
-
-nmax = 50
-maxdist = Inf
-idp = 1
-
-idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
-
-ggplot() +
-  geom_stars(data = st_as_stars(idw)) +
-  ggrepel::geom_text_repel(
-    data = luftqualitaet_extreme,
-    aes(label = value, geometry = geom),
-    stat = "sf_coordinates",
-    min.segment.length = 0
-  ) +
-  scale_fill_viridis_c(na.value = NA) +
-  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
-       fill = "μg/m3",
-       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
-  ) +
-  theme_void()+
-  coord_equal()
-
-
-nmax = 50
-maxdist = Inf
-idp = 2
-
-idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
-
-ggplot() +
-  geom_stars(data = st_as_stars(idw)) +
-  ggrepel::geom_text_repel(
-    data = luftqualitaet_extreme,
-    aes(label = value, geometry = geom),
-    stat = "sf_coordinates",
-    min.segment.length = 0
-  ) +
-  scale_fill_viridis_c(na.value = NA) +
-  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
-       fill = "μg/m3",
-       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
-  ) +
-  theme_void()+
-  coord_equal()
-
-
-nmax = 50
-maxdist = Inf
-idp = 3
-
-idw <- my_idw(luftqualitaet,"value",1000,nmax = nmax,maxdist = maxdist,idp = idp, extent = kantone)
-
-ggplot() +
-  geom_stars(data = st_as_stars(idw)) +
-  ggrepel::geom_text_repel(
-    data = luftqualitaet_extreme,
-    aes(label = value, geometry = geom),
-    stat = "sf_coordinates",
-    min.segment.length = 0
-  ) +
-  scale_fill_viridis_c(na.value = NA) +
-  labs(title = "Luftqualitätswerte Schweiz NO2, Interpoliert mit IDW",
-       fill = "μg/m3",
-       subtitle = paste("nmax: ",nmax,"\nmaxdist: ",maxdist,"\nidp: ",idp,sep = " ")
-  ) +
-  theme_void()
+knitr::include_graphics("idw.png")
 
 ```
 
 
 
-### Aufgabe 3: Interpolation mit Nearest Neighbour / Thiessen Polygone
+### Aufgabe 2: Interpolation mit Nearest Neighbour
 
 
 Eine weitere einfache Möglichkeit zur Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben um die Punkte die Thiessenpolygone konstruiert. Dazu braucht es lediglich einen kleinen Vorverarbeitungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz, ein Voronoidiagramm. Das macht bei uns wenig Sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `luftqualitaet` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` Objekt konvertieren, in welchem alle Punkte in einer Zeile zusammengefasst sind.
@@ -199,10 +137,8 @@ luftqualitaet_union <- st_union(luftqualitaet)
 
 thiessenpolygone <- st_voronoi(luftqualitaet_union)
 
-thiessenpolygone <- st_set_crs(thiessenpolygone, 2056)
-
 ggplot() + 
-  geom_sf(data = kantone) +
+  geom_sf(data = schweiz) +
   geom_sf(data = thiessenpolygone, fill = NA)
 
 ```
@@ -213,13 +149,12 @@ ggplot() +
 2. für die Thiessen-Polygone machen wir genau das Umgekehrte: `st_voronoi()` liefert ein einzelnes Feature mit allen Polygonen, welches sich nicht gerne clippen lässt. Mit `st_cast()` wird die `GEOMETRYCOLLECTION` in Einzelpolygone aufgeteilt. 
 
 ```{r, echo = TRUE}
-schweiz <- st_union(kantone)
 thiessenpolygone <- st_cast(thiessenpolygone)
 
 thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
 
 ggplot() + 
-  geom_sf(data = kantone) +
+  geom_sf(data = schweiz) +
   geom_sf(data = thiessenpolygone_clip, fill = NA)
 
 ```
@@ -232,8 +167,9 @@ thiessenpolygone_clip <- st_as_sf(thiessenpolygone_clip)
 thiessenpolygone_clip <- st_join(thiessenpolygone_clip,luftqualitaet)
 
 ggplot() + 
-  geom_sf(data = kantone) +
+  geom_sf(data = schweiz) +
   geom_sf(data = thiessenpolygone_clip, aes(fill = value)) +
+  geom_sf(data = luftqualitaet) +
   scale_fill_viridis_c() +
   theme_void()
 ```

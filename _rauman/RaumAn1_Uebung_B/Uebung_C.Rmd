@@ -89,7 +89,7 @@ anzahl_nicht_in_wiese <- sum(is.na(baeume_join$flaechen_typ))
 ```
 
 
-### Aufgabe 4: Spaital Join mit Flächen
+### Aufgabe 4: Spatial Join mit Flächen
 
 Analog der Vorlesung wollen wir nun in Erfahrung bringen, wie hoch der Wiesen-Anteil im Umkreis von 20m um jeden Baum ist. Dazu sind folgende Schritte nötig: 
 
