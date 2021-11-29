@@ -69,7 +69,7 @@ sel.sp <- which(spe.good[, 2] >= 0.6)
 sel.sp
 
 # Triplots with homemade function triplot.rda()
-source("19_Statistik7/triplot.rda.R")
+source("triplot.rda.R")
 
 dev.new(title = "RDA plot with triplot.rda", width = 7, height = 6, noRStudioGD = TRUE)
 
