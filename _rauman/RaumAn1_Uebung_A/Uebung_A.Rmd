@@ -157,27 +157,36 @@ kantone
 Nun wollen wir die Gemeinden respektive die Kantone nach ihrer Einwohnerzahl einfärben. Dafür verwenden wir wie gewohnt die Methode `aes(fill = ...)` von `ggplot`. 
 
 
-Tipps: 
+Tips: 
 
 - um die *scientific notation* (z.B. `3e+03`) zu verhindern, könnt ihr den Befehl `options(scipen = 999)` ausführen
-- um die Darstellung der Gemeinde- (bzw. Kantons-) Grenzen zu verhindern, könnt ihr im entsprechenden Layer `color = NA` setzen
+- um die Darstellung der Gemeinde- (bzw. Kantons-) Grenzen zu verhindern, könnt ihr im entsprechenden Layer `color = NA` setzen. Alternativ könnt ihr die Linienbreite mit `size = ` verändern.
 
 
 ```{r, fig.show="hold", out.width="49%", fig.cap="Der Vergleich dieser beiden Darstellungen veranschaulicht die MAUP Problematik sehr deutlich"}
 
 
 ggplot(kantone, aes(fill = EINWOHNERZ/1e6)) +
-  geom_sf(color = NA) +
-  scale_fill_continuous("Einwohner (in Mio)") +
+  geom_sf(color= "white",size = .05) +
+  labs(title = "Anzahl Einwohner pro Kanton",
+       subtitle = "in Millionen") +
   theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.width = unit(0.15, 'npc'),
+        legend.key.height = unit(0.02, 'npc'),
         legend.text = element_text(angle = 90,hjust = 0.5),
         legend.text.align = 1)
 
 
 ggplot(gemeinden,aes(fill = EINWOHNERZ/1e6)) +
-  geom_sf(color= NA) +
+  geom_sf(color= "white",size = .05) +
   scale_fill_continuous("Einwohner (in Mio)") +
+  labs(title = "Anzahl Einwohner pro Gemeinde",
+       subtitle = "in Millionen") +
   theme(legend.position = "bottom",
+        legend.title = element_blank(),
+        legend.key.width = unit(0.15, 'npc'),
+        legend.key.height = unit(0.02, 'npc'),
         legend.text = element_text(angle = 90,hjust = 0.5),
         legend.text.align = 1)
 ```
