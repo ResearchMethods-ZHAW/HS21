@@ -12,10 +12,15 @@ draft: false
 
 ### Übung 7.1: RDA (naturwissenschaftlich)
 
+- Funktion [triplot.rda.R](triplot.rda.R)
+
 Moordatensatz in **library(dave)** :
 
 - sveg (Vegetationsdaten)
 - ssit (Umweltdaten)
+
+
+
 
 **Führt eine RDA mit allen in der Vorlesung gezeigten Schritten durch und interpretiert die Ergebnisse.**
 
