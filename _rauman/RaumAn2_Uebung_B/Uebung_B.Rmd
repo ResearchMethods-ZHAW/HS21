@@ -23,7 +23,8 @@ In dieser Übung geht es darum, zwei verschiedene Interpolationsverfahren in R u
 library(sf)
 library(dplyr)
 library(ggplot2)
-library(gstat)
+
+library(gstat) # <- ggf. installieren!
 ```
 
 Weiter benötigt ihr die nachstehenden Datensätze:
@@ -50,12 +51,9 @@ schweiz <- read_sf("schweiz.gpkg")
 ```
 
 
-### Aufgabe 1: Raeumliche Interpolation mit IDW
+Die Library `gstat` bietet verschiedene Möglichkeiten, Datenpunkte zu interpolieren, unter anderem auch die *inverse distance weighted* Methode. Leider ist das Package noch nicht so benutzerfreundlich wie `sf`: Das Package wird aber aktuell überarbeitet und in mittlerer Zukunft sollte es ebenso einfach  zugänglich sein. Damit Ihr Euch nicht mit den Eigenheiten dieser Library umschlagen müsst, haben wir eine Function vorbereitet, die Euch die Verwendung der IDW-Interpolation erleichtern soll.
 
-
-Die Library `gstat` bietet verschiedene Möglichkeiten, Datenpunkte zu interpolieren, unter anderem auch den **IDW**. Leider ist das Package *noch* nicht so benutzerfreundlich wie `sf`: Das Package wird aber aktuell überarbeitet und in mittlerer Zukunft sollte es ebenso einfach  zugänglich sein. Damit Ihr Euch nicht mit den Eigenheiten dieser Library umschlagen müsst, haben wir eine Function vorbereitet, die Euch die Verwendung der IDW-Interpolation erleichtern soll.
-
-Wir nehmen Euch damit etwas Komplexität weg und liefern Euch ein pfannenfertiges Werkzeug. Das hat auch Nachteile und wir ermutigen alle, die dafür Kapazität haben, unsere Function eingehend zu studieren und allenfalls ganz auf die Function zu verzichten und stattdessen direkt `gstat` zu verwenden. Egal für welche Variante Ihr Euch entscheidet, installiert vorgängig die Library `gstat`. Liest anschliessend die Funktion `my_idw` ein damit ihr sie nutzen könnt.
+Wir nehmen Euch damit etwas Komplexität weg und liefern Euch ein pfannenfertiges Werkzeug. Das hat auch Nachteile und wir ermutigen alle, die dafür Kapazität haben, unsere Function eingehend zu studieren und allenfalls ganz auf die Function zu verzichten und stattdessen direkt `gstat` zu verwenden. Wenn ihr mit unserer Function arbeiten möchtet, müsst ihr den unten stehenden Code in euer Skript kopieren und ausführen. 
 
 
 ```{r, echo = TRUE}
@@ -69,7 +67,7 @@ my_idw <- function(groundtruth,column,cellsize, nmax = Inf, maxdist = Inf, idp =
   
   samples <- st_make_grid(extent,cellsize,what = "centers")
   my_formula <- formula(paste(column,"~1"))
-  idw_sf <- gstat::idw(formula = my_formula,groundtruth, newdata = samples, nmin = 1, maxdist = maxdist, idp = idp)
+  idw_sf <- gstat::idw(formula = my_formula,groundtruth, newdata = samples, nmin = 1, nmax = nmax, maxdist = maxdist, idp = idp)
   
   idw_matrix <- cbind(as.data.frame(st_coordinates(idw_sf)),pred = st_drop_geometry(idw_sf)[,1])
   idw_matrix
@@ -85,36 +83,52 @@ my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 10000, extent = s
 
 Folgende Parameter stehen Euch zur Verfügung:
 
-- Notwendige Parameter:
+- **Notwendige Parameter**:
   - `groundtruth`: Punktdatensatz mit den Messwerten (`sf`-Objekt)
   - `column`: Name der Spalte mit den Messwerten (in Anführungs- und Schlusszeichen)
   - `cellsize`: Zellgrösse des output Rasters
-
-- Optionale Parameter
+- **Optionale Parameter**
   - `nmax`: Maximale Anzahl Punkte, die für die Interpolation berücksichtigt werden sollen. Default: `Inf` (alle Werte im gegebenen Suchradius)
   - `maxdist`: Suchradius, welcher für die Interpolation verwendet werden soll. Default `Inf` (alle Werte bis `nmax`)
   - `idp`: **I**nverse **D**istance **P**ower: die Potenz, mit der der Nenner gesteigert werden soll. Default: `2`. Werte werden im Kehrwert des Quadrates gewichtet: $\frac{1}{dist^{idp}}$.
-  - `extent`: Gebiet, für welches die Interpolation durchgeführt werden soll. Default `NULL` (die Ausdehnung von `groundtruth`). Wenn `extent` ein Polygon ist, wird die Interpolation für dieses Gebiet "geclipped"
+  - `extent`: Gebiet, für welches die Interpolation durchgeführt werden soll. Wenn nichts angegeben wird (Default `NULL`), wird die Ausdehnung von `groundtruth` verwendet.
+- **Ouput**
+  - der Output der Funktion ist eine `data.frame` mit 3 Spalten: 
+    - `X`, `Y` Koordinaten der interpolierten Werte
+    - `pred`: der Interpolierte Wert
+  
+Beim Output handelt sich hier um einen Raster-ähnlichen Datentyp (siehe Vorlesung *Spatial DataScience 1*). Diesen können wir mit `geom_raster` mit `ggplot` visualisieren. Dafür müsst ihr in `aes` die `X` und `Y` Koordinaten angeben, und der interpolierte Wert mit `fill` einfärben.
 
-Rechnet so den IDW für die Luftqualitätsmessungen mit verschiedenen Parametern und visualisiert jeweils die Resultate. Der Output aus `my_idw` ist eine `data.frame` mit X und Y Koordinaten sowie eine Spalte `pred`. Nutzt diese drei Spalten mit `geom_raster()` um eure Daten mit `ggplot` zu visualisieren (`aes(x = X, y = Y, fill = pred)`. 
 
+### Aufgabe 1: Raeumliche Interpolation mit IDW
 
-```{r, layout = "l-page", message=FALSE, warning=FALSE}
+Rechnet so den IDW für die Luftqualitätsmessungen mit verschiedenen Parametern und visualisiert jeweils die Resultate. Experimentiert mit `nmax` sowie `maxdist`. Was stellt ihr fest? 
+
+Tips: 
+
+- Was für Distanzen bei `maxdist` Sinn machen, könnt ihr dem Output aus der G-Funktion (vorherige Übung) entnehmen
+- Wählt am Anfang eine etwas Konvervative (grosse) `cellsize` und verringert diesen nur wenn euer Rechner damit gut klar kommt
+- Da der Output aus der Interpolation im gleichen Koordinatenbezugssystem sind wie `schweiz.gpkg` kann man diese beiden Datensätze im gleichen `ggplot` darstellen. Dafür müsst ihr die *aesthetics* (`aes()`) für jeden Layer einzeln setzen, und nicht auf der Ebene von `ggplot()`.
+
+```{r, layout = "l-page", message=FALSE, warning=FALSE, fig.cap="Stickstoffdioxid (NO2) in μg/m3, Interpoliert über die ganze Schweiz mit der Inverse Distance Weighted Methode. Die verschiedenen Plots zeigen die Veränderung der Interpolation bei steigendem IDP-Wert"}
 library(purrr)
 library(tidyr)
 
+
+
 p <- lapply(1:4, function(idp){
-  idw <- my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 1000,nmax = Inf,maxdist = Inf,idp = idp)
-  ggplot(idw, aes(X,Y, fill = pred)) +
-      geom_raster() +
-      scale_fill_gradientn(colours = RColorBrewer::brewer.pal(11,"RdYlBu"),limits = c(0, 60), na.value = NA) +
-      labs(fill = "μg/m3",
-           title = paste("Inverse Distance Power (IDP):",idp)) +
-      theme_void() +
-      coord_equal() +
-      theme(legend.position = "bottom", legend.title = element_blank(),
-        legend.key.width = unit(0.10, 'npc'),
-        legend.key.height = unit(0.02, 'npc'))
+  idw <- my_idw(groundtruth = luftqualitaet,column = "value",cellsize = 1000, nmax = Inf,maxdist = Inf,idp = idp,extent = schweiz)
+  ggplot() +
+    geom_raster(data = idw, aes(X,Y, fill = pred)) +
+    geom_sf(data = schweiz, fill = NA) +
+    geom_sf(data = luftqualitaet, size = 1, shape = 3, alpha = 0.3) +
+    scale_fill_gradientn(colours = rev(RColorBrewer::brewer.pal(11,"RdYlBu")),limits = c(0, 60), na.value = NA) +
+    labs(fill = "μg/m3",
+         title = paste("Inverse Distance Power (IDP):",idp)) +
+    theme_void() +
+    theme(legend.position = "bottom", legend.title = element_blank(),
+      legend.key.width = unit(0.10, 'npc'),
+      legend.key.height = unit(0.02, 'npc'))
 }) %>%
   cowplot::plot_grid(plotlist = .)
 
@@ -132,11 +146,13 @@ knitr::include_graphics("idw.png")
 Eine weitere einfache Möglichkeit zur Interpolation bietet die Erstellung eines Voronoi-Diagrammes, auch als Thiessen-Polygone oder Dirichlet-Zerlegung bekannt. `sf` liefert dazu die Funktion `st_voronoi()`, die einen Punktdatensatz annimmt und eben um die Punkte die Thiessenpolygone konstruiert. Dazu braucht es lediglich einen kleinen Vorverarbeitungsschritt: `sf` möchte für jedes Feature, also für jede *Zeile* in unserem Datensatz, ein Voronoidiagramm. Das macht bei uns wenig Sinn, weil jede Zeile nur aus einem Punkt besteht. Deshalb müssen wir vorher `luftqualitaet` mit `st_union()` von einem `POINT` in ein `MULTIPOINT` Objekt konvertieren, in welchem alle Punkte in einer Zeile zusammengefasst sind.
 
 ```{r, echo = TRUE}
-
 luftqualitaet_union <- st_union(luftqualitaet)
 
 thiessenpolygone <- st_voronoi(luftqualitaet_union)
+```
 
+
+```{r}
 ggplot() + 
   geom_sf(data = schweiz) +
   geom_sf(data = thiessenpolygone, fill = NA)
@@ -152,7 +168,10 @@ ggplot() +
 thiessenpolygone <- st_cast(thiessenpolygone)
 
 thiessenpolygone_clip <- st_intersection(thiessenpolygone,schweiz)
+```
 
+
+```{r}
 ggplot() + 
   geom_sf(data = schweiz) +
   geom_sf(data = thiessenpolygone_clip, fill = NA)
@@ -162,14 +181,19 @@ ggplot() +
 Jetzt müssen wir nur noch den jeweiligen Wert für jedes Polygon ermitteln. Dies erreichen wir wieder durch `st_join`. Auch hier ist noch ein *kleiner* Vorverarbeitungsschritt nötig: Wir konvertieren das `sfc` Objekt (nur Geometrien) in ein `sf` Objekt (Geometrien mit Attributtabelle).
 
 ```{r, echo = TRUE}
-
 thiessenpolygone_clip <- st_as_sf(thiessenpolygone_clip)
 thiessenpolygone_clip <- st_join(thiessenpolygone_clip,luftqualitaet)
+```
 
+
+```{r, echo = TRUE, fig.cap="Stickstoffdioxid (NO2) in μg/m3, Interpoliert über die ganze Schweiz nach der Nearest Neighbour Methode."}
 ggplot() + 
   geom_sf(data = schweiz) +
   geom_sf(data = thiessenpolygone_clip, aes(fill = value)) +
   geom_sf(data = luftqualitaet) +
-  scale_fill_viridis_c() +
-  theme_void()
+  scale_fill_gradientn(colours = rev(RColorBrewer::brewer.pal(11,"RdYlBu"))) +
+  theme_void() +
+  theme(legend.position = "bottom", legend.title = element_blank(),
+      legend.key.width = unit(0.10, 'npc'),
+      legend.key.height = unit(0.02, 'npc'))
 ```
