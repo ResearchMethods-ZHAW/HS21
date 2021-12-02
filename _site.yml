@@ -91,6 +91,10 @@ navbar:
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)
       - text: "Biodiversity and Ecosystems (Profil N): Musterloesung"
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)_Musterloesung
+    - text: "MCE"
+      menu:
+      - text: "Analytical Hierarchy Process (AHP)"
+        href: 
   right:
     - text: "Interna"
       menu:
