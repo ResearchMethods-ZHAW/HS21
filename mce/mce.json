@@ -1,0 +1,35 @@
+[
+  {
+    "path": "mce/ahp/",
+    "title": "Analytical Hierarchy Process (AHP) - Exercise",
+    "description": "This is a step-by-step guide corresponding to the PPP document \"Multikriterielle Entscheidungsanalyse 1\".",
+    "author": [
+      {
+        "name": "Patrick Laube",
+        "url": {}
+      },
+      {
+        "name": "Nils Ratnaweera",
+        "url": {}
+      },
+      {
+        "name": "Nikolaos Bakogiannis",
+        "url": {}
+      },
+      {
+        "name": "Dominic Lüönd",
+        "url": {}
+      }
+    ],
+    "date": "2021-12-02",
+    "categories": [
+      "mce"
+    ],
+    "contents": "\nNow that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a step-by-step guide corresponding to the PPP document Multikriterielle Entscheidungsanalyse 1. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.\nExercises:\nExercise 1: Define initial situation\nExercise 2: Pairwise comparison\nExercise 3: Calculate criteria weights\nExercise 3.1: Normalization of matrix\nExercise 3.2: Weighting of criteria\n\nExercise 4: Consistency analysis\nExercise 5: Prioritization of the alternatives\nFunctions necessary to carry out the exercises :\n* matrix() * sweep() * colnames() * rownames() * colSums() * rowSums() * cbind() * ncol() * matrix multiplication\nExercise 1: Define initial situation\nPPP: Slide 24 - 25\nFirst think of an actual decision you are currently facing like buying a bike or a car and define the following points.\nA goal for your AHP (e.g. Buy a car)\nAt least 4 criteria (e.g. price, hp)\nAt least 3 alternatives (e.g. Renault Clio)\nExercise 2: Pairwise comparison\nPPP: Slide 26 - 27\nIn a first step each criterion needs to be compared with another criteria in pairs. Use the following scale for weighting the criteria (see Figure ).\nTip: Add column and row names so your matrix is more readable. You can use the following code to create your AHP as a matrix.\n\n\nahp_matrix <- c(\n  1, 0, 0, 0,\n  0, 1, 0, 0,\n  0, 0, 1, 0,\n  0, 0, 0, 1\n) %>% matrix(ncol = 4, byrow = TRUE) \n\n\n\n\n\n\n(#fig:ahp_rating)Scale for weighting the criteria.\n\n\n\nExercise 3: Calculation of the criteria weights\nExercise 3.1: Normalization of matrix\nPPP: Slide 28\nIn the next step the matrix needs to be normalized. For that you first want to calculate the sum of each column (criteria) and then divide each value in a column with the column sum.\nTip: To achieve this, you can have a look at the sweep function (see Figure ).\n\n\n\n(#fig:ahp_sweep_function)Sweep function; source: https://bioinfomagician.files.wordpress.com/2014/08/screen-shot-2014-08-12-at-10-19-59-am.png\n\n\n\nExercise 3.2: Weighting of criteria\nPPP: Slide 29\nIn a next step you want to sum up the values of each criteria by using the rowSums function and add it to the matrix by using the cbind function. In a final step you want to normalize the weights again. For this you can use the sweep function.\nTip: Running sweep again will not affect your other values as the column sum now is 1.\n\nExercise 4: Consistency analysis\nPPP: Slide 30 - 31\nAfter the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (If CR < 0.10, then the pairwise comparison shows acceptable consistency). The RI is depending on the number of criteria (see Figure ).\nTip: In order to calculate a, you first use the operator %*%, which is used for matrix multiplication. Then use the sweep function again.\nTip: In order to calculate b (\\(\\lambda_{max}\\)), you can use the functions colSums and ncol.\nThe consistency index CI is calculated with the following formula: \\[CI = (\\lambda_{max} - n) / (n - 1)\\] The consistency ratio CR is calculated with the following formula: \\[CR = CI / RI\\]\n\n\n\n(#fig:random_index_by_saaty)Random index by Saaty\n\n\n\n\nExercise 5: Prioritization of the alternatives\nPPP: Slide 32 - 35\nThe priorities for the alternatives can also be determined by means of pair comparisons. A pair comparison is made for each criterion. Those weights are then combined in a table and multiplied by the overall weights calculated in exercise 2. In the end we get a final table with the priorities of the alternatives.\nTip: It follows the same principle as exercise 2 and exercise 3, ergo use the same functions and methods.\nDigression: AHP packages in R\nIf you want to build even more complex AHP setups you can have a look at the following AHP packages:\nahp package\nahpsurvey package\n\n\n\n",
+    "preview": "mce/ahp/distill-preview.png",
+    "last_modified": "2021-12-02T08:40:09+00:00",
+    "input_file": {},
+    "preview_width": 946,
+    "preview_height": 636
+  }
+]
