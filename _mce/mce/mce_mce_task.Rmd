@@ -1,0 +1,423 @@
+---
+title: Multi-Criteria Evaluation (MCE) - Exercise
+subtitle: Wind potential study in the canton of Schwyz
+output: distill::distill_article
+categories:
+- mce
+draft: false
+description: |
+  This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 1".
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+  - name: Dominic Lüönd
+---
+
+This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 2". This exercise may seem familiar to some of you, if you have attended the bachelor program. This MCE was already conducted in the bachelor module "GIS" by using ArcGIS Pro and its ModelBuilder (see Figure \ref{fig:fig_mce}).
+
+```{r fig_mce, echo=FALSE, fig.cap="Process model in ArcGIS Pro ModelBuilder", fig.align="center", out.width = '100%'}
+knitr::include_graphics("images/mce_process.png")
+```
+
+The goal of this exercise is to do the same MCE by just using R. We will mainly use functions from the R packages [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) and [raster](https://cran.r-project.org/web/packages/raster/raster.pdf). Please have a look at the process model (Figure \ref{fig:fig_mce}) that was created in ArcGIS Pro and try to figure out which functions in the two R packages correspond to the ones in the model. You will see that there are some similar functions available, but for some calculations a different approach is needed.
+
+\newpage
+
+## Exercises:
+* Exercise 1: Load and view data
+* Exercise 2: Merge exclusion criteria
+* Exercise 3: Calculate slope
+* Exercise 4: Calculate distances to criteria
+* Exercise 5: Standardize and grade criteria (grading)
+* Exercise 6: Weighting Criteria with AHP
+* Exercise 7: Weighted Overlay
+* Exercise 8: Intersecting potential areas with exclusion criteria
+
+## Functions used in this exercise:
+* bind_rows() (Vector)
+* raster() (Raster)
+* rasterize() (Raster)
+* terrain() (Raster)
+* distance() (Raster)
+* reclassify() (Raster)
+* mask()    
+* Raster multiplication
+
+\newpage
+
+## Exercises 1: Load and view data
+The data can be loaded by using the functions `raster` for raster data and `read_sf` for vector data. View the available data layers (see Table \ref{tab:data_table}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
+
+***Tip**: As some data sets are exceeding the boundaries of the study area, you can use the `mask` function on raster data sets and `st_intersection` for sf/vector data sets, so only relevant data is included.* 
+
+```{r data_table, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+library(knitr)
+library(kableExtra)
+library(dplyr)
+
+name <- c("dhm25m.tif", "eis25m.tif", "wind25m.tif", "Bewohnte_Fläche.shp", "Nationale_Schutzgebiete.shp", "Seeflächen.shp", "Strassen.shp", "Untersuchungsgebiet_Schwyz.shp", "Waldgebiete.shp")
+description <- c("Terrain model (m)", "Icing frequency (days/year)", "Average wind speed (dm/s) ", "Settlements (incl. buffer 200m)", "National protection areas", "Lake areas", "Streets", "Study area, canton of Schwyz", "Forest areas") 
+type <- c("Raster", "Raster", "Raster", "Shapefile", "Shapefile", "Shapefile", "Shapefile", "Shapefile", "Shapefile")
+res <- c("25m", "25m", "25m", "", "", "", "", "", "")
+geometry <- c("", "", "", "Polygon", "Polygon", "Polygon", "Line", "Polygon", "Polygon")
+crs <- c("CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03")
+exclusion_area <- c("No", "No", "No", "(Yes)/Distance", "(Yes)/Distance", "Yes", " No/Distance   ", "No", "(Yes)/Distance")
+data_table <- data.frame(name, description, type, res, geometry, crs, exclusion_area)
+
+knitr::kable(data_table, caption = "Data used in this study") %>% kable_styling(latex_options=c("scale_down", "HOLD_position"))
+```
+
+\newpage
+
+## Exercise 2: Merge exclusion criteria
+Merge the exclusion criteria settlement areas, national protected areas, lake areas and forest areas. These vector data sets are structured as data frames and therefore can be merged by simply combining them. Keep in mind that the data frames have different sizes. Additionally, we need to create a raster out of the newly created vector data set (exclusion area). For that you can use the function `rasterize`. The output should be a raster with 0 and 1, where the fields of the exclusion area have values of 0 and the remaining fields have values of 1 (see Figure \ref{fig:fig_rasterize_exclusion_criteria}).
+  
+* ***Tip**: To achieve a raster with only 0 and 1 use the `rasterize` options field = 0 and background = 1.*
+* ***Tip**: In order to rasterize vector data, you need to create an empty raster beforehand. This raster should have the same boundaries (extent), resolution and coordinate system (crs) as the other raster sets. Use the following code to do so.*
+  
+```{r create_empty_raster, eval=FALSE}
+library(raster)
+r <- raster(extent(kt_schwyz), 
+          resolution = c(25, 25), 
+          crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 
+          +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
+```
+  
+```{r fig_rasterize_exclusion_criteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", out.width="50%"}
+knitr::include_graphics("images/mce_exercise_2_exclusion_area.png")
+```
+
+\newpage
+
+## Exercise 3: Calculate slope
+Next, calculate the slope in degrees based on the terrain model (dhm25m). The raster package gives you a very helpful function called `terrain`. 
+
+***Tip**: When using the terrain function use the following options: opt="slope", unit="degrees", neighbors=8.*
+
+```{r fig_slope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%"}
+knitr::include_graphics("images/mce_exercise_3_slope.png")
+```
+
+\newpage
+
+## Exercise 4: Calculate distances to criteria
+Within the evaluation of suitable sites for wind turbines, the distance to roads, forest areas, national protected areas and inhabited areas are relevant. Depending on the criteria, a short or long distance has a positive influence on the evaluation of potential sites. For this purpose, perform a distance analysis with the selected criteria raster layers. Use the raster function `distance` for this calculation. 
+
+* ***Tip**: In order to perform the `distance` function, you need to `rasterize` the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.*
+* ***Tip**: Use the `mask` function again to get only relevant data in the study area.*
+
+As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. You can load the other 3 data sets as .tif formats from the folder "/solution_euclidean_distances".
+
+```{r fig_distance_settlements, echo=FALSE, fig.cap="Example output for the distances to settlements", fig.align="center", out.width="50%"}
+knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
+```
+
+\newpage
+
+## Exercise 5: Standardize and grade criteria (grading)
+The data layers slope, wind speed, icing frequency and the in exercise 4 calculated distance layers have different units (dm/s, degrees, d/yr and m). These units can't be directly calculated with each other. Therefore, the different layers need to be operationalized by performing a linear grading. The linear grading is done by using the function `reclassify`. Use the  standards for the reclassification in Figure \ref{fig:fig_reclassify}.
+
+* ***Tip**: Keep in mind the min and max values of each raster layer.*
+* ***Tip**: Here is an example code to reclassify the distances to settlements.*
+
+```{r example_reclassify_settlements, eval=FALSE}
+reclass_settlements <- c(0,80,0,
+                        80,160,0.1,
+                        160,240,0.2,
+                        240,320,0.3,
+                        320,400,0.4,
+                        400,480,0.5,
+                        480,560,0.6,
+                        560,640,0.7,
+                        640,720,0.8,
+                        720,800,0.9,
+                        800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
+```
+
+```{r fig_reclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", fig.align = "center", fig.show = "hold", out.width="49%"}
+knitr::include_graphics(c("images/mce_reclassify_1.png", "images/mce_reclassify_2.png"))
+```
+
+```{r fig_dist_settlements_reclass, echo=FALSE, fig.cap="Example output for the reclassified distances to settlements", fig.align="center", out.width="45%"}
+knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
+```
+
+\newpage
+
+## Exercise 6: Weighting criteria with AHP
+Perform an AHP to weight the criteria underlying the MCE. First compare the criteria in pairs, and then calculate the weights - as you have learned in last weeks lesson. In the end you should have a list of 7 weights as shown below.
+
+***Tip**: Check exercise 2 and 3 from last week's session. Use the prepared R code to create your ahp matrix.*
+
+          Wind       Streets          Ice    Settlements       Forest         Slope  Protected areas 
+    0.33862692    0.09816760    0.06166626    0.24969460    0.03515759    0.18043000      0.03625702 
+  
+```{r ahp_mce, eval=FALSE}
+ahp_matrix <- c(
+  1, 0, 0, 0, 0, 0, 0, #Wind
+  0, 1, 0, 0, 0, 0, 0, #Distance to streets
+  0, 0, 1, 0, 0, 0, 0, #Ice
+  0, 0, 0, 1, 0, 0, 0, #Distance to settlements
+  0, 0, 0, 0, 1, 0, 0, #Distance to forests
+  0, 0, 0, 0, 0, 1, 0, #Slope
+  0, 0, 0, 0, 0, 0, 1  #Distance to protected areas
+) %>% matrix(ncol = 7, byrow = TRUE)
+```
+
+\newpage
+
+## Exercise 7: Weighted Overlay
+The linearly ranked criteria (Exercise 5) are now to be combined with each other, taking into account the weighting determined using the AHP (Exercise 6). This weighted overlay can be performed by using raster calculations and simply multiplying each criteria with its weight and adding them together (see Figure \ref{fig:fig_weighted_overlay}).
+
+* ***Tip**: As the raster sets have slightly different origins, increase the tolerance by using rasterOptions(tolerance = 0.5).*
+* ***Tip**: Also keep in mind the order of the weights in your list when doing the multiplication.*
+
+```{r fig_weighted_overlay, echo=FALSE, fig.cap="Weighted overall of all criteria", fig.align="center", out.width="50%"}
+knitr::include_graphics("images/mce_exercise_7_weighted_overlay.png")
+```
+
+\newpage
+
+## Exercise 8: Intersecting potential areas with exclusion criteria
+By simply multiplying the exclusion layer (result from exercise 2) with the weighted overlay layer (result from exercise 7) we are excluding all areas with value 0 (exclusion areas) and keeping all other areas with value 1 (e.g. 0x3=0, 1x3=3). As a conclusion of the study, create a final plot of the potential areas for wind power plants in the canton of Schwyz (like Figure \ref{fig:fig_final_results}). Furthermore, discuss the results obtained and determine three possible locations within which concrete planning of wind power plants would be possible.
+
+```{r fig_final_results, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz (red = less suitable, green = more suitable)", fig.align="center", out.width="80%"}
+knitr::include_graphics("images/mce_exercise_8_final_plot.png")
+```
+
+\newpage
+
+## Solution
+```{r solution, eval=FALSE}
+#Load libraries
+pkgTest <- function(x)
+{
+  if (!require(x, character.only = TRUE))
+  {
+    install.packages(x, dep = TRUE)
+    if(!require(x, character.only = TRUE)) stop("Package not found")
+  }
+}
+
+pkgTest("raster")
+pkgTest("sf")
+pkgTest("tidyverse")
+
+#####################################################################
+## -- Use Case 2 - Use Case 2: Multi-Criteria Evaluation (MCE)  -- ##
+#####################################################################
+
+## -- Exercise 1: Load and view input data -- ##
+#Vector data
+kt_schwyz <- read_sf("sample_data/Data_MCE2/Vektor/Untersuchungsgebiet_Schwyz.shp")
+settlements <- read_sf("sample_data/Data_MCE2/Vektor/Bewohnte_Flaeche.shp")
+forests <- read_sf("sample_data/Data_MCE2/Vektor/Waldgebiete.shp")
+protected_areas <- read_sf("sample_data/Data_MCE2/Vektor/Nationale_Schutzgebiete.shp")
+lakes <- read_sf("sample_data/Data_MCE2/Vektor/Seeflaechen.shp")
+streets <- read_sf("sample_data/Data_MCE2/Vektor/Strassen.shp") %>% st_intersection(kt_schwyz) #intersect with study area
+
+#Raster data
+eis25m <- raster("sample_data/Data_MCE2/Raster/eis25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+dhm25m <- raster("sample_data/Data_MCE2/Raster/dhm25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+wind25m <- raster("sample_data/Data_MCE2/Raster/wind25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+
+#Plot raster data
+plot(dhm25m, main="Digital Surface Model (DSM)", axes=FALSE)
+plot(eis25m, main="Icing frequency", axes=FALSE)
+plot(wind25m, main="Average wind speed", axes=FALSE)
+
+#Plot vector data
+plot_data <- function(vector_data, lwd_size) {
+  ggplot() +
+    geom_sf(data = vector_data, fill = "lightgreen", lwd = lwd_size) +
+    geom_sf(data = kt_schwyz, fill = NA) +
+    theme_void()
+}
+
+cowplot::plot_grid(plot_data(settlements,0), 
+                   plot_data(forests,0), 
+                   plot_data(protected_areas,0), 
+                   plot_data(lakes,0), 
+                   plot_data(streets,0.1), 
+                   labels = c("Settlements", "Forests", "Protected areas", "Lakes", "Streets"))
+
+## -- Exercise 2: Merge exclusion criteria -- ##
+#Merge exclusion area
+exclusion_areas <- bind_rows(settlements, forests, protected_areas, lakes)
+
+#create raster
+r <- raster(extent(kt_schwyz), 
+          resolution = c(25, 25), #use 25x25 resolution (same as other raster sets)
+          crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs") #crs from raster set (dhm25m)
+
+raster_exclusion_areas <- rasterize(exclusion_areas, r, field = 0, background = 1) %>% mask(kt_schwyz)
+plot(raster_exclusion_areas, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
+
+## -- Exercise 3: Calculate slope -- ##
+slope <- terrain(dhm25m, opt="slope", unit="degrees", neighbors=8)
+plot(slope, main="Slope", axes=FALSE)
+
+## -- Exercise 4: Calculate distances to criteria -- ##
+# This process will take a few hours to run, so to save time you can use solution 2 to load the already prepared euclidean distance of the rasterized vector data.
+#Solution 1
+#create raster layers from vector 
+raster_settlements <- rasterize(settlements, r, field = 1) 
+raster_protected_areas <- rasterize(protected_areas, r, field = 1) 
+raster_forests <- rasterize(forests, r, field = 1) 
+raster_streets <- rasterize(streets, r, field = 1) 
+
+#calculate euclidean distances
+settlements_ed <- distance(raster_settlements) %>% mask(kt_schwyz)
+protected_areas_ed <- distance(raster_protected_areas) %>% mask(kt_schwyz)
+forests_ed <- distance(raster_forests) %>% mask(kt_schwyz)
+streets_ed <- distance(raster_streets) %>% mask(kt_schwyz)
+
+#Solution 2
+#settlements_ed <- raster("sample_data/solution_euclidean_distances/settlements_ed.tif")
+#protected_areas_ed <- raster("sample_data/solution_euclidean_distances/protected_areas_ed.tif")
+#forests_ed <- raster("sample_data/solution_euclidean_distances/forests_ed.tif")
+#streets_ed <- raster("sample_data/solution_euclidean_distances/streets_ed.tif")
+
+## -- Exercise 5: Standardize and grade criteria (grading) -- ##
+#### reclassify wind    
+reclass_wind_m <- c(0,35,0,
+                      35,40,0.1,
+                      40,45,0.2,
+                      45,50,0.3,
+                      50,55,0.4,
+                      55,60,0.5,
+                      60,65,0.6,
+                      65,70,0.7,
+                      70,75,0.8,
+                      75,maxValue(wind25m),0.9) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_wind <- reclassify(wind25m, reclass_wind_m)
+plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
+
+#### reclassify ice    
+reclass_ice_m <- c(0,6,1,
+                     6,12,0.9,
+                     12,18,0.8,
+                     18,24,0.7,
+                     24,30,0.6,
+                     30,36,0.5,
+                     36,maxValue(eis25m),0.4) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_ice <- reclassify(eis25m, reclass_ice_m)
+plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE)
+
+#### reclassify slope
+reclass_slope_m <- c(0,2,1,
+                       2,4,0.9,
+                       4,6,0.8,
+                       6,8,0.7,
+                       8,10,0.6,
+                       10,12,0.5,
+                       12,14,0.4,
+                       14,16,0.3,
+                       16,18,0.2,
+                       18,20,0.1,
+                       20,maxValue(slope),0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_slope <- reclassify(slope, reclass_slope_m)
+plot(reclass_slope, main="Slope (reclassified)", axes=FALSE)
+
+#### reclassify settlements 
+reclass_settlements <- c(0,80,0,
+                             80,160,0.1,
+                             160,240,0.2,
+                             240,320,0.3,
+                             320,400,0.4,
+                             400,480,0.5,
+                             480,560,0.6,
+                             560,640,0.7,
+                             640,720,0.8,
+                             720,800,0.9,
+                             800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
+plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes=FALSE)
+
+#### reclassify protected areas
+reclass_protected_areas <- c(0,50,0,
+                                 50,100,0.1,
+                                 100,150,0.2,
+                                 150,200,0.3,
+                                 200,250,0.4,
+                                 250,300,0.5,
+                                 300,350,0.6,
+                                 350,400,0.7,
+                                 400,450,0.8,
+                                 450,500,0.9,
+                                 500,maxValue(protected_areas_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_protected_areas_ed <- reclassify(protected_areas_ed, reclass_protected_areas)
+plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE)
+
+#### reclassify forest area 
+reclass_forests <- c(0,10,0,
+                         10,20,0.1,
+                         20,30,0.2,
+                         30,40,0.3,
+                         40,50,0.4,
+                         50,60,0.5,
+                         60,70,0.6,
+                         70,80,0.7,
+                         80,90,0.8,
+                         90,100,0.9,
+                         100,maxValue(forests_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_forests_ed <- reclassify(forests_ed, reclass_forests)
+plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FALSE)
+
+#### reclassify streets   
+reclass_streets <- c(0,250,1.0,
+                     250,500,0.9,
+                     500,750,0.8,
+                     750,1000,0.7,
+                     1000,1250,0.6,
+                     1250,1500,0.5,
+                     1500,1750,0.4,
+                     1750,2000,0.3,
+                     2000,2250,0.2,
+                     2250,2500,0.1,
+                     2500,maxValue(streets_ed),0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_streets_ed <- reclassify(streets_ed, reclass_streets)
+plot(reclass_streets_ed, main="Distance to streets (reclassified)", axes=FALSE)
+
+## -- Exercise 6: Weighting Criteria with AHP -- ##
+#create AHP
+ahp_matrix <- c(
+  1,   6,   7,   3,   7, 4,   5, #Wind
+  1/6, 1,   2,   1/5, 3, 1/5, 3, #Distance to streets
+  1/7, 1/2, 1,   1/6, 2, 1/5, 2, #Ice
+  1/3, 5,   6,   1,   5, 3,   4, #Distance to settlements
+  1/7, 1/3, 1/2, 1/5, 1, 1/4, 1, #Distance to forests
+  1/4, 5,   3,   1/3, 4, 1,   4, #Slope
+  1/5, 1/3, 1/2, 1/4, 1, 1/4, 1  #Distance to protected areas
+) %>% matrix(ncol = 7, byrow = TRUE)
+colnames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas")
+rownames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas")
+
+#Normalization of matrix & weighting of criteria
+ahp_matrix <- ahp_matrix %>% cbind(rowSums(ahp_matrix)) #add row sum
+ahp_matrix <- sweep(ahp_matrix, 2, colSums(ahp_matrix), FUN="/") #normalize data
+ahp_matrix
+
+weights <- ahp_matrix[, 8] #only get list of weights
+weights
+
+## -- Exercise 7: Weighted Overlay -- ##
+rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance
+
+weighted_overlay <- (reclass_wind * weights[1]) +
+  (reclass_streets_ed * weights[2]) +
+  (reclass_ice * weights[3]) +
+  (reclass_settlements_ed * weights[4]) +
+  (reclass_forests_ed * weights[5]) +
+  (reclass_slope * weights[6]) +
+  (reclass_protected_areas_ed * weights[7])
+
+plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=FALSE)
+
+## -- Exercise 8: Intersecting potential areas with exclusion criteria -- ##
+final_model <- weighted_overlay * raster_exclusion_areas 
+
+plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=FALSE)
+```
