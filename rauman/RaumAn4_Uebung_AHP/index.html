@@ -2293,7 +2293,7 @@ Interna
 </div>
 
 <div class="d-article">
-<p>Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a step-by-step guide corresponding to the PPP document <code>Multikriterielle Entscheidungsanalyse 1</code>. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.</p>
+<p>Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a step-by-step guide corresponding to this week’s lecture. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.</p>
 <p><strong>Exercises</strong>:</p>
 <ul>
 <li>Exercise 1: Define initial situation</li>
@@ -2309,15 +2309,13 @@ Interna
 <p><strong>Functions necessary to carry out the exercises </strong>:<br />
 * matrix() * sweep() * colnames() * rownames() * colSums() * rowSums() * cbind() * ncol() * matrix multiplication</p>
 <h2 id="exercise-1-define-initial-situation">Exercise 1: Define initial situation</h2>
-<p><strong>PPP: Slide 24 - 25</strong></p>
 <p>First think of an actual decision you are currently facing like buying a bike or a car and define the following points.</p>
 <ul>
-<li>A goal for your AHP (e.g. Buy a car)</li>
-<li>At least 4 criteria (e.g. price, hp)</li>
-<li>At least 3 alternatives (e.g. Renault Clio)</li>
+<li>A goal for your AHP (e.g. Buy a bike)</li>
+<li>At least 4 criteria (e.g. price, components, suspension)</li>
+<li>At least 3 alternatives (e.g. Scott Genius)</li>
 </ul>
-<h2 id="exercise-2-pairwise-comparison">Exercise 2: Pairwise comparison</h2>
-<p><strong>PPP: Slide 26 - 27</strong></p>
+<h2 id="exercise-2-pairwise-comparison-paarweiser-vergleich-1-2">Exercise 2: Pairwise comparison (Paarweiser Vergleich 1 &amp; 2)</h2>
 <p>In a first step each criterion needs to be compared with another criteria in pairs. Use the following scale for weighting the criteria (see Figure ).</p>
 <p><em><strong>Tip</strong>: Add column and row names so your matrix is more readable. You can use the following code to create your AHP as a matrix.</em></p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2340,8 +2338,7 @@ Interna
 </div>
 </div>
 <h2 id="exercise-3-calculation-of-the-criteria-weights">Exercise 3: Calculation of the criteria weights</h2>
-<h3 id="exercise-3.1-normalization-of-matrix">Exercise 3.1: Normalization of matrix</h3>
-<p><strong>PPP: Slide 28</strong></p>
+<h3 id="exercise-3.1-normalization-of-matrix-berechnung-der-kritiriengewichte-1">Exercise 3.1: Normalization of matrix (Berechnung der Kritiriengewichte 1)</h3>
 <p>In the next step the matrix needs to be normalized. For that you first want to calculate the sum of each column (criteria) and then divide each value in a column with the column sum.</p>
 <p><em><strong>Tip</strong>: To achieve this, you can have a look at the <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sweep"><code>sweep</code></a> function (see Figure ).</em></p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2352,13 +2349,11 @@ Interna
 </p>
 </div>
 </div>
-<h3 id="exercise-3.2-weighting-of-criteria">Exercise 3.2: Weighting of criteria</h3>
-<p><strong>PPP: Slide 29</strong></p>
+<h3 id="exercise-3.2-weighting-of-criteria-berechnung-der-kritiriengewichte-2">Exercise 3.2: Weighting of criteria (Berechnung der Kritiriengewichte 2)</h3>
 <p>In a next step you want to sum up the values of each criteria by using the <code>rowSums</code> function and add it to the matrix by using the <code>cbind</code> function. In a final step you want to normalize the weights again. For this you can use the <code>sweep</code> function.</p>
 <p><em><strong>Tip</strong>: Running sweep again will not affect your other values as the column sum now is 1.</em></p>
 <div style="page-break-after: always;"></div>
-<h2 id="exercise-4-consistency-analysis">Exercise 4: Consistency analysis</h2>
-<p><strong>PPP: Slide 30 - 31</strong></p>
+<h2 id="exercise-4-consistency-analysis-konsistenzanalyse-1-2">Exercise 4: Consistency analysis (Konsistenzanalyse 1 &amp; 2)</h2>
 <p>After the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (If CR &lt; 0.10, then the pairwise comparison shows acceptable consistency). The RI is depending on the number of criteria (see Figure ).</p>
 <ul>
 <li><em><strong>Tip</strong>: In order to calculate</em> <strong>a</strong><em>, you first use the operator</em> <code>%*%</code><em>, which is used for matrix multiplication. Then use the <code>sweep</code> function again.</em></li>
@@ -2374,8 +2369,7 @@ Interna
 </div>
 </div>
 <div style="page-break-after: always;"></div>
-<h2 id="exercise-5-prioritization-of-the-alternatives">Exercise 5: Prioritization of the alternatives</h2>
-<p><strong>PPP: Slide 32 - 35</strong></p>
+<h2 id="exercise-5-prioritization-of-the-alternatives-priorisierung-der-alternativen">Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen)</h2>
 <p>The priorities for the alternatives can also be determined by means of pair comparisons. A pair comparison is made for each criterion. Those weights are then combined in a table and multiplied by the overall weights calculated in exercise 2. In the end we get a final table with the priorities of the alternatives.</p>
 <p><em><strong>Tip</strong>: It follows the same principle as exercise 2 and exercise 3, ergo use the same functions and methods.</em></p>
 <h2 id="digression-ahp-packages-in-r">Digression: AHP packages in R</h2>
