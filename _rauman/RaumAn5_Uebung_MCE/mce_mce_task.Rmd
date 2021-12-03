@@ -3,7 +3,7 @@ title: Multi-Criteria Evaluation (MCE)
 subtitle: Wind potential study in the canton of Schwyz
 output: distill::distill_article
 categories:
-- mce
+- RaumAn5
 draft: false
 description: |
   This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 1".
