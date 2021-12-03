@@ -1,5 +1,5 @@
 ---
-title: Multi-Criteria Evaluation (MCE) - Exercise
+title: Multi-Criteria Evaluation (MCE)
 subtitle: Wind potential study in the canton of Schwyz
 output: distill::distill_article
 categories:
@@ -189,235 +189,235 @@ knitr::include_graphics("images/mce_exercise_8_final_plot.png")
 
 \newpage
 
-## Solution
-```{r solution, eval=FALSE}
-#Load libraries
-pkgTest <- function(x)
-{
-  if (!require(x, character.only = TRUE))
-  {
-    install.packages(x, dep = TRUE)
-    if(!require(x, character.only = TRUE)) stop("Package not found")
-  }
-}
+<!-- ## Solution -->
+<!-- ```{r solution, eval=FALSE} -->
+<!-- #Load libraries -->
+<!-- pkgTest <- function(x) -->
+<!-- { -->
+<!--   if (!require(x, character.only = TRUE)) -->
+<!--   { -->
+<!--     install.packages(x, dep = TRUE) -->
+<!--     if(!require(x, character.only = TRUE)) stop("Package not found") -->
+<!--   } -->
+<!-- } -->
 
-pkgTest("raster")
-pkgTest("sf")
-pkgTest("tidyverse")
+<!-- pkgTest("raster") -->
+<!-- pkgTest("sf") -->
+<!-- pkgTest("tidyverse") -->
 
-#####################################################################
-## -- Use Case 2 - Use Case 2: Multi-Criteria Evaluation (MCE)  -- ##
-#####################################################################
+<!-- ##################################################################### -->
+<!-- ## -- Use Case 2 - Use Case 2: Multi-Criteria Evaluation (MCE)  -- ## -->
+<!-- ##################################################################### -->
 
-## -- Exercise 1: Load and view input data -- ##
-#Vector data
-kt_schwyz <- read_sf("sample_data/Data_MCE2/Vektor/Untersuchungsgebiet_Schwyz.shp")
-settlements <- read_sf("sample_data/Data_MCE2/Vektor/Bewohnte_Flaeche.shp")
-forests <- read_sf("sample_data/Data_MCE2/Vektor/Waldgebiete.shp")
-protected_areas <- read_sf("sample_data/Data_MCE2/Vektor/Nationale_Schutzgebiete.shp")
-lakes <- read_sf("sample_data/Data_MCE2/Vektor/Seeflaechen.shp")
-streets <- read_sf("sample_data/Data_MCE2/Vektor/Strassen.shp") %>% st_intersection(kt_schwyz) #intersect with study area
+<!-- ## -- Exercise 1: Load and view input data -- ## -->
+<!-- #Vector data -->
+<!-- kt_schwyz <- read_sf("sample_data/Data_MCE2/Vektor/Untersuchungsgebiet_Schwyz.shp") -->
+<!-- settlements <- read_sf("sample_data/Data_MCE2/Vektor/Bewohnte_Flaeche.shp") -->
+<!-- forests <- read_sf("sample_data/Data_MCE2/Vektor/Waldgebiete.shp") -->
+<!-- protected_areas <- read_sf("sample_data/Data_MCE2/Vektor/Nationale_Schutzgebiete.shp") -->
+<!-- lakes <- read_sf("sample_data/Data_MCE2/Vektor/Seeflaechen.shp") -->
+<!-- streets <- read_sf("sample_data/Data_MCE2/Vektor/Strassen.shp") %>% st_intersection(kt_schwyz) #intersect with study area -->
 
-#Raster data
-eis25m <- raster("sample_data/Data_MCE2/Raster/eis25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
-dhm25m <- raster("sample_data/Data_MCE2/Raster/dhm25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
-wind25m <- raster("sample_data/Data_MCE2/Raster/wind25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+<!-- #Raster data -->
+<!-- eis25m <- raster("sample_data/Data_MCE2/Raster/eis25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area -->
+<!-- dhm25m <- raster("sample_data/Data_MCE2/Raster/dhm25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area -->
+<!-- wind25m <- raster("sample_data/Data_MCE2/Raster/wind25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area -->
 
-#Plot raster data
-plot(dhm25m, main="Digital Surface Model (DSM)", axes=FALSE)
-plot(eis25m, main="Icing frequency", axes=FALSE)
-plot(wind25m, main="Average wind speed", axes=FALSE)
+<!-- #Plot raster data -->
+<!-- plot(dhm25m, main="Digital Surface Model (DSM)", axes=FALSE) -->
+<!-- plot(eis25m, main="Icing frequency", axes=FALSE) -->
+<!-- plot(wind25m, main="Average wind speed", axes=FALSE) -->
 
-#Plot vector data
-plot_data <- function(vector_data, lwd_size) {
-  ggplot() +
-    geom_sf(data = vector_data, fill = "lightgreen", lwd = lwd_size) +
-    geom_sf(data = kt_schwyz, fill = NA) +
-    theme_void()
-}
+<!-- #Plot vector data -->
+<!-- plot_data <- function(vector_data, lwd_size) { -->
+<!--   ggplot() + -->
+<!--     geom_sf(data = vector_data, fill = "lightgreen", lwd = lwd_size) + -->
+<!--     geom_sf(data = kt_schwyz, fill = NA) + -->
+<!--     theme_void() -->
+<!-- } -->
 
-cowplot::plot_grid(plot_data(settlements,0), 
-                   plot_data(forests,0), 
-                   plot_data(protected_areas,0), 
-                   plot_data(lakes,0), 
-                   plot_data(streets,0.1), 
-                   labels = c("Settlements", "Forests", "Protected areas", "Lakes", "Streets"))
+<!-- cowplot::plot_grid(plot_data(settlements,0),  -->
+<!--                    plot_data(forests,0),  -->
+<!--                    plot_data(protected_areas,0),  -->
+<!--                    plot_data(lakes,0),  -->
+<!--                    plot_data(streets,0.1),  -->
+<!--                    labels = c("Settlements", "Forests", "Protected areas", "Lakes", "Streets")) -->
 
-## -- Exercise 2: Merge exclusion criteria -- ##
-#Merge exclusion area
-exclusion_areas <- bind_rows(settlements, forests, protected_areas, lakes)
+<!-- ## -- Exercise 2: Merge exclusion criteria -- ## -->
+<!-- #Merge exclusion area -->
+<!-- exclusion_areas <- bind_rows(settlements, forests, protected_areas, lakes) -->
 
-#create raster
-r <- raster(extent(kt_schwyz), 
-          resolution = c(25, 25), #use 25x25 resolution (same as other raster sets)
-          crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs") #crs from raster set (dhm25m)
+<!-- #create raster -->
+<!-- r <- raster(extent(kt_schwyz),  -->
+<!--           resolution = c(25, 25), #use 25x25 resolution (same as other raster sets) -->
+<!--           crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs") #crs from raster set (dhm25m) -->
 
-raster_exclusion_areas <- rasterize(exclusion_areas, r, field = 0, background = 1) %>% mask(kt_schwyz)
-plot(raster_exclusion_areas, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
+<!-- raster_exclusion_areas <- rasterize(exclusion_areas, r, field = 0, background = 1) %>% mask(kt_schwyz) -->
+<!-- plot(raster_exclusion_areas, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2)) -->
 
-## -- Exercise 3: Calculate slope -- ##
-slope <- terrain(dhm25m, opt="slope", unit="degrees", neighbors=8)
-plot(slope, main="Slope", axes=FALSE)
+<!-- ## -- Exercise 3: Calculate slope -- ## -->
+<!-- slope <- terrain(dhm25m, opt="slope", unit="degrees", neighbors=8) -->
+<!-- plot(slope, main="Slope", axes=FALSE) -->
 
-## -- Exercise 4: Calculate distances to criteria -- ##
-# This process will take a few hours to run, so to save time you can use solution 2 to load the already prepared euclidean distance of the rasterized vector data.
-#Solution 1
-#create raster layers from vector 
-raster_settlements <- rasterize(settlements, r, field = 1) 
-raster_protected_areas <- rasterize(protected_areas, r, field = 1) 
-raster_forests <- rasterize(forests, r, field = 1) 
-raster_streets <- rasterize(streets, r, field = 1) 
+<!-- ## -- Exercise 4: Calculate distances to criteria -- ## -->
+<!-- # This process will take a few hours to run, so to save time you can use solution 2 to load the already prepared euclidean distance of the rasterized vector data. -->
+<!-- #Solution 1 -->
+<!-- #create raster layers from vector  -->
+<!-- raster_settlements <- rasterize(settlements, r, field = 1)  -->
+<!-- raster_protected_areas <- rasterize(protected_areas, r, field = 1)  -->
+<!-- raster_forests <- rasterize(forests, r, field = 1)  -->
+<!-- raster_streets <- rasterize(streets, r, field = 1)  -->
 
-#calculate euclidean distances
-settlements_ed <- distance(raster_settlements) %>% mask(kt_schwyz)
-protected_areas_ed <- distance(raster_protected_areas) %>% mask(kt_schwyz)
-forests_ed <- distance(raster_forests) %>% mask(kt_schwyz)
-streets_ed <- distance(raster_streets) %>% mask(kt_schwyz)
+<!-- #calculate euclidean distances -->
+<!-- settlements_ed <- distance(raster_settlements) %>% mask(kt_schwyz) -->
+<!-- protected_areas_ed <- distance(raster_protected_areas) %>% mask(kt_schwyz) -->
+<!-- forests_ed <- distance(raster_forests) %>% mask(kt_schwyz) -->
+<!-- streets_ed <- distance(raster_streets) %>% mask(kt_schwyz) -->
 
-#Solution 2
-#settlements_ed <- raster("sample_data/solution_euclidean_distances/settlements_ed.tif")
-#protected_areas_ed <- raster("sample_data/solution_euclidean_distances/protected_areas_ed.tif")
-#forests_ed <- raster("sample_data/solution_euclidean_distances/forests_ed.tif")
-#streets_ed <- raster("sample_data/solution_euclidean_distances/streets_ed.tif")
+<!-- #Solution 2 -->
+<!-- #settlements_ed <- raster("sample_data/solution_euclidean_distances/settlements_ed.tif") -->
+<!-- #protected_areas_ed <- raster("sample_data/solution_euclidean_distances/protected_areas_ed.tif") -->
+<!-- #forests_ed <- raster("sample_data/solution_euclidean_distances/forests_ed.tif") -->
+<!-- #streets_ed <- raster("sample_data/solution_euclidean_distances/streets_ed.tif") -->
 
-## -- Exercise 5: Standardize and grade criteria (grading) -- ##
-#### reclassify wind    
-reclass_wind_m <- c(0,35,0,
-                      35,40,0.1,
-                      40,45,0.2,
-                      45,50,0.3,
-                      50,55,0.4,
-                      55,60,0.5,
-                      60,65,0.6,
-                      65,70,0.7,
-                      70,75,0.8,
-                      75,maxValue(wind25m),0.9) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_wind <- reclassify(wind25m, reclass_wind_m)
-plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
+<!-- ## -- Exercise 5: Standardize and grade criteria (grading) -- ## -->
+<!-- #### reclassify wind     -->
+<!-- reclass_wind_m <- c(0,35,0, -->
+<!--                       35,40,0.1, -->
+<!--                       40,45,0.2, -->
+<!--                       45,50,0.3, -->
+<!--                       50,55,0.4, -->
+<!--                       55,60,0.5, -->
+<!--                       60,65,0.6, -->
+<!--                       65,70,0.7, -->
+<!--                       70,75,0.8, -->
+<!--                       75,maxValue(wind25m),0.9) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_wind <- reclassify(wind25m, reclass_wind_m) -->
+<!-- plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE) -->
 
-#### reclassify ice    
-reclass_ice_m <- c(0,6,1,
-                     6,12,0.9,
-                     12,18,0.8,
-                     18,24,0.7,
-                     24,30,0.6,
-                     30,36,0.5,
-                     36,maxValue(eis25m),0.4) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_ice <- reclassify(eis25m, reclass_ice_m)
-plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE)
+<!-- #### reclassify ice     -->
+<!-- reclass_ice_m <- c(0,6,1, -->
+<!--                      6,12,0.9, -->
+<!--                      12,18,0.8, -->
+<!--                      18,24,0.7, -->
+<!--                      24,30,0.6, -->
+<!--                      30,36,0.5, -->
+<!--                      36,maxValue(eis25m),0.4) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_ice <- reclassify(eis25m, reclass_ice_m) -->
+<!-- plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE) -->
 
-#### reclassify slope
-reclass_slope_m <- c(0,2,1,
-                       2,4,0.9,
-                       4,6,0.8,
-                       6,8,0.7,
-                       8,10,0.6,
-                       10,12,0.5,
-                       12,14,0.4,
-                       14,16,0.3,
-                       16,18,0.2,
-                       18,20,0.1,
-                       20,maxValue(slope),0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_slope <- reclassify(slope, reclass_slope_m)
-plot(reclass_slope, main="Slope (reclassified)", axes=FALSE)
+<!-- #### reclassify slope -->
+<!-- reclass_slope_m <- c(0,2,1, -->
+<!--                        2,4,0.9, -->
+<!--                        4,6,0.8, -->
+<!--                        6,8,0.7, -->
+<!--                        8,10,0.6, -->
+<!--                        10,12,0.5, -->
+<!--                        12,14,0.4, -->
+<!--                        14,16,0.3, -->
+<!--                        16,18,0.2, -->
+<!--                        18,20,0.1, -->
+<!--                        20,maxValue(slope),0) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_slope <- reclassify(slope, reclass_slope_m) -->
+<!-- plot(reclass_slope, main="Slope (reclassified)", axes=FALSE) -->
 
-#### reclassify settlements 
-reclass_settlements <- c(0,80,0,
-                             80,160,0.1,
-                             160,240,0.2,
-                             240,320,0.3,
-                             320,400,0.4,
-                             400,480,0.5,
-                             480,560,0.6,
-                             560,640,0.7,
-                             640,720,0.8,
-                             720,800,0.9,
-                             800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
-plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes=FALSE)
+<!-- #### reclassify settlements  -->
+<!-- reclass_settlements <- c(0,80,0, -->
+<!--                              80,160,0.1, -->
+<!--                              160,240,0.2, -->
+<!--                              240,320,0.3, -->
+<!--                              320,400,0.4, -->
+<!--                              400,480,0.5, -->
+<!--                              480,560,0.6, -->
+<!--                              560,640,0.7, -->
+<!--                              640,720,0.8, -->
+<!--                              720,800,0.9, -->
+<!--                              800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements) -->
+<!-- plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes=FALSE) -->
 
-#### reclassify protected areas
-reclass_protected_areas <- c(0,50,0,
-                                 50,100,0.1,
-                                 100,150,0.2,
-                                 150,200,0.3,
-                                 200,250,0.4,
-                                 250,300,0.5,
-                                 300,350,0.6,
-                                 350,400,0.7,
-                                 400,450,0.8,
-                                 450,500,0.9,
-                                 500,maxValue(protected_areas_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_protected_areas_ed <- reclassify(protected_areas_ed, reclass_protected_areas)
-plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE)
+<!-- #### reclassify protected areas -->
+<!-- reclass_protected_areas <- c(0,50,0, -->
+<!--                                  50,100,0.1, -->
+<!--                                  100,150,0.2, -->
+<!--                                  150,200,0.3, -->
+<!--                                  200,250,0.4, -->
+<!--                                  250,300,0.5, -->
+<!--                                  300,350,0.6, -->
+<!--                                  350,400,0.7, -->
+<!--                                  400,450,0.8, -->
+<!--                                  450,500,0.9, -->
+<!--                                  500,maxValue(protected_areas_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_protected_areas_ed <- reclassify(protected_areas_ed, reclass_protected_areas) -->
+<!-- plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE) -->
 
-#### reclassify forest area 
-reclass_forests <- c(0,10,0,
-                         10,20,0.1,
-                         20,30,0.2,
-                         30,40,0.3,
-                         40,50,0.4,
-                         50,60,0.5,
-                         60,70,0.6,
-                         70,80,0.7,
-                         80,90,0.8,
-                         90,100,0.9,
-                         100,maxValue(forests_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_forests_ed <- reclassify(forests_ed, reclass_forests)
-plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FALSE)
+<!-- #### reclassify forest area  -->
+<!-- reclass_forests <- c(0,10,0, -->
+<!--                          10,20,0.1, -->
+<!--                          20,30,0.2, -->
+<!--                          30,40,0.3, -->
+<!--                          40,50,0.4, -->
+<!--                          50,60,0.5, -->
+<!--                          60,70,0.6, -->
+<!--                          70,80,0.7, -->
+<!--                          80,90,0.8, -->
+<!--                          90,100,0.9, -->
+<!--                          100,maxValue(forests_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_forests_ed <- reclassify(forests_ed, reclass_forests) -->
+<!-- plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FALSE) -->
 
-#### reclassify streets   
-reclass_streets <- c(0,250,1.0,
-                     250,500,0.9,
-                     500,750,0.8,
-                     750,1000,0.7,
-                     1000,1250,0.6,
-                     1250,1500,0.5,
-                     1500,1750,0.4,
-                     1750,2000,0.3,
-                     2000,2250,0.2,
-                     2250,2500,0.1,
-                     2500,maxValue(streets_ed),0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_streets_ed <- reclassify(streets_ed, reclass_streets)
-plot(reclass_streets_ed, main="Distance to streets (reclassified)", axes=FALSE)
+<!-- #### reclassify streets    -->
+<!-- reclass_streets <- c(0,250,1.0, -->
+<!--                      250,500,0.9, -->
+<!--                      500,750,0.8, -->
+<!--                      750,1000,0.7, -->
+<!--                      1000,1250,0.6, -->
+<!--                      1250,1500,0.5, -->
+<!--                      1500,1750,0.4, -->
+<!--                      1750,2000,0.3, -->
+<!--                      2000,2250,0.2, -->
+<!--                      2250,2500,0.1, -->
+<!--                      2500,maxValue(streets_ed),0) %>% matrix(ncol = 3, byrow = TRUE) -->
+<!-- reclass_streets_ed <- reclassify(streets_ed, reclass_streets) -->
+<!-- plot(reclass_streets_ed, main="Distance to streets (reclassified)", axes=FALSE) -->
 
-## -- Exercise 6: Weighting Criteria with AHP -- ##
-#create AHP
-ahp_matrix <- c(
-  1,   6,   7,   3,   7, 4,   5, #Wind
-  1/6, 1,   2,   1/5, 3, 1/5, 3, #Distance to streets
-  1/7, 1/2, 1,   1/6, 2, 1/5, 2, #Ice
-  1/3, 5,   6,   1,   5, 3,   4, #Distance to settlements
-  1/7, 1/3, 1/2, 1/5, 1, 1/4, 1, #Distance to forests
-  1/4, 5,   3,   1/3, 4, 1,   4, #Slope
-  1/5, 1/3, 1/2, 1/4, 1, 1/4, 1  #Distance to protected areas
-) %>% matrix(ncol = 7, byrow = TRUE)
-colnames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas")
-rownames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas")
+<!-- ## -- Exercise 6: Weighting Criteria with AHP -- ## -->
+<!-- #create AHP -->
+<!-- ahp_matrix <- c( -->
+<!--   1,   6,   7,   3,   7, 4,   5, #Wind -->
+<!--   1/6, 1,   2,   1/5, 3, 1/5, 3, #Distance to streets -->
+<!--   1/7, 1/2, 1,   1/6, 2, 1/5, 2, #Ice -->
+<!--   1/3, 5,   6,   1,   5, 3,   4, #Distance to settlements -->
+<!--   1/7, 1/3, 1/2, 1/5, 1, 1/4, 1, #Distance to forests -->
+<!--   1/4, 5,   3,   1/3, 4, 1,   4, #Slope -->
+<!--   1/5, 1/3, 1/2, 1/4, 1, 1/4, 1  #Distance to protected areas -->
+<!-- ) %>% matrix(ncol = 7, byrow = TRUE) -->
+<!-- colnames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas") -->
+<!-- rownames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas") -->
 
-#Normalization of matrix & weighting of criteria
-ahp_matrix <- ahp_matrix %>% cbind(rowSums(ahp_matrix)) #add row sum
-ahp_matrix <- sweep(ahp_matrix, 2, colSums(ahp_matrix), FUN="/") #normalize data
-ahp_matrix
+<!-- #Normalization of matrix & weighting of criteria -->
+<!-- ahp_matrix <- ahp_matrix %>% cbind(rowSums(ahp_matrix)) #add row sum -->
+<!-- ahp_matrix <- sweep(ahp_matrix, 2, colSums(ahp_matrix), FUN="/") #normalize data -->
+<!-- ahp_matrix -->
 
-weights <- ahp_matrix[, 8] #only get list of weights
-weights
+<!-- weights <- ahp_matrix[, 8] #only get list of weights -->
+<!-- weights -->
 
-## -- Exercise 7: Weighted Overlay -- ##
-rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance
+<!-- ## -- Exercise 7: Weighted Overlay -- ## -->
+<!-- rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance -->
 
-weighted_overlay <- (reclass_wind * weights[1]) +
-  (reclass_streets_ed * weights[2]) +
-  (reclass_ice * weights[3]) +
-  (reclass_settlements_ed * weights[4]) +
-  (reclass_forests_ed * weights[5]) +
-  (reclass_slope * weights[6]) +
-  (reclass_protected_areas_ed * weights[7])
+<!-- weighted_overlay <- (reclass_wind * weights[1]) + -->
+<!--   (reclass_streets_ed * weights[2]) + -->
+<!--   (reclass_ice * weights[3]) + -->
+<!--   (reclass_settlements_ed * weights[4]) + -->
+<!--   (reclass_forests_ed * weights[5]) + -->
+<!--   (reclass_slope * weights[6]) + -->
+<!--   (reclass_protected_areas_ed * weights[7]) -->
 
-plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=FALSE)
+<!-- plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=FALSE) -->
 
-## -- Exercise 8: Intersecting potential areas with exclusion criteria -- ##
-final_model <- weighted_overlay * raster_exclusion_areas 
+<!-- ## -- Exercise 8: Intersecting potential areas with exclusion criteria -- ## -->
+<!-- final_model <- weighted_overlay * raster_exclusion_areas  -->
 
-plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=FALSE)
-```
+<!-- plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=FALSE) -->
+<!-- ``` -->

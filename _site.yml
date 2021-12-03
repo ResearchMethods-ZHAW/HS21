@@ -81,6 +81,8 @@ navbar:
         href: RaumAn.html#category:RaumAn2
       - text: "RaumAn3"
         href: RaumAn.html#category:RaumAn3
+      - text: "RaumAn4"
+        href: RaumAn.html#category:RaumAn4
     - text: "Fallstudien"
       menu:
       - text: "Biodiversity and Ecosystems (Profil S)"
@@ -91,10 +93,6 @@ navbar:
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)
       - text: "Biodiversity and Ecosystems (Profil N): Musterloesung"
         href: Fallstudien.html#category:Biodiversity_&_Ecosystems_(N)_Musterloesung
-    - text: "MCE"
-      menu:
-      - text: "AHP"
-        href: mce.html#category:mce
   right:
     - text: "Interna"
       menu:

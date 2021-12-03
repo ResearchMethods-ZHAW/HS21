@@ -2,7 +2,7 @@
 title: Analytical Hierarchy Process (AHP)
 output: distill::distill_article
 categories:
-- mce
+- RaumAn4
 draft: false
 description: |
   This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 1".
@@ -65,7 +65,7 @@ ahp_matrix <- c(
 ```
 
 ```{r ahp_rating, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, fig.cap="Scale for weighting the criteria.", fig.align="center", out.width="30%"}
-library(tidyverse)
+library(dplyr)
 knitr::include_graphics("images/ahp_ratings.png")
 ```
 
