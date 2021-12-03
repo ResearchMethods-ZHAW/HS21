@@ -14,7 +14,7 @@ author:
 ---
 
 
-Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a step-by-step guide corresponding to the PPP document `Multikriterielle Entscheidungsanalyse 1`. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.
+Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a step-by-step guide corresponding to this week's lecture. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.
 
 **Exercises**: 
 
@@ -39,17 +39,15 @@ Now that you have learned the theory, a concrete example of an Analytical Hierar
 
 
 ## Exercise 1: Define initial situation 
-**PPP: Slide 24 - 25**
 
 First think of an actual decision you are currently facing like buying a bike or a car and define the following points.
 
-* A goal for your AHP (e.g. Buy a car)
-* At least 4 criteria (e.g. price, hp)
-* At least 3 alternatives (e.g. Renault Clio)
+* A goal for your AHP (e.g. Buy a bike)
+* At least 4 criteria (e.g. price, components, suspension)
+* At least 3 alternatives (e.g. Scott Genius)
 
 
-## Exercise 2: Pairwise comparison
-**PPP: Slide 26 - 27**
+## Exercise 2: Pairwise comparison (Paarweiser Vergleich 1 & 2)
 
 In a first step each criterion needs to be compared with another criteria in pairs. Use the following scale for weighting the criteria (see Figure \ref{fig:ahp_rating}). 
 
@@ -69,10 +67,9 @@ library(dplyr)
 knitr::include_graphics("images/ahp_ratings.png")
 ```
 
-## Exercise 3: Calculation of the criteria weights
+## Exercise 3: Calculation of the criteria weights 
 
-### Exercise 3.1: Normalization of matrix
-**PPP: Slide 28**
+### Exercise 3.1: Normalization of matrix (Berechnung der Kritiriengewichte 1)
 
 In the next step the matrix needs to be normalized. For that you first want to calculate the sum of each column (criteria) and then divide each value in a column with the column sum.  
 
@@ -82,8 +79,7 @@ In the next step the matrix needs to be normalized. For that you first want to c
 knitr::include_graphics("images/ahp_sweep_function.png")
 ```
 
-### Exercise 3.2: Weighting of criteria
-**PPP: Slide 29**  
+### Exercise 3.2: Weighting of criteria (Berechnung der Kritiriengewichte 2)
 
 In a next step you want to sum up the values of each criteria by using the `rowSums` function and add it to the matrix by using the `cbind` function. In a final step you  want to normalize the weights again. For this you can use the `sweep` function.
 
@@ -91,8 +87,7 @@ In a next step you want to sum up the values of each criteria by using the `rowS
 
 \newpage
 
-## Exercise 4: Consistency analysis
-**PPP: Slide 30 - 31**
+## Exercise 4: Consistency analysis (Konsistenzanalyse 1 & 2)
 
 After the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (If CR < 0.10, then the pairwise comparison shows acceptable consistency). The RI is depending on the number of criteria (see Figure \ref{fig:random_index_by_saaty}).
 
@@ -108,8 +103,7 @@ knitr::include_graphics("images/ahp_random_index_by_saaty.png")
 
 \newpage
 
-## Exercise 5: Prioritization of the alternatives
-**PPP: Slide 32 - 35**
+## Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen)
 
 The priorities for the alternatives can also be determined by means of pair comparisons. A pair comparison is made for each criterion. Those weights are then combined in a table and multiplied by the overall weights calculated in exercise 2. In the end we get a final table with the priorities of the alternatives. 
 
