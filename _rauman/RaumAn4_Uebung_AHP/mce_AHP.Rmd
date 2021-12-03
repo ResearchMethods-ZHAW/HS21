@@ -49,7 +49,7 @@ First think of an actual decision you are currently facing like buying a bike or
 
 ## Exercise 2: Pairwise comparison (Paarweiser Vergleich 1 & 2)
 
-In a first step each criterion needs to be compared with another criteria in pairs. Use the following scale for weighting the criteria (see Figure \ref{fig:ahp_rating}). 
+In a first step each criterion needs to be compared with another criteria in pairs. Use the following scale for weighting the criteria (see Figure \@ref(fig:ahprating)). 
 
 ***Tip**: Add column and row names so your matrix is more readable. You can use the following code to create your AHP as a matrix.*
 
@@ -62,7 +62,7 @@ ahp_matrix <- c(
 ) %>% matrix(ncol = 4, byrow = TRUE) 
 ```
 
-```{r ahp_rating, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, fig.cap="Scale for weighting the criteria.", fig.align="center", out.width="30%"}
+```{r ahprating, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, fig.cap="Scale for weighting the criteria.", fig.align="center", out.width="30%"}
 library(dplyr)
 knitr::include_graphics("images/ahp_ratings.png")
 ```
@@ -73,9 +73,9 @@ knitr::include_graphics("images/ahp_ratings.png")
 
 In the next step the matrix needs to be normalized. For that you first want to calculate the sum of each column (criteria) and then divide each value in a column with the column sum.  
 
-***Tip**: To achieve this, you can have a look at the [`sweep`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sweep) function (see Figure \ref{fig:ahp_sweep_function}).*
+***Tip**: To achieve this, you can have a look at the [`sweep`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sweep) function (see Figure \@ref(fig:sweepfun)).*
 
-```{r ahp_sweep_function, echo=FALSE, fig.cap="Sweep function; source: https://bioinfomagician.files.wordpress.com/2014/08/screen-shot-2014-08-12-at-10-19-59-am.png", fig.align="center", out.width="30%"}
+```{r sweepfun, echo=FALSE, fig.cap="Sweep function; source: https://bioinfomagician.files.wordpress.com/2014/08/screen-shot-2014-08-12-at-10-19-59-am.png", fig.align="center", out.width="30%"}
 knitr::include_graphics("images/ahp_sweep_function.png")
 ```
 
@@ -89,7 +89,7 @@ In a next step you want to sum up the values of each criteria by using the `rowS
 
 ## Exercise 4: Consistency analysis (Konsistenzanalyse 1 & 2)
 
-After the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (If CR < 0.10, then the pairwise comparison shows acceptable consistency). The RI is depending on the number of criteria (see Figure \ref{fig:random_index_by_saaty}).
+After the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (If CR < 0.10, then the pairwise comparison shows acceptable consistency). The RI is depending on the number of criteria (Figure \@ref(fig:randomindexbysaaty)).
 
 * ***Tip**: In order to calculate* **a***, you first use the operator* `%*%`*, which is used for matrix multiplication. Then use the `sweep` function again.*
 * ***Tip**: In order to calculate* **b** ($\lambda_{max}$)*, you can use the functions `colSums` and `ncol`.*
@@ -97,7 +97,7 @@ After the pairwise comparison is done, a consistency analysis needs to be perfor
 The consistency index CI is calculated with the following formula: $$CI = (\lambda_{max} - n) / (n - 1)$$
 The consistency ratio CR is calculated with the following formula: $$CR = CI / RI$$
 
-```{r random_index_by_saaty, echo=FALSE, fig.cap="Random index by Saaty", fig.align="center", out.width="50%"}
+```{r randomindexbysaaty, echo=FALSE, fig.cap="Random index by Saaty", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/ahp_random_index_by_saaty.png")
 ```
 
