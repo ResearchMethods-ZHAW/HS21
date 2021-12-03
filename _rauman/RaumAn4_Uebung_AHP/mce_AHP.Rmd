@@ -5,7 +5,7 @@ categories:
 - RaumAn4
 draft: false
 description: |
-  This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 1".
+  This is a step-by-step guide corresponding to this week's lecture.
 author:
   - name: Patrick Laube
   - name: Nils Ratnaweera
@@ -14,7 +14,7 @@ author:
 ---
 
 
-Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a step-by-step guide corresponding to this week's lecture. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.
+Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.
 
 **Exercises**: 
 
@@ -103,7 +103,7 @@ knitr::include_graphics("images/ahp_random_index_by_saaty.png")
 
 \newpage
 
-## Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen)
+## Exercise 5: Prioritization of the alternatives (Priorisierung der A)
 
 The priorities for the alternatives can also be determined by means of pair comparisons. A pair comparison is made for each criterion. Those weights are then combined in a table and multiplied by the overall weights calculated in exercise 2. In the end we get a final table with the priorities of the alternatives. 
 
