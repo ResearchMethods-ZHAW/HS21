@@ -24,10 +24,10 @@ options(digits=3) #set default decimal places to 3
 atts_comp <- c("Price", "Engine", "Horsepower (hp)", "Safety") #define column and row names
 # generate matrix
 ahp_matrix_criteria <- c(
-  1,   3, 0, 0,
-  1/3, 1, 0, 0,
-  0,   0, 1, 0,
-  0,   0, 0, 1
+  1,   7, 3, 1/4,
+  1/7, 1, 1/5, 1/7,
+  1/3,   5, 1, 1/2,
+  4,   7, 2, 1
 ) %>% matrix(ncol = 4, byrow = TRUE) 
 
 colnames(ahp_matrix_criteria) <- atts_comp #add column titles
