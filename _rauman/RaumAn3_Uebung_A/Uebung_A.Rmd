@@ -1,6 +1,8 @@
 ---
-title: Übung A
-output: distill::distill_article
+title: 'Übung "Morans I"'
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - RaumAn3
 draft: false
@@ -96,9 +98,13 @@ n
 
 #### Nenner (von Bruch 1)
 
-Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich der Berechnung der Varianz: 
+Der Nenner des ersten Bruches (${\sum_{i=1}^n (y_i - \bar{y})^2}$) ist sehr ähnlich der Berechnung der Varianz:
 
-Summiere für alle Messwerte (von $i = 1$ bis $n$) das Quadrat der Differenz zwischen dem jeweiligen Messwert und dem Durchschnitt aller Messwerte.
+1. Berechne den Durchschnitt aller Messwerte ($\bar{y}$)
+2. Berechne für jeden Messwert die Differenz zum Durchschnitt ($y_i - \bar{y}$)
+3. Quadriere diese Werte $(y_i - \bar{y})^2$
+4. Summiere die Quadrierten Werte $\sum_{i=1}^n$
+
 
 
 Also berechnen wir zuerst diese Differenzwerte (Messwert minus Mittelwert):
@@ -148,7 +154,7 @@ Hier berechnen wir die Summe aller Gewichte sowie die gewichteten Covarianzen. W
 
 Der erste Term, $w_{ij}$, beschreibt die räumlichen Gewichte aller Kantone. Sind die Kantone benachbart, dann gilt ein Gewicht von 1,  sind sie nicht benachbart, gilt ein Gewicht von 0. Dies entspricht dem Schalter aus der Vorlesung.
 
-Wie wir "benachbart" definieren ist noch offen. 
+Wie wir "benachbart" definieren ist nicht festgelegt. Denkbar wären zum Beispiel folgende Optionen:
 
 - Die Kantone müssen sich berühren (dürfen sich aber nicht überlappen): `st_touches()`
 - Die Kantone müssen innerhalb einer bestimmten Distanz zueinander liegen: `st_is_within_distance()`
@@ -169,28 +175,21 @@ w[1:6, 1:6]
 sel <- zweitwohnung_kanton$KANTONSNAME[1]
 ```
 
-
-Mit `w[1,]` bekommt  ihr ein Vektor, wo bei allen Kantone, die den ersten kanton (`r sel`) berühren `TRUE` steht und bei allen anderen `FALSE`. Nun können wir überprüfen, ob die räumliche Operation funktioniert hat. 
+Zur Überprüfung unserer Operation: Mit `w[1,]` bekommt  ihr ein Vektor, wo bei allen Kantone, die den ersten kanton (`r sel`) berühren `TRUE` steht und bei allen anderen `FALSE`. Nun können wir überprüfen, ob die räumliche Operation funktioniert hat. 
 
 
 ```{r, echo = TRUE}
-
-
-
 beruehrt_1 <- w[1, ]
 
 ggplot(zweitwohnung_kanton[beruehrt_1, ]) +
   geom_sf(aes(fill = KANTONSNAME)) +
-  # nachfolgend ein kleiner Hack (siehe fill = "Zürich")
-  geom_sf(data = zweitwohnung_kanton[1, ], aes(fill = "Zürich")) +
   labs(title = "Welche Kanton berühren den Kanton Zürich (st_touches)")
-                                                                    
-
 ```
 
-Optional: Um alle Kantone zu visualisieren, welche sich berühren, könnt ihr folgende Funktion anwenden:
 
-```{r, echo = TRUE}
+```{r, include = FALSE}
+# Optional: Um alle Kantone zu visualisieren, welche sich berühren, könnt ihr folgende Funktion anwenden:
+
 my_connections <- function(sf_object,relationship_matrix){
   require(sf)
   require(purrr)
@@ -269,11 +268,12 @@ MI
 ```
 
 
+Der Global Morans $I$ für die Abstimmungsdaten beträgt auf Kantonsebene also `r MI`. Wie interpretiert ihr dieses Resultate? Was erwartet ihr für eine Resultat auf Gemeinde- oder Bezirksebene?
 
-## Aufgabe 2: Morans I für Kantone berechnen
 
+## Aufgabe 2: Morans I für Gemeinde oder Bezirke berechnen
 
-Nun könnt ihr Morans $I$ auf der Ebene der Gemeine oder Kantone und untersuchen, ob und wie sich Morans $I$ verändert. Importiert dazu den Layer `bezrik` oder `gemeinde` aus dem Datensatz `zweitwohnungsinitiative.gpkg`.
+Nun könnt ihr Morans $I$ auf der Ebene der Gemeine oder Bezirke und untersuchen, ob und wie sich Morans $I$ verändert. Wenn ihr einen wenig leistungsfähigen Rechner habt, berechnet verwendet besser die Ebene "Berzirke". Importiert dazu den Layer `bezrik` oder `gemeinde` aus dem Datensatz `zweitwohnungsinitiative.gpkg`. Visualisiert in einem ersten Schritt die Abstimmungsresultate.
 
 
 ```{r, echo = TRUE}
