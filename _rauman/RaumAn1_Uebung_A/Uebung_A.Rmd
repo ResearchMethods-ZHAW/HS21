@@ -192,3 +192,10 @@ ggplot(gemeinden,aes(fill = EINWOHNERZ/1e6)) +
 ```
 
 
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
+```
+
+

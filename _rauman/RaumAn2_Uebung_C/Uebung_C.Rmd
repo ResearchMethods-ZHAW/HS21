@@ -1,6 +1,8 @@
 ---
 title: "Übung C: Dichteschätzung"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
 categories:
 - RaumAn2
 draft: false
@@ -183,3 +185,11 @@ ggplot() +
   geom_sf(data = thiessenpolygone_clip) + 
   theme_void()
 ```
+
+
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
+```
+
