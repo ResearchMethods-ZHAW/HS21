@@ -31,11 +31,11 @@ First think of an actual decision you are currently facing like buying a bike or
 
 ```{r, echo = FALSE}
 # In our example, we want to rent a new appartement. The 4 criteria we will use to are:
-# 
-# 1. Price of the appartement
-# 2. Distance to work
-# 3. Size (in square meters)
-# 4. Scenic beauty
+
+# criteria 1: Price
+# criteria 2: Distance to work
+# criteria 3: Size
+# criteria 4: Scenic Beauty
 ```
 
 
@@ -49,15 +49,12 @@ library(dplyr)
 
 tibble::tribble(
   ~Rating,	~Definition,
-  1, "Two characteristics are equally important",
-  2, "Between 1 and 3",
-  3, "The preferred characteristics are slightly more important",
-  4, "Between 3 and 5",
-  5, "The preferred characteristics are moderately more important",
-  6, "Between 5 and 7",
-  7, "The preferred characteristics are strongly more important",
-  8, "Between 7 and 9",
-  9, "The preferred characteristics are absolutely more important",
+  1, "The two characteristics are equally important",
+  3, "Characteristic A is slightly more important than characteristic B",
+  5, "Characteristic A is moderately more important than characteristic B",
+  7, "Characteristic A is strongly more important than characteristic B",
+  9, "Characteristic A is absolutely more important than characteristic B",
+  c(2,4,6,8), "Intermediate Values"
 ) %>%
   knitr::kable(caption = "Scale for weighting the criteria.")
 ```
@@ -67,7 +64,7 @@ You can use the following code to create your weighting matrix. In the matrix, t
 Create this matrix comparison matching your criteria, replacing the `0` values with your weights according to table \@ref(tab:ahprating).
 
 ```{r ahp_matrix2}
-ahp_matrix <- c(
+pairwise_comparison <- c(
   1,   3, 0, 0,
   1/3, 1, 0, 0,
   0,   0, 1, 0,
@@ -78,11 +75,12 @@ ahp_matrix <- c(
 
 
 ```{r}
+# Todo: replace these criteria
 # criteria 1: Price
 # criteria 2: Distance to work
 # criteria 3: Size
 # criteria 4: Scenic Beauty
-ahp_matrix <- c(
+pairwise_comparison <- c(
   1, 7, 3, 1/4,
   1/7, 1, 1/5, 1/7,
   1/3, 5, 1, 1/2,
@@ -95,11 +93,11 @@ ahp_matrix <- c(
 
 **Tip**: Add column and row names so your matrix is more readable. 
 
-```{r}
+```{r, echo = TRUE}
 criterias <- c("Criteria_1", "Criteria_2","Criteria_3", "Criteria_4")
 
-rownames(ahp_matrix) <- criterias
-colnames(ahp_matrix) <- criterias
+rownames(pairwise_comparison) <- criterias
+colnames(pairwise_comparison) <- criterias
 ```
 
 
@@ -113,14 +111,14 @@ colnames(ahp_matrix) <- criterias
 In the next step the matrix needs to be normalized. For that you need to: 
 
 1. Calculate the sum of each column using `colSums`. Store the output in a variable (e.g. `ahp_colsums`).
-2. Divide each value in the matrix by the corresponding column sum. To achieve this, you can use the `sweep()` function on the matrix, which is very simmilar to `apply` (`MARGIN = 2` (columns), `STATS = ahp_colsums` and `FUN = "/"`).
+2. Divide each value in the matrix by the corresponding column sum. To achieve this, you can use the `sweep()` function on the matrix, which is very similar to `apply` (`MARGIN = 2` (columns), `STATS = ahp_colsums` and `FUN = "/"`).
 
 
 ```{r, echo = FALSE}
 
-ahp_colsums <- colSums(ahp_matrix)
+ahp_colsums <- colSums(pairwise_comparison)
 
-ahp_matrix_normalized <- sweep(ahp_matrix, 2,ahp_colsums, FUN = "/")
+pairwise_comparison_normalized <- sweep(pairwise_comparison, 2,ahp_colsums, FUN = "/")
 
 ```
 
@@ -131,15 +129,14 @@ ahp_matrix_normalized <- sweep(ahp_matrix, 2,ahp_colsums, FUN = "/")
 ![](images/weights_normalize.png)
 
 
-This is the final step to calculate the weight of each criteria. To do so, 
-
+This is the final step to calculate the weight of each criteria. To do so: 
 1. calculate the sum of each row and store the output in a variable (e.g. `criteria_sum`). 
 2. divide the `criteria_sum` by the sum of `criteria_sum` and store the output in a variable (e.g. `criteria_weight`).
 
 Note: The sum of `criteria_weight` should equal to 1
 
 ```{r include=FALSE}
-criteria_sums <- rowSums(ahp_matrix_normalized)
+criteria_sums <- rowSums(pairwise_comparison_normalized)
 
 criteria_weight <- criteria_sums/sum(criteria_sums)
 
@@ -151,50 +148,93 @@ sum(criteria_weight)
 
 After the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (if CR < 0.10, then the pairwise comparison shows acceptable consistency). 
 
-To calculate consistency, you should proceed as follows:
+To calculate consistency, you should proceed as explained in Slide 30 (Konsistenzanalyse 1)
 
-1. first, calculate the eigenvalues
-
-1. you must first calculate $\lambda$, which is is the weight of each criteria multiplied by the weight 
-2. the max value of $\lambda$ is $\lambda_{max}$
-
+1. do a matrix multiplication (`%*%`) between `pairwise_comparison` and `criteria_weight`. 
+2. Divide the result of 1) by `criteria_weight`
 
 ```{r}
 
+a_values = pairwise_comparison %*% criteria_weight / criteria_weight
 
+lambda_max = sum(a_values)/length(a_values)
+```
 
+3. calculate $CI = \frac{\lambda_{max} - n}{n-1}$, where as `n` equals to the number of criteria
 
-criteria_weight
+```{r}
+CI <- (lambda_max - ncol(pairwise_comparison)) / (ncol(pairwise_comparison)-1)
+```
 
-apply(ahp_matrix, 1, function(x){sum(w*criteria_weight)})/criteria_weight
+4. Determine $RI$ by consulting the table \@ref(fig:randomindexbysaaty)
 
-
+```{r}
+RI <- 0.89
 ```
 
 
+5. Calculate $CR = CI / RI$
 
-The RI depends on the number of criteria (Figure \@ref(fig:randomindexbysaaty)).
+```{r}
+CR <- CI/RI
+```
 
-* Tip: In order to calculate* $a$, you first use the operator `%*%`, which is used for matrix multiplication. Then use the `sweep` function again.
-* Tip: In order to calculate* **b** ($\lambda_{max}$)*, you can use the functions `colSums` and `ncol`.
+6. If CR > 0.1, you will need to reevaluate your pairwise comparisons. 
 
-The consistency index CI is calculated with the following formula: $$CI = (\lambda_{max} - n) / (n - 1)$$
-The consistency ratio CR is calculated with the following formula: $$CR = CI / RI$$
+```{r}
+CR < 0.1
+```
 
 ```{r randomindexbysaaty, echo=FALSE, fig.cap="Random index by Saaty", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/ahp_random_index_by_saaty.png")
 ```
 
+## Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen 1)
+
+
+### Step 1: Pairwise comparison of the alternatives:
+
+Now, we create a pairwise comparison of all alternatives *for each characteristic* according to the following table. Note that you can disregard the weights for now.
+
 ```{r}
+
+tibble::tribble(
+  ~Rating,	~Definition,
+  1, "Two alternatives are equal",
+  3, "Alternative A is slightly more prefferable than alternative B",
+  5, "Alternative A is moderately more prefferable than alternative B",
+  7, "Alternative A is strongly more prefferable than alternative B",
+  9, "Alternative A are absolutely more important than alternative B",
+  c(2,4,6,8), "Intermediate Values"
+) %>%
+  knitr::kable(caption = "Scale for weighting the criteria.")
+```
+
+
+```{r}
+# criteria 1: Price
+# criteria 2: Distance to work
+# criteria 3: Size
+# criteria 4: Scenic Beauty
+
+
+price <- c(
+  1,   9,   5,  # Apparement A
+  1/9, 1,   5,  # Apparement B
+  1/5, 1/5, 1   # Apparement C
+) %>%
+  matrix(ncol = 3, byrow = TRUE)
+
+distance_to_work <- c(
+  1,   8, 2,   # Appartement A
+  1/8, 1, 1/3, # Appartement B
+  1/2, 3, 1    # Appartement C
+) %>% matrix(ncol = 3, byrow = TRUE)
+
 
 ```
 
 
-## Exercise 5: Prioritization of the alternatives (Priorisierung der A)
-
-The priorities for the alternatives can also be determined by means of pair comparisons. A pair comparison is made for each criterion. Those weights are then combined in a table and multiplied by the overall weights calculated in exercise 2. In the end we get a final table with the priorities of the alternatives. 
-
-***Tip**: It follows the same principle as exercise 2 and exercise 3, ergo use the same functions and methods.*
 
 
 ## Digression: AHP packages in R

@@ -13,7 +13,8 @@ author:
 ---
 
 One of the important aspects of the upcoming exercise (Multi-Criteria Evaluation (MCE)) is the use and manipulation of **raster datasets**. In `R`, two are the main packages used to handle raster data: `terra` and `raster` package. The latter is still heavily used, but inevitably is going to be replaced by the first one.  
-Below we will use both of them to demonstrate how we can import a raster dataset. In the link below you can download a tif file, representing the `Digital Elevation Model` *(Digitales Höhenmodell, DHM)* of Canton Schwyz in Switzerland.
+
+Below we will use `terra` to demonstrate how we can import a raster dataset. In the link below you can download a tif file, representing the `Digital Elevation Model` *(Digitales Höhenmodell, DHM)* of Canton Schwyz in Switzerland.
 
 ```{r, results='asis', echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -30,16 +31,7 @@ check_download <- function(files, folder, source = "", url = "https://github.com
 check_download(c("dhm25m.tif"),"rauman")
 ```
 
-### Importing raster data with `raster`
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-library(raster)
-
-raster_schwyz <- raster("dhm25m.tif") 
-raster_schwyz # retrieving raster info
-```
-
-### Importing raster data with `terra`
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 library(terra)
@@ -51,14 +43,11 @@ terra_schwyz # retrieving raster info
 
 ### Plotting raster data
 
-To plot a raster dataset, we can simply use either of the following `plot()` functions:  
+To get a quick look at the raster dataset, we can simply use either of the following `plot()` function:  
 
-- `terra::plot()`
-- `raster::plot()`
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-terra::plot(terra_schwyz)
+plot(terra_schwyz)
 
-# raster::plot(raster_schwyz)
 ```
 
