@@ -16,26 +16,37 @@ author:
 ---
 
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
-Now that you have learned the theory, a concrete example of an Analytical Hierarchy Process (AHP) is to be carried out. This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages as shown in the digression section at the end of this script.
+
+Now that you have learned the theory, you will carry out concrete example of an Analytical Hierarchy Process (AHP). This is a manual approach to show you the basics of an AHP. If you want to build a more complex AHP you can use specific R AHP packages such as the [ahpsurvey package](https://cran.r-project.org/web/packages/ahpsurvey/vignettes/my-vignette.html).
 
 
 ## Exercise 1: Define initial situation 
 
-First think of an actual decision you are currently facing like buying a bike or a car and define the following points.
+First think of an *actual decision* you are currently facing or have previously faced (e.g. buying a bicycle or renting an apartment) and define the following points.
 
 * A goal for your AHP (e.g. Buy a bike)
-* At least 4 criteria (e.g. price, components, weight, looks)
-* At least 3 alternatives (e.g. Scott Genius, Giant XTC, Santa Cruz Megatower C)
+* 4 criteria on which you want to base your decision (e.g. *Price*, *Distance to Work / School*, *Size*, *Scenic Beauty*)
+* 3 different options / alternatives (e.g. 3 different apartments)
 
 
-```{r, echo = FALSE}
-# In our example, we want to rent a new appartement. The 4 criteria we will use to are:
+```{r}
+# Goal: Rent a new apartment The 4 criteria we will use to are:
 
-# criteria 1: Price
-# criteria 2: Distance to work
-# criteria 3: Size
-# criteria 4: Scenic Beauty
+# Citeria: 
+# - Price
+# - Distance to work
+# - Size
+# - Scenic Beauty
+
+# Options / Alternatives
+# 1. Weinbergstrasse 17, 8134 Adliswil, 35 m2 for 1’455 CHF, not so pretty and 45 minutes from work
+# 2. Zürichstrasse 56, 8134 Adliswil,  104 m2 for 2’960.– CHF, very pretty and 45 minutes from work
+# 3. Geissbergstrasse 18, 8184 Bachenbülach, 130 m2 for 3’800 CHF, very pretty and 30 mintues from work
+
 ```
 
 
@@ -50,18 +61,21 @@ library(dplyr)
 tibble::tribble(
   ~Rating,	~Definition,
   1, "The two characteristics are equally important",
-  3, "Characteristic A is slightly more important than characteristic B",
-  5, "Characteristic A is moderately more important than characteristic B",
-  7, "Characteristic A is strongly more important than characteristic B",
-  9, "Characteristic A is absolutely more important than characteristic B",
+  3, "Criteria A is slightly more important than criteria B",
+  5, "Criteria A is moderately more important than criteria B",
+  7, "Criteria A is strongly more important than criteria B",
+  9, "Criteria A is absolutely more important than criteria B",
   c(2,4,6,8), "Intermediate Values"
 ) %>%
   knitr::kable(caption = "Scale for weighting the criteria.")
 ```
 
-You can use the following code to create your weighting matrix. In the matrix, two criteria are always compared twice, and these two comparisons should be the reciprocal ("Kehrwert") of each other. To illustrate this, we have added the comparison for *Criteria 1* compared to *Criteria 2*. 
+You can use the following code to create your weighting matrix. In the matrix, two criteria are always compared twice, and these two comparisons should be the reciprocal ("Kehrwert") of each other. To illustrate this, we have added one comparison which reads as follows: 
 
-Create this matrix comparison matching your criteria, replacing the `0` values with your weights according to table \@ref(tab:ahprating).
+- Row 1, column 2:  *Criteria 1* is slightly more important than *Criteria 2*
+- Row 2, column 1:  *Criteria 2* is slightly less important than *Criteria 1*
+
+Create this matrix comparison matching your criteria, replacing the `0` values with your weights according to table \@ref(tab:ahprating). Note that all diagonal values should equal to `1`.
 
 ```{r ahp_matrix2}
 pairwise_comparison <- c(
@@ -75,16 +89,15 @@ pairwise_comparison <- c(
 
 
 ```{r}
-# Todo: replace these criteria
 # criteria 1: Price
 # criteria 2: Distance to work
 # criteria 3: Size
 # criteria 4: Scenic Beauty
 pairwise_comparison <- c(
-  1, 7, 3, 1/4,
-  1/7, 1, 1/5, 1/7,
-  1/3, 5, 1, 1/2,
-  4, 7, 2, 1
+  1,   5,   9,   9,
+  1/5, 1,   6,   7,
+  1/9, 1/6, 1,   7,
+  1/9, 1/7, 1/7, 1
 ) %>%
   matrix(ncol = 4, byrow = TRUE)
 
@@ -94,7 +107,7 @@ pairwise_comparison <- c(
 **Tip**: Add column and row names so your matrix is more readable. 
 
 ```{r, echo = TRUE}
-criterias <- c("Criteria_1", "Criteria_2","Criteria_3", "Criteria_4")
+criterias <- c("price", "distance","size", "beauty")
 
 rownames(pairwise_comparison) <- criterias
 colnames(pairwise_comparison) <- criterias
@@ -106,12 +119,10 @@ colnames(pairwise_comparison) <- criterias
 
 ### Exercise 3.1: Normalization of matrix (Berechnung der Kritiriengewichte 1)
 
-![](images/criteria_normalize.png)
-
-In the next step the matrix needs to be normalized. For that you need to: 
+In the next step the matrix needs to be normalized (see figure \@ref(fig:criteria-normalize). You can do this in the following two steps: 
 
 1. Calculate the sum of each column using `colSums`. Store the output in a variable (e.g. `ahp_colsums`).
-2. Divide each value in the matrix by the corresponding column sum. To achieve this, you can use the `sweep()` function on the matrix, which is very similar to `apply` (`MARGIN = 2` (columns), `STATS = ahp_colsums` and `FUN = "/"`).
+2. Divide each value in the matrix by the corresponding column sum. To achieve this, you can use the `sweep()` function on the matrix, which is very similar to `apply` (use `MARGIN = 2` (columns), `STATS = ahp_colsums` and `FUN = "/"`).
 
 
 ```{r, echo = FALSE}
@@ -123,13 +134,16 @@ pairwise_comparison_normalized <- sweep(pairwise_comparison, 2,ahp_colsums, FUN 
 ```
 
 
+```{r criteria-normalize, fig.cap="Normalizing the criteria so that each column equals to 1"}
+knitr::include_graphics("images/criteria_normalize.png")
+```
+
+
 
 ### Exercise 3.2: Weighting of criteria (Berechnung der Kritiriengewichte 2)
 
-![](images/weights_normalize.png)
+This is the final step to calculate the weight of each criteria (see \@ref(fig:weights-normalize)). To do so: 
 
-
-This is the final step to calculate the weight of each criteria. To do so: 
 1. calculate the sum of each row and store the output in a variable (e.g. `criteria_sum`). 
 2. divide the `criteria_sum` by the sum of `criteria_sum` and store the output in a variable (e.g. `criteria_weight`).
 
@@ -144,44 +158,57 @@ sum(criteria_weight)
 ```
 
 
+```{r weights-normalize, fig.cap="Normalizing the weights so that the sum of all weights equals to 1"}
+knitr::include_graphics("images/weights_normalize.png")
+```
+
+
 ## Exercise 4: Consistency analysis (Konsistenzanalyse 1 & 2)
 
-After the pairwise comparison is done, a consistency analysis needs to be performed. For this you want to calculate the consistency ratio (CR). This checks whether the pairwise comparisons are consistent or not. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great (if CR < 0.10, then the pairwise comparison shows acceptable consistency). 
+After the pairwise comparison is done, a consistency analysis needs to be performed to check whether the pairwise comparisons are consistent or include contradictions. A certain inconsistency is allowed within the framework of an AHP, but it should not be too great.
 
-To calculate consistency, you should proceed as explained in Slide 30 (Konsistenzanalyse 1)
+To calculate consistency, you should proceed as explained in Slide 30 (Konsistenzanalyse 1) and the following steps:
 
 1. do a matrix multiplication (`%*%`) between `pairwise_comparison` and `criteria_weight`. 
+
+```{r}
+a_values <- pairwise_comparison %*% criteria_weight
+```
+
 2. Divide the result of 1) by `criteria_weight`
 
 ```{r}
-
-a_values = pairwise_comparison %*% criteria_weight / criteria_weight
-
-lambda_max = sum(a_values)/length(a_values)
+b_values <- a_values / criteria_weight
 ```
 
-3. calculate $CI = \frac{\lambda_{max} - n}{n-1}$, where as `n` equals to the number of criteria
+3. Calculate $\lambda_{max}$ by dividing the result of 2) by the number of criteria
+
+```{r}
+lambda_max = sum(a_values)/ncol(pairwise_comparison)
+```
+
+4. calculate $CI$  ($CI = \frac{\lambda_{max} - n}{n-1}$), where `n` equals to the number of criteria
 
 ```{r}
 CI <- (lambda_max - ncol(pairwise_comparison)) / (ncol(pairwise_comparison)-1)
 ```
 
-4. Determine $RI$ by consulting the table \@ref(fig:randomindexbysaaty)
+5. Determine $RI$ by consulting the table \@ref(fig:randomindexbysaaty)
 
 ```{r}
 RI <- 0.89
 ```
 
 
-5. Calculate $CR = CI / RI$
+5. Calculate $CR$ ($CR = CI / RI$)
 
 ```{r}
 CR <- CI/RI
 ```
 
-6. If CR > 0.1, you will need to reevaluate your pairwise comparisons. 
+6. If CR > 0.1, you will need to re-evaluate your pairwise comparisons. 
 
-```{r}
+```{r, include = FALSE}
 CR < 0.1
 ```
 
@@ -189,58 +216,63 @@ CR < 0.1
 knitr::include_graphics("images/ahp_random_index_by_saaty.png")
 ```
 
-## Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen 1)
 
+## Congratulations!
 
-### Step 1: Pairwise comparison of the alternatives:
+You now have determined the weights on top of which you can build your decision and have determined if these weights are consistent or not. These next steps are technically very similar to what you did in the exercise above, so we will leave it up to you if you want to complete these steps or not. For sake of completness, the next step would be to:
 
-Now, we create a pairwise comparison of all alternatives *for each characteristic* according to the following table. Note that you can disregard the weights for now.
-
-```{r}
-
-tibble::tribble(
-  ~Rating,	~Definition,
-  1, "Two alternatives are equal",
-  3, "Alternative A is slightly more prefferable than alternative B",
-  5, "Alternative A is moderately more prefferable than alternative B",
-  7, "Alternative A is strongly more prefferable than alternative B",
-  9, "Alternative A are absolutely more important than alternative B",
-  c(2,4,6,8), "Intermediate Values"
-) %>%
-  knitr::kable(caption = "Scale for weighting the criteria.")
-```
-
-
-```{r}
-# criteria 1: Price
-# criteria 2: Distance to work
-# criteria 3: Size
-# criteria 4: Scenic Beauty
-
-
-price <- c(
-  1,   9,   5,  # Apparement A
-  1/9, 1,   5,  # Apparement B
-  1/5, 1/5, 1   # Apparement C
-) %>%
-  matrix(ncol = 3, byrow = TRUE)
-
-distance_to_work <- c(
-  1,   8, 2,   # Appartement A
-  1/8, 1, 1/3, # Appartement B
-  1/2, 3, 1    # Appartement C
-) %>% matrix(ncol = 3, byrow = TRUE)
-
-
-```
+1. compare your options / alternatives with each other in a pairwise comparison (similar as to how you compared the criteria with each other). You do this for *every* criteria
+2. normalize your pairwise comparisons of your options (similar as to how how you normalized the pairwise comparisons of the criteria)
+3. Use the weights you determined in the exercise above to weigh your results from 2)
+4. Asses the best decision based on the result from 3)
 
 
 
+<!-- ## Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen 1) -->
 
-## Digression: AHP packages in R
-If you want to build even more complex AHP setups you can have a look at the following AHP packages:
 
-* [ahp package](https://www.r-bloggers.com/2016/01/analytic-hierarchy-process-ahp-with-the-ahp-package/)
-* [ahpsurvey package](https://cran.r-project.org/web/packages/ahpsurvey/vignettes/my-vignette.html)
+<!-- ### Step 1: Pairwise comparison of the alternatives: -->
+
+<!-- Now, we create a pairwise comparison of all alternatives *for each characteristic* according to the following table. Note that you can disregard the weights for now. -->
+
+<!-- ```{r} -->
+
+<!-- tibble::tribble( -->
+<!--   ~Rating,	~Definition, -->
+<!--   1, "Two alternatives are equal", -->
+<!--   3, "Alternative A is slightly more prefferable than alternative B", -->
+<!--   5, "Alternative A is moderately more prefferable than alternative B", -->
+<!--   7, "Alternative A is strongly more prefferable than alternative B", -->
+<!--   9, "Alternative A are absolutely more important than alternative B", -->
+<!--   c(2,4,6,8), "Intermediate Values" -->
+<!-- ) %>% -->
+<!--   knitr::kable(caption = "Scale for weighting the criteria.") -->
+<!-- ``` -->
+
+
+<!-- ```{r} -->
+<!-- # criteria 1: Price -->
+<!-- # criteria 2: Distance to work -->
+<!-- # criteria 3: Size -->
+<!-- # criteria 4: Scenic Beauty -->
+
+
+<!-- price <- c( -->
+<!--   1,   9,   5,  # Apparement A -->
+<!--   1/9, 1,   5,  # Apparement B -->
+<!--   1/5, 1/5, 1   # Apparement C -->
+<!-- ) %>% -->
+<!--   matrix(ncol = 3, byrow = TRUE) -->
+
+<!-- distance_to_work <- c( -->
+<!--   1,   8, 2,   # Appartement A -->
+<!--   1/8, 1, 1/3, # Appartement B -->
+<!--   1/2, 3, 1    # Appartement C -->
+<!-- ) %>% matrix(ncol = 3, byrow = TRUE) -->
+
+
+<!-- ``` -->
+
+
 
 

@@ -1,0 +1,102 @@
+---
+title: Introduction to raster datasets
+output: distill::distill_article
+categories:
+- RaumAn4
+draft: false
+resources:
+  exclude:
+    dhm25m.tif 
+description: |
+  How we can import a raster dataset using R
+author:
+  - name: Patrick Laube
+  - name: Nils Ratnaweera
+  - name: Nikolaos Bakogiannis
+---
+
+One of the important aspects of the upcoming exercise (Multi-Criteria Evaluation (MCE)) is the use and manipulation of **raster datasets**. In `R`, two are the main packages used to handle raster data: `terra` and `raster` package. The latter is still heavily used, but inevitably is going to be replaced by the first one.  
+
+Below we will use `terra` to demonstrate how we can import a raster dataset. In the link below you can download a tif file, representing the `Digital Elevation Model` *(Digitales Höhenmodell, DHM)* of Canton Schwyz in Switzerland. Download the dataset and repeat the code provided.
+
+```{r, results='asis', echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+}
+
+check_download(c("dhm25m.tif"),"rauman")
+```
+
+
+
+```{r, message=FALSE, warning=FALSE}
+library(terra)
+```
+
+Import your raster with the function `rast`
+
+```{r, message=FALSE, warning=FALSE}
+dhm_schwyz <- rast("dhm25m.tif")
+```
+
+You get some important metadata on the raster dataset when you type the variable name in the console.  
+
+```{r}
+dhm_schwyz 
+```
+
+To get a quick look at the raster dataset, we can simply use either of the following `plot()` function:  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+plot(dhm_schwyz)
+```
+
+
+Unfortunately, adding `raster` to ggplot is not very straightforward. Since `ggplot` is a universal plotting framework we quickly reach the limits of what is possible when creating something as specialized as maps. For this reason, we will introduce a new plotting framework which is specialized on maps and was built in a very similar design as ggplot: `tmap`. Install and load this package now.
+
+```{r}
+library(tmap)
+```
+
+Just as `ggplot`, `tmap` is based on the idea of "layers" that are joined using a `+`. Each layer has two components:
+
+- a dataset component which is always `tm_shape(dataset)` (replace `dataset` with your variable)
+- a geometry component which describes how the preceeding `tm_shape()` should be visualized. This can be `tm_dots()` for points, `tm_polygons()` for polygons, `tm_lines()` for lines etc. For single band raster (which is the case for `dhm_schwyz`), it is `tm_raster()`
+
+```{r}
+tm_shape(dhm_schwyz) + 
+  tm_raster() 
+```
+
+Note that `tm_shape()` and `tm_raster()` (in this case) belong together, one cannot live without the other.
+
+If you consult the help of `?tm_raster` you will see a multitude of options with which to change the visualisation of your data. For example, the default `style` of `tm_raster()` is to create "bins" of the data with a descrete colour scale. We can override this using `style = "cont"`
+
+```{r}
+tm_shape(dhm_schwyz) + 
+  tm_raster(style = "cont") 
+```
+
+This already looks pretty awesome, but maby we want to change the default colour palette. Fortunately, this is *much* simpler in `tmap` than in `ggplot2`. To look at the available palettes, type `tmaptools::palette_explorer()` or `RColorBrewer::display.brewer.all()` in the console (the former might require you to install additional packages, e.g. `shinyjs`).
+
+```{r}
+tm_shape(dhm_schwyz) + 
+  tm_raster(style = "cont", palette = "Spectral") 
+```
+
+You can make layout adjustments using `tm_layout()`, check `?tm_layout` to see all of the options available!
+
+
+```{r, layout = "l-page"}
+tm_shape(dhm_schwyz) + 
+  tm_raster(style = "cont", palette = "Spectral", legend.is.portrait = FALSE, title = "") +
+  tm_layout(legend.outside = TRUE, legend.outside.position = "bottom",frame = FALSE)
+```
+
