@@ -181,7 +181,7 @@ a_values <- pairwise_comparison %*% criteria_weight
 b_values <- a_values / criteria_weight
 ```
 
-3. Calculate $\lambda_{max}$ by dividing the result of 2) by the number of criteria
+3. Calculate $\lambda_{max}$ by dividing the sum of the result you obtained in 2) by the number of criteria
 
 ```{r}
 lambda_max = sum(a_values)/ncol(pairwise_comparison)
