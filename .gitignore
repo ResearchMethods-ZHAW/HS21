@@ -10,9 +10,5 @@
 *.csv
 *.gpkg
 /_rauman/**/*.tif
-/_rauman/**/*.shp
-/_rauman/**/*.cpg
-/_rauman/**/*.dbf
-/_rauman/**/*.prj
-/_rauman/**/*.shp.xml
-/_rauman/**/*.shx
+/_rauman/**/*.gpkg
+
