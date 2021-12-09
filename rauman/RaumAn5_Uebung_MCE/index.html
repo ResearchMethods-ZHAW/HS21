@@ -134,7 +134,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","subtitle","output","categories","draft","resources","description","author","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Multi-Criteria Evaluation (MCE)"]},{"type":"character","attributes":{},"value":["Wind potential study in the canton of Schwyz"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["RaumAn5"]},{"type":"logical","attributes":{},"value":[false]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["exclude"]}},"value":[{"type":"character","attributes":{},"value":["dhm25m.tif,eis25m.tif,wind25m.tif"]}]},{"type":"character","attributes":{},"value":["This is a step-by-step guide corresponding to the PPP document \"Multikriterielle Entscheidungsanalyse 1\"."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Dominic Lüönd"]}]}]},{"type":"character","attributes":{},"value":["12-09-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/rauman/RaumAn5_Uebung_MCE/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/rauman/RaumAn5_Uebung_MCE/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","subtitle","output","categories","draft","resources","description","author","date","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Multi-Criteria Evaluation (MCE)"]},{"type":"character","attributes":{},"value":["Wind potential study in the canton of Schwyz"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["RaumAn5"]},{"type":"logical","attributes":{},"value":[false]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["exclude"]}},"value":[{"type":"character","attributes":{},"value":["dhm25m.tif,eis25m.tif,wind25m.tif,Bewohnte_Flaeche.gpkg,Nationale_Schutzgebiete.gpkg, Waldgebiete.gpkg,Seeflaechen.gpkg,Strassen.gpkg,Untersuchungsgebiet_Schwyz.gpkg"]}]},{"type":"character","attributes":{},"value":["This is a step-by-step guide corresponding to the PPP document \"Multikriterielle Entscheidungsanalyse 1\"."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Patrick Laube"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nils Ratnaweera"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Nikolaos Bakogiannis"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Dominic Lüönd"]}]}]},{"type":"character","attributes":{},"value":["12-09-2021"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/rauman/RaumAn5_Uebung_MCE/"]},{"type":"character","attributes":{},"value":["https://researchmethods-zhaw.github.io/HS21/rauman/RaumAn5_Uebung_MCE/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2307,30 +2307,18 @@ Figure 1: Process model in ArcGIS Pro ModelBuilder
 </div>
 </div>
 <p>The goal of this exercise is to do the same MCE by just using R. We will mainly use functions from the R packages <a href="https://cran.r-project.org/web/packages/sf/sf.pdf">sf</a> and <a href="https://cran.r-project.org/web/packages/raster/raster.pdf">raster</a>. Please have a look at the process model (see figure <a href="#fig:figmce">1</a>) that was created in ArcGIS Pro and try to figure out which functions in the two R packages correspond to the ones in the model. You will see that there are some similar functions available, but for some calculations a different approach is needed.</p>
-<!-- ## Exercises: -->
-<!-- * Exercise 1: Load and view data -->
-<!-- * Exercise 2: Merge exclusion criteria -->
-<!-- * Exercise 3: Calculate slope -->
-<!-- * Exercise 4: Calculate distances to criteria -->
-<!-- * Exercise 5: Standardize and grade criteria (grading) -->
-<!-- * Exercise 6: Weighting Criteria with AHP -->
-<!-- * Exercise 7: Weighted Overlay -->
-<!-- * Exercise 8: Intersecting potential areas with exclusion criteria -->
-<!-- ## Functions used in this exercise: -->
-<!-- * bind_rows() (Vector) -->
-<!-- * raster() (Raster) -->
-<!-- * rasterize() (Raster) -->
-<!-- * terrain() (Raster) -->
-<!-- * distance() (Raster) -->
-<!-- * reclassify() (Raster) -->
-<!-- * mask()     -->
-<!-- * Raster multiplication -->
 <h2 id="exercises-1-load-and-view-data">Exercises 1: Load and view data</h2>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
 <li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/dhm25m.tif">dhm25m.tif</a></li>
 <li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/eis25m.tif">eis25m.tif</a></li>
 <li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/wind25m.tif">wind25m.tif</a></li>
+<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/Bewohnte_Flaeche.gpkg">Bewohnte_Flaeche.gpkg</a></li>
+<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/Nationale_Schutzgebiete.gpkg">Nationale_Schutzgebiete.gpkg</a></li>
+<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/Waldgebiete.gpkg">Waldgebiete.gpkg</a></li>
+<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/Seeflaechen.gpkg">Seeflaechen.gpkg</a></li>
+<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/Strassen.gpkg">Strassen.gpkg</a></li>
+<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/Untersuchungsgebiet_Schwyz.gpkg">Untersuchungsgebiet_Schwyz.gpkg</a></li>
 </ul>
 </div>
 <p>The data can be loaded by using the functions <code>terra</code> for raster data and <code>read_sf</code> for vector data. View the available data layers (see Table ) and plot them in an appealing way. For visualization you can use the functions <code>plot</code> for raster data and <code>ggplot</code> for vector data.</p>
@@ -2434,13 +2422,13 @@ No
 </tr>
 <tr>
 <td style="text-align:left;">
-Bewohnte_Fläche.shp
+Bewohnte_Flaeche.gpkg
 </td>
 <td style="text-align:left;">
 Settlements (incl. buffer 200m)
 </td>
 <td style="text-align:left;">
-Shapefile
+Geopackage
 </td>
 <td style="text-align:left;">
 </td>
@@ -2456,13 +2444,13 @@ CH1903/LV03
 </tr>
 <tr>
 <td style="text-align:left;">
-Nationale_Schutzgebiete.shp
+Nationale_Schutzgebiete.gpkg
 </td>
 <td style="text-align:left;">
 National protection areas
 </td>
 <td style="text-align:left;">
-Shapefile
+Geopackage
 </td>
 <td style="text-align:left;">
 </td>
@@ -2478,13 +2466,13 @@ CH1903/LV03
 </tr>
 <tr>
 <td style="text-align:left;">
-Seeflächen.shp
+Seeflaechen.gpkg
 </td>
 <td style="text-align:left;">
 Lake areas
 </td>
 <td style="text-align:left;">
-Shapefile
+Geopackage
 </td>
 <td style="text-align:left;">
 </td>
@@ -2500,13 +2488,13 @@ Yes
 </tr>
 <tr>
 <td style="text-align:left;">
-Strassen.shp
+Strassen.gpkg
 </td>
 <td style="text-align:left;">
 Streets
 </td>
 <td style="text-align:left;">
-Shapefile
+Geopackage
 </td>
 <td style="text-align:left;">
 </td>
@@ -2522,13 +2510,13 @@ No/Distance
 </tr>
 <tr>
 <td style="text-align:left;">
-Untersuchungsgebiet_Schwyz.shp
+Untersuchungsgebiet_Schwyz.gpkg
 </td>
 <td style="text-align:left;">
 Study area, canton of Schwyz
 </td>
 <td style="text-align:left;">
-Shapefile
+Geopackage
 </td>
 <td style="text-align:left;">
 </td>
@@ -2544,13 +2532,13 @@ No
 </tr>
 <tr>
 <td style="text-align:left;">
-Waldgebiete.shp
+Waldgebiete.gpkg
 </td>
 <td style="text-align:left;">
 Forest areas
 </td>
 <td style="text-align:left;">
-Shapefile
+Geopackage
 </td>
 <td style="text-align:left;">
 </td>
@@ -2566,6 +2554,9 @@ CH1903/LV03
 </tr>
 </tbody>
 </table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
 </div>
 <h2 id="exercise-2-merge-exclusion-criteria">Exercise 2: Merge exclusion criteria</h2>
 <p>Merge the exclusion criteria settlement areas, national protected areas, lake areas and forest areas. These vector data sets are structured as data frames and therefore can be merged by simply combining them. Keep in mind that the data frames have different sizes. Additionally, we need to create a raster out of the newly created vector data set (exclusion area). For that you can use the function <code>rasterize</code>. The output should be a raster with 0 and 1, where the fields of the exclusion area have values of 0 and the remaining fields have values of 1 (see Figure (fig:figrasterizeexclusioncriteria)).</p>
