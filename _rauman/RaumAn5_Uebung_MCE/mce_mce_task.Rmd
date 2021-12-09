@@ -7,7 +7,8 @@ categories:
 draft: false
 resources:
   exclude:
-    dhm25m.tif,eis25m.tif,wind25m.tif
+    dhm25m.tif,eis25m.tif,wind25m.tif,Bewohnte_Flaeche.gpkg,Nationale_Schutzgebiete.gpkg,
+     Waldgebiete.gpkg,Seeflaechen.gpkg,Strassen.gpkg,Untersuchungsgebiet_Schwyz.gpkg
 description: |
   This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 1".
 author:
@@ -26,25 +27,6 @@ knitr::include_graphics("images/mce_process.png")
 The goal of this exercise is to do the same MCE by just using R. We will mainly use functions from the R packages [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) and [raster](https://cran.r-project.org/web/packages/raster/raster.pdf). Please have a look at the process model (see figure \@ref(fig:figmce)) that was created in ArcGIS Pro and try to figure out which functions in the two R packages correspond to the ones in the model. You will see that there are some similar functions available, but for some calculations a different approach is needed.
 
 
-<!-- ## Exercises: -->
-<!-- * Exercise 1: Load and view data -->
-<!-- * Exercise 2: Merge exclusion criteria -->
-<!-- * Exercise 3: Calculate slope -->
-<!-- * Exercise 4: Calculate distances to criteria -->
-<!-- * Exercise 5: Standardize and grade criteria (grading) -->
-<!-- * Exercise 6: Weighting Criteria with AHP -->
-<!-- * Exercise 7: Weighted Overlay -->
-<!-- * Exercise 8: Intersecting potential areas with exclusion criteria -->
-
-<!-- ## Functions used in this exercise: -->
-<!-- * bind_rows() (Vector) -->
-<!-- * raster() (Raster) -->
-<!-- * rasterize() (Raster) -->
-<!-- * terrain() (Raster) -->
-<!-- * distance() (Raster) -->
-<!-- * reclassify() (Raster) -->
-<!-- * mask()     -->
-<!-- * Raster multiplication -->
 
 ## Exercises 1: Load and view data
 
@@ -62,7 +44,8 @@ check_download <- function(files, folder, source = "", url = "https://github.com
 
 check_download(c("dhm25m.tif","eis25m.tif","wind25m.tif"),"rauman")
 
-
+check_download(c("Bewohnte_Flaeche.gpkg","Nationale_Schutzgebiete.gpkg",
+                 "Waldgebiete.gpkg","Seeflaechen.gpkg","Strassen.gpkg","Untersuchungsgebiet_Schwyz.gpkg"),"rauman")
 ```
 
 The data can be loaded by using the functions `terra` for raster data and `read_sf` for vector data. View the available data layers (see Table \ref{tab:datatable}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
@@ -74,9 +57,9 @@ library(knitr)
 library(kableExtra)
 library(dplyr)
 
-name <- c("dhm25m.tif", "eis25m.tif", "wind25m.tif", "Bewohnte_Fläche.shp", "Nationale_Schutzgebiete.shp", "Seeflächen.shp", "Strassen.shp", "Untersuchungsgebiet_Schwyz.shp", "Waldgebiete.shp")
+name <- c("dhm25m.tif", "eis25m.tif", "wind25m.tif", "Bewohnte_Flaeche.gpkg", "Nationale_Schutzgebiete.gpkg", "Seeflaechen.gpkg", "Strassen.gpkg", "Untersuchungsgebiet_Schwyz.gpkg", "Waldgebiete.gpkg")
 description <- c("Terrain model (m)", "Icing frequency (days/year)", "Average wind speed (dm/s) ", "Settlements (incl. buffer 200m)", "National protection areas", "Lake areas", "Streets", "Study area, canton of Schwyz", "Forest areas") 
-type <- c("Raster", "Raster", "Raster", "Shapefile", "Shapefile", "Shapefile", "Shapefile", "Shapefile", "Shapefile")
+type <- c("Raster", "Raster", "Raster", "Geopackage", "Geopackage", "Geopackage", "Geopackage", "Geopackage", "Geopackage")
 res <- c("25m", "25m", "25m", "", "", "", "", "", "")
 geometry <- c("", "", "", "Polygon", "Polygon", "Polygon", "Line", "Polygon", "Polygon")
 crs <- c("CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03")
@@ -84,6 +67,39 @@ exclusion_area <- c("No", "No", "No", "(Yes)/Distance", "(Yes)/Distance", "Yes",
 data_table <- data.frame(name, description, type, res, geometry, crs, exclusion_area)
 
 knitr::kable(data_table, caption = "Data used in this study") %>% kable_styling(latex_options=c("scale_down", "HOLD_position"))
+```
+
+```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+library(sf)
+library(terra)
+library(ggplot2)
+
+## -- Exercise 1: Load and view input data -- ##
+#Vector data
+kt_schwyz <- read_sf("Untersuchungsgebiet_Schwyz.gpkg")
+settlements <- read_sf("Bewohnte_Flaeche.gpkg")
+forests <- read_sf("Waldgebiete.gpkg")
+protected_areas <- read_sf("Nationale_Schutzgebiete.gpkg")
+lakes <- read_sf("Seeflaechen.gpkg")
+streets <- read_sf("Strassen.gpkg") %>% st_intersection(kt_schwyz) #intersect with study area
+
+#Raster data
+eis25m <- rast("eis25m.tif") %>% mask(kt_schwyz)
+#use mask() to only get data inside of study area
+dhm25m <- rast("dhm25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+wind25m <- rast("wind25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+
+#Plot vector data
+plot_kt_schwyz <- ggplot() + geom_sf(data = kt_schwyz, fill = NA) + theme_void()
+plot_settlements <- ggplot() + geom_sf(data = settlements, fill = NA) + theme_void()
+plot_forests <- ggplot() + geom_sf(data = forests, fill = NA) + theme_void()
+plot_lakes <- ggplot() + geom_sf(data = lakes) + theme_void()
+plot_streets <- ggplot() + geom_sf(data = streets, fill = NA) + theme_void()
+
+#Plot raster data
+plot(dhm25m, main="Digital Surface Model (DSM)", axes=FALSE)
+plot(eis25m, main="Icing frequency", axes=FALSE)
+plot(wind25m, main="Average wind speed", axes=FALSE)
 ```
 
 
