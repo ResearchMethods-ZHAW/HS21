@@ -65,10 +65,9 @@ data_table <- data.frame(name, description, type, res, geometry, crs, exclusion_
 knitr::kable(data_table, caption = "Data used in this study") %>% kable_styling(latex_options=c("scale_down", "HOLD_position"))
 ```
 
-\newpage
 
 ## Exercise 2: Merge exclusion criteria
-Merge the exclusion criteria settlement areas, national protected areas, lake areas and forest areas. These vector data sets are structured as data frames and therefore can be merged by simply combining them. Keep in mind that the data frames have different sizes. Additionally, we need to create a raster out of the newly created vector data set (exclusion area). For that you can use the function `rasterize`. The output should be a raster with 0 and 1, where the fields of the exclusion area have values of 0 and the remaining fields have values of 1 (see Figure \ref{fig:fig_rasterize_exclusion_criteria}).
+Merge the exclusion criteria settlement areas, national protected areas, lake areas and forest areas. These vector data sets are structured as data frames and therefore can be merged by simply combining them. Keep in mind that the data frames have different sizes. Additionally, we need to create a raster out of the newly created vector data set (exclusion area). For that you can use the function `rasterize`. The output should be a raster with 0 and 1, where the fields of the exclusion area have values of 0 and the remaining fields have values of 1 (see Figure \ref(fig:figrasterizeexclusioncriteria)).
   
 * ***Tip**: To achieve a raster with only 0 and 1 use the `rasterize` options field = 0 and background = 1.*
 * ***Tip**: In order to rasterize vector data, you need to create an empty raster beforehand. This raster should have the same boundaries (extent), resolution and coordinate system (crs) as the other raster sets. Use the following code to do so.*
@@ -81,22 +80,20 @@ r <- raster(extent(kt_schwyz),
           +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
 ```
   
-```{r fig_rasterize_exclusion_criteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", out.width="50%"}
+```{r figrasterizeexclusioncriteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_2_exclusion_area.png")
 ```
 
-\newpage
 
 ## Exercise 3: Calculate slope
 Next, calculate the slope in degrees based on the terrain model (dhm25m). The raster package gives you a very helpful function called `terrain`. 
 
 ***Tip**: When using the terrain function use the following options: opt="slope", unit="degrees", neighbors=8.*
 
-```{r fig_slope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%"}
+```{r figslope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_3_slope.png")
 ```
 
-\newpage
 
 ## Exercise 4: Calculate distances to criteria
 Within the evaluation of suitable sites for wind turbines, the distance to roads, forest areas, national protected areas and inhabited areas are relevant. Depending on the criteria, a short or long distance has a positive influence on the evaluation of potential sites. For this purpose, perform a distance analysis with the selected criteria raster layers. Use the raster function `distance` for this calculation. 
@@ -106,19 +103,19 @@ Within the evaluation of suitable sites for wind turbines, the distance to roads
 
 As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. You can load the other 3 data sets as .tif formats from the folder "/solution_euclidean_distances".
 
-```{r fig_distance_settlements, echo=FALSE, fig.cap="Example output for the distances to settlements", fig.align="center", out.width="50%"}
+```{r figdistancesettlements, echo=FALSE, fig.cap="Example output for the distances to settlements", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ```
 
 \newpage
 
 ## Exercise 5: Standardize and grade criteria (grading)
-The data layers slope, wind speed, icing frequency and the in exercise 4 calculated distance layers have different units (dm/s, degrees, d/yr and m). These units can't be directly calculated with each other. Therefore, the different layers need to be operationalized by performing a linear grading. The linear grading is done by using the function `reclassify`. Use the  standards for the reclassification in Figure \ref{fig:fig_reclassify}.
+The data layers slope, wind speed, icing frequency and the in exercise 4 calculated distance layers have different units (dm/s, degrees, d/yr and m). These units can't be directly calculated with each other. Therefore, the different layers need to be operationalized by performing a linear grading. The linear grading is done by using the function `reclassify`. Use the  standards for the reclassification in Figure \ref(fig:figreclassify).
 
 * ***Tip**: Keep in mind the min and max values of each raster layer.*
 * ***Tip**: Here is an example code to reclassify the distances to settlements.*
 
-```{r example_reclassify_settlements, eval=FALSE}
+```{r examplereclassifysettlements, eval=FALSE}
 reclass_settlements <- c(0,80,0,
                         80,160,0.1,
                         160,240,0.2,
@@ -133,15 +130,14 @@ reclass_settlements <- c(0,80,0,
 reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
 ```
 
-```{r fig_reclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", fig.align = "center", fig.show = "hold", out.width="49%"}
+```{r figreclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", fig.align = "center", fig.show = "hold", out.width="49%"}
 knitr::include_graphics(c("images/mce_reclassify_1.png", "images/mce_reclassify_2.png"))
 ```
 
-```{r fig_dist_settlements_reclass, echo=FALSE, fig.cap="Example output for the reclassified distances to settlements", fig.align="center", out.width="45%"}
+```{r figdistsettlementsreclass, echo=FALSE, fig.cap="Example output for the reclassified distances to settlements", fig.align="center", out.width="45%"}
 knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ```
 
-\newpage
 
 ## Exercise 6: Weighting criteria with AHP
 Perform an AHP to weight the criteria underlying the MCE. First compare the criteria in pairs, and then calculate the weights - as you have learned in last weeks lesson. In the end you should have a list of 7 weights as shown below.
@@ -163,28 +159,25 @@ ahp_matrix <- c(
 ) %>% matrix(ncol = 7, byrow = TRUE)
 ```
 
-\newpage
 
 ## Exercise 7: Weighted Overlay
-The linearly ranked criteria (Exercise 5) are now to be combined with each other, taking into account the weighting determined using the AHP (Exercise 6). This weighted overlay can be performed by using raster calculations and simply multiplying each criteria with its weight and adding them together (see Figure \ref{fig:fig_weighted_overlay}).
+The linearly ranked criteria (Exercise 5) are now to be combined with each other, taking into account the weighting determined using the AHP (Exercise 6). This weighted overlay can be performed by using raster calculations and simply multiplying each criteria with its weight and adding them together (see figure \@ref(fig:figweightedoverlay)).
 
 * ***Tip**: As the raster sets have slightly different origins, increase the tolerance by using rasterOptions(tolerance = 0.5).*
 * ***Tip**: Also keep in mind the order of the weights in your list when doing the multiplication.*
 
-```{r fig_weighted_overlay, echo=FALSE, fig.cap="Weighted overall of all criteria", fig.align="center", out.width="50%"}
+```{r figweightedoverlay, echo=FALSE, fig.cap="Weighted overall of all criteria", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_7_weighted_overlay.png")
 ```
 
-\newpage
-
 ## Exercise 8: Intersecting potential areas with exclusion criteria
-By simply multiplying the exclusion layer (result from exercise 2) with the weighted overlay layer (result from exercise 7) we are excluding all areas with value 0 (exclusion areas) and keeping all other areas with value 1 (e.g. 0x3=0, 1x3=3). As a conclusion of the study, create a final plot of the potential areas for wind power plants in the canton of Schwyz (like Figure \ref{fig:fig_final_results}). Furthermore, discuss the results obtained and determine three possible locations within which concrete planning of wind power plants would be possible.
 
-```{r fig_final_results, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz (red = less suitable, green = more suitable)", fig.align="center", out.width="80%"}
+By simply multiplying the exclusion layer (result from exercise 2) with the weighted overlay layer (result from exercise 7) we are excluding all areas with value 0 (exclusion areas) and keeping all other areas with value 1 (e.g. 0x3=0, 1x3=3). As a conclusion of the study, create a final plot of the potential areas for wind power plants in the canton of Schwyz (like figure \@ref(fig:figfinalresults)). Furthermore, discuss the results obtained and determine three possible locations within which concrete planning of wind power plants would be possible.
+
+```{r figfinalresults, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz (red = less suitable, green = more suitable)", fig.align="center", out.width="80%"}
 knitr::include_graphics("images/mce_exercise_8_final_plot.png")
 ```
 
-\newpage
 
 <!-- ## Solution -->
 <!-- ```{r solution, eval=FALSE} -->
