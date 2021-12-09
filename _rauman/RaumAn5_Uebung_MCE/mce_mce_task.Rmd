@@ -14,44 +14,41 @@ author:
   - name: Dominic Lüönd
 ---
 
-This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 2". This exercise may seem familiar to some of you, if you have attended the bachelor program. This MCE was already conducted in the bachelor module "GIS" by using ArcGIS Pro and its ModelBuilder (see Figure \ref{fig:fig_mce}).
+This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 2". This exercise may seem familiar to some of you, if you have attended the bachelor program. This MCE was already conducted in the bachelor module "GIS" by using ArcGIS Pro and its ModelBuilder (see figure \@ref(fig:figmce)).
 
-```{r fig_mce, echo=FALSE, fig.cap="Process model in ArcGIS Pro ModelBuilder", fig.align="center", out.width = '100%'}
+```{r figmce, echo=FALSE, fig.cap="Process model in ArcGIS Pro ModelBuilder", fig.align="center", out.width = '100%'}
 knitr::include_graphics("images/mce_process.png")
 ```
 
-The goal of this exercise is to do the same MCE by just using R. We will mainly use functions from the R packages [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) and [raster](https://cran.r-project.org/web/packages/raster/raster.pdf). Please have a look at the process model (Figure \ref{fig:fig_mce}) that was created in ArcGIS Pro and try to figure out which functions in the two R packages correspond to the ones in the model. You will see that there are some similar functions available, but for some calculations a different approach is needed.
+The goal of this exercise is to do the same MCE by just using R. We will mainly use functions from the R packages [sf](https://cran.r-project.org/web/packages/sf/sf.pdf) and [raster](https://cran.r-project.org/web/packages/raster/raster.pdf). Please have a look at the process model (see figure \@ref(fig:figmce)) that was created in ArcGIS Pro and try to figure out which functions in the two R packages correspond to the ones in the model. You will see that there are some similar functions available, but for some calculations a different approach is needed.
 
-\newpage
 
-## Exercises:
-* Exercise 1: Load and view data
-* Exercise 2: Merge exclusion criteria
-* Exercise 3: Calculate slope
-* Exercise 4: Calculate distances to criteria
-* Exercise 5: Standardize and grade criteria (grading)
-* Exercise 6: Weighting Criteria with AHP
-* Exercise 7: Weighted Overlay
-* Exercise 8: Intersecting potential areas with exclusion criteria
+<!-- ## Exercises: -->
+<!-- * Exercise 1: Load and view data -->
+<!-- * Exercise 2: Merge exclusion criteria -->
+<!-- * Exercise 3: Calculate slope -->
+<!-- * Exercise 4: Calculate distances to criteria -->
+<!-- * Exercise 5: Standardize and grade criteria (grading) -->
+<!-- * Exercise 6: Weighting Criteria with AHP -->
+<!-- * Exercise 7: Weighted Overlay -->
+<!-- * Exercise 8: Intersecting potential areas with exclusion criteria -->
 
-## Functions used in this exercise:
-* bind_rows() (Vector)
-* raster() (Raster)
-* rasterize() (Raster)
-* terrain() (Raster)
-* distance() (Raster)
-* reclassify() (Raster)
-* mask()    
-* Raster multiplication
-
-\newpage
+<!-- ## Functions used in this exercise: -->
+<!-- * bind_rows() (Vector) -->
+<!-- * raster() (Raster) -->
+<!-- * rasterize() (Raster) -->
+<!-- * terrain() (Raster) -->
+<!-- * distance() (Raster) -->
+<!-- * reclassify() (Raster) -->
+<!-- * mask()     -->
+<!-- * Raster multiplication -->
 
 ## Exercises 1: Load and view data
-The data can be loaded by using the functions `raster` for raster data and `read_sf` for vector data. View the available data layers (see Table \ref{tab:data_table}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
+The data can be loaded by using the functions `raster` for raster data and `read_sf` for vector data. View the available data layers (see Table \ref{tab:datatable}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
 
 ***Tip**: As some data sets are exceeding the boundaries of the study area, you can use the `mask` function on raster data sets and `st_intersection` for sf/vector data sets, so only relevant data is included.* 
 
-```{r data_table, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+```{r datatable, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 library(knitr)
 library(kableExtra)
 library(dplyr)
