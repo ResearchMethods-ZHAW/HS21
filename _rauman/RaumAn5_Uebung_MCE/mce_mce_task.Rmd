@@ -84,10 +84,9 @@ lakes <- read_sf("Seeflaechen.gpkg")
 streets <- read_sf("Strassen.gpkg") %>% st_intersection(kt_schwyz) #intersect with study area
 
 #Raster data
-eis25m <- rast("eis25m.tif") %>% mask(kt_schwyz)
-#use mask() to only get data inside of study area
-dhm25m <- rast("dhm25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
-wind25m <- rast("wind25m.tif") %>% mask(kt_schwyz) #use mask() to only get data inside of study area
+eis25m <- rast("eis25m.tif") %>% crop(kt_schwyz) #use terra::crop() to only get data inside of study area
+dhm25m <- rast("dhm25m.tif") %>% crop(kt_schwyz) #use terra::crop() to only get data inside of study area
+wind25m <- rast("wind25m.tif") %>% crop(kt_schwyz) #use terra::crop() to only get data inside of study area
 
 #Plot vector data
 plot_kt_schwyz <- ggplot() + geom_sf(data = kt_schwyz, fill = NA) + theme_void()
