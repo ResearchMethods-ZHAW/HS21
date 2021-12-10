@@ -2603,11 +2603,10 @@ Figure 3: Example output of the calculated slope
 <li><em><strong>Tip</strong>: In order to perform the <code>distance</code> function, you need to <code>rasterize</code> the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.</em></li>
 <li><em><strong>Tip</strong>: Use the <code>crop</code> function again to get only relevant data in the study area.</em></li>
 </ul>
-<p>As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. You can downlaod the other 3 data by clicking on the respective links below:</p>
+<p>As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. You can download the other 3 data by clicking on the respective links below:</p>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
 <li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/forests_ed.tif">forests_ed.tif</a></li>
-<li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/protected_areas_ed.tif">protected_areas_ed.tif</a></li>
 <li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/settlements_ed.tif">settlements_ed.tif</a></li>
 <li><a href="https://github.com/ResearchMethods-ZHAW/datasets/raw/main/rauman/streets_ed.tif">streets_ed.tif</a></li>
 </ul>
@@ -2641,8 +2640,8 @@ Figure 4: Example output for the distances to settlements
                         <span class="fl">560</span>,<span class="fl">640</span>,<span class="fl">0.7</span>,
                         <span class="fl">640</span>,<span class="fl">720</span>,<span class="fl">0.8</span>,
                         <span class="fl">720</span>,<span class="fl">800</span>,<span class="fl">0.9</span>,
-                        <span class="fl">800</span>,<span class="fu">maxValue</span><span class="op">(</span><span class="va">settlements_ed</span><span class="op">)</span>,<span class="fl">1.0</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">reclass_settlements_ed</span> <span class="op">&lt;-</span> <span class="fu">reclassify</span><span class="op">(</span><span class="va">settlements_ed</span>, <span class="va">reclass_settlements</span><span class="op">)</span>
+                        <span class="fl">800</span>,<span class="fu">minmax</span><span class="op">(</span><span class="va">settlements_ed</span><span class="op">)</span>,<span class="fl">1.0</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">reclass_settlements_ed</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/classify.html">classify</a></span><span class="op">(</span><span class="va">settlements_ed</span>, <span class="va">reclass_settlements</span><span class="op">)</span>
 </code></pre>
 </div>
 </div>
