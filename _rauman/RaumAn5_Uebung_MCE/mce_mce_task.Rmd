@@ -128,15 +128,16 @@ knitr::include_graphics("images/mce_exercise_2_exclusion_area.png")
 ```{r solutionEx2, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 ## -- Exercise 2: Merge exclusion criteria -- ##
 #Merge exclusion area
-exclusion_areas <- bind_rows(settlements, forests, protected_areas, lakes)
+exclusion_areas <- dplyr::bind_rows(settlements, forests, protected_areas, lakes)
 
 #create raster
-r <- raster(extent(kt_schwyz), 
-          resolution = c(25, 25), #use 25x25 resolution (same as other raster sets)
-          crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs") #crs from raster set (dhm25m)
-
-raster_exclusion_areas <- rasterize(exclusion_areas, r, field = 0, background = 1) %>% mask(kt_schwyz)
-plot(raster_exclusion_areas, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
+r <- terra::rast(ext(kt_schwyz), 
+          resolution = c(25, 25), 
+          crs = "EPSG:21781")
+ch_raster1 = rasterize(vect(exclusion_areas), r,
+                       field = 0) %>% crop(kt_schwyz)
+raster_exclusion_areas <- terra::rasterize(exclusion_areas, r, field = 0, background = 1) %>% crop(kt_schwyz)
+plot(ch_raster1, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
 ```
 
 
