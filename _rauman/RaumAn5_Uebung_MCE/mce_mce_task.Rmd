@@ -6,9 +6,7 @@ categories:
 - RaumAn5
 draft: false
 resources:
-  exclude:
-    dhm25m.tif,eis25m.tif,wind25m.tif,Bewohnte_Flaeche.gpkg,Nationale_Schutzgebiete.gpkg,
-     Waldgebiete.gpkg,Seeflaechen.gpkg,Strassen.gpkg,Untersuchungsgebiet_Schwyz.gpkg
+  exclude: [dhm25m.tif,eis25m.tif,wind25m.tif,Bewohnte_Flaeche.gpkg,Nationale_Schutzgebiete.gpkg,Waldgebiete.gpkg,Seeflaechen.gpkg,Strassen.gpkg,Untersuchungsgebiet_Schwyz.gpkg]
 description: |
   This is a step-by-step guide corresponding to the PPP document "Multikriterielle Entscheidungsanalyse 1".
 author:
@@ -30,50 +28,68 @@ The goal of this exercise is to do the same MCE by just using R. We will mainly 
 
 ## Exercises 1: Load and view data
 
-```{r, results='asis', echo = FALSE}
+```{r, results='asis', echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/", cat = TRUE){
   full_url <- paste0(url,folder,"/",files)
   exists_bool <- !file.exists(files)
   if(sum(exists_bool)>0){
     download.file(full_url[exists_bool],files[exists_bool])
-    }
-  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+  }
+  urls <- paste0("- [",files,"](",full_url,") ",source)
+  if(cat){
+    cat(urls,sep = "\n")
+  }else{
+    return(urls)
+  }
 }
 
-check_download(c("dhm25m.tif","eis25m.tif","wind25m.tif"),"rauman")
+datasets <- data.frame(
+  datasets = c("dhm25m.tif", "eis25m.tif", "wind25m.tif", "Bewohnte_Flaeche.gpkg", "Nationale_Schutzgebiete.gpkg", "Seeflaechen.gpkg", "Strassen.gpkg", "Untersuchungsgebiet_Schwyz.gpkg", "Waldgebiete.gpkg"),
+  description = c("Terrain model (m)", "Icing frequency (days/year)", "Average wind speed (dm/s) ", "Settlements (incl. buffer 200m)", "National protection areas", "Lake areas", "Streets", "Study area, canton of Schwyz", "Forest areas"),
+  type = c("Raster", "Raster", "Raster", "Geopackage", "Geopackage", "Geopackage", "Geopackage", "Geopackage", "Geopackage"),
+  res = c("25m", "25m", "25m", "", "", "", "", "", ""),
+  geometry = c("", "", "", "Polygon", "Polygon", "Polygon", "Line", "Polygon", "Polygon"),
+  crs = c("CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03"),
+  exclusion_area = c("No", "No", "No", "(Yes)/Distance", "(Yes)/Distance", "Yes", " No/Distance   ", "No", "(Yes)/Distance")
+)
 
-check_download(c("Bewohnte_Flaeche.gpkg","Nationale_Schutzgebiete.gpkg",
-                 "Waldgebiete.gpkg","Seeflaechen.gpkg","Strassen.gpkg","Untersuchungsgebiet_Schwyz.gpkg"),"rauman")
-```
-
-The data can be loaded by using the functions `terra` for raster data and `read_sf` for vector data. View the available data layers (see Table \ref{tab:datatable}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
-
-***Tip**: As some data sets are exceeding the boundaries of the study area, you can use the `mask` function on raster data sets and `st_intersection` for sf/vector data sets, so only relevant data is included.* 
-
-```{r datatable, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
-library(knitr)
+library(stringr)
 library(kableExtra)
 library(dplyr)
 
-name <- c("dhm25m.tif", "eis25m.tif", "wind25m.tif", "Bewohnte_Flaeche.gpkg", "Nationale_Schutzgebiete.gpkg", "Seeflaechen.gpkg", "Strassen.gpkg", "Untersuchungsgebiet_Schwyz.gpkg", "Waldgebiete.gpkg")
-description <- c("Terrain model (m)", "Icing frequency (days/year)", "Average wind speed (dm/s) ", "Settlements (incl. buffer 200m)", "National protection areas", "Lake areas", "Streets", "Study area, canton of Schwyz", "Forest areas") 
-type <- c("Raster", "Raster", "Raster", "Geopackage", "Geopackage", "Geopackage", "Geopackage", "Geopackage", "Geopackage")
-res <- c("25m", "25m", "25m", "", "", "", "", "", "")
-geometry <- c("", "", "", "Polygon", "Polygon", "Polygon", "Line", "Polygon", "Polygon")
-crs <- c("CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03", "CH1903/LV03")
-exclusion_area <- c("No", "No", "No", "(Yes)/Distance", "(Yes)/Distance", "Yes", " No/Distance   ", "No", "(Yes)/Distance")
-data_table <- data.frame(name, description, type, res, geometry, crs, exclusion_area)
-
-knitr::kable(data_table, caption = "Data used in this study") %>% kable_styling(latex_options=c("scale_down", "HOLD_position"))
+myurls <-check_download(datasets$datasets,"rauman",cat = FALSE)
+myurls <- stringr::str_match(myurls,"\\((.+)\\)")[,2]
 ```
 
-```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+
+```{r datatable, results='asis', echo=FALSE}
+datasets %>%
+  mutate(
+    datasets = kableExtra::cell_spec(datasets, "html", link = myurls)
+  ) %>%
+  kableExtra::kable(caption = "Data used in this study (click on the link to download)",escape = FALSE) %>% 
+  kable_styling(latex_options=c("scale_down", "HOLD_position"))
+
+```
+
+The raster data can be loaded by using the function `terra::rast` and the vector data with `sf::read_sf`. View the available data layers (see Table \ref{tab:datatable}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
+
+<!-- Some data sets exceed the boundaries of the study area. Use the function `crop`  on raster data sets and `st_intersection` for sf/vector data to extract the relevant areas. -->
+
+We will use the following packages in this exercise:
+
+```{r}
 library(sf)
 library(terra)
 library(ggplot2)
+library(dplyr)
+library(tmap)
+```
 
+
+```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 ## -- Exercise 1: Load and view input data -- ##
 #Vector data
 kt_schwyz <- read_sf("Untersuchungsgebiet_Schwyz.gpkg")
@@ -84,27 +100,25 @@ lakes <- read_sf("Seeflaechen.gpkg")
 streets <- read_sf("Strassen.gpkg") %>% st_intersection(kt_schwyz) #intersect with study area
 
 #Raster data
-eis25m <- rast("eis25m.tif") %>% crop(kt_schwyz) #use terra::crop() to only get data inside of study area
-dhm25m <- rast("dhm25m.tif") %>% crop(kt_schwyz) #use terra::crop() to only get data inside of study area
-wind25m <- rast("wind25m.tif") %>% crop(kt_schwyz) #use terra::crop() to only get data inside of study area
+eis25m <- rast("eis25m.tif")  
+dhm25m <- rast("dhm25m.tif")  
+wind25m <- rast("wind25m.tif")
+```
 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 #Plot vector data
-plot_kt_schwyz <- ggplot() + geom_sf(data = kt_schwyz, fill = NA) + theme_void()
-plot_settlements <- ggplot() + geom_sf(data = settlements, fill = NA) + theme_void()
-plot_forests <- ggplot() + geom_sf(data = forests, fill = NA) + theme_void()
-plot_lakes <- ggplot() + geom_sf(data = lakes) + theme_void()
-plot_streets <- ggplot() + geom_sf(data = streets, fill = NA) + theme_void()
+tm_shape(lakes) + tm_polygons(col = "dodgerblue3") +
+  tm_shape(streets) + tm_lines(col = "gray18") +
+  tm_shape(forests) + tm_polygons(col = "darkseagreen4", alpha = 0.5) +
+  tm_shape(settlements) + tm_polygons(col = "gray",alpha = 0.5)
+```
 
-ggplot() +
-  geom_sf(data = kt_schwyz) +
-  geom_sf(data = forests, colour = "red") + geom_sf(data = lakes, colour = "green") +
-  geom_sf(data = settlements, colour = "blue") + geom_sf(data = streets, colour = "black") +
-  coord_sf(default_crs = sf::st_crs(21781))
 
-#Plot raster data
-plot(dhm25m, main="Digital Surface Model (DSM)", axes=FALSE)
-plot(eis25m, main="Icing frequency", axes=FALSE)
-plot(wind25m, main="Average wind speed", axes=FALSE)
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+tm_shape(dhm25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
+tm_shape(eis25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
+tm_shape(wind25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
 ```
 
 
