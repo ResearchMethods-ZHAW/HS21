@@ -167,7 +167,7 @@ Within the evaluation of suitable sites for wind turbines, the distance to roads
 * ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
 As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same.
-You can downlaod the other 3 data by clicking on the respective links below:
+You can download the other 3 data by clicking on the respective links below:
 
 ```{r, results='asis', echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -181,7 +181,7 @@ check_download <- function(files, folder, source = "", url = "https://github.com
   cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
 }
 
-check_download(c("forests_ed.tif","protected_areas_ed.tif","settlements_ed.tif",
+check_download(c("forests_ed.tif","settlements_ed.tif",
                  "streets_ed.tif"),"rauman")
 ```
 
@@ -231,8 +231,8 @@ reclass_settlements <- c(0,80,0,
                         560,640,0.7,
                         640,720,0.8,
                         720,800,0.9,
-                        800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
+                        800,minmax(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_settlements_ed <- terra::classify(settlements_ed, reclass_settlements)
 ```
 
 ```{r figreclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", fig.align = "center", fig.show = "hold", out.width="49%"}
@@ -255,8 +255,8 @@ reclass_wind_m <- c(0,35,0,
                       60,65,0.6,
                       65,70,0.7,
                       70,75,0.8,
-                      75,maxValue(wind25m),0.9) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_wind <- reclassify(wind25m, reclass_wind_m)
+                      75,minmax(wind25m)[2]),0.9) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_wind <- classify(wind25m, reclass_wind_m)
 plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
 
 #### reclassify ice    
@@ -266,8 +266,8 @@ reclass_ice_m <- c(0,6,1,
                      18,24,0.7,
                      24,30,0.6,
                      30,36,0.5,
-                     36,maxValue(eis25m),0.4) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_ice <- reclassify(eis25m, reclass_ice_m)
+                     36,minmax(eis25m)[2],0.4) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_ice <- classify(eis25m, reclass_ice_m)
 plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE)
 
 #### reclassify slope
@@ -281,8 +281,8 @@ reclass_slope_m <- c(0,2,1,
                        14,16,0.3,
                        16,18,0.2,
                        18,20,0.1,
-                       20,maxValue(slope),0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_slope <- reclassify(slope, reclass_slope_m)
+                       20,minmax(slope)[2],0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_slope <- classify(slope, reclass_slope_m)
 plot(reclass_slope, main="Slope (reclassified)", axes=FALSE)
 
 #### reclassify settlements 
@@ -296,8 +296,8 @@ reclass_settlements <- c(0,80,0,
                              560,640,0.7,
                              640,720,0.8,
                              720,800,0.9,
-                             800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
+                             800,minmax(settlements_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_settlements_ed <- classify(settlements_ed, reclass_settlements)
 plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes=FALSE)
 
 #### reclassify protected areas
@@ -311,8 +311,8 @@ reclass_protected_areas <- c(0,50,0,
                                  350,400,0.7,
                                  400,450,0.8,
                                  450,500,0.9,
-                                 500,maxValue(protected_areas_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_protected_areas_ed <- reclassify(protected_areas_ed, reclass_protected_areas)
+                                 500,minmax(protected_areas_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_protected_areas_ed <- classify(protected_areas_ed, reclass_protected_areas)
 plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE)
 
 #### reclassify forest area 
@@ -326,8 +326,8 @@ reclass_forests <- c(0,10,0,
                          70,80,0.7,
                          80,90,0.8,
                          90,100,0.9,
-                         100,maxValue(forests_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_forests_ed <- reclassify(forests_ed, reclass_forests)
+                         100,minmax(forests_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_forests_ed <- classify(forests_ed, reclass_forests)
 plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FALSE)
 
 #### reclassify streets   
@@ -341,8 +341,8 @@ reclass_streets <- c(0,250,1.0,
                      1750,2000,0.3,
                      2000,2250,0.2,
                      2250,2500,0.1,
-                     2500,maxValue(streets_ed),0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_streets_ed <- reclassify(streets_ed, reclass_streets)
+                     2500,minmax(streets_ed)[2],0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_streets_ed <- classify(streets_ed, reclass_streets)
 plot(reclass_streets_ed, main="Distance to streets (reclassified)", axes=FALSE)
 ```
 
