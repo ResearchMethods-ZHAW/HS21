@@ -116,11 +116,9 @@ Merge the exclusion criteria settlement areas, national protected areas, lake ar
 * ***Tip**: In order to rasterize vector data, you need to create an empty raster beforehand. This raster should have the same boundaries (extent), resolution and coordinate system (crs) as the other raster sets. Use the following code to do so.*
   
 ```{r create_empty_raster, eval=FALSE}
-library(raster)
-r <- raster(extent(kt_schwyz), 
+r <- terra::rast(ext(kt_schwyz), 
           resolution = c(25, 25), 
-          crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 
-          +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs")
+          crs = "EPSG:21781")
 ```
   
 ```{r figrasterizeexclusioncriteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", out.width="50%"}
