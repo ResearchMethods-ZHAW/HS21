@@ -134,9 +134,9 @@ exclusion_areas <- dplyr::bind_rows(settlements, forests, protected_areas, lakes
 r <- terra::rast(ext(kt_schwyz), 
           resolution = c(25, 25), 
           crs = "EPSG:21781")
-ch_raster1 = rasterize(vect(exclusion_areas), r,
-                       field = 0) %>% crop(kt_schwyz)
-raster_exclusion_areas <- terra::rasterize(exclusion_areas, r, field = 0, background = 1) %>% crop(kt_schwyz)
+
+raster_exclusion_areas <- rasterize(vect(exclusion_areas), r,
+                       field = 0, background = 1) %>% crop(kt_schwyz)
 plot(ch_raster1, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
 ```
 
@@ -153,7 +153,7 @@ knitr::include_graphics("images/mce_exercise_3_slope.png")
 
 ```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 ## -- Exercise 3: Calculate slope -- ##
-slope <- terrain(dhm25m, opt="slope",unit="degrees", neighbors=8)
+slope <- terra::terrain(dhm25m, v="slope",unit="degrees", neighbors=8)
 plot(slope, main="Slope", axes=FALSE)
 ```
 
@@ -175,16 +175,16 @@ knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ## -- Exercise 4: Calculate distances to criteria -- ##
 # This process will take a few hours to run
 #create raster layers from vector 
-raster_settlements <- rasterize(settlements, r, field = 1) 
-raster_protected_areas <- rasterize(protected_areas, r, field = 1) 
-raster_forests <- rasterize(forests, r, field = 1) 
-raster_streets <- rasterize(streets, r, field = 1) 
+raster_settlements <- rasterize(vect(settlements), r, field = 1) 
+raster_protected_areas <- rasterize(vect(protected_areas), r, field = 1) 
+raster_forests <- rasterize(vect(forests), r, field = 1) 
+raster_streets <- rasterize(vect(streets), r, field = 1) 
 
 #calculate euclidean distances
-settlements_ed <- distance(raster_settlements) %>% mask(kt_schwyz)
-protected_areas_ed <- distance(raster_protected_areas) %>% mask(kt_schwyz)
-forests_ed <- distance(raster_forests) %>% mask(kt_schwyz)
-streets_ed <- distance(raster_streets) %>% mask(kt_schwyz)
+settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
+protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
+forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
+streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
 
 ```
 
