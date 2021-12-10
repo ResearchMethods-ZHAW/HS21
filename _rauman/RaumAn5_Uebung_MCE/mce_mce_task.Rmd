@@ -118,7 +118,7 @@ Merge the exclusion criteria settlement areas, national protected areas, lake ar
   
 ```{r create_empty_raster, eval=FALSE}
 r <- terra::rast(ext(kt_schwyz), 
-          resolution = c(25, 25), 
+          resolution = c(250, 250), 
           crs = "EPSG:21781")
 ```
   
