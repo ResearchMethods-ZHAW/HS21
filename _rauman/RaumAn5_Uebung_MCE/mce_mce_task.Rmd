@@ -50,7 +50,7 @@ check_download(c("Bewohnte_Flaeche.gpkg","Nationale_Schutzgebiete.gpkg",
 
 The data can be loaded by using the functions `terra` for raster data and `read_sf` for vector data. View the available data layers (see Table \ref{tab:datatable}) and plot them in an appealing way. For visualization you can use the functions `plot` for raster data and `ggplot` for vector data.
 
-***Tip**: As some data sets are exceeding the boundaries of the study area, you can use the `mask` function on raster data sets and `st_intersection` for sf/vector data sets, so only relevant data is included.* 
+***Tip**: As some data sets are exceeding the boundaries of the study area, you can use the `crop` function on raster data sets and `st_intersection` for sf/vector data sets, so only relevant data is included.* 
 
 ```{r datatable, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 library(knitr)
@@ -73,6 +73,7 @@ knitr::kable(data_table, caption = "Data used in this study") %>% kable_styling(
 library(sf)
 library(terra)
 library(ggplot2)
+library(dplyr)
 
 ## -- Exercise 1: Load and view input data -- ##
 #Vector data
@@ -137,15 +138,15 @@ r <- terra::rast(ext(kt_schwyz),
 
 raster_exclusion_areas <- rasterize(vect(exclusion_areas), r,
                        field = 0, background = 1) %>% crop(kt_schwyz)
-plot(ch_raster1, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
+plot(raster_exclusion_areas, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
 ```
 
 
 ## Exercise 3: Calculate slope
 
-Next, calculate the slope in degrees based on the terrain model (dhm25m). The raster package gives you a very helpful function called `terrain`. 
+Next, calculate the slope in degrees based on the terrain model (dhm25m). The terra package gives you a very helpful function called `terrain`. 
 
-***Tip**: When using the terrain function use the following options: opt="slope", unit="degrees", neighbors=8.*
+***Tip**: When using the terrain function use the following options: v="slope", unit="degrees", neighbors=8.*
 
 ```{r figslope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_3_slope.png")
@@ -163,9 +164,27 @@ plot(slope, main="Slope", axes=FALSE)
 Within the evaluation of suitable sites for wind turbines, the distance to roads, forest areas, national protected areas and inhabited areas are relevant. Depending on the criteria, a short or long distance has a positive influence on the evaluation of potential sites. For this purpose, perform a distance analysis with the selected criteria raster layers. Use the raster function `distance` for this calculation. 
 
 * ***Tip**: In order to perform the `distance` function, you need to `rasterize` the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.*
-* ***Tip**: Use the `mask` function again to get only relevant data in the study area.*
+* ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
-As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. You can load the other 3 data sets as .tif formats from the folder "/solution_euclidean_distances".
+As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same.
+You can downlaod the other 3 data by clicking on the respective links below:
+
+```{r, results='asis', echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+}
+
+check_download(c("forests_ed.tif","protected_areas_ed.tif","settlements_ed.tif",
+                 "streets_ed.tif"),"rauman")
+```
+
 
 ```{r figdistancesettlements, echo=FALSE, fig.cap="Example output for the distances to settlements", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
@@ -175,16 +194,22 @@ knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ## -- Exercise 4: Calculate distances to criteria -- ##
 # This process will take a few hours to run
 #create raster layers from vector 
-raster_settlements <- rasterize(vect(settlements), r, field = 1) 
-raster_protected_areas <- rasterize(vect(protected_areas), r, field = 1) 
-raster_forests <- rasterize(vect(forests), r, field = 1) 
-raster_streets <- rasterize(vect(streets), r, field = 1) 
+raster_settlements <- terra::rasterize(vect(settlements), r, field = 1)
+raster_protected_areas <- terra::rasterize(vect(protected_areas), r, field = 1) 
+raster_forests <- terra::rasterize(vect(forests), r, field = 1) 
+raster_streets <- terra::rasterize(vect(streets), r, field = 1)
+
+# https://drive.switch.ch/index.php/s/BakVy6vPzgXqs0l/download
 
 #calculate euclidean distances
-settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
-protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
-forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
-streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
+# settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
+settlements_ed <- rast("../RaumAn5_Uebung_MCE/settlements_ed.tif")
+protected_areas_ed <- rast("protected_areas_ed.tif")
+forests_ed <- rast("forests_ed.tif")
+streets_ed <- rast("streets_ed.tif")
+# protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
+# forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
+# streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
 
 ```
 
