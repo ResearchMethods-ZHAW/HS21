@@ -2567,7 +2567,7 @@ CH1903/LV03
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html">rast</a></span><span class="op">(</span><span class="fu">ext</span><span class="op">(</span><span class="va">kt_schwyz</span><span class="op">)</span>, 
-          resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">25</span><span class="op">)</span>, 
+          resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">250</span><span class="op">)</span>, 
           crs <span class="op">=</span> <span class="st">&quot;EPSG:21781&quot;</span><span class="op">)</span>
 </code></pre>
 </div>
@@ -2640,7 +2640,7 @@ Figure 4: Example output for the distances to settlements
                         <span class="fl">560</span>,<span class="fl">640</span>,<span class="fl">0.7</span>,
                         <span class="fl">640</span>,<span class="fl">720</span>,<span class="fl">0.8</span>,
                         <span class="fl">720</span>,<span class="fl">800</span>,<span class="fl">0.9</span>,
-                        <span class="fl">800</span>,<span class="fu">minmax</span><span class="op">(</span><span class="va">settlements_ed</span><span class="op">)</span>,<span class="fl">1.0</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+                        <span class="fl">800</span>,<span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/minmax.html">minmax</a></span><span class="op">(</span><span class="va">settlements_ed</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="fl">1.0</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">reclass_settlements_ed</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/classify.html">classify</a></span><span class="op">(</span><span class="va">settlements_ed</span>, <span class="va">reclass_settlements</span><span class="op">)</span>
 </code></pre>
 </div>
