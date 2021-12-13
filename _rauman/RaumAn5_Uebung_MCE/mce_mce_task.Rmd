@@ -166,10 +166,10 @@ Within the evaluation of suitable sites for wind turbines, the distance to roads
 * ***Tip**: In order to perform the `distance` function, you need to `rasterize` the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.*
 * ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
-As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same.
-You can download the other 3 data by clicking on the respective links below:
+<!-- As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. -->
+<!-- You can download the other 3 data by clicking on the respective links below: -->
 
-```{r, results='asis', echo = FALSE}
+```{r eval=FALSE, include=FALSE, results='asis'}
 knitr::opts_chunk$set(echo = TRUE)
 
 check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
@@ -199,14 +199,8 @@ raster_protected_areas <- terra::rasterize(vect(protected_areas), r, field = 1)
 raster_forests <- terra::rasterize(vect(forests), r, field = 1) 
 raster_streets <- terra::rasterize(vect(streets), r, field = 1)
 
-# https://drive.switch.ch/index.php/s/BakVy6vPzgXqs0l/download
-
 #calculate euclidean distances
 settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
-settlements_ed <- rast("../RaumAn5_Uebung_MCE/settlements_ed.tif")
-# protected_areas_ed <- rast("protected_areas_ed.tif")
-# forests_ed <- rast("forests_ed.tif")
-# streets_ed <- rast("streets_ed.tif")
 protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
 forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
 streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
