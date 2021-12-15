@@ -18,7 +18,7 @@ author:
 
 The following exercise may seem familiar to some of you, if you have attended the bachelor program. This MCE was already conducted in the bachelor module "GIS" by using ArcGIS Pro and its ModelBuilder (see figure \@ref(fig:figmce)).
 
-```{r figmce, echo=FALSE, fig.cap="Process model in ArcGIS Pro ModelBuilder", fig.align="center", out.width = '100%'}
+```{r figmce, echo=FALSE, fig.cap="Process model in ArcGIS Pro ModelBuilder",purl = FALSE, fig.align="center", out.width = '100%'}
 knitr::include_graphics("images/mce_process.png")
 ```
 
@@ -28,7 +28,7 @@ The goal of this exercise is to do the same MCE by just using R. We will mainly 
 
 ## Exercises 1: Load and view data
 
-```{r, results='asis', echo=FALSE}
+```{r, results='asis', echo=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/", cat = TRUE){
@@ -64,7 +64,7 @@ myurls <- stringr::str_match(myurls,"\\((.+)\\)")[,2]
 ```
 
 
-```{r datatable, results='asis', echo=FALSE}
+```{r datatable, results='asis', echo=FALSE, purl = FALSE}
 datasets %>%
   mutate(
     datasets = kableExtra::cell_spec(datasets, "html", link = myurls)
@@ -88,8 +88,8 @@ library(tmap)
 ```
 
 
-```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 1: Load and view input data -- ##
+```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE}
+
 #Vector data
 kt_schwyz <- read_sf("Untersuchungsgebiet_Schwyz.gpkg")
 settlements <- read_sf("Bewohnte_Flaeche.gpkg")
@@ -105,7 +105,7 @@ wind25m <- rast("wind25m.tif")
 ```
 
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
+```{r message=FALSE, warning=FALSE}
 #Plot vector data
 tm_shape(lakes) + tm_polygons(col = "dodgerblue3") +
   tm_shape(streets) + tm_lines(col = "gray18") +
@@ -114,7 +114,7 @@ tm_shape(lakes) + tm_polygons(col = "dodgerblue3") +
 ```
 
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
+```{r message=FALSE, warning=FALSE}
 tm_shape(dhm25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
 tm_shape(eis25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
 tm_shape(wind25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
@@ -128,18 +128,18 @@ Merge the exclusion criteria settlement areas, national protected areas, lake ar
 * ***Tip**: To achieve a raster with only 0 and 1 use the `rasterize` options field = 0 and background = 1.*
 * ***Tip**: In order to rasterize vector data, you need to create an empty raster beforehand. This raster should have the same boundaries (extent), resolution and coordinate system (crs) as the other raster sets. Use the following code to do so.*
   
-```{r create_empty_raster, eval=FALSE}
+```{r create_empty_raster}
 r <- terra::rast(ext(kt_schwyz), 
           resolution = c(250, 250), 
           crs = "EPSG:21781")
 ```
   
-```{r figrasterizeexclusioncriteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", out.width="50%"}
+```{r figrasterizeexclusioncriteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", purl = FALSE, out.width="50%"}
 knitr::include_graphics("images/mce_exercise_2_exclusion_area.png")
 ```
 
-```{r solutionEx2, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 2: Merge exclusion criteria -- ##
+```{r solutionEx2, echo=FALSE, message=FALSE, warning=FALSE}
+
 #Merge exclusion area
 exclusion_areas <- dplyr::bind_rows(settlements, forests, protected_areas, lakes)
 
@@ -160,12 +160,12 @@ Next, calculate the slope in degrees based on the terrain model (dhm25m). The te
 
 ***Tip**: When using the terrain function use the following options: v="slope", unit="degrees", neighbors=8.*
 
-```{r figslope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%"}
+```{r figslope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%", purl = FALSE}
 knitr::include_graphics("images/mce_exercise_3_slope.png")
 ```
 
-```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 3: Calculate slope -- ##
+```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE}
+
 slope <- terra::terrain(dhm25m, v="slope",unit="degrees", neighbors=8)
 plot(slope, main="Slope", axes=FALSE)
 ```
@@ -178,32 +178,12 @@ Within the evaluation of suitable sites for wind turbines, the distance to roads
 * ***Tip**: In order to perform the `distance` function, you need to `rasterize` the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.*
 * ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
-<!-- As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. -->
-<!-- You can download the other 3 data by clicking on the respective links below: -->
-
-```{r eval=FALSE, include=FALSE, results='asis'}
-knitr::opts_chunk$set(echo = TRUE)
-
-check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
-  full_url <- paste0(url,folder,"/",files)
-  exists_bool <- !file.exists(files)
-  if(sum(exists_bool)>0){
-    download.file(full_url[exists_bool],files[exists_bool])
-    }
-  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
-}
-
-check_download(c("forests_ed.tif","settlements_ed.tif",
-                 "streets_ed.tif"),"rauman")
-```
-
-
-```{r figdistancesettlements, echo=FALSE, fig.cap="Example output for the distances to settlements", fig.align="center", out.width="50%"}
+```{r figdistancesettlements, echo=FALSE, fig.cap="Example output for the distances to settlements", purl = FALSE, fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ```
 
-```{r solutionEx4, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 4: Calculate distances to criteria -- ##
+```{r solutionEx4, echo=FALSE, message=FALSE, warning=FALSE}
+
 # This process will take a few hours to run
 #create raster layers from vector 
 raster_settlements <- terra::rasterize(vect(settlements), r, field = 1)
@@ -226,7 +206,10 @@ The data layers slope, wind speed, icing frequency and the in exercise 4 calcula
 * ***Tip**: Keep in mind the min and max values of each raster layer.*
 * ***Tip**: Here is an example code to reclassify the distances to settlements.*
 
-```{r examplereclassifysettlements, eval=FALSE}
+```{r examplereclassifysettlements}
+
+settlements_max <- terra::global(settlements_ed, "max")[[1]]
+
 reclass_settlements <- c(0,80,0,
                         80,160,0.1,
                         160,240,0.2,
@@ -237,21 +220,24 @@ reclass_settlements <- c(0,80,0,
                         560,640,0.7,
                         640,720,0.8,
                         720,800,0.9,
-                        800,terra::minmax(settlements_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+                        800,settlements_max,1.0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_settlements_ed <- terra::classify(settlements_ed, reclass_settlements)
 ```
 
-```{r figreclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", fig.align = "center", fig.show = "hold", out.width="49%"}
+```{r figreclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", purl = FALSE, fig.align = "center", fig.show = "hold", out.width="49%"}
 knitr::include_graphics(c("images/mce_reclassify_1.png", "images/mce_reclassify_2.png"))
 ```
 
-```{r figdistsettlementsreclass, echo=FALSE, fig.cap="Example output for the reclassified distances to settlements", fig.align="center", out.width="45%"}
+```{r figdistsettlementsreclass, echo=FALSE, fig.cap="Example output for the reclassified distances to settlements", fig.align="center", out.width="45%", purl = FALSE}
 knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ```
 
-```{r solutionEx5, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 5: Standardize and grade criteria (grading) -- ##
+```{r solutionEx5, echo=FALSE, message=FALSE, warning=FALSE}
+
+wind_max <- global(wind25m, "max")[[1]]
+
 #### reclassify wind    
+
 reclass_wind_m <- c(0,35,0,
                       35,40,0.1,
                       40,45,0.2,
@@ -261,22 +247,27 @@ reclass_wind_m <- c(0,35,0,
                       60,65,0.6,
                       65,70,0.7,
                       70,75,0.8,
-                      75,minmax(wind25m)[2],0.9) %>% matrix(ncol = 3, byrow = TRUE)
+                      75,wind_max,0.9) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_wind <- classify(wind25m, reclass_wind_m)
 plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
 
 #### reclassify ice    
+
+eis_max <- global(eis25m, "max")[[1]]
+
 reclass_ice_m <- c(0,6,1,
                      6,12,0.9,
                      12,18,0.8,
                      18,24,0.7,
                      24,30,0.6,
                      30,36,0.5,
-                     36,minmax(eis25m)[2],0.4) %>% matrix(ncol = 3, byrow = TRUE)
+                     36,eis_max,0.4) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_ice <- classify(eis25m, reclass_ice_m)
 plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE)
 
 #### reclassify slope
+
+slope_max <- global(slope, "max")[[1]]
 reclass_slope_m <- c(0,2,1,
                        2,4,0.9,
                        4,6,0.8,
@@ -287,11 +278,13 @@ reclass_slope_m <- c(0,2,1,
                        14,16,0.3,
                        16,18,0.2,
                        18,20,0.1,
-                       20,minmax(slope)[2],0) %>% matrix(ncol = 3, byrow = TRUE)
+                       20,slope_max,0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_slope <- classify(slope, reclass_slope_m)
 plot(reclass_slope, main="Slope (reclassified)", axes=FALSE)
 
 #### reclassify settlements 
+
+settlements_max <- global(settlements_ed, "max")[[1]]
 reclass_settlements <- c(0,80,0,
                              80,160,0.1,
                              160,240,0.2,
@@ -302,11 +295,13 @@ reclass_settlements <- c(0,80,0,
                              560,640,0.7,
                              640,720,0.8,
                              720,800,0.9,
-                             800,minmax(settlements_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+                             800,settlements_max,1.0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_settlements_ed <- classify(settlements_ed, reclass_settlements)
 plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes=FALSE)
 
 #### reclassify protected areas
+
+protected_areas_max <- global(protected_areas_ed, "max")[[1]]
 reclass_protected_areas <- c(0,50,0,
                                  50,100,0.1,
                                  100,150,0.2,
@@ -317,11 +312,12 @@ reclass_protected_areas <- c(0,50,0,
                                  350,400,0.7,
                                  400,450,0.8,
                                  450,500,0.9,
-                                 500,minmax(protected_areas_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+                                 500,protected_areas_max,1.0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_protected_areas_ed <- classify(protected_areas_ed, reclass_protected_areas)
 plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE)
 
 #### reclassify forest area 
+forests_max <- global(forests_ed, "max")[[1]]
 reclass_forests <- c(0,10,0,
                          10,20,0.1,
                          20,30,0.2,
@@ -332,11 +328,13 @@ reclass_forests <- c(0,10,0,
                          70,80,0.7,
                          80,90,0.8,
                          90,100,0.9,
-                         100,minmax(forests_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+                         100,forests_max,1.0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_forests_ed <- classify(forests_ed, reclass_forests)
 plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FALSE)
 
 #### reclassify streets   
+
+streets_max <- global(streets_ed, "max")[[1]]
 reclass_streets <- c(0,250,1.0,
                      250,500,0.9,
                      500,750,0.8,
@@ -347,7 +345,7 @@ reclass_streets <- c(0,250,1.0,
                      1750,2000,0.3,
                      2000,2250,0.2,
                      2250,2500,0.1,
-                     2500,minmax(streets_ed)[2],0) %>% matrix(ncol = 3, byrow = TRUE)
+                     2500,streets_max,0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_streets_ed <- classify(streets_ed, reclass_streets)
 plot(reclass_streets_ed, main="Distance to streets (reclassified)", axes=FALSE)
 ```
@@ -362,7 +360,7 @@ Perform an AHP to weight the criteria underlying the MCE. First compare the crit
           Wind       Streets          Ice    Settlements       Forest         Slope  Protected areas 
     0.33862692    0.09816760    0.06166626    0.24969460    0.03515759    0.18043000      0.03625702 
   
-```{r ahp_mce, eval=FALSE}
+```{r ahp_mce}
 ahp_matrix <- c(
   1, 0, 0, 0, 0, 0, 0, #Wind
   0, 1, 0, 0, 0, 0, 0, #Distance to streets
@@ -374,8 +372,8 @@ ahp_matrix <- c(
 ) %>% matrix(ncol = 7, byrow = TRUE)
 ```
 
-```{r solutionEx6, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 6: Weighting Criteria with AHP -- ##
+```{r solutionEx6, echo=FALSE, message=FALSE, warning=FALSE}
+
 #create AHP
 ahp_matrix <- c(
   1,   6,   7,   3,   7, 4,   5, #Wind
@@ -390,12 +388,7 @@ colnames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Sl
 rownames(ahp_matrix) <- c("Wind", "Streets", "Ice", "Settlements", "Forest", "Slope", "Protected areas")
 
 #Normalization of matrix & weighting of criteria
-ahp_matrix <- ahp_matrix %>% cbind(rowSums(ahp_matrix)) #add row sum
-ahp_matrix <- sweep(ahp_matrix, 2, colSums(ahp_matrix), FUN="/") #normalize data
-ahp_matrix
-
-weights <- ahp_matrix[, 8] #only get list of weights
-weights
+weights <- rowSums(ahp_matrix) #add row sum
 ```
 
 ## Exercise 7: Weighted Overlay
@@ -405,12 +398,12 @@ The linearly ranked criteria (Exercise 5) are now to be combined with each other
 * ***Tip**: As the raster sets have slightly different origins, increase the tolerance by using rasterOptions(tolerance = 0.5).*
 * ***Tip**: Also keep in mind the order of the weights in your list when doing the multiplication.*
 
-```{r figweightedoverlay, echo=FALSE, fig.cap="Weighted overall of all criteria", fig.align="center", out.width="50%"}
+```{r figweightedoverlay, echo=FALSE, fig.cap="Weighted overall of all criteria", fig.align="center", out.width="50%", purl = FALSE}
 knitr::include_graphics("images/mce_exercise_7_weighted_overlay.png")
 ```
 
-```{r solutionEx7, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 7: Weighted Overlay -- ##
+```{r solutionEx7, echo=FALSE, message=FALSE, warning=FALSE}
+
 rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance
 
 weighted_overlay <- (reclass_wind * weights[1]) +
@@ -430,14 +423,24 @@ plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, le
 
 By simply multiplying the exclusion layer (result from exercise 2) with the weighted overlay layer (result from exercise 7) we are excluding all areas with value 0 (exclusion areas) and keeping all other areas with value 1 (e.g. 0x3=0, 1x3=3). As a conclusion of the study, create a final plot of the potential areas for wind power plants in the canton of Schwyz (like figure \@ref(fig:figfinalresults)). Furthermore, discuss the results obtained and determine three possible locations within which concrete planning of wind power plants would be possible.
 
-```{r figfinalresults, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz (red = less suitable, green = more suitable)", fig.align="center", out.width="80%"}
+```{r figfinalresults, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz (red = less suitable, green = more suitable)", fig.align="center", out.width="80%", purl = FALSE}
 knitr::include_graphics("images/mce_exercise_8_final_plot.png")
 ```
 
-```{r  solutionEx8, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
-## -- Exercise 8: Intersecting potential areas with exclusion criteria -- ##
+```{r  solutionEx8, echo=FALSE, message=FALSE, warning=FALSE}
+
 final_model <- weighted_overlay * raster_exclusion_areas 
 
 plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=FALSE)
 ```
+
+
+## Musterlösung
+
+[R-Code](mce_mce_task.R) 
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE, eval = FALSE}
+distill::mypurl() # for some reason (chunk names) this code does not run. debug at some point
+```
+
+
 
