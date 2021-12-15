@@ -310,6 +310,13 @@ morans_i <- function(sf_object,col) {
 MI_gemeinde <-  morans_i(zweitwohnung_gemeinde,"ja_in_percent")
 ```
 
+## Musterlösung
+
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE}
+distill::mypurl()
+```
+
+
 
 
 

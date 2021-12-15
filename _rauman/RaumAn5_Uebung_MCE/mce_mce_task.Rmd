@@ -130,7 +130,7 @@ Merge the exclusion criteria settlement areas, national protected areas, lake ar
   
 ```{r create_empty_raster, eval=FALSE}
 r <- terra::rast(ext(kt_schwyz), 
-          resolution = c(25, 25), 
+          resolution = c(250, 250), 
           crs = "EPSG:21781")
 ```
   
@@ -145,7 +145,7 @@ exclusion_areas <- dplyr::bind_rows(settlements, forests, protected_areas, lakes
 
 #create raster
 r <- terra::rast(ext(kt_schwyz), 
-          resolution = c(25, 25), 
+          resolution = c(250, 250), 
           crs = "EPSG:21781")
 
 raster_exclusion_areas <- rasterize(vect(exclusion_areas), r,
@@ -178,10 +178,10 @@ Within the evaluation of suitable sites for wind turbines, the distance to roads
 * ***Tip**: In order to perform the `distance` function, you need to `rasterize` the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.*
 * ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
-As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same.
-You can download the other 3 data by clicking on the respective links below:
+<!-- As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. -->
+<!-- You can download the other 3 data by clicking on the respective links below: -->
 
-```{r, results='asis', echo = FALSE}
+```{r eval=FALSE, include=FALSE, results='asis'}
 knitr::opts_chunk$set(echo = TRUE)
 
 check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
@@ -211,17 +211,11 @@ raster_protected_areas <- terra::rasterize(vect(protected_areas), r, field = 1)
 raster_forests <- terra::rasterize(vect(forests), r, field = 1) 
 raster_streets <- terra::rasterize(vect(streets), r, field = 1)
 
-# https://drive.switch.ch/index.php/s/BakVy6vPzgXqs0l/download
-
 #calculate euclidean distances
-# settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
-settlements_ed <- rast("../RaumAn5_Uebung_MCE/settlements_ed.tif")
-protected_areas_ed <- rast("protected_areas_ed.tif")
-forests_ed <- rast("forests_ed.tif")
-streets_ed <- rast("streets_ed.tif")
-# protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
-# forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
-# streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
+settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
+protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
+forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
+streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
 
 ```
 
@@ -243,7 +237,7 @@ reclass_settlements <- c(0,80,0,
                         560,640,0.7,
                         640,720,0.8,
                         720,800,0.9,
-                        800,minmax(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+                        800,terra::minmax(settlements_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_settlements_ed <- terra::classify(settlements_ed, reclass_settlements)
 ```
 
@@ -267,7 +261,7 @@ reclass_wind_m <- c(0,35,0,
                       60,65,0.6,
                       65,70,0.7,
                       70,75,0.8,
-                      75,minmax(wind25m)[2]),0.9) %>% matrix(ncol = 3, byrow = TRUE)
+                      75,minmax(wind25m)[2],0.9) %>% matrix(ncol = 3, byrow = TRUE)
 reclass_wind <- classify(wind25m, reclass_wind_m)
 plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
 

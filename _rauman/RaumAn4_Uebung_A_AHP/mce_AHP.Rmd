@@ -16,7 +16,7 @@ author:
 ---
 
 
-```{r, include=FALSE}
+```{r, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -54,7 +54,7 @@ First think of an *actual decision* you are currently facing or have previously 
 
 In a first step each criterion needs to be compared with another criteria in pairs. Use the following scale for weighting the criteria (see table \@ref(tab:ahprating)) . 
 
-```{r ahprating, echo = FALSE}
+```{r ahprating, echo = FALSE, purl = FALSE}
 library(dplyr)
 
 
@@ -134,7 +134,7 @@ pairwise_comparison_normalized <- sweep(pairwise_comparison, 2,ahp_colsums, FUN 
 ```
 
 
-```{r criteria-normalize, fig.cap="Normalizing the criteria so that each column equals to 1"}
+```{r criteria-normalize, fig.cap="Normalizing the criteria so that each column equals to 1", purl = FALSE}
 knitr::include_graphics("images/criteria_normalize.png")
 ```
 
@@ -158,7 +158,7 @@ sum(criteria_weight)
 ```
 
 
-```{r weights-normalize, fig.cap="Normalizing the weights so that the sum of all weights equals to 1"}
+```{r weights-normalize, fig.cap="Normalizing the weights so that the sum of all weights equals to 1", purl = FALSE}
 knitr::include_graphics("images/weights_normalize.png")
 ```
 
@@ -208,11 +208,11 @@ CR <- CI/RI
 
 6. If CR > 0.1, you will need to re-evaluate your pairwise comparisons. 
 
-```{r}
+```{r include=FALSE}
 CR < 0.1
 ```
 
-```{r randomindexbysaaty, echo=FALSE, fig.cap="Random index by Saaty", fig.align="center", out.width="50%"}
+```{r randomindexbysaaty, echo=FALSE, fig.cap="Random index by Saaty", fig.align="center", out.width="50%", purl = FALSE}
 knitr::include_graphics("images/ahp_random_index_by_saaty.png")
 ```
 
@@ -228,50 +228,15 @@ You now have determined the weights on top of which you can build your decision 
 
 
 
-<!-- ## Exercise 5: Prioritization of the alternatives (Priorisierung der Alternativen 1) -->
 
 
-<!-- ### Step 1: Pairwise comparison of the alternatives: -->
+## Musterlösung
 
-<!-- Now, we create a pairwise comparison of all alternatives *for each characteristic* according to the following table. Note that you can disregard the weights for now. -->
+[R-Code](mce_AHP.R) 
+```{r, echo = FALSE, message=FALSE, results = "asis", purl = FALSE, eval = FALSE}
+distill::mypurl() # for some reason (chunk names) this code does not run. debug at some point
+```
 
-<!-- ```{r} -->
-
-<!-- tibble::tribble( -->
-<!--   ~Rating,	~Definition, -->
-<!--   1, "Two alternatives are equal", -->
-<!--   3, "Alternative A is slightly more prefferable than alternative B", -->
-<!--   5, "Alternative A is moderately more prefferable than alternative B", -->
-<!--   7, "Alternative A is strongly more prefferable than alternative B", -->
-<!--   9, "Alternative A are absolutely more important than alternative B", -->
-<!--   c(2,4,6,8), "Intermediate Values" -->
-<!-- ) %>% -->
-<!--   knitr::kable(caption = "Scale for weighting the criteria.") -->
-<!-- ``` -->
-
-
-<!-- ```{r} -->
-<!-- # criteria 1: Price -->
-<!-- # criteria 2: Distance to work -->
-<!-- # criteria 3: Size -->
-<!-- # criteria 4: Scenic Beauty -->
-
-
-<!-- price <- c( -->
-<!--   1,   9,   5,  # Apparement A -->
-<!--   1/9, 1,   5,  # Apparement B -->
-<!--   1/5, 1/5, 1   # Apparement C -->
-<!-- ) %>% -->
-<!--   matrix(ncol = 3, byrow = TRUE) -->
-
-<!-- distance_to_work <- c( -->
-<!--   1,   8, 2,   # Appartement A -->
-<!--   1/8, 1, 1/3, # Appartement B -->
-<!--   1/2, 3, 1    # Appartement C -->
-<!-- ) %>% matrix(ncol = 3, byrow = TRUE) -->
-
-
-<!-- ``` -->
 
 
 
