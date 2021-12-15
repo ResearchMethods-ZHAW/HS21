@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
 /_prepro/**/*.csv
 /_infovis/**/*.csv
 /_rauman/**/*.csv
