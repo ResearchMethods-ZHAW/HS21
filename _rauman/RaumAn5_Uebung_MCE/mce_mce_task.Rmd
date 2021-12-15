@@ -83,7 +83,6 @@ We will use the following packages in this exercise:
 ```{r}
 library(sf)
 library(terra)
-library(ggplot2)
 library(dplyr)
 library(tmap)
 ```
@@ -142,23 +141,24 @@ knitr::include_graphics("images/mce_exercise_2_exclusion_area.png")
 ```{r solutionEx2, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 ## -- Exercise 2: Merge exclusion criteria -- ##
 #Merge exclusion area
-exclusion_areas <- bind_rows(settlements, forests, protected_areas, lakes)
+exclusion_areas <- dplyr::bind_rows(settlements, forests, protected_areas, lakes)
 
 #create raster
-r <- raster(extent(kt_schwyz), 
-          resolution = c(25, 25), #use 25x25 resolution (same as other raster sets)
-          crs = "+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=600000 +y_0=200000 +ellps=bessel +units=m +no_defs") #crs from raster set (dhm25m)
+r <- terra::rast(ext(kt_schwyz), 
+          resolution = c(25, 25), 
+          crs = "EPSG:21781")
 
-raster_exclusion_areas <- rasterize(exclusion_areas, r, field = 0, background = 1) %>% mask(kt_schwyz)
+raster_exclusion_areas <- rasterize(vect(exclusion_areas), r,
+                       field = 0, background = 1) %>% crop(kt_schwyz)
 plot(raster_exclusion_areas, main="Exclusion area", axes=FALSE, legend=FALSE, col=terrain.colors(2))
 ```
 
 
 ## Exercise 3: Calculate slope
 
-Next, calculate the slope in degrees based on the terrain model (dhm25m). The raster package gives you a very helpful function called `terrain`. 
+Next, calculate the slope in degrees based on the terrain model (dhm25m). The terra package gives you a very helpful function called `terrain`. 
 
-***Tip**: When using the terrain function use the following options: opt="slope", unit="degrees", neighbors=8.*
+***Tip**: When using the terrain function use the following options: v="slope", unit="degrees", neighbors=8.*
 
 ```{r figslope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_3_slope.png")
@@ -166,7 +166,7 @@ knitr::include_graphics("images/mce_exercise_3_slope.png")
 
 ```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 ## -- Exercise 3: Calculate slope -- ##
-slope <- terrain(dhm25m, opt="slope",unit="degrees", neighbors=8)
+slope <- terra::terrain(dhm25m, v="slope",unit="degrees", neighbors=8)
 plot(slope, main="Slope", axes=FALSE)
 ```
 
@@ -176,9 +176,27 @@ plot(slope, main="Slope", axes=FALSE)
 Within the evaluation of suitable sites for wind turbines, the distance to roads, forest areas, national protected areas and inhabited areas are relevant. Depending on the criteria, a short or long distance has a positive influence on the evaluation of potential sites. For this purpose, perform a distance analysis with the selected criteria raster layers. Use the raster function `distance` for this calculation. 
 
 * ***Tip**: In order to perform the `distance` function, you need to `rasterize` the criteria as well. You can use the same command as in exercise 2 but use only option field = 1.*
-* ***Tip**: Use the `mask` function again to get only relevant data in the study area.*
+* ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
-As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same. You can load the other 3 data sets as .tif formats from the folder "/solution_euclidean_distances".
+As this process will take quite some time (about 2h), you only need to create the distance for the settlement data set, as the logic for the others stays the same.
+You can download the other 3 data by clicking on the respective links below:
+
+```{r, results='asis', echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+check_download <- function(files, folder, source = "", url = "https://github.com/ResearchMethods-ZHAW/datasets/raw/main/"){
+  full_url <- paste0(url,folder,"/",files)
+  exists_bool <- !file.exists(files)
+  if(sum(exists_bool)>0){
+    download.file(full_url[exists_bool],files[exists_bool])
+    }
+  cat(paste0("- [",files,"](",full_url,") ",source),sep = "\n")
+}
+
+check_download(c("forests_ed.tif","settlements_ed.tif",
+                 "streets_ed.tif"),"rauman")
+```
+
 
 ```{r figdistancesettlements, echo=FALSE, fig.cap="Example output for the distances to settlements", fig.align="center", out.width="50%"}
 knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
@@ -188,16 +206,22 @@ knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ## -- Exercise 4: Calculate distances to criteria -- ##
 # This process will take a few hours to run
 #create raster layers from vector 
-raster_settlements <- rasterize(settlements, r, field = 1) 
-raster_protected_areas <- rasterize(protected_areas, r, field = 1) 
-raster_forests <- rasterize(forests, r, field = 1) 
-raster_streets <- rasterize(streets, r, field = 1) 
+raster_settlements <- terra::rasterize(vect(settlements), r, field = 1)
+raster_protected_areas <- terra::rasterize(vect(protected_areas), r, field = 1) 
+raster_forests <- terra::rasterize(vect(forests), r, field = 1) 
+raster_streets <- terra::rasterize(vect(streets), r, field = 1)
+
+# https://drive.switch.ch/index.php/s/BakVy6vPzgXqs0l/download
 
 #calculate euclidean distances
-settlements_ed <- distance(raster_settlements) %>% mask(kt_schwyz)
-protected_areas_ed <- distance(raster_protected_areas) %>% mask(kt_schwyz)
-forests_ed <- distance(raster_forests) %>% mask(kt_schwyz)
-streets_ed <- distance(raster_streets) %>% mask(kt_schwyz)
+# settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
+settlements_ed <- rast("../RaumAn5_Uebung_MCE/settlements_ed.tif")
+protected_areas_ed <- rast("protected_areas_ed.tif")
+forests_ed <- rast("forests_ed.tif")
+streets_ed <- rast("streets_ed.tif")
+# protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
+# forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
+# streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
 
 ```
 
@@ -219,8 +243,8 @@ reclass_settlements <- c(0,80,0,
                         560,640,0.7,
                         640,720,0.8,
                         720,800,0.9,
-                        800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
+                        800,minmax(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_settlements_ed <- terra::classify(settlements_ed, reclass_settlements)
 ```
 
 ```{r figreclassify, echo=FALSE, fig.cap="Reclassify values for all criteria", fig.align = "center", fig.show = "hold", out.width="49%"}
@@ -243,8 +267,8 @@ reclass_wind_m <- c(0,35,0,
                       60,65,0.6,
                       65,70,0.7,
                       70,75,0.8,
-                      75,maxValue(wind25m),0.9) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_wind <- reclassify(wind25m, reclass_wind_m)
+                      75,minmax(wind25m)[2]),0.9) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_wind <- classify(wind25m, reclass_wind_m)
 plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
 
 #### reclassify ice    
@@ -254,8 +278,8 @@ reclass_ice_m <- c(0,6,1,
                      18,24,0.7,
                      24,30,0.6,
                      30,36,0.5,
-                     36,maxValue(eis25m),0.4) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_ice <- reclassify(eis25m, reclass_ice_m)
+                     36,minmax(eis25m)[2],0.4) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_ice <- classify(eis25m, reclass_ice_m)
 plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE)
 
 #### reclassify slope
@@ -269,8 +293,8 @@ reclass_slope_m <- c(0,2,1,
                        14,16,0.3,
                        16,18,0.2,
                        18,20,0.1,
-                       20,maxValue(slope),0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_slope <- reclassify(slope, reclass_slope_m)
+                       20,minmax(slope)[2],0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_slope <- classify(slope, reclass_slope_m)
 plot(reclass_slope, main="Slope (reclassified)", axes=FALSE)
 
 #### reclassify settlements 
@@ -284,8 +308,8 @@ reclass_settlements <- c(0,80,0,
                              560,640,0.7,
                              640,720,0.8,
                              720,800,0.9,
-                             800,maxValue(settlements_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_settlements_ed <- reclassify(settlements_ed, reclass_settlements)
+                             800,minmax(settlements_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_settlements_ed <- classify(settlements_ed, reclass_settlements)
 plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes=FALSE)
 
 #### reclassify protected areas
@@ -299,8 +323,8 @@ reclass_protected_areas <- c(0,50,0,
                                  350,400,0.7,
                                  400,450,0.8,
                                  450,500,0.9,
-                                 500,maxValue(protected_areas_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_protected_areas_ed <- reclassify(protected_areas_ed, reclass_protected_areas)
+                                 500,minmax(protected_areas_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_protected_areas_ed <- classify(protected_areas_ed, reclass_protected_areas)
 plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE)
 
 #### reclassify forest area 
@@ -314,8 +338,8 @@ reclass_forests <- c(0,10,0,
                          70,80,0.7,
                          80,90,0.8,
                          90,100,0.9,
-                         100,maxValue(forests_ed),1.0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_forests_ed <- reclassify(forests_ed, reclass_forests)
+                         100,minmax(forests_ed)[2],1.0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_forests_ed <- classify(forests_ed, reclass_forests)
 plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FALSE)
 
 #### reclassify streets   
@@ -329,8 +353,8 @@ reclass_streets <- c(0,250,1.0,
                      1750,2000,0.3,
                      2000,2250,0.2,
                      2250,2500,0.1,
-                     2500,maxValue(streets_ed),0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_streets_ed <- reclassify(streets_ed, reclass_streets)
+                     2500,minmax(streets_ed)[2],0) %>% matrix(ncol = 3, byrow = TRUE)
+reclass_streets_ed <- classify(streets_ed, reclass_streets)
 plot(reclass_streets_ed, main="Distance to streets (reclassified)", axes=FALSE)
 ```
 
