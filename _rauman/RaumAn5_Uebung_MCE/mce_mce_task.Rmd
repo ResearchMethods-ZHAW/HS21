@@ -99,9 +99,11 @@ lakes <- read_sf("Seeflaechen.gpkg")
 streets <- read_sf("Strassen.gpkg") %>% st_intersection(kt_schwyz) #intersect with study area
 
 #Raster data
-eis25m <- rast("eis25m.tif")  
-dhm25m <- rast("dhm25m.tif")  
+eis25m <- rast("eis25m.tif")
+dhm25m <- rast("dhm25m.tif")
 wind25m <- rast("wind25m.tif")
+
+
 ```
 
 
@@ -167,7 +169,8 @@ knitr::include_graphics("images/mce_exercise_3_slope.png")
 ```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE}
 
 slope <- terra::terrain(dhm25m, v="slope",unit="degrees", neighbors=8)
-plot(slope, main="Slope", axes=FALSE)
+slope_250 <- slope %>% aggregate(.,fact = 10)
+plot(slope_250, main="Slope", axes=FALSE)
 ```
 
 
@@ -189,14 +192,13 @@ knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 raster_settlements <- terra::rasterize(vect(settlements), r, field = 1)
 raster_protected_areas <- terra::rasterize(vect(protected_areas), r, field = 1) 
 raster_forests <- terra::rasterize(vect(forests), r, field = 1) 
-raster_streets <- terra::rasterize(vect(streets), r, field = 1)
+raster_streets <- terra::rasterize(vect(streets$geom), r, field = 1)
 
 #calculate euclidean distances
-settlements_ed <- distance(raster_settlements) %>% crop(kt_schwyz)
-protected_areas_ed <- distance(raster_protected_areas) %>% crop(kt_schwyz)
-forests_ed <- distance(raster_forests) %>% crop(kt_schwyz)
-streets_ed <- distance(raster_streets) %>% crop(kt_schwyz)
-
+settlements_ed <- distance(raster_settlements) %>% raster::raster() %>% raster::mask(kt_schwyz) %>% terra::rast()
+protected_areas_ed <- distance(raster_protected_areas) %>% raster::raster() %>% raster::mask(kt_schwyz) %>% terra::rast()
+forests_ed <- distance(raster_forests) %>% raster::raster() %>% raster::mask(kt_schwyz) %>% terra::rast()
+streets_ed <- distance(raster_streets) %>% raster::raster() %>% raster::mask(kt_schwyz) %>% terra::rast()
 ```
 
 ## Exercise 5: Standardize and grade criteria (grading)
@@ -208,7 +210,7 @@ The data layers slope, wind speed, icing frequency and the in exercise 4 calcula
 
 ```{r examplereclassifysettlements}
 
-settlements_max <- terra::global(settlements_ed, "max")[[1]]
+settlements_max <- minmax(settlements_ed)[2]
 
 reclass_settlements <- c(0,80,0,
                         80,160,0.1,
@@ -233,8 +235,8 @@ knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
 ```
 
 ```{r solutionEx5, echo=FALSE, message=FALSE, warning=FALSE}
-
-wind_max <- global(wind25m, "max")[[1]]
+wind250m <- wind25m %>% aggregate(.,fact = 10)
+wind_max <- minmax(wind250m)[2]
 
 #### reclassify wind    
 
@@ -248,13 +250,13 @@ reclass_wind_m <- c(0,35,0,
                       65,70,0.7,
                       70,75,0.8,
                       75,wind_max,0.9) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_wind <- classify(wind25m, reclass_wind_m)
+reclass_wind <- classify(wind250m, reclass_wind_m)
 plot(reclass_wind, main="Average wind speed (reclassified)", axes=FALSE)
 
 #### reclassify ice    
-
-eis_max <- global(eis25m, "max")[[1]]
-
+eis250m <- eis25m %>% aggregate(.,fact = 10) ## lowering the resolution
+eis_max <- minmax(eis250m)[2]
+#### reclassify ice    
 reclass_ice_m <- c(0,6,1,
                      6,12,0.9,
                      12,18,0.8,
@@ -262,12 +264,13 @@ reclass_ice_m <- c(0,6,1,
                      24,30,0.6,
                      30,36,0.5,
                      36,eis_max,0.4) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_ice <- classify(eis25m, reclass_ice_m)
+reclass_ice <- classify(eis250m, reclass_ice_m)
 plot(reclass_ice, main="Icing frequency (reclassified)", axes=FALSE)
 
 #### reclassify slope
-
-slope_max <- global(slope, "max")[[1]]
+slope250m <- slope %>% aggregate(.,fact = 10) ## lowering the resolution
+slope_max <- minmax(slope250m)[2]
+#### reclassify slope
 reclass_slope_m <- c(0,2,1,
                        2,4,0.9,
                        4,6,0.8,
@@ -279,12 +282,13 @@ reclass_slope_m <- c(0,2,1,
                        16,18,0.2,
                        18,20,0.1,
                        20,slope_max,0) %>% matrix(ncol = 3, byrow = TRUE)
-reclass_slope <- classify(slope, reclass_slope_m)
+reclass_slope <- classify(slope250m, reclass_slope_m)
 plot(reclass_slope, main="Slope (reclassified)", axes=FALSE)
 
 #### reclassify settlements 
 
-settlements_max <- global(settlements_ed, "max")[[1]]
+settlements_max <- minmax(settlements_ed)[2]
+
 reclass_settlements <- c(0,80,0,
                              80,160,0.1,
                              160,240,0.2,
@@ -301,7 +305,7 @@ plot(reclass_settlements_ed, main="Distance to settlements (reclassified)", axes
 
 #### reclassify protected areas
 
-protected_areas_max <- global(protected_areas_ed, "max")[[1]]
+protected_areas_max <- minmax(protected_areas_ed)[2]
 reclass_protected_areas <- c(0,50,0,
                                  50,100,0.1,
                                  100,150,0.2,
@@ -317,7 +321,7 @@ reclass_protected_areas_ed <- classify(protected_areas_ed, reclass_protected_are
 plot(reclass_protected_areas_ed, main="Distance to protected areas (reclassified)", axes=FALSE)
 
 #### reclassify forest area 
-forests_max <- global(forests_ed, "max")[[1]]
+forests_max <- minmax(forests_ed)[2]
 reclass_forests <- c(0,10,0,
                          10,20,0.1,
                          20,30,0.2,
@@ -334,7 +338,7 @@ plot(reclass_forests_ed, main="Distance to forest areas (reclassified)", axes=FA
 
 #### reclassify streets   
 
-streets_max <- global(streets_ed, "max")[[1]]
+streets_max <- minmax(streets_ed)[2]
 reclass_streets <- c(0,250,1.0,
                      250,500,0.9,
                      500,750,0.8,
@@ -404,17 +408,33 @@ knitr::include_graphics("images/mce_exercise_7_weighted_overlay.png")
 
 ```{r solutionEx7, echo=FALSE, message=FALSE, warning=FALSE}
 
-rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance
+# rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance
 
-weighted_overlay <- (reclass_wind * weights[1]) +
-  (reclass_streets_ed * weights[2]) +
-  (reclass_ice * weights[3]) +
-  (reclass_settlements_ed * weights[4]) +
-  (reclass_forests_ed * weights[5]) +
-  (reclass_slope * weights[6]) +
-  (reclass_protected_areas_ed * weights[7])
+wind_f <- (reclass_wind * weights[1])
+streets_f <- (reclass_streets_ed * weights[2])
+eis_f <- (reclass_ice * weights[3]) 
+settlements_f <- (reclass_settlements_ed * weights[4])
+forests_f <- (reclass_forests_ed * weights[5])
+slope_f <- (reclass_slope * weights[6])
+protected_areas_f <- (reclass_protected_areas_ed * weights[7])
 
-plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=FALSE)
+weighted_overlay <- terra::merge(streets_f,eis_f,settlements_f,forests_f,
+                                  slope_f,protected_areas_f,wind_f)
+
+# Transforming all the layer from SpatRaster class to RasterLayer class, so
+# we can perform the raster multiplication operation
+
+streets_R <- streets_f %>% raster::raster()
+eis_R <- eis_f %>% raster::raster()
+settlements_R <- settlements_f %>% raster::raster()
+forests_R <- forests_f %>% raster::raster()
+slope_R <- slope_f %>% raster::raster()
+protected_areas_R <- protected_areas_f %>% raster::raster()
+wind_R <- wind_f %>% raster::raster()
+
+weighted_overlay <- streets_R*eis_R*settlements_R*forests_R*slope_R*protected_areas_R*wind_R
+
+plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=T)
 
 ```
 
@@ -423,15 +443,17 @@ plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, le
 
 By simply multiplying the exclusion layer (result from exercise 2) with the weighted overlay layer (result from exercise 7) we are excluding all areas with value 0 (exclusion areas) and keeping all other areas with value 1 (e.g. 0x3=0, 1x3=3). As a conclusion of the study, create a final plot of the potential areas for wind power plants in the canton of Schwyz (like figure \@ref(fig:figfinalresults)). Furthermore, discuss the results obtained and determine three possible locations within which concrete planning of wind power plants would be possible.
 
-```{r figfinalresults, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz (red = less suitable, green = more suitable)", fig.align="center", out.width="80%", purl = FALSE}
+```{r figfinalresults, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz -- Spatial Resolution of 25m (red = less suitable, green = more suitable)", fig.align="center", out.width="80%", purl = FALSE}
 knitr::include_graphics("images/mce_exercise_8_final_plot.png")
 ```
 
 ```{r  solutionEx8, echo=FALSE, message=FALSE, warning=FALSE}
 
-final_model <- weighted_overlay * raster_exclusion_areas 
+# Transforming  the layer depicting the exclusion areas from SpatRaster class to RasterLayer class, so we can perform the final raster multiplication operation
+raster_exclusion_areas <- raster_exclusion_areas %>% raster::raster()
+final_model <- weighted_overlay * raster_exclusion_areas
+plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=F)
 
-plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=FALSE)
 ```
 
 
