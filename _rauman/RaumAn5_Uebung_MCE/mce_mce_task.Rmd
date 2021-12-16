@@ -88,7 +88,7 @@ library(tmap)
 ```
 
 
-```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r solutionEx1, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 #Vector data
 kt_schwyz <- read_sf("Untersuchungsgebiet_Schwyz.gpkg")
@@ -107,7 +107,7 @@ wind25m <- rast("wind25m.tif")
 ```
 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 #Plot vector data
 tm_shape(lakes) + tm_polygons(col = "dodgerblue3") +
   tm_shape(streets) + tm_lines(col = "gray18") +
@@ -116,7 +116,7 @@ tm_shape(lakes) + tm_polygons(col = "dodgerblue3") +
 ```
 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 tm_shape(dhm25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
 tm_shape(eis25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
 tm_shape(wind25m) + tm_raster(style = "cont") + tm_shape(kt_schwyz) + tm_borders()
@@ -137,10 +137,10 @@ r <- terra::rast(ext(kt_schwyz),
 ```
   
 ```{r figrasterizeexclusioncriteria, echo=FALSE, fig.cap="Exclusion area in the canton of Schwyz", fig.align="center", purl = FALSE, out.width="50%"}
-knitr::include_graphics("images/mce_exercise_2_exclusion_area.png")
+knitr::include_graphics("images/exclusion_areas.png")
 ```
 
-```{r solutionEx2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r solutionEx2, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 #Merge exclusion area
 exclusion_areas <- dplyr::bind_rows(settlements, forests, protected_areas, lakes)
@@ -163,10 +163,10 @@ Next, calculate the slope in degrees based on the terrain model (dhm25m). The te
 ***Tip**: When using the terrain function use the following options: v="slope", unit="degrees", neighbors=8.*
 
 ```{r figslope, echo=FALSE, fig.cap="Example output of the calculated slope", fig.align="center", out.width="50%", purl = FALSE}
-knitr::include_graphics("images/mce_exercise_3_slope.png")
+knitr::include_graphics("images/slope.png")
 ```
 
-```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE}
+```{r solutionEx3, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 slope <- terra::terrain(dhm25m, v="slope",unit="degrees", neighbors=8)
 slope_250 <- slope %>% aggregate(.,fact = 10)
@@ -182,12 +182,10 @@ Within the evaluation of suitable sites for wind turbines, the distance to roads
 * ***Tip**: Use the `crop` function again to get only relevant data in the study area.*
 
 ```{r figdistancesettlements, echo=FALSE, fig.cap="Example output for the distances to settlements", purl = FALSE, fig.align="center", out.width="50%"}
-knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
+knitr::include_graphics("images/d_to_settlements.png")
 ```
 
-```{r solutionEx4, echo=FALSE, message=FALSE, warning=FALSE}
-
-# This process will take a few hours to run
+```{r solutionEx4, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 #create raster layers from vector 
 raster_settlements <- terra::rasterize(vect(settlements), r, field = 1)
 raster_protected_areas <- terra::rasterize(vect(protected_areas), r, field = 1) 
@@ -231,10 +229,10 @@ knitr::include_graphics(c("images/mce_reclassify_1.png", "images/mce_reclassify_
 ```
 
 ```{r figdistsettlementsreclass, echo=FALSE, fig.cap="Example output for the reclassified distances to settlements", fig.align="center", out.width="45%", purl = FALSE}
-knitr::include_graphics("images/mce_exercise_4_dist_settlements.png")
+knitr::include_graphics("images/d_to_settlements_reclassified.png")
 ```
 
-```{r solutionEx5, echo=FALSE, message=FALSE, warning=FALSE}
+```{r solutionEx5, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 wind250m <- wind25m %>% aggregate(.,fact = 10)
 wind_max <- minmax(wind250m)[2]
 
@@ -376,7 +374,7 @@ ahp_matrix <- c(
 ) %>% matrix(ncol = 7, byrow = TRUE)
 ```
 
-```{r solutionEx6, echo=FALSE, message=FALSE, warning=FALSE}
+```{r solutionEx6, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 #create AHP
 ahp_matrix <- c(
@@ -403,10 +401,10 @@ The linearly ranked criteria (Exercise 5) are now to be combined with each other
 * ***Tip**: Also keep in mind the order of the weights in your list when doing the multiplication.*
 
 ```{r figweightedoverlay, echo=FALSE, fig.cap="Weighted overall of all criteria", fig.align="center", out.width="50%", purl = FALSE}
-knitr::include_graphics("images/mce_exercise_7_weighted_overlay.png")
+knitr::include_graphics("images/weighted_overlay.png")
 ```
 
-```{r solutionEx7, echo=FALSE, message=FALSE, warning=FALSE}
+```{r solutionEx7, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 # rasterOptions(tolerance = 0.5) #raster sets have different origins, increase tolerance
 
@@ -434,7 +432,7 @@ wind_R <- wind_f %>% raster::raster()
 
 weighted_overlay <- streets_R*eis_R*settlements_R*forests_R*slope_R*protected_areas_R*wind_R
 
-plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=T)
+plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, legend=F)
 
 ```
 
@@ -444,16 +442,15 @@ plot(weighted_overlay, main="Weighted overlay with all criteria", axes=FALSE, le
 By simply multiplying the exclusion layer (result from exercise 2) with the weighted overlay layer (result from exercise 7) we are excluding all areas with value 0 (exclusion areas) and keeping all other areas with value 1 (e.g. 0x3=0, 1x3=3). As a conclusion of the study, create a final plot of the potential areas for wind power plants in the canton of Schwyz (like figure \@ref(fig:figfinalresults)). Furthermore, discuss the results obtained and determine three possible locations within which concrete planning of wind power plants would be possible.
 
 ```{r figfinalresults, echo=FALSE, fig.cap="Potential sites for wind power plants in Kt. Schwyz -- Spatial Resolution of 25m (red = less suitable, green = more suitable)", fig.align="center", out.width="80%", purl = FALSE}
-knitr::include_graphics("images/mce_exercise_8_final_plot.png")
+knitr::include_graphics("images/potential_sites.png")
 ```
 
-```{r  solutionEx8, echo=FALSE, message=FALSE, warning=FALSE}
+```{r  solutionEx8, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 # Transforming  the layer depicting the exclusion areas from SpatRaster class to RasterLayer class, so we can perform the final raster multiplication operation
 raster_exclusion_areas <- raster_exclusion_areas %>% raster::raster()
 final_model <- weighted_overlay * raster_exclusion_areas
 plot(final_model, main="Potential sites for wind power plants in Kt. Schwyz", axes=FALSE, legend=F)
-
 ```
 
 
