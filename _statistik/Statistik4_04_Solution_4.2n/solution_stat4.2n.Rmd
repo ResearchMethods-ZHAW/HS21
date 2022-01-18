@@ -22,7 +22,7 @@ knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentatio
 
 
 ```{r}
-polis <- read.csv("https://media.githubusercontent.com/media/ResearchMethods-ZHAW/datasets/main/statistik/polis.csv")
+polis <- read.csv("polis.csv")
 polis
 
 str(polis)
