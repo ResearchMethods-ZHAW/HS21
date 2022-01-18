@@ -17,7 +17,7 @@ knitr::purl("solution_stat4.2n.Rmd", "Statistik_4_Solution_4.2n.R", documentatio
 ## Musterlösung Aufgabe 4.2N: Multiple logistische Regression
 
 - [R-Skript als Download](Statistik_4_Solution_4.2n.R)
-- [Loesungstext](Statistik_Loesungs_4.2N.pdf)
+- [Loesungstext](Statistik_Loesung_4.2N.pdf)
 
 
 
